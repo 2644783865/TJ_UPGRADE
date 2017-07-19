@@ -1,0 +1,31 @@
+﻿.show
+{
+	display: block;
+}
+.completionListElement
+{
+	margin: 0px;
+	color: windowtext;
+	cursor: 'default';
+	text-align: left;
+	list-style: none;
+	padding: 0px;
+	border: solid 1px gray;
+	width: 150px !important;
+	background-color: White;
+	font-size: small;
+}
+.listItem
+{
+	border-style: solid;
+	border: #FFEFDB;
+	border-width: 1px;
+	color: windowtext;
+	font-size: small;
+}
+.highlightedListItem
+{
+	background-color: #1C86EE;
+	color: black;
+	font-size: small;
+}

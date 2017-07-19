@@ -1,0 +1,1792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="DummyDataSource">
+      <rd:DataSourceID>a1c95920-39c8-4fe3-abe7-98b3182d9e41</rd:DataSourceID>
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>29.7cm</InteractiveHeight>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>21cm</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>15mm</RightMargin>
+  <LeftMargin>15mm</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox53">
+        <Top>2.75cm</Top>
+        <Width>7.75cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>17</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!OrderCode.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox54">
+        <Top>2.75cm</Top>
+        <Width>2cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>16</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>订 单 号:</Value>
+      </Textbox>
+      <Textbox Name="textbox51">
+        <Top>1.25cm</Top>
+        <Width>1.75cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>15</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>合同号：</Value>
+      </Textbox>
+      <Textbox Name="textbox25">
+        <rd:DefaultName>textbox25</rd:DefaultName>
+        <Top>0.25cm</Top>
+        <Width>4.25cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>14</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>21.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>="第" &amp; Globals.PageNumber &amp; "页  共" &amp; Globals.TotalPages &amp;"页"</Value>
+      </Textbox>
+      <Textbox Name="textbox32">
+        <rd:DefaultName>textbox32</rd:DefaultName>
+        <Top>0.25cm</Top>
+        <Width>3cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>13</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!DYBH.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox31">
+        <rd:DefaultName>textbox31</rd:DefaultName>
+        <Top>2cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>12</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>12.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!SLCK.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox30">
+        <rd:DefaultName>textbox30</rd:DefaultName>
+        <Top>2cm</Top>
+        <Width>3cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>11</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>22.75cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!BH.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox29">
+        <rd:DefaultName>textbox29</rd:DefaultName>
+        <Top>2cm</Top>
+        <Width>7.75cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>10</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!GYS.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox24">
+        <rd:DefaultName>textbox24</rd:DefaultName>
+        <Top>1.25cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>9</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!RQ.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox23">
+        <rd:DefaultName>textbox23</rd:DefaultName>
+        <Top>1.25cm</Top>
+        <Width>3.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>8</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>22.75cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!YDDH.Value)</Value>
+      </Textbox>
+      <Line Name="line1">
+        <Top>1cm</Top>
+        <Width>4.75cm</Width>
+        <Style>
+          <BorderColor>
+            <Default>Red</Default>
+          </BorderColor>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <FontFamily>宋体</FontFamily>
+        </Style>
+        <ZIndex>7</ZIndex>
+        <Left>10.5cm</Left>
+        <Height>0cm</Height>
+      </Line>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>0.25cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>11.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!textbox52.Value)</Value>
+      </Textbox>
+      <Line Name="line7">
+        <Top>1.1cm</Top>
+        <Width>5.25cm</Width>
+        <Style>
+          <BorderColor>
+            <Default>Red</Default>
+          </BorderColor>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <BorderWidth>
+            <Default>1.5pt</Default>
+          </BorderWidth>
+          <FontFamily>宋体</FontFamily>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <Left>10.25cm</Left>
+        <Height>0cm</Height>
+      </Line>
+      <Textbox Name="textbox3">
+        <rd:DefaultName>textbox3</rd:DefaultName>
+        <Top>1.25cm</Top>
+        <Width>2.25cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>20.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>入库单号：</Value>
+      </Textbox>
+      <Textbox Name="textbox5">
+        <rd:DefaultName>textbox5</rd:DefaultName>
+        <Top>1.25cm</Top>
+        <Width>2cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>入库日期:</Value>
+      </Textbox>
+      <Textbox Name="textbox2">
+        <rd:DefaultName>textbox2</rd:DefaultName>
+        <Top>2cm</Top>
+        <Width>2cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>供 应 商:</Value>
+      </Textbox>
+      <Textbox Name="textbox4">
+        <rd:DefaultName>textbox4</rd:DefaultName>
+        <Top>2cm</Top>
+        <Width>1.75cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>收料仓库:</Value>
+      </Textbox>
+      <Textbox Name="textbox28">
+        <rd:DefaultName>textbox28</rd:DefaultName>
+        <Top>2cm</Top>
+        <Width>2.25cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>20.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>货单编号:</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>3.5cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
+  <BottomMargin>0.5cm</BottomMargin>
+  <rd:ReportID>c2279a62-21ee-4673-81cb-3820f931a48e</rd:ReportID>
+  <PageWidth>29.7cm</PageWidth>
+  <DataSets>
+    <DataSet Name="DataSet_SM_SM_IN">
+      <Fields>
+        <Field Name="GYS">
+          <DataField>GYS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BH">
+          <DataField>BH</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SLCK">
+          <DataField>SLCK</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RQ">
+          <DataField>RQ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YDLX">
+          <DataField>YDLX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YDDH">
+          <DataField>YDDH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WLBM">
+          <DataField>WLBM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WLMC">
+          <DataField>WLMC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GGXH">
+          <DataField>GGXH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PH">
+          <DataField>PH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DW">
+          <DataField>DW</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YSSL">
+          <DataField>YSSL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SSSL">
+          <DataField>SSSL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BZ">
+          <DataField>BZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SHR">
+          <DataField>SHR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ZDR">
+          <DataField>ZDR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SLR">
+          <DataField>SLR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JBR">
+          <DataField>JBR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DYR">
+          <DataField>DYR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PTC">
+          <DataField>PTC</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CZ">
+          <DataField>CZ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DJ">
+          <DataField>DJ</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="JE">
+          <DataField>JE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DYBH">
+          <DataField>DYBH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BILLTYPE">
+          <DataField>BILLTYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderCode">
+          <DataField>OrderCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DummyDataSource</DataSourceName>
+        <CommandText />
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSet_SM</rd:DataSetName>
+        <rd:TableName>SM_IN</rd:TableName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <Code>Public Function AutoFont(checkField as String) As String
+    Dim nTest as Integer
+    nTest=Len(checkField)
+    Select Case (nTest)
+        Case 1 to 8
+            Return "10pt"
+        Case 8 to 16
+            Return "9pt"
+        Case 16 to 25
+            Return "8pt"
+        Case 25 to 35
+            Return "7pt"
+        Case 35 to 40
+            Return "6pt"
+        Case Else
+             Return "5pt"
+    End Select
+End Function
+
+Public Function AutoFont1(checkField as String,objWidth as Decimal) As String
+    Dim nTest as Decimal
+    nTest=10
+    While(Len(checkField)*nTest*2.54/72&gt;objWidth)
+    nTest=nTest-0.1
+    End While
+    Return str(nTest)+"pt"
+End Function</Code>
+  <Width>26.5cm</Width>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="OrderCode">
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>17</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>16.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!OrderCode.Value)</Value>
+      </Textbox>
+      <Textbox Name="BH">
+        <rd:DefaultName>BH</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Left</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>16</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>9.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!BH.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox52">
+        <rd:DefaultName>textbox52</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>15</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>13.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=Switch(First(Fields!BILLTYPE.Value, "DataSet_SM_SM_IN")="0","采购入库",First(Fields!BILLTYPE.Value, "DataSet_SM_SM_IN")="1","备库入库",First(Fields!BILLTYPE.Value, "DataSet_SM_SM_IN")="3","外委入库",First(Fields!BILLTYPE.Value, "DataSet_SM_SM_IN")="4","其他入库")</Value>
+      </Textbox>
+      <Textbox Name="textbox17">
+        <Top>1.5cm</Top>
+        <Width>3.75cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>14</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>21.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>="打印日期:"&amp;Format(Globals.ExecutionTime, "d")</Value>
+      </Textbox>
+      <Textbox Name="textbox45">
+        <Top>1.5cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>13</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>17cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!DYR.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox46">
+        <Top>1.5cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>12</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>11.75cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!JBR.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox47">
+        <Top>1.5cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>11</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>保管员:</Value>
+      </Textbox>
+      <Textbox Name="textbox48">
+        <Top>1.5cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>10</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>5.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>检验员:</Value>
+      </Textbox>
+      <Textbox Name="textbox49">
+        <Top>1.5cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>9</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>经办人:</Value>
+      </Textbox>
+      <Textbox Name="textbox50">
+        <Top>1.5cm</Top>
+        <Width>1.75cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>8</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>15.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>打印人:</Value>
+      </Textbox>
+      <Textbox Name="DYBH">
+        <rd:DefaultName>DYBH</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.75cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>7</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.75cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!DYBH.Value)</Value>
+      </Textbox>
+      <Textbox Name="GYS">
+        <rd:DefaultName>GYS</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>5.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!GYS.Value)</Value>
+      </Textbox>
+      <Textbox Name="SLCK">
+        <rd:DefaultName>SLCK</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>7.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!SLCK.Value)</Value>
+      </Textbox>
+      <Textbox Name="JBR">
+        <rd:DefaultName>JBR</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>19.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!JBR.Value)</Value>
+      </Textbox>
+      <Textbox Name="DYR">
+        <rd:DefaultName>DYR</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <TextAlign>Left</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>22.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!DYR.Value)</Value>
+      </Textbox>
+      <Textbox Name="YDDH">
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>3.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!YDDH.Value)</Value>
+      </Textbox>
+      <Table Name="table1">
+        <ZIndex>1</ZIndex>
+        <DataSetName>DataSet_SM_SM_IN</DataSetName>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <rd:DefaultName>textbox11</rd:DefaultName>
+                      <CanShrink>true</CanShrink>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>10</ZIndex>
+                      <Value>=RowNumber(Nothing)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="WLBM">
+                      <rd:DefaultName>WLBM</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>9</ZIndex>
+                      <Value>=Fields!WLBM.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="WLMC">
+                      <rd:DefaultName>WLMC</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontSize>=Code.AutoFont1(Fields!WLMC.Value,2.6)</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>8</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!WLMC.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="GGXH">
+                      <rd:DefaultName>GGXH</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontSize>=Switch
+(
+(2.25*72/2.54)/(Fields!GGXH.Value.ToString().Length)&gt;=6,"10pt",
+(2.25*72/2.54)/(Fields!GGXH.Value.ToString().Length)&gt;=5,"6pt",
+(2.25*72/2.54)/(Fields!GGXH.Value.ToString().Length)&gt;=3,"5pt",
+(2.25*72/2.54)/(Fields!GGXH.Value.ToString().Length)&gt;=0,"3pt")</FontSize>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <Value>=Fields!GGXH.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="CZ">
+                      <rd:DefaultName>CZ</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontSize>=IIf((Fields!CZ.Value.ToString().Length*10)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"10pt",
+IIf((Fields!CZ.Value.ToString().Length*9)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"9pt",
+IIf((Fields!CZ.Value.ToString().Length*8)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"8pt",
+IIf((Fields!CZ.Value.ToString().Length*7)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"7pt",
+IIf((Fields!CZ.Value.ToString().Length*6.9)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.9pt",
+IIf((Fields!CZ.Value.ToString().Length*6.8)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.8pt",
+IIf((Fields!CZ.Value.ToString().Length*6.7)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.7pt",
+IIf((Fields!CZ.Value.ToString().Length*6.6)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.6pt",
+IIf((Fields!CZ.Value.ToString().Length*6.5)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.4pt",
+IIf((Fields!CZ.Value.ToString().Length*6.3)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.3pt",
+IIf((Fields!CZ.Value.ToString().Length*6.2)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.2pt",
+IIf((Fields!CZ.Value.ToString().Length*6.1)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6.1pt",
+IIf((Fields!CZ.Value.ToString().Length*6)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"6pt",
+IIf((Fields!CZ.Value.ToString().Length*5.9)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.9pt",
+IIf((Fields!CZ.Value.ToString().Length*5.8)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.8pt",
+IIf((Fields!CZ.Value.ToString().Length*5.7)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.7pt",
+IIf((Fields!CZ.Value.ToString().Length*5.6)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.6pt",
+IIf((Fields!CZ.Value.ToString().Length*5.5)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.5pt",
+IIf((Fields!CZ.Value.ToString().Length*5.4)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.4pt",
+IIf((Fields!CZ.Value.ToString().Length*5.3)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.3pt",
+IIf((Fields!CZ.Value.ToString().Length*5.2)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.2pt",
+IIf((Fields!CZ.Value.ToString().Length*5.1)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"5.1pt",
+IIf((Fields!CZ.Value.ToString().Length*5)&lt;(2*72/2.54+Fields!PTC.Value.ToString().Length*4),"5pt",
+IIf((Fields!CZ.Value.ToString().Length*4.9)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.9pt",
+IIf((Fields!CZ.Value.ToString().Length*4.8)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.8pt",
+IIf((Fields!CZ.Value.ToString().Length*4.7)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.7pt",
+IIf((Fields!CZ.Value.ToString().Length*4.6)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.6pt",
+IIf((Fields!CZ.Value.ToString().Length*4.5)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.5pt",
+IIf((Fields!CZ.Value.ToString().Length*4.4)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.4pt",
+IIf((Fields!CZ.Value.ToString().Length*4.3)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.3pt",
+IIf((Fields!CZ.Value.ToString().Length*4.2)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.2pt",
+IIf((Fields!CZ.Value.ToString().Length*4.1)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"4.1pt",
+IIf((Fields!CZ.Value.ToString().Length*4)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"3.6pt",
+IIf((Fields!CZ.Value.ToString().Length*3.9)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"3.5pt",
+IIf((Fields!CZ.Value.ToString().Length*3.7)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"3.4pt",
+IIf((Fields!CZ.Value.ToString().Length*3.6)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"3.3pt",
+IIf((Fields!CZ.Value.ToString().Length*3.5)&lt;(2*72/2.54+Fields!CZ.Value.ToString().Length*4),"3.2pt",
+CStr((6*72/2.54)/(Fields!CZ.Value.ToString().Length))+"pt")))))))))))))))))))))))))))))))))))))</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <Value>=Fields!CZ.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="DW">
+                      <rd:DefaultName>DW</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <Value>=Fields!DW.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="SSSL">
+                      <rd:DefaultName>SSSL</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <Value>=Fields!SSSL.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="DJ">
+                      <rd:DefaultName>DJ</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <Value>=Fields!DJ.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="JE">
+                      <rd:DefaultName>JE</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <Value>=Fields!JE.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="PTC">
+                      <rd:DefaultName>PTC</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontSize>=Code.AutoFont(Fields!PTC.Value)</FontSize>
+                        <TextAlign>Left</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!PTC.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="BZ">
+                      <rd:DefaultName>BZ</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontSize>7.5pt</FontSize>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <Value>=Fields!BZ.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.4cm</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Style>
+          <BorderColor>
+            <Default>Red</Default>
+          </BorderColor>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <BorderWidth>
+            <Default>2pt</Default>
+          </BorderWidth>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>1pt</PaddingLeft>
+          <PaddingRight>1pt</PaddingRight>
+          <PaddingTop>1pt</PaddingTop>
+          <PaddingBottom>1pt</PaddingBottom>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox9">
+                      <rd:DefaultName>textbox9</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>32</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>序号</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>31</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>物料编码</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox20">
+                      <rd:DefaultName>textbox20</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>30</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>物料名称</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox27">
+                      <rd:DefaultName>textbox27</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                      </Style>
+                      <ZIndex>29</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>规格型号</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>28</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>材质</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox33">
+                      <rd:DefaultName>textbox33</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <FontFamily>宋体</FontFamily>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>27</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>单位</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>26</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>数量</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox18">
+                      <rd:DefaultName>textbox18</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>25</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>单价</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox22">
+                      <rd:DefaultName>textbox22</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>24</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>金额</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>23</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>计划跟踪号</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox16">
+                      <rd:DefaultName>textbox16</rd:DefaultName>
+                      <Style>
+                        <BorderColor>
+                          <Default>Red</Default>
+                        </BorderColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>22</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>备注</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.5cm</Height>
+            </TableRow>
+          </TableRows>
+          <FixedHeader>true</FixedHeader>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>1cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.5cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>3.25cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.25cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>6.2cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>2.8cm</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>1.4cm</Height>
+        <Footer>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox34">
+                      <rd:DefaultName>textbox34</rd:DefaultName>
+                      <Style>
+                        <Color>Red</Color>
+                        <BorderStyle>
+                          <Left>Solid</Left>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>21</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox35">
+                      <rd:DefaultName>textbox35</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>20</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>合计:</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox36">
+                      <rd:DefaultName>textbox36</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>19</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox37">
+                      <rd:DefaultName>textbox37</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>18</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox38">
+                      <rd:DefaultName>textbox38</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>17</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox39">
+                      <rd:DefaultName>textbox39</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>16</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox40">
+                      <rd:DefaultName>textbox40</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>15</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!SSSL.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox41">
+                      <rd:DefaultName>textbox41</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>14</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox42">
+                      <rd:DefaultName>textbox42</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>13</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Sum(Fields!JE.Value)</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox43">
+                      <rd:DefaultName>textbox43</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>12</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox44">
+                      <rd:DefaultName>textbox44</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>11</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.5cm</Height>
+            </TableRow>
+          </TableRows>
+        </Footer>
+      </Table>
+      <Textbox Name="RQ">
+        <rd:DefaultName>RQ</rd:DefaultName>
+        <RepeatWith>table1</RepeatWith>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
+        <Top>0.25cm</Top>
+        <Width>1.75cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>6.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(Fields!RQ.Value)</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>2.63492cm</Height>
+  </Body>
+  <Language>zh-CN</Language>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox26">
+        <rd:DefaultName>textbox26</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>3.75cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>21.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>="打印日期:"&amp;Format(Globals.ExecutionTime, "d")</Value>
+      </Textbox>
+      <Textbox Name="textbox21">
+        <rd:DefaultName>textbox21</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>2.53968cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>17cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=First(ReportItems!DYR.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox15">
+        <rd:DefaultName>textbox15</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>2.53968cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>11.75cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>=ReportItems!JBR.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <rd:DefaultName>textbox7</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>保管员:</Value>
+      </Textbox>
+      <Textbox Name="textbox13">
+        <rd:DefaultName>textbox13</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>5.5cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>检验员:</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <rd:DefaultName>textbox12</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>1.5cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>经办人:</Value>
+      </Textbox>
+      <Textbox Name="textbox8">
+        <rd:DefaultName>textbox8</rd:DefaultName>
+        <Visibility>
+          <Hidden>=IIf(Globals.PageNumber=Globals!TotalPages,True,False)</Hidden>
+        </Visibility>
+        <Width>1.75cm</Width>
+        <Style>
+          <Color>Red</Color>
+          <FontFamily>宋体</FontFamily>
+          <TextAlign>Center</TextAlign>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>15.25cm</Left>
+        <Height>0.63492cm</Height>
+        <Value>打印人:</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>0.88492cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
+  <TopMargin>0.3cm</TopMargin>
+  <PageHeight>21cm</PageHeight>
+</Report>

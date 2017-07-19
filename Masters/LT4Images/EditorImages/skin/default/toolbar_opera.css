@@ -1,0 +1,55 @@
+﻿.editor_select {FONT: 9pt Verdana,Arial}
+.outcolor{border:1px double;border-color:#dddddd #dddddd #dddddd #dddddd;cursor:pointer;background:#efefef}
+.overcolor{border:1px double;border-color:#ffffff #999999 #999999 #ffffff;cursor:pointer;background:#dddddd}
+.clickcolor{border:1px double;border-color:#999999 #ffffff #ffffff #999999;cursor:pointer;background:#dddddd}
+.divinline {display:inline-block;} 
+.drginline {display:inline;}
+.editor_switcher_highlight {
+ BACKGROUND:#EFEFEF; MARGIN-LEFT: 2px; VERTICAL-ALIGN:top; BORDER:#CCCCCC 1px solid;BORDER-TOP: none; TOP: 0px
+}
+.editor_switcher_nohighlight {
+ BACKGROUND: #FFFFFF; MARGIN-LEFT: 2px; VERTICAL-ALIGN: top;BORDER: #CCCCCC 1px solid; BORDER-TOP: none; TOP: 0px
+}
+.editor_buttonhover {
+	BORDER-RIGHT: #86b9d6 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #86b9d6 1px solid; PADDING-LEFT: 0px; BACKGROUND: #f5fbff; PADDING-BOTTOM: 0px; BORDER-LEFT: #86b9d6 1px solid; COLOR: #000000; PADDING-TOP: 0px; BORDER-BOTTOM: #86b9d6 1px solid
+}
+.editor_buttonselected {
+ 	BORDER-RIGHT: #86b9d6 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #86b9d6 1px solid; PADDING-LEFT: 0px; BACKGROUND: #f5fbff; PADDING-BOTTOM: 0px; BORDER-LEFT: #86b9d6 1px solid; COLOR: #000000; PADDING-TOP: 0px; BORDER-BOTTOM: #86b9d6 1px solid
+}
+.editor_menunormal {
+PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #ffffff; PADDING-BOTTOM: 0px; FONT: 12px Verdana,Tahoma; OVERFLOW: hidden; COLOR: #000000; PADDING-TOP: 0px; WHITE-SPACE: nowrap; HEIGHT: 18px
+}
+.popupmenu_popup {
+BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; COLOR: #000000; BORDER-BOTTOM: #cccccc 1px solid;FONT: 12px Verdana,Tahoma;overflow-x:hidden; overflow-y:auto;word-break:break-all;scrollbar-face-color:#f9f8f7;scrollbar-arrow-color:#000000;scrollbar-highlight-color:#f9f8f7;scrollbar-shadow-color:#f9f8f7;scrollbar-3dlight-color:#f9f8f7;scrollbar-darkshadow-color:#f9f8f7;scrollbar-track-color:#f9f8f7
+}
+.popupmenu_popup2 {
+BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; COLOR: #000000; BORDER-BOTTOM: #cccccc 1px solid;FONT: 12px Verdana,Tahoma;overflow-x:hidden; overflow-y:hidden;word-break:break-all;scrollbar-face-color:#f9f8f7;scrollbar-arrow-color:#000000;scrollbar-highlight-color:#f9f8f7;scrollbar-shadow-color:#f9f8f7;scrollbar-3dlight-color:#f9f8f7;scrollbar-darkshadow-color:#f9f8f7;scrollbar-track-color:#f9f8f7
+}
+.popupmenu_selectcolor {
+ border:solid #CCCCCC 1px; background:#f9f8f7 ; font-size:12px ; padding:0px; cursor:default
+}
+.popupmenu_option {
+ PADDING-RIGHT: 8px; PADDING-LEFT: 8px; BACKGROUND: #f9f8f7; PADDING-BOTTOM: 3px;FONT: 12px Verdana,Tahoma;CURSOR: pointer; COLOR: #000000; PADDING-TOP: 3px; WHITE-SPACE: nowrap
+}
+.editor_buttonnormal {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 1px; BORDER-TOP: medium none; PADDING-LEFT: 1px; BACKGROUND: #CCCCCC; PADDING-BOTTOM: 1px; BORDER-LEFT: medium none; COLOR: #CCCCCC; PADDING-TOP: 1px; BORDER-BOTTOM: medium none
+}
+
+.editor_menuhover {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #ffffff; PADDING-BOTTOM: 0px; FONT: 12px Verdana,Tahoma; OVERFLOW: hidden; COLOR: #000000; PADDING-TOP: 0px; WHITE-SPACE: nowrap; HEIGHT: 18px
+}
+.editor_menuhover {
+	BORDER-RIGHT: #86b9d6 1px solid
+}
+.popupmenu_highlight {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; BACKGROUND: #1a71e6; PADDING-BOTTOM: 3px; FONT: 12px Verdana,Tahoma; CURSOR: pointer; COLOR: #ffffff; PADDING-TOP: 3px; WHITE-SPACE: nowrap
+}
+.popupmenu_highlight A {
+PADDING-BOTTOM: 3px; COLOR: #ffffff; PADDING-TOP: 3px; TEXT-DECORATION: none
+}
+.status_nohighlight {
+ BACKGROUND: #FFFFFF;height:22px; margin-left:2px;BORDER:#CCCCCC 1px solid;
+}
+.status_highlight {
+ BACKGROUND:#EFEFEF; height:22px; margin-left:2px;BORDER:#CCCCCC 1px solid;
+}

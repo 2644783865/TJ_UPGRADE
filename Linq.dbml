@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ZCZJDMP" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.202.0.146;Initial Catalog=ZCZJDMP;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ZCZJDMPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TBPM_PJINFO" Member="TBPM_PJINFOs">
+    <Type Name="TBPM_PJINFO">
+      <Column Name="PJ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PJ_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PJ_CODE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PJ_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PJ_STARTDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PJ_CONTRACTDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PJ_REALFINISHDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PJ_MANCLERK" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PJ_STA" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="PJ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBMA_BZJINFO" Member="TBMA_BZJINFOs">
+    <Type Name="TBMA_BZJINFO">
+      <Column Name="BZJ_ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BZJ_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_FULLNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BZJ_HMCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BZJ_GUIGE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_UNIT" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_PRICE" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="BZJ_FATHERID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_FILLDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_MANCLERK" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BZJ_STATE" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="BZJ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="TBMA_TYPEINFO_TBMA_BZJINFO" Member="TBMA_TYPEINFO" ThisKey="BZJ_FATHERID" Type="TBMA_TYPEINFO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBMA_LVCGMAINFO" Member="TBMA_LVCGMAINFOs">
+    <Type Name="TBMA_LVCGMAINFO">
+      <Column Name="LVCG_ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LVCG_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_FULLNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LVCG_HMCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LVCG_GUIGE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_UNIT" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_PRICE" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="LVCG_FATHERID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_FILLDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_MANCLERK" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LVCG_STATE" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="LVCG_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="TBMA_TYPEINFO_TBMA_LVCGMAINFO" Member="TBMA_TYPEINFO" ThisKey="LVCG_FATHERID" Type="TBMA_TYPEINFO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBMA_RAWMAINFO" Member="TBMA_RAWMAINFOs">
+    <Type Name="TBMA_RAWMAINFO">
+      <Column Name="RM_ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RM_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RM_FULLNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="RM_HMCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RM_MWEIGHT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="RM_MAREA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="RM_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RM_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RM_UNIT" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="RM_PRICE" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="RM_FATHERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="RM_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RM_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="RM_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RM_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="RM_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="TBMA_TYPEINFO_TBMA_RAWMAINFO" Member="TBMA_TYPEINFO" ThisKey="RM_FATHERID" Type="TBMA_TYPEINFO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBMA_TYPEINFO" Member="TBMA_TYPEINFOs">
+    <Type Name="TBMA_TYPEINFO">
+      <Column Name="TY_ID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TY_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TY_FATHERNAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TY_FILLDATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TY_MANCLERK" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TY_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TY_STATE" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="TY_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="TBMA_TYPEINFO_TBMA_BZJINFO" Member="TBMA_BZJINFOs" OtherKey="BZJ_FATHERID" Type="TBMA_BZJINFO" />
+      <Association Name="TBMA_TYPEINFO_TBMA_LVCGMAINFO" Member="TBMA_LVCGMAINFOs" OtherKey="LVCG_FATHERID" Type="TBMA_LVCGMAINFO" />
+      <Association Name="TBMA_TYPEINFO_TBMA_RAWMAINFO" Member="TBMA_RAWMAINFOs" OtherKey="RM_FATHERID" Type="TBMA_RAWMAINFO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_WAREHOUSEINFO" Member="TBWS_WAREHOUSEINFOs">
+    <Type Name="TBWS_WAREHOUSEINFO">
+      <Column Name="WS_ID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="WS_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WS_FATHERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WS_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WS_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WS_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WS_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_WHLOCINFO" Member="TBWS_WHLOCINFOs">
+    <Type Name="TBWS_WHLOCINFO">
+      <Column Name="WL_ID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="WL_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WL_CODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WL_WSID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WL_WSNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WL_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WL_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WL_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WL_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQASM" Member="TBWS_SQASMs">
+    <Type Name="TBWS_SQASM">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQBZJ" Member="TBWS_SQBZJs">
+    <Type Name="TBWS_SQBZJ">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQELC" Member="TBWS_SQELCs">
+    <Type Name="TBWS_SQELC">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQHST" Member="TBWS_SQHSTs">
+    <Type Name="TBWS_SQHST">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQPTO" Member="TBWS_SQPTOs">
+    <Type Name="TBWS_SQPTO">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQSTL" Member="TBWS_SQSTLs">
+    <Type Name="TBWS_SQSTL">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQSVN" Member="TBWS_SQSVNs">
+    <Type Name="TBWS_SQSVN">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_SQYMI" Member="TBWS_SQYMIs">
+    <Type Name="TBWS_SQYMI">
+      <Column Name="SQ_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SQ_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SQ_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_PTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SQ_STID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_CWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SQ_UNIT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SQ_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_VNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_OCCUPYINFO" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="SQ_SPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_INPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SQ_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_ALLOCATELIST" Member="TBWS_ALLOCATELISTs">
+    <Type Name="TBWS_ALLOCATELIST">
+      <Column Name="AL_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AL_SCTYPE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="AL_XDCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_DEPID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_DEPNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_YANSHOU" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_YANSHOUNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_YEWUYUAN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_YEWUYUANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_BAOGUAN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_BAOGUANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_JIZHANG" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_JIZHANGNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_ZHIDAN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_ZHIDANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_REVIEW" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AL_REVIEWNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AL_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="AL_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_ALLOCATEMAR" Member="TBWS_ALLOCATEMARs">
+    <Type Name="TBWS_ALLOCATEMAR">
+      <Column Name="AM_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AM_ALID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="AM_MARNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_UNIT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_NUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AM_EXRATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AM_PUPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AM_PAMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AM_UCOST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AM_COST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AM_ALOUTWS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AM_ALOUTWL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AM_ALINWS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AM_ALINWL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="AM_PWORDERNO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_ORDERNO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AM_PCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="AM_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTJGDETAIL" Member="TBWS_INSTJGDETAILs">
+    <Type Name="TBWS_INSTJGDETAIL">
+      <Column Name="JG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="JG_CODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JG_MATCODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JG_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_UNIT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_PTCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_ASATTR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_PCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_DNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_RNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_PUPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_PAMTMNY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_UCOST" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_AMTMNY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_PDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_GDATE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JG_VDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_RMSTID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="JG_UMFEE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_MFEE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_JGUPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_JGFEE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_RATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_TAXAMY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_YDDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_ORDERID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_REPNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_URNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_AUNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JG_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTJGTOTAL" Member="TBWS_INSTJGTOTALs">
+    <Type Name="TBWS_INSTJGTOTAL">
+      <Column Name="JG_CODE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JG_CSID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JG_CSNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_PAYDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_WJTYPR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_MLKM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_YDLX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_XDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_REVIEWID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="JG_REVIEWNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_REVIEWADVC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JG_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_JZID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="JG_JZNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_YSANID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="JG_YSANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_BGMANID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="JG_BGMANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_ZDID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="JG_ZDNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JG_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="JG_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTPDDETAIL" Member="TBWS_INSTPDDETAILs">
+    <Type Name="TBWS_INSTPDDETAIL">
+      <Column Name="PI_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PI_CODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PI_MATCODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PI_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_UNIT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_DNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PI_RNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PI_UPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PI_AMTMNY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PI_PDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_GDATE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PI_VDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_RMSTID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_RMSTNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_RMWLID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_RMWLNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_YDDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_PTDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_PTCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTPDTOTAL" Member="TBWS_INSTPDTOTALs">
+    <Type Name="TBWS_INSTPDTOTAL">
+      <Column Name="PI_CODE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PI_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_XDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_CSID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PI_CSNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_REVIEWID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_REVIEWNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_REVIEWADVC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PI_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_JZID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_JZNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_YSMANID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_YSMANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_BGMANID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_BGMANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_ZDID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PI_ZDNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PI_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="PI_NOTE" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTQTDETAIL" Member="TBWS_INSTQTDETAILs">
+    <Type Name="TBWS_INSTQTDETAIL">
+      <Column Name="QT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QT_CODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="QT_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="QT_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_UNIT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_PCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_RNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="QT_UPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="QT_AMTMNY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="QT_RMSTID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QT_RMSTNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_RMWLID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QT_RMWLNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_PTCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTQTTOTAL" Member="TBWS_INSTQTTOTALs">
+    <Type Name="TBWS_INSTQTTOTAL">
+      <Column Name="QT_CODE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QT_INTYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_SUPPLIERID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="QT_SUPPLIERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_DEPID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QT_DEPNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_ABSTRACT" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="QT_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_JZID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QT_JZNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_BSMAN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QT_BSMANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_ZDID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QT_ZDNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QT_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="QT_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBDS_DEPINFO" Member="TBDS_DEPINFOs">
+    <Type Name="TBDS_DEPINFO">
+      <Column Name="DEP_CODE" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DEP_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DEP_FATHERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DEP_ISYENODE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="DEP_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DEP_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DEP_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DEP_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="TBDS_DEPINFO_TBDS_STAFFINFO" Member="TBDS_STAFFINFOs" OtherKey="ST_DEPID" Type="TBDS_STAFFINFO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBDS_STAFFINFO" Member="TBDS_STAFFINFOs">
+    <Type Name="TBDS_STAFFINFO">
+      <Column Name="ST_ID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ST_CODE" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ST_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ST_GENDER" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="ST_POSITION" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ST_JOBCAT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ST_DEPID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ST_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ST_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ST_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ST_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ST_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="TBDS_DEPINFO_TBDS_STAFFINFO" Member="TBDS_DEPINFO" ThisKey="ST_DEPID" Type="TBDS_DEPINFO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBCS_CUSUPINFO" Member="TBCS_CUSUPINFOs">
+    <Type Name="TBCS_CUSUPINFO">
+      <Column Name="CS_CODE" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CS_NAME" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CS_LOCATION" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CS_HRCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CS_ADDRESS" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CS_TYPE" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CS_PHONO" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CS_FAX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CS_CONNAME" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CS_MAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CS_COREBS" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CS_ZIP" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CS_RANK" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="CS_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CS_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CS_FILLDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CS_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBPM_TCTSASSGN" Member="TBPM_TCTSASSGNs">
+    <Type Name="TBPM_TCTSASSGN">
+      <Column Name="TSA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TSA_TSNAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TSA_PJID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_PJNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TSA_ENGID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_ENGNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TSA_ENGSTRTYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_TCCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TSA_TCCLERKNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_STARTDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_PLANFSDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_REALFSDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_MANCLERK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TSA_MANCLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TSA_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="TSA_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTWGTOTAL" Member="TBWS_INSTWGTOTALs">
+    <Type Name="TBWS_INSTWGTOTAL">
+      <Column Name="WG_CODE" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="WG_SUPPLIERID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WG_SUPPLIERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_ABSTRACT" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="WG_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_DEPID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WG_DEPNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_BSMANID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WG_BSMANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_ZDID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WG_ZDNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_RMMANID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WG_RMMANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_STATE" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="WG_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INSTWGDETAIL" Member="TBWS_INSTWGDETAILs">
+    <Type Name="TBWS_INSTWGDETAIL">
+      <Column Name="WG_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WG_CODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WG_PLANCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_MATCODE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="WG_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_UNIT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_LENGTH" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_WIDTH" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_PCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_RSNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_UPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_TAXRATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_CTAXUPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_AMTMNY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_CTAMTMNY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_RMSTID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WG_RMSTNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_RMWLID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="WG_RMWLNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_ORDERID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_REPNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_ASUREPNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_PTCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WG_TLENGTH" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_RATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_TWEIGHT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_RWEIGHT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="WG_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_MTOADJUSTLIST" Member="TBWS_MTOADJUSTLISTs">
+    <Type Name="TBWS_MTOADJUSTLIST">
+      <Column Name="MTO_CODE" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MTO_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_DEPID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MTO_DEPNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_PLANERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MTO_PLANERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_ZHIDAN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MTO_ZHIDANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_REVIEW" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MTO_REVIEWNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_STATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_MTOADJUSTMAR" Member="TBWS_MTOADJUSTMARs">
+    <Type Name="TBWS_MTOADJUSTMAR">
+      <Column Name="MTO_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MTO_CODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_MARID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MTO_MARNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_GUIGE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_CAIZHI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_PCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_FROMPTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MTO_WSID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MTO_WSNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_WLID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MTO_WLNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_UNIT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_KTNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTO_TZNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTO_EXRATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTO_TOPTCODE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MTO_ADJUSTPRICE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTO_ADJUSTAMOUT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MTO_STATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MTO_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_OUTPRODTOTAL" Member="TBWS_OUTPRODTOTALs">
+    <Type Name="TBWS_OUTPRODTOTAL">
+      <Column Name="OP_CODE" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OP_MARDEPID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OP_MARDEPNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_ORDERID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_PJID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_PJNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OP_ENGID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_ENGNAME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OP_SUBITEMID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_SUBITEMNM" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="OP_OUTWSID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OP_OUTWSNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_SHIPPERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OP_SHIPPERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_MKSHEETID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OP_MKSHEETNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_JIZHANG" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OP_JIZHANGNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_REVIEW" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OP_REVIEWNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_STATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OP_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_OUTOTHERTOTAL" Member="TBWS_OUTOTHERTOTALs">
+    <Type Name="TBWS_OUTOTHERTOTAL">
+      <Column Name="OT_CODE" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OT_OUTTYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_USAGE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="OT_MARDEP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_MARDEPNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_CUSTOMER" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_CUSTOMERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_SCTYPE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OT_XDCODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_DATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_OUTWSID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_OUTWSNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_REVIEWID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_REVIEWNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_JIZHANG" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_JIZHANGNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_YEWUYUAN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_YEWUYUANNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_MKSHEETID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_MKSHEETNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_SHIPPERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_SHIPPERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_CHARGERID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="OT_CHARGERNM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_STATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_NOTE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INVENTORYRECORD" Member="TBWS_INVENTORYRECORDs">
+    <Type Name="TBWS_INVENTORYRECORD">
+      <Column Name="PD_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PD_PDCODE" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="PD_WSMAID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_WSID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_WSMANUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PD_WSMAREALNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PD_WSLOSSNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PD_PROFITNUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PD_INVENTORYSTATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_WSMANOTE" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBWS_INVENTORYSCHEMA" Member="TBWS_INVENTORYSCHEMAs">
+    <Type Name="TBWS_INVENTORYSCHEMA">
+      <Column Name="PD_CODE" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PD_SCHEMADATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_PLANERID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_PLANERNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_WSID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_PJID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_MATYID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_CLERKID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_CLERKNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_PDDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_DONESTATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_REVIEWID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_REVIEWNAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_REVIEWDATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_REVIEWADV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_REVIEWSTATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_ADJSTATE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PD_NOTE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

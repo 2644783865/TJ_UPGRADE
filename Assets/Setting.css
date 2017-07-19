@@ -1,0 +1,438 @@
+/* 
+*  锁定表头表格样式，仅适用于IE6/7/8
+*  Create by Aries BLOG: http://www.cnblogs.com/sansi/
+*/
+
+.fixbox 
+{
+    border:0px solid #000000;
+    width:100%; 
+    height:500px;
+    overflow:auto; 
+    position:relative;
+    z-index:202;
+}
+
+.fixtable
+{
+    width:100%;
+    z-index:1001;
+    position:relative;
+    overflow:auto;
+    border-spacing:0;
+    border-collapse:collapse;
+    border:1px #B3CDE8 solid;
+}
+
+.fixtable tr
+{
+    border:solid 1px black;
+    background-color:#fff;
+}
+
+.fixtable th 
+{
+    top:expression(this.parentElement.parentElement.parentElement.parentElement.scrollTop - 0);
+    position:relative;
+    z-index:10;
+    border:1px;
+    border-style:solid;
+    border-color:Black;
+    /*border-width:1px;*/
+    height:20px;
+    background:#EEF7FD;
+    white-space:nowrap;
+}
+
+.fixtable td
+{
+	border-color:#C9DBEF;
+    height:20px;
+    border:1px solid #000000;
+    text-align:center;
+    white-space:nowrap;
+}
+
+th.lockcolumn
+{
+    left:expression(this.parentElement.parentElement.parentElement.parentElement.scrollLeft - 0);        
+    z-index:99;
+    width:80px;
+}
+
+td.lockcolumn
+{
+    position:relative;
+    left:expression(this.parentElement.parentElement.parentElement.parentElement.scrollLeft - 0);    
+}
+
+.fullwidth
+{
+    width:100%;
+}
+
+.xscroll
+{
+    /*overflow-x:hidden;*/
+}
+
+
+
+
+
+
+
+
+
+/* ajax__tab_xp-theme theme */
+.ajax__tab_xp-theme .ajax__tab_header 
+{
+    font-family:verdana,tahoma,helvetica;
+    font-size:11px;
+    background:url(img/xp/tab-line.gif) repeat-x bottom;
+}
+.ajax__tab_xp-theme .ajax__tab_header .ajax__tab_outer 
+{
+    padding-right:4px;
+    background:url(img/xp/tab-right.gif) no-repeat right;
+    height:21px;
+}
+.ajax__tab_xp-theme .ajax__tab_header .ajax__tab_inner 
+{
+    padding-left:3px;
+    background:url(img/xp/tab-left.gif) no-repeat;
+}
+.ajax__tab_xp-theme .ajax__tab_header .ajax__tab_tab
+{
+    height:13px;
+    padding:4px;
+    margin:0;
+    background:url(img/xp/tab.gif) repeat-x;
+}
+.ajax__tab_xp-theme .ajax__tab_hover .ajax__tab_outer 
+{
+    background:url(img/xp/tab-hover-right.gif) no-repeat right;
+}
+.ajax__tab_xp-theme .ajax__tab_hover .ajax__tab_inner 
+{
+    background:url(img/xp/tab-hover-left.gif) no-repeat;
+}
+.ajax__tab_xp-theme .ajax__tab_hover .ajax__tab_tab 
+{
+    background:url(img/xp/tab-hover.gif) repeat-x;
+}
+.ajax__tab_xp-theme .ajax__tab_active .ajax__tab_outer 
+{
+    background:url(img/xp/tab-active-right.gif) no-repeat right;
+}
+.ajax__tab_xp-theme .ajax__tab_active .ajax__tab_inner 
+{
+    background:url(img/xp/tab-active-left.gif) no-repeat;
+}
+.ajax__tab_xp-theme .ajax__tab_active .ajax__tab_tab 
+{
+    background:url(img/xp/tab-active.gif) repeat-x;
+}
+.ajax__tab_xp-theme .ajax__tab_body 
+{
+    font-family:verdana,tahoma,helvetica;
+    font-size:10pt;
+    border:1px solid #999999;
+    border-top:0;
+    padding:8px;
+    background-color:#ffffff;
+}
+
+/* ajax__tab_yuitabview-theme theme (img/yui/sprite.png) */
+.ajax__tab_yuitabview-theme .ajax__tab_header 
+{
+    font-family:arial,helvetica,clean,sans-serif;
+    font-size:small;
+    border-bottom:solid 5px #2647a0;
+}
+.ajax__tab_yuitabview-theme .ajax__tab_header .ajax__tab_outer 
+{
+    background:url(img/yui/sprite.png) #d8d8d8 repeat-x;
+    margin:0px 0.16em 0px 0px;
+    padding:1px 0px 1px 0px;
+    vertical-align:bottom;
+    border:solid 1px #a3a3a3;
+    border-bottom-width:0px;
+}
+.ajax__tab_yuitabview-theme .ajax__tab_header .ajax__tab_tab
+{    
+    color:#000;
+    padding:0.35em 0.75em;    
+    margin-right:0.01em;
+}
+.ajax__tab_yuitabview-theme .ajax__tab_hover .ajax__tab_outer 
+{
+    background: url(img/yui/sprite.png) #bfdaff repeat-x left -1300px;
+}
+.ajax__tab_yuitabview-theme .ajax__tab_active .ajax__tab_tab 
+{
+    color:#fff;
+}
+.ajax__tab_yuitabview-theme .ajax__tab_active .ajax__tab_outer
+{
+    background:url(img/yui/sprite.png) #2647a0 repeat-x left -1400px;
+}
+.ajax__tab_yuitabview-theme .ajax__tab_body 
+{
+    font-family:verdana,tahoma,helvetica;
+    font-size:10pt;
+    padding:0.25em 0.5em;
+    background-color:#edf5ff;    
+    border:solid 1px #808080;
+    border-top-width:0px;
+}
+
+/* ajax__tab_msngallery-theme theme */
+.ajax__tab_msngallery-theme .ajax__tab_header 
+{
+    background:url(img/msngallery/tab-line.png) repeat-x bottom;
+    font-size:12px;
+    display:block;
+}
+.ajax__tab_msngallery-theme .ajax__tab_header .ajax__tab_outer 
+{
+    border:solid 1px #D7DCE1;
+    padding:1px 1px 0px 1px;
+    border-bottom:solid 2px #A8D4D9;
+    background-color:#edf2fb;
+}
+.ajax__tab_msngallery-theme .ajax__tab_header .ajax__tab_tab 
+{
+    padding:6px 10px 6px 10px;
+    color:#444444;
+    width:117px;
+    display:block;
+    text-align:center;    
+}
+.ajax__tab_msngallery-theme .ajax__tab_header .ajax__tab_tab img
+{
+    height:24px;
+    width:24px;
+}
+.ajax__tab_msngallery-theme .ajax__tab_header .ajax__tab_tab div
+{
+    font-family:Verdana, Arial, Sans-Serif;
+    font-weight:bold;
+    white-space:nowrap;
+    line-height:145%;
+    font-size:92%;
+}
+.ajax__tab_msngallery-theme .ajax__tab_active .ajax__tab_outer 
+{
+    padding:0px 0px 0px 0px;
+    border:solid 2px #A8D4D9;
+    border-bottom-color:#ffffff;
+    background-color:#ffffff;
+}
+.ajax__tab_msngallery-theme .ajax__tab_body 
+{
+    font-family:verdana,tahoma,helvetica;
+    font-size:10pt;
+    padding:8px;
+    background-color:#ffffff;
+    border:solid 2px #A8D4D9;
+    border-top-width:0;
+}
+
+
+/* ajax__tab_black-theme theme */
+.ajax_tab_menu .ajax__tab_header /*整体按钮底样式*/
+{
+font-family:宋体;
+height:29px;
+font-size:12px;
+background:#181c1f repeat-x bottom;
+}
+.ajax_tab_menu .ajax__tab_body /*资料区*/
+{
+font-family:宋体;
+font-size:12px;
+border:2px solid #8A6A72;/*边框样式*/
+background-color:#372C2F;}
+.ajax_tab_menu .ajax__tab_tab /*预设样式*/
+{
+background:url("images/tag_bg_1.gif") repeat-x;
+width:105px;
+height:29px;
+line-height:29px;
+text-align:center;
+margin-right:4px;
+margin:0;
+color:#8A6A72;/*预设字体样式*/
+}
+.ajax_tab_menu .ajax__tab_hover .ajax__tab_tab /*鼠标经过样式*/
+{
+background:url("images/tag_bg_0.gif") repeat-x;
+width:105px;
+height:29px;
+color:#FFFFFF;
+line-height:29px;
+text-align:center;
+}
+.ajax_tab_menu .ajax__tab_active .ajax__tab_tab /*当前使用中样式*/
+{
+background:url("images/tag_bg_0.gif") repeat-x;
+width:105px;
+height:29px;
+line-height:29px;
+text-align:center;
+color:#FFFFFF;
+}
+
+
+
+/* ajax__tab_gray-theme theme */
+.AjaxTabStrip .ajax__tab_tab
+{
+    font-size: 12px;
+    padding: 4px;
+    width: 105px;  /* Your proper width */
+    height:16px;   /* Your proper height */
+    background-color: #EAEAEA;
+}
+
+.AjaxTabStrip .ajax__tab_hover .ajax__tab_tab
+{
+    font-weight:bold;
+    text-decoration: underline;
+}
+
+.AjaxTabStrip .ajax__tab_active .ajax__tab_tab
+{
+    background-color: #C2E2ED;
+    font-weight:bold;
+}
+
+.AjaxTabStrip .ajax__tab_body
+{
+    border: 1px solid #999999;
+    padding: 8px;
+    background-color: #ffffff;
+    margin-right: 9px; /* Your proper right-margin, make your header and the content have the same width */
+    margin-top:0px;
+}
+
+
+/*  ajax__tab_red-theme theme */
+.ajax_tab_menu .ajax__tab_header /*整体按钮底样式*/
+{
+font-family:宋体;
+height:28px;
+font-size:12px;
+background:url("images/Tab_Option_bg.gif") repeat-x bottom;
+}
+
+.ajax_tab_menu .ajax__tab_body /*资料区*/
+{
+font-family:宋体;
+font-size:12px;
+border:0px solid #999999;
+border-top:0;
+background-color:#ffffff;}
+
+.ajax_tab_menu .ajax__tab_tab /*预设样式*/
+{
+background:url("images/Tab_Option_bg_OFF.gif") repeat-x;
+width:78px;
+height:28px;
+line-height:28px;
+text-align:center;
+margin-right:4px;
+margin:0;
+}
+.ajax_tab_menu .ajax__tab_hover .ajax__tab_tab /*鼠标经过样式*/
+{
+background:url("images/Tab_Option_bg_ON.gif") repeat-x;
+width:78px;
+height:28px;
+color:#FFFFFF;
+line-height:28px;
+text-align:center;
+}
+
+.ajax_tab_menu .ajax__tab_active .ajax__tab_tab /*当前使用中样式*/
+{
+background:url("images/Tab_Option_bg_ON.gif") repeat-x;
+width:78px;
+height:28px;
+line-height:28px;
+text-align:center;
+color:#FFFFFF;
+}
+
+/* ajax__tab_newstab-theme theme */
+.NewsTab .ajax__tab_header 
+{
+    color: #aa976b;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: White;
+    margin-left: 10px;
+}
+.NewsTab .ajax__tab_outer
+{
+    background-color: White;
+}
+.NewsTab .ajax__tab_inner
+{
+    padding: 6px;
+    margin-right: 1px;
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: #f8f6ea;
+}
+.NewsTab .ajax__tab_hover .ajax__tab_outer
+{
+    background-color: Orange;
+}
+.NewsTab .ajax__tab_hover .ajax__tab_inner
+{
+    background-color: #FFFFE1;
+}
+.NewsTab .ajax__tab_active .ajax__tab_outer
+{
+    background-color: White;
+}
+.NewsTab .ajax__tab_active .ajax__tab_inner
+{
+    background-color: #fefdf7;
+}
+
+
+/*Ajax 弹出框*/
+   .closeLoginPanel
+   {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    line-height: 17px;
+    font-size: 11px;
+    font-weight: bold;
+    position: absolute;
+    top:8px;
+    right: 10px;
+   }
+
+  .closeLoginPanel a
+  {
+    background-color: #6699CC; 
+    cursor: pointer;
+    color: #FFFFFF; 
+    text-align: center; 
+    text-decoration: none; 
+    padding: 5px;
+   }
+
+  .popupbox
+  {
+    visibility:hidden;
+    border-style:solid;
+    border-width:1px;
+    border-color:blue;
+    background-color:Menu;
+  }
+  /END Ajax 弹出框************************/

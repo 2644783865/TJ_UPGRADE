@@ -1,0 +1,68 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/Masters/BaseMaster.master" AutoEventWireup="true" CodeBehind="SM_Position_Manage.aspx.cs" Inherits="ZCZJ_DPF.SM_Data.SM_Position_Manage" Title="Untitled Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
+      
+    <div class="box-inner">
+    <div class="box_right">
+    <div class="box-title">
+    <table width="100%">
+        <tr>
+            <td>
+            仓位名称：<asp:TextBox ID="txtname" runat="server"></asp:TextBox>
+            <asp:Button ID="search" Text="搜索" runat="server" OnClick="search_click" />
+            </td>
+            <td>
+             排序：<asp:DropDownList runat="server" ID="DropDownListOrderBy" OnSelectedIndexChanged="DropDownListOrderBy_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:ListItem Text="-请选择-" Value=""></asp:ListItem>                    
+                    <asp:ListItem Text="仓位名称" Value="a.WL_NAME"></asp:ListItem>
+                    <asp:ListItem Text="填写时间" Value="a.WL_FILLDATE"></asp:ListItem>
+                 </asp:DropDownList>        
+            </td>
+            <td align="right">
+             所属仓库:<asp:DropDownList ID="DropDownListParent" runat="server" AutoPostBack ="true" 
+                    OnSelectedIndexChanged="DropDownListParent_SelectedIndexChanged"></asp:DropDownList>&nbsp;&nbsp;
+            <asp:Button ID="Add" runat="server" Text="添加" onclick="Add_Click" />&nbsp;&nbsp;
+            <asp:Button ID="Delete" runat="server" Text="删除" onclick="Delete_Click" />&nbsp;&nbsp;
+            <asp:Button ID="LinkTo" runat="server" Text="仓库管理" onclick="LinkTo_Click" />&nbsp;&nbsp;
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+    </div>
+    
+    <div class="box-wrapper">
+    <div class="box-outer">
+    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="toptable grid" border="1">
+        <asp:Repeater ID="Repeater1" runat="server">
+            <HeaderTemplate>
+            <tr align="center" class="tableTitle1">
+                <td><strong></strong></td>
+                <td><strong></strong></td>                                
+                <td><strong>仓位编码</strong></td>
+                <td><strong>仓位名称</strong></td>
+                <td><strong>填写日期</strong></td>
+                <td><strong>维护人</strong></td>
+                <td><strong>备注</strong></td>
+                <td><strong>修改</strong></td>
+            </tr>
+            </HeaderTemplate>
+             <ItemTemplate>
+            <tr align="center" class="baseGadget" onMouseOver="this.className='highlight'" onMouseOut="this.className='baseGadget'">
+                <td><asp:CheckBox ID="CheckBox1" CssClass="checkBoxCss" runat="server" /><asp:Label ID="LabelID" runat="server" Text='<%#Eval("ID")%>' Visible="False"></asp:Label></td>
+                <td><asp:Label ID="LineNumber" runat="server" Text='<%#Container.ItemIndex+1%>'></asp:Label></td>
+                <td><%#Eval("ID")%></td>
+                <td><%#Eval("NAME")%></td>
+                <td><%#Eval("FILLDATE")%></td>
+                <td><%#Eval("CLERK")%></td>
+                <td><%#Eval("NOTE")%></td>
+                <td><asp:HyperLink ID="HyperLinkModify" NavigateUrl='<%#"SM_Position_Edit.aspx?FLAG=MODI&&ID="+Eval("ID")%>'  runat="server"><asp:Image ID="ImageModify" ImageUrl="~/assets/images/res.gif" border="0" hspace="2" align="absmiddle" runat="server" />修改</asp:HyperLink></td>   
+            </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+        <asp:Panel ID="NoDataPanel" runat="server" Visible="False">没有记录!</asp:Panel>
+    </table>
+
+    </div><!--box-outer END -->
+    </div> <!--box-wrapper END -->                 
+
+</asp:Content>

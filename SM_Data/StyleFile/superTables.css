@@ -1,0 +1,66 @@
+.PanelBody
+{
+	position: relative;
+	overflow: auto;
+	margin: 2px;
+	width: 100%;
+	height: 450px;
+}
+.NewPageBody
+{
+	position: relative;
+	overflow: auto;
+	margin: 2px;
+	width: 100%;
+	height: 540px;
+}
+.hidecss
+{
+	display:none;
+	}
+	.showcss
+{
+	display:block;
+	}
+.fakeContainer {
+    float: left;
+    margin: 0px;
+    border: none;
+    width: 100%;
+    height: 420px;
+	background-color: #ffffff;
+    overflow: hidden;
+}
+.fakeContainerNew {
+    float: left;
+    margin: 0px;
+    border: none;
+    width: 100%;
+    height: 520px;
+	background-color: #ffffff;
+    overflow: hidden;
+}
+
+
+
+.AlertStyle
+    {
+      top: 48%;
+      left: 50%;
+      position: absolute;
+      visibility: hidden;
+    }
+
+
+.cssHoverPanel
+{ 
+position: absolute; 
+visibility: hidden; 
+
+
+
+ 
+
+
+
+

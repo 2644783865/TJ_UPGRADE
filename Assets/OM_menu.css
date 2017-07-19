@@ -1,0 +1,777 @@
+﻿/*	全局定义　*/
+body,td,div,p{color:#1A438E;font:normal 12px/120% Tahoma,Verdana,sans-serif;}
+p{margin:0px; padding:0px;}
+html, body {
+width: 100%;
+margin: 0;
+padding: 0;
+}
+body {
+font: 14px Verdana, Arial, Helvetica, sans-serif;
+}
+ul{padding-left:10px; margin-left:10px; padding-bottom:0px; margin-bottom:0px;}
+checkbox 
+{
+	border:0;
+	padding:0;
+	}
+input,select{color:navy;font:normal 12px/120% Tahoma,Verdana,sans-serif; }
+input,textarea,hr{color:navy;font:normal 12px/120% Verdana,sans-serif;padding-left:2px;padding-right:2px;border:1px #8AB3DB solid;
+	}
+.otherinput{color:navy;font:normal 12px/120% Verdana,sans-serif;padding-left:2px;padding-right:2px;border:1px #8AB3DB solid;}
+.noinput input{border:none;}
+td{border-color:#C9DBEF;}
+a{color:#1A438E;text-decoration:none;}
+a:hover{color:#000000;text-decoration:none;}
+form {margin:0px;}
+.grid{border:1px #B3CDE8 solid;border-collapse:collapse;}
+.nogrid{border:0px !important;}
+.fixed{table-layout:fixed;overflow:hidden;}
+/*	最外层表格 */
+.toptable{width:100%;background:#EEF7FD;white-space:nowrap;}
+/*	列表头部的列名称栏 */
+.category{color:#003373;font-weight:bold; background:#FFFFFF;}
+
+/*	radio和checkbox样式 */
+.smallbox{height:14px !important;height:16px;border:0px !important;vertical-align: middle;}
+/*	手形光标 */
+.hand{cursor:hand;background:url(../images/menu_2.gif) no-repeat; width:176px; height:33px;padding-top:2px; text-align:center;}
+/*	按钮样式 */
+.button	{font:normal 12px/120% Verdana,'宋体';height:18px;
+border-left:1px #ced4e2 solid;
+border-top:1px #ced4e2 solid;
+border-right:1px #888888 solid;
+border-bottom:1px #888888 solid;
+background:	#dddddd;}
+
+
+a:focus {
+/* outline: none; */
+}
+img {
+border:0;
+padding:0;
+margin:0;
+}
+table {
+border-style: none;
+	border-color: inherit;
+	border-width: 0;
+	padding: 0;
+	margin: 0;
+	height: 32px;
+}
+#container {
+width:1004px;
+}
+#main {
+margin:0 auto;
+width:960px;
+}
+#loginPage 
+{
+	background:url(images/login_bgt.png) no-repeat;
+        background-color:#125389;
+	}
+
+#leftMenu {
+background: url(images/menu_body_bg.gif) repeat-y;
+}
+#LoginForm label {
+width:80px;
+float:left;
+text-align:right;
+font-weight:bold;
+color:#1E5C95;
+font-size:15px;
+}
+.LoginInput {
+background:url(images/login_input_bg.gif) no-repeat top;
+border:0;
+padding:0;
+width:225px;
+height:25px;
+padding:5px 0 0 5px;
+}
+#SelectFuctionPage #title {
+background:url(images/select_fuction_bg.gif) repeat-x;
+height:100px;
+padding:10px;
+}
+#SelectFuctionPage #title h4 {
+background:url(images/logo_blue_bg.gif) no-repeat top left;	
+padding:15px 20px 20px 60px;
+font-size:24px;
+color:#fff;
+}
+
+
+#top {
+background:url(images/j05.jpg) no-repeat right;
+height:70px;
+
+font-size:20px;
+}
+.loginInfo 
+{
+color:#333333;
+ float:right;
+
+}
+.top_des 
+{ float:left;
+  padding-top:8px;
+font-size:13px;
+font-weight:bold;
+	}
+.top_des a 
+{
+color:#064375;
+	}
+.RightContent 
+{
+	margin:6px;
+	font-size:12px;
+	color:#000;
+	}
+.RightContentTitle 
+{
+background:url(images/desk_title_body_bg.gif) repeat-x;
+height:23px;
+color:#fff;
+font-size:14px;
+padding:4px 0 5px 0;
+color:#3D72BD;
+font-weight:bold;
+}
+.rightTitleLeft_bg 
+{
+	float:left;
+	}
+#PageBottom 
+{
+	border-top:5px solid #498CD0;
+	}
+#Bottom
+{
+	background-color:#3569B2;
+	}
+#Bottom p 
+{
+	margin:0;
+	padding:0;
+	padding-top:5px;
+	color:#fff;
+	font-size:12px;
+	}
+#Bottom p span 
+{
+	margin:30px;
+	} 
+#Clock 
+{
+	padding-top:5px;
+	float:left;
+	margin-left:70px;
+	color:#fff;
+	font-size:12px;
+	}
+.LeftMenuNoSelected {
+background:url(images/menunoselected1.gif) no-repeat;
+}
+.LeftMenuSelected {
+background:url(images/menuselected1.gif) no-repeat;
+}
+
+a.LeftMenuSelected{
+	background:url(images/menuselected.gif) no-repeat;
+display:block;
+	width:175px;
+	height:20px;
+	padding:10px 0 0 10px;
+	font-weight:bold;
+	text-decoration:none;
+	font-size:12px;
+	cursor:pointer;
+	color:#064375;
+	} 
+a.LeftMenuNoSelected{
+	background:url(images/menunoselected.gif) no-repeat;
+	display:block;
+	font-size:12px;
+	width:175px;
+	height:20px;
+	padding:10px 0 0 10px;
+	color:#333333;
+	text-decoration:none;
+	cursor:pointer;
+	margin:0;
+	} 
+
+a.LeftMenuNoSelected:hover 
+{font-weight:bold;
+ background:url(images/menuhover.gif) no-repeat;
+	}
+	.TopSelect {
+text-align:right;
+margin-bottom:5px;
+}
+.box-wrapper{width:100%;background:#fff url(images/bottom-left.gif) no-repeat left bottom;}
+.box-wrapper1{background:#fff url(images/bottom-left.gif) no-repeat left bottom;}
+.box-outer{ padding:0 6px 6px 6px;background:url(images/bottom-right.gif) no-repeat right bottom;}
+.box-inner{background:url(images/top-left.gif) no-repeat left top;}
+.box_right{background:url(images/top-right.gif) repeat right top;}
+.box_top{background:url(images/top.gif) repeat left top;}
+.box-title 
+{
+	height:32px;
+	padding:2px 0 0 10px;
+	}
+.box-titlesearch 
+{
+	height:50px;
+	padding:2px 0 0 10px;
+	}
+.notifyInformation 
+{
+background: #fff url(images/notify-information.gif) 10px 4px no-repeat;
+	border-bottom: 0;
+	padding: 7px 10px 5px 30px;
+	color:#ff6600;
+	}
+.tableTitle {
+line-height:25px;
+font-weight:bolder;
+background-color:#fff;
+}
+.tableTitle1 {
+line-height:25px;
+font-weight:bolder;
+background-color:#A8B7EC;
+}
+.baseGadget {
+text-align:center;
+line-height:20px;
+}
+/*	高亮背景 */
+.highlight{background:#ffffff;text-align:center;
+line-height:20px;}
+.checkBoxCss input 
+{
+	border:0;
+	padding:0;
+	margin:0;
+	}
+.PageChange {
+text-align:right;
+padding:4px 10px;
+}
+.TitleRightButton 
+{
+float:right;
+width:100px;
+	}
+.Error 
+{
+	color:Red;
+	}
+.AddForm 
+{
+	margin:10px;
+	}
+.AddFormTitle 
+{
+	color:#000;
+	font-weight:bold;
+	text-align:center;
+	}
+.AddForm  label 
+{
+	width:100px;
+	float:left;
+	text-align:right;
+	margin-right:10px;
+	font-size:12px;
+	}
+.AddForm p {margin-bottom:10px;}
+.button-wrapper{background:url(images/bottom-left_gray.gif) no-repeat left bottom;  cursor:pointer;}
+.button-outer{background:url(images/bottom-right_gray.gif) no-repeat right bottom;  cursor:pointer;}
+.button-inner{background:url(images/top-left_gray.gif) no-repeat left top;  cursor:pointer;}
+.button_right{background:url(images/top-right_gray.gif) no-repeat right top; padding:15px;  cursor:pointer;}
+.blue_button {width:100px;text-align:center; color:#ffffff; font-weight:bold;  cursor:pointer;}
+
+a.Select1 div div div div, a.Select2 div div div div, a.Select3 div div div div {cursor:pointer;color:#ffffff; font-size:14px; font-weight:bold;}
+a.Select1 .button-wrapper { background-color:#19A806;}
+a.Select2 .button-wrapper { background-color:#FF7200;}
+a.Select3 .button-wrapper { background-color:#3569B2;}
+.green {color:#19A806;}
+.red {color:#FF7200;}
+.blue {color:#3569B2;}
+.gray {color:#ccc;}
+a.SelectGuizi {
+padding:5px 20px;
+display:block;
+width:60px;
+margin:20px 30px;
+border:1px solid #eee;
+height:60px;
+font-size:12px;
+font-weight:bold;
+}
+a.SelectPart {
+padding:10px;
+display:block;
+width:78px;
+margin:10px 5px;
+border:1px solid #eee;
+height:30px;
+font-size:12px;
+font-weight:bold;
+text-align:center;
+}
+a:hover.SelectGuizi {
+background-color:#eee;
+border:1px solid #FF7200;
+}
+p.SelectTitle {
+font-size:14px;
+font-weight:bold;
+border-bottom:1px solid #eee;
+padding-bottom:5px;
+}
+.currentCreate {
+background-color:#FF7200;
+}
+.currentCreated {
+background-color:#99B3D7;
+}
+.currentCreateTitle 
+{
+color:#FF7200;
+font-weight:bold;
+}
+tr.NocurrentCreateTitle td {
+color:#ccc;
+}
+.CreatedTitle {
+color:#99B3D7;
+font-weight:bold;
+}
+.Gray_box {
+border:1px solid #eee;
+width:90%;
+margin:0 auto;
+padding:10px;
+margin-top:20px;
+}
+.SubmitButton {
+width:90%;
+margin:0 auto;
+padding:10px;
+margin-top:20px;
+}
+a.SelectDaokai {
+padding:10px;
+display:block;
+width:78px;
+margin:10px 5px;
+border:1px solid #eee;
+height:30px;
+font-size:12px;
+font-weight:bold;
+text-align:center;
+}
+a:hover.SelectDaokai {
+background-color:#eee;
+border:1px solid #FF7200;
+}
+.gray_line {
+border-bottom:1px solid #F8C296;
+}
+td.MuPaiTitle {
+color:#000;
+padding-top:10px;
+}
+.RightContentTitle   img {
+margin-bottom:3px;
+}
+.RightContentForm  label	{
+width:100px;
+float:left;
+text-align:right;
+margin-right:10px;
+font-size:12px;
+}
+.Fenzu input 
+{
+	width:30px;
+	}
+.Project_info 
+{
+	margin-left:30px;
+	}
+.Type {
+width:100px;
+}
+.Number {
+width:50px;
+}
+.link
+{
+	font-family:@宋体;color:#336600; font-weight:normal;
+}
+
+.titlelink
+{
+	font-family:@宋体;color:#336600; font-size:medium; font-weight:bold;
+}
+
+
+
+/*FSGD*/
+
+/*Hu*/
+.tdleft
+{
+	width:25%;height:25px; text-align:right;
+}
+.tdright
+{
+	width:75%;color:#003373;font-weight:bold; background:#FFFFFF;
+}
+/*ZJZJ*/
+
+/*Huang*/
+.tdleft1
+{
+	width:20%;height:25px; text-align:right;
+}
+.tdright1
+{
+	width:30%;color:#003373; background:#FFFFFF;
+}
+.bomcolor
+{
+	background-color:#EEF7FD;
+}
+.headcolor
+{
+	background-color:#A8B7EC;
+}
+
+
+.GridViewHeaderStyle
+{
+    background-color: #A8B7EC;
+    font-weight: bold;
+    color: White;
+}
+
+.GridViewFooterStyle
+{
+    background-color: #507CD1;
+    font-weight: bold;
+    color: White;
+}
+
+.GridViewRowStyle
+{
+    background-color: #EFF3FB;
+}
+
+.GridViewAlternatingRowStyle
+{
+    background-color: #FFFFFF;
+}
+
+
+.GridViewSelectedRowStyle
+{
+    background-color: #E2DED6;
+    font-weight: bold;
+    color: #333333;
+}
+
+.GridViewPagerStyle
+{
+    background-color: #EEF7FD;
+    color: #2461BF;
+}
+
+/*列表单击背景*/
+.clickback{background:#EEE8AA;text-align:center;
+line-height:20px;}
+
+.del_new_img 
+{
+	width:20px;
+	height:20px;
+	background:url(../assets/images/del_new_img.gif);
+	border:0px;
+	padding:0px;
+	margin:0px 10px;
+	cursor:hand;
+	}
+.X{
+a.X:hover{color:red;text-decoration:none} 
+a.X:link{color:blue;text-decoration:none} 
+a.X:visited{color:green;text-decoration:underline} 
+a.X:active{color:Purple;text-decoration:none} 
+   }
+
+.nowrap td {white-space:nowrap;}
+
+
+.CustomerComboBox .ajax__combobox_inputcontainer
+         {
+         }
+         .CustomerComboBox .ajax__combobox_textboxcontainer
+         {
+         }
+         .CustomerComboBox .ajax__combobox_textboxcontainer input
+         {
+             margin: 0;
+             border: solid 1px #7F9DB9;
+             border-right: 0px none;
+             padding: 1px 0px 0px 5px;
+             font-size: 13px;
+             height: 18px;
+             position: relative;
+              
+        }
+         .CustomerComboBox .ajax__combobox_buttoncontainer
+         {
+         }
+         .CustomerComboBox .ajax__combobox_buttoncontainer button
+         {
+         }
+         .CustomerComboBox .ajax__combobox_itemlist
+         {
+            top:1000px;
+            margin: 0px;
+            padding: 0px;
+            cursor: default;
+            list-style-type: none;
+            text-align: left;
+            border: solid 1px ButtonShadow;
+            background-color: Window;
+            color: WindowText;
+            height: 50px;
+            overflow-y: auto !important;
+         }
+         .CustomerComboBox .ajax__combobox_itemlist li
+         {
+         	
+        }
+
+  /*自动创建的TextBox*/
+  .txtbox
+  {
+    margin-bottom:5px;
+    margin-top:10px;
+  }
+  .txtRbl
+  {
+  	 margin-bottom:5px;
+    margin-top:5px;
+  }
+  .txtboxCurrent
+  {
+  	margin-bottom:10px;
+    margin-top:5px;
+  }
+  
+  .txtMutCurrent
+  {
+  	margin-bottom:10px;
+    margin-top:15px;
+  }
+/*END自动创建的TextBox*/
+
+.hidden
+{
+ display:none;
+}
+
+/*登录按钮*/
+.login_input {
+width:148px;
+color: #333333;
+font-size: 12px;
+height: 18px;
+line-height: 18px;
+_border: 1px solid #B4B4B4;
+padding: 0px 2px 0px 2px;
+}
+
+.login_input:hover
+{
+border-color: #00ccff;
+}
+.login_input:focus
+{
+border-color: #FF8800;
+}
+
+
+.login_title 
+{
+color: #2A4A61;
+text-align:right;
+font-size:12px;
+}
+
+.buttOut { 
+BORDER-RIGHT: #72A1BD 1px solid; 
+BORDER-TOP: #72A1BD 1px solid; 
+BORDER-BOTTOM: #72A1BD 1px solid; 
+BORDER-LEFT: #72A1BD 1px solid; 
+MARGIN-TOP: 0px; 
+DISPLAY: inline; 
+FONT-SIZE: 11px; 
+BACKGROUND: url(Assets/images/butt_out.jpg); 
+PADDING-BOTTOM: 0px; 
+CURSOR: pointer; 
+COLOR: #333;
+LINE-HEIGHT: 18px; 
+PADDING-TOP: 0px; 
+HEIGHT: 20px;
+vertical-align: middle;
+}
+.hidden
+{
+	 display:none;
+}
+.show
+{
+	 display:block;
+}
+    .autobrk
+    {
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+     .notbrk
+    {    
+      white-space:pre;
+    }
+
+
+input
+{
+    color: #333333;   
+    
+    
+    _border: 1px solid #B4B4B4;
+    
+}
+input[type="text"], input[type="password"]
+{
+    border: 1px solid #B4B4B4;
+}
+input[type="text"]:hover, input[type="password"]:hover, textarea:hover
+{
+    border-color: #00ccff;
+}
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus
+{
+    border-color: #FF8800;
+}
+
+input.IE6hover
+{
+    border-color: #00ccff;
+}
+input.IE6focus
+{
+    border-color: #FF8800;
+}
+
+INPUT {
+	BORDER-RIGHT: #8ab3db 1px solid; BORDER-TOP: #8ab3db 1px solid; VERTICAL-ALIGN: middle; BORDER-LEFT: #8ab3db 1px solid; BORDER-BOTTOM: #8ab3db 1px solid
+}
+TEXTAREA {
+	BORDER-RIGHT: #8ab3db 1px solid; BORDER-TOP: #8ab3db 1px solid; VERTICAL-ALIGN: middle; BORDER-LEFT: #8ab3db 1px solid; BORDER-BOTTOM: #8ab3db 1px solid
+}
+
+
+#container {
+width:1004px;
+}
+#main {
+margin:0 auto;
+
+}
+#loginPage 
+{
+	background:url(images/bg.jpg) repeat-x top;
+	
+	}
+#LoginForm 
+{
+background:url(images/login_bg.jpg) repeat-x top;
+width:582px;
+bottom:100px;
+height:314px;
+margin:0 auto; margin-top:223px;
+}
+
+	#Clock 
+{
+	vertical-align:top;
+	color:#333333;
+	font-size:12px;
+	}
+  #PageBottom 
+{
+	border-top:5px solid #B7E3FE;
+	}
+#Bottom
+{
+	background-color:#ffffff;
+	
+	}
+
+
+#leftMenu 
+{
+background:url(images/left_menu_bg.gif) repeat-y right;
+}	
+
+
+#menu 
+{
+	border-right:1px solid #6FADCF;
+}
+#menuTitle {
+background:url(images/menu_title_bg.gif) no-repeat;
+height:22px;
+color:#333;
+text-align:center;
+padding-top:8px;
+font-weight:bold;
+}
+#menuContent 
+{
+font-size:13px;
+}
+#menuContent  p {
+margin:0;
+padding:0;
+}
+.display
+{
+    display:none;
+    }
+.backgrd
+{
+    background:white;
+}
+.rowstle
+{
+    width: 80px;
+}
+.colstle
+ {
+    height: 25px;
+     }

@@ -1,0 +1,25 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PopupBase.Master.cs" Inherits="ZCZJ_DPF.Masters.Site2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+	<title>PMS项目管理系统</title>
+	<base target="_self" />
+	  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<link href="../Assets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="background-color:#F5FFFA; font-size:large;">
+  <form id="form1" runat="server">
+     <div class="RightContentTitle">
+  <asp:ContentPlaceHolder ID="RightContentTitlePlace" runat="server">
+  </asp:ContentPlaceHolder>
+  </div>
+    <%--<asp:ScriptManager ID="sc1" runat="server" />--%>
+    
+        <div class="RightContent">
+    <asp:ContentPlaceHolder ID="PrimaryContent" runat="server">
+    </asp:ContentPlaceHolder>
+    </div>
+  </form>
+</body>
+</html>
