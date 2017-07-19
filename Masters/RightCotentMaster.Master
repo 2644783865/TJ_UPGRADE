@@ -1,0 +1,114 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RightCotentMaster.master.cs"
+    Inherits="ZCZJ_DPF.Masters.RightCotentMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <base id="goDownload" target="_self" />
+    <title>PMS项目管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+    <script src="../JS/jquery/jquery-1.4.2.js" type="text/javascript"></script>
+
+    <script src="../JS/EasyUI/jquery.easyui.min.js" type="text/javascript"></script>
+
+    <script src="../JS/EasyUI/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <link href="../JS/EasyUI/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../JS/EasyUI/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Assets/main.css" rel="stylesheet" type="text/css" />
+
+    <script src="../JS/EasyUICommon.js" type="text/javascript"></script>
+
+</head>
+<body style="background-color: White;">
+
+    <script language="javascript" type="text/javascript">
+
+        var displayBar = true;
+        var displayTop = true;
+        function switchBar(obj) {
+            if (displayBar) {
+                parent.frame.cols = "0,*";
+                displayBar = false;
+                obj.src = "../Assets/images/bar_show.gif";
+                obj.title = "打开左边管理菜单";
+            }
+            else {
+                parent.frame.cols = "150,*";
+                displayBar = true;
+                obj.src = "../Assets/images/bar_hide.gif";
+                obj.title = "关闭左边管理菜单";
+            }
+        }
+
+        function switchTop(obj) {
+            var mfrm = parent.document.getElementById("mfrm");
+            if (mfrm == null) {
+                alert("NULL");
+                return;
+            }
+            if (displayTop) {
+                mfrm.rows = "0,*,5";
+                displayTop = false;
+                obj.src = "../Assets/images/bar_down.gif";
+                obj.title = "打开";
+            }
+            else {
+                mfrm.rows = "70,*,5";
+                displayTop = true;
+                obj.src = "../Assets/images/bar_up.gif";
+                obj.title = "隐藏";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function mbModal(url, w, h) {
+            var oWnd = window.radopen(null, "HLDialog");
+            oWnd.SetSize(w, h);
+            oWnd.SetUrl(url);
+        }
+        function mbModalClose() {
+            if (window.location.replace)
+                window.location.replace('<%=Request.Url %>');
+            else
+                window.location.href = '<%=Request.Url %>';
+        }
+        function mbReportContent(id) {
+            mbModal('<%=VirtualPathUtility.ToAbsolute("~/dialogs/report_content.aspx") %>?c=' + escape(id), 450, 255);
+        }
+    </script>
+
+    <form id="form1" runat="server">
+    <div>
+        <div>
+            <%--<asp:Image ID="Image1" ImageUrl="~/Assets/images/desk_title_left_bg.gif" CssClass="rightTitleLeft_bg" runat="server" />
+        --%><div class="RightContentTitle">
+            <table width="100%">
+                <tr>
+                    <td width="15">
+                        <asp:Image ID="Image2" AlternateText="关闭左边管理菜单" Style="cursor: hand" onClick="switchBar(this)"
+                            CssClass="CloseImage" ImageUrl="~/Assets/images/bar_hide.gif" runat="server" />
+                    </td>
+                    <td>
+                        <asp:ContentPlaceHolder ID="RightContentTitlePlace" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <td width="15">
+                        <asp:Image ID="Image3" ImageUrl="~/Assets/images/bar_up.gif" AlternateText="隐藏" Style="cursor: hand"
+                            onClick="switchTop(this)" runat="server" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <div class="RightContent">
+            <asp:ContentPlaceHolder ID="PrimaryContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <!--RightContent Part END -->
+    </div>
+    </form>
+</body>
+</html>

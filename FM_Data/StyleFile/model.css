@@ -1,0 +1,46 @@
+﻿/*背景*/
+.popup_Container {
+	background-color:#fffeb2;
+	border:2px solid #000000;
+	padding: 0px 0px 0px 0px;
+}
+/*标题*/
+.popup_Titlebar {
+	background: url(Images/titlebar_bg.jpg);
+	height: 29px;
+}
+
+.TitlebarLeft 
+{
+	float:left;
+	padding-left:5px;
+	padding-top:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:12px;
+	color:#FFFFFF;
+}
+.TitlebarRight 
+{
+	background:url(Images/cross_icon_normal.png);
+	background-position:right;
+	background-repeat:no-repeat;
+	height:15px;
+	width:16px;
+	float:right;
+	cursor:pointer;
+	margin-right:5px;
+	margin-top:5px;
+}
+/*表体*/
+.popup_Body
+{
+	
+ padding :0px 15px 0px 15px;
+	font-family:Arial;
+	font-weight:bold;
+	font-size:12px;
+	color:#000000;
+	line-height:15pt;
+	clear:both;
+}

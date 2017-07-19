@@ -1,0 +1,186 @@
+﻿/* 容器DIV样式 */
+body { 
+}
+
+.edittable { 
+    width: 600px; 
+    padding: 10; 
+    margin: 10; 
+} 
+.edittable caption { 
+    padding: 5px 5px 5px 5px;
+    font-style:normal;
+    font-weight:bold;
+    font-size:larger;
+    color:White;
+    background-color:#A8B7EC; 
+    text-align: center; 
+    vertical-align:middle;
+} 
+.edittable td { 
+    padding: 3px 3px 3px 3px;
+    border-left: 1px solid #C1DAD7;    
+    border-right: 1px solid #C1DAD7; 
+    border-top: 1px solid #C1DAD7; 
+    border-bottom: 1px solid #C1DAD7; 
+    color: #2461BF;       
+    background: #FFFFFF; 
+    font-size:medium;
+    text-align:left; 
+} 
+.button	
+{
+font:normal 12px/120% Verdana,'宋体';height:18px;
+border-left:1px #ced4e2 solid;
+border-top:1px #ced4e2 solid;
+border-right:1px #888888 solid;
+border-bottom:1px #888888 solid;
+background:	#dddddd;
+} 
+
+.container
+{
+ width:100%;
+ overflow:auto;	
+}
+
+/* 内容表格样式 */
+.contenttable 
+{
+	width: 100%;
+	padding: 0; 
+	margin: 0; 
+
+	
+	/*width:100%;
+	text-align:center;
+
+	margin: 0px;
+	padding: 0px;
+	border:solid 1px black;
+	font-family: Verdana, Arial, sans serif;
+	font-size: 0.8em;*/
+}
+.contenttable caption
+{
+	padding: 0 0 5px 0; 
+	width: 100%; 
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+	text-align: right; 
+
+	
+	/*padding:5px;
+	margin:1px;
+	font-size:large;
+	color:Black;
+	text-align:center;*/
+}
+
+.contentable tr
+{
+	/*border:solid 1px #9eb6ce;*/
+}
+
+.contenttable td
+ {
+	border-right: 1px solid #C1DAD7; 
+	border-bottom: 1px solid #C1DAD7; 
+	background: #fff; 
+	font-size:11px; 
+	padding: 6px 6px 6px 12px; 
+	color: #4f6b72; 
+
+	
+	/*border:solid 1px #9eb6ce;
+	padding:4;
+	white-space: nowrap;*/
+}
+
+.contenttable th
+ {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+	color: #4f6b72; 
+	border-right: 1px solid #C1DAD7; 
+	border-bottom: 1px solid #C1DAD7; 
+	border-top: 1px solid #C1DAD7; 
+	letter-spacing: 2px; 
+	text-transform: uppercase; 
+	text-align: left; 
+	padding: 6px 6px 6px 12px; 
+	background: #CAE8EA  no-repeat; 
+	
+	/*border:solid 1px #9eb6ce;
+	padding:4;
+	line-height:25px;
+	font-weight:bolder;
+	background-color:#fff;
+	white-space: nowrap;*/
+}
+
+.tabGg {
+	BACKGROUND-COLOR: #82d1e7; border:solid 2px #d1e2f2; 
+	
+}
+.right_bg {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; BACKGROUND-COLOR: #ffffff; text-align:left;
+	border:solid 1px #d1e2f2;
+	
+}
+.right_bg input[type="text"]
+{
+	width:200px
+}
+.r_bg {
+	PADDING-LEFT: 3px; BACKGROUND-COLOR: #ecf9fc; TEXT-ALIGN: right; border:solid 1px #d1e2f2;
+}
+
+
+.buttOut { 
+BORDER-RIGHT: #72A1BD 1px solid; 
+BORDER-TOP: #72A1BD 1px solid; 
+BORDER-BOTTOM: #72A1BD 1px solid; 
+BORDER-LEFT: #72A1BD 1px solid; 
+MARGIN-TOP: 0px; 
+DISPLAY: inline; 
+FONT-SIZE: 12px; 
+BACKGROUND: url(bu3.jpg); 
+PADDING-BOTTOM: 0px; 
+CURSOR: pointer; 
+COLOR: #333;
+LINE-HEIGHT: 18px; 
+PADDING-TOP: 0px; 
+HEIGHT: 26px;
+PADDING-TOP: 2px;
+vertical-align: middle;
+}
+
+.buttOver { 
+BORDER-RIGHT: #A2904D 1px solid; 
+BORDER-TOP: #A2904D 1px solid; 
+BORDER-BOTTOM: #A2904D 1px solid; 
+BORDER-LEFT: #A2904D 1px solid; 
+MARGIN-TOP: 0px; 
+DISPLAY: inline; 
+FONT-SIZE: 12px; 
+BACKGROUND: url(btn_bg.gif); 
+PADDING-BOTTOM: 0px; 
+CURSOR: pointer; 
+COLOR: #333;
+LINE-HEIGHT: 18px; 
+PADDING-TOP: 0px; 
+HEIGHT: 26px;
+PADDING-TOP: 2px;
+vertical-align: middle;
+}
+
+
+
+.tableStyle {
+	CLEAR: both; BORDER-RIGHT: #82d1e7 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #82d1e7 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #82d1e7 1px solid; COLOR: #1a438e; PADDING-TOP: 1px; BORDER-BOTTOM: #82d1e7 1px solid; HEIGHT: 20px
+}
+.tableStyle TD {
+	CLEAR: both; BORDER-RIGHT: #82d1e7 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #82d1e7 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; VERTICAL-ALIGN: middle; BORDER-LEFT: #82d1e7 1px solid; COLOR: #1a438e; PADDING-TOP: 1px; BORDER-BOTTOM: #82d1e7 1px solid
+}
+.tableStyle TH {
+	BORDER-RIGHT: #82d1e7 1px solid; BORDER-TOP: #82d1e7 1px solid; FONT-SIZE: 12px; BACKGROUND: url(bj_05.gif) #c1eaf7 repeat-x; BORDER-LEFT: #82d1e7 1px solid; COLOR: #1a438e; BORDER-BOTTOM: #82d1e7 1px solid; FONT-FAMILY: "宋体"; HEIGHT: 24px; TEXT-ALIGN: center
+}

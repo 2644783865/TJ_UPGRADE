@@ -1,0 +1,492 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="auditMaster.master.cs" Inherits="ZCZJ_DPF.Masters.auditMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head runat="server">
+    <base id="goDownload" target="_self" />
+    <title>PMS项目管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+    <script src="../JS/jquery/jquery-1.4.2.js" type="text/javascript"></script>
+
+    <script src="../JS/EasyUI/jquery.easyui.min.js" type="text/javascript"></script>
+
+    <script src="../JS/EasyUI/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+    <link href="../JS/EasyUI/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../JS/EasyUI/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Assets/main.css" rel="stylesheet" type="text/css" />
+
+    <script src="../JS/EasyUICommon.js" type="text/javascript"></script>
+</head>
+<body>
+    <script language="javascript" type="text/javascript">
+        var auditjs='1';
+        //初始化选人窗口
+        $(function() {
+            $('#win').show().dialog({
+                title: '人员信息结构表',
+                width: 445,
+                height: 350,
+                closed: true,
+                cache: false,
+                modal: true,
+                buttons: '#buttons'
+            });
+        });
+        //初始化部门下拉框
+        $(function() {
+            $('#dep').combobox({
+                url: '../QC_Data/QC_AjaxHandler.aspx?method=InitDep',
+                valueField: 'dep_code',
+                textField: 'dep_name',
+                onSelect: function(rec) {
+                    $('#dg').datagrid('load', {
+                        dep: rec.dep_code,
+                        auditjs:auditjs,
+                        method: 'InitDepPeo'
+                    });
+                }
+            });
+        });
+        
+        //选择人员，弹出对话框
+        function SelPersons() {
+            //为部门赋值
+            $(function() {
+                $.post("../OM_Data/OM_AjaxHandler.aspx", { method: "FindDepbySTId" }, function(data, textStatus) {
+                    auditjs='1';
+                    $("#dep").combobox('setValue', data.dep);
+                    var depID = $("#dep").combobox('getValue')
+                    $("#win").dialog("open");
+                    $('#dg').datagrid({
+                        url: '../QC_Data/QC_AjaxHandler.aspx',
+                        striped: true,
+                        fit: true,
+                        rownumbers: true,
+                        pageNumber: 1,
+                        pageSize: 100,
+                        pageList: [10, 20, 50, 100],
+                        columns: [[
+                { checkbox: true },
+                { field: 'st_name', title: '姓名', width: 60, align: 'center' },
+                { field: 'st_gender', title: '性别', width: 50, align: 'center' },
+                { field: 'dep_name', title: '部门名称', align: 'center', width: 150 },
+                { field: 'dep_position', title: '岗位名称', align: 'center', width: 100 },
+                { field: 'st_id', align: 'center', hidden: true }
+
+            ]],
+                        singleSelect: true,
+                        pagination: true,
+                        queryParams: {
+                            dep: depID,
+                            auditjs:'1',
+                            method: 'InitDepPeo'
+                        }
+
+                    });
+
+
+                }, "json");
+
+            });
+
+
+        }
+    </script>
+    <script language="javascript" type="text/javascript">
+        var i;
+        array = new Array();
+        function SelPersons1() {
+            $("#hidPerson").val("first");
+            $("#win").dialog("open");
+            SelPersons();
+        }
+        
+        function SelPersons2() {
+            $("#hidPerson").val("second");
+            SelPersons();
+        }
+        function SelPersons3() {
+            $("#hidPerson").val("third");
+            SelPersons();
+        }
+   
+        
+        //点击确定
+        function savePick() {
+            var r = Save();
+            var id = $("#hidPerson").val();
+            if (id == "first") {
+                $("#<%=txt_first.ClientID %>").val(r.st_name);
+                $("#<%=firstid.ClientID %>").val(r.st_id);
+            }
+            else if (id == "second") {
+                $("#<%=txt_second.ClientID %>").val(r.st_name);
+                $("#<%=secondid.ClientID %>").val(r.st_id);
+            }
+            else if (id == "third") {
+                $("#<%=txt_third.ClientID %>").val(r.st_name);
+                $("#<%=thirdid.ClientID %>").val(r.st_id);
+            }
+            $('#win').dialog('close');
+        }
+        
+        //点击保存，返回数据
+        function Save() {
+            var r = $('#dg').datagrid('getSelected');
+            if (!r) {
+                $.messager.show({
+                    title: '提示消息',
+                    msg: '请勾选至少一行',
+                    timeout: 5000
+                });
+            }
+            else {
+                return r;
+            }
+        }
+        
+        //审核级数改变
+        function rblSHJSchange()
+        {
+            if($("#tdsplevel input:radio:checked").val()=="1")
+            {
+                $("#yjsh").show();
+                $("#ejsh").hide();
+                $("#sjsh").hide();
+            }
+            else if($("#tdsplevel input:radio:checked").val()=="2")
+            {
+                $("#yjsh").show();
+                $("#ejsh").show();
+                $("#sjsh").hide();
+            }
+            else if($("#tdsplevel input:radio:checked").val()=="3")
+            {
+                $("#yjsh").show();
+                $("#ejsh").show();
+                $("#sjsh").show();
+            }
+        }
+        
+        $(function(){
+
+           if($("#tdsplevel input:radio:checked").val()=="1")
+            {
+                $("#yjsh").show();
+                $("#ejsh").hide();
+                $("#sjsh").hide();
+            }
+            else if($("#tdsplevel input:radio:checked").val()=="2")
+            {
+                $("#yjsh").show();
+                $("#ejsh").show();
+                $("#sjsh").hide();
+            }
+            else if($("#tdsplevel input:radio:checked").val()=="3")
+            {
+                $("#yjsh").show();
+                $("#ejsh").show();
+                $("#sjsh").show();
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        function mbModal(url, w, h) {
+            var oWnd = window.radopen(null, "HLDialog");
+            oWnd.SetSize(w, h);
+            oWnd.SetUrl(url);
+        }
+        function mbModalClose() {
+            if (window.location.replace)
+                window.location.replace('<%=Request.Url %>');
+            else
+                window.location.href = '<%=Request.Url %>';
+        }
+        function mbReportContent(id) {
+            mbModal('<%=VirtualPathUtility.ToAbsolute("~/dialogs/report_content.aspx") %>?c=' + escape(id), 450, 255);
+        }
+    </script>
+    <form id="form1" runat="server">
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        <div>
+           <div class="RightContentTitle">
+              <table width="100%">
+                <tr>
+                    <td width="15">
+                        <asp:Image ID="Image2" AlternateText="关闭左边管理菜单" Style="cursor: hand" onClick="switchBar(this)" ImageUrl="~/Assets/images/bar_hide.gif" runat="server" />
+                    </td>
+                    <td>
+                        <asp:ContentPlaceHolder ID="RightContentTitlePlace" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <td width="15">
+                        <asp:Image ID="Image3" ImageUrl="~/Assets/images/bar_up.gif" AlternateText="隐藏" Style="cursor: hand"
+                            onClick="switchTop(this)" runat="server" />
+                    </td>
+                </tr>
+              </table>
+          </div>
+       </div>
+       <div>
+        <asp:TabContainer runat="server" ID="audittabcontainer" TabStripPlacement="Top" ActiveTabIndex="0" >
+            <asp:TabPanel runat="server" ID="tabdetaildata" HeaderText="数据明细" TabIndex="0">
+                <ContentTemplate>
+                     <div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                             
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </ContentTemplate>
+            </asp:TabPanel>
+            <asp:TabPanel runat="server" ID="tabauditdata" HeaderText="审核明细" TabIndex="0">
+               <ContentTemplate>
+                <div class="box-wrapper">
+                    <div style="width: 100%">
+                         <table width="100%">
+                               <tr>
+                                    <td align="right">
+                                        <asp:Button runat="server" ID="btnAudit" Text="提交" OnClick="btnAudit_OnClick" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
+                               </tr>
+                         </table>
+                    </div>
+                    <div style="height: 6px" class="box_top">
+                    </div>
+                    <div class="box-outer">
+                        <table width="100%">
+                            <tr>
+                                <td id="tdsplevel" align="right">
+                                    <asp:RadioButtonList ID="rblSHJS" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" onclick="rblSHJSchange()" >
+                                        <asp:ListItem Text="一级审核" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="二级审核" Value="2" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="三级审核" Value="3"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="font-size: large; text-align: center; height: 43px">
+                                    <asp:Label ID="audittitle" runat="server"></asp:Label><asp:HiddenField ID="hidstate" runat="server" />(单号：<asp:Label ID="lbauditno" runat="server"></asp:Label>)
+                                    <asp:Image ID="ImageVerify" runat="server" ImageUrl="~/Assets/images/shenhe.gif"
+                                        Visible="false" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="box-outer">
+                        <table align="center" width="100%" cellpadding="4" cellspacing="1" class="toptable grid"
+                            border="1">
+                            <tr>
+                                <td align="center">
+                                    制单人
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbzdr" runat="server" Width="100%"></asp:Label>
+                                    <asp:HiddenField ID="hidzdrid" runat="server" />
+                                </td>
+                                <td align="center">
+                                    制单时间
+                                </td>
+                                <td>
+                                    <asp:Label ID="lbzdtime" runat="server" Width="40%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    制单人意见
+                                </td>
+                                <td colspan="3">
+                                    <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1">
+                                        <tr>
+                                            <td>
+                                                <asp:TextBox ID="tbzdryj" runat="server" Height="42px" TextMode="MultiLine"
+                                                    Width="100%"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr id="yjsh">
+                                <td align="center">
+                                    一级审核
+                                </td>
+                                <td colspan="3">
+                                    <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1">
+                                        <tr>
+                                            <td align="center" style="width: 10%">
+                                                审批人
+                                            </td>
+                                            <td style="width: 20%">
+                                                <input ID="txt_first" runat="server" Width="80px" onfocus="this.blur()" />
+                                                <input id="firstid" type="text" runat="server" style="display: none" />
+                                                <asp:HyperLink ID="hlSelect1" runat="server" CssClass="hand" onClick="SelPersons1()">
+                                                    <asp:Image ID="AddImage1" ImageUrl="~/Assets/images/h1.gif" border="0" hspace="2"
+                                                        align="absmiddle" runat="server" />
+                                                    选择
+                                                </asp:HyperLink>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核结论
+                                            </td>
+                                            <td align="center" style="width: 20%">
+                                                <asp:RadioButtonList ID="rblfirst" RepeatColumns="2" runat="server" Height="20px">
+                                                    <asp:ListItem Text="同意" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核时间
+                                            </td>
+                                            <td style="width: 20%">
+                                                <asp:Label ID="first_time" runat="server" Width="100%"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <asp:TextBox ID="opinion1" runat="server" Height="42px" TextMode="MultiLine"
+                                                    Width="100%"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr id="ejsh">
+                                <td align="center">
+                                    二级审核
+                                </td>
+                                <td colspan="3">
+                                    <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1">
+                                        <tr>
+                                            <td align="center" style="width: 10%">
+                                                审批人
+                                            </td>
+                                            <td style="width: 20%">
+                                                <input ID="txt_second" runat="server" Width="80px" onfocus="this.blur()" />
+                                                <input id="secondid" type="text" runat="server" style="display: none" />
+                                                <asp:HyperLink ID="hlSelect2" runat="server" CssClass="hand" onClick="SelPersons2()">
+                                                    <asp:Image ID="AddImage2" ImageUrl="~/Assets/images/h1.gif" border="0" hspace="2"
+                                                        align="absmiddle" runat="server" />
+                                                    选择
+                                                </asp:HyperLink>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核结论
+                                            </td>
+                                            <td align="center" style="width: 20%">
+                                                <asp:RadioButtonList ID="rblsecond" RepeatColumns="2" runat="server" Height="20px">
+                                                    <asp:ListItem Text="同意" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核时间
+                                            </td>
+                                            <td style="width: 20%">
+                                                <asp:Label ID="second_time" runat="server" Width="100%"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <asp:TextBox ID="opinion2" runat="server" TextMode="MultiLine" Width="100%"
+                                                    Height="42px"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            
+                            <tr id="sjsh">
+                                <td align="center">
+                                    三级审核
+                                </td>
+                                <td colspan="3">
+                                    <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1">
+                                        <tr>
+                                            <td align="center" style="width: 10%">
+                                                审批人
+                                            </td>
+                                            <td style="width: 20%">
+                                                <input ID="txt_third" runat="server" Width="80px" onfocus="this.blur()" />
+                                                <input id="thirdid" type="text" runat="server" style="display: none" />
+                                                <asp:HyperLink ID="hlSelect3" runat="server" CssClass="hand" onClick="SelPersons3()">
+                                                    <asp:Image ID="AddImage3" ImageUrl="~/Assets/images/h1.gif" border="0" hspace="2"
+                                                        align="absmiddle" runat="server" />
+                                                    选择
+                                                </asp:HyperLink>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核结论
+                                            </td>
+                                            <td align="center" style="width: 20%">
+                                                <asp:RadioButtonList ID="rblthird" RepeatColumns="2" runat="server" Height="20px">
+                                                    <asp:ListItem Text="同意" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核时间
+                                            </td>
+                                            <td style="width: 20%">
+                                                <asp:Label ID="third_time" runat="server" Width="100%"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <asp:TextBox ID="opinion3" runat="server" TextMode="MultiLine" Width="100%"
+                                                Height="42px"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    </div>
+                </div>
+              </ContentTemplate>
+            </asp:TabPanel>
+        </asp:TabContainer>
+             <div>
+                <div>
+                    <div id="win" visible="false">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <strong>指定人员</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <td>
+                                        按部门查询：
+                                    </td>
+                                    <td>
+                                        <input id="dep" name="dept"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="width: 430px; height: 230px">
+                            <table id="dg">
+                            </table>
+                        </div>
+                    </div>
+                    <div id="buttons" style="text-align: right" visible="false">
+                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="return savePick();">
+                            保存</a> <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true"
+                                onclick="javascript:$('#win').dialog('close')">取消</a>
+                    </div>
+                </div>
+                <input type="hidden" id="hidPerson" value="" />
+            </div>
+       </div>
+    </form>
+</body>
+</html>
