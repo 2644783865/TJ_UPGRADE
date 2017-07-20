@@ -223,7 +223,7 @@ namespace ZCZJ_DPF
         }
 
         /// <summary>
-        ///  给RadioButtonList赋初值    </summary> 
+        ///  给RadioButtonList通过text赋初值    </summary> 
         /// <param name="rbl">RadioButtonList控件</param>
         /// <param name="value">值</param>
         public static void InitRBL(RadioButtonList rbl, string value)
@@ -237,7 +237,7 @@ namespace ZCZJ_DPF
             }
         }
         /// <summary>
-        ///  给RadioButtonList赋初值    </summary> 
+        ///  给RadioButtonList通过value赋初值    </summary> 
         /// <param name="rbl">RadioButtonList控件</param>
         /// <param name="value">值</param>
         public static void InitRBLByValue(RadioButtonList rbl, string value)
@@ -252,8 +252,8 @@ namespace ZCZJ_DPF
         }
 
         /// <summary>
-        ///  给RadioButtonList赋初值    </summary> 
-        /// <param name="rbl">RadioButtonList控件</param>
+        ///  给DropDownList赋初值    </summary> 
+        /// <param name="rbl">DropDownList控件</param>
         /// <param name="value">值</param>
         public static void InitDDL(DropDownList ddl, string value)
         {
@@ -421,7 +421,7 @@ namespace ZCZJ_DPF
                 j = i;
                 if (c[i] == '\\')
                 {
-                    break;//遇"\"调处,并返回"\"的位置 
+                    break;//遇"\"跳出,并返回"\"的位置 
                 }
             }
             //return j+1;
@@ -682,18 +682,35 @@ namespace ZCZJ_DPF
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// 将string转double
+        /// </summary>
+        /// <param name="i">string</param>
+        /// <returns>double</returns>
         public static double ComTryDouble(string i)
         {
             double j = 0;
             double.TryParse(i, out j);
             return j;
         }
+
+        /// <summary>
+        /// 将string转int
+        /// </summary>
+        /// <param name="i">string</param>
+        /// <returns>int</returns>
         public static int ComTryInt(string i)
         {
             int j = 0;
             int.TryParse(i, out j);
             return j;
         }
+
+        /// <summary>
+        /// 将string转decimal
+        /// </summary>
+        /// <param name="i">string</param>
+        /// <returns>decimal</returns>
         public static Decimal ComTryDecimal(string i)
         {
             Decimal j = 0;
