@@ -78,6 +78,8 @@
                         onclick="SelectMenu('HyperLink9')" runat="server">合同管理|</asp:HyperLink>
                     <asp:HyperLink ID="HyperLink10" NavigateUrl="PL_Data/PL_Index.aspx" Target="_top"
                         onclick="SelectMenu('HyperLink10')" runat="server">体系管理|</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink12" NavigateUrl="~/YS_Data/YS_Index.aspx" Target="_top"
+                        onclick="SelectMenu('HyperLink12')" runat="server">预算管理|</asp:HyperLink>
                     <asp:HyperLink ID="HypBasicData" NavigateUrl="Basic_Data/BD_Index.aspx" Target="_top"
                         onclick="SelectMenu('HypBasicData')" runat="server">基础数据</asp:HyperLink>
 

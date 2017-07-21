@@ -7796,6 +7796,34 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Desk.aspx.cs">
+      <DependentUpon>YS_Desk.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Desk.aspx.designer.cs">
+      <DependentUpon>YS_Desk.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Index.aspx.cs">
+      <DependentUpon>YS_Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Index.aspx.designer.cs">
+      <DependentUpon>YS_Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Menu.aspx.cs">
+      <DependentUpon>YS_Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Menu.aspx.designer.cs">
+      <DependentUpon>YS_Menu.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bottom.aspx" />
@@ -12493,6 +12521,10 @@
     <Content Include="SM_Data\SM_Warehouse_InventorySchema.aspx" />
     <Content Include="SM_Data\SM_Warehouse_InventorySummary.aspx" />
     <Content Include="top.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_View.aspx" />
+    <Content Include="YS_Data\YS_Desk.aspx" />
+    <Content Include="YS_Data\YS_Index.aspx" />
+    <Content Include="YS_Data\YS_Menu.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Contract_Data\CheckRequest.rdlc" />
