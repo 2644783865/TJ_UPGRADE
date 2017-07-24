@@ -4,7 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    服务联系单
+    顾客服务联系单
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style type="text/css">
@@ -172,7 +172,7 @@
                         </tr>
                         <tr>
                             <td align="center" style="font-size: x-large;">
-                                <strong>售&nbsp;&nbsp;后&nbsp;&nbsp;服&nbsp;&nbsp;务&nbsp;&nbsp;联&nbsp;&nbsp;系&nbsp;&nbsp;单</strong>
+                                <strong>顾&nbsp;&nbsp;客&nbsp;&nbsp;服&nbsp;&nbsp;务&nbsp;&nbsp;联&nbsp;&nbsp;系&nbsp;&nbsp;单</strong>
                             </td>
                         </tr>
                     </table>

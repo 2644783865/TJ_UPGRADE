@@ -4,7 +4,7 @@
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    服务联系单管理
+    顾客服务联系单管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <link rel="Stylesheet" type="text/css" href="../Assets/main.css" />
@@ -109,7 +109,7 @@
                                 Height="25px" />&nbsp;&nbsp;&nbsp;
                             <asp:Button runat="server" ID="btnRefuse" Text="驳回" Visible="false" OnClientClick="return btnRefuse_OnClientClick()"
                                 OnClick="btnRefuse_OnClick" Width="30px" Height="25px" />&nbsp;&nbsp;&nbsp;
-                            <asp:Button runat="server" ID="btnAdd" Text="新增服务联系单" OnClick="btnAdd_OnClick"
+                            <asp:Button runat="server" ID="btnAdd" Text="新增顾客服务联系单" OnClick="btnAdd_OnClick"
                                 Height="25px" BackColor="#71cf37" />&nbsp;&nbsp;
                         </td>
                     </tr>
