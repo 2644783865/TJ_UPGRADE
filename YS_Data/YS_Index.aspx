@@ -13,5 +13,9 @@
             <frame src="YS_Desk.aspx" name='right'  target="_self" scrolling="auto" noresize='noresize' />
 		</frameset>
 		<frame src="../bottom.aspx" name="bottomFrame" scrolling="No" noresize="noresize" id="bottomFrame" title="bottomFrame" title="bottomFrame" />
-	</frameset><noframes><body></body></noframes>
+	</frameset><noframes>
+	
+	<body>
+	
+	</body></noframes>
 </html>
