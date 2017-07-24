@@ -327,7 +327,7 @@ namespace ZCZJ_DPF.Basic_Data
             ddl_oneper_add.Text = dt_ddl_addone.Rows[0]["ST_NAME"].ToString();
             first_addid.Value = dt_ddl_addone.Rows[0]["ST_ID"].ToString();
             //绑定三级审批人，从领导人选取
-            string sql_ddl_two = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='03' and (ST_POSITION='0301' or ST_ID='67')) and ST_PD=0";
+            string sql_ddl_two = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='03' and ST_POSITION='0301') and ST_PD=0";
             DataTable dt_ddl_two = DBCallCommon.GetDTUsingSqlText(sql_ddl_two);
             ddl_two.Text = dt_ddl_two.Rows[0]["ST_NAME"].ToString();
             secondid.Value = dt_ddl_two.Rows[0]["ST_ID"].ToString();
@@ -338,7 +338,7 @@ namespace ZCZJ_DPF.Basic_Data
             second_addid.Value = dtl_ddl_addtwo.Rows[0]["ST_ID"].ToString();
 
             //绑定五级审批人，从领导人选取
-            string sql_ddl_three = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='01' and ST_POSITION='0101') and ST_PD=0";
+            string sql_ddl_three = "select TOP 1 ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='01' and ST_POSITION='0102') and ST_PD=0 ORDER BY ST_ID";
             DataTable dt_ddl_three = DBCallCommon.GetDTUsingSqlText(sql_ddl_three);
             ddl_three.Text = dt_ddl_three.Rows[0]["ST_NAME"].ToString();
             thirdid.Value = dt_ddl_three.Rows[0]["ST_ID"].ToString();
