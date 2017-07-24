@@ -1,10 +1,10 @@
-ï»¿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" MasterPageFile="~/Masters/RightCotentMaster.Master"
+<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" MasterPageFile="~/Masters/RightCotentMaster.Master"
     CodeBehind="CB_MothSummary.aspx.cs" Inherits="ZCZJ_DPF.FM_Data.CB_MothSummary" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="RightContentTitlePlace">
-    æŒ‰æœˆç»Ÿè®¡
+    °´ÔÂÍ³¼Æ
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PrimaryContent">
 
@@ -24,13 +24,13 @@
   function SubmitConfirm()
   {
     var txt=document.getElementById("<%=btnCurrentMonth.ClientID %>").value;
-    if(txt=="æ·»åŠ æœ¬æœˆç»Ÿè®¡")
+    if(txt=="Ìí¼Ó±¾ÔÂÍ³¼Æ")
     {
-      return confirm("ç¡®è®¤å¯¹æœ¬æœˆç”Ÿäº§åˆ¶å·è¿›è¡Œæˆæœ¬ç»Ÿè®¡å—ï¼Ÿ");
+      return confirm("È·ÈÏ¶Ô±¾ÔÂÉú²úÖÆºÅ½øĞĞ³É±¾Í³¼ÆÂğ£¿");
     }
-    else if(txt=="æ›´æ–°æœ¬æœˆææ–™è´¹")
+    else if(txt=="¸üĞÂ±¾ÔÂ²ÄÁÏ·Ñ")
     {
-      return confirm("ç¡®è®¤æ›´æ–°æœ¬æœˆç”Ÿäº§åˆ¶å·æˆæœ¬å—ï¼Ÿ\r\ræç¤ºï¼šåªæ›´æ–°ææ–™è´¹ï¼");
+      return confirm("È·ÈÏ¸üĞÂ±¾ÔÂÉú²úÖÆºÅ³É±¾Âğ£¿\r\rÌáÊ¾£ºÖ»¸üĞÂ²ÄÁÏ·Ñ£¡");
     }
   }
   
@@ -41,12 +41,12 @@
    
     function FYFTGZRG(year,month)
    {   
-    var result=showModalDialog('CB_FYFT.aspx?year='+year+'&month='+month ,'subpage','dialogWidth:800px;dialogHeight:400px;center:yes;help:no;resizable:no;status:no'); //æ‰“å¼€æ¨¡æ€å­çª—ä½“,å¹¶è·å–è¿”å›å€¼
+    var result=showModalDialog('CB_FYFT.aspx?year='+year+'&month='+month ,'subpage','dialogWidth:800px;dialogHeight:400px;center:yes;help:no;resizable:no;status:no'); //´ò¿ªÄ£Ì¬×Ó´°Ìå,²¢»ñÈ¡·µ»ØÖµ
     window.location.href = window.location.href;
    }
    function FYFTZZ(year,month)
    {   
-    var result=showModalDialog('CB_FYFT_ZZFY.aspx?year='+year+'&month='+month ,'subpage','dialogWidth:800px;dialogHeight:400px;center:yes;help:no;resizable:no;status:no'); //æ‰“å¼€æ¨¡æ€å­çª—ä½“,å¹¶è·å–è¿”å›å€¼
+    var result=showModalDialog('CB_FYFT_ZZFY.aspx?year='+year+'&month='+month ,'subpage','dialogWidth:800px;dialogHeight:400px;center:yes;help:no;resizable:no;status:no'); //´ò¿ªÄ£Ì¬×Ó´°Ìå,²¢»ñÈ¡·µ»ØÖµ
     window.location.href = window.location.href;
    }
  
@@ -56,7 +56,7 @@
     
     function viewCondition2()
     {
-     document.getElementById("<%=PanelCondition2.ClientID%>").style.display='block';//å¼€è¾Ÿçš„é¡µé¢ç©ºé—´
+     document.getElementById("<%=PanelCondition2.ClientID%>").style.display='block';//¿ª±ÙµÄÒ³Ãæ¿Õ¼ä
     }
     </script>
 
@@ -90,31 +90,31 @@
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 17%;">
-                            æ—¶é—´ï¼š
+                            Ê±¼ä£º
                             <asp:DropDownList ID="dplYear" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged_dplYearMoth"
                                 AutoPostBack="true">
                             </asp:DropDownList>
-                            &nbsp;å¹´&nbsp;
+                            &nbsp;Äê&nbsp;
                             <asp:DropDownList ID="dplMoth" runat="server" OnSelectedIndexChanged="OnSelectedIndexChanged_dplYearMoth"
                                 AutoPostBack="true">
                             </asp:DropDownList>
-                            &nbsp;æœˆ&nbsp;
+                            &nbsp;ÔÂ&nbsp;
                         </td>
                         <td style="width: 50%;">
-                            ä»»åŠ¡å·ï¼š<asp:TextBox ID="txtrwh" ForeColor="Gray" runat="server" Width="120px"></asp:TextBox>
-                            &nbsp;&nbsp; åˆåŒå·ï¼š<asp:TextBox ID="txthth" ForeColor="Gray" runat="server" Width="120px"></asp:TextBox>
-                            &nbsp;&nbsp;é¡¹ç›®åç§°ï¼š<asp:TextBox ID="txtxmmc" ForeColor="Gray" runat="server" Width="120px"></asp:TextBox>
+                            ÈÎÎñºÅ£º<asp:TextBox ID="txtrwh" ForeColor="Gray" runat="server" Width="120px"></asp:TextBox>
+                            &nbsp;&nbsp; ºÏÍ¬ºÅ£º<asp:TextBox ID="txthth" ForeColor="Gray" runat="server" Width="120px"></asp:TextBox>
+                            &nbsp;&nbsp;ÏîÄ¿Ãû³Æ£º<asp:TextBox ID="txtxmmc" ForeColor="Gray" runat="server" Width="120px"></asp:TextBox>
                             &nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnCx" OnClick="btnCx_OnClick" runat="server" Text="æŸ¥è¯¢"></asp:Button>
+                            <asp:Button ID="btnCx" OnClick="btnCx_OnClick" runat="server" Text="²éÑ¯"></asp:Button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnKqjcx" runat="server" Text="è·¨æœŸé—´æŸ¥è¯¢" OnClientClick="viewCondition2()"
+                            <asp:Button ID="btnKqjcx" runat="server" Text="¿çÆÚ¼ä²éÑ¯" OnClientClick="viewCondition2()"
                                 OnClick="btnky_Click" />
                             <asp:ModalPopupExtender ID="ModalPopupExtender2" runat="server" TargetControlID="btnKqjcx"
                                 PopupControlID="UpdatePanel3" Drag="false" Enabled="True" DynamicServicePath=""
                                 Y="30">
                             </asp:ModalPopupExtender>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnExport" OnClick="btnExport_Click" runat="server" Text="å¯¼å‡º"></asp:Button>
+                            <asp:Button ID="btnExport" OnClick="btnExport_Click" runat="server" Text="µ¼³ö"></asp:Button>
                         </td>
                     </tr>
                 </table>
@@ -124,35 +124,35 @@
                             <table width="400px" style="background-color: #CCCCFF; border: solid 1px black;">
                                 <tr>
                                     <td align="left">
-                                        &nbsp;å¼€å§‹æ—¶é—´ï¼š
+                                        &nbsp;¿ªÊ¼Ê±¼ä£º
                                     </td>
                                     <td align="left">
                                         <asp:DropDownList ID="ddlstartcx1" runat="server">
                                         </asp:DropDownList>
-                                        &nbsp;å¹´&nbsp;
+                                        &nbsp;Äê&nbsp;
                                         <asp:DropDownList ID="ddlstartcx2" runat="server">
                                         </asp:DropDownList>
-                                        &nbsp;æœˆ&nbsp;
+                                        &nbsp;ÔÂ&nbsp;
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="left">
-                                        &nbsp;ç»“æŸæ—¶é—´ï¼š
+                                        &nbsp;½áÊøÊ±¼ä£º
                                     </td>
                                     <td align="left">
                                         <asp:DropDownList ID="ddlendcx1" runat="server">
                                         </asp:DropDownList>
-                                        &nbsp;å¹´&nbsp;
+                                        &nbsp;Äê&nbsp;
                                         <asp:DropDownList ID="ddlendcx2" runat="server">
                                         </asp:DropDownList>
-                                        &nbsp;æœˆ&nbsp;
+                                        &nbsp;ÔÂ&nbsp;
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center" colspan="2">
                                         <br />
-                                        <asp:Button ID="btnQd" runat="server" Text="ç¡® å®š" OnClick="btnkqck_OnClick" />
-                                        <asp:Button ID="btnQx" runat="server" Text="å– æ¶ˆ" OnClick="btnback_Click" />
+                                        <asp:Button ID="btnQd" runat="server" Text="È· ¶¨" OnClick="btnkqck_OnClick" />
+                                        <asp:Button ID="btnQx" runat="server" Text="È¡ Ïû" OnClick="btnback_Click" />
                                     </td>
                                 </tr>
                             </table>
@@ -164,20 +164,20 @@
                 <table width="98%">
                     <tr>
                         <td align="right">
-                            <asp:Button ID="btnFTrggz" runat="server" Text="ç›´æ¥äººå·¥è´¹åˆ†æ‘Š" OnClick="btnFT_OnClick" />
+                            <asp:Button ID="btnFTrggz" runat="server" Text="Ö±½ÓÈË¹¤·Ñ·ÖÌ¯" OnClick="btnFT_OnClick" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnzzfy" runat="server" Text="åˆ¶é€ è´¹ç”¨åˆ†æ‘Š" OnClick="btnFTZZ_OnClick" />
+                            <asp:Button ID="btnzzfy" runat="server" Text="ÖÆÔì·ÑÓÃ·ÖÌ¯" OnClick="btnFTZZ_OnClick" />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:HyperLink ID="hplcnfb" runat="server" NavigateUrl="~/FM_Data/FM_CNFB.aspx" Target="_blank"
                                 Font-Underline="false" Visible="false">
-                                <asp:Image ID="Image1" ImageUrl="~/Assets/images/res.gif" runat="server" Visible="false" />åˆ†åŒ…</asp:HyperLink>
+                                <asp:Image ID="Image1" ImageUrl="~/Assets/images/res.gif" runat="server" Visible="false" />·Ö°ü</asp:HyperLink>
                             &nbsp;&nbsp;&nbsp;
                             <asp:HyperLink ID="hplfjcb" runat="server" NavigateUrl="~/FM_Data/FM_FJCBIMPORT.aspx"
                                 Target="_blank" Font-Underline="false" Visible="false">
-                                <asp:Image ID="Image2" ImageUrl="~/Assets/images/res.gif" runat="server" Visible="false" />åˆ†äº¤æˆæœ¬æ•°æ®å¯¼å…¥</asp:HyperLink>
+                                <asp:Image ID="Image2" ImageUrl="~/Assets/images/res.gif" runat="server" Visible="false" />·Ö½»³É±¾Êı¾İµ¼Èë</asp:HyperLink>
                             &nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnCurrentMonth" OnClick="btnCurrentMonth_onClick" OnClientClick="javascript:return SubmitConfirm();"
-                                runat="server" BorderStyle="Solid" Text="è®¡ç®—" />
+                                runat="server" BorderStyle="Solid" Text="¼ÆËã" />
                         </td>
                     </tr>
                 </table>
@@ -191,96 +191,96 @@
                         <HeaderTemplate>
                             <tr align="center">
                                 <th rowspan="2">
-                                    åºå·
+                                    ĞòºÅ
                                 </th>
                                 <th rowspan="2">
-                                    ä»»åŠ¡å·
+                                    ÈÎÎñºÅ
                                 </th>
                                 <th rowspan="2">
-                                    åˆåŒå·
+                                    ºÏÍ¬ºÅ
                                 </th>
                                 <th rowspan="2">
-                                    é¡¹ç›®åç§°
+                                    ÏîÄ¿Ãû³Æ
                                 </th>
                                 <th rowspan="2">
-                                    å¹´æœˆä»½
+                                    ÄêÔÂ·İ
                                 </th>
                                 <%--<th rowspan="2">
-                                å·¥èµ„
+                                ¹¤×Ê
                             </th>--%>
                                 <th colspan="3">
-                                    ç›´æ¥äººå·¥è´¹
+                                    Ö±½ÓÈË¹¤·Ñ
                                 </th>
                                 <th colspan="10">
-                                    ç›´æ¥ææ–™è´¹
+                                    Ö±½Ó²ÄÁÏ·Ñ
                                 </th>
                                 <th colspan="3">
-                                    åˆ¶é€ è´¹ç”¨
+                                    ·ÖÅä»ùÊı
                                 </th>
                                 <th rowspan="2">
-                                    å¤–åè´¹ç”¨
+                                    ÍâĞ­·ÑÓÃ
                                 </th>
                                 <th rowspan="2">
-                                    å‚å†…åˆ†åŒ…
+                                    ³§ÄÚ·Ö°ü
                                 </th>
                                 <th rowspan="2">
-                                    è¿è´¹
+                                    ÔË·Ñ
                                 </th>
                                 <th rowspan="2">
-                                    åˆ†äº¤æˆæœ¬(æ²¹æ¼†)
+                                    ·Ö½»³É±¾(ÓÍÆá)
                                 </th>
                                 <th rowspan="2">
-                                    å…¶ä»–
+                                    ÆäËû
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    æœºåŠ è´¹ç”¨
+                                    »ú¼Ó·ÑÓÃ
                                 </th>
                                 <th>
-                                    å‚å†…ç»“æ„è´¹ç”¨
+                                    ³§ÄÚ½á¹¹·ÑÓÃ
                                 </th>
                                 <th>
-                                    å°è®¡
+                                    Ğ¡¼Æ
                                 </th>
                                 <th>
-                                    å¤–è´­ä»¶
+                                    Íâ¹º¼ş
                                 </th>
                                 <th>
-                                    é»‘è‰²é‡‘å±
+                                    ºÚÉ«½ğÊô
                                 </th>
                                 <th>
-                                    ç„Šæç±»
+                                    º¸²ÄÀà
                                 </th>
                                 <th>
-                                    é“¸ä»¶
+                                    Öı¼ş
                                 </th>
                                 <th>
-                                    é”»ä»¶
+                                    ¶Í¼ş
                                 </th>
                                 <th>
-                                    è½´æ‰¿
+                                    Öá³Ğ
                                 </th>
                                 <th>
-                                    æ ‡å‡†ä»¶
+                                    ±ê×¼¼ş
                                 </th>
                                 <th>
-                                    æ²¹æ¼†æ¶‚æ–™
+                                    ÓÍÆáÍ¿ÁÏ
                                 </th>
                                 <th>
-                                    å…¶ä»–ç±»
+                                    ÆäËûÀà
                                 </th>
                                 <th>
-                                    ææ–™å°è®¡
+                                    ²ÄÁÏĞ¡¼Æ
                                 </th>
                                 <th>
-                                    å›ºå®šåˆ¶é€ è´¹ç”¨
+                                    ¹Ì¶¨ÖÆÔì·ÑÓÃ
                                 </th>
                                 <th>
-                                    å¯å˜åˆ¶é€ è´¹ç”¨
+                                    ¿É±äÖÆÔì·ÑÓÃ
                                 </th>
                                 <th>
-                                    åˆ¶é€ è´¹ç”¨å°è®¡
+                                    ÖÆÔì·ÑÓÃĞ¡¼Æ
                                 </th>
                             </tr>
                         </HeaderTemplate>
@@ -396,7 +396,7 @@
                         <FooterTemplate>
                             <tr>
                                 <th colspan="5" align="right">
-                                    åˆè®¡ï¼š
+                                    ºÏ¼Æ£º
                                 </th>
                                 <%--<th align="center">
                                 <asp:Label ID="lbgzhj" runat="server"></asp:Label>
@@ -469,7 +469,7 @@
                     </asp:Repeater>
                 </table>
                 <asp:Panel ID="palNoData" runat="server" Visible="false" ForeColor="Red" HorizontalAlign="Center">
-                    æ²¡æœ‰è®°å½•!<br />
+                    Ã»ÓĞ¼ÇÂ¼!<br />
                     <br />
                 </asp:Panel>
                 <uc1:UCPaging ID="UCPaging1" runat="server" />
