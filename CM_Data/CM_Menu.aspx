@@ -247,7 +247,7 @@
                     </asp:UpdatePanel>
                 </asp:HyperLink>
                 <asp:HyperLink ID="HyperLink20" onClick="SelectMenu(20);" CssClass="LeftMenuNoSelected"
-                    NavigateUrl="~/CM_Data/CM_GZLXDGL.aspx" Target="right" runat="server">
+                    NavigateUrl="~/CM_Data/CM_GZLXDGL.aspx" Target="right" runat="server" Visible=false>
                     <p>
                         工作联系单<asp:Label runat="server" ID="lbGZLXD" ForeColor="Red"></asp:Label></p>
                 </asp:HyperLink>
