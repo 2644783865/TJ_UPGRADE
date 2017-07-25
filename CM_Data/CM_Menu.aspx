@@ -122,11 +122,11 @@
                         合同变更通知单<asp:Label runat="server" ID="lbHTBGTZD" ForeColor="Red"></asp:Label></p>
                 </asp:HyperLink>
             </div>
-            <div title="市场售后管理" style="overflow: auto; background-color: #E3F1FA;">
+            <div title="市场顾客管理" style="overflow: auto; background-color: #E3F1FA;">
                 <asp:HyperLink ID="HyperLink18" runat="server" onClick="SelectMenu(18);" CssClass="LeftMenuNoSelected"
                     NavigateUrl="~/CM_Data/CM_SHLXDGL.aspx" Target="right" >
                     <p>
-                        服务联系单
+                        顾客服务联系单
                         <asp:Label runat="server" ID="lbLXD" ForeColor="Red" Visible="true"></asp:Label>
                     </p>
                 </asp:HyperLink>
@@ -247,7 +247,7 @@
                     </asp:UpdatePanel>
                 </asp:HyperLink>
                 <asp:HyperLink ID="HyperLink20" onClick="SelectMenu(20);" CssClass="LeftMenuNoSelected"
-                    NavigateUrl="~/CM_Data/CM_GZLXDGL.aspx" Target="right" runat="server">
+                    NavigateUrl="~/CM_Data/CM_GZLXDGL.aspx" Target="right" runat="server" Visible=false>
                     <p>
                         工作联系单<asp:Label runat="server" ID="lbGZLXD" ForeColor="Red"></asp:Label></p>
                 </asp:HyperLink>
