@@ -638,7 +638,7 @@
                                         border="1">
                                         <tr>
                                             <td style="width: 35%" align="center">
-                                                生成部审批：
+                                                生产部审批：
                                             </td>
                                             <td>
                                                 <asp:TextBox ID="ddl_onePer" runat="server" Width="80px" Enabled="false"></asp:TextBox>

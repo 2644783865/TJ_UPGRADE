@@ -345,6 +345,7 @@ namespace ZCZJ_DPF.Basic_Data
         public string addcharge()
         {
             string UserDeptID = Session["UserDeptID"].ToString();
+            // UserDeptID"05"即"采购部"
             if (UserDeptID == "05")
             {
                 return "javascript:void window.open('tbcs_cusup_add_delete.aspx?action=Add&amp;cs_action=0','','')";
