@@ -58,7 +58,7 @@ namespace ZCZJ_DPF.PM_Data
                 return;//当无文件时,返回
             }
             string IsXls = System.IO.Path.GetExtension(FileUpload1.FileName).ToString().ToLower();//System.IO.Path.GetExtension获得文件的扩展名
-            if (IsXls != ".xls" )
+            if (IsXls != ".xls")
             {
                 Response.Write("<script>alert('只可以选择Excel文件')</script>");
                 return;//当选择的不是Excel文件时,返回
