@@ -1,7 +1,247 @@
-ï»¿<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.Master" AutoEventWireup="true" CodeBehind="YS_Cost_Budget_View.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.YS_Cost_Budget_View" Title="æ— æ ‡é¢˜é¡µ" %>
+<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.Master" AutoEventWireup="true" CodeBehind="YS_Cost_Budget_View.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.YS_Cost_Budget_View" Title="ÎÞ±êÌâÒ³" %>
+
+<%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    é¢„ç®—ç¼–åˆ¶
+    Ô¤Ëã±àÖÆ
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
+    
+     <div class="box-inner">
+        <div class="box_right">
+            <div class="box-title">
+                <table width="98%">
+                    <tr>
+                        <td align="left">
+                            ºÏÍ¬ºÅ:
+                            <asp:TextBox ID="txt_search" runat="server" Text="ZCZJ.SW.XS." Width="200px"></asp:TextBox><asp:Button
+                                ID="btn_search" runat="server" Text="²éÑ¯" OnClick="btn_search_OnClick" />
+                        </td>
+                        <td align="center">
+                            ÖÆµ¥ÈË£º<asp:DropDownList ID="ddl_addper" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                        </td>
+                        <td align="center">
+                            ÉóºË×´Ì¬£º<asp:DropDownList ID="ddl_revstate" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                        </td>
+                        <td align="right">
+                            <asp:CheckBox ID="ckb_time" runat="server" AutoPostBack="true" Text="³¬ÆÚÎ´Íê³É±àÖÆ" OnCheckedChanged="btn_search_OnClick" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="box-inner">
+        <div class="box_right">
+            <div class="box-title">
+                <table width="98%">
+                    <tr>
+                        <td align="left">
+                            ÏîÄ¿Ãû³Æ:
+                            <asp:DropDownList ID="ddl_project" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_project_OnSelectedIndexChanged">
+                            </asp:DropDownList>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ¹¤³ÌÃû³Æ:
+                            <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                        </td>
+                        <td align="right">
+                            <asp:Button ID="btn_import" runat="server" Text="Ã÷Ï¸µ¼Èë" OnClick="btn_import_OnClick" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:LinkButton ID="btn_orginal" runat="server" OnClick="btn_orginal_OnClick">
+                                <asp:Image ID="Image1" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2" align="absmiddle"
+                                    runat="server" />²é¿´ÊÐ³¡²¿Ô­Ê¼Ö¸±ê</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:LinkButton ID="btnModify" runat="server" OnClick="btnModify_OnClick" Visible="false">
+                                <asp:Image ID="ModImahe" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2"
+                                    align="absmiddle" runat="server" />ÐÞ¸ÄÔ¤Ëã</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:LinkButton ID="btnAddMar" runat="server" OnClick="btnAddMar_OnClick">
+                                <asp:Image ID="AddImage1" ImageUrl="~/Assets/icons/pcadd.gif" border="0" hspace="2"
+                                    align="absmiddle" runat="server" />ÐÂÔöÔ¤Ëã</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnDelete" runat="server" Text="É¾³ý" Font-Size="Small" OnClick="btnDelete_OnClick"
+                                OnClientClick="return confirm('É¾³ýºó²»¿É»Ö¸´£¬È·ÈÏÉ¾³ýÂð£¿');" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="box-wrapper">
+        <div class="box-outer">
+            <div style="width: 100%; overflow: auto; overflow-x: yes; overflow-y: hidden;">
+                <asp:GridView ID="GridView1" Width="100%" CssClass="toptable grid nowrap" runat="server"
+                    AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" 
+                    OnRowDataBound="GridView1_onrowdatabound" 
+                    onselectedindexchanged="GridView1_SelectedIndexChanged">
+                    <RowStyle BackColor="#EFF3FB" />
+                    <Columns>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="ÐòºÅ" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
+                                <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("YS_CONTRACT_NO") %>' />
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="ºÏÍ¬ºÅ" ItemStyle-HorizontalAlign="Center"
+                            HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_YS_CONTRACT_NO" runat="server" Text='<%#Eval("YS_CONTRACT_NO") %>'
+                                    ToolTip="Ë«»÷¹ØÁªºÏÍ¬ÐÅÏ¢£¡"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="ÏîÄ¿Ãû³Æ" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("PCON_PJNAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="¹¤³ÌÃû³Æ" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_pcon_engname" runat="server" Text='<%#Eval("PCON_ENGNAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Center" HeaderText="Ô¤ËãÊÕÈë"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <%--Ô¤ËãÊÕÈë--%>
+                        <asp:BoundField DataField="YS_OUT_LAB_MAR" ItemStyle-HorizontalAlign="Center" HeaderText="¼¼ÊõÍâÐ­"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" HeaderStyle-ForeColor="Black" />
+                        <%--¼¼ÊõÍâÐ­--%>
+                        <asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Center" HeaderText="ºÚÉ«½ðÊô"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--ºÚÉ«½ðÊô--%>
+                        <asp:BoundField DataField="YS_PURCHASE_PART" ItemStyle-HorizontalAlign="Center" HeaderText="Íâ¹º¼þ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--Íâ¹º¼þ--%>
+                        <asp:BoundField DataField="YS_MACHINING_PART" ItemStyle-HorizontalAlign="Center"
+                            HeaderText="¼Ó¹¤¼þ" HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--¼Ó¹¤¼þ--%>
+                        <asp:BoundField DataField="YS_PAINT_COATING" ItemStyle-HorizontalAlign="Center" HeaderText="ÓÍÆáÍ¿ÁÏ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--ÓÍÆáÍ¿ÁÏ--%>
+                        <asp:BoundField DataField="YS_ELECTRICAL" ItemStyle-HorizontalAlign="Center" HeaderText="µçÆøµçÁÏ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--µçÆøµçÁÏ--%>
+                        <asp:BoundField DataField="YS_OTHERMAT_COST" ItemStyle-HorizontalAlign="Center" HeaderText="ÆäËü²ÄÁÏ·Ñ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--ÆäËü²ÄÁÏ·Ñ--%>
+                        <asp:BoundField DataField="YS_TEAM_CONTRACT" ItemStyle-HorizontalAlign="Center" HeaderText="°à×é³Ð°ü"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <%--°à×é³Ð°ü--%>
+                        <asp:BoundField DataField="YS_FAC_CONTRACT" ItemStyle-HorizontalAlign="Center" HeaderText="³§ÄÚ·Ö°ü"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <%--³§ÄÚ·Ö°ü--%>
+                        <asp:BoundField DataField="YS_PRODUCT_OUT" ItemStyle-HorizontalAlign="Center" HeaderText="Éú²úÍâÐ­"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <%--Éú²úÍâÐ­--%>
+                        <asp:BoundField DataField="YS_MANU_COST" ItemStyle-HorizontalAlign="Center" HeaderText="ÖÆÔì·ÑÓÃ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />
+                        <%--ÖÆÔì·ÑÓÃ--%>
+                        <asp:BoundField DataField="YS_SELL_COST" ItemStyle-HorizontalAlign="Center" HeaderText="ÏúÊÛ·ÑÓÃ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />
+                        <%--ÏúÊÛ·ÑÓÃ--%>
+                        <asp:BoundField DataField="YS_MANAGE_COST" ItemStyle-HorizontalAlign="Center" HeaderText="¹ÜÀí·ÑÓÃ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />
+                        <%--¹ÜÀí·ÑÓÃ--%>
+                        <asp:BoundField DataField="YS_Taxes_Cost" ItemStyle-HorizontalAlign="Center" HeaderText="Ë°½ð¼°¸½¼Ó"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />
+                        <%--Ë°½ð¼°¸½¼Ó--%>
+                        <asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Center" HeaderText="ÔË·Ñ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />
+                        <%--ÔË·Ñ19--%>
+                        <asp:BoundField DataField="YS_MAR_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="²ÄÁÏ·ÑÐ¡¼Æ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <%--²ÄÁÏ·ÑÐ¡¼Æ--%>
+                        <asp:BoundField DataField="YS_FINA_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="·ÖÌ¯·ÑÐ¡¼Æ"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />
+                        <%--²ÆÎñ·ÑÐ¡¼Æ--%>
+                        <asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Center" HeaderText="ÀûÈó×Ü¶î"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <%--ÀûÈó×Ü¶î--%>
+                        <asp:BoundField DataField="YS_PROFIT_TAX" ItemStyle-HorizontalAlign="Center" HeaderText="¾»ÀûÈó"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <%--¾»ÀûÈó--%>
+                        <asp:BoundField DataField="YS_PROFIT_TAX_RATE" ItemStyle-HorizontalAlign="Center"
+                            HeaderText="¾»ÀûÂÊ" HeaderStyle-Wrap="false" DataFormatString="{0:P}" />
+                        <%--¾»ÀûÂÊ--%>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="ÖÆµ¥ÈË" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_addper" runat="server" Text='<%#Eval("YS_ADDNAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="YS_ADDTIME" HeaderText="ÖÆµ¥Ê±¼ä" ItemStyle-HorizontalAlign="Center"
+                            HeaderStyle-Wrap="false" />
+                        <asp:BoundField DataField="YS_TIME" HeaderText="Íê³ÉÔ¤ËãÆÚÏÞ" ItemStyle-HorizontalAlign="Center"
+                            HeaderStyle-Wrap="false" />
+                        <asp:BoundField DataField="YS_NOTE" HeaderText="±¸×¢" ItemStyle-HorizontalAlign="Center"
+                            HeaderStyle-Wrap="false" />
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="ÍêÉÆ×´Ì¬" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lab_editstate" runat="server" Text='<%# GetEditState(Eval("YS_CONTRACT_NO").ToString()) %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="ÉóºË×´Ì¬" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lab_revstate" runat="server" Text='<%# GetRevState(Eval("YS_REVSTATE").ToString()) %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Ô¤Ëãµ÷Õû" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Button ID="btn_YS_Modify" runat="server" Text="ÖØÐÂ·¢ÆðÔ¤Ëã" CommandArgument='<%# Eval("YS_CONTRACT_NO") %>'
+                                    OnClientClick="return confirm('Ô¤Ëãµ÷Õû»áÉ¾³ýµ±Ç°ºÏÍ¬µÄËùÓÐÔ¤ËãÊý¾Ý£¨°üÀ¨ÆäËü²¿ÃÅµÄÊý¾Ý£©£¬µ÷Õûºó£¬Ç°Ò»´Î±àÖÆµÄÔ¤ËãÊý¾Ý¿ÉÒÔÔÚÓÒ²à¡°¾ÉÔ¤ËãÊý¾Ý¡±ÖÐ²é¿´£¬²Ù×÷²»¿ÉÄæ£¬Çë½÷É÷£¡ÊÇ·ñÈ·ÈÏµ÷Õû£¿');"
+                                    OnClick="btn_YS_Modify_OnClick" Visible="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="¾ÉÔ¤ËãÊý¾Ý" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:HyperLink ID="Hp_View" runat="Server" ForeColor="Red" NavigateUrl='<%# Get_Old_YS(Eval("YS_CONTRACT_NO").ToString()) %>'>
+                                    <asp:Image ID="Image1" ImageUrl="~/assets/images/res.gif" border="0" ForeColor="Red"
+                                        hspace="2" align="absmiddle" runat="server" />
+                                    <asp:Label ID="check_look" runat="server" Text="²é¿´"></asp:Label></asp:HyperLink>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="¸½¼þ" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Button ID="btn_attachment" runat="server" Text="Ìí¼Ó/²é¿´" CommandArgument='<%# Eval("YS_CONTRACT_NO") %>'
+                                    OnClick="btn_attachment_OnClick" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <HeaderStyle BackColor="#B9D3EE" Font-Bold="True" ForeColor="#1E5C95" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <AlternatingRowStyle BackColor="White" />
+                </asp:GridView>
+                <br></br>
+            </div>
+            <asp:Panel ID="NoDataPanel" runat="server">
+                Ã»ÓÐ¼ÇÂ¼!</asp:Panel>
+            <uc1:UCPaging ID="UCPaging1" runat="server" />
+        </div>
+    </div>
+    <div>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <td style="width: 15" align="Left">
+                    <img alt="" src="/YS_Data/Sienna.jpg" width="50px" height="15" />
+                    <asp:Label ID="Label3" runat="Server" Text="±íÊ¾²¿ÃÅÉóºËÍê±Ï£¬Î´Ìá½»Áìµ¼ÉóºË" Font-Size="Small" ForeColor="#000066"
+                        Font-Bold="True" />
+                    &nbsp;&nbsp;&nbsp;
+                    <img alt="" src="/YS_Data/Yellow.jpg" width="50px" height="15" />
+                    <asp:Label ID="Label2" runat="Server" Text="±íÊ¾ÐèÒªÍêÉÆ" Font-Size="Small" ForeColor="#000066"
+                        Font-Bold="True" />
+                    <img alt="" src="/YS_Data/red.jpg" width="50px" height="15" />
+                    <asp:Label ID="Label1" runat="Server" Text="±íÊ¾Áìµ¼ÉóºË²µ»Ø" Font-Size="Small" ForeColor="#000066"
+                        Font-Bold="True" />
+                    <img alt="" src="/YS_Data/pink.jpg" width="50px" height="15" />
+                    <asp:Label ID="Label4" runat="Server" Text="ÉóºËÍ¨¹ý£¬¿ÉÖØÐÂ·¢ÆðÔ¤Ëã" Font-Size="Small" ForeColor="#000066"
+                        Font-Bold="True" />
+                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
 </asp:Content>
