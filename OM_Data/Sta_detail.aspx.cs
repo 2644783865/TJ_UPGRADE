@@ -34,7 +34,8 @@ namespace ZCZJ_DPF.OM_Data
                 GetSele();//绑定筛选信息
                 databind();//人员信息表绑定
                 Account();//数据统计信息绑定
-                Age_change();
+                //Age_change();
+                AgeUpdate();
                 GetWarning();
             }
             CheckUser(ControlFinder);
@@ -344,26 +345,45 @@ namespace ZCZJ_DPF.OM_Data
 
         #endregion
 
-        private void Age_change()
+        /// <summary>
+        /// 年龄更新
+        /// </summary>
+        private void AgeUpdate()
         {
-            string time_now = DateTime.Today.ToString("yyyy-MM-dd");
-            string time_now_year = time_now.Substring(0, 4);
-            time_now = time_now.Substring(time_now.Length - 6);
-            string sql_age = "select ST_BIRTHDAY,ST_NAME from TBDS_STAFFINFO where ST_BIRTHDAY like '%" + time_now + "'";
-            System.Data.DataTable dt_sql_age = DBCallCommon.GetDTUsingSqlText(sql_age);
-            if (dt_sql_age.Rows.Count > 0)
+            string sql = "EXECUTE dbo.Pro_OM_AgeUpdate";
+            try
             {
-                for (int i = 0; i < dt_sql_age.Rows.Count; i++)
-                {
-                    string age_sql = dt_sql_age.Rows[i]["ST_BIRTHDAY"].ToString();
-                    string sql_name = dt_sql_age.Rows[i]["ST_NAME"].ToString();
-                    string age_sql_year = age_sql.Substring(0, 4);
-                    int age_sql_now = Convert.ToInt32(time_now_year) - Convert.ToInt32(age_sql_year);
-                    string sql_update_age = "update TBDS_STAFFINFO set ST_AGE='" + age_sql_now + "' where ST_BIRTHDAY like '%" + time_now + "' and ST_NAME='" + sql_name + "'";
-                    DBCallCommon.ExeSqlText(sql_update_age);
-                }
+                DBCallCommon.ExeSqlText(sql);
             }
+            catch (Exception e)
+            {                
+                throw e;
+            }
+            
         }
+        /// <summary>
+        /// 年龄更新
+        /// </summary>
+        //private void Age_change()
+        //{
+        //    string time_now = DateTime.Today.ToString("yyyy-MM-dd");
+        //    string time_now_year = time_now.Substring(0, 4);
+        //    time_now = time_now.Substring(time_now.Length - 6);
+        //    string sql_age = "select ST_BIRTHDAY,ST_NAME from TBDS_STAFFINFO where ST_BIRTHDAY like '%" + time_now + "'";
+        //    System.Data.DataTable dt_sql_age = DBCallCommon.GetDTUsingSqlText(sql_age);
+        //    if (dt_sql_age.Rows.Count > 0)
+        //    {
+        //        for (int i = 0; i < dt_sql_age.Rows.Count; i++)
+        //        {
+        //            string age_sql = dt_sql_age.Rows[i]["ST_BIRTHDAY"].ToString();
+        //            string sql_name = dt_sql_age.Rows[i]["ST_NAME"].ToString();
+        //            string age_sql_year = age_sql.Substring(0, 4);
+        //            int age_sql_now = Convert.ToInt32(time_now_year) - Convert.ToInt32(age_sql_year);
+        //            string sql_update_age = "update TBDS_STAFFINFO set ST_AGE='" + age_sql_now + "' where ST_BIRTHDAY like '%" + time_now + "' and ST_NAME='" + sql_name + "'";
+        //            DBCallCommon.ExeSqlText(sql_update_age);
+        //        }
+        //    }
+        //}
 
         private void GetDepartment()//绑定部门
         {
