@@ -73,6 +73,10 @@
             $("#hidPerson").val("third");
             SelPersons();
         }
+        function SelTechPersons6() {
+            $("#hidPerson").val("QA");
+            SelPersons();
+        }
 
 
         //点击确定
@@ -98,6 +102,10 @@
             if (id == "third") {
                 $("#<%=ddl_three.ClientID %>").val(r.st_name);
                 $("#<%=thirdid.ClientID %>").val(r.st_id);
+            }
+            if (id == "QA") {
+                $("#<%=ddl_QA.ClientID %>").val(r.st_name);
+                $("#<%=QAid.ClientID %>").val(r.st_id);
             }
             $('#win').dialog('close');
         }
@@ -680,6 +688,20 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 35%" align="center">
+                                                质量部审批：
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="ddl_QA" runat="server" Width="80px" Enabled="false"></asp:TextBox>
+                                                <input id="QAid" type="text" runat="server" readonly="readonly" style="display: none" />
+                                                <asp:HyperLink ID="HyperLink5" runat="server" CssClass="hand" onClick="SelTechPersons6()">
+                                                    <asp:Image ID="Image5" ImageUrl="~/Assets/images/h1.gif" border="0" hspace="2" align="absmiddle"
+                                                        runat="server" />
+                                                    选择
+                                                </asp:HyperLink>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 35%" align="center">
                                                 采购部审批：
                                             </td>
                                             <td>
@@ -847,6 +869,50 @@
                                                             </td>
                                                             <td>
                                                                 <asp:TextBox ID="TextSHRQ3" runat="server" Enabled="false"></asp:TextBox>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </asp:Panel>
+                                        <asp:Panel ID="QAJI" runat="server">
+                                            <tr>
+                                                <td>
+                                                    质量部评审意见
+                                                </td>
+                                                <td colspan="2">
+                                                    <table cellpadding="2" cellspacing="1" class="toptable grid" border="1" width="100%">
+                                                        <tr>
+                                                            <td>
+                                                                <span>意见：</span>
+                                                            </td>
+                                                            <td>
+                                                                <asp:RadioButton ID="RadioTY6" runat="server" Text="同意" GroupName="select6" AutoPostBack="true"
+                                                                    OnCheckedChanged="QA_YJ_CheckedChanged" />
+                                                                <asp:RadioButton ID="RadioJJ6" runat="server" Text="拒绝" GroupName="select6" AutoPostBack="true"
+                                                                    OnCheckedChanged="QA_YJ_CheckedChanged" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span>备注：</span>
+                                                            </td>
+                                                            <td>
+                                                                <asp:TextBox ID="TextBZ6" runat="server" TextMode="MultiLine" Width="500px" Height="70px"></asp:TextBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span>审核人：</span>
+                                                            </td>
+                                                            <td>
+                                                                <asp:TextBox ID="TextSHR6" runat="server" Enabled="false"></asp:TextBox>
+                                                            </td>
+                                                            <td>
+                                                                <span>审核日期：</span>
+                                                            </td>
+                                                            <td>
+                                                                <asp:TextBox ID="TextSHRQ6" runat="server" Enabled="false"></asp:TextBox>
                                                             </td>
                                                         </tr>
                                                     </table>

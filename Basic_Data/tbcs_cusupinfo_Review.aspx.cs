@@ -337,7 +337,7 @@ namespace ZCZJ_DPF.Basic_Data
             {
                 SpJb_jg=dt1_SpJb.Rows[0]["CSR_TYPE"].ToString();
             }
-            if (SpJb_jg == "5")
+            if (SpJb_jg == "5" || SpJb_jg == "6")
             {
                 return "javascript:void window.open('tbcs_cusup_add_delete.aspx?action=View&cs_action=" + Spaction + "&id=" + SpId + "','','')";
             }
@@ -356,7 +356,7 @@ namespace ZCZJ_DPF.Basic_Data
             {
                 SpJb_jg = dt1_SpJb.Rows[0]["CSR_TYPE"].ToString();
             }
-            if (SpJb_jg == "5")
+            if (SpJb_jg == "5" || SpJb_jg == "6")
             {
                 return "javascript:void window.open('tbcs_cusup_add_delete.aspx?action=Review&cs_action=" + Spaction + "&id=" + SpId + "','','')";
             }
@@ -374,7 +374,7 @@ namespace ZCZJ_DPF.Basic_Data
             {
                 SpJb_jg = dt1_SpJb.Rows[0]["CSR_TYPE"].ToString();
             }
-            if (SpJb_jg == "5")
+            if (SpJb_jg == "5" || SpJb_jg == "6")
             {
                 return "javascript:void window.open('tbcs_cusup_add_delete.aspx?action=Edit&cs_action=" + Spaction + "&id=" + SpId + "','','')";
             }
