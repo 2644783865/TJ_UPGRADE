@@ -5304,6 +5304,20 @@
     <Compile Include="PM_Data\PM_Gongshi_Daoru.aspx.designer.cs">
       <DependentUpon>PM_Gongshi_Daoru.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PM_Data\PM_Gongshi_detail_edit.aspx.cs">
+      <DependentUpon>PM_Gongshi_detail_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PM_Data\PM_Gongshi_detail_edit.aspx.designer.cs">
+      <DependentUpon>PM_Gongshi_detail_edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PM_Data\PM_Gongshi_Detail_List.aspx.cs">
+      <DependentUpon>PM_Gongshi_Detail_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PM_Data\PM_Gongshi_Detail_List.aspx.designer.cs">
+      <DependentUpon>PM_Gongshi_Detail_List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PM_Data\PM_GongShi_edit.aspx.cs">
       <DependentUpon>PM_GongShi_edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10615,6 +10629,7 @@
     <Content Include="JS\jquery\jquery-1.4.2-vsdoc.js" />
     <Content Include="JS\jquery\jquery-1.4.2.js" />
     <Content Include="JS\jquery\jquery-1.7.1.js" />
+    <Content Include="JS\jquery\jquery-3.2.1.min.js" />
     <Content Include="JS\jquery\jquery.form.js" />
     <Content Include="JS\jquery\jquery.js" />
     <Content Include="JS\jquery\jquery.min.js" />
@@ -11092,6 +11107,8 @@
     <Content Include="PM_Data\PM_Data_addjs_list.aspx" />
     <Content Include="PM_Data\PM_Data_addto_list.aspx" />
     <Content Include="PM_Data\PM_FaHuoNotice.aspx" />
+    <Content Include="PM_Data\PM_Gongshi_detail_edit.aspx" />
+    <Content Include="PM_Data\PM_Gongshi_Detail_List.aspx" />
     <Content Include="PM_Data\PM_ProcessCard.aspx" />
     <Content Include="PM_Data\PM_ProcessCard_Gen.aspx" />
     <Content Include="PM_Data\PM_SCDYTZD.aspx" />
