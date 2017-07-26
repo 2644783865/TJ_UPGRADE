@@ -8,13 +8,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-     <link rel="Stylesheet" type="text/css" href="../Assets/main.css" />
+    <link rel="Stylesheet" type="text/css" href="../Assets/main.css" />
     <link type="text/css" href="FixTable.css" rel="stylesheet" />
+
     <script src="../JS/Datetime.js" type="text/javascript" charset="GB2312" language="javascript"></script>
+
     <script src="PcJs/rowcolor.js" type="text/javascript" charset="GB2312" language="javascript"></script>
+
     <script src="PcJs/xbjhidden.js" type="text/javascript"></script>
-  
-        <ContentTemplate>
+
+    <contenttemplate>
             <div class="RightContent">
             <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
                 <div class="box-inner">
