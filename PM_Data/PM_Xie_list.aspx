@@ -1,11 +1,11 @@
-Ôªø<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.master" AutoEventWireup="true"
     CodeBehind="PM_Xie_list.aspx.cs" Inherits="ZCZJ_DPF.PM_Data.PM_Xie_list" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    ËØ¢ÊØî‰ª∑ÁÆ°ÁêÜ
+    —Ø±»º€π‹¿Ì
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
@@ -158,52 +158,52 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                ËØ¢ÊØî‰ª∑Ê∏ÖÂçïÂàóË°®
-                                <asp:RadioButton ID="rad_all" runat="server" Text="ÂÖ®ÈÉ®ÂçïÊçÆ" TextAlign="Right" GroupName="select00"
+                                —Ø±»º€«Âµ•¡–±Ì
+                                <asp:RadioButton ID="rad_all" runat="server" Text="»´≤øµ•æ›" TextAlign="Right" GroupName="select00"
                                     OnCheckedChanged="rad_all_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_mypart" runat="server" Text="ÊàëÁöÑ‰ªªÂä°" TextAlign="Right" GroupName="select00"
+                                <asp:RadioButton ID="rad_mypart" runat="server" Text="Œ“µƒ»ŒŒÒ" TextAlign="Right" GroupName="select00"
                                     OnCheckedChanged="rad_mypart_CheckedChanged" AutoPostBack="true" Checked="true" />&nbsp;
                                 <asp:TextBox ID="Tb_marrepcode" runat="server" Text="" Visible="false"></asp:TextBox>
                             </td>
                             <td>
-                                Áîü‰∫ßÂ§ñÂçèÁ±ªÂà´Ôºö
+                                …˙≤˙Õ‚–≠¿‡±£∫
                                 <asp:DropDownList ID="ddltype" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddltype_SelectedIndexChanged">
-                                    <asp:ListItem Text="ÂÖ®ÈÉ®" Value="%" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="Â∑•Â∫èÂ§ñÂçè" Value="Â∑•Â∫èÂ§ñÂçè"></asp:ListItem>
-                                    <asp:ListItem Text="ÊàêÂìÅÂ§ñÂçè" Value="ÊàêÂìÅÂ§ñÂçè"></asp:ListItem>
+                                    <asp:ListItem Text="»´≤ø" Value="%" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="π§–ÚÕ‚–≠" Value="π§–ÚÕ‚–≠"></asp:ListItem>
+                                    <asp:ListItem Text="≥…∆∑Õ‚–≠" Value="≥…∆∑Õ‚–≠"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                             <td>
-                                <asp:RadioButton ID="rad_quanbu" runat="server" Text="ÂÖ®ÈÉ®" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_quanbu" runat="server" Text="»´≤ø" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_quanbu_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_weitijiao" runat="server" Text="Êú™ÂÆ°Ê†∏" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_weitijiao" runat="server" Text="Œ¥…Û∫À" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_weitijiao_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_shenhezhong" runat="server" Text="ÂÆ°Ê†∏‰∏≠" TextAlign="Right"
+                                <asp:RadioButton ID="rad_shenhezhong" runat="server" Text="…Û∫À÷–" TextAlign="Right"
                                     GroupName="select" OnCheckedChanged="rad_shenhezhong_CheckedChanged" Checked="true"
                                     AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_bohui" runat="server" Text="Â∑≤È©≥Âõû" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_bohui" runat="server" Text="“—≤µªÿ" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_bohui_CheckedChanged" AutoPostBack="true" />
                                 <asp:Label ID="lb_bjdbh" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                <asp:RadioButton ID="rad_tongguo" runat="server" Text="Â∑≤ÈÄöËøá" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_tongguo" runat="server" Text="“—Õ®π˝" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_tongguo_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_wbj" runat="server" Text="Êú™Êä•Ê£Ä" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_wbj" runat="server" Text="Œ¥±®ºÏ" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_ybj_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_ybj" runat="server" Text="Â∑≤Êä•Ê£Ä" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_ybj" runat="server" Text="“—±®ºÏ" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_ybj_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_yhg" runat="server" Text="Â∑≤ÂêàÊ†º" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_yhg" runat="server" Text="“—∫œ∏Ò" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_ybj_CheckedChanged" AutoPostBack="true" />&nbsp;
-                                <asp:RadioButton ID="rad_yjs" runat="server" Text="Â∑≤ÁªìÁÆó" TextAlign="Right" GroupName="select"
+                                <asp:RadioButton ID="rad_yjs" runat="server" Text="“—Ω·À„" TextAlign="Right" GroupName="select"
                                     OnCheckedChanged="rad_ybj_CheckedChanged" AutoPostBack="true" />&nbsp;
                             </td>
                             <td>
                                 <asp:Button ID="btn_add" runat="server" Height="25px" Width="70px" BorderColor="Pink"
-                                    BorderStyle="Double" Text="ËøΩÂä†ËÆ¢Âçï" OnClick="btn_add_Click" />&nbsp;&nbsp;
+                                    BorderStyle="Double" Text="◊∑º”∂©µ•" OnClick="btn_add_Click" />&nbsp;&nbsp;
                                 <asp:Button ID="btn_xiatui" runat="server" Height="25px" Width="70px" BorderColor="Pink"
-                                    BorderStyle="Double" Text="ÁîüÊàêËÆ¢Âçï" OnClick="btn_xiatui_Click" />&nbsp;&nbsp;
+                                    BorderStyle="Double" Text="…˙≥…∂©µ•" OnClick="btn_xiatui_Click" />&nbsp;&nbsp;
                             </td>
                             <td>
                                 <asp:CheckBox ID="cb_sp" runat="server" Visible="false" Checked="false" AutoPostBack="true"
-                                    Text="Âè™ÊòæÁ§∫ÊàëÁöÑÊú™ÂÆ°" ForeColor="Red" OnCheckedChanged="CBSP_CheckedChanged" />
+                                    Text="÷ªœ‘ æŒ“µƒŒ¥…Û" ForeColor="Red" OnCheckedChanged="CBSP_CheckedChanged" />
                             </td>
                         </tr>
                     </table>
@@ -216,11 +216,11 @@
                     <table width="100%">
                         <tr>
                             <td align="left">
-                                ËØ¢ÊØî‰ª∑ÂçïÂè∑Ôºö
+                                —Ø±»º€µ•∫≈£∫
                                 <asp:TextBox ID="Tb_pcode" runat="server" Text="" Width="50px"></asp:TextBox>
                             </td>
                             <td>
-                                ‰æõÂ∫îÂïÜÔºö
+                                π©”¶…Ã£∫
                                 <asp:TextBox ID="tb_Gongyingshang" runat="server" Width="200px" OnTextChanged="tb_Gongyingshang_Textchanged"
                                     AutoPostBack="true"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="tb_Gongyingshang"
@@ -230,30 +230,30 @@
                                 </cc1:AutoCompleteExtender>
                             </td>
                             <td>
-                                ÊÄªÂ∫èÔºö<asp:TextBox runat="server" ID="PIC_ZONGXU" Width="50px"></asp:TextBox>
+                                ◊‹–Ú£∫<asp:TextBox runat="server" ID="PIC_ZONGXU" Width="50px"></asp:TextBox>
                             </td>
                             <td>
-                                ÂêçÁß∞Ôºö<asp:TextBox runat="server" ID="marnm"></asp:TextBox>
+                                √˚≥∆£∫<asp:TextBox runat="server" ID="marnm"></asp:TextBox>
                             </td>
                             <td>
-                                ÊØèÈ°µÊòæÁ§∫Ôºö
+                                √ø“≥œ‘ æ£∫
                                 <asp:DropDownList ID="DropDownList5" runat="server" AutoPostBack="true">
-                                    <asp:ListItem Text="50Êù°ËÆ∞ÂΩï" Value="50"></asp:ListItem>
-                                    <asp:ListItem Text="100Êù°ËÆ∞ÂΩï" Value="100"></asp:ListItem>
-                                    <asp:ListItem Text="150Êù°ËÆ∞ÂΩï" Value="150"></asp:ListItem>
-                                    <asp:ListItem Text="200Êù°ËÆ∞ÂΩï" Value="200"></asp:ListItem>
-                                    <asp:ListItem Text="250Êù°ËÆ∞ÂΩï" Value="200"></asp:ListItem>
+                                    <asp:ListItem Text="50Ãıº«¬º" Value="50"></asp:ListItem>
+                                    <asp:ListItem Text="100Ãıº«¬º" Value="100"></asp:ListItem>
+                                    <asp:ListItem Text="150Ãıº«¬º" Value="150"></asp:ListItem>
+                                    <asp:ListItem Text="200Ãıº«¬º" Value="200"></asp:ListItem>
+                                    <asp:ListItem Text="250Ãıº«¬º" Value="200"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                             <td>
-                                <asp:Button ID="btn_input" runat="server" Text="Ê∑ªÂä†ËØ¶ÁªÜ‰ø°ÊÅØ" />
+                                <asp:Button ID="btn_input" runat="server" Text="ÃÌº”œÍœ∏–≈œ¢" />
                                 <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="btn_input"
                                     PopupControlID="palscwx" Y="102" X="600" CancelControlID="close">
                                 </asp:ModalPopupExtender>
                                 <%--<asp:PopupControlExtender ID="PopupControlExtender1" runat="server" TargetControlID="btn_input"
                                            PopupControlID="palscwx" Position="Bottom" OffsetX="-65" OffsetY="4" CacheDynamicResults="false">
                                         </asp:PopupControlExtender>--%>
-                                <asp:Button ID="btn_export" runat="server" Text="Á≠õÈÄâ" />
+                                <asp:Button ID="btn_export" runat="server" Text="…∏—°" />
                                 <%--<asp:PopupControlExtender ID="PopupControlExtender2" runat="server" TargetControlID="btn_export"
                                             PopupControlID="select" Position="Bottom" OffsetX="-65" OffsetY="4" CacheDynamicResults="false">
                                         </asp:PopupControlExtender>--%>
@@ -262,13 +262,13 @@
                                 </asp:ModalPopupExtender>
                             </td>
                             <td>
-                                <asp:Button ID="btn_baojian" runat="server" Text="Êä•Ê£Ä" OnClick="btn_baojian_click" />
+                                <asp:Button ID="btn_baojian" runat="server" Text="±®ºÏ" OnClick="btn_baojian_click" />
                             </td>
                             <td align="right">
-                                <asp:Button ID="btn_search" runat="server" Text="Êü•ËØ¢" OnClick="btn_search_click" />&nbsp;
-                                <asp:Button ID="btn_clear" runat="server" Text="Ê∏ÖÈô§" OnClick="btn_clear_click" />&nbsp;
-                                <asp:Button ID="btn_daochu" runat="server" Text="ÂØºÂá∫" OnClick="btn_daochu_Click" />&nbsp;
-                                <asp:Button ID="btn_yuedaochu" runat="server" Text="ÊåâÊúàÂØºÂá∫" ForeColor="Red" />
+                                <asp:Button ID="btn_search" runat="server" Text="≤È—Ø" OnClick="btn_search_click" />&nbsp;
+                                <asp:Button ID="btn_clear" runat="server" Text="«Â≥˝" OnClick="btn_clear_click" />&nbsp;
+                                <asp:Button ID="btn_daochu" runat="server" Text="µº≥ˆ" OnClick="btn_daochu_Click" />&nbsp;
+                                <asp:Button ID="btn_yuedaochu" runat="server" Text="∞¥‘¬µº≥ˆ" ForeColor="Red" />
                                 <asp:ModalPopupExtender ID="ModalPopupExtender2" runat="server" TargetControlID="btn_yuedaochu"
                                     PopupControlID="Panel1" Y="102" X="600" CancelControlID="guan1">
                                 </asp:ModalPopupExtender>
@@ -286,7 +286,7 @@
                                         <div style="font-family: Verdana, Helvetica, Arial, sans-serif; line-height: 17px;
                                             font-size: 11px; font-weight: bold; position: absolute; top: 8px; right: 10px;">
                                             <a id="close" style="background-color: #6699CC; cursor: pointer; color: #FFFFFF;
-                                                text-align: center; text-decoration: none; padding: 5px;" title="ÂÖ≥Èó≠">X</a>
+                                                text-align: center; text-decoration: none; padding: 5px;" title="πÿ±’">X</a>
                                         </div>
                                         <br />
                                         <br />
@@ -294,7 +294,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Âä†Â∑•ÂçïÂè∑Ôºö
+                                        º”π§µ•∫≈£∫
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txt_jgnum" runat="server"></asp:TextBox>
@@ -303,7 +303,7 @@
                                 <tr>
                                     <td colspan="2" align="center">
                                         <br />
-                                        <asp:Button ID="btnConfirm" runat="server" Text="Á°Æ ÂÆö" OnClick="btnConfirm_Click"
+                                        <asp:Button ID="btnConfirm" runat="server" Text="»∑ ∂®" OnClick="btnConfirm_Click"
                                             UseSubmitBehavior="false" />
                                     </td>
                                 </tr>
@@ -324,7 +324,7 @@
                                         <div style="font-family: Verdana, Helvetica, Arial, sans-serif; line-height: 17px;
                                             font-size: 11px; font-weight: bold; position: absolute; top: 8px; right: 10px;">
                                             <a id="guan" style="background-color: #6699CC; cursor: pointer; color: #FFFFFF; text-align: center;
-                                                text-decoration: none; padding: 5px;" title="ÂÖ≥Èó≠">X</a>
+                                                text-decoration: none; padding: 5px;" title="πÿ±’">X</a>
                                         </div>
                                         <br />
                                         <br />
@@ -337,14 +337,14 @@
                                     </td>
                                     <td align="center" width="100px">
                                         <asp:DropDownList ID="ddlRelation1" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="0" Selected="True">ÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="1">‰∏çÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="2">Á≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="3">‰∏çÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="4">Â§ß‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="5">Â§ß‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="6">Â∞è‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="7">Â∞è‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="1">≤ª∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="2">µ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="3">≤ªµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="4">¥Û”⁄</asp:ListItem>
+                                            <asp:ListItem Value="5">¥Û”⁄ªÚµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="6">–°”⁄</asp:ListItem>
+                                            <asp:ListItem Value="7">–°”⁄ªÚµ»”⁄</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -352,8 +352,8 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlLogic1" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -364,14 +364,14 @@
                                     </td>
                                     <td align="center" width="100px">
                                         <asp:DropDownList ID="ddlRelation2" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="0" Selected="True">ÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="1">‰∏çÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="2">Á≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="3">‰∏çÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="4">Â§ß‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="5">Â§ß‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="6">Â∞è‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="7">Â∞è‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="1">≤ª∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="2">µ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="3">≤ªµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="4">¥Û”⁄</asp:ListItem>
+                                            <asp:ListItem Value="5">¥Û”⁄ªÚµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="6">–°”⁄</asp:ListItem>
+                                            <asp:ListItem Value="7">–°”⁄ªÚµ»”⁄</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -379,8 +379,8 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlLogic2" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -391,14 +391,14 @@
                                     </td>
                                     <td align="center" width="100px">
                                         <asp:DropDownList ID="ddlRelation3" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="0" Selected="True">ÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="1">‰∏çÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="2">Á≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="3">‰∏çÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="4">Â§ß‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="5">Â§ß‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="6">Â∞è‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="7">Â∞è‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="1">≤ª∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="2">µ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="3">≤ªµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="4">¥Û”⁄</asp:ListItem>
+                                            <asp:ListItem Value="5">¥Û”⁄ªÚµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="6">–°”⁄</asp:ListItem>
+                                            <asp:ListItem Value="7">–°”⁄ªÚµ»”⁄</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -406,8 +406,8 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlLogic3" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -418,14 +418,14 @@
                                     </td>
                                     <td align="center" width="100px">
                                         <asp:DropDownList ID="ddlRelation4" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="0" Selected="True">ÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="1">‰∏çÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="2">Á≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="3">‰∏çÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="4">Â§ß‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="5">Â§ß‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="6">Â∞è‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="7">Â∞è‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="1">≤ª∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="2">µ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="3">≤ªµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="4">¥Û”⁄</asp:ListItem>
+                                            <asp:ListItem Value="5">¥Û”⁄ªÚµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="6">–°”⁄</asp:ListItem>
+                                            <asp:ListItem Value="7">–°”⁄ªÚµ»”⁄</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -433,8 +433,8 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlLogic4" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -445,14 +445,14 @@
                                     </td>
                                     <td align="center" width="100px">
                                         <asp:DropDownList ID="ddlRelation5" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="0" Selected="True">ÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="1">‰∏çÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="2">Á≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="3">‰∏çÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="4">Â§ß‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="5">Â§ß‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="6">Â∞è‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="7">Â∞è‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="1">≤ª∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="2">µ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="3">≤ªµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="4">¥Û”⁄</asp:ListItem>
+                                            <asp:ListItem Value="5">¥Û”⁄ªÚµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="6">–°”⁄</asp:ListItem>
+                                            <asp:ListItem Value="7">–°”⁄ªÚµ»”⁄</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -460,8 +460,8 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlLogic5" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -472,14 +472,14 @@
                                     </td>
                                     <td align="center" width="100px">
                                         <asp:DropDownList ID="ddlRelation6" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="0" Selected="True">ÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="1">‰∏çÂåÖÂê´</asp:ListItem>
-                                            <asp:ListItem Value="2">Á≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="3">‰∏çÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="4">Â§ß‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="5">Â§ß‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="6">Â∞è‰∫é</asp:ListItem>
-                                            <asp:ListItem Value="7">Â∞è‰∫éÊàñÁ≠â‰∫é</asp:ListItem>
+                                            <asp:ListItem Value="0" Selected="True">∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="1">≤ª∞¸∫¨</asp:ListItem>
+                                            <asp:ListItem Value="2">µ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="3">≤ªµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="4">¥Û”⁄</asp:ListItem>
+                                            <asp:ListItem Value="5">¥Û”⁄ªÚµ»”⁄</asp:ListItem>
+                                            <asp:ListItem Value="6">–°”⁄</asp:ListItem>
+                                            <asp:ListItem Value="7">–°”⁄ªÚµ»”⁄</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -487,19 +487,19 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlLogic6" BackColor="AliceBlue" runat="server">
-                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 60px">
-                                        Êó∂Èó¥ÔºàÂπ¥-Êúà XXXX-XXÔºâÔºö
+                                         ±º‰£®ƒÍ-‘¬ XXXX-XX£©£∫
                                     </td>
                                     <td style="text-align: center; width: 100px">
                                         <asp:DropDownList ID="ddl_time" runat="server" BackColor="AliceBlue">
-                                            <asp:ListItem Text="Á≠â‰∫é" Value="=" Selected="True"></asp:ListItem>
-                                            <%--<asp:ListItem Text="Â§ß‰∫é" Value=">="></asp:ListItem>--%>
+                                            <asp:ListItem Text="µ»”⁄" Value="=" Selected="True"></asp:ListItem>
+                                            <%--<asp:ListItem Text="¥Û”⁄" Value=">="></asp:ListItem>--%>
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -507,19 +507,19 @@
                                     </td>
                                     <%--<td>
                                                   <asp:DropDownList ID="ddlLogic5" BackColor="AliceBlue" runat="server">
-                                                            <asp:ListItem Value="OR">ÊàñËÄÖ</asp:ListItem>
-                                                            <asp:ListItem Value="AND" Selected="True">Âπ∂‰∏î</asp:ListItem>
+                                                            <asp:ListItem Value="OR">ªÚ’ﬂ</asp:ListItem>
+                                                            <asp:ListItem Value="AND" Selected="True">≤¢«“</asp:ListItem>
                                                         </asp:DropDownList>
                                                   </td>--%>
                                 </tr>
                                 <%--<tr>
                                                   <td style="width:60px">
-                                                   Êó∂Èó¥ÔºàÂπ¥-ÊúàÔºâÔºö
+                                                    ±º‰£®ƒÍ-‘¬£©£∫
                                                   </td>
                                                   <td style="text-align:center;width:100px">
                                                   <asp:DropDownList ID="ddl_time2" runat="server" BackColor="AliceBlue" >
-                                                  <asp:ListItem Text="Á≠â‰∫é" Value="=" Selected="True"></asp:ListItem>
-                                                  <asp:ListItem Text="Â§ß‰∫é" Value=">="></asp:ListItem>
+                                                  <asp:ListItem Text="µ»”⁄" Value="=" Selected="True"></asp:ListItem>
+                                                  <asp:ListItem Text="¥Û”⁄" Value=">="></asp:ListItem>
                                                   </asp:DropDownList>
                                                   </td>
                                                     <td>
@@ -530,8 +530,8 @@
                                                   </tr>--%>
                                 <tr>
                                     <td colspan="4" style="text-align: right">
-                                        <asp:Button ID="reset" runat="server" Text="Èáç ÁΩÆ" OnClick="reset_Click" />&nbsp;&nbsp;&nbsp;
-                                        <asp:Button ID="btnfind" runat="server" Text="Êêú Á¥¢" OnClick="search_Click" />&nbsp;&nbsp;&nbsp;
+                                        <asp:Button ID="reset" runat="server" Text="÷ÿ ÷√" OnClick="reset_Click" />&nbsp;&nbsp;&nbsp;
+                                        <asp:Button ID="btnfind" runat="server" Text="À— À˜" OnClick="search_Click" />&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
                             </table>
@@ -549,7 +549,7 @@
                                 <div style="font-family: Verdana, Helvetica, Arial, sans-serif; line-height: 17px;
                                     font-size: 11px; font-weight: bold; position: absolute; top: 8px; right: 10px;">
                                     <a id="guan1" style="background-color: #6699CC; cursor: pointer; color: #FFFFFF;
-                                        text-align: center; text-decoration: none; padding: 5px;" title="ÂÖ≥Èó≠">X</a>
+                                        text-align: center; text-decoration: none; padding: 5px;" title="πÿ±’">X</a>
                                 </div>
                                 <br />
                                 <br />
@@ -557,20 +557,20 @@
                         </tr>
                         <tr>
                             <td style="width: 20%">
-                                ÂØºÂá∫<br />
-                                Âπ¥ÊúàÔºö
+                                µº≥ˆ<br />
+                                ƒÍ‘¬£∫
                             </td>
                             <td style="text-align: left">
                                 <asp:TextBox ID="txt_year" runat="server" Width="100px"></asp:TextBox>
                             </td>
                             <td style="text-align: left">
-                                (‰æãÂ¶ÇÔºö2014-06)
+                                (¿˝»Á£∫2014-06)
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" align="center">
                                 <br />
-                                <asp:Button ID="Button1" runat="server" Text="Á°Æ ÂÆö" OnClick="btn_yuedaochuclick" UseSubmitBehavior="false" />
+                                <asp:Button ID="Button1" runat="server" Text="»∑ ∂®" OnClick="btn_yuedaochuclick" UseSubmitBehavior="false" />
                             </td>
                         </tr>
                     </table>
@@ -587,115 +587,115 @@
                                                     &nbsp;
                                                 </td>
                                                 <td>
-                                                    <strong>Ë°å<br />
-                                                        Âè∑</strong>
+                                                    <strong>––<br />
+                                                        ∫≈</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>ÊØî‰ª∑ÂçïÂè∑</strong>
+                                                    <strong>±»º€µ•∫≈</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>Âä†Â∑•ÂçïÂè∑</strong>
-                                                </td>
-                                                <%--<td>
-                                                <strong>ÊòØÂê¶ÂÖ•Â∫ì</strong>
-                                                </td>--%>
-                                                <td>
-                                                    <strong>ÈÉ®Èó®<br />
-                                                        Ë¥üË¥£‰∫∫</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>Âà∂Âçï‰∫∫</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>Êó•Êúü</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>‰∏ªÁÆ°<br />
-                                                        ÁªèÁêÜ</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ÊÄªÈáëÈ¢ù</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ÂÆ°Ê†∏<br />
-                                                        Ê†áÂøó</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ËÆ¢Âçï<br />
-                                                        Ê†áÂøó</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ÁªìÁÆóÂçïÂè∑</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ÊòØÂê¶Êä•Ê£Ä</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>‰æõÂ∫îÂïÜ</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>Â§ñÂçèÂçïÂè∑</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ÊâπÂè∑</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>‰ªªÂä°Âè∑</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>ÂêàÂêåÂè∑</strong>
-                                                </td>
-                                                <td>
-                                                    <strong>È°πÁõÆÂêçÁß∞</strong>
+                                                    <strong>º”π§µ•∫≈</strong>
                                                 </td>
                                                 <%--<td>
-                                                    <strong>ËÆæÂ§áÂêçÁß∞</strong>
+                                                <strong> «∑Ò»Îø‚</strong>
                                                 </td>--%>
                                                 <td>
-                                                    <strong>ÂêçÁß∞</strong>
+                                                    <strong>≤ø√≈<br />
+                                                        ∏∫‘»À</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>ÂõæÂè∑/Ê†áËØÜÂè∑</strong>
+                                                    <strong>÷∆µ•»À</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>Âõæ‰∏≠Â∫èÂè∑</strong>
+                                                    <strong>»’∆⁄</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>÷˜π‹<br />
+                                                        æ≠¿Ì</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>◊‹Ω∂Ó</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>…Û∫À<br />
+                                                        ±Í÷æ</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>∂©µ•<br />
+                                                        ±Í÷æ</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>Ω·À„µ•∫≈</strong>
+                                                </td>
+                                                <td>
+                                                    <strong> «∑Ò±®ºÏ</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>π©”¶…Ã</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>Õ‚–≠µ•∫≈</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>≈˙∫≈</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>»ŒŒÒ∫≈</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>∫œÕ¨∫≈</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>œÓƒø√˚≥∆</strong>
                                                 </td>
                                                 <%--<td>
-                                                    <strong>ËßÑÊ†º</strong>
+                                                    <strong>…Ë±∏√˚≥∆</strong>
+                                                </td>--%>
+                                                <td>
+                                                    <strong>√˚≥∆</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>ÊùêË¥®</strong>
+                                                    <strong>Õº∫≈/±Í ∂∫≈</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>Õº÷––Ú∫≈</strong>
+                                                </td>
+                                                <%--<td>
+                                                    <strong>πÊ∏Ò</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>≤ƒ÷ </strong>
                                                 </td>--%>
                                                 <%--<td>
-                                                    <strong>ÂõΩÊ†á</strong>
+                                                    <strong>π˙±Í</strong>
                                                 </td>--%>
                                                 <td>
-                                                    <strong>Â§ñÂçèÁ±ªÂûã</strong>
+                                                    <strong>Õ‚–≠¿‡–Õ</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>Â§ñÂçèÂ∑•Â∫è</strong>
+                                                    <strong>Õ‚–≠π§–Ú</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>Á±ªÂûã</strong>
+                                                    <strong>¿‡–Õ</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>ÂçïÈáç</strong>
+                                                    <strong>µ•÷ÿ</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>Êï∞Èáè</strong>
+                                                    <strong> ˝¡ø</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>Âçï‰Ωç</strong>
+                                                    <strong>µ•Œª</strong>
                                                 </td>
                                                 <td>
-                                                    <strong>ÊúÄÁªàÊä•‰ª∑<br />
-                                                        (Âê´Á®é)</strong>
+                                                    <strong>◊Ó÷’±®º€<br />
+                                                        (∫¨À∞)</strong>
                                                 </td>
                                             </tr>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <tr id="row" runat="server" class="baseGadget" onmouseover="mover(this)" onmouseout="mout(this)"
-                                                ondblclick="redirectw(this)" title="ËØ∑ÂèåÂáªÊü•Áúã">
+                                                ondblclick="redirectw(this)" title="«ÎÀ´ª˜≤Èø¥">
                                                 <%--onclick="rowclick(this)"--%>
                                                 <td>
                                                     <asp:CheckBox ID="CKBOX_SELECT" CssClass="checkBoxCss" BorderStyle="None" runat="server"
@@ -813,7 +813,7 @@
                                     <tr>
                                         <td colspan="20">
                                             <asp:Panel ID="NoDataPane" runat="server" Visible="false">
-                                                Ê≤°ÊúâËÆ∞ÂΩïÔºÅ</asp:Panel>
+                                                √ª”–º«¬º£°</asp:Panel>
                                         </td>
                                     </tr>
                                 </table>
@@ -854,11 +854,11 @@
                                 <table width="100%">
                                     <tr>
                                         <td>
-                                            ÂÖ±Êü•Âá∫<asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Red"></asp:Label>ÊâπÊØî‰ª∑Âçï/
-                                            <asp:Label ID="Label2" runat="server" Text="Label" ForeColor="Red"></asp:Label>Êù°ËÆ∞ÂΩï
+                                            π≤≤È≥ˆ<asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Red"></asp:Label>≈˙±»º€µ•/
+                                            <asp:Label ID="Label2" runat="server" Text="Label" ForeColor="Red"></asp:Label>Ãıº«¬º
                                         </td>
                                         <td>
-                                            Á≠õÈÄâÂá∫ÁöÑÊúÄÁªàÊä•‰ª∑ÊÄªËÆ°Ôºö<asp:Label runat="server" ID="lbBJZJ" ForeColor="Red" Font-Size="Medium"></asp:Label>
+                                            …∏—°≥ˆµƒ◊Ó÷’±®º€◊‹º∆£∫<asp:Label runat="server" ID="lbBJZJ" ForeColor="Red" Font-Size="Medium"></asp:Label>
                                         </td>
                                         <td align="right" width="50%">
                                             <uc1:UCPaging ID="UCPaging1" runat="server" />
@@ -868,10 +868,10 @@
                             </div>
                         </div>
                         <asp:Panel ID="Pan_select" runat="server">
-                            <asp:CheckBox ID="selectall" runat="server" Text="ÂÖ®ÈÄâ" AutoPostBack="true" TextAlign="left"
+                            <asp:CheckBox ID="selectall" runat="server" Text="»´—°" AutoPostBack="true" TextAlign="left"
                                 Checked="false" OnCheckedChanged="selectall_CheckedChanged" />
-                            <asp:Button ID="btn_LX" runat="server" Text="ËøûÈÄâ" OnClick="btn_LX_click" />
-                            <asp:Button ID="btn_QX" runat="server" Text="ÂèñÊ∂à" OnClick="btn_QX_click" />
+                            <asp:Button ID="btn_LX" runat="server" Text="¡¨—°" OnClick="btn_LX_click" />
+                            <asp:Button ID="btn_QX" runat="server" Text="»°œ˚" OnClick="btn_QX_click" />
                         </asp:Panel>
                         </div> </div> </div>
                         <%--<asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1"
@@ -884,7 +884,7 @@
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/Assets/images/ajax-loader2.gif" />
                         </td>
                         <td align="left" style="background-color: Yellow; font-size: medium;">
-                            Êï∞ÊçÆÂ§ÑÁêÜ‰∏≠ÔºåËØ∑Á®çÂêé...
+                             ˝æ›¥¶¿Ì÷–£¨«Î…‘∫Û...
                         </td>
                     </tr>
                 </table>
