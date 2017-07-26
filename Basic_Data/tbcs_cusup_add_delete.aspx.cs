@@ -216,6 +216,7 @@ namespace ZCZJ_DPF.Basic_Data
                     SJSHEnabledF();
                     SI_JSHEnalbedF();
                     WU_JSHEnabledF();
+                    QA_JSHEnableF();
                 }
                 else if (currentguy_name == TextSHR2.Text.ToString())
                 {
@@ -223,6 +224,7 @@ namespace ZCZJ_DPF.Basic_Data
                     SJSHEnabledF();
                     SI_JSHEnalbedF();
                     WU_JSHEnabledF();
+                    QA_JSHEnableF();
                 }
                 else if (currentguy_name == TextSHR3.Text.ToString())
                 {
@@ -230,6 +232,7 @@ namespace ZCZJ_DPF.Basic_Data
                     EJSHEnalbedF();
                     SI_JSHEnalbedF();
                     WU_JSHEnabledF();
+                    QA_JSHEnableF();
                 }
                 else if (currentguy_name == TextSHR4.Text.ToString())
                 {
@@ -237,6 +240,7 @@ namespace ZCZJ_DPF.Basic_Data
                     EJSHEnalbedF();
                     SJSHEnabledF();
                     WU_JSHEnabledF();
+                    QA_JSHEnableF();
                     
                 }
                 else if (currentguy_name == TextSHR5.Text.ToString())
@@ -245,8 +249,16 @@ namespace ZCZJ_DPF.Basic_Data
                     EJSHEnalbedF();
                     SJSHEnabledF();
                     SI_JSHEnalbedF();
+                    QA_JSHEnableF();
                 }
-
+                else if (currentguy_name == TextSHR6.Text.ToString())
+                {
+                    BMSHEnabledF();
+                    EJSHEnalbedF();
+                    SJSHEnabledF();
+                    SI_JSHEnalbedF();
+                    WU_JSHEnabledF();
+                }
                 else
                 {
                     BMSHEnabledF();
@@ -254,6 +266,8 @@ namespace ZCZJ_DPF.Basic_Data
                     SJSHEnabledF();
                     SI_JSHEnalbedF();
                     WU_JSHEnabledF();
+                    QA_JSHEnableF();
+
                 }
                // shenheliucheng();
             }
@@ -296,6 +310,9 @@ namespace ZCZJ_DPF.Basic_Data
             }
         }
 
+        /// <summary>
+        /// 获取厂商CSCODE
+        /// </summary>
         protected void GetCSCODE()
         {
             string sqltext = "select TOP 1 (CS_CODE+0) AS index1 from TBCS_CUSUP_ADD_DELETE ORDER BY index1 DESC ";
@@ -316,32 +333,38 @@ namespace ZCZJ_DPF.Basic_Data
         //绑定Pal_per中指定审批人中的信息
         private void bind_Per()
         {
-            //绑定一级审批人，从领导人选取
+            //绑定生产部审批人
             string sql_ddl_one = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='04' and ST_POSITION='0401') and ST_PD=0";
             DataTable dt_ddl_one = DBCallCommon.GetDTUsingSqlText(sql_ddl_one);
             ddl_onePer.Text = dt_ddl_one.Rows[0]["ST_NAME"].ToString();
             firstid.Value = dt_ddl_one.Rows[0]["ST_ID"].ToString();
-            //绑定二级审批人，从领导人选取
+            //绑定设备部审批人
             string sql_ddl_addone = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='10' and ST_POSITION='1001') and ST_PD=0";
             DataTable dt_ddl_addone = DBCallCommon.GetDTUsingSqlText(sql_ddl_addone);
             ddl_oneper_add.Text = dt_ddl_addone.Rows[0]["ST_NAME"].ToString();
             first_addid.Value = dt_ddl_addone.Rows[0]["ST_ID"].ToString();
-            //绑定三级审批人，从领导人选取
+            //绑定技术部审批人
             string sql_ddl_two = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='03' and ST_POSITION='0301') and ST_PD=0";
             DataTable dt_ddl_two = DBCallCommon.GetDTUsingSqlText(sql_ddl_two);
             ddl_two.Text = dt_ddl_two.Rows[0]["ST_NAME"].ToString();
             secondid.Value = dt_ddl_two.Rows[0]["ST_ID"].ToString();
-            //绑定四级审批人，从领导人选取
+            //绑定质量部审批人
+            string sql_ddl_QA = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='12' and ST_POSITION='1205') and ST_PD=0";
+            DataTable dt_ddl_QA = DBCallCommon.GetDTUsingSqlText(sql_ddl_QA);
+            ddl_QA.Text = dt_ddl_QA.Rows[0]["ST_NAME"].ToString();
+            QAid.Value = dt_ddl_QA.Rows[0]["ST_ID"].ToString();
+
+            //绑定采购部审批人
             string sql_ddl_addtwo = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='05' and ST_POSITION='0501') and ST_PD=0";
             DataTable dtl_ddl_addtwo = DBCallCommon.GetDTUsingSqlText(sql_ddl_addtwo);
             ddl_two_add.Text = dtl_ddl_addtwo.Rows[0]["ST_NAME"].ToString();
             second_addid.Value = dtl_ddl_addtwo.Rows[0]["ST_ID"].ToString();
-
-            //绑定五级审批人，从领导人选取
+            //绑定主管经理审批人
             string sql_ddl_three = "select TOP 1 ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='01' and ST_POSITION='0102') and ST_PD=0 ORDER BY ST_ID";
             DataTable dt_ddl_three = DBCallCommon.GetDTUsingSqlText(sql_ddl_three);
             ddl_three.Text = dt_ddl_three.Rows[0]["ST_NAME"].ToString();
             thirdid.Value = dt_ddl_three.Rows[0]["ST_ID"].ToString();
+            
 
         //    ////绑定部门
         //    //string sqlBM = "select DEP_NAME,DEP_CODE from  TBDS_DEPINFO where DEP_FATHERID='0'and DEP_CODE not in('01','02')";
@@ -436,7 +459,7 @@ namespace ZCZJ_DPF.Basic_Data
                     string type = dt.Rows[i]["CSR_TYPE"].ToString();
                     string bumen = dt.Rows[i]["DEP_NAME"].ToString();
 
-                    if (type == "1")//部门审批
+                    if (type == "1")//生产部审批
                     {
                         //ddl_oneBM.SelectedValue = dt.Rows[i]["DEP_CODE"].ToString();
                         TextSHR1.Text = person;
@@ -453,7 +476,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ1.Checked = true;
                         }
                     }
-                    else if (type == "2")//二级审批
+                    else if (type == "2")//设备部审批
                     {
                         TextSHR2.Text = person;
                         first_addid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -468,7 +491,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ2.Checked = true;
                         }
                     }
-                    else if (type == "3") //二级审批
+                    else if (type == "3") //技术部审批
                     {
                         TextSHR3.Text = person;
                         secondid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -483,7 +506,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ3.Checked = true;
                         }
                     }
-                    else if (type == "4")//二级审批
+                    else if (type == "4")//采购部审批
                     {
                         TextSHR4.Text = person;
                         second_addid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -498,7 +521,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ4.Checked = true;
                         }
                     }
-                    else if (type == "5") //二级审批
+                    else if (type == "5") //主管经理审批
                     {
                         TextSHR5.Text = person;
                         thirdid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -513,6 +536,22 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ5.Checked = true;
                         }
                     }
+                    else if (type == "6")//质量部审批
+                    {
+                        TextSHR6.Text = person;
+                        second_addid.Value = dt.Rows[i]["ST_ID"].ToString();
+                        TextSHRQ6.Text = time != "" ? time : "";
+                        TextBZ6.Text = note;
+                        if (yj == "1")//同意
+                        {
+                            RadioTY4.Checked = true;
+                        }
+                        else if (yj == "2")
+                        {
+                            RadioJJ4.Checked = true;
+                        }
+                    }
+                    
                 }
             }
         }
@@ -955,6 +994,7 @@ namespace ZCZJ_DPF.Basic_Data
                     string spr2 = secondid.Value;
                     string spr_add2 = second_addid.Value;
                     string spr3 = thirdid.Value;
+                    string sprQA = QAid.Value;
                     string sqltextid = "select max(ID) from TBCS_CUSUP_ADD_DELETE";
                     DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltextid);
                     int idid = 1;
@@ -1116,12 +1156,13 @@ namespace ZCZJ_DPF.Basic_Data
                     //}
                     //向审批表中插入数据
 
+                    //ADD
                     string sqlText2 = "insert into TBCS_CUSUP_ReView(fatherid,CS_CODE,CSR_PERSON,CSR_TYPE,CSR_YJ)" +
                                       " Values('" + idid + "','" + cs_code + "','" + spr1 + "','1','0')";
                     list_sql.Add(sqlText2);
 
                     string sqlText_add2 = "insert into TBCS_CUSUP_ReView(fatherid,CS_CODE,CSR_PERSON,CSR_TYPE,CSR_YJ)" +
-                  " Values('" + idid + "','" + cs_code + "','" + spr_add1 + "','2','0')";
+                                        " Values('" + idid + "','" + cs_code + "','" + spr_add1 + "','2','0')";
                     list_sql.Add(sqlText_add2);
 
                     string sqlText3 = "insert into TBCS_CUSUP_ReView(fatherid,CS_CODE,CSR_PERSON,CSR_TYPE,CSR_YJ)" +
@@ -1129,12 +1170,17 @@ namespace ZCZJ_DPF.Basic_Data
                     list_sql.Add(sqlText3);
 
                     string sqlTex_add3 = "insert into TBCS_CUSUP_ReView(fatherid,CS_CODE,CSR_PERSON,CSR_TYPE,CSR_YJ)" +
-                  " Values('" + idid + "','" + cs_code + "','" + spr_add2 + "','4','0')";
+                                        " Values('" + idid + "','" + cs_code + "','" + spr_add2 + "','4','0')";
                     list_sql.Add(sqlTex_add3);
 
                     string sqlText4 = "insert into TBCS_CUSUP_ReView(fatherid,CS_CODE,CSR_PERSON,CSR_TYPE,CSR_YJ)" +
                                       " Values('" + idid + "','" + cs_code + "','" + spr3 + "','5','0')";
                     list_sql.Add(sqlText4);
+
+                    string sqlText5 = "insert into TBCS_CUSUP_ReView(fatherid,CS_CODE,CSR_PERSON,CSR_TYPE,CSR_YJ)"+
+                                      " Values('" + idid + "','" + cs_code + "','" + sprQA + "','6','0')";
+                    list_sql.Add(sqlText5);
+
 
                     DBCallCommon.ExecuteTrans(list_sql);
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert ('已提交申请！\\r\\r该记录将在审批全部通过后生效！');window.close();", true);
@@ -1330,6 +1376,37 @@ namespace ZCZJ_DPF.Basic_Data
                             DBCallCommon.SendEmail(DBCallCommon.GetEmailAddressByUserID(sprid), new List<string>(), new List<string>(), sptitle, spcontent);
                         }
                         csr_note = TextBZ5.Text.ToString();
+                    }
+                    else if (csr_type == "6")//三级审核
+                    {
+                        if (RadioTY6.Checked == true)
+                        {
+                            csr_yj = "1";
+                        }
+                        if (RadioJJ6.Checked == true)
+                        {
+                            csr_yj = "2";
+                            if (TextBZ6.Text.Trim() == "")
+                            {
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert ('请填写拒绝理由！！！');", true);
+                                return;
+                            }
+
+                            //邮件提醒
+                            string sprid = "";
+                            string sptitle = "";
+                            string spcontent = "";
+                            sptitle = "厂商添加/修改驳回";
+                            spcontent = "厂商添加/修改被驳回，请登录查看！";
+                            string sqlgetstid = "select ST_ID from TBDS_STAFFINFO where ST_NAME='" + txtCS_MANCLERK.Text.Trim() + "'";
+                            System.Data.DataTable dtgetstid = DBCallCommon.GetDTUsingSqlText(sqlgetstid);
+                            if (dtgetstid.Rows.Count > 0)
+                            {
+                                sprid = dtgetstid.Rows[0]["ST_ID"].ToString().Trim();
+                            }
+                            DBCallCommon.SendEmail(DBCallCommon.GetEmailAddressByUserID(sprid), new List<string>(), new List<string>(), sptitle, spcontent);
+                        }
+                        csr_note = TextBZ6.Text.ToString();
                     }
                     #endregion
 
@@ -1592,6 +1669,13 @@ namespace ZCZJ_DPF.Basic_Data
             RadioTY5.Enabled = false;
             TextBZ5.Enabled = false;
         }
+        //质量部评审EnabledF
+        private void QA_JSHEnableF()
+        {
+            RadioJJ6.Enabled = false;
+            RadioTY6.Enabled = false;
+            TextBZ6.Enabled = false;
+        }
         //选择同意或拒绝自动带出“同意”或“拒绝理由”
 
         #region
@@ -1649,6 +1733,17 @@ namespace ZCZJ_DPF.Basic_Data
             if (RadioTY5.Checked)
             {
                 TextBZ5.Text = "同意";
+            }
+        }
+        protected void QA_YJ_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioJJ6.Checked)
+            {
+                TextBZ6.Text = "拒绝理由：";
+            }
+            if (RadioTY6.Checked)
+            {
+                TextBZ6.Text = "同意";
             }
         }
 
@@ -1782,12 +1877,16 @@ namespace ZCZJ_DPF.Basic_Data
             File.Delete(strFilePath);//文件不存在也不会引发异常
         }
 
-
+        /// <summary>
+        /// 附件绑定
+        /// </summary>
         private void GVBind()
         {
             if (txtCS_CODE.Text == "")
             {
-                txtCS_CODE.Text = id;
+                string sql_id = string.Format("SELECT TOP 1 CS_CODE FROM TBCS_CUSUP_ReView WHERE fatherid={0}", id);
+                DataTable id_dt = DBCallCommon.GetDTUsingSqlText(sql_id);
+                txtCS_CODE.Text = id_dt.Rows[0][0].ToString();
             }
 
             string sql = "select * from TBMA_FILES where SUPPLYID='" + txtCS_CODE.Text + "' ";
