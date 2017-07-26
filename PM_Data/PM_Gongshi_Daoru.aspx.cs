@@ -17,7 +17,7 @@ namespace ZCZJ_DPF.PM_Data
 {
     public partial class PM_Gongshi_Daoru : System.Web.UI.Page
     {
-        string strConn = "Data Source=10.11.11.4;DataBase=TS;Uid=sa;Pwd=sinoma2013!"; //链接SQL数据库
+        string strConn = "Data Source=192.168.10.44;DataBase=TS;Uid=sa;Pwd=123456"; //链接SQL数据库
         
         protected void Page_Load(object sender, EventArgs e)
         {
