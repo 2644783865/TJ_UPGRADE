@@ -117,12 +117,12 @@ namespace ZCZJ_DPF.PM_Data
             }
             return yesorno;
         }
-        protected string showYg(string GS_CUSNAME, string GS_CONTR, string GS_TSAID)
+        protected string showYg(string GS_CUSNAME, string GS_CONTR, string GS_TSAID, string DATEYEAR, string DATEMONTH)
         {
             //return "javascript:window.showModalDialog('PM_GongShi_edit.aspx?action=edit&&Id=" + Id + "','','DialogWidth=800px;DialogHeight=700px')";
-            return "javascript:window.showModalDialog('PM_GongShi_Detail_List.aspx?GS_CUSNAME=" + GS_CUSNAME + "&GS_CONTR=" + GS_CONTR + "&GS_TSAID=" + GS_TSAID + "','','DialogWidth=800px;DialogHeight=700px')";
-            //return "javascript:window.location.href=\"PM_GongShi_Detail_List.aspx?GS_CUSNAME=" + GS_CUSNAME + "&GS_CONTR=" + GS_CONTR + "&GS_TSAID=" + GS_TSAID + "\"";
-
+            //return "javascript:window.showModalDialog('PM_GongShi_Detail_List.aspx?customerName=" + GS_CUSNAME + "&contractNum=" + GS_CONTR + "&tsaId=" + GS_TSAID + "&year=" + DATEYEAR + "&month=" + DATEMONTH + "','','DialogWidth=800px;DialogHeight=700px')";
+            string str="javascript:window.location='PM_GongShi_Detail_List.aspx?customerName=" + GS_CUSNAME + "&contractNum=" + GS_CONTR + "&tsaId=" + GS_TSAID + "&year=" + DATEYEAR + "&month=" + DATEMONTH+"'";
+            return str;
         }
         public string get_yyyymm(string i, string j)
         {

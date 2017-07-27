@@ -67,7 +67,7 @@ namespace ZCZJ_DPF.PM_Data
         private void InitPager()
         {
             StringBuilder strWhere = new StringBuilder();
-            strWhere.Append("0=0");
+            //strWhere.Append("0=0");
             strWhere.Append("GS_CUSNAME='" + customerName + "'");
             strWhere.Append("AND GS_CONTR='" + contractNum + "'");
             strWhere.Append("AND GS_TSAID='" + tsaId + "'");
