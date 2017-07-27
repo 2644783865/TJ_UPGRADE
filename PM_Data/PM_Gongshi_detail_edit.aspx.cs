@@ -40,6 +40,11 @@ namespace ZCZJ_DPF.PM_Data
                     SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sqlText.ToString());
                     if (dr.Read())
                     {
+                        lbCUSNAME.Text = dr["GS_CUSNAME"].ToString();
+                        lbCONTR.Text = dr["GS_CONTR"].ToString();
+                        lbTSAID.Text = dr["GS_TSAID"].ToString();
+                        lbYEAR.Text = dr["DATEYEAR"].ToString();
+                        lbMONTH.Text = dr["DATEMONTH"].ToString();
                         txtTUHAO.Text = dr["GS_TUHAO"].ToString();
                         txtTUMING.Text = dr["GS_TUMING"].ToString();
                         txtEQUID.Text = dr["GS_EQUID"].ToString();
