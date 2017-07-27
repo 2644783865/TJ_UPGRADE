@@ -19,24 +19,17 @@ namespace ZCZJ_DPF.PM_Data
     public partial class PM_GongShi_Detail_List : BasicPage
     {
 
-        string customerName, contractNum, tsaId;
+        string customerName, contractNum, tsaId,year,month;
 
         PagerQueryParam pager = new PagerQueryParam();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //CheckUser(ControlFinder);
-            //获取传递参数
-            customerName = Request.QueryString["customerName"];
-            contractNum = Request.QueryString["contractNum"];
-            tsaId = Request.QueryString["tsaId"];
-
-            GetStrWhere();
+            //CheckUser(ControlFinder);            
             InitVar();
 
             if (!IsPostBack)
-            {
-                
+            {                
                 this.bindRepeater();
             }
         }
@@ -48,13 +41,19 @@ namespace ZCZJ_DPF.PM_Data
         /// </summary>
         private void InitVar()
         {
-           
+            //获取传递参数
+            customerName = Request.QueryString["customerName"].ToString();
+            contractNum = Request.QueryString["contractNum"].ToString();
+            tsaId = Request.QueryString["tsaId"].ToString();
+            year = Request.QueryString["year"].ToString();
+            month = Request.QueryString["month"].ToString();
 
             //初始化页面信息
             GS_CUSNAME.Text = customerName;
             GS_CONTR.Text = contractNum;
             GS_TSAID.Text = tsaId;
-
+            lbYEAR.Text = year;
+            lbMONTH.Text = month;
 
             InitPager();//初始化分页查询对象
 
@@ -67,11 +66,20 @@ namespace ZCZJ_DPF.PM_Data
         /// </summary>
         private void InitPager()
         {
+            StringBuilder strWhere = new StringBuilder();
+            strWhere.Append("0=0");
+            strWhere.Append("GS_CUSNAME='" + customerName + "'");
+            strWhere.Append("AND GS_CONTR='" + contractNum + "'");
+            strWhere.Append("AND GS_TSAID='" + tsaId + "'");
+            strWhere.Append("AND DATEYEAR='" + year + "'");
+            strWhere.Append("AND DATEMONTH='" + month + "'");
+            strWhere.Append("AND IsDel='0'");            
+
             pager.TableName = "TBMP_GS_DETAIL_LIST";
             pager.PrimaryKey = "";
             pager.ShowFields = "*";
             pager.OrderField = "DATEYEAR";
-            pager.StrWhere = ViewState["strWhere"].ToString();
+            pager.StrWhere = strWhere.ToString();
             pager.OrderType = 1;//按时间降序
             pager.PageSize = 50;//每页显示的条数
         }
@@ -105,61 +113,6 @@ namespace ZCZJ_DPF.PM_Data
                 UCPaging1.InitPageInfo();//同时显示出分页控件中要显示的控件
             }
         }
-
-
-
-        /// <summary>
-        /// 获取查询条件
-        /// </summary>
-        /// <returns></returns>
-        private void GetStrWhere()
-        {
-            StringBuilder strWhere = new StringBuilder();
-            //strWhere.Append("0=0");
-            strWhere.Append("GS_CUSNAME='" + customerName + "'");
-            strWhere.Append("AND GS_CONTR='" + contractNum + "'");
-            strWhere.Append("AND GS_TSAID='" + tsaId + "'");
-            strWhere.Append("AND IsDel='0'");
-
-            if (!ddlDATEYEAR.SelectedValue.ToString().Equals("%"))
-            {
-                strWhere.Append("AND DATEYEAR='" + ddlDATEYEAR.SelectedValue.ToString() + "'");
-            }
-            if (!ddlDATEMNONTH.SelectedValue.ToString().Equals("%"))
-            {
-                strWhere.Append("AND DATEMONTH='" + ddlDATEMNONTH.SelectedValue.ToString() + "'");
-            }
-            ViewState["strWhere"] = strWhere.ToString();
-        }
-
-
-        /// <summary>
-        /// 按年份查询
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void ddlDATEYEAR_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GetStrWhere();
-            InitVar();
-            UCPaging1.CurrentPage = 1;
-            bindRepeater();
-        }
-
-
-        /// <summary>
-        /// 按月份查询
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void ddlDATEMNONTH_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GetStrWhere();
-            InitVar();
-            UCPaging1.CurrentPage = 1;
-            bindRepeater();
-        }
-
 
         /// <summary>
         /// 双击修改事件

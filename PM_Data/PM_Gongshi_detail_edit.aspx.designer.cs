@@ -41,6 +41,51 @@ namespace ZCZJ_DPF.PM_Data {
         protected global::System.Web.UI.WebControls.Label ControlFinder;
         
         /// <summary>
+        /// lbCUSNAME 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCUSNAME;
+        
+        /// <summary>
+        /// lbCONTR 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCONTR;
+        
+        /// <summary>
+        /// lbTSAID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTSAID;
+        
+        /// <summary>
+        /// lbYEAR 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbYEAR;
+        
+        /// <summary>
+        /// lbMONTH 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMONTH;
+        
+        /// <summary>
         /// txtTUHAO 控件。
         /// </summary>
         /// <remarks>

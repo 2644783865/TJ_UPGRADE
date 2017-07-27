@@ -43,36 +43,8 @@
                                         任务单号：<asp:Label ID="GS_TSAID" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td width="25%">
-                                        年份：<asp:DropDownList ID="ddlDATEYEAR" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDATEYEAR_SelectedIndexChanged">
-                                            <asp:ListItem Value="%" Selected="True">- -全部- -</asp:ListItem>
-                                            <asp:ListItem Value="2010"></asp:ListItem>
-                                            <asp:ListItem Value="2011"></asp:ListItem>
-                                            <asp:ListItem Value="2012"></asp:ListItem>
-                                            <asp:ListItem Value="2013"></asp:ListItem>
-                                            <asp:ListItem Value="2014"></asp:ListItem>
-                                            <asp:ListItem Value="2015"></asp:ListItem>
-                                            <asp:ListItem Value="2016"></asp:ListItem>
-                                            <asp:ListItem Value="2017"></asp:ListItem>
-                                            <asp:ListItem Value="2018"></asp:ListItem>
-                                            <asp:ListItem Value="2019"></asp:ListItem>
-                                            <asp:ListItem Value="2020"></asp:ListItem>
-                                        </asp:DropDownList>
-                                        &nbsp;&nbsp;&nbsp;&nbsp; 月份：<asp:DropDownList ID="ddlDATEMNONTH" runat="server" AutoPostBack="true"
-                                            OnSelectedIndexChanged="ddlDATEMNONTH_SelectedIndexChanged">
-                                            <asp:ListItem Value="%" Selected="True">- -全部- -</asp:ListItem>
-                                            <asp:ListItem Value="1"></asp:ListItem>
-                                            <asp:ListItem Value="2"></asp:ListItem>
-                                            <asp:ListItem Value="3"></asp:ListItem>
-                                            <asp:ListItem Value="4"></asp:ListItem>
-                                            <asp:ListItem Value="5"></asp:ListItem>
-                                            <asp:ListItem Value="6"></asp:ListItem>
-                                            <asp:ListItem Value="7"></asp:ListItem>
-                                            <asp:ListItem Value="8"></asp:ListItem>
-                                            <asp:ListItem Value="9"></asp:ListItem>
-                                            <asp:ListItem Value="10"></asp:ListItem>
-                                            <asp:ListItem Value="11"></asp:ListItem>
-                                            <asp:ListItem Value="12"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        时间：<asp:Label ID="lbYEAR" runat="server" Text="Label"></asp:Label>
+                                        .<asp:Label ID="lbMONTH" runat="server" Text="Label"></asp:Label>
                                     </td>
                                 </tr>
                             </table>

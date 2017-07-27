@@ -14,6 +14,23 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
+            <table width="100%">
+                <tr>
+                    <td width="25%">
+                        <strong>顾客名称：</strong><asp:Label ID="lbCUSNAME" runat="server"></asp:Label>
+                    </td>
+                    <td width="25%">
+                        <strong>合同号：</strong><asp:Label ID="lbCONTR" runat="server"></asp:Label>
+                    </td>
+                    <td width="25%">
+                       <strong>任务单号：</strong><asp:Label ID="lbTSAID" runat="server"></asp:Label>
+                    </td>
+                    <td width="25%">
+                        <strong>时间：</strong><asp:Label ID="lbYEAR" runat="server"></asp:Label>.
+                        <asp:Label ID="lbMONTH" runat="server" ></asp:Label>
+                    </td>
+                </tr>
+            </table>
             <table width="100%" class="toptable grid" border="true">
                 <tr>
                     <td align="right" width="45%" height="30px">
@@ -97,6 +114,9 @@
             $('#<%=txtEQUMONEY.ClientID %>').val($('#<%=txtEQUFACTOR.ClientID %>').val() * $('#<%=txtEQUHOUR.ClientID %>').val());
         });
         $('#<%=txtEQUFACTOR.ClientID %>').on('input propertychange', function() {
+            $('#<%=txtEQUMONEY.ClientID %>').val($('#<%=txtEQUFACTOR.ClientID %>').val() * $('#<%=txtEQUHOUR.ClientID %>').val());
+        });
+        $('#<%=txtEQUMONEY.ClientID %>').on('input propertychange', function() {
             $('#<%=txtEQUMONEY.ClientID %>').val($('#<%=txtEQUFACTOR.ClientID %>').val() * $('#<%=txtEQUHOUR.ClientID %>').val());
         });
     </script>
