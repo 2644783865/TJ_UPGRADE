@@ -24,12 +24,15 @@
                 <table width="100%">
                     <tr>
                         <td align="right">
+                            非固定资产编号：
+                            <asp:textBox ID="txtID" runat="server" Text=""></asp:textBox>&nbsp;&nbsp;&nbsp;
                             使用人：
                             <asp:TextBox ID="txtPer" runat="server" Text=""></asp:TextBox>&nbsp;&nbsp;&nbsp;
                             名称：
                             <asp:TextBox ID="txtName" runat="server" Text=""></asp:TextBox>&nbsp;&nbsp;&nbsp;
                             规格或参数：
-                            <asp:TextBox ID="txtModel" runat="server" Text=""></asp:TextBox>&nbsp; 类型2：
+                            <asp:TextBox ID="txtModel" runat="server" Text=""></asp:TextBox>&nbsp; 
+                            类型2：
                             <asp:TextBox ID="txtType" runat="server" Text=""></asp:TextBox>&nbsp;
                         </td>
                         <td align="left">
