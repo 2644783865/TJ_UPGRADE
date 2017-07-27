@@ -43,8 +43,7 @@
                                         任务单号：<asp:Label ID="GS_TSAID" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td width="25%">
-                                        时间：<asp:Label ID="lbYEAR" runat="server" Text="Label"></asp:Label>
-                                        .<asp:Label ID="lbMONTH" runat="server" Text="Label"></asp:Label>
+                                        时间：<asp:Label ID="lbYEAR" runat="server" Text="Label"></asp:Label>.<asp:Label ID="lbMONTH" runat="server" Text="Label"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
