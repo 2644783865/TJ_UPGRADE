@@ -23,11 +23,11 @@
                         <strong>合同号：</strong><asp:Label ID="lbCONTR" runat="server"></asp:Label>
                     </td>
                     <td width="25%">
-                       <strong>任务单号：</strong><asp:Label ID="lbTSAID" runat="server"></asp:Label>
+                        <strong>任务单号：</strong><asp:Label ID="lbTSAID" runat="server"></asp:Label>
                     </td>
                     <td width="25%">
                         <strong>时间：</strong><asp:Label ID="lbYEAR" runat="server"></asp:Label>.
-                        <asp:Label ID="lbMONTH" runat="server" ></asp:Label>
+                        <asp:Label ID="lbMONTH" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -86,6 +86,7 @@
                     </td>
                     <td>
                         &nbsp;&nbsp;<asp:TextBox ID="txtEQUMONEY" runat="server"></asp:TextBox>
+                        <span class="red">&nbsp;自动计算：工时费用 = 设备系数 * 加工工时</span>
                     </td>
                 </tr>
                 <tr>
