@@ -62,6 +62,7 @@ namespace ZCZJ_DPF
                     {
                        // Response.Redirect("MT_Data/Mt_Index.aspx");
                         Response.Write("<script>window.location='MT_Data/MT_Index.aspx'</script>");
+                        //Response.Write("<script>window.location='PM_Data/PM_GongShi_Detail_List.aspx'</script>");
                     }
                 }
                 else
