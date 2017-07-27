@@ -25,13 +25,18 @@ namespace ZCZJ_DPF.PM_Data
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckUser(ControlFinder);
+            //CheckUser(ControlFinder);
+            //获取传递参数
+            customerName = Request.QueryString["customerName"];
+            contractNum = Request.QueryString["contractNum"];
+            tsaId = Request.QueryString["tsaId"];
+
             GetStrWhere();
             InitVar();
 
             if (!IsPostBack)
             {
-                GetStrWhere();
+                
                 this.bindRepeater();
             }
         }
@@ -43,10 +48,7 @@ namespace ZCZJ_DPF.PM_Data
         /// </summary>
         private void InitVar()
         {
-            //获取传递参数
-            customerName = Request.QueryString["customerName"];
-            contractNum = Request.QueryString["contractNum"];
-            tsaId = Request.QueryString["tsaId"];
+           
 
             //初始化页面信息
             GS_CUSNAME.Text = customerName;
@@ -113,11 +115,11 @@ namespace ZCZJ_DPF.PM_Data
         private void GetStrWhere()
         {
             StringBuilder strWhere = new StringBuilder();
-            strWhere.Append("0=0");
-            //strWhere.Append("GS_CUSNAME='" + customerName + "'");
-            //strWhere.Append("AND GS_CONTR='" + contractNum + "'");
-            //strWhere.Append("AND GS_TSAID='" + tsaId + "'");
-            //strWhere.Append("AND IsDel=‘0’");
+            //strWhere.Append("0=0");
+            strWhere.Append("GS_CUSNAME='" + customerName + "'");
+            strWhere.Append("AND GS_CONTR='" + contractNum + "'");
+            strWhere.Append("AND GS_TSAID='" + tsaId + "'");
+            strWhere.Append("AND IsDel='0'");
 
             if (!ddlDATEYEAR.SelectedValue.ToString().Equals("%"))
             {

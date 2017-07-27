@@ -120,7 +120,7 @@ namespace ZCZJ_DPF.PM_Data
         protected string showYg(string GS_CUSNAME, string GS_CONTR, string GS_TSAID)
         {
             //return "javascript:window.showModalDialog('PM_GongShi_edit.aspx?action=edit&&Id=" + Id + "','','DialogWidth=800px;DialogHeight=700px')";
-            return "javascript:window.showModalDialog('PM_GongShi_Detail_List.aspx?GS_CUSNAME=" + GS_CUSNAME + "&GS_CONTR=" + GS_CONTR + "&GS_TSAID=" + GS_TSAID + "','','DialogWidth=800px;DialogHeight=700px')";
+            return "javascript:window.showModalDialog('PM_GongShi_Detail_List.aspx?customerName=" + GS_CUSNAME + "&contractNum=" + GS_CONTR + "&tsaId=" + GS_TSAID + "','','DialogWidth=800px;DialogHeight=700px')";
             //return "javascript:window.location.href=\"PM_GongShi_Detail_List.aspx?GS_CUSNAME=" + GS_CUSNAME + "&GS_CONTR=" + GS_CONTR + "&GS_TSAID=" + GS_TSAID + "\"";
 
         }
