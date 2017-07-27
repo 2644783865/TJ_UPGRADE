@@ -68,7 +68,7 @@
                         工时费用：
                     </td>
                     <td>
-                        &nbsp;&nbsp;<asp:TextBox ID="txtEQUMONEY" runat="server" ReadOnly="true"></asp:TextBox>
+                        &nbsp;&nbsp;<asp:TextBox ID="txtEQUMONEY" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

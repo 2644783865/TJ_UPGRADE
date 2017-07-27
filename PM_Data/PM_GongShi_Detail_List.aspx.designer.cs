@@ -68,22 +68,22 @@ namespace ZCZJ_DPF.PM_Data {
         protected global::System.Web.UI.WebControls.Label GS_TSAID;
         
         /// <summary>
-        /// lbDATEYEAR 控件。
+        /// ddlDATEYEAR 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDATEYEAR;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDATEYEAR;
         
         /// <summary>
-        /// lbDATEMONTH 控件。
+        /// ddlDATEMNONTH 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDATEMONTH;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDATEMNONTH;
         
         /// <summary>
         /// PM_GongShi_Detial_List_Repeater 控件。
