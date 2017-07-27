@@ -48,9 +48,9 @@ namespace ZCZJ_DPF.PM_Data
         /// </summary>
         private void InitPager()
         {
-            pager.TableName = "TBMP_GS_LIST";
+            pager.TableName = "TBMP_GS_COL_LIST";
             pager.PrimaryKey = "";
-            pager.ShowFields = "Id,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_NOTE,GS_HOURS,DATEYEAR,DATEMONTH,GS_CHECK,GS_MONEY";
+            pager.ShowFields = "Id,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TSAMONEY,DATEYEAR,DATEMONTH,GS_CHECK";
             pager.OrderField = "DATEYEAR";
             pager.StrWhere = ViewState["sqlText"].ToString();
             pager.OrderType = 1;//按时间降序排列
@@ -85,12 +85,13 @@ namespace ZCZJ_DPF.PM_Data
             { sqltext.Append("0=0"); }           
             if (ddlgongshiyear.SelectedValue.ToString() != "%")
             {
-                sqltext.Append("and DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "'");
+                sqltext.Append(" and DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "'");
             }
             if (ddlgongshimonth.SelectedValue.ToString() != "%")
             {
-                sqltext.Append("and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'");
+                sqltext.Append(" and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'");
             }
+            sqltext.Append(" and IsDel='0'");
             ViewState["sqlText"] = sqltext.ToString();
         }
         protected void PM_GongShi_List_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -116,9 +117,12 @@ namespace ZCZJ_DPF.PM_Data
             }
             return yesorno;
         }
-        protected string showYg(string Id)
+        protected string showYg(string GS_CUSNAME, string GS_CONTR, string GS_TSAID)
         {
-            return "javascript:window.showModalDialog('PM_GongShi_edit.aspx?action=edit&&Id=" + Id + "','','DialogWidth=800px;DialogHeight=700px')";
+            //return "javascript:window.showModalDialog('PM_GongShi_edit.aspx?action=edit&&Id=" + Id + "','','DialogWidth=800px;DialogHeight=700px')";
+            return "javascript:window.showModalDialog('PM_GongShi_Detail_List.aspx?GS_CUSNAME=" + GS_CUSNAME + "&GS_CONTR=" + GS_CONTR + "&GS_TSAID=" + GS_TSAID + "','','DialogWidth=800px;DialogHeight=700px')";
+            //return "javascript:window.location.href=\"PM_GongShi_Detail_List.aspx?GS_CUSNAME=" + GS_CUSNAME + "&GS_CONTR=" + GS_CONTR + "&GS_TSAID=" + GS_TSAID + "\"";
+
         }
         public string get_yyyymm(string i, string j)
         {
@@ -162,7 +166,7 @@ namespace ZCZJ_DPF.PM_Data
                     string newName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
                     System.IO.File.Delete(path + "\\" + newName);//删除文件下储存的文件
                 }
-                string sqltext = "select GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_HOURS,GS_MONEY,GS_NOTE from TBMP_GS_LIST where DATEYEAR like'" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH like'" + ddlgongshimonth.SelectedValue.ToString() + "'";
+                string sqltext = "select GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_EQUHOUR,GS_EQUMONEY,GS_NOTE from TBMP_GS_DETAIL_LIST where DATEYEAR like'" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH like'" + ddlgongshimonth.SelectedValue.ToString() + "' and IsDel='0'";
                 ExportDataItem(sqltext, ddlgongshiyear.SelectedValue.ToString(), ddlgongshimonth.SelectedValue.ToString());
             }
             else
@@ -200,7 +204,8 @@ namespace ZCZJ_DPF.PM_Data
                 System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
                 if (dt.Rows.Count == 0)
                 {
-                    System.Web.HttpContext.Current.Response.Write("<script type='text/javascript' language='javascript'>alert('没有可导出数据！！！');window.close();</script>");
+                    //System.Web.HttpContext.Current.
+                    Response.Write("<script type='text/javascript' language='javascript'>alert('没有可导出数据！！！');window.close();</script>");
                     return;
                 }
 
@@ -307,8 +312,10 @@ namespace ZCZJ_DPF.PM_Data
         }
         protected void btnSC_Click(object sender, EventArgs e)
         {
-            string sqldelete = "delete from TBMP_GS_LIST where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
-            DBCallCommon.ExeSqlText(sqldelete);
+            string sqldelete1 = "update TBMP_GS_COL_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
+            string sqldelete2 = "update TBMP_GS_DETAIL_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";            
+            DBCallCommon.ExeSqlText(sqldelete1);
+            DBCallCommon.ExeSqlText(sqldelete2);
             this.InitVar();
             UCPaging1.CurrentPage = 1;
             this.bindRepeater();
