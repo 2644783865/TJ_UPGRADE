@@ -96,29 +96,17 @@
                                                             </td>
                                                             <td>
                                                                 <strong>任务单号</strong>
-                                                            </td>
-                                                            <td>
-                                                                <strong>图号</strong>
-                                                            </td>
-                                                             <td>
-                                                                <strong>图名</strong>
-                                                            </td>
+                                                            </td>                                                    
                                                             
                                                             <td>
-                                                                <strong>总计工时</strong>
-                                                            </td>
-                                                            <td>
                                                             <strong>项目工时费用</br>(元)</strong>
-                                                            </td>
-                                                            <td>
-                                                                <strong>备注</strong>
                                                             </td>
                                                             
                                                         </tr>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <tr class="baseGadget" onmouseover="this.className='highlight'" onmouseout="this.className='baseGadget'"
-                                                        ondblclick="<%# showYg(Eval("Id").ToString()) %>" title="双击查看修改">
+                                                        ondblclick="<%# showYg(Eval("GS_CUSNAME").ToString(),Eval("GS_CONTR").ToString(),Eval("GS_TSAID").ToString()) %>" title="双击查看修改">
                                                             <td runat="server" id="num">
                                                                 <asp:Label ID="rownum" runat="server" Text='<%#Container.ItemIndex + 1 %>'></asp:Label>
                                                                 
@@ -138,21 +126,11 @@
                                                             <td>
                                                                 <asp:Label ID="GS_TSAID" runat="server" Text='<%#Eval("GS_TSAID")%>'></asp:Label>
                                                             </td>
+                                                            
                                                             <td>
-                                                                <asp:Label ID="GS_TUHAO" runat="server" Text='<%#Eval("GS_TUHAO")%>'></asp:Label>
+                                                                <asp:Label ID="GS_MONEY" runat="server" Text='<%#Eval("GS_TSAMONEY")%>'></asp:Label>
                                                             </td>
-                                                            <td>
-                                                                <asp:Label ID="GS_TUMING" runat="server" Text='<%#Eval("GS_TUMING")%>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="GS_HOURS" runat="server" Text='<%#Eval("GS_HOURS")%>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="GS_MONEY" runat="server" Text='<%#Eval("GS_MONEY")%>'></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label ID="GS_NOTE" runat="server" Text='<%#Eval("GS_NOTE")%>'></asp:Label>
-                                                            </td>
+
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
