@@ -18,6 +18,7 @@ using System.IO;
 
 namespace ZCZJ_DPF
 {
+    //重构导出公共类 2017.7.28
     public class exportCommanmethod
     {
         /// <summary>
@@ -30,6 +31,34 @@ namespace ZCZJ_DPF
         /// <param name="ifmyownstyle">是否使用自动样式</param>
         /// <param name="ifxuhao">是否需要序号列</param>
         public static void exporteasy(string sqltext, string filename, string filestandard, bool ifwidth, bool ifmyownstyle, bool ifxuhao)
+        {
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+            exporteasy(dt, filename, filestandard, ifwidth, ifmyownstyle, ifxuhao);
+        }
+
+        public static void exporteasy(PagerQueryParam pager, string filename, string filestandard, bool ifwidth, bool ifmyownstyle, bool ifxuhao)
+        {
+            DataTable dt = CommonFun.GetDataByPagerQueryParam(pager);
+            exporteasy(dt, filename, filestandard, ifwidth, ifmyownstyle, ifxuhao);
+        }
+
+        public static void exportDefault(PagerQueryParam pager, string filename, string filestandard)
+        {
+            DataTable dt = CommonFun.GetDataByPagerQueryParam(pager);
+            exporteasy(dt, filename, filestandard, false, false, true);
+        }
+
+        /// <summary>
+        /// 批量导出
+        /// </summary>
+        /// <param name="sqltext">查询语句</param>
+        /// <param name="filename">文件名称(.xls)</param>
+        /// <param name="filestandard">模板名称(.xls)</param>
+        /// <param name="row_hang">从第几行开始写入(.xls)</param>
+        /// <param name="ifwidth">是否自动列宽</param>
+        /// <param name="ifmyownstyle">是否使用自动样式</param>
+        /// <param name="ifxuhao">是否需要序号列</param>
+        public static void exporteasy(string sqltext, string filename, string filestandard, int row_hang, bool ifwidth, bool ifmyownstyle, bool ifxuhao)
         {
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
             HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
@@ -54,7 +83,7 @@ namespace ZCZJ_DPF
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    IRow row = sheet1.CreateRow(i + 1);
+                    IRow row = sheet1.CreateRow(i + row_hang);
                     if (ifxuhao)
                     {
                         ICell cell0 = row.CreateCell(0);
@@ -111,19 +140,19 @@ namespace ZCZJ_DPF
             }
         }
 
+
+
         /// <summary>
         /// 批量导出
         /// </summary>
         /// <param name="sqltext">查询语句</param>
         /// <param name="filename">文件名称(.xls)</param>
         /// <param name="filestandard">模板名称(.xls)</param>
-        /// <param name="row_hang">从第几行开始写入(.xls)</param>
         /// <param name="ifwidth">是否自动列宽</param>
         /// <param name="ifmyownstyle">是否使用自动样式</param>
         /// <param name="ifxuhao">是否需要序号列</param>
-        public static void exporteasy(string sqltext, string filename, string filestandard, int row_hang, bool ifwidth, bool ifmyownstyle, bool ifxuhao)
+        public static void exporteasy(DataTable dt, string filename, string filestandard, bool ifwidth, bool ifmyownstyle, bool ifxuhao)
         {
-            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
             HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
             HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
             HttpContext.Current.Response.Clear();
