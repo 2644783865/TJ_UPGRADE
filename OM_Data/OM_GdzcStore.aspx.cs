@@ -256,7 +256,14 @@ namespace ZCZJ_DPF.OM_Data
 
         protected void btnExport_click(object sender, EventArgs e)
         {
-
+            //InitPager();
+            //pager.ShowFields = "BIANHAO,NAME,TYPE,TYPE2,MODEL,SYR,SYBUMEN,SYDATE,NX,JIAZHI,PLACE,NOTE";
+            ////pager.PageIndex = UCPaging1.CurrentPage;
+            //pager.PageSize = 65535;
+            //string filename = "固定资产库存.xls";
+            //string filestandard = "固定资产库存.xls";
+            //DataTable dt = CommonFun.GetDataByPagerQueryParamWithPriKey(pager);
+            //exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);
         }
     }
 }
