@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td align="right" width="45%" height="30px">
-                        工时费用：
+                        工时费用（元）：
                     </td>
                     <td>
                         &nbsp;&nbsp;<asp:TextBox ID="txtEQUMONEY" runat="server"></asp:TextBox>

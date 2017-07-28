@@ -34,22 +34,23 @@
                             <table width="100%">
                                 <tr>
                                     <td width="25%">
-                                        顾客名称：<asp:Label ID="GS_CUSNAME" runat="server" Text="Label"></asp:Label>
+                                        <strong>顾客名称：</strong><asp:Label ID="GS_CUSNAME" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td width="25%">
-                                        合同号：<asp:Label ID="GS_CONTR" runat="server" Text="Label"></asp:Label>
+                                        <strong>合同号：</strong><asp:Label ID="GS_CONTR" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td width="25%">
-                                        任务单号：<asp:Label ID="GS_TSAID" runat="server" Text="Label"></asp:Label>
+                                        <strong>任务单号：</strong><asp:Label ID="GS_TSAID" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td width="25%">
-                                        时间：<asp:Label ID="lbYEAR" runat="server" Text="Label"></asp:Label>.<asp:Label ID="lbMONTH" runat="server" Text="Label"></asp:Label>
+                                        <strong>时间：</strong><asp:Label ID="lbYEAR" runat="server" Text="Label"></asp:Label>.
+                                        <asp:Label ID="lbMONTH" runat="server" Text="Label"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
                             <div class="box-wrapper">
                                 <div class="box-outer">
-                                    <div style="height: 480px; overflow: auto; width: 100%">
+                                    <div style="height: 350px; overflow: auto; width: 100%">
                                         <table id="tab" align="center" class="toptable grid fullwidth" border="1">
                                             <asp:Repeater ID="PM_GongShi_Detial_List_Repeater" runat="server">
                                                 <HeaderTemplate>
@@ -79,7 +80,7 @@
                                                             <strong>加工工时</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>工时费用</strong>
+                                                            <strong>工时费用（元）</strong>
                                                         </td>
                                                         <td>
                                                             <strong>备注</strong>

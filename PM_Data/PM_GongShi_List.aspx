@@ -100,7 +100,7 @@
                                                             </td>                                                    
                                                             
                                                             <td>
-                                                            <strong>项目工时费用</br>(元)</strong>
+                                                            <strong>项目工时费用统计（元）</strong>
                                                             </td>
                                                             
                                                         </tr>
