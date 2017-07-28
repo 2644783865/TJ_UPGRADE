@@ -19,17 +19,17 @@ namespace ZCZJ_DPF.PM_Data
     public partial class PM_GongShi_Detail_List : BasicPage
     {
 
-        string customerName, contractNum, tsaId, dateYear, dateMonth;
-        
+        string customerName, contractNum, tsaId,year,month;
+
         PagerQueryParam pager = new PagerQueryParam();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //CheckUser(ControlFinder);
+            //CheckUser(ControlFinder);            
             InitVar();
 
             if (!IsPostBack)
-            {
+            {                
                 this.bindRepeater();
             }
         }
@@ -42,18 +42,18 @@ namespace ZCZJ_DPF.PM_Data
         private void InitVar()
         {
             //获取传递参数
-            customerName = Request.QueryString["customerName"];
-            contractNum = Request.QueryString["contractNum"];
-            tsaId = Request.QueryString["tsaId"];
-            dateYear = Request.QueryString["dateYear"];
-            dateMonth = Request.QueryString["dateMonth"];
+            customerName = Request.QueryString["customerName"].ToString();
+            contractNum = Request.QueryString["contractNum"].ToString();
+            tsaId = Request.QueryString["tsaId"].ToString();
+            year = Request.QueryString["year"].ToString();
+            month = Request.QueryString["month"].ToString();
 
             //初始化页面信息
             GS_CUSNAME.Text = customerName;
             GS_CONTR.Text = contractNum;
             GS_TSAID.Text = tsaId;
-            lbDATEYEAR.Text = dateYear;
-            lbDATEMONTH.Text = dateMonth;
+            lbYEAR.Text = year;
+            lbMONTH.Text = month;
 
             InitPager();//初始化分页查询对象
 
@@ -65,13 +65,21 @@ namespace ZCZJ_DPF.PM_Data
         /// 初始化分页查询对象
         /// </summary>
         private void InitPager()
-        {           
+        {
+            StringBuilder strWhere = new StringBuilder();
+            //strWhere.Append("0=0");
+            strWhere.Append("GS_CUSNAME='" + customerName + "'");
+            strWhere.Append("AND GS_CONTR='" + contractNum + "'");
+            strWhere.Append("AND GS_TSAID='" + tsaId + "'");
+            strWhere.Append("AND DATEYEAR='" + year + "'");
+            strWhere.Append("AND DATEMONTH='" + month + "'");
+            strWhere.Append("AND IsDel='0'");            
+
             pager.TableName = "TBMP_GS_DETAIL_LIST";
             pager.PrimaryKey = "";
-            pager.ShowFields = "Id,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_EQUHOUR,GS_EQUMONEY,GS_NOTE";
+            pager.ShowFields = "*";
             pager.OrderField = "DATEYEAR";
-            pager.StrWhere = "1=1";
-           // pager.StrWhere = "GS_CUSNAME='" + customerName + "' AND GS_CONTR='" + contractNum + "' AND GS_TSAID='" + tsaId + "' AND DATEYEAR='" + dateYear + "' AND DATEMONTH='" + dateMonth + "' AND IsDel=‘0’";
+            pager.StrWhere = strWhere.ToString();
             pager.OrderType = 1;//按时间降序
             pager.PageSize = 50;//每页显示的条数
         }
@@ -104,17 +112,6 @@ namespace ZCZJ_DPF.PM_Data
                 UCPaging1.Visible = true;//否则显示分页控件                
                 UCPaging1.InitPageInfo();//同时显示出分页控件中要显示的控件
             }
-        }
-
-
-        /// <summary>
-        /// Repeater绑定事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void PM_GongShi_Detial_List_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-
         }
 
         /// <summary>
