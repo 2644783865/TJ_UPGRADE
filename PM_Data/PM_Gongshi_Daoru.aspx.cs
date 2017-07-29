@@ -143,13 +143,13 @@ namespace ZCZJ_DPF.PM_Data
                        
                         if (ps_xh != "")
                         {
-                            string sqlcheck = "select count(*) from TBMP_GS_DETAIL_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + ps_rw + "'AND GS_CUSNAME='" + ps_gk + "' AND GS_CONTR= '" + ps_ht + "' AND GS_TUHAO = '" + ps_th + "'AND GS_TUMING='" + ps_tm + "'AND GS_EQUID='" + ps_sbh + "'AND IsDel='0'";
+                            string sqlcheck = "select count(*) from TBMP_GS_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + ps_rw + "'AND GS_CUSNAME='" + ps_gk + "' AND GS_CONTR= '" + ps_ht + "' AND GS_TUHAO = '" + ps_th + "'AND GS_TUMING='" + ps_tm + "'AND GS_EQUID='" + ps_sbh + "'AND IsDel='0'";
                             SqlCommand sqlcmd = new SqlCommand(sqlcheck, cn);
                             int count = Convert.ToInt32(sqlcmd.ExecuteScalar().ToString());
 
                             if (count == 0)
                             {
-                                string insertstr = "insert into TBMP_GS_DETAIL_LIST (GS_NUM,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_EQUHOUR,GS_EQUMONEY,GS_NOTE,DATEYEAR,DATEMONTH,IsDel)";
+                                string insertstr = "insert into TBMP_GS_LIST (GS_NUM,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_HOURS,GS_MONEY,GS_NOTE,DATEYEAR,DATEMONTH,IsDel)";
                                 insertstr += " values('" + ps_xh + "','" + ps_gk + "','" + ps_ht + "','" + ps_rw + "','" + ps_th + "','" + ps_tm + "','" + ps_sbh + "','" + ps_sbmc + "','" + ps_sbdj + "','" + ps_gs + "','" + ps_my + "','" + ps_bz + "','" + year + "','" + month + "','0')";
 
                                 SqlCommand cmd = new SqlCommand(insertstr, cn);
@@ -184,7 +184,7 @@ namespace ZCZJ_DPF.PM_Data
             {
                 cn.Close();
             }
-            string sqlcol = "select GS_CUSNAME,GS_CONTR,GS_TSAID,sum(GS_EQUMONEY)jysl from dbo.TBMP_GS_DETAIL_LIST " + "where DATEYEAR='" + year + "' and DATEMONTH='" + month + "'group by GS_CUSNAME,GS_CONTR,GS_TSAID order by GS_CONTR";
+            string sqlcol = "select GS_CUSNAME,GS_CONTR,GS_TSAID,sum(GS_MONEY)jysl from dbo.TBMP_GS_LIST " + "where DATEYEAR='" + year + "' and DATEMONTH='" + month + "'group by GS_CUSNAME,GS_CONTR,GS_TSAID order by GS_CONTR";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlcol);
             string strConn1 = DBCallCommon.GetStringValue("connectionStrings");
             SqlConnection cn1 = new SqlConnection(strConn);
