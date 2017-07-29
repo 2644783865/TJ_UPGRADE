@@ -63,6 +63,7 @@
                             </asp:DropDownList>
                         </td>
                         <td align="right">
+                            <asp:Button ID="btnExport" runat="server" Text="导出"  OnClick="btnExport_click" />&nbsp;&nbsp;
                             <asp:Button ID="btnTransf" runat="server" Text="固定资产转移" BackColor="LightGreen" OnClick="btnTransf_click" />
                             <%-- <a href="#" id="a" target="_blank" onclick="btnBaofei()">
                                         <input type="button" style="background-color: #90EE90" value="固定资产报废" /></a>--%>

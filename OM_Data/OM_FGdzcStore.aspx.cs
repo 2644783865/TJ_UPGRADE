@@ -31,6 +31,10 @@ namespace ZCZJ_DPF.OM_Data
         {
             string strWhere = "BIANHAO !='' and INTYPE='1' and SPZT='y' and BFZT='0'";
 
+            if (txtID.Text.Trim() != "")
+            {
+                strWhere += "AND BIANHAO like '%" + txtID.Text.Trim() + "%'";
+            }
             if (txtName.Text.Trim() != "")
             {
                 strWhere += " AND NAME like '%" + txtName.Text.Trim() + "%'";
@@ -41,11 +45,10 @@ namespace ZCZJ_DPF.OM_Data
             }
             if (txtType.Text.Trim() != "")
             {
-                strWhere += " AND TYPE like '%" + txtType.Text.Trim() + "%'";
+                strWhere += " AND TYPE2 like '%" + txtType.Text.Trim() + "%'";
             }
             if (txtPer.Text.Trim() != "")
             {
-
                 strWhere += " and syr like '%" + txtPer.Text.Trim() + "%'";
             }
 
@@ -83,8 +86,11 @@ namespace ZCZJ_DPF.OM_Data
         }
         protected void btnReset_OnClick(object sender, EventArgs e)
         {
+            txtID.Text = "";
+            txtPer.Text = "";
             txtName.Text = "";
             txtModel.Text = "";
+            txtType.Text = "";
             UCPaging1.CurrentPage = 1;
             ReGetBoundData();
         }

@@ -1131,7 +1131,7 @@ namespace ZCZJ_DPF.OM_Data
             if (ddl_Person.SelectedValue == "00")
             {
                 //  ScriptManager.RegisterStartupScript(this.Page, GetType(), "1", "alert('请选择被考核人！')", true);
-                Response.Write("<script>alert('请选择考核模板！')</script>");
+                Response.Write("<script>alert('请选择被考核人！')</script>");
                 result = false;
             }
 
@@ -1428,17 +1428,21 @@ namespace ZCZJ_DPF.OM_Data
                         for (int k = 0; k < Det_Repeater.Items.Count; k++)
                         {
                             TextBox txtvalid = (TextBox)Det_Repeater.Items[k].FindControl("kh_Score0");
-                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()))
+                            TextBox txtOpinion = (TextBox)Panel1.FindControl("first_opinion");
+                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()) || string.IsNullOrEmpty(txtOpinion.Text.ToString()))
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请填写完整一级考核评分！');", true);
                                 return;
                             }
+                            
                         }
+
                     else if (Session["UserID"].ToString() == secondid.Value.ToString())
                         for (int k = 0; k < Det_Repeater.Items.Count; k++)
                         {
                             TextBox txtvalid = (TextBox)Det_Repeater.Items[k].FindControl("kh_Score1");
-                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()))
+                            TextBox txtOpinion = (TextBox)Panel1.FindControl("second_opinion");
+                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()) || string.IsNullOrEmpty(txtOpinion.Text.ToString()))
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请填写完整二级考核评分！');", true);
                                 return;
@@ -1448,7 +1452,8 @@ namespace ZCZJ_DPF.OM_Data
                         for (int k = 0; k < Det_Repeater.Items.Count; k++)
                         {
                             TextBox txtvalid = (TextBox)Det_Repeater.Items[k].FindControl("kh_Score2");
-                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()))
+                            TextBox txtOpinion = (TextBox)Panel1.FindControl("third_opinion");
+                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()) || string.IsNullOrEmpty(txtOpinion.Text.ToString()))
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请填写完整三级考核评分！');", true);
                                 return;
@@ -1458,7 +1463,8 @@ namespace ZCZJ_DPF.OM_Data
                         for (int k = 0; k < Det_Repeater.Items.Count; k++)
                         {
                             TextBox txtvalid = (TextBox)Det_Repeater.Items[k].FindControl("kh_Score3");
-                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()))
+                            TextBox txtOpinion = (TextBox)Panel1.FindControl("fif_opinion");
+                            if (string.IsNullOrEmpty(txtvalid.Text.ToString()) || string.IsNullOrEmpty(txtOpinion.Text.ToString()))
                             {
                                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请填写完整四级考核评分！');", true);
                                 return;
