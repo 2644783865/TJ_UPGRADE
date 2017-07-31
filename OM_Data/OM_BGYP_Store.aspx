@@ -96,7 +96,7 @@
                 <table>
                     <tr>
                         <td>
-                            编码<input type="text" id="maid" name="maid"/>
+                            编码<input type="text" id="maid"/>
                         </td>
                         <td>
                             名称<input type="text" id="name"/>
