@@ -33,7 +33,7 @@ namespace ZCZJ_DPF.PM_Data
                 {
                     StringBuilder sqlText = new StringBuilder();
                     sqlText.Append("select * from ");
-                    sqlText.Append("TBMP_GS_DETAIL_LIST ");
+                    sqlText.Append("TBMP_GS_LIST ");
                     sqlText.Append("where Id='" + Id + "'");
 
 
@@ -50,8 +50,8 @@ namespace ZCZJ_DPF.PM_Data
                         txtEQUID.Text = dr["GS_EQUID"].ToString();
                         txtEQUNAME.Text = dr["GS_EQUNAME"].ToString();
                         txtEQUFACTOR.Text = dr["GS_EQUFACTOR"].ToString();
-                        txtEQUHOUR.Text = dr["GS_EQUHOUR"].ToString();
-                        txtEQUMONEY.Text = dr["GS_EQUMONEY"].ToString();
+                        txtEQUHOUR.Text = dr["GS_HOURS"].ToString();
+                        txtEQUMONEY.Text = dr["GS_MONEY"].ToString();
                         txtNOTE.Text = dr["GS_NOTE"].ToString();
                     }
                     dr.Close();
@@ -64,26 +64,26 @@ namespace ZCZJ_DPF.PM_Data
             if (action.Equals("edit"))
             {
                 StringBuilder sqlText = new StringBuilder();
-                sqlText.Append("update TBMP_GS_DETAIL_LIST set ");
+                sqlText.Append("update TBMP_GS_LIST set ");
                 sqlText.Append("GS_TUHAO='" + txtTUHAO.Text.Trim() + "',");
                 sqlText.Append("GS_TUMING='" + txtTUMING.Text.Trim() + "',");
                 sqlText.Append("GS_EQUID='" + txtEQUID.Text.Trim() + "',");
                 sqlText.Append("GS_EQUNAME='" + txtEQUNAME.Text.Trim() + "',");
                 sqlText.Append("GS_EQUFACTOR='" + txtEQUFACTOR.Text.Trim() + "',");
-                sqlText.Append("GS_EQUHOUR='" + txtEQUHOUR.Text.Trim() + "',");
-                sqlText.Append("GS_EQUMONEY='" + txtEQUMONEY.Text.Trim() + "',");
+                sqlText.Append("GS_HOURS='" + txtEQUHOUR.Text.Trim() + "',");
+                sqlText.Append("GS_MONEY='" + txtEQUMONEY.Text.Trim() + "',");
                 sqlText.Append("GS_NOTE='" + txtNOTE.Text.Trim() + "'");
                 sqlText.Append(" where Id='" + Id + "'");
                 DBCallCommon.ExeSqlText(sqlText.ToString());
-                //UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_EQUMONEY) FROM TBMP_GS_DETAIL_LIST AS A WHERE A.GS_TSAID='15249BJ1-1') WHERE TBMP_GS_COL_LIST.GS_TSAID='15249BJ1-1';
+                //UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_MONEY) FROM TBMP_GS_LIST AS A WHERE A.GS_TSAID='15249BJ1-1') WHERE TBMP_GS_COL_LIST.GS_TSAID='15249BJ1-1';
 
                 sqlText.Remove(0, sqlText.Length);
-                sqlText.Append("UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_EQUMONEY) FROM TBMP_GS_DETAIL_LIST WHERE ");
-                sqlText.Append("TBMP_GS_DETAIL_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
-                sqlText.Append("and TBMP_GS_DETAIL_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");
-                sqlText.Append("and TBMP_GS_DETAIL_LIST.GS_TSAID='" + lbTSAID.Text.Trim() + "'");
-                sqlText.Append("and TBMP_GS_DETAIL_LIST.DATEYEAR='" + lbYEAR.Text.Trim() + "'");
-                sqlText.Append("and TBMP_GS_DETAIL_LIST.DATEMONTH='" + lbMONTH.Text.Trim() + "'");
+                sqlText.Append("UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_MONEY) FROM TBMP_GS_LIST WHERE ");
+                sqlText.Append("TBMP_GS_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
+                sqlText.Append("and TBMP_GS_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");
+                sqlText.Append("and TBMP_GS_LIST.GS_TSAID='" + lbTSAID.Text.Trim() + "'");
+                sqlText.Append("and TBMP_GS_LIST.DATEYEAR='" + lbYEAR.Text.Trim() + "'");
+                sqlText.Append("and TBMP_GS_LIST.DATEMONTH='" + lbMONTH.Text.Trim() + "'");
                 sqlText.Append(") WHERE ");
                 sqlText.Append("TBMP_GS_COL_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
                 sqlText.Append("AND TBMP_GS_COL_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");

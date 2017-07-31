@@ -166,7 +166,7 @@ namespace ZCZJ_DPF.PM_Data
                     string newName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
                     System.IO.File.Delete(path + "\\" + newName);//删除文件下储存的文件
                 }
-                string sqltext = "select GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_EQUHOUR,GS_EQUMONEY,GS_NOTE from TBMP_GS_DETAIL_LIST where DATEYEAR like'" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH like'" + ddlgongshimonth.SelectedValue.ToString() + "' and IsDel='0'";
+                string sqltext = "select GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_HOURS,GS_MONEY,GS_NOTE from TBMP_GS_LIST where DATEYEAR like'" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH like'" + ddlgongshimonth.SelectedValue.ToString() + "' and IsDel='0'";
                 ExportDataItem(sqltext, ddlgongshiyear.SelectedValue.ToString(), ddlgongshimonth.SelectedValue.ToString());
             }
             else
@@ -313,7 +313,7 @@ namespace ZCZJ_DPF.PM_Data
         protected void btnSC_Click(object sender, EventArgs e)
         {
             string sqldelete1 = "update TBMP_GS_COL_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
-            string sqldelete2 = "update TBMP_GS_DETAIL_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";            
+            string sqldelete2 = "update TBMP_GS_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";            
             DBCallCommon.ExeSqlText(sqldelete1);
             DBCallCommon.ExeSqlText(sqldelete2);
             this.InitVar();

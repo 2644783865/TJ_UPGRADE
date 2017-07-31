@@ -113,10 +113,10 @@
                                                             <asp:Label ID="GS_EQUFACTOR" runat="server" Text='<%#Eval("GS_EQUFACTOR")%>'></asp:Label>
                                                         </td>
                                                         <td>
-                                                            <asp:Label ID="GS_EQUHOUR" runat="server" Text='<%#Eval("GS_EQUHOUR")%>'></asp:Label>
+                                                            <asp:Label ID="GS_HOURS" runat="server" Text='<%#Eval("GS_HOURS")%>'></asp:Label>
                                                         </td>
                                                         <td>
-                                                            <asp:Label ID="GS_EQUMONEY" runat="server" Text='<%#Eval("GS_EQUMONEY")%>'></asp:Label>
+                                                            <asp:Label ID="GS_MONEY" runat="server" Text='<%#Eval("GS_MONEY")%>'></asp:Label>
                                                         </td>
                                                         <td>
                                                             <asp:Label ID="GS_NOTE" runat="server" Text='<%#Eval("GS_NOTE")%>'></asp:Label>

@@ -75,7 +75,7 @@ namespace ZCZJ_DPF.PM_Data
             strWhere.Append("AND DATEMONTH='" + month + "'");
             strWhere.Append("AND IsDel='0'");            
 
-            pager.TableName = "TBMP_GS_DETAIL_LIST";
+            pager.TableName = "TBMP_GS_LIST";
             pager.PrimaryKey = "";
             pager.ShowFields = "*";
             pager.OrderField = "DATEYEAR";
