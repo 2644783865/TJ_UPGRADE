@@ -216,7 +216,7 @@ namespace ZCZJ_DPF.OM_Data
                 sqlExport += " WHERE ";
                 sqlExport += sqlWhere;
             }
-            string filename = "办公设备资产库存.xls";
+            string filename = string.Format("办公设备资产库存{0}.xls", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
             string filestandard = "办公设备资产库存.xls";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlExport);
             exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);

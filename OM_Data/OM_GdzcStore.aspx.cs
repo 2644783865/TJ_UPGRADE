@@ -267,7 +267,7 @@ namespace ZCZJ_DPF.OM_Data
                 sqlExport += sqlWhere;
             }
 
-            string filename = "固定资产库存.xls";
+            string filename = string.Format("固定资产库存{0}.xls", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
             string filestandard = "固定资产库存.xls";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlExport);
             exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);
