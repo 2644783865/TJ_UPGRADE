@@ -258,12 +258,12 @@ namespace ZCZJ_DPF.OM_Data
         {                       
             string sqlFields = "BIANHAO,NAME,TYPE,TYPE2,MODEL,SYR,SYBUMEN,SYDATE,NX,JIAZHI,PLACE,NOTE";
             string sqlTableName = "TBOM_GDZCIN as a left join OM_SP as b on a.INCODE=b.SPFATHERID";
-            string sqlExport = string.Format("SELECT {0} FROM {1} ", sqlFields, sqlTableName);
+            string sqlExport = string.Format("SELECT {0} FROM {1}", sqlFields, sqlTableName);
             string sqlWhere = GetWhere();
 
             if (!string.IsNullOrEmpty(sqlWhere))
             {
-                sqlExport += "WHERE ";
+                sqlExport += " WHERE ";
                 sqlExport += sqlWhere;
             }
 
