@@ -125,6 +125,9 @@
                                     <td>
                                         <strong>审批状态</strong>
                                     </td>
+                                    <td>
+                                        <strong>打印</strong>
+                                    </td>
                                     <td runat="server" id="hlookup">
                                         <strong>查看</strong>
                                     </td>
@@ -176,6 +179,13 @@
                                     <td>
                                         <asp:Label ID="SPZT" runat="server" Text='<%#Eval("SPZT")%>' Visible="false"></asp:Label>
                                         <asp:Label ID="PZTTEXT" runat="server" Text='<%#get_spzt(Eval("SPZT").ToString())%>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:HyperLink ID="hplPrint" runat="server" NavigateUrl='<%#"PM_Finished_out_print.aspx?ID="+Eval("TFO_DOCNUM") %>'
+                                        Target="_blank" CssClass="link">
+                                        <asp:Image ID="imgPrint" runat="server" border="0" hspace="2" align="absmiddle" ImageUrl="~/Assets/images/DaYin.jpg" />
+                                        打印
+                                        </asp:HyperLink>
                                     </td>
                                     <td runat="server" id="blookup">
                                         <asp:HyperLink ID="HyperLink_lookup" runat="server" Target="_blank">
