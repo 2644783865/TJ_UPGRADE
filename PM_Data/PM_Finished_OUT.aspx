@@ -1,7 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/RightCotentMaster.Master"
     CodeBehind="PM_Finished_OUT.aspx.cs" Inherits="ZCZJ_DPF.PM_Data.PM_Finished_OUT" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
     成品出库管理&nbsp;&nbsp;&nbsp;&nbsp;
@@ -15,10 +14,6 @@
             window.open("PM_fahuo.aspx?FLAG=ToStore");
         }
     </script>
-
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ToolkitScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="box-inner">
                 <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
@@ -34,8 +29,9 @@
                                 <td align="center">
                                     <asp:Button runat="server" ID="btnDelete" Text="删除" OnClick="btnDelete_OnClick" />
                                 </td>
-                                <td align="center">
-                                    <input id="ToStore" type="button" value="到库存" onclick="ToStore()" runat="server" />
+                                <td align="center">                                    
+                                    <input id="ToStore" type="button" value="到库存" onclick="ToStore()" runat="server" />&nbsp;&nbsp;
+                                    <asp:Button ID="btnExport" runat="server" Text="导出" OnClick="btnExport_Click" />
                                 </td>
                             </tr>
                         </table>
@@ -56,17 +52,13 @@
                                     <asp:TextBox runat="server" Width="100px" ID="txtXMMC"></asp:TextBox>
                                 </td>
                                 <td>
-                                    业主：<asp:TextBox runat="server" Width="100px" ID="txtYZ"></asp:TextBox>
-                                </td>
+                                    业主：<asp:TextBox runat="server" Width="100px" ID="txtYZ"></asp:TextBox></td>
                                 <td>
-                                    任务号：<asp:TextBox runat="server" Width="100px" ID="txtRWH"></asp:TextBox>
-                                </td>
+                                    任务号：<asp:TextBox runat="server" Width="100px" ID="txtRWH"></asp:TextBox></td>
                                 <td>
-                                    图号:<asp:TextBox runat="server" Width="100px" ID="txtTH"></asp:TextBox>
-                                </td>
+                                    图号:<asp:TextBox runat="server" Width="100px" ID="txtTH"></asp:TextBox></td>
                                 <td>
-                                    设备名称：<asp:TextBox runat="server" Width="100px" ID="txtSBMC"></asp:TextBox>
-                                </td>
+                                    设备名称：<asp:TextBox runat="server" Width="100px" ID="txtSBMC"></asp:TextBox></td>
                                 <td align="left">
                                     <asp:Button ID="btnQuery" runat="server" Text="查  询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;&nbsp;
                                     <asp:Button ID="btnReset" runat="server" Text="重  置" OnClick="btnReset_OnClick" />
@@ -201,9 +193,4 @@
                 </div>
             </div>
         </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="btnQuery" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="btnReset" EventName="Click" />
-        </Triggers>
-    </asp:UpdatePanel>
 </asp:Content>

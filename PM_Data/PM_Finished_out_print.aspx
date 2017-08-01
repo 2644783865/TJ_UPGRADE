@@ -53,11 +53,11 @@
         </table>
         <table class="tab" >
             <td align="left" width="10%">出库&nbsp;&nbsp;&nbsp;<br/>单号：</td>
-            <td align="left" width="20%"><asp:TextBox ID="txt_docnum" runat="server" /></td>
+            <td align="left" width="20%"><asp:TextBox ID="txt_docnum" runat="server" ReadOnly="true"/></td>
             <td align="center" width="10%">日期：</td>
-            <td align="center" width="20%"><asp:TextBox ID="Tb_shijian" runat="server" /></td>
+            <td align="center" width="20%"><asp:TextBox ID="Tb_shijian" runat="server" ReadOnly="true"/></td>
             <td align="right" width="10%">备注：</td>        
-            <td align="right" width="20%"><asp:TextBox ID="txt_note" runat="server" /></td>
+            <td align="right" width="20%"><asp:TextBox ID="txt_note" runat="server" ReadOnly="true"/></td>
         </table>
         <table cellpadding="4" cellspacing="1" border="1" style="width:80%;">
             <asp:Repeater ID="PM_Finished_PrintRepeater" runat="server">
@@ -140,15 +140,13 @@
         </table>
         <table class="tab" >
             <td align="left" width="10%">负责人：</td>
-            <td align="left" width="20%"><asp:TextBox ID="Tb_fuziren" runat="server" /></tb>
+            <td align="left" width="20%"><asp:TextBox ID="Tb_fuziren" runat="server" ReadOnly="true"/></td>
             <td align="center" width="10%">申请人：</td>
-            <td align="center" width="20%"><asp:TextBox ID="Tb_shenqingren" runat="server" /></td>
+            <td align="center" width="20%"><asp:TextBox ID="Tb_shenqingren" runat="server" ReadOnly="true"/></td>
             <td align="right" width="10%">制单人：</td>        
-            <td align="right" width="20%"><asp:TextBox ID="tb_executor" runat="server" /></td>
+            <td align="right" width="20%"><asp:TextBox ID="tb_executor" runat="server" ReadOnly="true"/></td>
         </table>    
-    </div>
-    
-
+    </div>  
     </form>
 </body>
 </html>
