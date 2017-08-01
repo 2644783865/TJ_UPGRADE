@@ -255,15 +255,22 @@ namespace ZCZJ_DPF.OM_Data
         #endregion
 
         protected void btnExport_click(object sender, EventArgs e)
-        {
-            //InitPager();
-            //pager.ShowFields = "BIANHAO,NAME,TYPE,TYPE2,MODEL,SYR,SYBUMEN,SYDATE,NX,JIAZHI,PLACE,NOTE";
-            ////pager.PageIndex = UCPaging1.CurrentPage;
-            //pager.PageSize = 65535;
-            //string filename = "固定资产库存.xls";
-            //string filestandard = "固定资产库存.xls";
-            //DataTable dt = CommonFun.GetDataByPagerQueryParamWithPriKey(pager);
-            //exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);
+        {                       
+            string sqlFields = "BIANHAO,NAME,TYPE,TYPE2,MODEL,SYR,SYBUMEN,SYDATE,NX,JIAZHI,PLACE,NOTE";
+            string sqlTableName = "TBOM_GDZCIN as a left join OM_SP as b on a.INCODE=b.SPFATHERID";
+            string sqlExport = string.Format("SELECT {0} FROM {1}", sqlFields, sqlTableName);
+            string sqlWhere = GetWhere();
+
+            if (!string.IsNullOrEmpty(sqlWhere))
+            {
+                sqlExport += " WHERE ";
+                sqlExport += sqlWhere;
+            }
+
+            string filename = string.Format("固定资产库存{0}.xls", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            string filestandard = "固定资产库存.xls";
+            DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlExport);
+            exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);
         }
     }
 }

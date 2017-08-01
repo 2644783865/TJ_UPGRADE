@@ -37,7 +37,11 @@
                         </td>
                         <td align="left">
                             <asp:Button ID="btnQuery" runat="server" Text="查  询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnReset" runat="server" Text="重  置" OnClick="btnReset_OnClick" />
+                            <asp:Button ID="btnReset" runat="server" Text="重  置" OnClick="btnReset_OnClick" />&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnExport" runat="server" Text="导出" OnClick="btnExport_OnClick" />&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            
                         </td>
                         <td>
                             <asp:Button ID="btnTransf" runat="server" Text="非固定资产转移" BackColor="LightGreen" OnClick="btnTransf_click" />
