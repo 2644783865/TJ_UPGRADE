@@ -5297,6 +5297,13 @@
     <Compile Include="PM_Data\PM_Finished_out_look.aspx.designer.cs">
       <DependentUpon>PM_Finished_out_look.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PM_Data\PM_Finished_out_print.aspx.cs">
+      <DependentUpon>PM_Finished_out_print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PM_Data\PM_Finished_out_print.aspx.designer.cs">
+      <DependentUpon>PM_Finished_out_print.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PM_Data\PM_Gongshi_Daoru.aspx.cs">
       <DependentUpon>PM_Gongshi_Daoru.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -11107,6 +11114,7 @@
     <Content Include="PM_Data\PM_Data_addjs_list.aspx" />
     <Content Include="PM_Data\PM_Data_addto_list.aspx" />
     <Content Include="PM_Data\PM_FaHuoNotice.aspx" />
+    <Content Include="PM_Data\PM_Finished_out_print.aspx" />
     <Content Include="PM_Data\PM_Gongshi_detail_edit.aspx" />
     <Content Include="PM_Data\PM_Gongshi_Detail_List.aspx" />
     <Content Include="PM_Data\PM_ProcessCard.aspx" />
