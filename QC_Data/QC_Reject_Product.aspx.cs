@@ -193,6 +193,10 @@ namespace ZCZJ_DPF.QC_Data
             {
                 sqltext += " and Duty_dep like '%" + txtZRBM.Text.Trim() + "%'";
             }
+            if (txtZRF.Text.Trim() != "")
+            {
+                sqltext += " and ZRF like '%" + txtZRF.Text.Trim() + "%'";
+            }
 
             ViewState["sqlText"] = sqltext;
             this.InitVar();
