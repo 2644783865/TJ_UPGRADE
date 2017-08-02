@@ -120,67 +120,66 @@
                 pageSize: 25,
                 pageList: [25, 40, 60],
                 pagination: true,
+                rowStyler:setRowBgColor,
                 columns: [[
                         {
                             field: 'ck', checkbox: true, width: 30
                         }, {
                             field: 'ms_pizhubeizhu', title: '批注', width: 70, align: "center"
-                        },
-                         {
-                             field: 'ms_biangengbeizhu', title: '变更备注', width: 70, align: "center", hidden: !isBianGeng
-                         },
-                         {
-                             field: 'ms_tuhao', title: '图号', width: 70, align: "center"
-                         },
-                            {
-                                field: 'ms_zongxu', title: '总序', width: 45, align: "center"
-                            },
-                               {
-                                   field: 'ms_name', title: '名称', width: 60, align: "center"
-                               },
-
-                {
-                    field: 'ms_guige', title: '规格', width: 40, align: "center"
-                },
-
-                {
-                    field: 'ms_caizhi', title: '材质', width: 60, align: "center"
-                }, { field: 'ms_unum', title: '单数', width: 40 },
-                   {
-                       field: 'ms_num', title: '总数', width: 40, align: "center"
-                   },
-                                 {
-                                     field: 'ms_tuwght', title: '图纸单重(kg)', width: 60, align: "center"
-                                 },
-                                {
-                                    field: 'ms_tutotalwght', title: '图纸总重(kg)', width: 60, align: "center"
-                                },
-                                {
-                                    field: 'ms_mashape', title: '类别', width: 30, align: "center"
-                                }, {
-                                    field: 'ms_techunit', title: '单位', width: 40, align: "center"
-                                }, {
-                                    field: 'ms_yongliang', title: '材料用量', width: 60, align: "center"
-                                }, {
-                                    field: 'ms_matotalwght', title: '材料总重(kg)', width: 60, align: "center"
-                                }, {
-                                    field: 'ms_length', title: '长度', width: 35, align: "center"
-                                }, {
-                                    field: 'ms_width', title: '宽度', width: 35, align: "center"
-                                }, {
-                                    field: 'ms_note', title: '下料备注', width: 50, align: "center"
-                                }, {
-                                    field: 'ms_xialiao', title: '下料方式', width: 50, align: "center"
-                                }, {
-                                    field: 'ms_process', title: '工艺流程', width: 60, align: "center"
-                                }, {
-                                    field: 'ms_ku', title: '库', width: 20, align: "center"
-                                }, {
-                                    field: 'ms_allbeizhu', title: '备注', width: 60, align: "center"
-                                }
+                        }, {
+                            field: 'ms_biangengbeizhu', title: '变更备注', width: 70, align: "center", hidden: !isBianGeng
+                        }, {
+                            field: 'ms_chgpid',title: '变更计划编号', width: 70, align: "center", hidden: true
+                        }, {
+                            field: 'ms_tuhao', title: '图号', width: 70, align: "center"
+                        }, {
+                            field: 'ms_zongxu', title: '总序', width: 45, align: "center"
+                        }, {
+                            field: 'ms_name', title: '名称', width: 60, align: "center"
+                        }, {
+                            field: 'ms_guige', title: '规格', width: 40, align: "center"
+                        }, {
+                            field: 'ms_caizhi', title: '材质', width: 60, align: "center"
+                        }, {
+                            field: 'ms_unum', title: '单数', width: 40 
+                        }, {
+                            field: 'ms_num', title: '总数', width: 40, align: "center"
+                        }, {
+                            field: 'ms_tuwght', title: '图纸单重(kg)', width: 60, align: "center"
+                        }, {
+                            field: 'ms_tutotalwght', title: '图纸总重(kg)', width: 60, align: "center"
+                        }, {
+                            field: 'ms_mashape', title: '类别', width: 30, align: "center"
+                        }, {
+                            field: 'ms_techunit', title: '单位', width: 40, align: "center"
+                        }, {
+                            field: 'ms_yongliang', title: '材料用量', width: 60, align: "center"
+                        }, {
+                            field: 'ms_matotalwght', title: '材料总重(kg)', width: 60, align: "center"
+                        }, {
+                            field: 'ms_length', title: '长度', width: 35, align: "center"
+                        }, {
+                            field: 'ms_width', title: '宽度', width: 35, align: "center"
+                        }, {
+                            field: 'ms_note', title: '下料备注', width: 50, align: "center"
+                        }, {
+                            field: 'ms_xialiao', title: '下料方式', width: 50, align: "center"
+                        }, {
+                            field: 'ms_process', title: '工艺流程', width: 60, align: "center"
+                        }, {
+                            field: 'ms_ku', title: '库', width: 20, align: "center"
+                        }, {
+                            field: 'ms_allbeizhu', title: '备注', width: 60, align: "center"
+                        }
             ]]
             });
         });
+
+        function setRowBgColor(index, row) {
+            if (row.ms_chgpid != null && row.ms_chgpid != "") {
+                return 'background-color:yellow;color:black;';
+            }
+        }
 
 
         $(function() {
