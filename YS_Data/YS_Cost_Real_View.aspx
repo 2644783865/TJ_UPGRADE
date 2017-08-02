@@ -115,6 +115,12 @@
                                     ToolTip="双击关联合同信息！"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="任务号" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_YS_TSA_ID" runat="server" Text='<%#Eval("YS_TSA_ID") %>'
+                                    ></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="项目名称" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("PCON_PJNAME") %>'></asp:Label>
@@ -165,7 +171,7 @@
                         <%--财务费小计--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否结算" HeaderStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:Label ID="lab_JSstate" runat="server" Text='<%# GetJSState(Eval("YS_ADDTIME").ToString(),Eval("YS_XS_Finished").ToString()) %>'></asp:Label>
+                                <asp:Label ID="lab_JSstate" runat="server" Text='<%# GetJSState(Eval("YS_ADDDATE").ToString(),Eval("YS_XS_Finished").ToString()) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否完结" HeaderStyle-Wrap="false">

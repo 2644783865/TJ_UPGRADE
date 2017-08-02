@@ -17,8 +17,9 @@ using System.Net;
 /// </summary>
 public class DbAccess
 {
-    SqlConnection con = new SqlConnection("Data Source=10.11.11.4;Database=TS;user Id=sa;password=sinoma2013!;");
-    
+
+    //SqlConnection con = new SqlConnection("Data Source=192.168.10.44;Database=TS;user Id=sa;password=123456;");
+    SqlConnection con = new SqlConnection();
     SqlCommand cmd;
     SqlDataAdapter sda;
     
@@ -67,7 +68,7 @@ public class DbAccess
         SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
         return dr;
     }
-		public DataSet GetSqlDataSet(string sqlTest,string strName)
+	public DataSet GetSqlDataSet(string sqlTest,string strName)
     {
         openCon();
         DataSet dts = new DataSet();
@@ -129,6 +130,8 @@ public class DbAccess
     //打开数据库连接
     public void openCon()
     {
+        string constr = System.Configuration.ConfigurationManager.AppSettings["connectionStrings"];
+        con.ConnectionString = constr;
         if (con.State == ConnectionState.Closed)
         {
             con.Open();
@@ -245,10 +248,10 @@ public class DbAccess
     /// <returns>填充后的dataset</returns>
     public DataSet fillDataSet(String comText)
     {
+        openCon();
         sda = new SqlDataAdapter(comText, con);
         DataSet ds = new DataSet();
-        ds.Tables.Clear();
-        openCon();
+        ds.Tables.Clear();       
         sda.Fill(ds);
         closeCon();
         return ds;
