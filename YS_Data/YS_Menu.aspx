@@ -62,8 +62,8 @@
                 Target="right" runat="server"><p>订单跟踪</p></asp:HyperLink>
             <asp:HyperLink ID="HyperLink3" onClick="SelectMenu(3);" CssClass="LeftMenuNoSelected"
                 Target="right" runat="server"><p>预算分析</p></asp:HyperLink>
-            <asp:HyperLink ID="HyperLink6" onClick="SelectMenu(6);" CssClass="LeftMenuNoSelected"
-                Target="right" runat="server"><p>产品分类</p></asp:HyperLink>
+           <%-- <asp:HyperLink ID="HyperLink6" onClick="SelectMenu(6);" CssClass="LeftMenuNoSelected"
+                Target="right" runat="server"><p>产品分类</p></asp:HyperLink>--%>
         </div>
     </div>
     </form>

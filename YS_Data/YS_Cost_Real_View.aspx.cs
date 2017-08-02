@@ -27,7 +27,7 @@ namespace ZCZJ_DPF.YS_Data
                 //control_visible();
             }
             InitVar();
-            CheckUser(ControlFinder); 
+           // CheckUser(ControlFinder); 
         }
 
         protected void Bind_title()
@@ -133,13 +133,13 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "View_YS_COST_BUDGET_REAL";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_CONTRACT_NO,PCON_PJNAME,PCON_ENGNAME,YS_TSA_ID,YS_FERROUS_METAL," +
+            pager.ShowFields = "YS_CONTRACT_NO,YS_TSA_ID,PCON_PJNAME,PCON_ENGNAME,YS_FERROUS_METAL," +
             "YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
             "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST," +
-            "YS_ADDTIME,YS_NOTE,YS_REVSTATE,[YS_XS_Finished],[YS_Finshtime]," +
+            "YS_ADDDATE,YS_NOTE,YS_REVSTATE,[YS_XS_Finished],[YS_Finshtime]," +
             "YS_FERROUS_METAL+YS_PURCHASE_PART+YS_MACHINING_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_OTHERMAT_COST AS YS_MAR_SUM";
 
-            pager.OrderField = "YS_ADDTIME";
+            pager.OrderField = "YS_ADDDATE";
             pager.StrWhere = this.GetStrWhere();
             pager.OrderType = 1;//按任务名称升序排列
             pager.PageSize = 10;
@@ -187,11 +187,11 @@ namespace ZCZJ_DPF.YS_Data
 
             if (rbl_type.SelectedValue == "0")
             {
-                strwhere += " and (YS_ADDTIME='' or YS_ADDTIME is null) ";
+                strwhere += " and (YS_ADDDATE='' or YS_ADDDATE is null) ";
             }
             else if (rbl_type.SelectedValue == "1")
             {
-                strwhere += " and YS_ADDTIME is not null and datalength(YS_ADDTIME)<>0 ";
+                strwhere += " and YS_ADDDATE is not null and datalength(YS_ADDDATE)<>0 ";
             }
 
             if (ckb_JS_OK.Checked == true)
@@ -200,7 +200,7 @@ namespace ZCZJ_DPF.YS_Data
             }
 
             return strwhere;
-        }
+        }//改
         #endregion
 
         protected string GetJSState(string JsState, string FinState)

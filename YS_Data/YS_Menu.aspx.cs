@@ -33,7 +33,7 @@ namespace ZCZJ_DPF.YS_Data
             HyperLink3.NavigateUrl = "YS_Cost_Budget_A_M.aspx?type=1";
             HyperLink7.NavigateUrl = "YS_Cost_Budget_A_M.aspx?type=0";
             HyperLink5.NavigateUrl = "YS_Cost_Real_View.aspx";
-            HyperLink6.NavigateUrl = "YS_Product_type.aspx?action=null";
+            //HyperLink6.NavigateUrl = "YS_Product_type.aspx?action=null";
             HyperLink4.NavigateUrl = "YS_Cost_Budget_O_M.aspx";
         }
     }
