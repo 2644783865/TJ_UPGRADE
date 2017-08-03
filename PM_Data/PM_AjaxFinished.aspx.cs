@@ -66,7 +66,7 @@ namespace ZCZJ_DPF.PM_Data
                 DataTable dt1 = CommonFun.GetDataByPagerQueryParam(pager);
 
 
-                sqlText = "select count(1) from TBPM_STRINFODQO where" + strWhere();
+                sqlText = string.Format("select count(1) from {0} where {1}", pager.TableName, pager.StrWhere); 
                 DataTable dt2 = DBCallCommon.GetDTUsingSqlText(sqlText);
                 int num = 0;
                 if (dt2.Rows.Count > 0)
@@ -169,7 +169,7 @@ namespace ZCZJ_DPF.PM_Data
         private string strWhere()
         {
             string tsaid = Request.Form["tsaid"];
-            // string proj = Request.Form["proj"];
+            string proj = Request.Form["proj"];
             string map = Request.Form["map"];
             string name = Request.Form["name"];
 
@@ -186,6 +186,10 @@ namespace ZCZJ_DPF.PM_Data
             if (!string.IsNullOrEmpty(name))
             {
                 sb.Append(" and BM_CHANAME like '%" + name + "%'");
+            }
+            if (!string.IsNullOrEmpty(proj))
+            {
+                sb.Append(" and CM_PROJ like '%" + proj + "%'");
             }
 
             return sb.ToString();

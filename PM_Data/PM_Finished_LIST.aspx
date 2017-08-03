@@ -76,13 +76,13 @@
         $(function() {
             $("#btnSearch").click(function() {
                 var tsaid = $("#txtTsaid").val();
-//                var proj = $("#txtProj").val();
+                var proj = $("#txtProj").val();
                 var map = $("#txtTuhao").val();
                 var name = $("#txtName").val();
                 $("#tgKucun").treegrid('load', {
                     method: 'GetKuCun',
                     tsaid: tsaid,
-//                    proj: proj,
+                    proj: proj,
                     map: map,
                     name: name
                 });
@@ -94,6 +94,7 @@
         var a=$("#txtTsaid").val();
         var b=$("#txtTuhao").val();
         var c=$("#txtName").val();
+        var d=$("#txtProj").val();
         if(a!=""){
         $("#<%=hidRWH.ClientID %>").val(a);
         }
@@ -102,6 +103,9 @@
         }
         if(c!=""){
         $("#<%=hidMC.ClientID %>").val(c);
+        }
+        if(d!=""){
+        $("#<%=hidXM.ClientID %>").val(d);
         }
         }
     </script>
@@ -117,12 +121,12 @@
                         <td>
                             <input type="text" id="txtTsaid" onblur="aa()" />
                         </td>
-                        <%--          <td>
+                        <td>
                             项目：
                         </td>
                         <td>
                             <input type="text" id="txtProj" />
-                        </td>--%>
+                        </td>
                         <td>
                             图号：
                         </td>
@@ -142,6 +146,7 @@
                             <input type="hidden" runat="server" id="hidRWH" />
                             <input type="hidden" runat="server" id="hidTH" />
                             <input type="hidden" runat="server" id="hidMC" />
+                            <input type="hidden" runat="server" id="hidXM" />
                             <asp:Button ID="btndaochu" runat="server" Text="导出" OnClick="btndaochu_click" />
                         </td>
                     </tr>
