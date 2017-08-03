@@ -23,13 +23,13 @@
       {
          var autonum=Math.round(10000*Math.random()); 
          window.open("../Contract_Data/CM_Contract_SW_Add.aspx?Action=View&autonum="+autonum+"&condetail_id="+id); 
-      }        
-      
-     
-     function PurMarView(ContractNo, FatherCode) {
+      }
+
+
+      function PurMarView(CONTRACTNO, FatherCode) {
     var autonum = Math.round(10000 * Math.random());
 
-    window.open("YS_Cost_Real_View_Detail.aspx?ContractNo=" + ContractNo + "&autonum=" + autonum + "&FatherCode=" + FatherCode + "");
+    window.open("YS_Cost_Real_View_Detail.aspx?CONTRACTNO=" + CONTRACTNO + "&autonum=" + autonum + "&FatherCode=" + FatherCode + "");
 
 }
        
@@ -44,7 +44,7 @@
                     <tr>
                         <td>
                             合同号:
-                            <asp:TextBox ID="txt_search" runat="server" Text="ZCZJ.SW.XS." Width="150px"></asp:TextBox><asp:Button
+                            <asp:TextBox ID="txt_search" runat="server" Text="" Width="150px"></asp:TextBox><asp:Button
                                 ID="btn_search" runat="server" Text="查询" OnClick="btn_search_OnClick" />
                         </td>
                         <td align="right">

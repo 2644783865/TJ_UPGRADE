@@ -7817,6 +7817,13 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.cs">
       <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7830,6 +7837,13 @@
     </Compile>
     <Compile Include="YS_Data\YS_Cost_Real_View.aspx.designer.cs">
       <DependentUpon>YS_Cost_Real_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Real_View_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Real_View_Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="YS_Data\YS_Desk.aspx.cs">
       <DependentUpon>YS_Desk.aspx</DependentUpon>
@@ -12564,8 +12578,10 @@
     <Content Include="YS_Data\update4.jpg" />
     <Content Include="YS_Data\update5.jpg" />
     <Content Include="YS_Data\Yellow.jpg" />
+    <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Real_View.aspx" />
+    <Content Include="YS_Data\YS_Cost_Real_View_Detail.aspx" />
     <Content Include="YS_Data\YS_Desk.aspx" />
     <Content Include="YS_Data\YS_Index.aspx" />
     <Content Include="YS_Data\YS_Menu.aspx" />
