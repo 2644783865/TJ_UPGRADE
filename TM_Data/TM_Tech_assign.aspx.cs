@@ -48,7 +48,7 @@ namespace ZCZJ_DPF.TM_Data
             sql += " TSA_STATE='" + rblstatus.SelectedValue + "' ";
             if (ddlSearch.SelectedItem.Text.Trim() != "-请选择-")
             {
-                sql += "and " + ddlSearch.SelectedValue.Trim() + "  like '%" + txtSearch.Text.Trim() + "%'";
+                sql += "and " + ddlSearch.SelectedValue.Trim() + "  like '%" + txtSearch.Text.Trim() + "%'";//下拉
             }
 
             if (IsPostBack)

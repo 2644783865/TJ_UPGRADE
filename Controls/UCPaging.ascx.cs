@@ -84,6 +84,9 @@ namespace ZCZJ_DPF
           }
         }
 
+       /// <summary>
+        ///每页显示的记录数，用于计算总页数 
+       /// </summary>
         public int PageSize
         {
 	        get

@@ -687,7 +687,8 @@ input.IE6focus
 }
 
 INPUT {
-	BORDER-RIGHT: #8ab3db 1px solid; BORDER-TOP: #8ab3db 1px solid; VERTICAL-ALIGN: middle; BORDER-LEFT: #8ab3db 1px solid; BORDER-BOTTOM: #8ab3db 1px solid
+	border: 1px solid #8ab3db;
+    VERTICAL-ALIGN: middle;     height: 20px;
 }
 TEXTAREA {
 	BORDER-RIGHT: #8ab3db 1px solid; BORDER-TOP: #8ab3db 1px solid; VERTICAL-ALIGN: middle; BORDER-LEFT: #8ab3db 1px solid; BORDER-BOTTOM: #8ab3db 1px solid
