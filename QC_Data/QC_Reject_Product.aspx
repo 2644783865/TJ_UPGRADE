@@ -142,8 +142,9 @@
                                         </asp:DropDownList>
                                     </td>
                                     <td>
-                                        编 制 人：<asp:DropDownList ID="dpl_zdr" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_Click">
-                                        </asp:DropDownList>
+                                        编制人：<asp:DropDownList ID="dpl_zdr" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_Click">
+                                        </asp:DropDownList>&nbsp;&nbsp;
+                                        责任方：<asp:TextBox ID="txtZRF" runat="server" Width="85px"></asp:TextBox>
                                     </td>
                                     <td>
                                         责任部门：<asp:TextBox ID="txtZRBM" runat="server"></asp:TextBox>

@@ -5297,6 +5297,13 @@
     <Compile Include="PM_Data\PM_Finished_out_look.aspx.designer.cs">
       <DependentUpon>PM_Finished_out_look.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PM_Data\PM_Finished_out_print.aspx.cs">
+      <DependentUpon>PM_Finished_out_print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PM_Data\PM_Finished_out_print.aspx.designer.cs">
+      <DependentUpon>PM_Finished_out_print.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PM_Data\PM_Gongshi_Daoru.aspx.cs">
       <DependentUpon>PM_Gongshi_Daoru.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7810,12 +7817,33 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.cs">
       <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.designer.cs">
       <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View.aspx.cs">
+      <DependentUpon>YS_Cost_Real_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Real_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Real_View_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Real_View_Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="YS_Data\YS_Desk.aspx.cs">
       <DependentUpon>YS_Desk.aspx</DependentUpon>
@@ -11107,6 +11135,7 @@
     <Content Include="PM_Data\PM_Data_addjs_list.aspx" />
     <Content Include="PM_Data\PM_Data_addto_list.aspx" />
     <Content Include="PM_Data\PM_FaHuoNotice.aspx" />
+    <Content Include="PM_Data\PM_Finished_out_print.aspx" />
     <Content Include="PM_Data\PM_Gongshi_detail_edit.aspx" />
     <Content Include="PM_Data\PM_Gongshi_Detail_List.aspx" />
     <Content Include="PM_Data\PM_ProcessCard.aspx" />
@@ -12549,7 +12578,10 @@
     <Content Include="YS_Data\update4.jpg" />
     <Content Include="YS_Data\update5.jpg" />
     <Content Include="YS_Data\Yellow.jpg" />
+    <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_View.aspx" />
+    <Content Include="YS_Data\YS_Cost_Real_View.aspx" />
+    <Content Include="YS_Data\YS_Cost_Real_View_Detail.aspx" />
     <Content Include="YS_Data\YS_Desk.aspx" />
     <Content Include="YS_Data\YS_Index.aspx" />
     <Content Include="YS_Data\YS_Menu.aspx" />

@@ -96,13 +96,13 @@
                 <table>
                     <tr>
                         <td>
-                            编码<input type="text" id="maid" />
+                            编码<input type="text" id="maid"/>
                         </td>
                         <td>
-                            名称<input type="text" id="name" />
+                            名称<input type="text" id="name"/>
                         </td>
                         <td>
-                            规格及型号<input type="text" id="canshu" />
+                            规格及型号<input type="text" id="canshu"/>
                         </td>
                         <td>
                             类别
@@ -111,6 +111,7 @@
                         <td>
                             <input type="button" value="查询" id="btnSearch" />
                             <input type="button" runat="server" visible="false" value="申请领用" id="btnApply"/>
+                            <asp:Button id="btnExport"  Text="导出" onclick="btnExport_Click" runat="server"/>
                         </td>
                     </tr>
                 </table>

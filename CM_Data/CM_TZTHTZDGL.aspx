@@ -180,6 +180,7 @@
     <div class="box-inner">
         <div class="box_right">
             <div class="box-title" align="right">
+                <asp:button ID="btnExport" text="导出" runat="server" OnClick="btnExport_Click" />
                 <a id="btnAdd" runat="server" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'"
                     onclick="btnAdd_onclick()">新增图纸替换通知单</a>
             </div>
@@ -192,7 +193,7 @@
                     <tr>
                         <td>
                             按审批状态：
-                            <select id="ddlSPZT" onchange="Query()">
+                            <select id="ddlSPZT" onchange="Query()" name="ddlSPZT">
                                 <option value="0" selected="selected">-全部-</option>
                                 <option value="1">未审批</option>
                                 <option value="2">审批中</option>
@@ -202,14 +203,14 @@
                         </td>
                         <td>
                             按任务：
-                            <select id="rblRW" onchange="Query()">
+                            <select id="rblRW" onchange="Query()" name="rblRW">
                                 <option value="0">-全部-</option>
                                 <option value="1" selected="selected">我的任务</option>
                             </select>
                         </td>
                         <td>
                             按编号：
-                            <input type="text" id="txtbh" />
+                            <input type="text" id="txtbh" name="txtbh"/>
                             <a id="btnQuery" onclick="Query()" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
                                 查看</a>
                         </td>

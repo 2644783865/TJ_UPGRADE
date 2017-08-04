@@ -624,6 +624,7 @@ namespace ZCZJ_DPF.PM_Data
             ItemList.Add("TA_ORDERNUM", "结算单号");
             ItemList.Add("MS_WSID", "外协单号");
             ItemList.Add("zdtime", "时间");
+            ItemList.Add("detamount", "价格");
             return ItemList;
         }
         //审批人勾选状态改变的时候（只现在我的未审）

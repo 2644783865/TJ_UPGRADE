@@ -203,5 +203,23 @@ namespace ZCZJ_DPF.OM_Data
             GetBoundData();
         }
         #endregion
+
+        protected void btnExport_OnClick(object sender, EventArgs e)
+        {
+            string sqlFields = "BIANHAO,NAME,MODEL,TYPE,TYPE2,SYR,SYBUMEN,SYDATE,NX,JIAZHI,PLACE,NOTE";
+            string sqlTableName = "TBOM_GDZCIN as a left join OM_SP as b on a.INCODE=b.SPFATHERID";
+            string sqlExport = string.Format("SELECT {0} FROM {1} ", sqlFields, sqlTableName);
+            string sqlWhere = GetWhere();
+
+            if (!string.IsNullOrEmpty(sqlWhere))
+            {
+                sqlExport += " WHERE ";
+                sqlExport += sqlWhere;
+            }
+            string filename = string.Format("办公设备资产库存{0}.xls", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            string filestandard = "办公设备资产库存.xls";
+            DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlExport);
+            exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);
+        }
     }
 }

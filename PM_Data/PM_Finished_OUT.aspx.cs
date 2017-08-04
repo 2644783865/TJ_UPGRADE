@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Text;
+using System.IO;
 
 namespace ZCZJ_DPF.PM_Data
 {
@@ -287,6 +288,25 @@ namespace ZCZJ_DPF.PM_Data
             }
             GetBoundData();
             InitVar();
+        }
+
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            string sqlFields = "TFO_DOCNUM,B.CM_PROJ,B.CM_CONTR,B.TSA_ID,TFO_ZONGXU,TFO_MAP,TFO_ENGNAME,CM_CUSNAME,TFO_CKNUM,CM_JHTIME,OUTDATE,NOTE";
+            string sqlTableName = "TBMP_FINISHED_OUT AS A LEFT OUTER JOIN View_CM_FaHuo AS B ON A.TSA_ID=B.TSA_ID AND A.TFO_ENGNAME=B.TSA_ENGNAME AND A.TFO_MAP=B.TSA_MAP AND A.TFO_FID=B.CM_FID AND A.TFO_ZONGXU=B.ID left join TBPM_TCTSASSGN as C on A.TSA_ID=C.TSA_ID left join TBCM_PLAN as D on C.ID=D.ID";
+            string sqlExport = string.Format("SELECT {0} FROM {1}", sqlFields, sqlTableName);
+            string sqlWhere = GetWhere();
+
+            if (!string.IsNullOrEmpty(sqlWhere))
+            {
+                sqlExport += " WHERE ";
+                sqlExport += sqlWhere;
+            }
+
+            string filename = string.Format("成品出库管理{0}.xls", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            string filestandard = "成品出库管理.xls";
+            DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlExport);
+            exportCommanmethod.exporteasy(dt, filename, filestandard, 1, true, false, true);
         }
     }
 }
