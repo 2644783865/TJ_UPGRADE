@@ -14,7 +14,7 @@
                     <tr>
                         <td align="left">
                             任务号:
-                            <asp:TextBox ID="txt_search" runat="server" Text="ZCZJ.SW.XS." Width="200px"></asp:TextBox><asp:Button
+                            <asp:TextBox ID="txt_search" runat="server" Width="200px"></asp:TextBox><asp:Button
                                 ID="btn_search" runat="server" Text="查询" OnClick="btn_search_OnClick" />
                         </td>
                         <td align="center">
@@ -47,11 +47,7 @@
                             </asp:DropDownList>
                         </td>
                         <td align="right">
-                            <asp:Button ID="btn_import" runat="server" Text="明细导入" OnClick="btn_import_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:LinkButton ID="btn_orginal" runat="server" OnClick="btn_orginal_OnClick" Visible="false">
-                                <asp:Image ID="Image1" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2" align="absmiddle"
-                                    runat="server" />
-                                查看市场部原始指标</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;
+                            
                             <asp:LinkButton ID="btnModify" runat="server" OnClick="btnModify_OnClick">
                                 <asp:Image ID="ModImahe" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2"
                                     align="absmiddle" runat="server" />
@@ -72,7 +68,7 @@
         <div class="box-outer">
             <div style="width: 100%; overflow: auto;">
                 <asp:GridView ID="GridView1" Width="111%" CssClass="toptable grid nowrap" runat="server"
-                    AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" OnRowDataBound="GridView1_onrowdatabound">
+                    AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" >
                     <RowStyle BackColor="#EFF3FB" />
                     <Columns>
                         <%--序号--%>
@@ -82,6 +78,14 @@
                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
                                 <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("YS_CONTRACT_NO") %>' />
                             </ItemTemplate>
+                        </asp:TemplateField>
+                        <%--任务号--%>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="任务号" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_TSAID" runat="server" Text='<%#Eval("YS_TSA_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle Wrap="False"></HeaderStyle>
+                            <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
                         <%--合同号--%>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="合同号" ItemStyle-HorizontalAlign="Center"
@@ -94,7 +98,7 @@
                         <%--项目名称--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="项目名称" HeaderStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("PCON_PJNAME") %>'></asp:Label>
+                                <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("CM_PROJ") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center" />
@@ -102,19 +106,12 @@
                         <%--设备名称--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="设备名称" HeaderStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:Label ID="lbl_pcon_engname" runat="server" Text='<%#Eval("PCON_ENGNAME") %>'></asp:Label>
+                                <asp:Label ID="lbl_TSA_ENGNAME" runat="server" Text='<%#Eval("TSA_ENGNAME") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <%--任务号--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="任务号" HeaderStyle-Wrap="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lbl_pcon_engname" runat="server" Text='<%#Eval("YS_TSA_ID") %>'></asp:Label>
-                            </ItemTemplate>
-                            <HeaderStyle Wrap="False"></HeaderStyle>
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
+                        
                         <%--预算收入--%>
                         <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Center" HeaderText="预算收入"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}">
@@ -176,7 +173,7 @@
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                         <%--班组承包--%>
-                        <asp:BoundField DataField="YS_TEAM_CONTRACT" ItemStyle-HorizontalAlign="Center" HeaderText="班组承包"
+                        <asp:BoundField DataField="YS_TEAM_CONTRACT" ItemStyle-HorizontalAlign="Center" HeaderText="直接人工"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}">
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -199,6 +196,7 @@
                             <HeaderStyle Wrap="False" ForeColor="Green"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
+                       
                         
                         <%--制单人--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="制单人" HeaderStyle-Wrap="false">
@@ -215,7 +213,7 @@
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                         <%--制单完成期限--%>
-                        <asp:BoundField DataField="YS_FINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
+                        <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false">
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -223,7 +221,7 @@
                         <%--进度--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="进度" HeaderStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:Label ID="lab_State" runat="server" Text='<%# GetState(Eval("YS_STATE").ToString()) %>'></asp:Label>
+                                <asp:Label ID="lab_State" runat="server" Text='<%# Eval("YS_STATE") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
