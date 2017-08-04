@@ -251,7 +251,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1 ";
-            strwhere += "and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += "and YS_TSA_ID like '%" + txt_search.Text.ToString() + "%'";
 
             if (ddl_addper.SelectedIndex != 0)//制单人
             {

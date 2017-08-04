@@ -6,6 +6,11 @@
     预算编制
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
+<style>
+input{
+margin:0;
+}
+</style>
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
     <div class="box-inner">
         <div class="box_right">
@@ -67,16 +72,16 @@
     <div class="box-wrapper">
         <div class="box-outer">
             <div style="width: 100%; overflow: auto;">
-                <asp:GridView ID="GridView1" Width="111%" CssClass="toptable grid nowrap" runat="server"
-                    AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" >
+                <asp:GridView ID="GridView1" CssClass="toptable grid nowrap" runat="server"
+                    AutoGenerateColumns="False" CellPadding="3" ForeColor="#333333" >
                     <RowStyle BackColor="#EFF3FB" />
                     <Columns>
                         <%--序号--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="序号" HeaderStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                <asp:CheckBox ID="CheckBox1" runat="server"  />
                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
-                                <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("YS_CONTRACT_NO") %>' />
+                                <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("YS_TSA_ID") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <%--任务号--%>
@@ -113,19 +118,19 @@
                         </asp:TemplateField>
                         
                         <%--预算收入--%>
-                        <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Center" HeaderText="预算收入"
+                        <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Center" HeaderText="￥ 预算收入（元）"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}">
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                         <%--预算总额--%>
-                        <asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Center" HeaderText="预算总额"
+                        <asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Center" HeaderText="￥ 预算总额（元）"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}">
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
                         <%--毛利润--%>
-                        <asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Center" HeaderText="毛利润"
+                        <asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Center" HeaderText="￥ 毛利润（元）"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}">
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -196,7 +201,14 @@
                             <HeaderStyle Wrap="False" ForeColor="Green"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
-                       
+                        <%--进度--%>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="进度" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lab_State" runat="server" Text='<%# Eval("YS_STATE") %>'></asp:Label>
+                            </ItemTemplate>
+                            <HeaderStyle Wrap="False"></HeaderStyle>
+                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:TemplateField>
                         
                         <%--制单人--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="制单人" HeaderStyle-Wrap="false">
@@ -218,14 +230,7 @@
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
-                        <%--进度--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="进度" HeaderStyle-Wrap="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lab_State" runat="server" Text='<%# Eval("YS_STATE") %>'></asp:Label>
-                            </ItemTemplate>
-                            <HeaderStyle Wrap="False"></HeaderStyle>
-                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                        </asp:TemplateField>
+                       
                         <%--备注--%>
                         <asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false">
