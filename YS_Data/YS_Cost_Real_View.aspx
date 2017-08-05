@@ -117,7 +117,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="任务号" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:Label ID="lbl_YS_TSA_ID" runat="server" Text='<%#Eval("YS_TSA_ID") %>'
+                                <asp:Label ID="lbl_YS_TSA_ID" runat="server" Text='<%#Eval("PCON_SCH") %>'
                                     ></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>

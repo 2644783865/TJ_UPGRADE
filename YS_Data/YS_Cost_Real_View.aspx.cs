@@ -133,7 +133,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "View_YS_COST_BUDGET_REAL";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_CONTRACT_NO,YS_TSA_ID,PCON_PJNAME,PCON_ENGNAME,YS_FERROUS_METAL," +
+            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_PJNAME,PCON_ENGNAME,YS_FERROUS_METAL," +
             "YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
             "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST," +
             "YS_ADDDATE,YS_NOTE,YS_REVSTATE,[YS_XS_Finished],[YS_Finshtime]," +

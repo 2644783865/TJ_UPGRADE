@@ -111,9 +111,9 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "View_YS_COST_BUDGET_REAL";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_CONTRACT_NO,PCON_PJNAME,PCON_ENGNAME,YS_BUDGET_INCOME,(YS_FERROUS_METAL+YS_PURCHASE_PART+YS_MACHINING_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_TEAM_CONTRACT+YS_FAC_CONTRACT+YS_PRODUCT_OUT+YS_TRANS_COST) AS YS_RealCost," +
+            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_PJNAME,PCON_ENGNAME,YS_BUDGET_INCOME,(YS_FERROUS_METAL+YS_PURCHASE_PART+YS_MACHINING_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_TEAM_CONTRACT+YS_FAC_CONTRACT+YS_PRODUCT_OUT+YS_TRANS_COST) AS YS_RealCost," +
                 "Convert(decimal(10,2),YS_PROFIT/(YS_PROFIT_BG+1)) as YS_PROFIT_BG_hide_percent,YS_PROFIT_BG,Convert(decimal(10,2),YS_PROFIT/(YS_PROFIT_BG+1)) as YS_PROFIT_BG_percent," +
-                "Convert(decimal(10,2),YS_PROFIT_TAX/(YS_PROFIT_TAX_BG+1)) as YS_PROFIT_TAX_BG_hide_percent,YS_PROFIT_TAX_BG,Convert(decimal(10,2),YS_PROFIT_TAX/(YS_PROFIT_TAX_BG+1)) as YS_PROFIT_TAX_BG_percent," +
+                
              
                 "Convert(decimal(10,2), (YS_FERROUS_METAL/(YS_FERROUS_METAL_BG+1))) as YS_FERROUS_METAL_BG_percent,Convert(decimal(10,2), (YS_FERROUS_METAL/(YS_FERROUS_METAL_BG+1))) as YS_FERROUS_METAL_BG_hide_percent,YS_FERROUS_METAL_BG," +
                 "Convert(decimal(10,2), (YS_PURCHASE_PART/(YS_PURCHASE_PART_BG+1))) as YS_PURCHASE_PART_BG_percent,Convert(decimal(10,2), (YS_PURCHASE_PART/(YS_PURCHASE_PART_BG+1))) as YS_PURCHASE_PART_BG_hide_percent,YS_PURCHASE_PART_BG," +
@@ -126,7 +126,7 @@ namespace ZCZJ_DPF.YS_Data
                 "Convert(decimal(10,2), (YS_PRODUCT_OUT/(YS_PRODUCT_OUT_BG+1))) as YS_PRODUCT_OUT_BG_percent,Convert(decimal(10,2), (YS_PRODUCT_OUT/(YS_PRODUCT_OUT_BG+1))) as YS_PRODUCT_OUT_BG_hide_percent,YS_PRODUCT_OUT_BG," +
                
                 "Convert(decimal(10,2), (YS_TRANS_COST/(YS_TRANS_COST_BG+1))) as YS_TRANS_COST_BG_percent,Convert(decimal(10,2), (YS_TRANS_COST/(YS_TRANS_COST_BG+1))) as YS_TRANS_COST_BG_hide_percent,YS_TRANS_COST_BG," +
-                "YS_PROFIT,YS_PROFIT_TAX,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT,YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST,YS_ADDNAME,YS_ADDDATE,YS_Finshtime,YS_NOTE";
+                "YS_PROFIT,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT,YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST,YS_ADDNAME,YS_ADDDATE,YS_Finshtime,YS_NOTE";
             pager.OrderField = "PCON_PJNAME";
             pager.StrWhere = this.GetStrWhere();
             pager.OrderType = 1;//按任务名称升序排列
@@ -168,14 +168,14 @@ namespace ZCZJ_DPF.YS_Data
                 strwhere += " and PCON_ENGNAME='" + ddl_engineer.SelectedValue + "'";
             }
 
-            //净利润筛选
+            //毛净利润筛选
             if (rbl_profit.SelectedIndex == 1)
             {
-                strwhere += " and YS_PROFIT_TAX_BG>YS_PROFIT_TAX";
+                strwhere += " and YS_PROFIT_BG>YS_PROFIT";
             }
             else if (rbl_profit.SelectedIndex == 2)
             {
-                strwhere += " and YS_PROFIT_TAX_BG<=YS_PROFIT_TAX";
+                strwhere += " and YS_PROFIT_BG<=YS_PROFIT";
             }
 
             //生产制号
@@ -227,18 +227,18 @@ namespace ZCZJ_DPF.YS_Data
 
             #endregion
 
-            //净利润
+            //毛利润
             if (dpl_all_profit.SelectedIndex == 1)
             {
-                strwhere += " and YS_PROFIT_TAX>= YS_PROFIT_TAX_BG";
+                strwhere += " and YS_PROFIT>= YS_PROFIT_BG";
             }
             else if (dpl_all_profit.SelectedIndex == 2)
             {
-                strwhere += " and YS_PROFIT_TAX>= YS_PROFIT_TAX_BG*0.9 and YS_PROFIT_TAX<YS_PROFIT_TAX_BG";
+                strwhere += " and YS_PROFIT>= YS_PROFIT_BG*0.9 and YS_PROFIT<YS_PROFIT_BG";
             }
             else if (dpl_all_profit.SelectedIndex == 3)
             {
-                strwhere += " and YS_PROFIT_TAX<YS_PROFIT_TAX_BG*0.9";
+                strwhere += " and YS_PROFIT<YS_PROFIT_BG*0.9";
             }
 
             //计划提交时间
@@ -282,7 +282,7 @@ namespace ZCZJ_DPF.YS_Data
 
                 string[] fathername = {  "FERROUS_METAL", "PURCHASE_PART", "MACHINING_PART", "PAINT_COATING", "ELECTRICAL", "OTHERMAT_COST", "TEAM_CONTRACT", "FAC_CONTRACT", "PRODUCT_OUT", "TRANS_COST" };
                 // 利润总额和净利润的红黄预警
-                string[] fathername_profit = { "PROFIT", "PROFIT_TAX" };
+                string[] fathername_profit = { "PROFIT"};
                 for (int m = 0; m < fathername_profit.Length; m++)
                 {
                     //标签提示
@@ -292,14 +292,14 @@ namespace ZCZJ_DPF.YS_Data
                     double db_pass = Math.Round(db_Order - db_Budget, 1);
                     if (db_pass > 0)
                     {
-                        e.Row.Cells[m + 6].Attributes["style"] = "Cursor:hand";
+                        e.Row.Cells[m + 7].Attributes["style"] = "Cursor:hand";
                         if (m == 0)
                         {
-                            e.Row.Cells[m + 6].Attributes.Add("title", "总利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,高出预算" + db_pass.ToString() + "万");
+                            e.Row.Cells[m + 7].Attributes.Add("title", "毛利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,高出预算" + db_pass.ToString() + "万");
                         }
                         else
                         {
-                            e.Row.Cells[m + 6].Attributes.Add("title", "净利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,高出预算" + db_pass.ToString() + "万");
+                            e.Row.Cells[m + 7].Attributes.Add("title", "净利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,高出预算" + db_pass.ToString() + "万");
                         }
                     }
                     else
@@ -307,28 +307,28 @@ namespace ZCZJ_DPF.YS_Data
                         db_pass = Math.Abs(db_pass);
                         if (m == 0)
                         {
-                            e.Row.Cells[m + 6].Attributes.Add("title", "总利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,低于预算" + db_pass.ToString() + "万");
+                            e.Row.Cells[m + 7].Attributes.Add("title", "毛利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,低于预算" + db_pass.ToString() + "万");
                         }
                         else
                         {
-                            e.Row.Cells[m + 6].Attributes.Add("title", "净利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,低于预算" + db_pass.ToString() + "万");
+                            e.Row.Cells[m + 7].Attributes.Add("title", "净利润达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,低于预算" + db_pass.ToString() + "万");
                         }
                     }
                     //红黄预警
                     if (percent_O_B < 0)
                     {
-                        e.Row.Cells[m + 6].BackColor = System.Drawing.Color.Yellow;
+                        e.Row.Cells[m + 7].BackColor = System.Drawing.Color.Yellow;
                     }
                     else
                     {
                         percent_O_B = Math.Abs(percent_O_B);
                         if (percent_O_B > 1.0 && percent_O_B < 1.1)
                         {
-                            e.Row.Cells[m + 6].BackColor = System.Drawing.Color.PeachPuff;
+                            e.Row.Cells[m + 7].BackColor = System.Drawing.Color.PeachPuff;
                         }
                         if (percent_O_B < 1.0)
                         {
-                            e.Row.Cells[m + 6].BackColor = System.Drawing.Color.Yellow;
+                            e.Row.Cells[m + 7].BackColor = System.Drawing.Color.Yellow;
                         }
                     }
                 }
@@ -361,17 +361,17 @@ namespace ZCZJ_DPF.YS_Data
                         if (db_pass > 0)
                         {
                             e.Row.Cells[j].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
-                            e.Row.Cells[j + 17].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
-                            e.Row.Cells[j + 17].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j + 17].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
+                            e.Row.Cells[j + 11].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                            e.Row.Cells[j + 11].Attributes["style"] = "Cursor:hand";
+                            e.Row.Cells[j + 11].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
                         }
                         else
                         {
                             db_pass = Math.Abs(db_pass);
                             e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
-                            e.Row.Cells[j + 17].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
-                            e.Row.Cells[j + 17].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j + 17].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
+                            e.Row.Cells[j + 11].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                            e.Row.Cells[j + 11].Attributes["style"] = "Cursor:hand";
+                            e.Row.Cells[j + 11].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
 
                         }
                     }
