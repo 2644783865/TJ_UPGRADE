@@ -71,11 +71,13 @@ namespace ZCZJ_DPF.YS_Data
                 e.Row.Attributes.Add("onclick", String.Format("SelectRow('{0}', this);", uniqueId));
                 //双击合同号，查看合同详细信息
                 string lbl_CONTRACT_NO = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lbl_YS_CONTRACT_NO")).Text.ToString();
+                string lbl_pcon_sch = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lbl_pcon_sch")).Text.ToString();
                 e.Row.Cells[1].Attributes.Add("ondblclick", "ShowContract('" + lbl_CONTRACT_NO + "')");//第二格，即合同号上添加双击事件
                 e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
 
                 Encrypt_Decrypt ed = new Encrypt_Decrypt();
                 string CONTRACT_NO = ed.EncryptText(lbl_CONTRACT_NO);
+                string PCON_SCH = ed.EncryptText(lbl_pcon_sch);
                 //红黄预警
                 for (int i = 0; i < fathername.Length; i++)
                 {
@@ -101,13 +103,13 @@ namespace ZCZJ_DPF.YS_Data
                     {
                         if (db_pass > 0)
                         {
-                            e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + CONTRACT_NO + "')");
+                            e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + PCON_SCH + "')");
                             e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                             e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万,达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看材料总额明细");
                         }
                         else
                         {
-                            e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + CONTRACT_NO + "')");
+                            e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + PCON_SCH + "')");
                             e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                             e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万,达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看材料总额明细");
                         }
@@ -115,7 +117,7 @@ namespace ZCZJ_DPF.YS_Data
                     }
                     else
                     {
-                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 4]) + "')");
+                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 4]) + "')");
                         e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                         if (db_pass > 0)
                         {

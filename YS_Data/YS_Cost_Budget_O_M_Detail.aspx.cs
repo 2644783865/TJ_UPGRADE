@@ -33,7 +33,7 @@ namespace ZCZJ_DPF.YS_Data
                 lbl_fathername.Text = dt_title.Rows[0][0].ToString().Trim();   //绑定标题
             }
 
-            string sql_total_BG = "select YS_" + FatherCode + "*1.17 from YS_COST_BUDGET where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total_BG = "select YS_" + FatherCode + "*1.17 from YS_COST_BUDGET where YS_TSA_ID='" + ContractNo + "'";
 
             //获取预算总费用
             System.Data.DataTable dt_total_BG = DBCallCommon.GetDTUsingSqlText(sql_total_BG);
@@ -71,7 +71,7 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_OUT(string ContractNo, string FatherCode)
         {
             string sql_OUT_LAB_MAR = "select  YS_CODE,YS_NAME,YS_MONEY*1.17 as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG," +
-                   "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "' and YS_FATHER='OUT_LAB_MAR'";
+                   "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "' and YS_FATHER='OUT_LAB_MAR'";
             System.Data.DataTable dt_OUT_LAB_MAR = DBCallCommon.GetDTUsingSqlText(sql_OUT_LAB_MAR);
             dt_OUT_LAB_MAR.Columns.Add("YS_MONEY");
             dt_OUT_LAB_MAR.Columns.Add("YS_Union_Amount");
@@ -87,7 +87,7 @@ namespace ZCZJ_DPF.YS_Data
             }
 
             double total = 0;
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
@@ -129,7 +129,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             string fatherid = "";
             string sql_MAR = "select YS_CODE,YS_NAME,YS_MONEY*1.17 as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG," +
-                "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'" +
+                "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'" +
                 " and YS_FATHER='" + FatherCode + "' ";
             System.Data.DataTable dt_MAR = DBCallCommon.GetDTUsingSqlText(sql_MAR);
             dt_MAR.Columns.Add("YS_Union_Amount");
@@ -137,7 +137,7 @@ namespace ZCZJ_DPF.YS_Data
             dt_MAR.Columns.Add("YS_MONEY");
 
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from View_YS_COST_BUDGET_ORDER where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from View_YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
@@ -248,7 +248,7 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_OTHER_MAR(string ContractNo, string FatherCode)
         {
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
@@ -257,7 +257,7 @@ namespace ZCZJ_DPF.YS_Data
             lbl_total.Text = total.ToString("N2");
 
             string sql_OtherMar = "select YS_CODE,YS_NAME,YS_MONEY*1.17 as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG," +
-                "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'" +
+                "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'" +
                 " and YS_FATHER='" + FatherCode + "'";
             System.Data.DataTable dt_OtherMar = DBCallCommon.GetDTUsingSqlText(sql_OtherMar);
             string str_other = "";
@@ -323,14 +323,14 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_Paint_Elec_Pro(string ContractNo, string FatherCode)
         {
             //获取预算信息、创建datatable
-            string sql_Tol = "select  YS_CODE,YS_NAME,YS_MONEY*1.17 as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG,YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+            string sql_Tol = "select  YS_CODE,YS_NAME,YS_MONEY*1.17 as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG,YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
             System.Data.DataTable dt_Tol = DBCallCommon.GetDTUsingSqlText(sql_Tol);
             dt_Tol.Columns.Add("YS_Union_Amount");
             dt_Tol.Columns.Add("YS_Average_Price");
             dt_Tol.Columns.Add("YS_MONEY");
 
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
