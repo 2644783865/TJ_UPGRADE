@@ -4939,6 +4939,13 @@
     <Compile Include="PC_Data\TBPC_IQRCMPPRC_resultprint2.aspx.designer.cs">
       <DependentUpon>TBPC_IQRCMPPRC_resultprint2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PC_Data\TBPC_Order_Amount_detail.aspx.cs">
+      <DependentUpon>TBPC_Order_Amount_detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PC_Data\TBPC_Order_Amount_detail.aspx.designer.cs">
+      <DependentUpon>TBPC_Order_Amount_detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PC_Data\TBPC_Purorderdetail_xiugai.aspx.cs">
       <DependentUpon>TBPC_Purorderdetail_xiugai.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7817,6 +7824,34 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_A_M_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_A_M_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_O_M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_O_M.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_O_M_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_O_M_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.cs">
       <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7830,6 +7865,13 @@
     </Compile>
     <Compile Include="YS_Data\YS_Cost_Real_View.aspx.designer.cs">
       <DependentUpon>YS_Cost_Real_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Real_View_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_View_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Real_View_Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="YS_Data\YS_Desk.aspx.cs">
       <DependentUpon>YS_Desk.aspx</DependentUpon>
@@ -11103,6 +11145,7 @@
     <Content Include="PC_Data\PC_ZHAOBIAOLOGIN.aspx" />
     <Content Include="PC_Data\PC_ZHAOBIAOMANAGEMENT.aspx" />
     <Content Include="PC_Data\PC_ZHAOBIAOQUERY.aspx" />
+    <Content Include="PC_Data\TBPC_Order_Amount_detail.aspx" />
     <Content Include="PC_Data\ZHAOBIAOEDIT.aspx" />
     <Content Include="PL_Data\MainPlanProView.aspx" />
     <Content Include="PL_Data\MainPlan_AjaxHandler.aspx" />
@@ -12564,8 +12607,13 @@
     <Content Include="YS_Data\update4.jpg" />
     <Content Include="YS_Data\update5.jpg" />
     <Content Include="YS_Data\Yellow.jpg" />
+    <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_O_M.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_O_M_Detail.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Real_View.aspx" />
+    <Content Include="YS_Data\YS_Cost_Real_View_Detail.aspx" />
     <Content Include="YS_Data\YS_Desk.aspx" />
     <Content Include="YS_Data\YS_Index.aspx" />
     <Content Include="YS_Data\YS_Menu.aspx" />

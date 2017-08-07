@@ -133,7 +133,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "View_YS_COST_BUDGET_REAL";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_CONTRACT_NO,YS_TSA_ID,PCON_PJNAME,PCON_ENGNAME,YS_FERROUS_METAL," +
+            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_PJNAME,PCON_ENGNAME,YS_FERROUS_METAL," +
             "YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
             "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST," +
             "YS_ADDDATE,YS_NOTE,YS_REVSTATE,[YS_XS_Finished],[YS_Finshtime]," +
@@ -253,12 +253,14 @@ namespace ZCZJ_DPF.YS_Data
                 e.Row.Attributes.Add("onclick", String.Format("SelectRow('{0}', this);", uniqueId));
                 //e.Row.Attributes.Add("onclick", "ItemOver(this)");  //单击行变色
                 string lbl_CONTRACT_NO = ((Label)e.Row.FindControl("lbl_YS_CONTRACT_NO")).Text.ToString();
+                string lbl_TSA_ID = ((Label)e.Row.FindControl("lbl_YS_TSA_ID")).Text.ToString();
                 e.Row.Cells[1].Attributes.Add("ondblclick", "ShowContract('" + lbl_CONTRACT_NO + "')");
                 e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
 
                 Encrypt_Decrypt ed = new Encrypt_Decrypt();
+                //string TSA_ID = ed.EncryptText(lbl_TSA_ID);
                 string CONTRACT_NO = ed.EncryptText(lbl_CONTRACT_NO);
-                string[] fathername = { "OUT_LAB_MAR", "FERROUS_METAL", "PURCHASE_PART", "MACHINING_PART", "PAINT_COATING", "ELECTRICAL", "OTHERMAT_COST", "TEAM_CONTRACT", "FAC_CONTRACT", "PRODUCT_OUT", "MANU_COST", "SELL_COST", "MANAGE_COST", "Taxes_Cost" };
+                string[] fathername = {  "FERROUS_METAL", "PURCHASE_PART", "MACHINING_PART", "PAINT_COATING", "ELECTRICAL", "OTHERMAT_COST", "TEAM_CONTRACT", "FAC_CONTRACT", "PRODUCT_OUT" };
                 for (int i = 0; i < fathername.Length; i++)
                 {
                     e.Row.Cells[i + 4].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[i]) + "')");
