@@ -746,7 +746,7 @@ namespace ZCZJ_DPF.PC_Data
                     "qoutefstsf, CONVERT(float, qoutescdsf) AS qoutescdsf, CONVERT(float, qoutelstsf) AS qoutelstsf, pmode, keycoms, zdjprice, zdjnum, isnull(detailstate,0) as detailstate,case when margb='' then PIC_TUHAO else '' end as PIC_TUHAO,PIC_CHILDENGNAME,PIC_PICODE, " +
                     "(SELECT min(PRICE) FROM View_TBPC_IQRCMPPRICE_RVW GROUP BY MARID,totalstate having View_TBPC_IQRCMPPRICE.marid=MARID AND totalstate='4') AS minprice, " +
                      "(SELECT  top(1) PRICE  FROM View_TBPC_IQRCMPPRICE_RVW  GROUP BY MARID,PRICE,IRQDATA,totalstate  having View_TBPC_IQRCMPPRICE.marid=MARID AND totalstate='4' and price is not null order by IRQDATA DESC ) as lastprice, " +
-                    "isnull(detailcstate,0) as detailcstate, detailnote,PIC_MAP,ST_SQR,PIC_ARRAY FROM View_TBPC_IQRCMPPRICE  where picno='" + TextBoxNO.Text.ToString() + "' order by ptcode ASC";
+                    "isnull(detailcstate,0) as detailcstate, detailnote,PIC_MAP,ST_SQR,PIC_ARRAY,PIC_IFFAST AS 'IFFAST' FROM View_TBPC_IQRCMPPRICE  where picno='" + TextBoxNO.Text.ToString() + "' order by ptcode ASC";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
 
             checked_detailRepeater.DataSource = dt;
@@ -1488,6 +1488,11 @@ namespace ZCZJ_DPF.PC_Data
                 if (CheckBox12.Checked)
                 {
                     ((HtmlTableCell)e.Item.FindControl("tt11")).Visible = false;
+                }
+                string IFFAST = ((Label)e.Item.FindControl("IFFAST")).Text.Trim();
+                if (IFFAST == "1")
+                {
+                    ((Label)e.Item.FindControl("lbUrgency")).Visible = true;
                 }
             }
             if (e.Item.ItemType == ListItemType.Header)

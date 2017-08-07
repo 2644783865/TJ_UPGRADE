@@ -579,6 +579,8 @@
                                                                 <asp:CheckBox ID="CKBOX_SELECT" runat="server" BorderStyle="None" Checked="false"
                                                                     CssClass="checkBoxCss" onclick="checkme(this)" />
                                                                 &nbsp;
+                                                                <asp:Label ID="lbUrgency" runat="server" Text="加急" ForeColor="Red" Visible="false"/>
+                                                                <asp:Label ID="IFFAST" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="rownum" runat="server" Text="<%#Container.ItemIndex + 1 %>"></asp:Label>
