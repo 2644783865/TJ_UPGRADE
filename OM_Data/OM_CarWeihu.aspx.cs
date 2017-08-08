@@ -345,10 +345,13 @@ namespace ZCZJ_DPF.OM_Data
         }
         protected void lnkDelete2_OnClick(object sender, EventArgs e)
         {
-            string ID2 = ((LinkButton)sender).CommandArgument.ToString();
+            string parmString = ((LinkButton)sender).CommandArgument.ToString();
+            string[] parmStr = parmString.Split(',');
+            
             if (((LinkButton)sender).CommandName == "Del")
             {
-                string sqltext = "delete from TBOM_CAROIL where ID='" + ID2 + "'";
+                string sqltext = "delete from TBOM_CAROIL where ID='" + parmStr[0] + "';";
+                sqltext += string.Format("UPDATE dbo.TBOM_CAROILCARD SET CARDYE = CONVERT(FLOAT,CARDYE) + CONVERT(FLOAT,'{0}') WHERE CARDID='{1}'", parmStr[1], parmStr[2]);
                 DBCallCommon.ExeSqlText(sqltext);
                 this.GetBoundData2();
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提示:数据已删除！！！');window.location=window.location;", true);
