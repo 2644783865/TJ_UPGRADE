@@ -19,32 +19,9 @@ namespace ZCZJ_DPF.OM_Data
         {
             //rblstatus.SelectedValue = "0";
             UCPaging1.PageChanged += new UCPaging.PageHandler(Pager_PageChanged);
-            string ti = DateTime.Now.ToLocalTime().ToString();
-            //string TIMENOW = DateTime.Now.ToString("yyyyMMddHHmmss");
-            string sql = "select CODE from TBOM_CARAPPLY WHERE YDTIME<'" + ti + "'";
-            List<string> list = new List<string>();
-            DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
-            if (dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    string sqltxt = "update TBOM_CARAPPLY set FACHE='1' WHERE CODE IN('" + dt.Rows[i]["CODE"].ToString() + "')";
-                    list.Add(sqltxt);
-                }
-            }
-            DBCallCommon.ExecuteTrans(list);
-            //string sqlL = "select * from (select *,row_number() over(partition by CARNUM order by CODE desc) as rownum from TBOM_CARAPPLY WHERE FACHE='1' and YDTIME<'" + ti + "' AND HUICHE='0')a where rownum<=1";
-            //DataTable dtt = DBCallCommon.GetDTUsingSqlText(sqlL);
-            //if (dtt.Rows.Count > 0)
-            //{
-            //    for (int i = 0; i < dtt.Rows.Count; i++)
-            //    {
-            //        string sqltxt = "update TBOM_CARINFO set STATE='1',MUDIDI='" + dtt.Rows[i]["DESTINATION"].ToString() + "',NOWSIJI='" + dtt.Rows[i]["SJNAME"].ToString() + "' WHERE CARNUM= '" + dtt.Rows[i]["CARNUM"].ToString().Substring(0, 7) + "'";
-            //        DBCallCommon.ExeSqlText(sqltxt);
-            //    }
-            //}
-
-
+            string sql = string.Format("UPDATE TBOM_CARAPPLY SET FACHE='1' WHERE CODE IN(SELECT CODE FROM TBOM_CARAPPLY WHERE YDTIME<'{0}')", DateTime.Now.ToLocalTime().ToString());
+            DBCallCommon.ExeSqlText(sql);
+            
             if (!IsPostBack)
             {
                 gridview1.Columns[0].HeaderStyle.CssClass = "fixed";
@@ -63,7 +40,7 @@ namespace ZCZJ_DPF.OM_Data
                 RBLBind();
                 InitVar();
                 GetBoundData();
-                list.Clear();
+                List<string> list = new List<string>();
                 string sqltext ;
                 for (int i = 0; i < gridview1.Rows.Count; i++)
                 {
