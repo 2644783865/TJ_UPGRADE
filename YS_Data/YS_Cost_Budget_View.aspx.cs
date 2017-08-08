@@ -23,134 +23,21 @@ namespace ZCZJ_DPF.YS_Data
         {
             if (!IsPostBack)
             {
-                //btn_import.Visible = false;
                 BindPer();
                 BindState();
+                BindRevState();
                 BindProject();
                 BindEngineer();
+                BindTsaId();
                 InitVar();
                 GetTechRequireData();
-                //control_visible();
+                
             }
             InitVar();
             //CheckUser(ControlFinder);
         }
 
-        /// <summary>
-        /// 根据登陆人和设定控件权限
-        /// </summary>
-        //protected void control_visible()
-        //{
-        //    string DEP = Session["UserDeptID"].ToString();
-        //    string name = Session["UserName"].ToString();
-        //    for (int i = 4; i < 32; i++)//从合同号后面的列开始全部隐藏(旧预算数据可见)
-        //    {
-        //        GridView1.Columns[i].Visible = false;
-        //    }
-        //    GridView1.Columns[33].Visible = false; //附件列隐藏
-
-        //    if (name == "邓朝晖" || name == "于建会" || DEP == "08")//财务部和公司领导
-        //    {
-        //        for (int i = 4; i < 32; i++)//全部显示
-        //        {
-        //            GridView1.Columns[i].Visible = true;
-        //        }
-        //    }
-        //    else if (DEP == "03" || name == "张超臣")//技术部
-        //    {
-        //        GridView1.Columns[25].Visible = true;
-        //        GridView1.Columns[26].Visible = true;
-        //        GridView1.Columns[27].Visible = true;
-        //        GridView1.Columns[28].Visible = true;
-        //        GridView1.Columns[5].Visible = true;
-        //        for (int i = 12; i < 15; i++)
-        //        {
-        //            GridView1.Columns[i].Visible = true;
-        //        }
-        //    }
-        //    else if (DEP == "12" || name == "李冰飞")//市场部
-        //    {
-        //        btn_import.Visible = true;
-        //        for (int i = 6; i < 12; i++)
-        //        {
-        //            GridView1.Columns[i].Visible = true;
-        //        }
-        //        GridView1.Columns[19].Visible = true;
-        //        GridView1.Columns[20].Visible = true;
-        //        for (int i = 25; i < 32; i++)
-        //        {
-        //            GridView1.Columns[i].Visible = true;
-        //        }
-        //        GridView1.Columns[33].Visible = true;  //附件列可见
-        //    }
-        //    else if (DEP == "04" || name == "柳强")//生产部
-        //    {
-        //        if (DEP == "04")
-        //        {
-        //            btn_import.Visible = true;
-        //        }
-        //        GridView1.Columns[5].Visible = true;
-        //        GridView1.Columns[25].Visible = true;
-        //        GridView1.Columns[26].Visible = true;
-        //        GridView1.Columns[27].Visible = true;
-        //        GridView1.Columns[28].Visible = true;
-        //        for (int i = 12; i < 15; i++)
-        //        {
-        //            GridView1.Columns[i].Visible = true;
-        //        }
-        //    }
-        //    else if (DEP == "06" && name == "张志东")
-        //    {
-        //        for (int i = 6; i < 12; i++)
-        //        {
-        //            GridView1.Columns[i].Visible = true;
-        //        }
-        //        GridView1.Columns[20].Visible = true;
-        //        GridView1.Columns[25].Visible = true;
-        //        GridView1.Columns[26].Visible = true;
-        //        GridView1.Columns[27].Visible = true;
-        //        GridView1.Columns[28].Visible = true;
-        //    }
-        //    else if (DEP == "07" && name == "陈泽盛")
-        //    {
-        //        GridView1.Columns[19].Visible = true;
-        //        GridView1.Columns[25].Visible = true;
-        //        GridView1.Columns[26].Visible = true;
-        //        GridView1.Columns[27].Visible = true;
-        //        GridView1.Columns[28].Visible = true;
-        //    }
-        //    else
-        //    {
-        //        GridView1.Columns[25].Visible = true;
-        //        GridView1.Columns[26].Visible = true;
-        //        GridView1.Columns[27].Visible = true;
-        //        GridView1.Columns[28].Visible = true;
-        //    }
-        //}
-
-
-        /// <summary>
-        /// 填充制单人下拉框的数据
-        /// </summary>
-        protected void BindPer()
-        {
-            string sqltext = "SELECT DISTINCT YS_ADDNAME AS DDLVALUE,YS_ADDNAME AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_ADDNAME";
-            string dataText = "DDLTEXT";
-            string dataValue = "DDLVALUE";
-            DBCallCommon.BindDdl(ddl_addper, sqltext, dataText, dataValue);
-        }
-
-        /// <summary>
-        /// 填充审核专题下拉框的数据
-        /// </summary>
-        protected void BindState()
-        {
-            string sqltext = "SELECT DISTINCT YS_STATE AS DDLVALUE,case when YS_STATE is null then '初始化' when YS_STATE='0' then '财务填写中'" +
-            " when YS_STATE='1' then '部门反馈中'when YS_STATE='2' then '财务审核与调整中'when YS_STATE='3' then '领导审批中'when YS_STATE='4' then '驳回至财务' when YS_STATE='5' then '驳回至部门' end  AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_STATE";
-            string dataText = "DDLTEXT";
-            string dataValue = "DDLVALUE";
-            DBCallCommon.BindDdl(ddl_State, sqltext, dataText, dataValue);
-        }
+        #region 填充下拉框键值对
 
         /// <summary>
         /// 填充项目名称下拉框的数据
@@ -174,6 +61,53 @@ namespace ZCZJ_DPF.YS_Data
             DBCallCommon.BindDdl(ddl_engineer, sqltext, dataText, dataValue);
         }
 
+        /// <summary>
+        /// 填充任务号下拉框的数据
+        /// </summary>
+        protected void BindTsaId()
+        {
+            string sqltext = "SELECT DISTINCT YS_TSA_ID AS DDLVALUE,YS_TSA_ID AS DDLTEXT FROM View_YS_COST_BUDGET ORDER BY YS_TSA_ID";
+            string dataText = "DDLTEXT";
+            string dataValue = "DDLVALUE";
+            DBCallCommon.BindDdl(ddl_YS_TSA_ID, sqltext, dataText, dataValue);
+        }
+
+        /// <summary>
+        /// 填充编制进度下拉框的数据
+        /// </summary>
+        protected void BindRevState()
+        {
+            string sqltext = "SELECT DISTINCT YS_STATE AS DDLVALUE,case when YS_STATE is null then '新增预算' when YS_STATE='0' then '新增预算'" +
+            " when YS_STATE='1' then '财务填写中'when YS_STATE='2' then '部门反馈中'when YS_STATE='3' then '财务调整中'when YS_STATE='4' then '送审中' when YS_STATE='5' then '编制完成' end  AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_STATE";
+            string dataText = "DDLTEXT";
+            string dataValue = "DDLVALUE";
+            DBCallCommon.BindDdl(ddl_State, sqltext, dataText, dataValue);
+        }
+
+        /// <summary>
+        /// 填充审核进度下拉框的数据
+        /// </summary>
+        protected void BindState()
+        {
+            string sqltext = "SELECT DISTINCT YS_REVSTATE AS DDLVALUE,case when YS_REVSTATE is null then '未送审' when YS_REVSTATE='0' then '未送审'" +
+            " when YS_REVSTATE='1' then '审核中'when YS_REVSTATE='2' then '已通过'when YS_REVSTATE='3' then '被驳回' end  AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_REVSTATE";
+            string dataText = "DDLTEXT";
+            string dataValue = "DDLVALUE";
+            DBCallCommon.BindDdl(ddl_YS_REVSTATE, sqltext, dataText, dataValue);
+        }
+        /// <summary>
+        /// 填充制单人下拉框的数据
+        /// </summary>
+        protected void BindPer()
+        {
+            string sqltext = "SELECT DISTINCT YS_ADDNAME AS DDLVALUE,YS_ADDNAME AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_ADDNAME";
+            string dataText = "DDLTEXT";
+            string dataValue = "DDLVALUE";
+            DBCallCommon.BindDdl(ddl_addper, sqltext, dataText, dataValue);
+        }
+
+        #endregion 
+
 
         #region 分页
         /// <summary>
@@ -182,7 +116,7 @@ namespace ZCZJ_DPF.YS_Data
         private void InitVar()
         {
             InitPager();
-            
+
             //将页面相关信息传递给页码控件
             UCPaging1.PageChanged += new UCPaging.PageHandler(Pager_PageChanged);//将翻页事件处理程序添加到翻页事件监听器上           
             UCPaging1.PageSize = pager.PageSize;//每页显示的记录数传递给页面控件
@@ -205,11 +139,11 @@ namespace ZCZJ_DPF.YS_Data
             pager.TableName = "View_YS_COST_BUDGET";
             pager.PrimaryKey = "YS_CONTRACT_NO";
             pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,CM_PROJ,[TSA_ENGNAME],YS_BUDGET_INCOME,[YS_TOTALCOST_ALL],(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL)/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
-            "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST, " +
+            "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
             "YS_ADDNAME,YS_ADDTIME,YS_ADDFINISHTIME,YS_STATE,YS_NOTE";
             pager.OrderField = "YS_ADDTIME";
             pager.StrWhere = this.GetStrWhere();
-            pager.OrderType = 1;//按任务名称升序排列
+            pager.OrderType = 1; //按任务名称升序排列
             pager.PageSize = 10;
         }
 
@@ -219,7 +153,7 @@ namespace ZCZJ_DPF.YS_Data
         /// </summary>
         private void InitInfo()
         {
-            
+
             GetTechRequireData();
         }
 
@@ -251,14 +185,18 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1 ";
-            strwhere += "and YS_TSA_ID like '%" + txt_search.Text.ToString() + "%'";
+
+            if (ddl_YS_TSA_ID.SelectedIndex != 0)
+            {
+                strwhere += "and YS_TSA_ID = '" + ddl_YS_TSA_ID.SelectedValue + "'";
+            }
 
             if (ddl_addper.SelectedIndex != 0)//制单人
             {
                 strwhere += "and YS_ADDNAME='" + ddl_addper.SelectedValue + "'";
             }
 
-            if (ddl_State.SelectedIndex != 0)//审核状态
+            if (ddl_State.SelectedIndex != 0)//编制状态
             {
                 if (ddl_State.SelectedValue == "")
                 {
@@ -270,11 +208,23 @@ namespace ZCZJ_DPF.YS_Data
                 }
             }
 
+            if (ddl_YS_REVSTATE.SelectedIndex != 0)//审核状态
+            {
+                if (ddl_YS_REVSTATE.SelectedValue == "")
+                {
+                    strwhere += "and YS_REVSTATE is null";
+                }
+                else
+                {
+                    strwhere += "and YS_REVSTATE='" + ddl_YS_REVSTATE.SelectedValue + "'";
+                }
+            }
+
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
                 strwhere += " and CM_PROJ='" + ddl_project.SelectedValue + "'";
             }
-            if (ddl_engineer.SelectedIndex != 0)//工程名称
+            if (ddl_engineer.SelectedIndex != 0)//设备名称
             {
                 strwhere += " and TSA_ENGNAME='" + ddl_engineer.SelectedValue + "'";
             }
@@ -286,346 +236,64 @@ namespace ZCZJ_DPF.YS_Data
 
             return strwhere;
         }
+
         #endregion
 
-        //protected void GridView1_onrowdatabound(object sender, GridViewRowEventArgs e)
-        //{
-        //    String controlId = ((GridView)sender).ClientID;
-        //    String uniqueId = "";
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        uniqueId = String.Format("{0}{1}", controlId, e.Row.RowIndex);
-        //        //e.Row.Attributes.Add("onclick", "c=this.style.backgroundColor;this.style.backgroundColor='#ffcc33'");
-        //        //e.Row.Attributes.Add("onclick", "ItemOver(this)");  //单击行变色
-        //        e.Row.Attributes.Add("onclick", String.Format("SelectRow('{0}', this);", uniqueId));
-        //        //e.Row.Attributes.Add("onclick", "style.backgroundColor=c");
-        //        string DEP = Session["UserDeptID"].ToString();
-        //        string name = Session["UserName"].ToString();
-        //        string addper = ((Label)e.Row.FindControl("lbl_addper")).Text.ToString();
-        //        string lbl_CONTRACT_NO = ((Label)e.Row.FindControl("lbl_YS_CONTRACT_NO")).Text.ToString();
-        //        Encrypt_Decrypt ed = new Encrypt_Decrypt();
-        //        string CONTRACT_NO = ed.EncryptText(lbl_CONTRACT_NO);
-        //        e.Row.Cells[1].Attributes.Add("ondblclick", "ShowContract('" + lbl_CONTRACT_NO + "')");
-        //        e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
-
-        //        string sql_datetime = "select YS_ADDFINISHTIME from View_YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //        System.Data.DataTable dt_deadline = DBCallCommon.GetDTUsingSqlText(sql_datetime);
-        //        string datetime_deadline = dt_deadline.Rows[0]["YS_ADDFINISHTIME"].ToString();
-        //        DateTime dt_dl = DateTime.Parse(datetime_deadline);//获取截止时间
-        //        DateTime dt_now = DateTime.Now.AddDays(1);//获取当前时间的后天
-
-        //        #region 其它部门登录
-
-        //        if (DEP == "03" || name == "张超臣")//技术部
-        //        {
-        //            string sql_checkstate = "select YS_JISHU from YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_checkstate);
-        //            if (dt.Rows[0][0].ToString() == "0" || dt.Rows[0][0].ToString() == "3")//初次进入，或者保存过
-        //            {
-        //                e.Row.Cells[0].BackColor = System.Drawing.Color.Yellow;
-        //                e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                e.Row.Cells[5].BackColor = System.Drawing.Color.Yellow;
-        //                e.Row.Cells[5].ForeColor = System.Drawing.Color.Blue;
-        //                e.Row.Cells[5].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','5')");
-        //                e.Row.Cells[5].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[5].Attributes.Add("title", "双击对外协费用进行完善");
-        //            }
-        //            else if (dt.Rows[0][0].ToString() == "2")//已经提交部门审核
-        //            {
-        //                e.Row.Cells[0].BackColor = System.Drawing.Color.Green;
-        //                e.Row.Cells[0].ForeColor = System.Drawing.Color.White;
-        //                e.Row.Cells[5].BackColor = System.Drawing.Color.Green;
-        //                e.Row.Cells[5].ForeColor = System.Drawing.Color.White;
-        //                e.Row.Cells[5].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','5')");
-        //                e.Row.Cells[5].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[5].Attributes.Add("title", "双击对外协费用进行审核");
-        //            }
-        //            else//部门领导审核完毕
-        //            {
-        //                e.Row.Cells[5].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','5')");
-        //                e.Row.Cells[5].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[5].Attributes.Add("title", "双击查看外协费用明细");
-        //            }
-
-        //            if (dt.Rows[0][0].ToString() != "1")
-        //            {
-        //                if (dt_now > dt_dl)
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                }
-        //            }
-
-        //            for (int i = 12; i < 15; i++)//可查看生产部明细
-        //            {
-        //                e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + i + "')");
-        //                e.Row.Cells[i].Attributes.Add("title", "双击查看人工费用明细");
-        //            }
-        //        }
-        //        else if (DEP == "12" || name == "李冰飞")//市场部
-        //        {
-        //            #region 制单人登录
-        //            if (name == addper)
-        //            {
-        //                string sql_editstate = "select YS_JISHU,YS_SHICHANG,YS_SHENGCHAN,YS_CAIWU,YS_STATE from YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //                System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_editstate);
-        //                string jishu = dt.Rows[0][0].ToString();
-        //                string shichang = dt.Rows[0][1].ToString();
-        //                string shengchan = dt.Rows[0][2].ToString();
-        //                string caiwu = dt.Rows[0][3].ToString();
-        //                string State = dt.Rows[0][4].ToString();
-
-        //                if (State == "3")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Pink;
-        //                    Button btn = ((Button)e.Row.FindControl("btn_YS_Modify"));
-        //                    btn.Visible = true;
-        //                }
-        //                else if (State == "4")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                }
-        //            }
-        //            #endregion
-
-        //            string sql_checkstate = "select YS_SHICHANG from YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //            System.Data.DataTable dt_state = DBCallCommon.GetDTUsingSqlText(sql_checkstate);
-
-        //            for (int i = 6; i < 12; i++)
-        //            {
-
-        //                if (dt_state.Rows[0][0].ToString() == "0" || dt_state.Rows[0][0].ToString() == "3")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Yellow;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                    e.Row.Cells[i].BackColor = System.Drawing.Color.Yellow;
-        //                    e.Row.Cells[i].ForeColor = System.Drawing.Color.Blue;
-        //                    e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                    e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[i].Attributes.Add("title", "双击对材料费用进行完善");
-
-        //                    e.Row.Cells[19].BackColor = System.Drawing.Color.Yellow;
-        //                    e.Row.Cells[19].ForeColor = System.Drawing.Color.Blue;
-        //                    e.Row.Cells[19].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','19')");
-        //                    e.Row.Cells[19].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[19].Attributes.Add("title", "双击对运费用进行完善");
-        //                }
-        //                else if (dt_state.Rows[0][0].ToString() == "2")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Green;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.White;
-        //                    e.Row.Cells[i].BackColor = System.Drawing.Color.Green;
-        //                    e.Row.Cells[i].ForeColor = System.Drawing.Color.White;
-        //                    e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                    e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[i].Attributes.Add("title", "双击对材料费用进行审批");
-
-        //                    e.Row.Cells[19].BackColor = System.Drawing.Color.Green;
-        //                    e.Row.Cells[19].ForeColor = System.Drawing.Color.White;
-        //                    e.Row.Cells[19].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','19')");
-        //                    e.Row.Cells[19].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[19].Attributes.Add("title", "双击对运费用进行审批");
-        //                }
-        //                else
-        //                {
-        //                    e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                    e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[i].Attributes.Add("title", "双击查看材料费用明细");
-        //                    e.Row.Cells[19].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','19')");
-        //                    e.Row.Cells[19].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[19].Attributes.Add("title", "双击查看运费明细");
-
-        //                }
-        //            }
-
-        //            if (dt_state.Rows[0][0].ToString() != "1")
-        //            {
-        //                if (dt_now > dt_dl)
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                }
-        //            }
-        //        }
-
-        //        else if (DEP == "04" || name == "柳强")//生产部
-        //        {
-        //            string sql_checkstate = "select YS_SHENGCHAN from YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_checkstate);
-        //            for (int i = 12; i < 15; i++)
-        //            {
-        //                if (dt.Rows[0][0].ToString() == "0" || dt.Rows[0][0].ToString() == "3")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Yellow;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                    e.Row.Cells[i].BackColor = System.Drawing.Color.Yellow;
-        //                    e.Row.Cells[i].ForeColor = System.Drawing.Color.Blue;
-        //                    e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                    e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[i].Attributes.Add("title", "双击对人工费用进行完善");
-        //                }
-
-        //                else if (dt.Rows[0][0].ToString() == "2")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Green;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.White;
-        //                    e.Row.Cells[i].BackColor = System.Drawing.Color.Green;
-        //                    e.Row.Cells[i].ForeColor = System.Drawing.Color.White;
-        //                    e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                    e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[i].Attributes.Add("title", "双击对人工费用进行审批");
-        //                }
-        //                else
-        //                {
-        //                    e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                    e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                    e.Row.Cells[i].Attributes.Add("title", "双击查看人工费明细");
-        //                }
-        //            }
-
-        //            if (dt.Rows[0][0].ToString() != "1")
-        //            {
-        //                if (dt_now > dt_dl)
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                }
-        //            }
-
-        //            e.Row.Cells[5].Attributes["style"] = "Cursor:hand";
-        //            e.Row.Cells[5].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','5')");
-        //            e.Row.Cells[5].Attributes.Add("title", "双击查看外协费用明细");
-        //        }
-
-        //        else if (DEP == "08" || name == "张勇")
-        //        {
-        //            string sql_checkstate = "select YS_CAIWU,YS_JISHU,YS_SHENGCHAN,YS_SHICHANG,YS_STATE from YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_checkstate);
-        //            for (int i = 5; i < 25; i++)
-        //            {
-        //                if ((i > 15 || i == 15) && (i < 19))
-        //                {
-        //                    if (dt.Rows[0][0].ToString() == "0" || dt.Rows[0][0].ToString() == "3")
-        //                    {
-        //                        e.Row.Cells[0].BackColor = System.Drawing.Color.Yellow;
-        //                        e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                        e.Row.Cells[i].BackColor = System.Drawing.Color.Yellow;
-        //                        e.Row.Cells[i].ForeColor = System.Drawing.Color.Blue;
-        //                        e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                        e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                        e.Row.Cells[i].Attributes.Add("title", "双击对其他费用进行完善");
-        //                    }
-        //                    else if (dt.Rows[0][0].ToString() == "2")
-        //                    {
-        //                        e.Row.Cells[0].BackColor = System.Drawing.Color.Green;
-        //                        e.Row.Cells[0].ForeColor = System.Drawing.Color.White;
-        //                        e.Row.Cells[i].BackColor = System.Drawing.Color.Green;
-        //                        e.Row.Cells[i].ForeColor = System.Drawing.Color.White;
-        //                        e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                        e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                        e.Row.Cells[i].Attributes.Add("title", "双击对其他费用进行审批");
-        //                    }
-        //                    else
-        //                    {
-        //                        e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarEdit('" + CONTRACT_NO + "','" + DEP + "','" + i + "')");
-        //                        e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                        e.Row.Cells[i].Attributes.Add("title", "双击查看其它费用明细");
-        //                    }
-        //                    continue;
-        //                }
-        //                e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + i + "')");
-        //                e.Row.Cells[i].Attributes.Add("title", "双击查看明细");
-        //            }
-
-        //            if (name == "张勇")
-        //            {
-        //                if (dt.Rows[0]["YS_CAIWU"].ToString() != "1" ||
-        //                    dt.Rows[0]["YS_JISHU"].ToString() != "1" ||
-        //                    dt.Rows[0]["YS_SHENGCHAN"].ToString() != "1" ||
-        //                    dt.Rows[0]["YS_SHICHANG"].ToString() != "1")
-        //                {
-        //                    if (dt_now > dt_dl)
-        //                    {
-        //                        e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                        e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                    }
-        //                }
-        //                if ((dt.Rows[0]["YS_CAIWU"].ToString() == "1" &&
-        //                    dt.Rows[0]["YS_JISHU"].ToString() == "1" &&
-        //                    dt.Rows[0]["YS_SHENGCHAN"].ToString() == "1" &&
-        //                    dt.Rows[0]["YS_SHICHANG"].ToString() == "1") && dt.Rows[0]["YS_STATE"].ToString() == "")
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Sienna;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                if (dt.Rows[0]["YS_CAIWU"].ToString() != "1")
-        //                {
-        //                    if (dt_now > dt_dl)
-        //                    {
-        //                        e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                        e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        else if (name == "邓朝晖" || name == "于建会")
-        //        {
-        //            string sql_checkstate_l = "select YS_CAIWU,YS_JISHU,YS_SHENGCHAN,YS_SHICHANG from YS_COST_BUDGET where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_checkstate_l);
-        //            if (dt.Rows[0]["YS_CAIWU"].ToString() != "1" ||
-        //                    dt.Rows[0]["YS_JISHU"].ToString() != "1" ||
-        //                    dt.Rows[0]["YS_SHENGCHAN"].ToString() != "1" ||
-        //                    dt.Rows[0]["YS_SHICHANG"].ToString() != "1")
-        //            {
-        //                if (dt_now > dt_dl)
-        //                {
-        //                    e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
-        //                    e.Row.Cells[0].ForeColor = System.Drawing.Color.Blue;
-        //                }
-        //            }
-
-        //            for (int i = 5; i < 25; i++)
-        //            {
-        //                e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + i + "')");
-        //                e.Row.Cells[i].Attributes.Add("title", "双击查看明细");
-        //            }
-
-        //        }
-        //        else if (DEP == "06" && name == "张志东")
-        //        {
-        //            for (int i = 6; i < 12; i++)
-        //            {
-        //                e.Row.Cells[i].Attributes["style"] = "Cursor:hand";
-        //                e.Row.Cells[i].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + i + "')");
-        //                e.Row.Cells[i].Attributes.Add("title", "双击查看明细");
-        //            }
-        //        }
-        //        else if (DEP == "07" && name == "陈泽盛")
-        //        {
-        //            e.Row.Cells[19].Attributes["style"] = "Cursor:hand";
-        //            e.Row.Cells[19].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','19')");
-        //            e.Row.Cells[19].Attributes.Add("title", "双击查看明细");
-        //        }
-        //        #endregion
-
-        //        //控制二次调整的查看是否可见
-        //        HyperLink hp = ((HyperLink)e.Row.FindControl("Hp_View"));
-        //        string sql_check = "select count(*) from YS_COST_BUDGET_FIRST where YS_CONTRACT_NO='" + lbl_CONTRACT_NO + "'";
-        //        DataTable dt_check = DBCallCommon.GetDTUsingSqlText(sql_check);
-        //        if (dt_check.Rows[0][0].ToString() == "0")
-        //        {
-        //            hp.Visible = false;
-        //        }
-        //    }
-        //}
+        #region 前台获取进度状态
 
         /// <summary>
-        /// 用于前端获取预算进度
+        /// 用于前端获取采购反馈进度
+        /// </summary>
+        /// <param name="State"></param>
+        /// <returns></returns>
+        protected string GetCaiGouState(string CaiGouState)
+        {
+            string retValue = "";
+            switch (CaiGouState)
+            {
+                case "0":
+                    retValue = "未下推"; break;
+                case "1":
+                    retValue = "已反馈"; break;
+                case "2":
+                    retValue = "未反馈"; break;
+                case "3":
+                    retValue = "被驳回"; break;
+                default:
+                    break;
+            }
+            return retValue;
+        }
+
+
+        /// <summary>
+        /// 用于前端获取生产反馈进度
+        /// </summary>
+        /// <param name="State"></param>
+        /// <returns></returns>
+        protected string GetShengChanState(string ShengChanState)
+        {
+            string retValue = "";
+            switch (ShengChanState)
+            {
+                case "0":
+                    retValue = "未下推"; break;
+                case "1":
+                    retValue = "已反馈"; break;
+                case "2":
+                    retValue = "未反馈"; break;
+                case "3":
+                    retValue = "被驳回"; break;
+                default:
+                    break;
+            }
+            return retValue;
+        }
+
+
+
+        /// <summary>
+        /// 用于前端获取编制进度
         /// </summary>
         /// <param name="State"></param>
         /// <returns></returns>
@@ -635,48 +303,99 @@ namespace ZCZJ_DPF.YS_Data
             switch (State)
             {
                 case "0":
-                    retValue = "初始化"; break;
+                    retValue = "新增预算"; break;
                 case "1":
-                    retValue = "提交未审批"; break;
+                    retValue = "财务填写中"; break;
                 case "2":
-                    retValue = "审批中"; break;
+                    retValue = "部门反馈中"; break;
                 case "3":
-                    retValue = "已通过"; break;
+                    retValue = "财务调整中"; break;
                 case "4":
-                    retValue = "已驳回"; break;
-                case "":
-                    retValue = "未提交"; break;
+                    retValue = "送审中"; break;
+                case "5":
+                    retValue = "编制完成"; break;
                 default:
                     break;
             }
             return retValue;
         }
 
-        //删除，用于前端确定完善状态
-        protected string GetEditState(string editstate)
+
+        /// <summary>
+        /// 用于前端获取审核进度
+        /// </summary>
+        /// <param name="State"></param>
+        /// <returns></returns>
+        protected string GetRevState(string RevState)
         {
             string retValue = "";
-            string sqltext = "select YS_SHENGCHAN,YS_JISHU,YS_SHICHANG,YS_CAIWU from YS_COST_BUDGET where YS_CONTRACT_NO='" + editstate + "'";
-            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
-            string shengchan = dt.Rows[0][0].ToString();
-            string jishu = dt.Rows[0][1].ToString();
-            string shichang = dt.Rows[0][2].ToString();
-            string caiwu = dt.Rows[0][3].ToString();
-            if ((shengchan == "0") && (jishu == "0") && (shichang == "0") && (caiwu == "0"))
+            switch (RevState)
             {
-                retValue = "未完善";
-            }
-            else if ((shengchan == "1") && (jishu == "1") && (shichang == "1") && (caiwu == "1"))
-            {
-                retValue = "已完善";
-            }
-            else
-            {
-                retValue = "完善中";
+                case "0":
+                    retValue = "未送审"; break;
+                case "1":
+                    retValue = "审核中"; break;
+                case "2":
+                    retValue = "已通过"; break;
+                case "3":
+                    retValue = "被驳回"; break;
+                default:
+                    break;
             }
             return retValue;
         }
 
+        /// <summary>
+        /// 用于前端获取一级审核进度
+        /// </summary>
+        /// <param name="State"></param>
+        /// <returns></returns>
+        protected string GetFirstRevState(string FirstRevState)
+        {
+            string retValue = "";
+            switch (FirstRevState)
+            {
+                case "0":
+                    retValue = "未送审"; break;
+                case "1":
+                    retValue = "待审核"; break;
+                case "2":
+                    retValue = "已同意"; break;
+                case "3":
+                    retValue = "已驳回"; break;
+                default:
+                    break;
+            }
+            return retValue;
+        }
+
+        /// <summary>
+        /// 用于前端获取二级进度
+        /// </summary>
+        /// <param name="State"></param>
+        /// <returns></returns>
+        protected string GetSecondRevState(string SecondRevState)
+        {
+            string retValue = "";
+            switch (SecondRevState)
+            {
+                case "0":
+                    retValue = "未送审"; break;
+                case "1":
+                    retValue = "待审核"; break;
+                case "2":
+                    retValue = "已同意"; break;
+                case "3":
+                    retValue = "已驳回"; break;
+                default:
+                    break;
+            }
+            return retValue;
+        }
+
+        #endregion
+
+        #region 前台控件触发的事件
         /// <summary>
         /// 查询项目
         /// </summary>
@@ -738,50 +457,9 @@ namespace ZCZJ_DPF.YS_Data
             }
         }
 
+        #endregion
 
-        //待定，删除预算
-        protected void btnDelete_OnClick(object sender, EventArgs e)
-        {
-            int count = 0;
-            string sqltext = string.Empty;
-            List<string> listsql = new List<string>();
-            foreach (GridViewRow grow in GridView1.Rows)
-            {
-                HiddenField hdfMP_ID = (HiddenField)grow.FindControl("hdfMP_ID");
-                CheckBox ckb = (CheckBox)grow.FindControl("CheckBox1");
-                if (ckb.Checked)
-                {
-                    count++;
-                    listsql.Add("DELETE FROM YS_COST_BUDGET_ORIGINAL WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");  //市场部原始指标
-                    listsql.Add("DELETE FROM YS_COST_BUDGET WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");          //预算主表
-                    listsql.Add("DELETE FROM YS_COST_BUDGET_REV WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");       //预算审核表
-                    listsql.Add("DELETE FROM YS_COST_BUDGET_DETAIL WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");     //预算细表
-                    listsql.Add("DELETE FROM YS_COST_REAL WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");              //实际费用表
-                    listsql.Add("DELETE FROM YS_COST_REAL_DETAIL WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");       //实际分摊费细表
-                    listsql.Add("DELETE FROM YS_COST_REAL_OTHER WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");        //实际分摊费主表
-                    listsql.Add("DELETE FROM YS_COST_BUDGET_FIRST WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");       //一次预算主表
-                    listsql.Add("DELETE FROM YS_COST_BUDGET_FIRST_DETAIL WHERE YS_CONTRACT_NO='" + hdfMP_ID.Value + "'");   //一次预算细表
 
-                }
-            }
 
-            if (listsql.Count > 0)
-            {
-                DBCallCommon.ExecuteTrans(listsql);
-                InitVar();
-                GetTechRequireData();
-
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('删除成功，共删除【" + count.ToString() + "】条记录！！！');", true);
-                return;
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请选择要删除的行！！！');", true);
-                return;
-            }
-        }
-
-       
-       
     }
 }

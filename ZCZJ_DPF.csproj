@@ -7817,6 +7817,13 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_Add_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_Add_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_Audit_View.aspx.cs">
       <DependentUpon>YS_Cost_Budget_Audit_View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -12574,6 +12581,7 @@
     <Content Include="SM_Data\SM_Warehouse_InventorySchema.aspx" />
     <Content Include="SM_Data\SM_Warehouse_InventorySummary.aspx" />
     <Content Include="top.aspx" />
+    <Content Include="YS_Data\budget_detail.js" />
     <Content Include="YS_Data\LightSalmon.jpg" />
     <Content Include="YS_Data\pink.jpg" />
     <Content Include="YS_Data\Red.jpg" />
@@ -12585,6 +12593,7 @@
     <Content Include="YS_Data\update4.jpg" />
     <Content Include="YS_Data\update5.jpg" />
     <Content Include="YS_Data\Yellow.jpg" />
+    <Content Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_Audit_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_View.aspx" />

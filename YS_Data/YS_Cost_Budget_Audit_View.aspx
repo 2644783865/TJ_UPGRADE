@@ -68,7 +68,7 @@
                         <%--项目名称--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="项目名称" HeaderStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("CM_PROJ") %>'></asp:Label>
+                                <asp:Label ID="lbl_CM_PROJ" runat="server" Text='<%#Eval("CM_PROJ") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle Wrap="False"></HeaderStyle>
                             <ItemStyle HorizontalAlign="Center" />
