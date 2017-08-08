@@ -507,7 +507,7 @@
                                 <asp:Label ID="lab_OTHERMAT_COST_R" runat="server" Text='<%#Eval("YS_OTHERMAT_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="班组承包(实)" HeaderStyle-Wrap="false">
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="直接人工费(实)" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_TEAM_CONTRACT_R" runat="server" Text='<%#Eval("YS_TEAM_CONTRACT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>

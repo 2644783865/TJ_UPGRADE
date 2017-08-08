@@ -258,12 +258,12 @@ namespace ZCZJ_DPF.YS_Data
                 e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
 
                 Encrypt_Decrypt ed = new Encrypt_Decrypt();
-                //string TSA_ID = ed.EncryptText(lbl_TSA_ID);
+                string TSA_ID = ed.EncryptText(lbl_TSA_ID);
                 string CONTRACT_NO = ed.EncryptText(lbl_CONTRACT_NO);
                 string[] fathername = {  "FERROUS_METAL", "PURCHASE_PART", "MACHINING_PART", "PAINT_COATING", "ELECTRICAL", "OTHERMAT_COST", "TEAM_CONTRACT", "FAC_CONTRACT", "PRODUCT_OUT" };
                 for (int i = 0; i < fathername.Length; i++)
                 {
-                    e.Row.Cells[i + 4].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[i]) + "')");
+                    e.Row.Cells[i + 4].Attributes.Add("ondblclick", "PurMarView('" + TSA_ID + "','" + ed.EncryptText(fathername[i]) + "')");
                     e.Row.Cells[i + 4].Attributes["style"] = "Cursor:hand";
                     e.Row.Cells[i + 4].Attributes.Add("title", "双击查看明细");
                 }

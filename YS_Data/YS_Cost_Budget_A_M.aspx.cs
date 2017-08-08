@@ -274,12 +274,13 @@ namespace ZCZJ_DPF.YS_Data
                 e.Row.Attributes.Add("onclick", String.Format("SelectRow('{0}', this);", uniqueId));
                 //e.Row.Attributes.Add("onclick", "ItemOver(this)");  //单击行变色
                 string lbl_CONTRACT_NO = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lbl_YS_CONTRACT_NO")).Text.ToString();
+                string lbl_pcon_sch = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lbl_pcon_sch")).Text.ToString();
                 e.Row.Cells[1].Attributes.Add("ondblclick", "ShowContract('" + lbl_CONTRACT_NO + "')");//第二格，即合同号上添加双击事件
                 e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
 
                 Encrypt_Decrypt ed = new Encrypt_Decrypt();
                 string CONTRACT_NO = ed.EncryptText(lbl_CONTRACT_NO);
-
+                string PCON_SCH = ed.EncryptText(lbl_pcon_sch);
                 string[] fathername = {  "FERROUS_METAL", "PURCHASE_PART", "MACHINING_PART", "PAINT_COATING", "ELECTRICAL", "OTHERMAT_COST", "TEAM_CONTRACT", "FAC_CONTRACT", "PRODUCT_OUT", "TRANS_COST" };
                 // 利润总额和净利润的红黄预警
                 string[] fathername_profit = { "PROFIT"};
@@ -356,12 +357,12 @@ namespace ZCZJ_DPF.YS_Data
                     double db_pass = Math.Round(db_Order - db_Budget, 1);
                     if (j < 16)
                     {
-                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 8]) + "')");
                         e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                         if (db_pass > 0)
                         {
                             e.Row.Cells[j].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
-                            e.Row.Cells[j + 11].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                            e.Row.Cells[j + 11].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 8]) + "')");
                             e.Row.Cells[j + 11].Attributes["style"] = "Cursor:hand";
                             e.Row.Cells[j + 11].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
                         }
@@ -369,7 +370,7 @@ namespace ZCZJ_DPF.YS_Data
                         {
                             db_pass = Math.Abs(db_pass);
                             e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
-                            e.Row.Cells[j + 11].Attributes.Add("ondblclick", "PurMarView('" + CONTRACT_NO + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                            e.Row.Cells[j + 11].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 8]) + "')");
                             e.Row.Cells[j + 11].Attributes["style"] = "Cursor:hand";
                             e.Row.Cells[j + 11].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
 

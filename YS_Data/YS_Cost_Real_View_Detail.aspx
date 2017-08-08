@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
     <script type="text/javascript" language="javascript">   
-    function PurOUT(ContractNo,FatherCode)
+     function PurOUT(ContractNo,FatherCode)
      {
         var autonum=Math.round(10000*Math.random()); 
         window.open("YS_IN_Detail_WW.aspx?ContractNo="+ContractNo+"&autonum="+autonum+"&FatherCode="+FatherCode+"");
@@ -19,7 +19,7 @@
      
       function PurLABOR(ContractNo,FatherCode)
      {
-        var autonum=Math.round(10000*Math.random()); 
+        var autonum=Math.round(10000*Math.random());
         window.open("YS_Statiatics_LABOR.aspx?ContractNo="+ContractNo+"&autonum="+autonum+"&FatherCode="+FatherCode+"");
      }
     </script>

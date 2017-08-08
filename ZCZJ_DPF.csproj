@@ -7824,6 +7824,7 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\ExportDataFromYS.cs" />
     <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.cs">
       <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7893,6 +7894,20 @@
     </Compile>
     <Compile Include="YS_Data\YS_Menu.aspx.designer.cs">
       <DependentUpon>YS_Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Order_Detail.aspx.cs">
+      <DependentUpon>YS_Order_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Order_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Order_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_OUT_Detail_MAR.aspx.cs">
+      <DependentUpon>YS_OUT_Detail_MAR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_OUT_Detail_MAR.aspx.designer.cs">
+      <DependentUpon>YS_OUT_Detail_MAR.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -12617,6 +12632,8 @@
     <Content Include="YS_Data\YS_Desk.aspx" />
     <Content Include="YS_Data\YS_Index.aspx" />
     <Content Include="YS_Data\YS_Menu.aspx" />
+    <Content Include="YS_Data\YS_Order_Detail.aspx" />
+    <Content Include="YS_Data\YS_OUT_Detail_MAR.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Contract_Data\CheckRequest.rdlc" />

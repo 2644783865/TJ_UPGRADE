@@ -46,8 +46,8 @@ namespace ZCZJ_DPF.YS_Data
                 case "PURCHASE_PART":
                 case "MACHINING_PART": this.Bind_MAR(ContractNo, FatherCode); break;
                 case "OTHERMAT_COST": this.Bind_OTHER_MAR(ContractNo, FatherCode); break;
-                case "TEAM_CONTRACT":
-                case "FAC_CONTRACT": this.Bind_LABOR(ContractNo, FatherCode); break;
+                case "TEAM_CONTRACT": this.Bind_LABOR_TEAM(ContractNo, FatherCode); break;
+                case "FAC_CONTRACT": this.Bind_LABOR_FAC(ContractNo, FatherCode); break;
                 //case "MANU_COST":
                 //case "SELL_COST":
                 //case "MANAGE_COST":
@@ -126,23 +126,24 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_MAR(string ContractNo, string FatherCode)
         {
             string fatherid = "";
-            string sql_MAR = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+            string sql_MAR = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
             System.Data.DataTable dt_MAR = DBCallCommon.GetDTUsingSqlText(sql_MAR);
             dt_MAR.Columns.Add("YS_Union_Amount");
             dt_MAR.Columns.Add("YS_Average_Price");
             dt_MAR.Columns.Add("YS_MONEY");
 
             //获取该合同号下的所有生产制号
-            string sql_ENGID = "select PCON_SCH from View_YS_CONTRACT where PCON_BCODE='" + ContractNo + "'";
-            System.Data.DataTable dt_ENGID = DBCallCommon.GetDTUsingSqlText(sql_ENGID);
-            string ENGID = "";
-            if (dt_ENGID.Rows.Count > 0)
-            {
-                ENGID = dt_ENGID.Rows[0]["PCON_SCH"].ToString();
-            }
+            //string sql_ENGID = "select PCON_SCH from View_YS_CONTRACT where PCON_BCODE='" + ContractNo + "'";
+            //System.Data.DataTable dt_ENGID = DBCallCommon.GetDTUsingSqlText(sql_ENGID);
+            //string ENGID = "";
+            //if (dt_ENGID.Rows.Count > 0)
+            //{
+            //    ENGID = dt_ENGID.Rows[0]["PCON_SCH"].ToString();
+            //}
+            string ENGID = ContractNo;
 
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_TSA_ID='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
@@ -153,7 +154,7 @@ namespace ZCZJ_DPF.YS_Data
             if (FatherCode == "FERROUS_METAL")
             {
                 fatherid = "01.07";
-                string sql_money = "select sum(Amount) as Amount,sum(RealNumber) as RealNumber, sum(Amount)/sum(RealNumber) as UnitPrice from View_SM_OUT where  CHARINDEX(TASKID + ';', '" + ENGID + "') > 0 AND TASKID != '' and MaterialCode like'" + fatherid + "%'";
+                string sql_money = "select sum(Amount) as Amount,sum(RealNumber) as RealNumber, sum(Amount)/sum(RealNumber) as UnitPrice from View_SM_OUT where  TSAID = '" + ENGID + "' AND TSAID != '' and MaterialCode like'" + fatherid + "%'";
                 for (int j = 0; j < dt_MAR.Rows.Count; j++)
                 {
                     string sql = "";
@@ -201,7 +202,7 @@ namespace ZCZJ_DPF.YS_Data
 
                 string sql_money = "select sum(Amount) as Amount,sum(RealNumber) as RealNumber," +
                     " sum(Amount)/sum(RealNumber) as UnitPrice from View_SM_OUT " +
-                    "where CHARINDEX(TASKID + ';', '" + ENGID + "') > 0 AND TASKID != '' and MaterialCode like'" + fatherid + "%'";
+                    "where  TSAID = '" + ENGID + "' AND TSAID != '' and MaterialCode like'" + fatherid + "%'";
 
                 //获取明细物料费用
                 double main_mar = 0;
@@ -213,14 +214,14 @@ namespace ZCZJ_DPF.YS_Data
                         sql = sql_money + " and charindex('" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "',MaterialName)>0 ";
 
                         //判断预算物料表是否有包含此名称的材料
-                        string sql_contain = "select YS_Product_Name from TBBD_Product_type where YS_Product_Tag='1' " +
-                            "and charindex('-',YS_Product_Code)>0 and YS_Product_Name like '%" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "%' " +
-                            "and YS_Product_Name!='" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "'";
-                        DataTable dt_contain = DBCallCommon.GetDTUsingSqlText(sql_contain);
-                        for (int s = 0; s < dt_contain.Rows.Count; s++)
-                        {
-                            sql += " and charindex('" + dt_contain.Rows[s]["YS_Product_Name"] + "',MaterialName)=0";
-                        }
+                        //string sql_contain = "select YS_Product_Name from TBBD_Product_type where YS_Product_Tag='1' " +
+                        //    "and charindex('-',YS_Product_Code)>0 and YS_Product_Name like '%" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "%' " +
+                        //    "and YS_Product_Name!='" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "'";
+                        //DataTable dt_contain = DBCallCommon.GetDTUsingSqlText(sql_contain);
+                        //for (int s = 0; s < dt_contain.Rows.Count; s++)
+                        //{
+                        //    sql += " and charindex('" + dt_contain.Rows[s]["YS_Product_Name"] + "',MaterialName)=0";
+                        //}
 
                         System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
                         double money = 0;
@@ -256,23 +257,17 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_OTHER_MAR(string ContractNo, string FatherCode)
         {
             //获取该合同号下的所有生产制号
-            string sql_ENGID = "select PCON_SCH from View_YS_COST_BUDGET_REAL where YS_CONTRACT_NO='" + ContractNo + "'";
-            System.Data.DataTable dt_ENGID = DBCallCommon.GetDTUsingSqlText(sql_ENGID);
-            string ENGID = "";
-            if (dt_ENGID.Rows.Count > 0)
-            {
-                ENGID = dt_ENGID.Rows[0]["PCON_SCH"].ToString();
-            }
+            string ENGID = ContractNo;
 
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_TSA_ID='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
                 total = (dt_total.Rows[0][0].ToString() == "" ? 0 : double.Parse(dt_total.Rows[0][0].ToString()));  //总金额      
             }
 
-            string sql_OtherMar = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'and YS_FATHER='" + FatherCode + "' ";
+            string sql_OtherMar = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "' ";
             System.Data.DataTable dt_OtherMar = DBCallCommon.GetDTUsingSqlText(sql_OtherMar);
             dt_OtherMar.Columns.Add("YS_Union_Amount");
             dt_OtherMar.Columns.Add("YS_Average_Price");
@@ -280,7 +275,7 @@ namespace ZCZJ_DPF.YS_Data
             double main_mar = 0;
             for (int j = 0; j < dt_OtherMar.Rows.Count; j++)
             {
-                string sql_code = "select sum(Amount) as Amount from View_SM_OUT where CHARINDEX(TASKID + ';', '" + ENGID + "') > 0 AND TASKID != '' and MaterialCode like '" + dt_OtherMar.Rows[j]["YS_CODE"] + "%'";
+                string sql_code = "select sum(Amount) as Amount from View_SM_OUT where TSAID = '" + ENGID + "' AND TSAID != '' and MaterialCode like '" + dt_OtherMar.Rows[j]["YS_CODE"] + "%'";
                 System.Data.DataTable dt_code = DBCallCommon.GetDTUsingSqlText(sql_code);
                 double money = 0;
                 if (dt_code.Rows.Count > 0)
@@ -309,20 +304,14 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_LABOR(string ContractNo, string FatherCode)
         {
             //获取预算信息、创建datatable
-            string sql_LABOR = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'and YS_FATHER='" + FatherCode + "' ";
+            string sql_LABOR = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "' ";
             System.Data.DataTable dt_LABOR = DBCallCommon.GetDTUsingSqlText(sql_LABOR);
             dt_LABOR.Columns.Add("YS_Union_Amount");
             dt_LABOR.Columns.Add("YS_Average_Price");
             dt_LABOR.Columns.Add("YS_MONEY");
 
             //获取该合同号下的所有生产制号
-            string sql_ENGID = "select PCON_SCH from View_YS_CONTRACT where PCON_BCODE='" + ContractNo + "'";
-            System.Data.DataTable dt_ENGID = DBCallCommon.GetDTUsingSqlText(sql_ENGID);
-            string ENGID = "";
-            if (dt_ENGID.Rows.Count > 0)
-            {
-                ENGID = dt_ENGID.Rows[0]["PCON_SCH"].ToString();
-            }
+            string ENGID = ContractNo;
 
             //班组or厂内
             string PS_BZ = "";
@@ -386,6 +375,159 @@ namespace ZCZJ_DPF.YS_Data
             GridView1.DataBind();
         }
 
+        protected void Bind_LABOR_TEAM(string ContractNo, string FatherCode)
+        {
+            //获取预算信息、创建datatable
+            string sql_LABOR = "select  YS_CODE,YS_NAME,YS_MONEY as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG,YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+            System.Data.DataTable dt_LABOR = DBCallCommon.GetDTUsingSqlText(sql_LABOR);
+            dt_LABOR.Columns.Add("YS_Union_Amount");
+            dt_LABOR.Columns.Add("YS_Average_Price");
+            dt_LABOR.Columns.Add("YS_MONEY");
+
+            //获取该合同号下的所有生产制号
+            //string sql_ENGID = "select PCON_SCH from View_YS_CONTRACT where PCON_BCODE='" + ContractNo + "'";
+            //System.Data.DataTable dt_ENGID = DBCallCommon.GetDTUsingSqlText(sql_ENGID);
+            //string ENGID = "";
+            //if (dt_ENGID.Rows.Count > 0)
+            //{
+            //    ENGID = dt_ENGID.Rows[0]["PCON_SCH"].ToString();
+            //}
+            string ENGID = ContractNo;
+
+
+            double total = 0;   //总金额
+            double main_mar = 0;  //明细金额
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_TSA_ID='" + ContractNo + "'";
+            System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
+            if (dt_total.Rows.Count > 0)
+            {
+                total = (dt_total.Rows[0][0].ToString() == "" ? 0 : double.Parse(dt_total.Rows[0][0].ToString()));  //总金额      
+            }
+
+            if (ENGID != "")
+            {
+                double money = 0;
+                double num = 0;
+                double price = 0;
+                string sql_money1 = "SELECT SUM(GS_MONEY) as PS_JE1" +
+                    "FROM TBMP_GS_LIST" +
+                    "WHERE GS_TSAID=@ENGID";
+                string sql_money2 = "SELECT SUM(CNFB_BYREALMONEY) as PS_JE2" +
+                    " from TBMP_CNFB_LIST " +
+                    "where  CNFB_TSAID=@ENGID AND CNFB_TYPE LIKE '%一%'";
+
+                string sql_name = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+                System.Data.DataTable dt_name = DBCallCommon.GetDTUsingSqlText(sql_name);
+                for (int j = 0; j < dt_LABOR.Rows.Count; j++)
+                {
+                    if (dt_LABOR.Rows[j]["YS_CODE"].ToString() != "other")
+                    {
+                        string sql1 = "";
+                        string sql2 = "";
+                        sql1 = sql_money1 + " and GS_TUMING ='" + dt_LABOR.Rows[j]["YS_NAME"].ToString() + "'";
+                        sql2 = sql_money2 + " and CNFB_SBNAME ='" + dt_LABOR.Rows[j]["YS_NAME"].ToString() + "'";
+                        System.Data.DataTable dt1 = DBCallCommon.GetDTUsingSqlText(sql1);
+                        System.Data.DataTable dt2 = DBCallCommon.GetDTUsingSqlText(sql2);
+                        if (dt1.Rows.Count > 0)
+                        {
+                            money += (dt1.Rows[0]["PS_JE1"].ToString() == "" ? 0 : double.Parse(dt1.Rows[0]["PS_JE1"].ToString()));
+                        }
+                        if (dt2.Rows.Count > 0)
+                        {
+                            money += (dt2.Rows[0]["PS_JE2"].ToString() == "" ? 0 : double.Parse(dt2.Rows[0]["PS_JE2"].ToString()));
+                        }
+
+                        dt_LABOR.Rows[j]["YS_Union_Amount"] = num.ToString("N3");
+                        dt_LABOR.Rows[j]["YS_Average_Price"] = price.ToString("F3");
+                        dt_LABOR.Rows[j]["YS_MONEY"] = money.ToString("F3");
+                        main_mar += money;
+                    }
+                }
+            }
+            double other = total - main_mar;
+            DataRow[] dr = dt_LABOR.Select("YS_CODE='other'");   //其它费用
+            for (int i = 0; i < dr.Length; i++)
+            {
+                dr[i]["YS_MONEY"] = other.ToString("F3");
+            }
+            lbl_total.Text = total.ToString("N2");
+            GridView1.DataSource = dt_LABOR;
+            GridView1.DataBind();
+        }
+
+        protected void Bind_LABOR_FAC(string ContractNo, string FatherCode)
+        {
+            //获取预算信息、创建datatable
+            string sql_LABOR = "select  YS_CODE,YS_NAME,YS_MONEY as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG,YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+            System.Data.DataTable dt_LABOR = DBCallCommon.GetDTUsingSqlText(sql_LABOR);
+            dt_LABOR.Columns.Add("YS_Union_Amount");
+            dt_LABOR.Columns.Add("YS_Average_Price");
+            dt_LABOR.Columns.Add("YS_MONEY");
+
+            //获取该合同号下的所有生产制号
+            //string sql_ENGID = "select PCON_SCH from View_YS_CONTRACT where PCON_BCODE='" + ContractNo + "'";
+            //System.Data.DataTable dt_ENGID = DBCallCommon.GetDTUsingSqlText(sql_ENGID);
+            //string ENGID = "";
+            //if (dt_ENGID.Rows.Count > 0)
+            //{
+            //    ENGID = dt_ENGID.Rows[0]["PCON_SCH"].ToString();
+            //}
+            string ENGID = ContractNo;
+
+            //班组or厂内
+
+
+            double total = 0;   //总金额
+            double main_mar = 0;  //明细金额
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_TSA_ID='" + ContractNo + "'";
+            System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
+            if (dt_total.Rows.Count > 0)
+            {
+                total = (dt_total.Rows[0][0].ToString() == "" ? 0 : double.Parse(dt_total.Rows[0][0].ToString()));  //总金额      
+            }
+
+            if (ENGID != "")
+            {
+                double money = 0;
+                double num = 0;
+                double price = 0;
+                string sql_money = "SELECT SUM(CNFB_BYREALMONEY) as PS_JE" +
+                    " from TBMP_CNFB_LIST " +
+                    "where  CNFB_TSAID=@ENGID AND CNFB_TYPE NOT LIKE '%一%'";
+
+                string sql_name = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+                System.Data.DataTable dt_name = DBCallCommon.GetDTUsingSqlText(sql_name);
+                for (int j = 0; j < dt_LABOR.Rows.Count; j++)
+                {
+                    if (dt_LABOR.Rows[j]["YS_CODE"].ToString() != "other")
+                    {
+                        string sql = "";
+                        sql = sql_money + " and CNFB_SBNAME ='" + dt_LABOR.Rows[j]["YS_NAME"].ToString() + "'";
+                        System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
+                        if (dt.Rows.Count > 0)
+                        {
+                            num = 0;
+                            price = 0;
+                            money = (dt.Rows[0]["PS_JE"].ToString() == "" ? 0 : double.Parse(dt.Rows[0]["PS_JE"].ToString()));
+                        }
+                        dt_LABOR.Rows[j]["YS_Union_Amount"] = num.ToString("N3");
+                        dt_LABOR.Rows[j]["YS_Average_Price"] = price.ToString("F3");
+                        dt_LABOR.Rows[j]["YS_MONEY"] = money.ToString("F3");
+                        main_mar += money;
+                    }
+                }
+            }
+            double other = total - main_mar;
+            DataRow[] dr = dt_LABOR.Select("YS_CODE='other'");   //其它费用
+            for (int i = 0; i < dr.Length; i++)
+            {
+                dr[i]["YS_MONEY"] = other.ToString("F3");
+            }
+            lbl_total.Text = total.ToString("N2");
+            GridView1.DataSource = dt_LABOR;
+            GridView1.DataBind();
+        }
+
         protected void Bind_OTHER(string ContractNo, string FatherCode)
         {
             string sql_OTHER = "select YS_CODE,YS_NAME,YS_MONEY from YS_COST_REAL_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'and YS_FATHER='" + FatherCode + "' and YS_NAME is not null and YS_MONEY is not null";
@@ -409,14 +551,14 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void Bind_Paint_Elec_Pro(string ContractNo, string FatherCode)
         {
-            string sql_Tol = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_CONTRACT_NO='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
+            string sql_Tol = "select  YS_CODE,YS_NAME from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'and YS_FATHER='" + FatherCode + "'";
             System.Data.DataTable dt_Tol = DBCallCommon.GetDTUsingSqlText(sql_Tol);
             dt_Tol.Columns.Add("YS_Union_Amount");
             dt_Tol.Columns.Add("YS_Average_Price");
             dt_Tol.Columns.Add("YS_MONEY");
 
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_CONTRACT_NO='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_REAL where YS_TSA_ID='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
