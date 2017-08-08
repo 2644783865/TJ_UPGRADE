@@ -1898,6 +1898,14 @@ namespace ZCZJ_DPF.PC_Data
         private double sumtotalzxnum = 0;
         protected void tbpc_comparepriceresultRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                string IFFAST2 = ((Label)e.Item.FindControl("IFFAST2")).Text.Trim();
+                if (IFFAST2 == "1")
+                {
+                    ((Label)e.Item.FindControl("lbUrgency2")).Visible = true;
+                }
+            }
 
             if (e.Item.ItemIndex >= 0)
             {
@@ -1920,8 +1928,7 @@ namespace ZCZJ_DPF.PC_Data
                 {
                     ((Label)e.Item.FindControl("PIC_ZXNUM")).Text = "0";
                 }
-                sumtotalzxnum += Convert.ToDouble(((Label)e.Item.FindControl("PIC_ZXNUM")).Text);
-
+                sumtotalzxnum += Convert.ToDouble(((Label)e.Item.FindControl("PIC_ZXNUM")).Text);                
             }
             else if (e.Item.ItemType == ListItemType.Footer)
             {

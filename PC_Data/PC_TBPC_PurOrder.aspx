@@ -312,6 +312,8 @@
                                     </td>
                                     <td>
                                         <asp:Label ID="ROWSNUM" runat="server" Text='<%#Container.ItemIndex + 1 %>'></asp:Label>
+                                        <asp:Label ID="lbUrgency" runat="server" Text="加急" Visible="false" ForeColor="Red" />
+                                        <asp:Label ID="IFFAST" runat="server" Text='<%#Eval("IFFAST")%>' Visible="false"/>
                                     </td>
                                     <td>
                                         <asp:Label ID="PlanCode" runat="server" Text='<%#Eval("PlanCode")%>' Visible="false"></asp:Label>
