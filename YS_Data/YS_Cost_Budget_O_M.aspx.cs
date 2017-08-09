@@ -40,24 +40,7 @@ namespace ZCZJ_DPF.YS_Data
             string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_COST_BUDGET_REAL where 1=1";
             DBCallCommon.FillDroplist(ddl_project, sqltext_PJ);
             DBCallCommon.FillDroplist(ddl_engineer, sqltext_ENG);
-            try
-            {
-                string sql = DBCallCommon.GetStringValue("connectionStrings");
-                sql += "Asynchronous Processing=true;";
-                SqlConnection sqlConn = new SqlConnection(sql);
-                sqlConn.Open();
-                SqlCommand sqlCmd = new SqlCommand("YS_COST_ORDER_PROCEDURE", sqlConn);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                sqlCmd.CommandTimeout = 0;
-                sqlCmd.Parameters.Add("@retVal", SqlDbType.Int, 1).Direction = ParameterDirection.ReturnValue;			//增加返回值参数@retVal
-                IAsyncResult result = sqlCmd.BeginExecuteNonQuery();
-                sqlCmd.EndExecuteNonQuery(result);
-                sqlConn.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+           
         }
 
         protected void GridView1_onrowdatabound(object sender, GridViewRowEventArgs e)
@@ -85,11 +68,11 @@ namespace ZCZJ_DPF.YS_Data
                     double percent_O_B = Convert.ToDouble(((HiddenField)e.Row.FindControl("hidden_" + fathername[i])).Value.ToString());
                     if (percent_O_B > 0.9 && percent_O_B < 1.0)
                     {
-                        e.Row.Cells[i + 4].BackColor = System.Drawing.Color.PeachPuff;
+                        e.Row.Cells[i + 5].BackColor = System.Drawing.Color.PeachPuff;
                     }
                     if (percent_O_B > 1.0)
                     {
-                        e.Row.Cells[i + 4].BackColor = System.Drawing.Color.Yellow;
+                        e.Row.Cells[i + 5].BackColor = System.Drawing.Color.Yellow;
                     }
                 }
                 //双击查看详细
@@ -200,7 +183,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1";
-            strwhere += " and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'  and YS_XS_Finished is NULL and YS_REVSTATE='3'";
+            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_XS_Finished is NULL  and YS_REVSTATE='3'";
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
                 strwhere += " and PCON_PJNAME='" + ddl_project.SelectedValue + "'";
@@ -248,15 +231,45 @@ namespace ZCZJ_DPF.YS_Data
             return width_img;
         }
 
+        protected void Btn_update_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = DBCallCommon.GetStringValue("connectionStrings");
+                sql += "Asynchronous Processing=true;";
+                SqlConnection sqlConn = new SqlConnection(sql);
+                sqlConn.Open();
+                SqlCommand sqlCmd = new SqlCommand("YS_COST_ORDER_PROCEDURE", sqlConn);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.CommandTimeout = 0;
+                sqlCmd.Parameters.Add("@retVal", SqlDbType.Int, 1).Direction = ParameterDirection.ReturnValue;			//增加返回值参数@retVal
+                IAsyncResult result = sqlCmd.BeginExecuteNonQuery();
+                sqlCmd.EndExecuteNonQuery(result);
+                sqlConn.Close();
+                if (Convert.ToInt32(sqlCmd.Parameters["@retVal"].Value) == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');location.reload();", true);
+                    UCPaging1.CurrentPage = 1;
+                    InitVar();
+                    GetTechRequireData();
+                    //lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #region 导出EXCEL
         protected void btn_daochu_Click(object sender, EventArgs e)
         {
             string str_where = GetStrWhere();
             string sqltext = "";
-            sqltext = "select YS_CONTRACT_NO,PCON_PJNAME,PCON_ENGNAME," +
+            sqltext = "select YS_CONTRACT_NO,PCON_SCH,PCON_PJNAME,PCON_ENGNAME," +
                 "Convert(decimal(16,2),(YS_FERROUS_METAL_BG+YS_PURCHASE_PART_BG+YS_MACHINING_PART_BG+YS_PAINT_COATING_BG+YS_ELECTRICAL_BG+YS_OTHERMAT_COST_BG)*1.17) AS YS_MAR_AMOUNT_BG," +
-                "YS_MAR_AMOUNT,Convert(decimal(16,2),YS_OUT_LAB_MAR_BG*1.17) as YS_OUT_LAB_MAR_BG," +
-                "YS_FERROUS_METAL_BG*1.17 as YS_FERROUS_METAL_BG,YS_PURCHASE_PART_BG*1.17 as YS_PURCHASE_PART_BG,YS_MACHINING_PART_BG*1.17 as YS_MACHINING_PART_BG,YS_PAINT_COATING_BG*1.17 as YS_PAINT_COATING_BG,YS_ELECTRICAL_BG*1.17 as YS_ELECTRICAL_BG,YS_OTHERMAT_COST_BG*1.17 as YS_OTHERMAT_COST_BG,YS_OUT_LAB_MAR,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST from View_YS_COST_BUDGET_ORDER";
+                "YS_MAR_AMOUNT," +
+                "YS_FERROUS_METAL_BG*1.17 as YS_FERROUS_METAL_BG,YS_PURCHASE_PART_BG*1.17 as YS_PURCHASE_PART_BG,YS_MACHINING_PART_BG*1.17 as YS_MACHINING_PART_BG,YS_PAINT_COATING_BG*1.17 as YS_PAINT_COATING_BG,YS_ELECTRICAL_BG*1.17 as YS_ELECTRICAL_BG,YS_OTHERMAT_COST_BG*1.17 as YS_OTHERMAT_COST_BG,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST from View_YS_COST_BUDGET_ORDER";
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
             ExportDataItem(dt);
         }
@@ -283,15 +296,17 @@ namespace ZCZJ_DPF.YS_Data
 
                 wksheet.Cells[i + 3, 2] = "'" + dt.Rows[i]["YS_CONTRACT_NO"].ToString();//合同号
 
-                wksheet.Cells[i + 3, 3] = "'" + dt.Rows[i]["PCON_PJNAME"].ToString();//项目名称
+                wksheet.Cells[i + 3, 3] = "'" + dt.Rows[i]["PCON_SCH"].ToString();//合同号
 
-                wksheet.Cells[i + 3, 4] = "'" + dt.Rows[i]["PCON_ENGNAME"].ToString();//工程名称
+                wksheet.Cells[i + 3, 4] = "'" + dt.Rows[i]["PCON_PJNAME"].ToString();//项目名称
 
-                wksheet.Cells[i + 3, 5] = "'" + dt.Rows[i]["YS_MAR_AMOUNT_BG"].ToString();//材料预算总额
+                wksheet.Cells[i + 3, 5] = "'" + dt.Rows[i]["PCON_ENGNAME"].ToString();//工程名称
 
-                wksheet.Cells[i + 3, 6] = "'" + dt.Rows[i]["YS_MAR_AMOUNT"].ToString();//材料订单总额
+                wksheet.Cells[i + 3, 6] = "'" + dt.Rows[i]["YS_MAR_AMOUNT_BG"].ToString();//材料预算总额
 
-                wksheet.Cells[i + 3, 7] = "'" + dt.Rows[i]["YS_OUT_LAB_MAR_BG"].ToString();//技术外协-预
+                wksheet.Cells[i + 3, 7] = "'" + dt.Rows[i]["YS_MAR_AMOUNT"].ToString();//材料订单总额
+
+                //wksheet.Cells[i + 3, 7] = "'" + dt.Rows[i]["YS_OUT_LAB_MAR_BG"].ToString();//技术外协-预
 
                 wksheet.Cells[i + 3, 8] = "'" + dt.Rows[i]["YS_FERROUS_METAL_BG"].ToString();//黑色金属-预
 
@@ -305,23 +320,23 @@ namespace ZCZJ_DPF.YS_Data
 
                 wksheet.Cells[i + 3, 13] = "'" + dt.Rows[i]["YS_OTHERMAT_COST_BG"].ToString();//其他材料费-预
 
-                wksheet.Cells[i + 3, 14] = dt.Rows[i]["YS_OUT_LAB_MAR"].ToString();//技术外协-订
+                //wksheet.Cells[i + 3, 14] = dt.Rows[i]["YS_OUT_LAB_MAR"].ToString();//技术外协-订
 
-                wksheet.Cells[i + 3, 15] = dt.Rows[i]["YS_FERROUS_METAL"].ToString();//黑色金属-订
+                wksheet.Cells[i + 3, 14] = dt.Rows[i]["YS_FERROUS_METAL"].ToString();//黑色金属-订
 
-                wksheet.Cells[i + 3, 16] = dt.Rows[i]["YS_PURCHASE_PART"].ToString();//外购件-订
+                wksheet.Cells[i + 3, 15] = dt.Rows[i]["YS_PURCHASE_PART"].ToString();//外购件-订
 
-                wksheet.Cells[i + 3, 17] = dt.Rows[i]["YS_MACHINING_PART"].ToString();//加工件-订
+                wksheet.Cells[i + 3, 16] = dt.Rows[i]["YS_MACHINING_PART"].ToString();//加工件-订
 
-                wksheet.Cells[i + 3, 18] = dt.Rows[i]["YS_PAINT_COATING"].ToString();//油漆涂料-订
+                wksheet.Cells[i + 3, 17] = dt.Rows[i]["YS_PAINT_COATING"].ToString();//油漆涂料-订
 
-                wksheet.Cells[i + 3, 19] = "'" + dt.Rows[i]["YS_ELECTRICAL"].ToString();//电气电料-订
+                wksheet.Cells[i + 3, 18] = "'" + dt.Rows[i]["YS_ELECTRICAL"].ToString();//电气电料-订
 
-                wksheet.Cells[i + 3, 20] = dt.Rows[i]["YS_OTHERMAT_COST"].ToString();//其他材料费-订
+                wksheet.Cells[i + 3, 19] = dt.Rows[i]["YS_OTHERMAT_COST"].ToString();//其他材料费-订
 
-                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 20]).HorizontalAlignment = XlHAlign.xlHAlignCenter;
-                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 20]).VerticalAlignment = XlVAlign.xlVAlignCenter;
-                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 20]).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 19]).HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 19]).VerticalAlignment = XlVAlign.xlVAlignCenter;
+                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 19]).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             }
             //设置列宽
             wksheet.Columns.EntireColumn.AutoFit();//列宽自适应

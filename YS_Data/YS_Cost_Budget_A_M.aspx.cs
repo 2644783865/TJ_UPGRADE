@@ -39,9 +39,9 @@ namespace ZCZJ_DPF.YS_Data
         protected void bind_ddl()
         {
             string type = (ViewState["type"].ToString() == "1" ? " and [YS_XS_Finished] ='1'" : " and YS_XS_Finished is null");
-            string sqltext_people = "select distinct YS_ADDNAME,YS_ADDNAME from View_YS_COST_BUDGET_REAL where 1=1 " + type;
-            string sqltext_PJ = "SELECT DISTINCT PCON_PJNAME ,PCON_PJNAME FROM View_YS_COST_BUDGET_REAL where 1=1" + type;
-            string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_COST_BUDGET_REAL where 1=1" + type;
+            string sqltext_people = "select distinct YS_ADDNAME,YS_ADDNAME from View_YS_COST_BUDGET_REAL where 1=1 " +type;
+            string sqltext_PJ = "SELECT DISTINCT PCON_PJNAME ,PCON_PJNAME FROM View_YS_COST_BUDGET_REAL where 1=1" +type;
+            string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_COST_BUDGET_REAL where 1=1" +type;
             DBCallCommon.FillDroplist(dpl_people, sqltext_people);
             DBCallCommon.FillDroplist(ddl_project, sqltext_PJ);
             DBCallCommon.FillDroplist(ddl_engineer, sqltext_ENG);
@@ -154,7 +154,7 @@ namespace ZCZJ_DPF.YS_Data
             string strwhere = " 1=1 ";
             string type = (ViewState["type"].ToString() == "1" ? " and [YS_XS_Finished] ='1'" : " and YS_XS_Finished is null");
             strwhere += type;
-            strwhere += " and YS_REVSTATE='3' and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += " and YS_REVSTATE='3' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
 
             string this_month = DateTime.Now.ToString("yyyy-MM");
             this_month += "-01";
@@ -252,14 +252,14 @@ namespace ZCZJ_DPF.YS_Data
             }
 
             //合同完成时间
-            if (finish_sta_time.Text != "")
-            {
-                strwhere += " and YS_Finshtime>='" + txt_make_sta.Text.ToString() + "'";
-            }
-            if (finish_end_time.Text != "")
-            {
-                strwhere += " and YS_Finshtime<='" + txt_make_end.Text.ToString() + "'";
-            }
+            //if (finish_sta_time.Text != "")
+            //{
+            //    strwhere += " and YS_Finshtime>='" + txt_make_sta.Text.ToString() + "'";
+            //}
+            //if (finish_end_time.Text != "")
+            //{
+            //    strwhere += " and YS_Finshtime<='" + txt_make_end.Text.ToString() + "'";
+            //}
             return strwhere;
         }
         #endregion
@@ -318,18 +318,18 @@ namespace ZCZJ_DPF.YS_Data
                     //红黄预警
                     if (percent_O_B < 0)
                     {
-                        e.Row.Cells[m + 7].BackColor = System.Drawing.Color.Yellow;
+                        e.Row.Cells[m + 8].BackColor = System.Drawing.Color.Yellow;
                     }
                     else
                     {
                         percent_O_B = Math.Abs(percent_O_B);
                         if (percent_O_B > 1.0 && percent_O_B < 1.1)
                         {
-                            e.Row.Cells[m + 7].BackColor = System.Drawing.Color.PeachPuff;
+                            e.Row.Cells[m + 8].BackColor = System.Drawing.Color.PeachPuff;
                         }
                         if (percent_O_B < 1.0)
                         {
-                            e.Row.Cells[m + 7].BackColor = System.Drawing.Color.Yellow;
+                            e.Row.Cells[m + 8].BackColor = System.Drawing.Color.Yellow;
                         }
                     }
                 }
@@ -411,8 +411,8 @@ namespace ZCZJ_DPF.YS_Data
             //dpl_other.SelectedIndex = 0;
             dpl_people.SelectedIndex = 0;
             dpl_all_profit.SelectedIndex = 0;
-            finish_sta_time.Text = "";
-            finish_end_time.Text = "";
+            //finish_sta_time.Text = "";
+            //finish_end_time.Text = "";
             txt_make_sta.Text = "";
             txt_make_end.Text = "";
             ModalPopupExtenderSearch.Show();
@@ -429,7 +429,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             string str_where = GetStrWhere();
             string sqltext = "";
-            sqltext = "select [YS_CONTRACT_NO] ,[PCON_PJNAME] , [PCON_ENGNAME] , [YS_BUDGET_INCOME] ,[YS_OUT_LAB_MAR] + [YS_FERROUS_METAL] + [YS_PURCHASE_PART] + [YS_PAINT_COATING]+ [YS_MACHINING_PART] + [YS_ELECTRICAL] + [YS_OTHERMAT_COST] + [YS_FAC_CONTRACT] + [YS_TEAM_CONTRACT] + [YS_PRODUCT_OUT] + [YS_TRANS_COST]+ [YS_MANU_COST] + [YS_SELL_COST] + [YS_MANAGE_COST] + [YS_Taxes_Cost] AS YS_RealCost, [YS_PROFIT_BG],[YS_PROFIT_TAX_BG], [PCON_ENGNAME], [YS_OUT_LAB_MAR_BG] , [YS_FERROUS_METAL_BG] , [YS_PURCHASE_PART_BG] , [YS_MACHINING_PART_BG] , [YS_PAINT_COATING_BG] , [YS_ELECTRICAL_BG], [YS_OTHERMAT_COST_BG] , [YS_TEAM_CONTRACT_BG] , [YS_FAC_CONTRACT_BG] , [YS_PRODUCT_OUT_BG] , [YS_MANU_COST_BG] , [YS_SELL_COST_BG], [YS_MANAGE_COST_BG] , [YS_Taxes_Cost_BG] , [YS_TRANS_COST_BG] ,[YS_PROFIT] , [YS_PROFIT_TAX] , [YS_OUT_LAB_MAR] , [YS_FERROUS_METAL] , [YS_PURCHASE_PART] , [YS_PAINT_COATING] , [YS_MACHINING_PART] , [YS_ELECTRICAL] , [YS_OTHERMAT_COST], [YS_TEAM_CONTRACT] ,  [YS_FAC_CONTRACT] ,[YS_PRODUCT_OUT] , [YS_MANU_COST] , [YS_SELL_COST] , [YS_MANAGE_COST] , [YS_Taxes_Cost],[YS_TRANS_COST] ,[YS_ADDNAME], [YS_ADDTIME] , [YS_Finshtime] ,[YS_NOTE] from View_YS_COST_BUDGET_REAL where YS_REVSTATE='3' and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'";
+            sqltext = "select [YS_CONTRACT_NO] , [PCON_SCH] , [PCON_PJNAME] , [PCON_ENGNAME] , [YS_BUDGET_INCOME] ,[YS_FERROUS_METAL] + [YS_PURCHASE_PART] + [YS_PAINT_COATING]+ [YS_MACHINING_PART] + [YS_ELECTRICAL] + [YS_OTHERMAT_COST] + [YS_FAC_CONTRACT] + [YS_TEAM_CONTRACT] + [YS_PRODUCT_OUT] + [YS_TRANS_COST] AS YS_RealCost, [YS_PROFIT_BG], [YS_FERROUS_METAL_BG] , [YS_PURCHASE_PART_BG] , [YS_MACHINING_PART_BG] , [YS_PAINT_COATING_BG] , [YS_ELECTRICAL_BG], [YS_OTHERMAT_COST_BG] , [YS_TEAM_CONTRACT_BG] , [YS_FAC_CONTRACT_BG] , [YS_PRODUCT_OUT_BG] , [YS_TRANS_COST_BG] ,[YS_PROFIT], [YS_FERROUS_METAL] , [YS_PURCHASE_PART] , [YS_PAINT_COATING] , [YS_MACHINING_PART] , [YS_ELECTRICAL] , [YS_OTHERMAT_COST], [YS_TEAM_CONTRACT] ,  [YS_FAC_CONTRACT] ,[YS_PRODUCT_OUT] ,[YS_TRANS_COST] ,[YS_ADDNAME], [YS_ADDTIME] , [YS_Finshtime] ,[YS_NOTE] from View_YS_COST_BUDGET_REAL where YS_REVSTATE='3' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
             ExportDataItem(dt);
         }
@@ -456,93 +456,95 @@ namespace ZCZJ_DPF.YS_Data
 
                 wksheet.Cells[i + 3, 2] = "'" + dt.Rows[i]["YS_CONTRACT_NO"].ToString();//合同号
 
-                wksheet.Cells[i + 3, 3] = "'" + dt.Rows[i]["PCON_PJNAME"].ToString();//项目名称
+                wksheet.Cells[i + 3, 3] = "'" + dt.Rows[i]["PCON_SCH"].ToString();//任务号
 
-                wksheet.Cells[i + 3, 4] = "'" + dt.Rows[i]["PCON_ENGNAME"].ToString();//工程名称
+                wksheet.Cells[i + 3, 4] = "'" + dt.Rows[i]["PCON_PJNAME"].ToString();//项目名称
 
-                wksheet.Cells[i + 3, 5] = "'" + dt.Rows[i]["YS_BUDGET_INCOME"].ToString();//预算收入
+                wksheet.Cells[i + 3, 5] = "'" + dt.Rows[i]["PCON_ENGNAME"].ToString();//工程名称
 
-                wksheet.Cells[i + 3, 6] = "'" + dt.Rows[i]["YS_RealCost"].ToString();//实际费用合计
+                wksheet.Cells[i + 3, 6] = "'" + dt.Rows[i]["YS_BUDGET_INCOME"].ToString();//预算收入
 
-                wksheet.Cells[i + 3, 7] = "'" + dt.Rows[i]["YS_PROFIT_BG"].ToString();//利润总额（预）
+                wksheet.Cells[i + 3, 7] = "'" + dt.Rows[i]["YS_RealCost"].ToString();//实际费用合计
 
-                wksheet.Cells[i + 3, 8] = "'" + dt.Rows[i]["YS_PROFIT_TAX_BG"].ToString();//净利润（预）
+                wksheet.Cells[i + 3, 8] = "'" + dt.Rows[i]["YS_PROFIT_BG"].ToString();//毛利润（预）
 
-                wksheet.Cells[i + 3, 9] = "'" + dt.Rows[i]["YS_OUT_LAB_MAR_BG"].ToString();//技术外协-预
+                //wksheet.Cells[i + 3, 8] = "'" + dt.Rows[i]["YS_PROFIT_TAX_BG"].ToString();//净利润（预）
 
-                wksheet.Cells[i + 3, 10] = "'" + dt.Rows[i]["YS_FERROUS_METAL_BG"].ToString();//黑色金属-预
+                //wksheet.Cells[i + 3, 9] = "'" + dt.Rows[i]["YS_OUT_LAB_MAR_BG"].ToString();//技术外协-预
 
-                wksheet.Cells[i + 3, 11] = "'" + dt.Rows[i]["YS_PURCHASE_PART_BG"].ToString();//外购件--预
+                wksheet.Cells[i + 3, 9] = "'" + dt.Rows[i]["YS_FERROUS_METAL_BG"].ToString();//黑色金属-预
 
-                wksheet.Cells[i + 3, 12] = "'" + dt.Rows[i]["YS_MACHINING_PART_BG"].ToString();//加工件--预
+                wksheet.Cells[i + 3, 10] = "'" + dt.Rows[i]["YS_PURCHASE_PART_BG"].ToString();//外购件--预
 
-                wksheet.Cells[i + 3, 13] = "'" + dt.Rows[i]["YS_PAINT_COATING_BG"].ToString();//油漆涂料-预
+                wksheet.Cells[i + 3, 11] = "'" + dt.Rows[i]["YS_MACHINING_PART_BG"].ToString();//加工件--预
 
-                wksheet.Cells[i + 3, 14] = "'" + dt.Rows[i]["YS_ELECTRICAL_BG"].ToString();//电气电料-预
+                wksheet.Cells[i + 3, 12] = "'" + dt.Rows[i]["YS_PAINT_COATING_BG"].ToString();//油漆涂料-预
 
-                wksheet.Cells[i + 3, 15] = "'" + dt.Rows[i]["YS_OTHERMAT_COST_BG"].ToString();//其他材料费-预
+                wksheet.Cells[i + 3, 13] = "'" + dt.Rows[i]["YS_ELECTRICAL_BG"].ToString();//电气电料-预
 
-                wksheet.Cells[i + 3, 16] = "'" + dt.Rows[i]["YS_TEAM_CONTRACT_BG"].ToString();//班组承包-预
+                wksheet.Cells[i + 3, 14] = "'" + dt.Rows[i]["YS_OTHERMAT_COST_BG"].ToString();//其他材料费-预
 
-                wksheet.Cells[i + 3, 17] = "'" + dt.Rows[i]["YS_FAC_CONTRACT_BG"].ToString();//厂内分包-预
+                wksheet.Cells[i + 3, 15] = "'" + dt.Rows[i]["YS_TEAM_CONTRACT_BG"].ToString();//班组承包-预
 
-                wksheet.Cells[i + 3, 18] = "'" + dt.Rows[i]["YS_PRODUCT_OUT_BG"].ToString();//生产外协-预
+                wksheet.Cells[i + 3, 16] = "'" + dt.Rows[i]["YS_FAC_CONTRACT_BG"].ToString();//厂内分包-预
 
-                wksheet.Cells[i + 3, 19] = "'" + dt.Rows[i]["YS_MANU_COST_BG"].ToString();//制造费用-预
+                wksheet.Cells[i + 3, 17] = "'" + dt.Rows[i]["YS_PRODUCT_OUT_BG"].ToString();//生产外协-预
 
-                wksheet.Cells[i + 3, 20] = "'" + dt.Rows[i]["YS_SELL_COST_BG"].ToString();//销售费用-预
+                //wksheet.Cells[i + 3, 19] = "'" + dt.Rows[i]["YS_MANU_COST_BG"].ToString();//制造费用-预
 
-                wksheet.Cells[i + 3, 21] = "'" + dt.Rows[i]["YS_MANAGE_COST_BG"].ToString();//管理费用-预
+                //wksheet.Cells[i + 3, 20] = "'" + dt.Rows[i]["YS_SELL_COST_BG"].ToString();//销售费用-预
 
-                wksheet.Cells[i + 3, 22] = "'" + dt.Rows[i]["YS_Taxes_Cost_BG"].ToString();//税金及附加-预
+                //wksheet.Cells[i + 3, 21] = "'" + dt.Rows[i]["YS_MANAGE_COST_BG"].ToString();//管理费用-预
 
-                wksheet.Cells[i + 3, 23] = "'" + dt.Rows[i]["YS_TRANS_COST_BG"].ToString();//运费-预
+                //wksheet.Cells[i + 3, 22] = "'" + dt.Rows[i]["YS_Taxes_Cost_BG"].ToString();//税金及附加-预
 
-                wksheet.Cells[i + 3, 24] = "'" + dt.Rows[i]["YS_PROFIT"].ToString();//利润总额-实
+                wksheet.Cells[i + 3, 18] = "'" + dt.Rows[i]["YS_TRANS_COST_BG"].ToString();//运费-预
 
-                wksheet.Cells[i + 3, 25] = "'" + dt.Rows[i]["YS_PROFIT_TAX"].ToString();//净利润-实
+                wksheet.Cells[i + 3, 19] = "'" + dt.Rows[i]["YS_PROFIT"].ToString();//毛利润-实
 
-                wksheet.Cells[i + 3, 26] = dt.Rows[i]["YS_OUT_LAB_MAR"].ToString();//技术外协-实
+                //wksheet.Cells[i + 3, 25] = "'" + dt.Rows[i]["YS_PROFIT_TAX"].ToString();//净利润-实
 
-                wksheet.Cells[i + 3, 27] = dt.Rows[i]["YS_FERROUS_METAL"].ToString();//黑色金属-实
+                //wksheet.Cells[i + 3, 26] = dt.Rows[i]["YS_OUT_LAB_MAR"].ToString();//技术外协-实
 
-                wksheet.Cells[i + 3, 28] = dt.Rows[i]["YS_PURCHASE_PART"].ToString();//外购件-实
+                wksheet.Cells[i + 3, 20] = dt.Rows[i]["YS_FERROUS_METAL"].ToString();//黑色金属-实
 
-                wksheet.Cells[i + 3, 29] = dt.Rows[i]["YS_MACHINING_PART"].ToString();//加工件-实
+                wksheet.Cells[i + 3, 21] = dt.Rows[i]["YS_PURCHASE_PART"].ToString();//外购件-实
 
-                wksheet.Cells[i + 3, 30] = dt.Rows[i]["YS_PAINT_COATING"].ToString();//油漆涂料-实
+                wksheet.Cells[i + 3, 22] = dt.Rows[i]["YS_MACHINING_PART"].ToString();//加工件-实
 
-                wksheet.Cells[i + 3, 31] = "'" + dt.Rows[i]["YS_ELECTRICAL"].ToString();//电气电料-实
+                wksheet.Cells[i + 3, 23] = dt.Rows[i]["YS_PAINT_COATING"].ToString();//油漆涂料-实
 
-                wksheet.Cells[i + 3, 32] = dt.Rows[i]["YS_OTHERMAT_COST"].ToString();//其他材料费-实
+                wksheet.Cells[i + 3, 24] = "'" + dt.Rows[i]["YS_ELECTRICAL"].ToString();//电气电料-实
 
-                wksheet.Cells[i + 3, 33] = dt.Rows[i]["YS_TEAM_CONTRACT"].ToString();//班组承包-实
+                wksheet.Cells[i + 3, 25] = dt.Rows[i]["YS_OTHERMAT_COST"].ToString();//其他材料费-实
 
-                wksheet.Cells[i + 3, 34] = dt.Rows[i]["YS_FAC_CONTRACT"].ToString();//厂内分包-实
+                wksheet.Cells[i + 3, 26] = dt.Rows[i]["YS_TEAM_CONTRACT"].ToString();//班组承包-实
 
-                wksheet.Cells[i + 3, 35] = dt.Rows[i]["YS_PRODUCT_OUT"].ToString();//生产外协-实
+                wksheet.Cells[i + 3, 27] = dt.Rows[i]["YS_FAC_CONTRACT"].ToString();//厂内分包-实
 
-                wksheet.Cells[i + 3, 36] = dt.Rows[i]["YS_MANU_COST"].ToString();//制造费用-实
+                wksheet.Cells[i + 3, 28] = dt.Rows[i]["YS_PRODUCT_OUT"].ToString();//生产外协-实
 
-                wksheet.Cells[i + 3, 37] = dt.Rows[i]["YS_SELL_COST"].ToString();//销售费用-实
+                //wksheet.Cells[i + 3, 36] = dt.Rows[i]["YS_MANU_COST"].ToString();//制造费用-实
 
-                wksheet.Cells[i + 3, 38] = dt.Rows[i]["YS_MANAGE_COST"].ToString();//管理费用-实
+                //wksheet.Cells[i + 3, 37] = dt.Rows[i]["YS_SELL_COST"].ToString();//销售费用-实
 
-                wksheet.Cells[i + 3, 39] = dt.Rows[i]["YS_Taxes_Cost"].ToString();//税金及附加-实
+                //wksheet.Cells[i + 3, 38] = dt.Rows[i]["YS_MANAGE_COST"].ToString();//管理费用-实
 
-                wksheet.Cells[i + 3, 40] = dt.Rows[i]["YS_TRANS_COST"].ToString();//运费-实
+                //wksheet.Cells[i + 3, 39] = dt.Rows[i]["YS_Taxes_Cost"].ToString();//税金及附加-实
 
-                wksheet.Cells[i + 3, 41] = dt.Rows[i]["YS_ADDNAME"].ToString();//制单人
+                wksheet.Cells[i + 3, 29] = dt.Rows[i]["YS_TRANS_COST"].ToString();//运费-实
 
-                wksheet.Cells[i + 3, 42] = dt.Rows[i]["YS_ADDTIME"].ToString();//制单时间
+                wksheet.Cells[i + 3, 30] = dt.Rows[i]["YS_ADDNAME"].ToString();//制单人
 
-                wksheet.Cells[i + 3, 43] = dt.Rows[i]["YS_Finshtime"].ToString();//完成时间
+                wksheet.Cells[i + 3, 31] = dt.Rows[i]["YS_ADDTIME"].ToString();//制单时间
 
-                wksheet.Cells[i + 3, 44] = dt.Rows[i]["YS_NOTE"].ToString();//备注
+                wksheet.Cells[i + 3, 32] = dt.Rows[i]["YS_Finshtime"].ToString();//完成时间
 
-                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 44]).HorizontalAlignment = XlHAlign.xlHAlignCenter;
-                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 44]).VerticalAlignment = XlVAlign.xlVAlignCenter;
-                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 44]).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                wksheet.Cells[i + 3, 33] = dt.Rows[i]["YS_NOTE"].ToString();//备注
+
+                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 34]).HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 34]).VerticalAlignment = XlVAlign.xlVAlignCenter;
+                wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 34]).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
             }
             //设置列宽
             wksheet.Columns.EntireColumn.AutoFit();//列宽自适应

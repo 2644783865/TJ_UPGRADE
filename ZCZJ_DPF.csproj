@@ -7825,6 +7825,13 @@
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
     <Compile Include="YS_Data\ExportDataFromYS.cs" />
+    <Compile Include="YS_Data\YS_Budget_Analysis.aspx.cs">
+      <DependentUpon>YS_Budget_Analysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Budget_Analysis.aspx.designer.cs">
+      <DependentUpon>YS_Budget_Analysis.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.cs">
       <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -11650,6 +11657,8 @@
     <None Include="TM_Data\材料需用计划表（JS-003-01%29.xls" />
     <None Include="TM_Data\涂装细化方案.xls" />
     <None Include="TM_Data\生产制号.xls" />
+    <None Include="YS_Data\成本监控表.xls" />
+    <None Include="YS_Data\订单监控表.xls" />
     <Content Include="TM_Data\GeneralHandler.ashx" />
     <Content Include="TM_Data\js\jquery-1.4.2-vsdoc.js" />
     <Content Include="TM_Data\js\jquery-1.4.2.js" />
@@ -12622,6 +12631,7 @@
     <Content Include="YS_Data\update4.jpg" />
     <Content Include="YS_Data\update5.jpg" />
     <Content Include="YS_Data\Yellow.jpg" />
+    <Content Include="YS_Data\YS_Budget_Analysis.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_O_M.aspx" />

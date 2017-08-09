@@ -112,15 +112,15 @@ namespace ZCZJ_DPF.YS_Data
             InitPager();
             UCPaging1.PageChanged += new UCPaging.PageHandler(Pager_PageChanged);
             UCPaging1.PageSize = pager.PageSize;    //每页显示的记录数
-            if (rbl_type.SelectedIndex != 0)
-            {
-                ckb_JS_OK.Checked = false;
-                ckb_JS_OK.Visible = false;
-            }
-            else
-            {
-                ckb_JS_OK.Visible = true;
-            }
+            //if (rbl_type.SelectedIndex != 0)
+            //{
+            //    ckb_JS_OK.Checked = false;
+            //    ckb_JS_OK.Visible = false;
+            //}
+            //else
+            //{
+            //    ckb_JS_OK.Visible = true;
+            //}
         }
 
         void Pager_PageChanged(int pageNumber)
@@ -171,7 +171,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1 ";
-            strwhere += " and YS_REVSTATE='3' and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += " and YS_REVSTATE='3' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
 
             string this_month = DateTime.Now.ToString("yyyy-MM");
             this_month += "-01";
@@ -187,17 +187,19 @@ namespace ZCZJ_DPF.YS_Data
 
             if (rbl_type.SelectedValue == "0")
             {
-                strwhere += " and (YS_ADDDATE='' or YS_ADDDATE is null) ";
+                strwhere += " and YS_XS_Finished is NULL  ";
+                //strwhere += " and (YS_ADDDATE='' or YS_ADDDATE is null) ";
             }
             else if (rbl_type.SelectedValue == "1")
             {
-                strwhere += " and YS_ADDDATE is not null and datalength(YS_ADDDATE)<>0 ";
+                strwhere += " and YS_XS_Finished='1' ";
+                //strwhere += " and YS_ADDDATE is not null and datalength(YS_ADDDATE)<>0 ";
             }
 
-            if (ckb_JS_OK.Checked == true)
-            {
-                strwhere += " and YS_XS_Finished='1' ";
-            }
+            //if (ckb_JS_OK.Checked == true)
+            //{
+            //    strwhere += " and YS_XS_Finished='1' ";
+            //}
 
             return strwhere;
         }//改
@@ -322,14 +324,19 @@ namespace ZCZJ_DPF.YS_Data
                 DataTable dt_fin = DBCallCommon.GetDTUsingSqlText(sql_fin);
                 if (dt_fin.Rows.Count > 0)
                 {
-                    if (dt_fin.Rows[0][0].ToString() != "1")
+                    if (dt_fin.Rows[0][0].ToString() == "1")
                     {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('该合同尚未完结，不可结算！！！');", true);
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('该任务已完成结算！');", true);
                         return;
                     }
                     else
                     {
-                        Response.Redirect("YS_Cost_Real_Other.aspx?YS_CONTRACT_NO=" + YS_CONTRACT_NO);
+                        string sql = "update YS_COST_BUDGET set YS_XS_Finished='1',YS_Finshtime=GETDATE()";
+                        DBCallCommon.ExeSqlText(sql);
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('任务结算成功！');", true);
+                        UCPaging1.CurrentPage = 1;
+                        InitVar();
+                        GetTechRequireData();
                     }
                 }
             }
