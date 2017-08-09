@@ -42,6 +42,14 @@ namespace ZCZJ_DPF.YS_Data
             string sqltext_people = "select distinct YS_ADDNAME,YS_ADDNAME from View_YS_COST_BUDGET_REAL where 1=1 " +type;
             string sqltext_PJ = "SELECT DISTINCT PCON_PJNAME ,PCON_PJNAME FROM View_YS_COST_BUDGET_REAL where 1=1" +type;
             string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_COST_BUDGET_REAL where 1=1" +type;
+            if (ViewState["type"].ToString() == "1")
+            {
+                btnShowSta.Visible = true;
+            }
+            else
+            {
+                btnShowSta.Visible = false;
+            }
             DBCallCommon.FillDroplist(dpl_people, sqltext_people);
             DBCallCommon.FillDroplist(ddl_project, sqltext_PJ);
             DBCallCommon.FillDroplist(ddl_engineer, sqltext_ENG);
@@ -422,6 +430,11 @@ namespace ZCZJ_DPF.YS_Data
         protected void btnClose_Click(object sender, EventArgs e)
         {
             ModalPopupExtenderSearch.Hide();
+        }
+
+        protected void btn_ShowSta_OnClick(object sender, EventArgs e)
+        {
+            //Response.Redirect("YS_Cost_Real_Other.aspx?YS_CONTRACT_NO=" + YS_CONTRACT_NO);
         }
 
         #region 导出EXCEL

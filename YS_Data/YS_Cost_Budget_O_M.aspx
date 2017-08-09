@@ -4,7 +4,7 @@
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    订单监控/分析
+    订单监控
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>

@@ -1,27 +1,26 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/RightCotentMaster.master"
-    CodeBehind="YS_Budget_Analysis.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.YS_Budget_Analysis" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.Master" AutoEventWireup="true" CodeBehind="YS_Budget_Analysis.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.YS_Budget_Analysis"  %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    成本监控/分析
+    预算分析
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
     <script type="text/javascript" language="javascript">
-    var selectedColor = "#C0FF3E";
-     var rowOverColor = "blue";
-     var rowColor = "#EFF3FB";
-     var selectedRows = new Object();
-    
-    function SelectRow(uniqueId, element)
-     {
-        if (typeof(selectedRows[uniqueId]) == "undefined")
-            selectedRows[uniqueId] = false;
-        selectedRows[uniqueId] = !selectedRows[uniqueId];
-        element.style.backgroundColor = selectedRows[uniqueId] ? selectedColor : rowColor;
-     }
-    
+        var selectedColor = "#C0FF3E";
+        var rowOverColor = "blue";
+        var rowColor = "#EFF3FB";
+        var selectedRows = new Object();
+
+        function SelectRow(uniqueId, element) {
+            if (typeof (selectedRows[uniqueId]) == "undefined")
+                selectedRows[uniqueId] = false;
+            selectedRows[uniqueId] = !selectedRows[uniqueId];
+            element.style.backgroundColor = selectedRows[uniqueId] ? selectedColor : rowColor;
+        }
+
         function ShowContract(id) {
             var autonum = Math.round(10000 * Math.random());
             window.open("../Contract_Data/CM_Contract_SW_Add.aspx?Action=View&autonum=" + autonum + "&condetail_id=" + id);
@@ -92,6 +91,9 @@
                                 PopupControlID="Pal_condition" Drag="false" Enabled="True" DynamicServicePath=""
                                 Y="80">
                             </asp:ModalPopupExtender>
+                        </td>
+                        <td>
+                        
                         </td>
                     </tr>
                 </table>
@@ -594,4 +596,3 @@
         </table>
     </div>
 </asp:Content>
-

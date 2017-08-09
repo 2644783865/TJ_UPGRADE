@@ -135,7 +135,7 @@ namespace ZCZJ_DPF
             catch (Exception)
             {
                 throw;
-            }            
+            }
         }
 
         public static SqlDataReader GetDRUsingSqlText(string sqlText, int time)

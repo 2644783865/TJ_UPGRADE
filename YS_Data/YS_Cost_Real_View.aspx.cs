@@ -320,7 +320,7 @@ namespace ZCZJ_DPF.YS_Data
             }
             if (YS_CONTRACT_NO != "")
             {
-                string sql_fin = "select YS_XS_Finished from YS_COST_BUDGET where YS_CONTRACT_NO='" + CONTRACT_NO + "'";
+                string sql_fin = "select YS_XS_Finished from YS_COST_BUDGET where YS_TSA_ID='" + CONTRACT_NO + "'";
                 DataTable dt_fin = DBCallCommon.GetDTUsingSqlText(sql_fin);
                 if (dt_fin.Rows.Count > 0)
                 {
@@ -331,7 +331,7 @@ namespace ZCZJ_DPF.YS_Data
                     }
                     else
                     {
-                        string sql = "update YS_COST_BUDGET set YS_XS_Finished='1',YS_Finshtime=GETDATE()";
+                        string sql = "update YS_COST_BUDGET set YS_XS_Finished='1',YS_Finshtime=GETDATE() where YS_TSA_ID='" + CONTRACT_NO + "'";
                         DBCallCommon.ExeSqlText(sql);
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('任务结算成功！');", true);
                         UCPaging1.CurrentPage = 1;

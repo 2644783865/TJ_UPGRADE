@@ -4,24 +4,23 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    成本监控/分析
+    预算监控
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
     <script type="text/javascript" language="javascript">
-    var selectedColor = "#C0FF3E";
-     var rowOverColor = "blue";
-     var rowColor = "#EFF3FB";
-     var selectedRows = new Object();
-    
-    function SelectRow(uniqueId, element)
-     {
-        if (typeof(selectedRows[uniqueId]) == "undefined")
-            selectedRows[uniqueId] = false;
-        selectedRows[uniqueId] = !selectedRows[uniqueId];
-        element.style.backgroundColor = selectedRows[uniqueId] ? selectedColor : rowColor;
-     }
-    
+        var selectedColor = "#C0FF3E";
+        var rowOverColor = "blue";
+        var rowColor = "#EFF3FB";
+        var selectedRows = new Object();
+
+        function SelectRow(uniqueId, element) {
+            if (typeof (selectedRows[uniqueId]) == "undefined")
+                selectedRows[uniqueId] = false;
+            selectedRows[uniqueId] = !selectedRows[uniqueId];
+            element.style.backgroundColor = selectedRows[uniqueId] ? selectedColor : rowColor;
+        }
+
         function ShowContract(id) {
             var autonum = Math.round(10000 * Math.random());
             window.open("../Contract_Data/CM_Contract_SW_Add.aspx?Action=View&autonum=" + autonum + "&condetail_id=" + id);
@@ -88,9 +87,11 @@
                             任务号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
                             </asp:TextBox><asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
                             <asp:Button ID="btnShowPopup" runat="server" Text="更多筛选" />
+                            <asp:Button ID="btnShowSta" runat="server" Text="查看统计信息" OnClick="btn_ShowSta_OnClick"/>
                             <asp:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btnShowPopup"
                                 PopupControlID="Pal_condition" Drag="false" Enabled="True" DynamicServicePath=""
                                 Y="80">
+                             
                             </asp:ModalPopupExtender>
                         </td>
                     </tr>
