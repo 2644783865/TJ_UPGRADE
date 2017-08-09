@@ -11,7 +11,7 @@
 namespace ZCZJ_DPF.YS_Data {
     
     
-    public partial class YS_Cost_Budget_O_M {
+    public partial class YS_OUT_Detail_MAR {
         
         /// <summary>
         /// ControlFinder 控件。
@@ -23,67 +23,67 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label ControlFinder;
         
         /// <summary>
-        /// txt_search 控件。
+        /// LabelMessage 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_search;
+        protected global::System.Web.UI.WebControls.Label LabelMessage;
         
         /// <summary>
-        /// search1 控件。
+        /// hfdTotalRN 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button search1;
+        protected global::System.Web.UI.WebControls.HiddenField hfdTotalRN;
         
         /// <summary>
-        /// ddl_project 控件。
+        /// hfdTotalAmount 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_project;
+        protected global::System.Web.UI.WebControls.HiddenField hfdTotalAmount;
         
         /// <summary>
-        /// ddl_engineer 控件。
+        /// hfdPageNum 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_engineer;
+        protected global::System.Web.UI.WebControls.HiddenField hfdPageNum;
         
         /// <summary>
-        /// Btn_update 控件。
+        /// hfdTotalFRN 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_update;
+        protected global::System.Web.UI.WebControls.HiddenField hfdTotalFRN;
         
         /// <summary>
-        /// btn_daochu 控件。
+        /// BtnShowExport 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_daochu;
+        protected global::System.Web.UI.WebControls.Button BtnShowExport;
         
         /// <summary>
-        /// GridView1 控件。
+        /// PanelBody 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Panel PanelBody;
         
         /// <summary>
         /// NoDataPanel 控件。
@@ -95,6 +95,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel NoDataPanel;
         
         /// <summary>
+        /// RepeaterLL 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterLL;
+        
+        /// <summary>
         /// UCPaging1 控件。
         /// </summary>
         /// <remarks>
@@ -102,32 +111,5 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::ZCZJ_DPF.UCPaging UCPaging1;
-        
-        /// <summary>
-        /// labe1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labe1;
-        
-        /// <summary>
-        /// Label3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
-        /// Label2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
     }
 }

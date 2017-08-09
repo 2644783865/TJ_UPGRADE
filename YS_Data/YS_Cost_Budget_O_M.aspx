@@ -46,9 +46,8 @@
                 <table width="100%">
                     <tr>
                         <td>
-                            合同编号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
-                            </asp:TextBox>
-                            <asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
+                            任务号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
+                            </asp:TextBox><asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
                         </td>
                         <td>
                             项目名称:
@@ -58,6 +57,9 @@
                             <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                             </asp:DropDownList>
                         </td>
+                        <td>
+                        <asp:Button ID="Btn_update" runat="server" Text="订单费用更新" OnClick="Btn_update_OnClick" />
+                        </td>               
                         <td align="right">
                             <asp:Button ID="btn_daochu" runat="server" Text="导出Excel" OnClick="btn_daochu_Click" />&nbsp;
                         </td>

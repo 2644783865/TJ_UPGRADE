@@ -149,7 +149,7 @@ namespace ZCZJ_DPF.YS_Data
             if (FatherCode == "FERROUS_METAL")
             {
                 fatherid = "01.07";
-                string sql_money = "select sum(ctamount) as Amount,sum(zxnum) as RealNumber, sum(ctamount)/sum(zxnum) as UnitPrice from View_TBPC_PURORDERDETAIL_PLAN_TOTAL where marid like'" + fatherid + "%' and salescontract='" + ContractNo + "'";
+                string sql_money = "select sum(ctamount) as Amount,sum(zxnum) as RealNumber, sum(ctamount)/sum(zxnum) as UnitPrice from View_TBPC_PURORDERDETAIL_PLAN_TOTAL where marid like'" + fatherid + "%' and engid='" + ContractNo + "'";
                 for (int j = 0; j < dt_MAR.Rows.Count; j++)
                 {
                     string sql = "";
@@ -195,7 +195,7 @@ namespace ZCZJ_DPF.YS_Data
                 }
                 string sql_money = "select sum(ctamount) as Amount,sum(zxnum) as RealNumber," +
                     " sum(ctamount)/sum(zxnum) as UnitPrice from View_TBPC_PURORDERDETAIL_PLAN_TOTAL " +
-                    "where salescontract='" + ContractNo + "' and marid like'" + fatherid + "%'";
+                    "where engid='" + ContractNo + "' and marid like'" + fatherid + "%'";
 
                 //获取明细物料费用
                 double main_mar = 0;
@@ -206,15 +206,15 @@ namespace ZCZJ_DPF.YS_Data
                         string sql = "";
                         sql += sql_money + " and charindex('" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "',marnm)>0 ";
 
-                        //判断预算物料表是否有包含此名称的材料
-                        string sql_contain = "select YS_Product_Name from TBBD_Product_type where YS_Product_Tag='1' " +
-                            "and charindex('-',YS_Product_Code)>0 and YS_Product_Name like '%" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "%' " +
-                            "and YS_Product_Name!='" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "'";
-                        DataTable dt_contain = DBCallCommon.GetDTUsingSqlText(sql_contain);
-                        for (int s = 0; s < dt_contain.Rows.Count; s++)
-                        {
-                            sql += " and charindex('" + dt_contain.Rows[s]["YS_Product_Name"] + "',marnm)=0";
-                        }
+                        ////判断预算物料表是否有包含此名称的材料
+                        //string sql_contain = "select YS_Product_Name from TBBD_Product_type where YS_Product_Tag='1' " +
+                        //    "and charindex('-',YS_Product_Code)>0 and YS_Product_Name like '%" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "%' " +
+                        //    "and YS_Product_Name!='" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "'";
+                        //DataTable dt_contain = DBCallCommon.GetDTUsingSqlText(sql_contain);
+                        //for (int s = 0; s < dt_contain.Rows.Count; s++)
+                        //{
+                        //    sql += " and charindex('" + dt_contain.Rows[s]["YS_Product_Name"] + "',marnm)=0";
+                        //}
                         System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
 
                         double money = 0;
@@ -274,7 +274,7 @@ namespace ZCZJ_DPF.YS_Data
 
             for (int j = 0; j < dt_OtherMar.Rows.Count; j++)
             {
-                string sql_code = "select sum(ctamount) as Amount from View_TBPC_PURORDERDETAIL_PLAN_TOTAL where marid like '" + dt_OtherMar.Rows[j]["YS_CODE"] + "%' and salescontract='" + ContractNo + "'";
+                string sql_code = "select sum(ctamount) as Amount from View_TBPC_PURORDERDETAIL_PLAN_TOTAL where marid like '" + dt_OtherMar.Rows[j]["YS_CODE"] + "%' and engid='" + ContractNo + "'";
                 System.Data.DataTable dt_code = DBCallCommon.GetDTUsingSqlText(sql_code);
                 double money = 0;
                 if (dt_code.Rows.Count > 0)
@@ -286,7 +286,7 @@ namespace ZCZJ_DPF.YS_Data
             string sql_other_type = "select YS_Product_Code from TBBD_Product_type where YS_Product_FatherCode='Other'";
             sql_other_type += str_other_product;
             System.Data.DataTable dt_other_type = DBCallCommon.GetDTUsingSqlText(sql_other_type);
-            string sql_total_other = "select sum(ctamount) as Amount from View_TBPC_PURORDERDETAIL_PLAN_TOTAL where salescontract='" + ContractNo + "' and charindex(substring(marid,1,5),'01.07.01.08.01.11.01.15.01.18')=0";
+            string sql_total_other = "select sum(ctamount) as Amount from View_TBPC_PURORDERDETAIL_PLAN_TOTAL where engid='" + ContractNo + "' and charindex(substring(marid,1,5),'01.07.01.08.01.11.01.15.01.18')=0";
             sql_total_other += str_other;
             for (int i = 0; i < dt_other_type.Rows.Count; i++)
             {

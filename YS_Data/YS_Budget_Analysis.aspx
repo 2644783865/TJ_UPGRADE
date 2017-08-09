@@ -1,10 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/RightCotentMaster.master"
-    CodeBehind="YS_Cost_Budget_A_M.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.YS_Cost_Budget_A_M" %>
+Ôªø<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/RightCotentMaster.master"
+    CodeBehind="YS_Budget_Analysis.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.YS_Budget_Analysis" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    ≥…±æº‡øÿ/∑÷Œˆ
+    ÊàêÊú¨ÁõëÊéß/ÂàÜÊûê
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
@@ -42,7 +42,7 @@
             var data = obj.value;
             var re = /^[1-9]\d*$/;
             if (!re.test(data)) {
-                alert('«Î ‰»Î’˝»∑µƒ ˝æ›,”¶Œ™’˝’˚ ˝£°');
+                alert('ËØ∑ËæìÂÖ•Ê≠£Á°ÆÁöÑÊï∞ÊçÆ,Â∫î‰∏∫Ê≠£Êï¥Êï∞ÔºÅ');
             }
         }
 
@@ -58,21 +58,21 @@
                         <td>
                             <asp:RadioButtonList ID="rbl_profit" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick"
                                 RepeatDirection="Horizontal">
-                                <asp:ListItem Text="»´≤ø" Value="0" Selected="True"></asp:ListItem>
-                                <asp:ListItem Text="√´¿˚»Û≥‡◊÷" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="√´¿˚»Û∑«≥‡◊÷" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="ÂÖ®ÈÉ®" Value="0" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="ÊØõÂà©Ê∂¶Ëµ§Â≠ó" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="ÊØõÂà©Ê∂¶ÈùûËµ§Â≠ó" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                         <td align="center">
-                            œÓƒø√˚≥∆:
+                            È°πÁõÆÂêçÁß∞:
                             <asp:DropDownList ID="ddl_project" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                             </asp:DropDownList>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; π§≥Ã√˚≥∆:
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Â∑•Á®ãÂêçÁß∞:
                             <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                             </asp:DropDownList>
                         </td>
                         <td align="right">
-                            <asp:Button ID="btn_daochu" runat="server" Text="µº≥ˆExcel" OnClick="btn_daochu_Click" />&nbsp;
+                            <asp:Button ID="btn_daochu" runat="server" Text="ÂØºÂá∫Excel" OnClick="btn_daochu_Click" />&nbsp;
                         </td>
                     </tr>
                 </table>
@@ -85,9 +85,9 @@
                 <table width="100%">
                     <tr>
                         <td>
-                            »ŒŒÒ∫≈£∫<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
-                            </asp:TextBox><asp:Button ID="search1" runat="server" Text="≤È —Ø" OnClick="btn_search_OnClick" />
-                            <asp:Button ID="btnShowPopup" runat="server" Text="∏¸∂‡…∏—°" />
+                            ‰ªªÂä°Âè∑Ôºö<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
+                            </asp:TextBox><asp:Button ID="search1" runat="server" Text="Êü• ËØ¢" OnClick="btn_search_OnClick" />
+                            <asp:Button ID="btnShowPopup" runat="server" Text="Êõ¥Â§öÁ≠õÈÄâ" />
                             <asp:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btnShowPopup"
                                 PopupControlID="Pal_condition" Drag="false" Enabled="True" DynamicServicePath=""
                                 Y="80">
@@ -99,85 +99,85 @@
                     <table width="100%" style="background-color: #CCCCFF; border: solid 1px black;">
                         <tr>
                             <td colspan="2" align="center">
-                                <asp:Button ID="QueryButton" runat="server" Text="≤È—Ø" OnClick="btn_search_OnClick" />
+                                <asp:Button ID="QueryButton" runat="server" Text="Êü•ËØ¢" OnClick="btn_search_OnClick" />
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnClose" runat="server" Text="»°œ˚" OnClick="btnClose_Click" />
+                                <asp:Button ID="btnClose" runat="server" Text="ÂèñÊ∂à" OnClick="btnClose_Click" />
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btnReset" runat="server" Text="÷ÿ÷√" OnClick="btnReset_Click" />
+                                <asp:Button ID="btnReset" runat="server" Text="ÈáçÁΩÆ" OnClick="btnReset_Click" />
                                 &nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                …˙≤˙÷∆∫≈£∫<asp:TextBox ID="txtprotect_num" runat="server"></asp:TextBox></td>
+                                Áîü‰∫ßÂà∂Âè∑Ôºö<asp:TextBox ID="txtprotect_num" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <%--<td>
-                                Õ‚–≠∑—”√£∫<asp:DropDownList ID="dpl_waixie" runat="server">
-                                    <asp:ListItem Text="--«Î—°‘Ò--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="–°”⁄90%" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="¥ÔµΩ90%£®ª∆◊÷£©" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="≥¨≥ˆ‘§À„£®∫Ï◊÷£©" Value="3"></asp:ListItem>
+                                Â§ñÂçèË¥πÁî®Ôºö<asp:DropDownList ID="dpl_waixie" runat="server">
+                                    <asp:ListItem Text="--ËØ∑ÈÄâÊã©--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Â∞è‰∫é90%" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="ËææÂà∞90%ÔºàÈªÑÂ≠óÔºâ" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Ë∂ÖÂá∫È¢ÑÁÆóÔºàÁ∫¢Â≠óÔºâ" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>--%>
                             <td>
-                                ≤ƒ¡œ∑—”√£∫<asp:DropDownList ID="dpl_materials" runat="server">
-                                    <asp:ListItem Text="--«Î—°‘Ò--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="–°”⁄90%" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="¥ÔµΩ90%£®ª∆◊÷£©" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="≥¨≥ˆ‘§À„£®∫Ï◊÷£©" Value="3"></asp:ListItem>
+                                ÊùêÊñôË¥πÁî®Ôºö<asp:DropDownList ID="dpl_materials" runat="server">
+                                    <asp:ListItem Text="--ËØ∑ÈÄâÊã©--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Â∞è‰∫é90%" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="ËææÂà∞90%ÔºàÈªÑÂ≠óÔºâ" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Ë∂ÖÂá∫È¢ÑÁÆóÔºàÁ∫¢Â≠óÔºâ" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         <%--</tr>
                         <tr>--%>
                             <td>
-                                »Àπ§∑—”√£∫<asp:DropDownList ID="dpl_labor" runat="server">
-                                    <asp:ListItem Text="--«Î—°‘Ò--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="–°”⁄90%" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="¥ÔµΩ90%£®ª∆◊÷£©" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="≥¨≥ˆ‘§À„£®∫Ï◊÷£©" Value="3"></asp:ListItem>
+                                ‰∫∫Â∑•Ë¥πÁî®Ôºö<asp:DropDownList ID="dpl_labor" runat="server">
+                                    <asp:ListItem Text="--ËØ∑ÈÄâÊã©--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Â∞è‰∫é90%" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="ËææÂà∞90%ÔºàÈªÑÂ≠óÔºâ" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Ë∂ÖÂá∫È¢ÑÁÆóÔºàÁ∫¢Â≠óÔºâ" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                            <%-- <td>
-                                ∆‰À¸∑—”√£∫<asp:DropDownList ID="dpl_other" runat="server">
-                                    <asp:ListItem Text="--«Î—°‘Ò--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="–°”⁄90%" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="¥ÔµΩ90%£®ª∆◊÷£©" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="≥¨≥ˆ‘§À„£®∫Ï◊÷£©" Value="3"></asp:ListItem>
+                                ÂÖ∂ÂÆÉË¥πÁî®Ôºö<asp:DropDownList ID="dpl_other" runat="server">
+                                    <asp:ListItem Text="--ËØ∑ÈÄâÊã©--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Â∞è‰∫é90%" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="ËææÂà∞90%ÔºàÈªÑÂ≠óÔºâ" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Ë∂ÖÂá∫È¢ÑÁÆóÔºàÁ∫¢Â≠óÔºâ" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>--%>
                         </tr>
                         <tr>
                             <td>
-                                √´ ¿˚ »Û £∫<asp:DropDownList ID="dpl_all_profit" runat="server">
-                                    <asp:ListItem Text="--«Î—°‘Ò--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="¥ÔµΩ‘§À„¿˚»Û" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="¥ÔµΩ‘§À„¿˚»Û90%" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="–°”⁄‘§À„¿˚»Û90%" Value="3"></asp:ListItem>
+                                ÊØõ Âà© Ê∂¶ Ôºö<asp:DropDownList ID="dpl_all_profit" runat="server">
+                                    <asp:ListItem Text="--ËØ∑ÈÄâÊã©--" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="ËææÂà∞È¢ÑÁÆóÂà©Ê∂¶" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="ËææÂà∞È¢ÑÁÆóÂà©Ê∂¶90%" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Â∞è‰∫éÈ¢ÑÁÆóÂà©Ê∂¶90%" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                             <td>
-                                ÷∆µ•»À‘±£∫<asp:DropDownList ID="dpl_people" runat="server">
+                                Âà∂Âçï‰∫∫ÂëòÔºö<asp:DropDownList ID="dpl_people" runat="server">
                                 </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                Ã·Ωª‘§À„ ±º‰£∫<asp:TextBox ID="txt_make_sta" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox>÷¡&nbsp;<asp:TextBox ID="txt_make_end" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox><asp:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" DaysModeTitleFormat="MM‘¬,yyyyƒÍ"
+                                Êèê‰∫§È¢ÑÁÆóÊó∂Èó¥Ôºö<asp:TextBox ID="txt_make_sta" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox>Ëá≥&nbsp;<asp:TextBox ID="txt_make_end" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox><asp:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" DaysModeTitleFormat="MMÊúà,yyyyÂπ¥"
                                     TodaysDateFormat="yyyy-MM-dd" TargetControlID="txt_make_sta">
                                 </asp:CalendarExtender>
-                                <asp:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" DaysModeTitleFormat="MM‘¬,yyyyƒÍ"
+                                <asp:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" DaysModeTitleFormat="MMÊúà,yyyyÂπ¥"
                                     TodaysDateFormat="yyyy-MM-dd" TargetControlID="txt_make_end">
                                 </asp:CalendarExtender>
                             </td>
                         </tr>
                         <%--<tr>
                             <td colspan="2">
-                                ∫œÕ¨ÕÍ≥… ±º‰£∫<asp:TextBox ID="finish_sta_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox>÷¡&nbsp;<asp:TextBox ID="finish_end_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox><asp:CalendarExtender ID="finish_calender_sta" runat="server" Format="yyyy-MM-dd"
-                                    DaysModeTitleFormat="MM‘¬,yyyyƒÍ" TodaysDateFormat="yyyy-MM-dd" TargetControlID="finish_sta_time">
+                                ÂêàÂêåÂÆåÊàêÊó∂Èó¥Ôºö<asp:TextBox ID="finish_sta_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox>Ëá≥&nbsp;<asp:TextBox ID="finish_end_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox><asp:CalendarExtender ID="finish_calender_sta" runat="server" Format="yyyy-MM-dd"
+                                    DaysModeTitleFormat="MMÊúà,yyyyÂπ¥" TodaysDateFormat="yyyy-MM-dd" TargetControlID="finish_sta_time">
                                 </asp:CalendarExtender>
                                 <asp:CalendarExtender ID="finish_calender_end" runat="server" Format="yyyy-MM-dd"
-                                    DaysModeTitleFormat="MM‘¬,yyyyƒÍ" TodaysDateFormat="yyyy-MM-dd" TargetControlID="finish_end_time">
+                                    DaysModeTitleFormat="MMÊúà,yyyyÂπ¥" TodaysDateFormat="yyyy-MM-dd" TargetControlID="finish_end_time">
                                 </asp:CalendarExtender>
                             </td>
                         </tr>--%>
@@ -193,42 +193,42 @@
                     AutoGenerateColumns="False" CellPadding="1" ForeColor="#333333" OnRowDataBound="GridView1_onrowdatabound">
                     <RowStyle BackColor="#EFF3FB" />
                     <Columns>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Wrap="false" HeaderText="–Ú∫≈"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Wrap="false" HeaderText="Â∫èÂè∑"
                             ItemStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="∫œÕ¨∫≈" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                        <asp:TemplateField HeaderText="ÂêàÂêåÂè∑" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_YS_CONTRACT_NO" runat="server" Text='<%#Eval("YS_CONTRACT_NO") %>'
-                                    ToolTip="À´ª˜πÿ¡™∫œÕ¨–≈œ¢£°"></asp:Label>
+                                    ToolTip="ÂèåÂáªÂÖ≥ËÅîÂêàÂêå‰ø°ÊÅØÔºÅ"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="»ŒŒÒ∫≈" HeaderStyle-Wrap="false">
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="‰ªªÂä°Âè∑" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_pcon_sch" runat="server" Text='<%#Eval("PCON_SCH") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="œÓƒø√˚≥∆" HeaderStyle-Wrap="false">
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="È°πÁõÆÂêçÁß∞" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("PCON_PJNAME") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="π§≥Ã√˚≥∆" HeaderStyle-Wrap="false">
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Â∑•Á®ãÂêçÁß∞" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_pcon_engname" runat="server" Text='<%#Eval("PCON_ENGNAME") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="YS_BUDGET_INCOME" HeaderText="‘§À„ ’»Î" ItemStyle-HorizontalAlign="Left"
+                        <asp:BoundField DataField="YS_BUDGET_INCOME" HeaderText="È¢ÑÁÆóÊî∂ÂÖ•" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
-                        <asp:BoundField DataField="YS_RealCost" HeaderText=" µº ∑—”√∫œº∆" ItemStyle-HorizontalAlign="Left"
+                        <asp:BoundField DataField="YS_RealCost" HeaderText="ÂÆûÈôÖË¥πÁî®ÂêàËÆ°" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="√´¿˚»Û(‘§)" HeaderStyle-ForeColor="#660066"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÊØõÂà©Ê∂¶(È¢Ñ)" HeaderStyle-ForeColor="#660066"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -241,7 +241,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="æª¿˚»Û(‘§)" HeaderStyle-ForeColor="#660066"
+                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÂáÄÂà©Ê∂¶(È¢Ñ)" HeaderStyle-ForeColor="#660066"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -254,7 +254,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ºº ıÕ‚–≠(‘§)" HeaderStyle-ForeColor="#660066"
+                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÊäÄÊúØÂ§ñÂçè(È¢Ñ)" HeaderStyle-ForeColor="#660066"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -267,7 +267,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="∫⁄…´Ω Ù(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÈªëËâ≤ÈáëÂ±û(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -280,7 +280,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Õ‚π∫º˛(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Â§ñË¥≠‰ª∂(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -293,7 +293,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="º”π§º˛(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Âä†Â∑•‰ª∂(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -306,7 +306,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="”Õ∆·Õø¡œ(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Ê≤πÊºÜÊ∂ÇÊñô(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -319,7 +319,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="µÁ∆¯µÁ¡œ(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÁîµÊ∞îÁîµÊñô(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -332,7 +332,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="∆‰À¸≤ƒ¡œ∑—(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÂÖ∂ÂÆÉÊùêÊñôË¥π(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -345,7 +345,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="÷±Ω”»Àπ§∑—(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Áõ¥Êé•‰∫∫Â∑•Ë¥π(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -358,7 +358,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="≥ßƒ⁄∑÷∞¸(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÂéÇÂÜÖÂàÜÂåÖ(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -371,7 +371,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="…˙≤˙Õ‚–≠(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Áîü‰∫ßÂ§ñÂçè(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -384,7 +384,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="÷∆‘Ï∑—”√(‘§)" HeaderStyle-ForeColor="Brown"
+                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Âà∂ÈÄ†Ë¥πÁî®(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -397,7 +397,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="œ˙ €∑—”√(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÈîÄÂîÆË¥πÁî®(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -410,7 +410,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="π‹¿Ì∑—”√(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÁÆ°ÁêÜË¥πÁî®(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -423,7 +423,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="À∞Ωº∞∏Ωº”(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Á®éÈáëÂèäÈôÑÂä†(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -436,7 +436,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="‘À∑—(‘§)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ËøêË¥π(È¢Ñ)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -449,116 +449,116 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="√´¿˚»Û( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÊØõÂà©Ê∂¶(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
                                 <asp:Label ID="lab_PROFIT_R" runat="server" Text='<%#Eval("YS_PROFIT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="æª¿˚»Û( µ)" HeaderStyle-Wrap="false"
+                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÂáÄÂà©Ê∂¶(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
                                 <asp:Label ID="lab_PROFIT_TAX_R" runat="server" Text='<%#Eval("YS_PROFIT_TAX","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <%--<asp:BoundField DataField="YS_PROFIT" HeaderText="¿˚»Û◊‹∂Ó( µ)" ItemStyle-HorizontalAlign="Left"
+                        <%--<asp:BoundField DataField="YS_PROFIT" HeaderText="Âà©Ê∂¶ÊÄªÈ¢ù(ÂÆû)" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
-                        <asp:BoundField DataField="YS_PROFIT_TAX" HeaderText="æª¿˚»Û( µ)" ItemStyle-HorizontalAlign="Left"
+                        <asp:BoundField DataField="YS_PROFIT_TAX" HeaderText="ÂáÄÂà©Ê∂¶(ÂÆû)" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />--%>
-                       <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ºº ıÕ‚–≠( µ)" HeaderStyle-Wrap="false"
+                       <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÊäÄÊúØÂ§ñÂçè(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
                                 <asp:Label ID="lab_OUT_LAB_MAR_R" runat="server" Text='<%#Eval("YS_OUT_LAB_MAR","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="∫⁄…´Ω Ù( µ)" HeaderStyle-Wrap="false"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÈªëËâ≤ÈáëÂ±û(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
                                 <asp:Label ID="lab_FERROUS_METAL_R" runat="server" Text='<%#Eval("YS_FERROUS_METAL","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Õ‚π∫º˛( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Â§ñË¥≠‰ª∂(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
                                 <asp:Label ID="lab_PURCHASE_PART_R" runat="server" Text='<%#Eval("YS_PURCHASE_PART","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="º”π§º˛( µ)" HeaderStyle-Wrap="false"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Âä†Â∑•‰ª∂(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
                                 <asp:Label ID="lab_MACHINING_PART_R" runat="server" Text='<%#Eval("YS_MACHINING_PART","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="”Õ∆·Õø¡œ( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Ê≤πÊºÜÊ∂ÇÊñô(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
                                 <asp:Label ID="lab_PAINT_COATING_R" runat="server" Text='<%#Eval("YS_PAINT_COATING","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="µÁ∆¯µÁ¡œ( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÁîµÊ∞îÁîµÊñô(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
                                 <asp:Label ID="lab_ELECTRICAL_R" runat="server" Text='<%#Eval("YS_ELECTRICAL","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="∆‰À˚≤ƒ¡œ∑—( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÂÖ∂‰ªñÊùêÊñôË¥π(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
                                 <asp:Label ID="lab_OTHERMAT_COST_R" runat="server" Text='<%#Eval("YS_OTHERMAT_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="÷±Ω”»Àπ§∑—( µ)" HeaderStyle-Wrap="false">
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Áõ¥Êé•‰∫∫Â∑•Ë¥π(ÂÆû)" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_TEAM_CONTRACT_R" runat="server" Text='<%#Eval("YS_TEAM_CONTRACT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="≥ßƒ⁄∑÷∞¸( µ)" HeaderStyle-Wrap="false">
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÂéÇÂÜÖÂàÜÂåÖ(ÂÆû)" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_FAC_CONTRACT_R" runat="server" Text='<%#Eval("YS_FAC_CONTRACT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="…˙≤˙Õ‚–≠( µ)" HeaderStyle-Wrap="false">
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Áîü‰∫ßÂ§ñÂçè(ÂÆû)" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_PRODUCT_OUT_R" runat="server" Text='<%#Eval("YS_PRODUCT_OUT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="÷∆‘Ï∑—”√(∂©)" HeaderStyle-Wrap="false"
+                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Âà∂ÈÄ†Ë¥πÁî®(ËÆ¢)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
                                 <asp:Label ID="lab_MANU_COST_R" runat="server" Text='<%#Eval("YS_MANU_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="œ˙ €∑—”√( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÈîÄÂîÆË¥πÁî®(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
                                 <asp:Label ID="lab_SELL_COST_R" runat="server" Text='<%#Eval("YS_SELL_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="π‹¿Ì∑—”√( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ÁÆ°ÁêÜË¥πÁî®(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
                                 <asp:Label ID="lab_MANAGE_COST_R" runat="server" Text='<%#Eval("YS_MANAGE_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="À∞Ωº∞∏Ωº”( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Á®éÈáëÂèäÈôÑÂä†(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
                                 <asp:Label ID="lab_Taxes_Cost_R" runat="server" Text='<%#Eval("YS_Taxes_Cost","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="‘À∑—( µ)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="ËøêË¥π(ÂÆû)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
                                 <asp:Label ID="lab_TRANS_COST_R" runat="server" Text='<%#Eval("YS_TRANS_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="YS_ADDNAME" HeaderText="÷∆µ•»À" ItemStyle-HorizontalAlign="Center"
+                        <asp:BoundField DataField="YS_ADDNAME" HeaderText="Âà∂Âçï‰∫∫" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" />
-                        <asp:BoundField DataField="YS_ADDDATE" HeaderText="÷∆µ• ±º‰" ItemStyle-HorizontalAlign="Center"
+                        <asp:BoundField DataField="YS_ADDDATE" HeaderText="Âà∂ÂçïÊó∂Èó¥" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
-                        <asp:BoundField DataField="YS_Finshtime" HeaderText="ÕÍ≥… ±º‰" ItemStyle-HorizontalAlign="Center"
+                        <asp:BoundField DataField="YS_Finshtime" HeaderText="ÂÆåÊàêÊó∂Èó¥" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" />
-                        <asp:BoundField DataField="YS_NOTE" HeaderText="±∏◊¢" ItemStyle-HorizontalAlign="Center"
+                        <asp:BoundField DataField="YS_NOTE" HeaderText="Â§áÊ≥®" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" />
                     </Columns>
                     <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
@@ -570,7 +570,7 @@
                 </br>
             </div>
             <asp:Panel ID="NoDataPanel" runat="server">
-                √ª”–º«¬º!</asp:Panel>
+                Ê≤°ÊúâËÆ∞ÂΩï!</asp:Panel>
             <uc1:UCPaging ID="UCPaging1" runat="server" />
         </div>
     </div>
@@ -579,18 +579,19 @@
             <tr>
                 <td style="width: 15" align="Left">
                     <img alt="" src="/YS_Data/update1.jpg" width="50px" height="15" />
-                    <asp:Label ID="labe1" runat="Server" Text="±Ì æ∂©µ•ÕÍ≥…∞Ÿ∑÷±»" Font-Size="Small" ForeColor="#000066"
+                    <asp:Label ID="labe1" runat="Server" Text="Ë°®Á§∫ËÆ¢ÂçïÂÆåÊàêÁôæÂàÜÊØî" Font-Size="Small" ForeColor="#000066"
                         Font-Bold="True" />
                     &nbsp;&nbsp;&nbsp;
                     <img alt="" src="/YS_Data/LightSalmon.jpg" width="50px" height="15" />
-                    <asp:Label ID="Label3" runat="Server" Text="±Ì æ∂©µ•¥ÔµΩ‘§À„90%" Font-Size="Small" ForeColor="#000066"
+                    <asp:Label ID="Label3" runat="Server" Text="Ë°®Á§∫ËÆ¢ÂçïËææÂà∞È¢ÑÁÆó90%" Font-Size="Small" ForeColor="#000066"
                         Font-Bold="True" />
                     &nbsp;&nbsp;&nbsp;
                     <img alt="" src="/YS_Data/Yellow.jpg" width="50px" height="15" />
-                    <asp:Label ID="Label2" runat="Server" Text="±Ì æ∂©µ•≥¨π˝‘§À„" Font-Size="Small" ForeColor="#000066"
+                    <asp:Label ID="Label2" runat="Server" Text="Ë°®Á§∫ËÆ¢ÂçïË∂ÖËøáÈ¢ÑÁÆó" Font-Size="Small" ForeColor="#000066"
                         Font-Bold="True" />
                 </td>
             </tr>
         </table>
     </div>
 </asp:Content>
+
