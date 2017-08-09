@@ -10,6 +10,7 @@
         input
         {
             height: 17px;
+            width:120px;
         }
     </style>
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
@@ -18,13 +19,13 @@
     <table width="100%">
         <tr>
             <td>
-                合同号：<asp:Label ID="lb_YS_CONTRACT_NO" runat="server" Text="Label"></asp:Label>
+                合同号：<asp:Label ID="lb_YS_CONTRACT_NO" runat="server"></asp:Label>
             </td>
             <td>
-                项目名称：<asp:Label ID="lb_CM_PROJ" runat="server" Text="Label"></asp:Label>
+                项目名称：<asp:Label ID="lb_CM_PROJ" runat="server"></asp:Label>
             </td>
             <td>
-                任务号：<asp:Label ID="lb_YS_TSA_ID" runat="server" Text="Label"></asp:Label>
+                任务号：<asp:Label ID="lb_YS_TSA_ID" runat="server"></asp:Label>
             </td>
             <td align="right">
                 预算备注：
@@ -34,7 +35,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="5" align="right" style="padding-top: 15px">
+            <td colspan="5" align="right" style="padding-top: 5px">
                 <asp:Button ID="Button1" runat="server" Text="保存内容" />
                 <asp:Button ID="Button2" runat="server" Text="下推至部门反馈" />
                 <asp:Button ID="Button3" runat="server" Text="提交反馈" />
@@ -46,7 +47,7 @@
         <%--黑色金属--%>
         <asp:TabPanel runat="server" HeaderText="黑色金属" ID="TabPanel1">
             <ContentTemplate>
-                <div style="overflow: auto; height: 380px">
+                <div style="overflow: auto; height: 320px">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_FERROUS_METAL" runat="server">
@@ -87,22 +88,23 @@
                                         <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
                                     </td>
                                     <td align="center">
-                                        <asp:Label ID="Label3" runat="server" Text=''></asp:Label>
+                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
                                     </td>
                                     <td align="center">
+                                    <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
                                     </td>
                                     <td align="right">
-                                        <asp:Label Style="text-align: right" ID="Label2" runat="server" Text='<%# Eval("YS_TSA_ID") %>'></asp:Label>
+                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
                                     </td>
                                     <td align="right">
-                                        <asp:Label ID="Label4" runat="server" Text='<%#Eval("YS_BUDGET_INCOME","{0:f2}")%>'></asp:Label>
+                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f2}")%>'></asp:Label>
                                     </td>
                                     <td align="right">
-                                        <asp:Label ID="Label5" runat="server" Text='<%#Eval("YS_BUDGET_INCOME","{0:f2}")%>'></asp:Label>
+                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
                                     
                                     </td>
                                     <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"></asp:TextBox>
+                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
                                     </td>
                                     <td align="center">
                                         <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>

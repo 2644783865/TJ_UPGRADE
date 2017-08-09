@@ -31,7 +31,7 @@ namespace ZCZJ_DPF.YS_Data
                 BindTsaId();
                 InitVar();
                 GetTechRequireData();
-                
+
             }
             InitVar();
             //CheckUser(ControlFinder);
@@ -106,7 +106,7 @@ namespace ZCZJ_DPF.YS_Data
             DBCallCommon.BindDdl(ddl_addper, sqltext, dataText, dataValue);
         }
 
-        #endregion 
+        #endregion
 
 
         #region 分页
@@ -422,43 +422,21 @@ namespace ZCZJ_DPF.YS_Data
             GetTechRequireData();
         }
 
+
         /// <summary>
-        /// /新增预算
+        /// 
         /// </summary>
-        /// <param name="sender">事件发出的对象</param>
-        /// <param name="e">事件传递的参数</param>
-        protected void btnAddMar_OnClick(object sender, EventArgs e)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "PurMarAdd();", true);
+            string tsaId = GridView1.DataKeys[e.NewSelectedIndex].Value.ToString();
+            
+                
+            Response.Redirect("YS_Cost_Budget_Add_Detail.aspx?tsaId=" + tsaId + "&contractNo=", true);
+
         }
-
-        //待定，修改预算
-        protected void btnModify_OnClick(object sender, EventArgs e)
-        {
-            string YS_CONTRACT_NO = "";
-
-            foreach (GridViewRow grow in GridView1.Rows)
-            {
-                CheckBox ckb = (CheckBox)grow.FindControl("CheckBox1");
-                if (ckb.Checked)
-                {
-                    Encrypt_Decrypt ed = new Encrypt_Decrypt();
-                    YS_CONTRACT_NO = ed.EncryptText(((HiddenField)grow.FindControl("hdfMP_ID")).Value);
-                    break;
-                }
-            }
-            if (YS_CONTRACT_NO != "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "PurMarEdit_AddPer('" + YS_CONTRACT_NO + "');", true);
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请选择要修改的行！！！');", true);
-            }
-        }
-
         #endregion
-
 
 
     }

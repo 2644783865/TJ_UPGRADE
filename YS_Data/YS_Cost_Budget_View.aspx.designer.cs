@@ -32,42 +32,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.CheckBox ckb_time;
         
         /// <summary>
-        /// btnModify 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnModify;
-        
-        /// <summary>
-        /// ModImahe 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ModImahe;
-        
-        /// <summary>
-        /// btnAddMar 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddMar;
-        
-        /// <summary>
-        /// AddImage1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image AddImage1;
-        
-        /// <summary>
         /// ddl_project 控件。
         /// </summary>
         /// <remarks>
