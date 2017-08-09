@@ -55,6 +55,7 @@ namespace ZCZJ_DPF.OM_Data
         private void InitPage()
         {
             txtname.Text = "";
+            txtname.ToolTip = "查询多人请用逗号隔开姓名!";
             //显示当月
             dplYear.ClearSelection();
             foreach (ListItem li in dplYear.Items)
