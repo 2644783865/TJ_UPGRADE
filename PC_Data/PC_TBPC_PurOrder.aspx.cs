@@ -266,7 +266,7 @@ namespace ZCZJ_DPF.PC_Data
                      "convert(float,amount) as Amount,taxrate as TaxRate,convert(float,ctamount) as PricePlusTax," +
                      "detailnote as Comment,planmode as PlanMode,ptcode as ptcode,length as Length," +
                      "width as Width,keycoms as keycoms,detailstate as PO_STATE,detailcstate as pocstate," +
-                     "engid as engid,pjid,PO_CGFS,PO_MASHAPE,PO_MAP,PO_TECUNIT,PO_CHILDENGNAME  " +
+                     "engid as engid,pjid,PO_CGFS,PO_MASHAPE,PO_MAP,PO_TECUNIT,PO_CHILDENGNAME,PO_IFFAST as 'IFFAST'  " +
                      "FROM View_TBPC_PURORDERDETAIL_PLAN WHERE orderno='" + orderno + "' and (detailcstate='0' or detailcstate='2') order by ptcode,marnm,margg asc";
 
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
@@ -991,6 +991,14 @@ namespace ZCZJ_DPF.PC_Data
         private double recievenum = 0;
         protected void tbpc_order_detailRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                string IFFAST = ((System.Web.UI.WebControls.Label)e.Item.FindControl("IFFAST")).Text.Trim();
+                if (IFFAST == "1")
+                {
+                    ((System.Web.UI.WebControls.Label)e.Item.FindControl("lbUrgency")).Visible = true;
+                }
+            }
             if (e.Item.ItemIndex >= 0)
             {
 

@@ -144,21 +144,25 @@ namespace ZCZJ_DPF.OM_Data
                             compare_time = string.Compare(txtrq.Text.ToString().Trim(), DT.Rows[0]["RQ"].ToString());
                             //DateTime dt_now = DateTime.Parse(txtrq.Text.ToString().Trim());//填写的时间
                             //DateTime dt_SQL = DateTime.Parse(DT.Rows[0]["RQ"].ToString());//数据库最后一条数据的时间
-                            if (ss <= lichenng1 && compare_time >= 0)//如果填写的里程数小于数据库里面的里程数，而时间却较大则跳出提示
-                            {
-                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请注意所填里程数和时间！')", true);
-                                return;
-                            }
-                            else
-                            {
-                                if (compare_time <= 0 && ss >= lichenng1)
-                                {
-                                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请注意所填里程数和时间！')", true);
-                                    return;
-                                }
 
-                                #region 新增验证加油前公里数需大于最近出车结束里程数
-                                //string sqladd = "select CODE,isnull(TIME2,'')TIME2,isnull(LICHENG2,'')LICHENG2 from TBOM_CARAPPLY where CARNUM like '" + ddlcarnum.SelectedValue.Trim() + "%'order by TIME2 desc";
+                            #region 注释输入检查功能[2017.8.8]
+                            //if (ss <= lichenng1 && compare_time >= 0)//如果填写的里程数小于数据库里面的里程数，而时间却较大则跳出提示
+                            //{
+                            //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请注意所填里程数和时间！')", true);
+                            //    return;
+                            //}
+                            //else
+                            //{
+                                //注释输入检查[2017.8.8]
+                                //if (compare_time <= 0 && ss >= lichenng1)
+                                //{
+                                //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请注意所填里程数和时间！')", true);
+                                //    return;
+                            //}
+                            #endregion
+
+                            #region 新增验证加油前公里数需大于最近出车结束里程数
+                            //string sqladd = "select CODE,isnull(TIME2,'')TIME2,isnull(LICHENG2,'')LICHENG2 from TBOM_CARAPPLY where CARNUM like '" + ddlcarnum.SelectedValue.Trim() + "%'order by TIME2 desc";
                                 //DataTable dtadd = DBCallCommon.GetDTUsingSqlText(sqladd);
                                 //if (dtadd.Rows.Count > 0)
                                 //{
@@ -210,7 +214,7 @@ namespace ZCZJ_DPF.OM_Data
                                 }
                                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('增添记录成功！');window.close();", true);
                                 Response.Redirect("OM_CarWeihu.aspx");
-                            }
+                            //}
                         }
                         //若为新车，新增第一条数据
                         else
