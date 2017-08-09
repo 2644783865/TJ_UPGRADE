@@ -1183,7 +1183,7 @@ namespace ZCZJ_DPF.PC_Data
         //批量导出
         protected void btn_daochu_all_Click(object sender, EventArgs e)
         {
-            string sqltext = " select picno,ptcode,PIC_CHILDENGNAME,PIC_MAP,margb,PIC_TUHAO,marnm,margg,marcz,length,width,marnum,marunit,marfznum,marfzunit,supplierresnm, " +
+            string sqltext = " select (CASE PIC_IFFAST WHEN '1' THEN'加急' ELSE ''END) AS 'ISFAST',picno,ptcode,PIC_CHILDENGNAME,PIC_MAP,margb,PIC_TUHAO,marnm,margg,marcz,length,width,marnum,marunit,marfznum,marfzunit,supplierresnm, " +
                     " price,detamount,detailnote,supplieranm,qoutefstsa,qoutescdsa,qoutelstsa,supplierbnm,qoutefstsb,qoutescdsb,qoutelstsb,suppliercnm,qoutefstsc,qoutescdsc,qoutelstsc, " +
                     " supplierdnm,qoutefstsd,qoutescdsd,qoutelstsd,supplierenm,qoutefstse,qoutescdse,qoutelstse,supplierfnm,qoutefstsf,qoutescdsf,qoutelstsf " +
                       "from View_TBPC_IQRCMPPRICE_RVW1  where ";
@@ -1200,7 +1200,7 @@ namespace ZCZJ_DPF.PC_Data
             else
             {
                 string filename = "采购比价单明细" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls";
-                exportCommanmethod.exporteasy(sqltext, filename, "采购比价单明细.xls", 3, true, true, true);
+                exportCommanmethod.exporteasy(sqltext, filename, "采购比价单明细批量导出模板.xls", 3, true, true, true);
             }
 
 
