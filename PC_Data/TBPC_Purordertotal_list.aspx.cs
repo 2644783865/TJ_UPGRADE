@@ -986,7 +986,7 @@ namespace ZCZJ_DPF.PC_Data
                                          "recdate, recgdnum, recgdfznum, taxrate, detailnote, keycoms, detailstate, detailcstate, whstate, length, width, fixed, pjid, " +
                                          "pjnm, engid, engnm, ctprice, planmode, ctamount, price, amount, supplierid, suppliernm, zdrid, zdrnm, substring(zdtime,0,11) as zdtime, shrid, " +
                                          "shrnm, shtime, ywyid, ywynm, zgid, zgnm, depid, depnm, totalstate, totalcstate, totalnote, fax, phono, conname, abstract, " +
-                                         "PO_MASHAPE,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,PO_OperateState,PO_MAP,PO_TECUNIT,PO_CHILDENGNAME,PO_PZ  " +
+                                         "PO_MASHAPE,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,PO_OperateState,PO_MAP,PO_TECUNIT,PO_CHILDENGNAME,PO_PZ,PO_IFFAST as 'IFFAST'  " +
                                          "from View_TBPC_PURORDERDETAIL_PLAN_TOTAL  where orderno in (" + ordercode + ") order by orderno desc,ptcode asc";
                 //}
 
@@ -1144,10 +1144,12 @@ namespace ZCZJ_DPF.PC_Data
                 row1.GetCell(18).SetCellValue(dt.Rows[0]["orderno"].ToString());//订单编号
                 row10.GetCell(1).SetCellValue(dt.Rows[0]["suppliernm"].ToString());//供应商
                 row13.GetCell(17).SetCellValue(dt.Rows[0]["zdtime"].ToString());//制单日期
+                string Fast = string.Empty;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 18);
                     row.HeightInPoints = 14;//行高
+                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
                     #region MyRegion
 
                     //row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
@@ -1180,7 +1182,7 @@ namespace ZCZJ_DPF.PC_Data
 
                     #endregion
 
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["marid"].ToString());//物料编码
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["marnm"].ToString());//物料名称
 
@@ -1270,6 +1272,7 @@ namespace ZCZJ_DPF.PC_Data
             {
                 IWorkbook wk = new HSSFWorkbook(fs);
                 ISheet sheet0 = wk.GetSheetAt(0);
+                string Fast = string.Empty;
 
                 #region 写入数据
                 IRow row1 = sheet0.GetRow(1);
@@ -1278,11 +1281,14 @@ namespace ZCZJ_DPF.PC_Data
                 row1.GetCell(16).SetCellValue(dt.Rows[0]["orderno"].ToString());//订单编号
                 row10.GetCell(2).SetCellValue(dt.Rows[0]["suppliernm"].ToString());//供应商
                 row13.GetCell(15).SetCellValue(dt.Rows[0]["zdtime"].ToString());//制单日期
+                
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 18);
                     row.HeightInPoints = 14;//行高
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
+
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["marid"].ToString());//物料编码
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["marnm"].ToString());//物料名称
                     row.CreateCell(3).SetCellValue(dt.Rows[i]["PO_TUHAO"].ToString());//图号
@@ -1815,7 +1821,7 @@ namespace ZCZJ_DPF.PC_Data
 
             //if (DropDownListrange.SelectedIndex == 1)
             //{
-            string sqltext = "select orderno,supplierid,suppliernm,zdtime,cgtimerq,pjid,pjnm,engid,engnm,whstate,convert(float,zxnum) as zxnum,recgdnum,detailnote,detailstate,detailcstate,marunit,convert(float,ctamount) as ctamount,zdrid,zdrnm,shrid,shrnm,totalnote,totalstate,totalcstate,ptcode,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,marid,marnm,margg,marcz,margb,PO_MASHAPE,length,width,PO_ZJE,RESULT as PO_CGFS,ctprice,recdate,PO_MAP,PO_TECUNIT,zxfznum,PO_CHILDENGNAME from (select a.*,b.RESULT from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC)t where " + ViewState["sqlwhere"].ToString() + " order by zdtime desc,ptcode,marnm,margg";
+            string sqltext = "select orderno,supplierid,suppliernm,zdtime,cgtimerq,pjid,pjnm,engid,engnm,whstate,convert(float,zxnum) as zxnum,recgdnum,detailnote,detailstate,detailcstate,marunit,convert(float,ctamount) as ctamount,zdrid,zdrnm,shrid,shrnm,totalnote,totalstate,totalcstate,ptcode,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,marid,marnm,margg,marcz,margb,PO_MASHAPE,length,width,PO_ZJE,RESULT as PO_CGFS,ctprice,recdate,PO_MAP,PO_TECUNIT,zxfznum,PO_CHILDENGNAME,t.PO_IFFAST as 'IFFAST' from (select a.*,b.RESULT from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC)t where " + ViewState["sqlwhere"].ToString() + " order by zdtime desc,ptcode,marnm,margg";
             //}
 
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
@@ -1828,6 +1834,7 @@ namespace ZCZJ_DPF.PC_Data
             HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
             HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
             HttpContext.Current.Response.Clear();
+            string Fast = string.Empty;
             //1.读取Excel到FileStream
 
             using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("订单批量导出模板.xls")))
@@ -1840,8 +1847,9 @@ namespace ZCZJ_DPF.PC_Data
                 {
                     IRow row = sheet0.CreateRow(i + 1);
                     row.HeightInPoints = 14;//行高
+                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
 
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["orderno"].ToString());//单据编号
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["zdrnm"].ToString());//制单人
                     row.CreateCell(3).SetCellValue(dt.Rows[i]["zdtime"].ToString() == "" ? "" : Convert.ToDateTime(dt.Rows[i]["zdtime"].ToString()).ToString("yyyy-MM-dd"));//制单日期

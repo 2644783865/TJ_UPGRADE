@@ -551,7 +551,7 @@
                                                     <asp:Label ID="PUR_STATE" runat="server" Text='<%#Eval("PUR_STATE")%>' Visible="false"></asp:Label>
                                                      <asp:Label ID="PUR_KEYCOMS" runat="server" Text='<%#Eval("PUR_KEYCOMS")%>' Visible="false"></asp:Label>
                                                      
-                                                     <asp:Label ID="lbjiaji" runat="server" Text="加急" Visible="false"></asp:Label>
+                                                     <asp:Label ID="lbjiaji" runat="server" Text="加急" Visible="false" ForeColor="Red"></asp:Label>
                                                 </td>
                                                 <td runat="server" id="ch1">
                                                     <asp:Label ID="ROWSNUM" runat="server" Text='<%# Container.ItemIndex + 1+(Convert.ToDouble(UCPaging1.CurrentPage)-1)*(Convert.ToDouble(DropDownList5.SelectedValue))%>'></asp:Label>
@@ -663,7 +663,7 @@
                                                 </td>
                                                 <td id="ph1" runat="server">
                                                     <asp:Label ID="PUR_PCODE" runat="server" Text='<%#Eval("PUR_PCODE")%>'></asp:Label>
-                                                    <asp:Label ID="PUR_IFFAST" runat="server" Text='<%#Eval("PUR_IFFAST")%>' Visible="false"></asp:Label>
+                                                    <asp:Label ID="PUR_IFFAST" runat="server"  Visible="false"></asp:Label>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
