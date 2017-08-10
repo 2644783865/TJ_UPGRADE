@@ -43,6 +43,7 @@
                             <HeaderTemplate>
                                 <tr>
                                     <td>
+                                        序号
                                     </td>
                                     <td>
                                         新单编号

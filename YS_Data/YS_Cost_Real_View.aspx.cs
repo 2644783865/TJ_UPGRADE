@@ -265,9 +265,9 @@ namespace ZCZJ_DPF.YS_Data
                 string[] fathername = {  "FERROUS_METAL", "PURCHASE_PART", "MACHINING_PART", "PAINT_COATING", "ELECTRICAL", "OTHERMAT_COST", "TEAM_CONTRACT", "FAC_CONTRACT", "PRODUCT_OUT" };
                 for (int i = 0; i < fathername.Length; i++)
                 {
-                    e.Row.Cells[i + 4].Attributes.Add("ondblclick", "PurMarView('" + TSA_ID + "','" + ed.EncryptText(fathername[i]) + "')");
-                    e.Row.Cells[i + 4].Attributes["style"] = "Cursor:hand";
-                    e.Row.Cells[i + 4].Attributes.Add("title", "双击查看明细");
+                    e.Row.Cells[i + 5].Attributes.Add("ondblclick", "PurMarView('" + TSA_ID + "','" + ed.EncryptText(fathername[i]) + "')");
+                    e.Row.Cells[i + 5].Attributes["style"] = "Cursor:hand";
+                    e.Row.Cells[i + 5].Attributes.Add("title", "双击查看明细");
                 }
                 if (Session["UserDeptID"].ToString() == "08")
                 {

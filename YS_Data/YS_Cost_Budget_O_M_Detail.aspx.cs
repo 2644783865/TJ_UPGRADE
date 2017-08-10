@@ -87,7 +87,7 @@ namespace ZCZJ_DPF.YS_Data
             }
 
             double total = 0;
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where YS_TSA_ID='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
@@ -248,7 +248,7 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_OTHER_MAR(string ContractNo, string FatherCode)
         {
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where YS_TSA_ID='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
@@ -330,13 +330,18 @@ namespace ZCZJ_DPF.YS_Data
             dt_Tol.Columns.Add("YS_MONEY");
 
             double total = 0;   //总金额
-            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where PCON_SCH='" + ContractNo + "'";
+            string sql_total = "select YS_" + FatherCode + " from YS_COST_BUDGET_ORDER where YS_TSA_ID='" + ContractNo + "'";
             System.Data.DataTable dt_total = DBCallCommon.GetDTUsingSqlText(sql_total);
             if (dt_total.Rows.Count > 0)
             {
                 total = (dt_total.Rows[0][0].ToString() == "" ? 0 : double.Parse(dt_total.Rows[0][0].ToString()));  //总金额      
             }
-            dt_Tol.Rows[0]["YS_MONEY"] = total.ToString("F3");
+            if (dt_Tol.Rows.Count > 0)
+            {
+                dt_Tol.Rows[0]["YS_MONEY"] = total.ToString("F3");
+            }
+            
+
             lbl_total.Text = total.ToString("N2");
 
             GridView1.DataSource = dt_Tol;
