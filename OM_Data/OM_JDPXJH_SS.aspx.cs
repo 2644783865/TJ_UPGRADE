@@ -10,6 +10,7 @@ namespace ZCZJ_DPF.OM_Data
 {
     public partial class OM_JDPXJH_SS : System.Web.UI.Page
     {
+        int PX_SJSX;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -226,6 +227,12 @@ namespace ZCZJ_DPF.OM_Data
 
         protected void btnSave_onserverclick(object sender, EventArgs e)
         {
+            
+            if (!int.TryParse(txtPX_SJXS.Text,out PX_SJSX))
+            {
+                Response.Write("<script>alert('实际学时填写格式有误！')</script>");
+                return;
+            }
             if (asd.action == "add")
             {
                 List<string> list = addlist();
@@ -261,7 +268,7 @@ namespace ZCZJ_DPF.OM_Data
             string sql = "update OM_PXJH_SQ set PX_BH='" + txtPX_BH.Text.Trim() + "',";
             sql += "PX_SJSJ='" + txtPX_SJSJ.Text.Trim() + "',";
             sql += "PX_SJDD='" + txtPX_SJDD.Text.Trim() + "',";
-            sql += "PX_SJXS='" + txtPX_SJXS.Text.Trim() + "',";
+            sql += "PX_SJXS='" + PX_SJSX + "',";
             sql += "PX_SSZDR='" + lbPX_SSZDR.Text + "',";
             sql += "PX_SSZDRID='" + hidPX_SSZDRID.Value + "',";
             sql += "PX_SSZDSJ='" + lbPX_SSZDSJ.Text + "',";
