@@ -115,7 +115,7 @@ console.log(time);
                                         发车时间：
                                     </td>
                                     <td>
-                                    <input id="ydtime" name="usetime1" runat="server" style="width: 300px" class="easyui-datetimebox"
+                                    <input id="ydtime" name="ydtime"  runat="server" style="width: 300px" class="easyui-datetimebox"
                                             editable="false" onchange="timechange(this)" />
                                     </td>
                                 </tr>

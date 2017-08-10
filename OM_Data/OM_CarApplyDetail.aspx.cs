@@ -72,6 +72,7 @@ namespace ZCZJ_DPF.OM_Data
                     ddl_leixing.Enabled = false;
                     usetime1.Disabled = true;
                     usetime2.Disabled = true;
+                    ydtime.Disabled = true;
                     //btnLoad.Visible = false;
                     if (Request.QueryString["diff"]=="look")
                     {
@@ -131,7 +132,7 @@ namespace ZCZJ_DPF.OM_Data
                 txtPhone.Text = dr["PHONE"].ToString();
                 usetime1.Value = dr["USETIME1"].ToString();
                 usetime2.Value = dr["USETIME2"].ToString();
-                ydtime.Value = dr["YDTIME"].ToString();
+                ydtime.Value = Convert.ToDateTime(dr["YDTIME"]).ToString("yyyy-MM-dd HH:mm:ss");
                 txtTime1.Value = dr["TIME1"].ToString();
                 txtTime2.Value = dr["TIME2"].ToString();
                 txtlicheng1.Text = dr["LICHENG1"].ToString();

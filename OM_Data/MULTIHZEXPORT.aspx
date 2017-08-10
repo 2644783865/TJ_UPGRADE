@@ -191,6 +191,7 @@
                                     <table width="100%">
                                         <tr>
                                             <td>
+                                                <p style="color:Red">查询多人请用逗号隔开姓名!</p>
                                                 <div style="font-family: Verdana, Helvetica, Arial, sans-serif; line-height: 17px;
                                                     font-size: 11px; font-weight: bold; position: absolute; top: 8px; right: 10px;">
                                                     <a onclick="document.body.click(); return false;" style="background-color: #6699CC;

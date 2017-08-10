@@ -439,11 +439,12 @@ namespace ZCZJ_DPF.OM_Data
                         string name = ((TextBox)this.GridView1.Rows[i].FindControl("WLNAME")).Text.Trim();
                         string model = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLMODEL")).Value.Trim();
                         string unit = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLUNIT")).Value.Trim();
-                        string num = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLNUM")).Value.Trim();//数量
-                        string dj = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLPRICE")).Value.Trim();//数量
+                        string num = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLNUM")).Value.Trim();//申请数量
+                        string dj = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLPRICE")).Value.Trim();//单价
                         string je = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLJE")).Value.Trim();//金额
                         string note = ((HtmlInputText)this.GridView1.Rows[i].FindControl("WLNOTE")).Value.Trim();//备注
                         string ischange = ((DropDownList)this.GridView1.Rows[i].FindControl("ddlIsChange")).SelectedValue;
+                        string kcNum = ((HtmlInputText)this.GridView1.Rows[i].FindControl("num")).Value;//库存
 
                         Regex regMoeny = new Regex(@"^-?(\d)*((.?)(\d){1,2})?$");
                         Regex regNum = new Regex(@"^-?(\d)*((.?)(\d){1,2})?$");
@@ -455,11 +456,15 @@ namespace ZCZJ_DPF.OM_Data
                             {
                                 benciZongJ += CommonFun.ComTryDouble(je);
                             }
-
                         }
                         else
                         {
                             Response.Write("<script>alert('第" + i + 1 + "行数据有误，请查证后在进行保存!')</script>");
+                            return;
+                        }
+                        if (CommonFun.ComTryDouble(num) > CommonFun.ComTryDouble(kcNum))
+                        {
+                            Response.Write("<script>alert('库存不足，无法申请!')</script>");
                             return;
                         }
                     }
