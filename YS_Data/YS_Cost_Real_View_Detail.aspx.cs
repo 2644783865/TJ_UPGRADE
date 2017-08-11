@@ -564,7 +564,11 @@ namespace ZCZJ_DPF.YS_Data
             {
                 total = (dt_total.Rows[0][0].ToString() == "" ? 0 : double.Parse(dt_total.Rows[0][0].ToString()));  //总金额      
             }
-            dt_Tol.Rows[0]["YS_MONEY"] = total.ToString("F3");
+            if (dt_Tol.Rows.Count > 0)
+            {
+                dt_Tol.Rows[0]["YS_MONEY"] = total.ToString("F3");
+            }
+            
             lbl_total.Text = total.ToString("N2");
 
             GridView1.DataSource = dt_Tol;

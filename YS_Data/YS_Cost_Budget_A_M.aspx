@@ -4,7 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    预算监控
+    <asp:Label ID="LabelTitle" runat="server" Text="预算监控"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
@@ -172,16 +172,16 @@
                                 </asp:CalendarExtender>
                             </td>
                         </tr>
-                        <%--<tr>
+                        <tr>
                             <td colspan="2">
-                                合同完成时间：<asp:TextBox ID="finish_sta_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox>至&nbsp;<asp:TextBox ID="finish_end_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox><asp:CalendarExtender ID="finish_calender_sta" runat="server" Format="yyyy-MM-dd"
+                                任务完成时间：<asp:TextBox ID="finish_sta_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox>至&nbsp;<asp:TextBox ID="finish_end_time" runat="server" Width="90px" onchange="dateCheck(this)"></asp:TextBox><asp:CalendarExtender ID="finish_calender_sta" runat="server" Format="yyyy-MM-dd"
                                     DaysModeTitleFormat="MM月,yyyy年" TodaysDateFormat="yyyy-MM-dd" TargetControlID="finish_sta_time">
                                 </asp:CalendarExtender>
                                 <asp:CalendarExtender ID="finish_calender_end" runat="server" Format="yyyy-MM-dd"
                                     DaysModeTitleFormat="MM月,yyyy年" TodaysDateFormat="yyyy-MM-dd" TargetControlID="finish_end_time">
                                 </asp:CalendarExtender>
                             </td>
-                        </tr>--%>
+                        </tr>
                     </table>
                 </asp:Panel>
             </div>

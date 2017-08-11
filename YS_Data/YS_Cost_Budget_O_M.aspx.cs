@@ -76,13 +76,13 @@ namespace ZCZJ_DPF.YS_Data
                     }
                 }
                 //双击查看详细
-                for (int j = 4; j < 11; j++)
+                for (int j = 5; j < 12; j++)
                 {
-                    double percent_O_B = Convert.ToDouble(((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 4])).Value.ToString());//订单完成百分比
-                    double db_Budget = Math.Round(Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 4])).Text.ToString()) / 10000, 1);//预算费用
-                    double db_Order = Math.Round(Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 4] + "_O")).Text.ToString()) / 10000, 1);//订单费用
+                    double percent_O_B = Convert.ToDouble(((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 5])).Value.ToString());//订单完成百分比
+                    double db_Budget = Math.Round(Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 5])).Text.ToString()) / 10000, 1);//预算费用
+                    double db_Order = Math.Round(Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 5] + "_O")).Text.ToString()) / 10000, 1);//订单费用
                     double db_pass = Math.Round(db_Order - db_Budget, 1);
-                    if (j < 5)
+                    if (j < 6)
                     {
                         if (db_pass > 0)
                         {
@@ -100,7 +100,7 @@ namespace ZCZJ_DPF.YS_Data
                     }
                     else
                     {
-                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 4]) + "')");
+                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 5]) + "')");
                         e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                         if (db_pass > 0)
                         {

@@ -45,10 +45,12 @@ namespace ZCZJ_DPF.YS_Data
             if (ViewState["type"].ToString() == "1")
             {
                 btnShowSta.Visible = true;
+                LabelTitle.Text = "预算分析";
             }
             else
             {
                 btnShowSta.Visible = false;
+                LabelTitle.Text = "预算监控";
             }
             DBCallCommon.FillDroplist(dpl_people, sqltext_people);
             DBCallCommon.FillDroplist(ddl_project, sqltext_PJ);
@@ -252,22 +254,22 @@ namespace ZCZJ_DPF.YS_Data
             //计划提交时间
             if (txt_make_sta.Text != "")
             {
-                strwhere += " and YS_ADDDATE>='" + txt_make_sta.Text.ToString() + "'";
+                strwhere += " and CONVERT(datetime,YS_ADDDATE)>=CONVERT(datetime,'" + txt_make_sta.Text.ToString() + "')";
             }
             if (txt_make_end.Text != "")
             {
-                strwhere += " and YS_ADDDATE<='" + txt_make_end.Text.ToString() + "'";
+                strwhere += " and CONVERT(datetime,YS_ADDDATE)<=CONVERT(datetime,'" + txt_make_end.Text.ToString() + "')";
             }
 
-            //合同完成时间
-            //if (finish_sta_time.Text != "")
-            //{
-            //    strwhere += " and YS_Finshtime>='" + txt_make_sta.Text.ToString() + "'";
-            //}
-            //if (finish_end_time.Text != "")
-            //{
-            //    strwhere += " and YS_Finshtime<='" + txt_make_end.Text.ToString() + "'";
-            //}
+            //任务完成时间
+            if (finish_sta_time.Text != "")
+            {
+                strwhere += " and CONVERT(datetime,YS_Finshtime)>=CONVERT(datetime,'" + finish_sta_time.Text.ToString() + "')";
+            }
+            if (finish_end_time.Text != "")
+            {
+                strwhere += " and CONVERT(datetime,YS_Finshtime)<=CONVERT(datetime,'" + finish_end_time.Text.ToString() + "')";
+            }
             return strwhere;
         }
         #endregion

@@ -14,6 +14,15 @@ namespace ZCZJ_DPF.YS_Data {
     public partial class YS_Cost_Budget_A_M {
         
         /// <summary>
+        /// LabelTitle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTitle;
+        
+        /// <summary>
         /// ToolkitScriptManager1 控件。
         /// </summary>
         /// <remarks>
@@ -219,6 +228,42 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        
+        /// <summary>
+        /// finish_sta_time 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox finish_sta_time;
+        
+        /// <summary>
+        /// finish_end_time 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox finish_end_time;
+        
+        /// <summary>
+        /// finish_calender_sta 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender finish_calender_sta;
+        
+        /// <summary>
+        /// finish_calender_end 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender finish_calender_end;
         
         /// <summary>
         /// GridView1 控件。
