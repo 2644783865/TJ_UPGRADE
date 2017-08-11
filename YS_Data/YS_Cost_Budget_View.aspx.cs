@@ -44,7 +44,7 @@ namespace ZCZJ_DPF.YS_Data
         /// </summary>
         protected void BindProject()
         {
-            string sqltext = "SELECT DISTINCT CM_PROJ AS DDLVALUE,CM_PROJ AS DDLTEXT FROM View_YS_COST_BUDGET ORDER BY CM_PROJ";
+            string sqltext = "SELECT DISTINCT YS_PROJECTNAME AS DDLVALUE,YS_PROJECTNAME AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_PROJECTNAME";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_project, sqltext, dataText, dataValue);
@@ -55,7 +55,7 @@ namespace ZCZJ_DPF.YS_Data
         /// </summary>
         protected void BindEngineer()
         {
-            string sqltext = "SELECT DISTINCT TSA_ENGNAME AS DDLVALUE,TSA_ENGNAME AS DDLTEXT FROM View_YS_COST_BUDGET where CM_PROJ='" + ddl_project.SelectedItem.ToString() + "' ORDER BY TSA_ENGNAME";
+            string sqltext = "SELECT DISTINCT YS_ENGINEERNAME AS DDLVALUE,YS_ENGINEERNAME AS DDLTEXT FROM YS_COST_BUDGET where YS_PROJECTNAME='" + ddl_project.SelectedItem.ToString() + "' ORDER BY YS_ENGINEERNAME";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_engineer, sqltext, dataText, dataValue);
@@ -66,7 +66,7 @@ namespace ZCZJ_DPF.YS_Data
         /// </summary>
         protected void BindTsaId()
         {
-            string sqltext = "SELECT DISTINCT YS_TSA_ID AS DDLVALUE,YS_TSA_ID AS DDLTEXT FROM View_YS_COST_BUDGET ORDER BY YS_TSA_ID";
+            string sqltext = "SELECT DISTINCT YS_TSA_ID AS DDLVALUE,YS_TSA_ID AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_TSA_ID";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_YS_TSA_ID, sqltext, dataText, dataValue);
@@ -78,7 +78,7 @@ namespace ZCZJ_DPF.YS_Data
         protected void BindRevState()
         {
             string sqltext = "SELECT DISTINCT YS_STATE AS DDLVALUE,case when YS_STATE is null then '新增预算' when YS_STATE='0' then '新增预算'" +
-            " when YS_STATE='1' then '财务填写中'when YS_STATE='2' then '部门反馈中'when YS_STATE='3' then '财务调整中'when YS_STATE='4' then '送审中' when YS_STATE='5' then '编制完成' end  AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_STATE";
+            " when YS_STATE='1' then '财务填写中'when YS_STATE='2' then '部门反馈中'when YS_STATE='3' then '财务调整中'when YS_STATE='4' then '送审中' when YS_STATE='5' then '编制完成' end  AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_STATE";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_State, sqltext, dataText, dataValue);
@@ -90,7 +90,7 @@ namespace ZCZJ_DPF.YS_Data
         protected void BindState()
         {
             string sqltext = "SELECT DISTINCT YS_REVSTATE AS DDLVALUE,case when YS_REVSTATE is null then '未送审' when YS_REVSTATE='0' then '未送审'" +
-            " when YS_REVSTATE='1' then '审核中'when YS_REVSTATE='2' then '已通过'when YS_REVSTATE='3' then '被驳回' end  AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_REVSTATE";
+            " when YS_REVSTATE='1' then '审核中'when YS_REVSTATE='2' then '已通过'when YS_REVSTATE='3' then '被驳回' end  AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_REVSTATE";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_YS_REVSTATE, sqltext, dataText, dataValue);
@@ -100,7 +100,7 @@ namespace ZCZJ_DPF.YS_Data
         /// </summary>
         protected void BindPer()
         {
-            string sqltext = "SELECT DISTINCT YS_ADDNAME AS DDLVALUE,YS_ADDNAME AS DDLTEXT FROM VIEW_YS_COST_BUDGET ORDER BY YS_ADDNAME";
+            string sqltext = "SELECT DISTINCT YS_ADDNAME AS DDLVALUE,YS_ADDNAME AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_ADDNAME";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_addper, sqltext, dataText, dataValue);
@@ -136,11 +136,11 @@ namespace ZCZJ_DPF.YS_Data
         /// </summary>
         private void InitPager()
         {
-            pager.TableName = "View_YS_COST_BUDGET";
+            pager.TableName = "YS_COST_BUDGET";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,CM_PROJ,[TSA_ENGNAME],YS_BUDGET_INCOME,[YS_TOTALCOST_ALL],(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL)/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
+            pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,YS_PROJECTNAME,[YS_ENGINEERNAME],YS_BUDGET_INCOME,[YS_TOTALCOST_ALL],(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL)/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
             "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
-            "YS_ADDNAME,YS_ADDTIME,YS_ADDFINISHTIME,YS_STATE,YS_NOTE";
+            "YS_TEC_SUBMIT_NAME, YS_ADDTIME,YS_ADDNAME,YS_ADDFINISHTIME,YS_STATE,YS_NOTE";
             pager.OrderField = "YS_ADDTIME";
             pager.StrWhere = this.GetStrWhere();
             pager.OrderType = 1; //按任务名称升序排列
@@ -222,11 +222,11 @@ namespace ZCZJ_DPF.YS_Data
 
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
-                strwhere += " and CM_PROJ='" + ddl_project.SelectedValue + "'";
+                strwhere += " and YS_PROJECTNAME='" + ddl_project.SelectedValue + "'";
             }
             if (ddl_engineer.SelectedIndex != 0)//设备名称
             {
-                strwhere += " and TSA_ENGNAME='" + ddl_engineer.SelectedValue + "'";
+                strwhere += " and YS_ENGINEERNAME='" + ddl_engineer.SelectedValue + "'";
             }
 
             if (ckb_time.Checked == true)
@@ -423,19 +423,7 @@ namespace ZCZJ_DPF.YS_Data
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            string tsaId = GridView1.DataKeys[e.NewSelectedIndex].Value.ToString();
-            
-                
-            Response.Redirect("YS_Cost_Budget_Add_Detail.aspx?tsaId=" + tsaId + "&contractNo=", true);
-
-        }
+       
         #endregion
 
 

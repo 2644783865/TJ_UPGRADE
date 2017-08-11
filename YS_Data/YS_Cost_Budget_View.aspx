@@ -58,8 +58,7 @@
     </table>
     <div style="width: 100%; overflow: auto;">
         <asp:GridView ID="GridView1" CssClass="toptable grid nowrap" runat="server" AutoGenerateColumns="False"
-            CellPadding="4" ForeColor="#333333" OnSelectedIndexChanging="GridView1_SelectedIndexChanging"
-            DataKeyNames="YS_TSA_ID">
+            CellPadding="4" ForeColor="#333333">
             <RowStyle BackColor="#EFF3FB" />
             <Columns>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="序号" HeaderStyle-Wrap="false">
@@ -71,11 +70,11 @@
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_CONTRACT_NO" ItemStyle-HorizontalAlign="center" HeaderText="合同号"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="CM_PROJ" ItemStyle-HorizontalAlign="center" HeaderText="项目名称"
+                <asp:BoundField DataField="YS_PROJECTNAME" ItemStyle-HorizontalAlign="center" HeaderText="项目名称"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="TSA_ENGNAME" ItemStyle-HorizontalAlign="center" HeaderText="设备名称"
+                <asp:BoundField DataField="YS_ENGINEERNAME" ItemStyle-HorizontalAlign="center" HeaderText="设备名称"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Right" HeaderText="任务预算收入"
+                <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Right" HeaderText="任务号收入"
                     HeaderStyle-Wrap="false" DataFormatString="{0:N2}"></asp:BoundField>
                 <asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Right" HeaderText="任务预算总额"
                     HeaderStyle-Wrap="false" DataFormatString="{0:N2}"></asp:BoundField>
@@ -143,19 +142,27 @@
                 <asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Right" HeaderText="运费"
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}">
                 </asp:BoundField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="制单人" HeaderStyle-Wrap="false">
-                    <ItemTemplate>
-                        <asp:Label ID="lbl_addper" runat="server" Text='<%#Eval("YS_ADDNAME") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField DataField="YS_ADDTIME" HeaderText="制单时间" ItemStyle-HorizontalAlign="Center"
+                <asp:BoundField DataField="YS_TEC_SUBMIT_NAME" HeaderText="技术部提交人" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
+                <asp:BoundField DataField="YS_ADDTIME" HeaderText="技术部提交时间" ItemStyle-HorizontalAlign="Center"
+                    HeaderStyle-Wrap="false"></asp:BoundField>                
+                <asp:BoundField DataField="YS_ADDNAME" ItemStyle-HorizontalAlign="Center" HeaderText="编制人"
+                    HeaderStyle-Wrap="false"></asp:BoundField>
+                    <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:CommandField ShowSelectButton="True" ButtonType="link" HeaderText="操作" ItemStyle-HorizontalAlign="Center"
-                    HeaderStyle-Wrap="false" SelectText="详细信息》" ShowHeader="True"></asp:CommandField>
+                <asp:TemplateField HeaderText="操作" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
+                    ItemStyle-HorizontalAlign="Center">
+                    <ItemTemplate>
+                        <asp:HyperLink ID="HyperLink1" Target="_blank" CssClass="link" NavigateUrl='<%#"YS_Cost_Budget_Add_Detail.aspx?tsaId="+Eval("YS_TSA_ID")%>'
+                            runat="server">
+                            <asp:Image ID="img_look" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2"
+                                align="absmiddle" runat="server" />
+                            查看详情》
+                        </asp:HyperLink>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

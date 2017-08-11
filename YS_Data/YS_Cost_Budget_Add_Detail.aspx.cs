@@ -22,15 +22,15 @@ namespace ZCZJ_DPF.YS_Data
         {
             //头部任务号相关信息
             string tsaId = Request.QueryString["tsaId"].ToString();
-            string sql = "select * from view_YS_COST_BUDGET where YS_TSA_ID='" + tsaId + "'";
+            string sql = "select * from YS_COST_BUDGET where YS_TSA_ID='" + tsaId + "'";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             lb_YS_CONTRACT_NO.Text = dt.Rows[0]["YS_CONTRACT_NO"].ToString();
-            lb_CM_PROJ.Text = dt.Rows[0]["CM_PROJ"].ToString();
+            lb_YS_PROJECTNAME.Text = dt.Rows[0]["YS_PROJECTNAME"].ToString();
             lb_YS_TSA_ID.Text = tsaId;
 
             //黑色金属相关信息
             string sql1 = @"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB from  YS_COST_BUDGET_DETAIL 
-where YS_TSA_ID='" + tsaId + "' AND YS_FATHER ='07'";
+where YS_TSA_ID='" + tsaId + "' AND YS_CODE LIKE '01.07%' ORDER BY YS_CODE";
 
             DataTable dt1 = DBCallCommon.GetDTUsingSqlText(sql1);
             rpt_YS_FERROUS_METAL.DataSource = dt1;

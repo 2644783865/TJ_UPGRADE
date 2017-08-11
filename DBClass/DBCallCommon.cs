@@ -286,6 +286,30 @@ namespace ZCZJ_DPF
             }
         }
 
+        //执行SQL语句，返回受影响行数值
+        public static int ExeSqlTextGetInt(string sqlText)
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlCmd = new SqlCommand();
+            sqlConn.ConnectionString = DBCallCommon.GetStringValue("connectionStrings");
+            try
+            {
+                openConn(sqlConn);
+                sqlCmd.Connection = sqlConn;
+                sqlCmd.CommandText = sqlText;
+                sqlCmd.CommandTimeout = 600;
+                return sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                closeConn(sqlConn);
+            }
+        }
+
         //执行事务
         public static void ExecuteTrans(List<string> sqlTexts)
         {
