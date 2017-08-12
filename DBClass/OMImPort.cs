@@ -1,107 +1,228 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.IO;
-using NPOI.SS.UserModel;
+﻿using System.Collections.Generic;
 using NPOI.HSSF.UserModel;
-using System.Text;
-using System.Web.UI;
+using NPOI.SS.UserModel;
+using System.IO;
+using System.Data;
+using System;
 
 
 namespace ZCZJ_DPF.CommonClass
 {
-    public class OMImPort
+    public class ExcelHelper
     {
+        public ExcelHelper() { }
+
         /// <summary>
-        /// 导入1（列名只有一列）
+        /// 文件流初始化对象
         /// </summary>
-        /// <param name="hpf">读取文件</param>
-        /// <param name="list">导入列的集合</param>
-        /// <param name="TableName">表名</param>
-        public static void Import(HttpPostedFile hpf, List<int> list, string TableName)
+        /// <param name="stream"></param>
+        public ExcelHelper(Stream stream)
         {
-            //string filePath = HttpContext.Current.Server.MpPath(hpf.FileName);
-            //string filePath = page.MapPath(hpf.);
-            using (FileStream fs = File.OpenRead(hpf.FileName))
+            _IWorkbook = CreateWorkbook(stream);
+        }
+
+        /// <summary>
+        /// 传入文件名
+        /// </summary>
+        /// <param name="fileName"></param>
+        public ExcelHelper(string fileName)
+        {
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
-                //根据文件流创建一个workbook
-              IWorkbook wk = new HSSFWorkbook(fs);
-                    //获取第一个工作表
-              ISheet sheet = wk.GetSheetAt(0);
-                        //循环读取每一行数据，由于execel有列名以及序号，从1开始
-                        List<string> sql = new List<string>();
-                        for (int r = 5; r <= sheet.LastRowNum; r++)
+                _IWorkbook = CreateWorkbook(fileStream);
+            }
+        }
+
+        /// <summary>
+        /// 工作薄
+        /// </summary>
+        private IWorkbook _IWorkbook;
+
+        /// <summary>
+        /// 创建工作簿对象
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        private IWorkbook CreateWorkbook(Stream stream)
+        {
+            return new HSSFWorkbook(stream); //03            
+        }
+
+        /// <summary>
+        /// 把Sheet中的数据转换为DataTable
+        /// </summary>
+        /// <param name="sheet"></param>
+        /// <returns></returns>
+        private DataTable ExportToDataTable(ISheet sheet)
+        {
+            DataTable dt = new DataTable();
+
+            //默认，第一行是字段
+            IRow headRow = sheet.GetRow(0);
+
+            //设置datatable字段
+            for (int i = headRow.FirstCellNum, len = headRow.LastCellNum; i < len; i++)
+            {
+                dt.Columns.Add(headRow.Cells[i].StringCellValue);
+            }
+            //遍历数据行
+            for (int i = (sheet.FirstRowNum + 1), len = sheet.LastRowNum + 1; i < len; i++)
+            {
+                IRow tempRow = sheet.GetRow(i);
+                DataRow dataRow = dt.NewRow();
+
+                //遍历一行的每一个单元格
+                for (int r = 0, j = tempRow.FirstCellNum, len2 = tempRow.LastCellNum; j < len2; j++, r++)
+                {
+
+                    ICell cell = tempRow.GetCell(j);
+
+                    if (cell != null)
+                    {
+                        switch (cell.CellType)
                         {
-                            IRow row = sheet.GetRow(r);
-
-                            #region 存入数据库
-
-                            List<string> str = new List<string>();
-                            for (int i = 0; i < list.Count; i++)
-                            {
-                                string cell = row.GetCell(list[i]) == null ? "0" : row.GetCell(list[i]).ToString();
-                                str.Add(cell);
-                            }
-                            StringBuilder sb = new StringBuilder();
-                            for (int i = 0; i < str.Count; i++)
-                            {
-                                sb.Append("'" + str[i] + "',");
-                            }
-                            string val = sb.ToString() + "'" + DateTime.Now.ToString("yyyy-MM") + "'";
-
-                            string sqlTxt = string.Format("insert into {0} values({1})", TableName, val);
-                            sql.Add(sqlTxt);
-
-                            #endregion
+                            case CellType.STRING:
+                                dataRow[r] = cell.StringCellValue;
+                                break;
+                            case CellType.NUMERIC:
+                                dataRow[r] = cell.NumericCellValue;
+                                break;
+                            case CellType.BOOLEAN:
+                                dataRow[r] = cell.BooleanCellValue;
+                                break;
+                            default: dataRow[r] = "ERROR";
+                                break;
                         }
-                        DBCallCommon.ExecuteTrans(sql);
                     }
                 }
-     
-
-
-
-        public static void Import1(HttpPostedFile hpf, List<int> list, string TableName)
-        {
-            //using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath(hpf.FileName)))
-            //{
-            //    //根据文件流创建一个workbook
-            //    using (Workbook wk = new HSSFWorkbook(fs))
-            //    {
-            //        //获取第一个工作表
-            //        using (Sheet sheet = wk.GetSheetAt(0))
-            //        {
-            //            //循环读取每一行数据，由于execel有列名以及序号，从1开始
-            //            List<string> sql = new List<string>();
-            //            for (int r = 1; r <= sheet.LastRowNum; r++)
-            //            {
-            //                Row row = sheet.GetRow(r);
-
-            //                #region 存入数据库
-
-            //                List<string> str = new List<string>();
-            //                for (int i = 0; i < list.Count; i++)
-            //                {
-            //                    string cell = row.GetCell(list[i]) == null ? "0" : row.GetCell(list[i]).ToString();
-            //                    str.Add(cell);
-            //                }
-            //                StringBuilder sb = new StringBuilder();
-            //                for (int i = 0; i < str.Count; i++)
-            //                {
-            //                    sb.Append("'" + str[i] + "',");
-            //                }
-            //                string val = sb.ToString() + "'" + DateTime.Now.ToString("yyyy-MM") + "'";
-
-            //                string sqlTxt = string.Format("insert into {0} values({1})", TableName, val);
-            //                sql.Add(sqlTxt);
-
-            //                #endregion
-            //            }
-            //            DBCallCommon.ExecuteTrans(sql);
-            //        }
-            //    }
-            //}
+                dt.Rows.Add(dataRow);
+            }
+            return dt;
         }
+
+        /// <summary>
+        /// Sheet中的数据转换为List集合
+        /// </summary>
+        /// <param name="sheet"></param>
+        /// <param name="fields"></param>
+        /// <returns></returns>
+        private IList<T> ExportToList<T>(ISheet sheet, string[] fields) where T : class, new()
+        {
+            IList<T> list = new List<T>();
+
+            //遍历每一行数据
+            for (int i = sheet.FirstRowNum + 1, len = sheet.LastRowNum + 1; i < len; i++)
+            {
+                T t = new T();
+                IRow row = sheet.GetRow(i);
+
+                for (int j = 0, len2 = fields.Length; j < len2; j++)
+                {
+                    ICell cell = row.GetCell(j);
+                    object cellValue = null;
+
+                    switch (cell.CellType)
+                    {
+                        case CellType.STRING: //文本
+                            cellValue = cell.StringCellValue;
+                            break;
+                        case CellType.NUMERIC: //数值
+                            cellValue = Convert.ToInt32(cell.NumericCellValue);//Double转换为int
+                            break;
+                        case CellType.BOOLEAN: //bool
+                            cellValue = cell.BooleanCellValue;
+                            break;
+                        case CellType.BLANK: //空白
+                            cellValue = "";
+                            break;
+                        default: cellValue = "ERROR";
+                            break;
+                    }
+
+                    typeof(T).GetProperty(fields[j]).SetValue(t, cellValue, null);
+                }
+                list.Add(t);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 获取第一个Sheet的第X行，第Y列的值。起始点为1
+        /// </summary>
+        /// <param name="X">行</param>
+        /// <param name="Y">列</param>
+        /// <returns></returns>
+        public string GetCellValue(int X, int Y)
+        {
+            ISheet sheet = _IWorkbook.GetSheetAt(0);
+
+            IRow row = sheet.GetRow(X - 1);
+
+            return row.GetCell(Y - 1).ToString();
+        }
+
+        /// <summary>
+        /// 获取一行的所有数据
+        /// </summary>
+        /// <param name="X">第x行</param>
+        /// <returns></returns>
+        public string[] GetCells(int X)
+        {
+            List<string> list = new List<string>();
+
+            ISheet sheet = _IWorkbook.GetSheetAt(0);
+
+            IRow row = sheet.GetRow(X - 1);
+
+            for (int i = 0, len = row.LastCellNum; i < len; i++)
+            {
+                list.Add(row.GetCell(i).StringCellValue);//这里没有考虑数据格式转换，会出现bug
+            }
+            return list.ToArray();
+        }
+
+        /// <summary>
+        /// 第一个Sheet数据，转换为DataTable
+        /// </summary>
+        /// <returns></returns>
+        public DataTable ExportExcelToDataTable()
+        {
+            return ExportToDataTable(_IWorkbook.GetSheetAt(0));
+        }
+
+        /// <summary>
+        /// 第sheetIndex表数据，转换为DataTable
+        /// </summary>
+        /// <param name="sheetIndex">第几个Sheet，从1开始</param>
+        /// <returns></returns>
+        public DataTable ExportExcelToDataTable(int sheetIndex)
+        {
+            return ExportToDataTable(_IWorkbook.GetSheetAt(sheetIndex - 1));
+        }
+
+
+        /// <summary>
+        /// Excel中默认第一张Sheet导出到集合
+        /// </summary>
+        /// <param name="fields">Excel各个列，依次要转换成为的对象字段名称</param>
+        /// <returns></returns>
+        public IList<T> ExcelToList<T>(string[] fields) where T : class, new()
+        {
+            return ExportToList<T>(_IWorkbook.GetSheetAt(0), fields);
+        }
+
+        /// <summary>
+        /// Excel中指定的Sheet导出到集合
+        /// </summary>
+        /// <param name="sheetIndex">第几张Sheet,从1开始</param>
+        /// <param name="fields">Excel各个列，依次要转换成为的对象字段名称</param>
+        /// <returns></returns>
+        public IList<T> ExcelToList<T>(int sheetIndex, string[] fields) where T : class, new()
+        {
+            return ExportToList<T>(_IWorkbook.GetSheetAt(sheetIndex - 1), fields);
+        }
+
+
     }
 }
