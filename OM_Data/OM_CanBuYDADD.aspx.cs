@@ -234,7 +234,7 @@ namespace ZCZJ_DPF.OM_Data
             }
                 
             string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;  //获取Execle文件名  DateTime日期函数
-            string savePath = @"D:/" + filename;//Server.MapPath 获得虚拟服务器相对路径
+            string savePath = @"E:/餐补异动" + filename;//Server.MapPath 获得虚拟服务器相对路径
             FileUpload.SaveAs(savePath);
             DataTable ImprotDate = new ExcelHelper(savePath).ExportExcelToDataTable();
             Det_Repeater.DataSource = GetImprotData(ImprotDate);
