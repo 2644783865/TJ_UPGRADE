@@ -132,7 +132,8 @@ namespace ZCZJ_DPF.OM_Data
                 txtPhone.Text = dr["PHONE"].ToString();
                 usetime1.Value = dr["USETIME1"].ToString();
                 usetime2.Value = dr["USETIME2"].ToString();
-                ydtime.Value = Convert.ToDateTime(dr["YDTIME"]).ToString("yyyy-MM-dd HH:mm:ss");
+                DateTime _ydTime = new DateTime();
+                ydtime.Value = DateTime.TryParse(dr["YDTIME"].ToString(), out _ydTime) ? _ydTime.ToString("yyyy-MM-dd HH:mm:ss") : "" ;
                 txtTime1.Value = dr["TIME1"].ToString();
                 txtTime2.Value = dr["TIME2"].ToString();
                 txtlicheng1.Text = dr["LICHENG1"].ToString();

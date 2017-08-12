@@ -8,7 +8,6 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Xml.Linq;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace ZCZJ_DPF.OM_Data
