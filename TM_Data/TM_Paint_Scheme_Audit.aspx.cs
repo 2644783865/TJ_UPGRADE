@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ZCZJ_DPF.TM_Data
 {
@@ -20,6 +22,9 @@ namespace ZCZJ_DPF.TM_Data
         string action;
         string level;
         string status;
+        string _emailto = "";
+        string _body;
+        string _subject;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -498,10 +503,7 @@ namespace ZCZJ_DPF.TM_Data
         }
 
         protected void btnsubmit_Click(object sender, EventArgs e)
-        {
-            string _emailto = "";
-            string _body;
-            string _subject;
+        {           
 
             if (this.AuditPowerCheck())
             {
@@ -660,17 +662,7 @@ namespace ZCZJ_DPF.TM_Data
                                     #region 审核通过
                                     if (ckbMessage.Checked)
                                     {
-                                        _emailto = DBCallCommon.GetEmailAddressByUserID(editorid.Value.Trim());
-                                        _body = "油漆方案审批已通过:"
-                                            + "\r\n编    号：" + ps_no.Text.Trim()
-                                            + "\r\n项目名称：" + pro_name.Text.Trim() + "_" + proid.Value.Trim() + ""
-                                            + "\r\n设备名称：" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0]
-                                            + "\r\n技 术 员: " + editor.Text.Trim()
-                                            + "\r\n编制时间:" + plan_date.Text.Trim();
-
-
-                                        _subject = "【油漆方案】已通过审批 " + pro_name.Text.Trim() + "_" + proid.Value.Trim() + "" + "_" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0];
-                                        DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
+                                        SendSuccessMail();
                                     }
                                     #endregion
 
@@ -821,17 +813,7 @@ namespace ZCZJ_DPF.TM_Data
                                     #region 审核通过
                                     if (ckbMessage.Checked)
                                     {
-                                        _emailto = DBCallCommon.GetEmailAddressByUserID(editorid.Value.Trim());
-                                        _body = "油漆方案审批已通过:"
-                                            + "\r\n编    号：" + ps_no.Text.Trim()
-                                            + "\r\n项目名称：" + pro_name.Text.Trim() + "_" + proid.Value.Trim() + ""
-                                            + "\r\n设备名称：" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0]
-                                            + "\r\n技 术 员: " + editor.Text.Trim()
-                                            + "\r\n编制时间:" + plan_date.Text.Trim();
-
-
-                                        _subject = "【油漆方案】已通过审批 " + pro_name.Text.Trim() + "_" + proid.Value.Trim() + "" + "_" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0];
-                                        DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
+                                        SendSuccessMail();
                                     }
                                     #endregion
                                     Response.Write("<script>alert('审核通过!');location.href='TM_Leader_Task.aspx';</script>");
@@ -1063,17 +1045,7 @@ namespace ZCZJ_DPF.TM_Data
                                     #region 审核通过
                                     if (ckbMessage.Checked)
                                     {
-                                        _emailto = DBCallCommon.GetEmailAddressByUserID(editorid.Value.Trim());
-                                        _body = "油漆方案审批已通过:"
-                                            + "\r\n编    号：" + ps_no.Text.Trim()
-                                            + "\r\n项目名称：" + pro_name.Text.Trim() + "_" + proid.Value.Trim() + ""
-                                            + "\r\n设备名称：" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0]
-                                            + "\r\n技 术 员: " + editor.Text.Trim()
-                                            + "\r\n编制时间:" + plan_date.Text.Trim();
-
-
-                                        _subject = "【油漆方案】已通过审批 " + pro_name.Text.Trim() + "_" + proid.Value.Trim() + "" + "_" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0];
-                                        DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
+                                        SendSuccessMail();
                                     }
                                     #endregion
                                     Response.Write("<script>alert('油漆方案审核通过!');location.href='TM_Leader_Task.aspx';</script>");
@@ -1114,6 +1086,54 @@ namespace ZCZJ_DPF.TM_Data
                     ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#00E600";
                 }
             }
+        }
+
+        protected void SendSuccessMail()
+        {
+            SendSuccessMailToEditor();
+            SendSuccessMailToQA();
+        }
+
+        protected void SendSuccessMailToEditor()
+        {
+            _emailto = DBCallCommon.GetEmailAddressByUserID(editorid.Value.Trim());
+            _body = "油漆方案审批已通过:"
+                + "\r\n编    号：" + ps_no.Text.Trim()
+                + "\r\n项目名称：" + pro_name.Text.Trim() + "_" + proid.Value.Trim() + ""
+                + "\r\n设备名称：" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0]
+                + "\r\n技 术 员: " + editor.Text.Trim()
+                + "\r\n编制时间:" + plan_date.Text.Trim();
+
+            _subject = "【油漆方案】已通过审批 " + pro_name.Text.Trim() + "_" + proid.Value.Trim() + "" + "_" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0];
+            DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
+        }
+
+        protected void SendSuccessMailToQA()
+        {
+            //抄送人
+            List<string> cc = new List<string>();
+            //获取质量部主管与质量部主管助理的邮箱
+            StringBuilder sb = new StringBuilder();            
+            sb.Append("SELECT TOP 1 T.EMAIL FROM TBQM_SetInspectPerson S INNER JOIN dbo.TBDS_STAFFINFO T ON s.InspectPerson=t.ST_ID WHERE num like '%油漆%';");
+            sb.Append("SELECT [EMAIL] FROM [dbo].[TBDS_STAFFINFO] WHERE [ST_POSITION] IN ('1201','1205');");
+            SqlDataReader dr_email = DBCallCommon.GetDRUsingSqlText(sb.ToString());
+            if (dr_email.HasRows)
+            {
+                dr_email.Read();
+                cc.Add(dr_email["EMAIL"].ToString());
+            }
+            dr_email.Close();
+            _emailto = cc[0];
+
+            _body = "有新的【油漆方案变更】，请及时查看:"
+                + "\r\n编    号：" + ps_no.Text.Trim()
+                + "\r\n项目名称：" + pro_name.Text.Trim() + "_" + proid.Value.Trim() + ""
+                + "\r\n设备名称：" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0]
+                + "\r\n技 术 员: " + editor.Text.Trim()
+                + "\r\n编制时间:" + plan_date.Text.Trim();
+
+            _subject = "【油漆方案变更】" + pro_name.Text.Trim() + "_" + proid.Value.Trim() + "" + "_" + eng_name.Text.Trim() + "_" + tsaid.Text.Trim().Split('-')[0];
+            DBCallCommon.SendEmail(_emailto, cc, null, _subject, _body);
         }
     }
 }
