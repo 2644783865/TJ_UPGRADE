@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZCZJ_DPF.FM_Data {
+namespace ZCZJ_DPF.YS_Data {
     
     
-    public partial class FM_CWZHIBIAOANY {
+    public partial class YS_Cost_Real_Sta {
         
         /// <summary>
         /// ToolkitScriptManager1 控件。
@@ -77,13 +77,13 @@ namespace ZCZJ_DPF.FM_Data {
         protected global::AjaxControlToolkit.TabContainer TabContainer1;
         
         /// <summary>
-        /// TabPanel2 控件。
+        /// TabPanel1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel2;
+        protected global::AjaxControlToolkit.TabPanel TabPanel1;
         
         /// <summary>
         /// Chart1 控件。
@@ -95,24 +95,6 @@ namespace ZCZJ_DPF.FM_Data {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
         
         /// <summary>
-        /// Chart6 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart6;
-        
-        /// <summary>
-        /// TabPanel3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel3;
-        
-        /// <summary>
         /// Chart2 控件。
         /// </summary>
         /// <remarks>
@@ -122,13 +104,13 @@ namespace ZCZJ_DPF.FM_Data {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart2;
         
         /// <summary>
-        /// TabPanel4 控件。
+        /// TabPanel2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel4;
+        protected global::AjaxControlToolkit.TabPanel TabPanel2;
         
         /// <summary>
         /// Chart3 控件。
@@ -140,15 +122,6 @@ namespace ZCZJ_DPF.FM_Data {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart3;
         
         /// <summary>
-        /// TabPanel5 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel5;
-        
-        /// <summary>
         /// Chart4 控件。
         /// </summary>
         /// <remarks>
@@ -156,15 +129,6 @@ namespace ZCZJ_DPF.FM_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart4;
-        
-        /// <summary>
-        /// TabPanel6 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel6;
         
         /// <summary>
         /// Chart5 控件。
@@ -176,13 +140,13 @@ namespace ZCZJ_DPF.FM_Data {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart5;
         
         /// <summary>
-        /// TabPanel1 控件。
+        /// Chart6 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart6;
         
         /// <summary>
         /// Chart7 控件。
@@ -203,21 +167,75 @@ namespace ZCZJ_DPF.FM_Data {
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart8;
         
         /// <summary>
-        /// lbtitle1 控件。
+        /// Chart9 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbtitle1;
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart9;
         
         /// <summary>
-        /// rptdata0 控件。
+        /// TabPanel3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptdata0;
+        protected global::AjaxControlToolkit.TabPanel TabPanel3;
+        
+        /// <summary>
+        /// Chart10 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart10;
+        
+        /// <summary>
+        /// Chart11 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart11;
+        
+        /// <summary>
+        /// Chart12 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart12;
+        
+        /// <summary>
+        /// Chart13 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart13;
+        
+        /// <summary>
+        /// TabPanel4 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel4;
+        
+        /// <summary>
+        /// Chart14 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart14;
     }
 }

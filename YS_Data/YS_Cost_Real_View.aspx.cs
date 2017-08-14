@@ -331,8 +331,27 @@ namespace ZCZJ_DPF.YS_Data
                     }
                     else
                     {
-                        string sql = "update YS_COST_BUDGET set YS_XS_Finished='1',YS_Finshtime=GETDATE() where YS_TSA_ID='" + CONTRACT_NO + "'";
-                        DBCallCommon.ExeSqlText(sql);
+                        try
+                        {
+                            string sql = DBCallCommon.GetStringValue("connectionStrings");
+                            sql += "Asynchronous Processing=true;";
+                            SqlConnection sqlConn = new SqlConnection(sql);
+                            sqlConn.Open();
+                            SqlCommand sqlCmd = new SqlCommand("YS_COST_REAL_PROCEDURE", sqlConn);
+                            sqlCmd.CommandType = CommandType.StoredProcedure;
+                            sqlCmd.CommandTimeout = 0;
+                            sqlCmd.Parameters.Add("@retVal", SqlDbType.Int, 1).Direction = ParameterDirection.ReturnValue;			//增加返回值参数@retVal
+                            IAsyncResult result = sqlCmd.BeginExecuteNonQuery();
+                            sqlCmd.EndExecuteNonQuery(result);
+                            sqlConn.Close();
+                            
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                        string sql1 = "update YS_COST_BUDGET set YS_XS_Finished='1',YS_Finshtime=GETDATE() where YS_TSA_ID='" + CONTRACT_NO + "'";
+                        DBCallCommon.ExeSqlText(sql1);
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('任务结算成功！');", true);
                         UCPaging1.CurrentPage = 1;
                         InitVar();

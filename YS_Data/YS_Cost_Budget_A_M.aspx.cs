@@ -436,7 +436,8 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void btn_ShowSta_OnClick(object sender, EventArgs e)
         {
-            //Response.Redirect("YS_Cost_Real_Other.aspx?YS_CONTRACT_NO=" + YS_CONTRACT_NO);
+            Response.Redirect("YS_Cost_Real_Sta.aspx");
+            //return "javascript:window.showModalDialog('YS_Cost_Real_Sta.aspx','DialogWidth=800px;DialogHeight=700px')";
         }
 
         #region 导出EXCEL
