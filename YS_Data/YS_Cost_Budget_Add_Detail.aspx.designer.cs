@@ -86,22 +86,22 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.TextBox txt_YS_TSA_ID;
         
         /// <summary>
-        /// TextBox8 控件。
+        /// txt_YS_BUDGET_INCOME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_BUDGET_INCOME;
         
         /// <summary>
-        /// TextBox39 控件。
+        /// txt_YS_WEIGHT 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox39;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_WEIGHT;
         
         /// <summary>
         /// txt_YS_CONTRACT_NO 控件。
@@ -122,58 +122,58 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.TextBox txt_YS_PROJECTNAME;
         
         /// <summary>
-        /// TextBox7 控件。
+        /// txt_YS_ENGINEERNAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_ENGINEERNAME;
         
         /// <summary>
-        /// TextBox9 控件。
+        /// txt_YS_ADDNAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_ADDNAME;
         
         /// <summary>
-        /// TextBox13 控件。
+        /// txt_YS_ADDTIME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_ADDTIME;
         
         /// <summary>
-        /// TextBox14 控件。
+        /// txt_YS_NOTE 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_NOTE;
         
         /// <summary>
-        /// TextBox33 控件。
+        /// txt_YS_MATERIAL_COST 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox33;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_MATERIAL_COST;
         
         /// <summary>
-        /// TextBox34 控件。
+        /// txt_YS_LABOUR_COST 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox34;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_LABOUR_COST;
         
         /// <summary>
         /// txt_YS_TRANS_COST 控件。
@@ -185,202 +185,193 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.TextBox txt_YS_TRANS_COST;
         
         /// <summary>
-        /// TextBox10 控件。
+        /// txt_YS_TOTALCOST_ALL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_TOTALCOST_ALL;
         
         /// <summary>
-        /// TextBox11 控件。
+        /// txt_YS_PROFIT 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_PROFIT;
         
         /// <summary>
-        /// TextBox12 控件。
+        /// txt_YS_PROFIT_RATE 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_PROFIT_RATE;
         
         /// <summary>
-        /// Button10 控件。
+        /// txt_YS_FERROUS_METAL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button10;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_FERROUS_METAL;
         
         /// <summary>
-        /// TextBox15 控件。
+        /// txt_YS_PURCHASE_PART 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox15;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_PURCHASE_PART;
         
         /// <summary>
-        /// TextBox16 控件。
+        /// txt_YS_MACHINING_PART 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox16;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_MACHINING_PART;
         
         /// <summary>
-        /// TextBox17 控件。
+        /// txt_YS_PAINT_COATING 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox17;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_PAINT_COATING;
         
         /// <summary>
-        /// TextBox18 控件。
+        /// txt_YS_ELECTRICAL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox18;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_ELECTRICAL;
         
         /// <summary>
-        /// TextBox19 控件。
+        /// txt_YS_CASTING_FORGING_COST 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox19;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_CASTING_FORGING_COST;
         
         /// <summary>
-        /// TextBox20 控件。
+        /// txt_YS_OTHERMAT_COST 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox20;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_OTHERMAT_COST;
         
         /// <summary>
-        /// TextBox21 控件。
+        /// txt_materil_history_reference 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox21;
+        protected global::System.Web.UI.WebControls.TextBox txt_materil_history_reference;
         
         /// <summary>
-        /// TextBox37 控件。
+        /// txt_YS_FERROUS_METAL_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox37;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_FERROUS_METAL_FB;
         
         /// <summary>
-        /// TextBox38 控件。
+        /// txt_YS_PURCHASE_PART_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox38;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_PURCHASE_PART_FB;
         
         /// <summary>
-        /// TextBox23 控件。
+        /// txt_YS_MACHINING_PART_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox23;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_MACHINING_PART_FB;
         
         /// <summary>
-        /// TextBox24 控件。
+        /// txt_YS_PAINT_COATING_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox24;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_PAINT_COATING_FB;
         
         /// <summary>
-        /// TextBox25 控件。
+        /// txt_YS_ELECTRICAL_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox25;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_ELECTRICAL_FB;
         
         /// <summary>
-        /// TextBox26 控件。
+        /// txt_YS_CASTING_FORGING_COST_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox26;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_CASTING_FORGING_COST_FB;
         
         /// <summary>
-        /// TextBox27 控件。
+        /// txt_YS_OTHERMAT_COST_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox27;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_OTHERMAT_COST_FB;
         
         /// <summary>
-        /// TextBox28 控件。
+        /// txt_materil_dispart_reference 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox28;
+        protected global::System.Web.UI.WebControls.TextBox txt_materil_dispart_reference;
         
         /// <summary>
-        /// TextBox29 控件。
+        /// txt_YS_UNIT_LABOUR_COST_FB 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox29;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_UNIT_LABOUR_COST_FB;
         
         /// <summary>
-        /// TextBox30 控件。
+        /// txt_labour_dispart_reference 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox30;
-        
-        /// <summary>
-        /// TextBox22 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox22;
+        protected global::System.Web.UI.WebControls.TextBox txt_labour_dispart_reference;
         
         /// <summary>
         /// TabPanel1 控件。

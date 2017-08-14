@@ -47,7 +47,8 @@
                 </asp:DropDownList>
             </td>
             <td>
-                领导审核进度：<asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                领导审核进度：<asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true"
+                    OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
             <td align="center">
@@ -117,7 +118,13 @@
                         <asp:Label ID="lab_SECOND_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_SECOND_REVSTATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Right" HeaderText="黑色金属"
+                <asp:BoundField DataField="YS_MATERIAL_COST" ItemStyle-HorizontalAlign="Right" HeaderText="材料费"
+                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" >
+                </asp:BoundField>
+                <asp:BoundField DataField="YS_LABOUR_COST" ItemStyle-HorizontalAlign="Right" HeaderText="人工费"
+                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" >
+                </asp:BoundField>
+                <%--<asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Right" HeaderText="黑色金属"
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
                 </asp:BoundField>
                 <asp:BoundField DataField="YS_PURCHASE_PART" ItemStyle-HorizontalAlign="Right" HeaderText="外购件"
@@ -143,17 +150,17 @@
                 </asp:BoundField>
                 <asp:BoundField DataField="YS_PRODUCT_OUT" ItemStyle-HorizontalAlign="Right" HeaderText="生产外协"
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Salmon" DataFormatString="{0:N2}">
-                </asp:BoundField>
+                </asp:BoundField>--%>
                 <asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Right" HeaderText="运费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}">
+                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" >
                 </asp:BoundField>
                 <asp:BoundField DataField="YS_TEC_SUBMIT_NAME" HeaderText="技术部提交人" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_ADDTIME" HeaderText="技术部提交时间" ItemStyle-HorizontalAlign="Center"
-                    HeaderStyle-Wrap="false"></asp:BoundField>                
+                    HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_ADDNAME" ItemStyle-HorizontalAlign="Center" HeaderText="财务制单人"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                    <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
+                <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>

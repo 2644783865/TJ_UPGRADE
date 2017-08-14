@@ -38,12 +38,56 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="id">任务号</param>
         public void SetTSAInfo(string id)
         {
-            txt_YS_TSA_ID.Text = id;
-            string sql = "select * from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
+            string sql = @"select *,(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,YS_PROFIT/YS_TOTALCOST_ALL AS YS_PROFIT_RATE,
+(YS_FERROUS_METAL+YS_PURCHASE_PART+YS_MACHINING_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_CASTING_FORGING_COST+YS_OTHERMAT_COST) AS materil_history_reference,
+(YS_FERROUS_METAL_FB+YS_PURCHASE_PART_FB+YS_MACHINING_PART_FB+YS_PAINT_COATING_FB+YS_ELECTRICAL_FB+YS_CASTING_FORGING_COST_FB+YS_OTHERMAT_COST_FB) AS materil_dispart_reference,
+YS_WEIGHT*YS_UNIT_LABOUR_COST_FB AS labour_dispart_reference
+from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
-            txt_YS_CONTRACT_NO.Text = dt.Rows[0]["YS_CONTRACT_NO"].ToString();
-            txt_YS_PROJECTNAME.Text = dt.Rows[0]["YS_PROJECTNAME"].ToString();
-            txt_YS_TRANS_COST.Text = dt.Rows[0]["YS_TRANS_COST"].ToString();
+
+            //预算基本信息            
+            txt_YS_TSA_ID.Text = id;
+            txt_YS_BUDGET_INCOME.Text = dt.Rows[0]["YS_BUDGET_INCOME"].ToString();//任务号预算收入
+            txt_YS_WEIGHT.Text = dt.Rows[0]["YS_WEIGHT"].ToString();//任务号重量
+            txt_YS_CONTRACT_NO.Text = dt.Rows[0]["YS_CONTRACT_NO"].ToString();//合同号
+            txt_YS_PROJECTNAME.Text = dt.Rows[0]["YS_PROJECTNAME"].ToString();//项目名称
+            txt_YS_ENGINEERNAME.Text = dt.Rows[0]["YS_ENGINEERNAME"].ToString();
+            txt_YS_ADDNAME.Text = dt.Rows[0]["YS_ADDNAME"].ToString();//财务制单人
+            txt_YS_ADDTIME.Text = dt.Rows[0]["YS_ADDTIME"].ToString();//提交时间
+            txt_YS_NOTE.Text = dt.Rows[0]["YS_NOTE"].ToString();//备注
+            
+            //预算费用分配
+            txt_YS_MATERIAL_COST.Text = dt.Rows[0]["YS_MATERIAL_COST"].ToString();//材料费
+            txt_YS_LABOUR_COST.Text = dt.Rows[0]["YS_LABOUR_COST"].ToString();//人工费
+            txt_YS_TRANS_COST.Text = dt.Rows[0]["YS_TRANS_COST"].ToString();//运费
+            txt_YS_TOTALCOST_ALL.Text = dt.Rows[0]["YS_TOTALCOST_ALL"].ToString();//预算总额
+            txt_YS_PROFIT.Text = dt.Rows[0]["YS_PROFIT"].ToString();//毛利润
+            txt_YS_PROFIT_RATE.Text = dt.Rows[0]["YS_PROFIT_RATE"].ToString();//毛利率
+            
+            //材料费参考
+            txt_YS_FERROUS_METAL.Text = dt.Rows[0]["YS_FERROUS_METAL"].ToString();
+            txt_YS_PURCHASE_PART.Text = dt.Rows[0]["YS_PURCHASE_PART"].ToString();
+            txt_YS_MACHINING_PART.Text = dt.Rows[0]["YS_MACHINING_PART"].ToString();
+            txt_YS_PAINT_COATING.Text = dt.Rows[0]["YS_PAINT_COATING"].ToString();
+            txt_YS_ELECTRICAL.Text = dt.Rows[0]["YS_ELECTRICAL"].ToString();
+            txt_YS_CASTING_FORGING_COST.Text = dt.Rows[0]["YS_CASTING_FORGING_COST"].ToString();
+            txt_YS_OTHERMAT_COST.Text = dt.Rows[0]["YS_OTHERMAT_COST"].ToString();
+            txt_materil_history_reference.Text = dt.Rows[0]["materil_history_reference"].ToString();
+
+            //部门反馈
+            txt_YS_FERROUS_METAL_FB.Text = dt.Rows[0]["YS_FERROUS_METAL_FB"].ToString();
+            txt_YS_PURCHASE_PART_FB.Text = dt.Rows[0]["YS_PURCHASE_PART_FB"].ToString();
+            txt_YS_MACHINING_PART_FB.Text = dt.Rows[0]["YS_MACHINING_PART_FB"].ToString();
+            txt_YS_PAINT_COATING_FB.Text = dt.Rows[0]["YS_PAINT_COATING_FB"].ToString();
+            txt_YS_ELECTRICAL_FB.Text = dt.Rows[0]["YS_ELECTRICAL_FB"].ToString();
+            txt_YS_CASTING_FORGING_COST_FB.Text = dt.Rows[0]["YS_CASTING_FORGING_COST_FB"].ToString();
+            txt_YS_OTHERMAT_COST_FB.Text = dt.Rows[0]["YS_OTHERMAT_COST_FB"].ToString();
+            txt_materil_dispart_reference.Text = dt.Rows[0]["materil_dispart_reference"].ToString();
+
+            txt_YS_UNIT_LABOUR_COST_FB.Text = dt.Rows[0]["YS_UNIT_LABOUR_COST_FB"].ToString();
+            txt_labour_dispart_reference.Text = dt.Rows[0]["labour_dispart_reference"].ToString();
+            
+
 
             //获取生产、采购、财务、编制进度、审核、一级审核、二级审核的状态
             shengChan = int.Parse(dt.Rows[0]["YS_SHENGCHAN"].ToString());
