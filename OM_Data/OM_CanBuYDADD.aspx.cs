@@ -268,14 +268,14 @@ namespace ZCZJ_DPF.OM_Data
             }
             sb.Remove(sb.Length - 1, 1);
             string sql = string.Format("SELECT ST_ID AS 'cbyd_stid',ST_NAME AS 'cbyd_name',DEP_NAME AS 'cbyd_bm',ST_WORKNO AS 'cbyd_gh' FROM dbo.View_TBDS_STAFFINFO WHERE ST_NAME in ({0})", sb.ToString());
-            string Name = string.Empty;
+            string _name = string.Empty;
             try
             {
                 DataTable SQLDt = DBCallCommon.GetDTUsingSqlText(sql);            
                 for (int j = 0; j < ExcelDt.Rows.Count; j++)
                 {
-                    Name = ExcelDt.Rows[j]["cbyd_name"].ToString();
-                    DataRow dr = (SQLDt.Select(string.Format("cbyd_name = '{0}'", Name)))[0];
+                    _name = ExcelDt.Rows[j]["cbyd_name"].ToString();
+                    DataRow dr = (SQLDt.Select(string.Format("cbyd_name = '{0}'", _name)))[0];
                     ExcelDt.Rows[j]["cbyd_stid"] = dr["cbyd_stid"];
                     ExcelDt.Rows[j]["cbyd_gh"] = dr["cbyd_gh"];
                     ExcelDt.Rows[j]["cbyd_bm"] = dr["cbyd_bm"];
@@ -283,7 +283,7 @@ namespace ZCZJ_DPF.OM_Data
             }
             catch (System.Exception ex)
             {
-                string ErrorMessage = string.Format("<script>alert('数据：{0} 存在问题，请检查！错误信息：{1}')</script>",Name,ex.Message.ToString());
+                string ErrorMessage = string.Format("<script>alert('数据：{0} 存在问题，请检查！错误信息：{1}')</script>",_name,ex.Message.ToString());
                 Response.Write(ErrorMessage);
             }          
 

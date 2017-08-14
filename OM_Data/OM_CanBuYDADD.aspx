@@ -51,7 +51,7 @@
                             <asp:Button ID="btnadd" runat="server" Text="确 定" OnClick="btnadd_Click" />
                         </td>
                         <td align="left">                            
-                            <asp:FileUpload ID="FileUpload" runat="server" />&nbsp;&nbsp;&nbsp;
+                            <asp:FileUpload ID="FileUpload" runat="server" />&nbsp;&nbsp;
                             <asp:Button ID="btnImprot" Text="导入" runat="server" OnClick="btnImprot_Click" />
                         </td>
                         <td align="right">
