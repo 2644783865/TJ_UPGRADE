@@ -533,11 +533,12 @@
                                 <td class="right_bg">
                                     <asp:TextBox ID="txtPCON_PJID" runat="server" Enabled="false"></asp:TextBox>
                                 </td>
-                                <td class="r_bg" rowspan="2">
-                                    备注:
+                                <td class="r_bg" >
+                                    预计运费:
                                 </td>
-                                <td rowspan="2" class="right_bg">
-                                    <asp:TextBox ID="txtPCON_NOTE" runat="server" TextMode="MultiLine" Rows="4" Width="500px"></asp:TextBox>
+                                <td  class="right_bg">
+                                    <asp:TextBox ID="txtTrans_Cost" runat="server" Text="0.00" onblur="javascript:check_num(this)"></asp:TextBox>(元)
+                                    <font color="#ff0000">*</font>
                                 </td>
                                 <%--  <td class="r_bg">
                                     发货时间:
@@ -560,6 +561,14 @@
                                     <asp:TextBox ID="tb_revid" runat="server" Visible="false"></asp:TextBox>
                                     <asp:Button ID="btn_RevInfo" runat="server" Visible="false" Text="查看评审信息" OnClick="btn_RevInfo_Click" />
                                 </td>
+                                <td class="r_bg" rowspan="2">
+                                    备注:
+                                </td>
+                                <td rowspan="2" class="right_bg">
+                                    <asp:TextBox ID="txtPCON_NOTE" runat="server" TextMode="MultiLine" Rows="4" Width="500px"></asp:TextBox>
+                                    
+                                </td>
+                                
                             </tr>
                             <%--  <tr>
                                 <td class="r_bg">

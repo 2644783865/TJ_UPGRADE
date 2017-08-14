@@ -247,7 +247,7 @@
                                            <asp:Image ID="Image4" runat="server" ImageUrl="~/Assets/icons/dealdispatcher.gif" ImageAlign="AbsMiddle"></asp:Image>点击完成
                                         </asp:LinkButton>
                                         <asp:Image ID="img_Finish" ImageUrl="~/Assets/icons/positive.gif" border="0" hspace="2"
-                                                align="absmiddle" runat="server" Visible="false" />
+                                                align="absmiddle" runat="server" Visible="false" /><asp:Label ID="lb_Finish" runat="server" Text="已提交预算" Visible="false"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

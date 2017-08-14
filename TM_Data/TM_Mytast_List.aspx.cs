@@ -270,39 +270,40 @@ namespace ZCZJ_DPF.TM_Data
 
 
             //检查预算主表中是否有重复任务号，如果没有重复任务号向预算主表插入数据，再成功后向预算明细表插入数据
-            
-                if (!TsaRepeatInMainTable(tsaId))
-                {
-                    if (InsertIntoYSMainTableSuccessed(tsaId))
-                    {
-                        if (InsertIntoYSDetailTableSuccessed(tsaId))
-                        {
-                            string sqltext = "update TBPM_TCTSASSGN set TSA_FINISHSTATE ='1' where TSA_ID='" + tsaId + "'";
-                            DBCallCommon.ExeSqlTextGetInt(sqltext);
-                            finish.Visible = false;
-                            ((Image)finish.Parent.FindControl("img_Finish")).Visible = true;
 
-                            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('成功');</script>");                           
-                        }
-                        else
-                        {
-                            //插入到预算明细表失败时，将已经插入到预算主表的数据删除
-                            string sqlDel="DELETE YS_COST_BUDGET WHERE YS_TSA_ID='"+tsaId+"'";
-                            DBCallCommon.ExeSqlTextGetInt(sqlDel);
-                            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('插入到预算明细表时失败，可能有以下原因：材料未提交到采购需求计划');</script>");
-                        }
-                    }
-                    else
-                    {
-                        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算插入到预算主表失败');</script>");
-                    }
+            if (!TsaRepeatInMainTable(tsaId))
+            {
+                if (InsertIntoYSMainTableSuccessed(tsaId))
+                {
+                    InsertIntoYSDetailTable(tsaId);
+
+                    string sqltext = "update TBPM_TCTSASSGN set TSA_FINISHSTATE ='1' where TSA_ID='" + tsaId + "'";
+                    DBCallCommon.ExeSqlTextGetInt(sqltext);
+
+                    finish.Visible = false;
+                    ((Image)finish.Parent.FindControl("img_Finish")).Visible = true;
+                    ((Label)finish.Parent.FindControl("lb_Finish")).Visible = true;
+
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('技术准备状态更改完成，提交预算成功');</script>");
+
                 }
                 else
                 {
-                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算主表中已经有该任务号的预算编制，请勿重复提交');</script>");
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算提交失败');</script>");
                 }
             }
-           
+            else
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算主表中已经有该任务号的预算编制，请勿重复提交');</script>");
+                
+                string sqltext = "update TBPM_TCTSASSGN set TSA_FINISHSTATE ='1' where TSA_ID='" + tsaId + "'";
+                DBCallCommon.ExeSqlTextGetInt(sqltext);
+
+                finish.Visible = false;
+                ((Image)finish.Parent.FindControl("img_Finish")).Visible = true;
+                ((Label)finish.Parent.FindControl("lb_Finish")).Visible = true;
+            }
+        }
 
 
 
@@ -310,7 +311,8 @@ namespace ZCZJ_DPF.TM_Data
 
 
 
-       
+
+
 
 
 
@@ -328,6 +330,7 @@ namespace ZCZJ_DPF.TM_Data
                 {
                     ((LinkButton)e.Row.FindControl("lbtn_Finish")).Visible = false;
                     ((Image)e.Row.FindControl("img_Finish")).Visible = true;
+                    ((Label)e.Row.FindControl("lb_Finish")).Visible = true;
                 }
             }
         }
@@ -364,7 +367,7 @@ namespace ZCZJ_DPF.TM_Data
         protected bool InsertIntoYSMainTableSuccessed(string tsaId)
         {
             string contractNo = "", projectName = "", engineerName = "";//合同号，项目名称，设备名称
-            decimal budgetIncome = 0;//任务号预算收入
+            decimal budgetIncome = 0, transCost = 0;//任务号预算收入
 
 
             #region 获取任务号的相关信息（合同号，项目名称，设备名称）
@@ -398,6 +401,23 @@ namespace ZCZJ_DPF.TM_Data
             drMoney.Close();
             #endregion
 
+            #region 获取合同的预计运费
+            string sqlTrans = "SELECT TSA_Trans_Cost FROM dbo.TBPM_CONPCHSINFO WHERE PCON_BCODE='" + contractNo + "'";
+            SqlDataReader drTrans = DBCallCommon.GetDRUsingSqlText(sqlTrans);
+            if (drTrans.Read())
+            {
+                try
+                {
+                    transCost = Convert.ToDecimal(drTrans["TSA_Trans_Cost"]);
+                }
+                catch
+                {
+
+                    transCost = 0;
+                }
+            }
+            #endregion
+
 
             #region 插入主表
             string sqlInsertMain = @"INSERT  INTO dbo.YS_COST_BUDGET
@@ -406,6 +426,7 @@ namespace ZCZJ_DPF.TM_Data
           YS_TSA_ID ,
           YS_ENGINEERNAME ,
           YS_BUDGET_INCOME ,
+YS_TRANS_COST,
           YS_CAIWU ,
           YS_CAIGOU ,
           YS_SHENGCHAN ,
@@ -417,7 +438,7 @@ namespace ZCZJ_DPF.TM_Data
           YS_ADDTIME ,
           YS_ADDFINISHTIME 
         )
-VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + engineerName + "' , '" + budgetIncome + @"' , 
+VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + engineerName + "' , '" + budgetIncome + "' , '" + transCost + @"' , 
           '0' , -- YS_CAIWU - char(1)
           '0' , -- YS_CAIGOU - char(1)
           '0' , -- YS_SHENGCHAN - char(1)
@@ -448,19 +469,21 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
         /// </summary>
         /// <param name="tsaId">任务号</param>
         /// <returns>true：插入成功；fals：插入失败</returns>
-        protected bool InsertIntoYSDetailTableSuccessed(string tsaId)
+        protected void InsertIntoYSDetailTable(string tsaId)
         {
             string sqlInsertDetail = @"INSERT  INTO dbo.YS_COST_BUDGET_DETAIL
         ( YS_TSA_ID ,
           YS_CODE ,
           YS_NAME ,
           YS_Union_Amount ,
-          YS_Average_Price           
+          YS_Average_Price,
+          YS_Average_Price_FB 
         )
         SELECT  '" + tsaId + @"' AS YS_TSA_ID ,
                 pp.SI_MARID ,
                 pp.MNAME ,
                 n.AMOUNT ,
+                pp.SI_UPRICE,
                 pp.SI_UPRICE
         FROM    ( SELECT    PO_MARID ,
                             SUM(PO_QUANTITY) AS AMOUNT
@@ -484,14 +507,8 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
                                     LEFT JOIN TBMA_MATERIAL ON p.SI_MARID = TBMA_MATERIAL.ID
                            ) pp ON pp.SI_MARID = n.PO_MARID ORDER BY pp.SI_MARID";
 
-            if (DBCallCommon.ExeSqlTextGetInt(sqlInsertDetail) > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            DBCallCommon.ExeSqlText(sqlInsertDetail);
+           
         }
 
     }

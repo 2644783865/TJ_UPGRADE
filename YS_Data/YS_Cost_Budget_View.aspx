@@ -43,11 +43,11 @@
                 </asp:DropDownList>
             </td>
             <td align="center">
-                编制进度：<asp:DropDownList ID="ddl_State" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                预算编制进度：<asp:DropDownList ID="ddl_State" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
             <td>
-                审核进度：<asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                领导审核进度：<asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
             <td align="center">
@@ -84,32 +84,37 @@
                     HeaderStyle-Wrap="false" DataFormatString="{0:P}"></asp:BoundField>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="采购反馈" HeaderStyle-Wrap="false">
                     <ItemTemplate>
-                        <asp:Label ID="lab_YS_CAIGOU" runat="server" Text='<%# GetCaiGouState(Eval("YS_CAIGOU").ToString()) %>'></asp:Label>
+                        <asp:Label ID="lab_YS_CAIGOU" runat="server" Text='<%# GetFeedBackState(Eval("YS_CAIGOU").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="生产反馈" HeaderStyle-Wrap="false">
                     <ItemTemplate>
-                        <asp:Label ID="lab_YS_SHENGCHAN" runat="server" Text='<%# GetShengChanState(Eval("YS_SHENGCHAN").ToString()) %>'></asp:Label>
+                        <asp:Label ID="lab_YS_SHENGCHAN" runat="server" Text='<%# GetFeedBackState(Eval("YS_SHENGCHAN").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="编制进度" HeaderStyle-Wrap="false">
+                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="财务调整与审核" HeaderStyle-Wrap="false">
+                    <ItemTemplate>
+                        <asp:Label ID="lab_YS_SHENGCHAN" runat="server" Text='<%# GetDisRevState(Eval("YS_CAIWU").ToString()) %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="预算编制进度" HeaderStyle-Wrap="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_STATE" runat="server" Text='<%# GetState(Eval("YS_STATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="审核进度" HeaderStyle-Wrap="false">
+                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="领导审核进度" HeaderStyle-Wrap="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_REVSTATE" runat="server" Text='<%# GetRevState( Eval("YS_REVSTATE").ToString() )%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="一级审核" HeaderStyle-Wrap="false">
                     <ItemTemplate>
-                        <asp:Label ID="lab_YS_FIRST_REVSTATE" runat="server" Text='<%# GetFirstRevState(Eval("YS_FIRST_REVSTATE").ToString()) %>'></asp:Label>
+                        <asp:Label ID="lab_YS_FIRST_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_FIRST_REVSTATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="二级审核" HeaderStyle-Wrap="false">
                     <ItemTemplate>
-                        <asp:Label ID="lab_SECOND_REVSTATE" runat="server" Text='<%# GetSecondRevState(Eval("YS_SECOND_REVSTATE").ToString()) %>'></asp:Label>
+                        <asp:Label ID="lab_SECOND_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_SECOND_REVSTATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Right" HeaderText="黑色金属"
@@ -146,20 +151,20 @@
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_ADDTIME" HeaderText="技术部提交时间" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>                
-                <asp:BoundField DataField="YS_ADDNAME" ItemStyle-HorizontalAlign="Center" HeaderText="编制人"
+                <asp:BoundField DataField="YS_ADDNAME" ItemStyle-HorizontalAlign="Center" HeaderText="财务制单人"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                     <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:TemplateField HeaderText="操作" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
+                <asp:TemplateField HeaderText="详情" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
                     ItemStyle-HorizontalAlign="Center">
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperLink1" Target="_blank" CssClass="link" NavigateUrl='<%#"YS_Cost_Budget_Add_Detail.aspx?tsaId="+Eval("YS_TSA_ID")%>'
                             runat="server">
                             <asp:Image ID="img_look" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2"
                                 align="absmiddle" runat="server" />
-                            查看详情》
+                            详细信息》
                         </asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>

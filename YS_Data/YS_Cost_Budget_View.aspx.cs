@@ -139,7 +139,7 @@ namespace ZCZJ_DPF.YS_Data
             pager.TableName = "YS_COST_BUDGET";
             pager.PrimaryKey = "YS_CONTRACT_NO";
             pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,YS_PROJECTNAME,[YS_ENGINEERNAME],YS_BUDGET_INCOME,[YS_TOTALCOST_ALL],(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL)/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
-            "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
+            "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST,YS_CAIWU, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
             "YS_TEC_SUBMIT_NAME, YS_ADDTIME,YS_ADDNAME,YS_ADDFINISHTIME,YS_STATE,YS_NOTE";
             pager.OrderField = "YS_ADDTIME";
             pager.StrWhere = this.GetStrWhere();
@@ -242,14 +242,14 @@ namespace ZCZJ_DPF.YS_Data
         #region 前台获取进度状态
 
         /// <summary>
-        /// 用于前端获取采购反馈进度
+        /// 用于前端获取采购、生产反馈进度
         /// </summary>
         /// <param name="State"></param>
         /// <returns></returns>
-        protected string GetCaiGouState(string CaiGouState)
+        protected string GetFeedBackState(string State)
         {
             string retValue = "";
-            switch (CaiGouState)
+            switch (State)
             {
                 case "0":
                     retValue = "未下推"; break;
@@ -266,34 +266,12 @@ namespace ZCZJ_DPF.YS_Data
         }
 
 
-        /// <summary>
-        /// 用于前端获取生产反馈进度
-        /// </summary>
-        /// <param name="State"></param>
-        /// <returns></returns>
-        protected string GetShengChanState(string ShengChanState)
-        {
-            string retValue = "";
-            switch (ShengChanState)
-            {
-                case "0":
-                    retValue = "未下推"; break;
-                case "1":
-                    retValue = "已反馈"; break;
-                case "2":
-                    retValue = "未反馈"; break;
-                case "3":
-                    retValue = "被驳回"; break;
-                default:
-                    break;
-            }
-            return retValue;
-        }
+      
 
 
 
         /// <summary>
-        /// 用于前端获取编制进度
+        /// 用于前端获取预算编制进度
         /// </summary>
         /// <param name="State"></param>
         /// <returns></returns>
@@ -322,7 +300,7 @@ namespace ZCZJ_DPF.YS_Data
 
 
         /// <summary>
-        /// 用于前端获取审核进度
+        /// 用于前端获取领导审核进度
         /// </summary>
         /// <param name="State"></param>
         /// <returns></returns>
@@ -346,14 +324,14 @@ namespace ZCZJ_DPF.YS_Data
         }
 
         /// <summary>
-        /// 用于前端获取一级审核进度
+        /// 用于前端获取财务调整与审核、一级审核、二级审核等各个部门的审核进度
         /// </summary>
         /// <param name="State"></param>
         /// <returns></returns>
-        protected string GetFirstRevState(string FirstRevState)
+        protected string GetDisRevState(string State)
         {
             string retValue = "";
-            switch (FirstRevState)
+            switch (State)
             {
                 case "0":
                     retValue = "未送审"; break;
@@ -367,31 +345,7 @@ namespace ZCZJ_DPF.YS_Data
                     break;
             }
             return retValue;
-        }
-
-        /// <summary>
-        /// 用于前端获取二级进度
-        /// </summary>
-        /// <param name="State"></param>
-        /// <returns></returns>
-        protected string GetSecondRevState(string SecondRevState)
-        {
-            string retValue = "";
-            switch (SecondRevState)
-            {
-                case "0":
-                    retValue = "未送审"; break;
-                case "1":
-                    retValue = "待审核"; break;
-                case "2":
-                    retValue = "已同意"; break;
-                case "3":
-                    retValue = "已驳回"; break;
-                default:
-                    break;
-            }
-            return retValue;
-        }
+        }      
 
         #endregion
 
