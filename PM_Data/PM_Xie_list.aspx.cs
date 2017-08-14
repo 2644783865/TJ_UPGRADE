@@ -785,7 +785,7 @@ namespace ZCZJ_DPF.PM_Data
               CreateDataSource();
               string sqltext = "";  
               //string picid = "";
-              sqltext = "select B.CM_PROJ,A.zdrnm, A.ptcode,A.PIC_ENGID,A.PIC_ENGNAME,A.PIC_TUHAO,B.MS_ZONGXU,MS_NAME+MS_GUIGE,MS_CAIZHI,MS_UNUM,MS_TUWGHT,MS_TUTOTALWGHT,MS_MASHAPE,MS_TECHUNIT,MS_YONGLIANG,MS_MATOTALWGHT,isnull(MS_LEN,''),isnull(MS_WIDTH,''),MS_NOTE,MS_XIALIAO,B.MS_PROCESS,MS_wxtype,isnull(MS_KU,'') as MS_KU,MS_ALLBEIZHU,A.price,A.detamount,A.marzxnum,A.supplierresnm,A.PIC_SUPPLYTIME from  View_TBMP_IQRCMPPRICE_RVW1 as A LEFT JOIN  View_TM_TASKDQO AS B ON (A.ptcode=B.MS_PID AND A.PIC_TUHAO=B.MS_TUHAO AND A.marnm=B.MS_NAME AND A.PIC_ZONGXU=B.MS_ZONGXU) where ";
+              sqltext = "select B.CM_PROJ,A.zdrnm, A.ptcode,A.PIC_ENGID,A.PIC_ENGNAME,A.PIC_TUHAO,B.MS_ZONGXU,MS_NAME+MS_GUIGE,MS_CAIZHI,MS_UNUM,MS_TUWGHT,MS_TUTOTALWGHT,MS_MASHAPE,MS_TECHUNIT,MS_YONGLIANG,MS_MATOTALWGHT,isnull(MS_LEN,''),isnull(MS_WIDTH,''),MS_NOTE,MS_XIALIAO,MS_wxtype,A.MS_PROCESS,isnull(MS_KU,'') as MS_KU,MS_ALLBEIZHU,A.price,A.detamount,A.marzxnum,A.supplierresnm,A.PIC_SUPPLYTIME from  View_TBMP_IQRCMPPRICE_RVW1 as A LEFT JOIN  View_TM_TASKDQO AS B ON (A.ptcode=B.MS_PID AND A.PIC_TUHAO=B.MS_TUHAO AND A.marnm=B.MS_NAME AND A.PIC_ZONGXU=B.MS_ZONGXU) where ";
                 sqltext+=ViewState["sqlwhere"].ToString();
                 ExportDataItem(sqltext);
         }
