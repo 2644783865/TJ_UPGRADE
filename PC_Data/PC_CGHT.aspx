@@ -235,7 +235,7 @@
                     $("#<%=tb9.ClientID%>").hide();
                     $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                 }
                 if ($(this).val() == "2") {
@@ -250,7 +250,7 @@
                     $("#<%=tb9.ClientID%>").hide();
                     $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -268,7 +268,7 @@
                     $("#<%=tb9.ClientID%>").hide();
                     $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -290,7 +290,7 @@
                     $("#<%=tb10.ClientID%>").show();
 //                    $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHRCG.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHRCG.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHRCG.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHRShenC.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHRShenC.ClientID%>").val("于来义");
@@ -323,7 +323,7 @@
                     fz();
                     $("#<%=tb1.ClientID%>").show();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                 }
                 if ($(this).val() == "2") {
@@ -331,7 +331,7 @@
                     $("#<%=tb1.ClientID%>").show();
                     $("#<%=tb2.ClientID%>").show();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -343,7 +343,7 @@
                     $("#<%=tb2.ClientID%>").show();
                     $("#<%=tb3.ClientID%>").show();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -363,7 +363,7 @@
                     $("#<%=tb10.ClientID%>").show();
                     //$("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHRCG.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHRCG.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHRCG.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHRShenC.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHRShenC.ClientID%>").val("于来义");

@@ -1602,7 +1602,7 @@ namespace ZCZJ_DPF.PC_Data
                 row21.CreateCell(1).SetCellValue("部门：");
                 row21.CreateCell(2).SetCellValue("采购部");
                 row21.CreateCell(5).SetCellValue("部长：");
-                row21.CreateCell(6).SetCellValue("高浩");
+                row21.CreateCell(6).SetCellValue("董治收");
                 row21.CreateCell(8).SetCellValue("业务员：");
                 row21.CreateCell(9).SetCellValue(xjddt.Rows[0]["zxrnm"].ToString());
                 row21.CreateCell(11).SetCellValue("制单：");
@@ -1715,7 +1715,7 @@ namespace ZCZJ_DPF.PC_Data
                 row21.CreateCell(1).SetCellValue("部门：");
                 row21.CreateCell(2).SetCellValue("采购部");
                 row21.CreateCell(3).SetCellValue("部长：");
-                row21.CreateCell(4).SetCellValue("高浩");
+                row21.CreateCell(4).SetCellValue("董治收");
                 row21.CreateCell(6).SetCellValue("业务员：");
                 row21.CreateCell(7).SetCellValue(xjddt.Rows[0]["zxrnm"].ToString());
                 row21.CreateCell(9).SetCellValue("制单：");

@@ -620,7 +620,7 @@ namespace ZCZJ_DPF.PC_Data
                 {
                     if (item.ItemType == ListItemType.Item)
                     {
-                        if (username != "高浩" && username != "王福泉" && username != "姜中毅" && username != "王自清" && username != "周文轶" && username != lb_HT_ZDR.Text && username != "李洪清" && username != "于来义" && username != "曹卫亮" && username != "叶宝松" && username != "李利恒" && username != "陈永秀" && username != "李小婷")
+                        if (username != "董治收" && username != "王福泉" && username != "姜中毅" && username != "王自清" && username != "周文轶" && username != lb_HT_ZDR.Text && username != "李洪清" && username != "于来义" && username != "曹卫亮" && username != "叶宝松" && username != "李利恒" && username != "陈永秀" && username != "李小婷")
                         {
                             ((Label)item.FindControl("lb_ctprice")).Visible = false;
                             ((Label)item.FindControl("lb_ctamount")).Visible = false;
@@ -630,7 +630,7 @@ namespace ZCZJ_DPF.PC_Data
                     if (item.ItemType == ListItemType.Footer)
                     {
                         //限制只有采购部长与老总可看合同价格
-                        if (username != "高浩" && username != "王福泉" && username != "姜中毅" && username != "王自清" && username != "周文轶" && username != lb_HT_ZDR.Text && username != "李洪清" && username != "于来义" && username != "曹卫亮" && username != "叶宝松" && username != "李利恒" && username != "陈永秀" && username != "李小婷")
+                        if (username != "董治收" && username != "王福泉" && username != "姜中毅" && username != "王自清" && username != "周文轶" && username != lb_HT_ZDR.Text && username != "李洪清" && username != "于来义" && username != "曹卫亮" && username != "叶宝松" && username != "李利恒" && username != "陈永秀" && username != "李小婷")
                         {
                             ((Label)item.FindControl("lb_HZSL")).Visible = false;
                             ((Label)item.FindControl("lb_HZJE")).Visible = false;
