@@ -24,8 +24,8 @@
     <table width="100%">
         <tr>
             <td colspan="5" align="right" style="padding-top: 15px">
-                <asp:Button ID="Button9" runat="server" Text="Button" />
-                <asp:Button ID="Button2" runat="server" Text="保存" />&nbsp;
+                <asp:Button ID="Button9" runat="server" Text="编辑" />
+                <asp:Button ID="Button2" runat="server" Text="保存" OnClick="Button2_Click" />&nbsp;
                 <asp:Button ID="Button3" runat="server" Text="下推至部门反馈" />&nbsp;
                 <asp:Button ID="Button5" runat="server" Text="提交反馈" />&nbsp;
             </td>
@@ -49,19 +49,21 @@
                                 任务号：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_TSA_ID" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_TSA_ID" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                             <td style="text-align: right">
                                 任务号收入：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_BUDGET_INCOME" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_BUDGET_INCOME" runat="server" ReadOnly="True" Style="text-align: right"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 任务号重量：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_WEIGHT" runat="server" ReadOnly="true"></asp:TextBox>吨
+                                <asp:TextBox ID="txt_YS_WEIGHT" runat="server" ReadOnly="True"></asp:TextBox>
+                                吨
                             </td>
                         </tr>
                         <tr>
@@ -69,19 +71,19 @@
                                 合同号：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_CONTRACT_NO" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_CONTRACT_NO" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                             <td style="text-align: right">
                                 项目名称：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PROJECTNAME" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_PROJECTNAME" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                             <td style="text-align: right">
                                 设备名称：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_ENGINEERNAME" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_ENGINEERNAME" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -89,19 +91,19 @@
                                 财务制单人：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_ADDNAME" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_ADDNAME" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                             <td style="text-align: right">
                                 提交时间：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_ADDTIME" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_ADDTIME" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                             <td style="text-align: right">
                                 备注：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_NOTE" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_NOTE" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -116,19 +118,24 @@
                                 材料费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_MATERIAL_COST" runat="server" onkeypress="InputNumberOnly()"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_MATERIAL_COST" runat="server" Style="text-align: right" onkeyup="Calculate()"
+                                    onkeypress="InputNumberOnly()"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 人工费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_LABOUR_COST" runat="server"  onchange="fff1111()" onkeypress="InputNumberOnly()"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_LABOUR_COST" runat="server" Style="text-align: right" onkeyup="Calculate()"
+                                    onkeypress="InputNumberOnly()"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 运费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_TRANS_COST" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_TRANS_COST" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -136,49 +143,71 @@
                                 预算总额：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_TOTALCOST_ALL" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_TOTALCOST_ALL" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 毛利润：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PROFIT" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_PROFIT" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 毛利率：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PROFIT_RATE" runat="server" ReadOnly="true"></asp:TextBox>
-                                <input id="btn_calculate" type="button" value="计算结果" />
+                                <asp:TextBox ID="txt_YS_PROFIT_RATE" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                %
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="8">
+                            <td class="red" style="text-align: right;">
+                                自动计算：
+                            </td>
+                            <td class="red">
+                                材料费+人工费+运费
+                            </td>
+                            <td>
+                            </td>
+                            <td class="red">
+                                任务号收入 - 预算总额
+                            </td>
+                            <td>
+                            </td>
+                            <td class="red">
+                                毛利润 / 任务号收入
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="6">
                                 <hr />
                                 <h3>
                                     材料费参考</h3>
                             </th>
                         </tr>
                         <tr>
-                        </tr>
-                        <tr>
                             <td style="text-align: right">
                                 黑色金属：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_FERROUS_METAL" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_FERROUS_METAL" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 外购件：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PURCHASE_PART" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_PURCHASE_PART" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 加工件：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_MACHINING_PART" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_MACHINING_PART" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -186,19 +215,23 @@
                                 油漆涂料：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PAINT_COATING" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_PAINT_COATING" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 电气电料：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_ELECTRICAL" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_ELECTRICAL" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 铸锻件：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_CASTING_FORGING_COST" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_CASTING_FORGING_COST" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -206,7 +239,8 @@
                                 其他材料：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_OTHERMAT_COST" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_OTHERMAT_COST" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -214,11 +248,13 @@
                                 材料费小计：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_materil_history_reference" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_materil_history_reference" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
-                            <th colspan="8">
+                            <th colspan="6">
                                 <hr />
                                 <h3>
                                     部门反馈参考</h3>
@@ -234,19 +270,25 @@
                                 黑色金属反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_FERROUS_METAL_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_FERROUS_METAL_FB" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 外购件反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PURCHASE_PART_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_PURCHASE_PART_FB" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 加工件反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_MACHINING_PART_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_MACHINING_PART_FB" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -254,19 +296,24 @@
                                 油漆涂料反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_PAINT_COATING_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_PAINT_COATING_FB" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 电气电料反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_ELECTRICAL_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_ELECTRICAL_FB" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                             <td style="text-align: right">
                                 铸锻件反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_CASTING_FORGING_COST_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_CASTING_FORGING_COST_FB" Style="text-align: right" runat="server"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -274,7 +321,9 @@
                                 其他材料反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_OTHERMAT_COST_FB" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_YS_OTHERMAT_COST_FB" Style="text-align: right" runat="server"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -282,7 +331,9 @@
                                 材料费反馈小计：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_materil_dispart_reference" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_materil_dispart_reference" Style="text-align: right" runat="server"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                         <tr>
@@ -295,7 +346,9 @@
                                 单位人工费反馈：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_UNIT_LABOUR_COST_FB" runat="server" ReadOnly="true"></asp:TextBox>元/吨
+                                <asp:TextBox ID="txt_YS_UNIT_LABOUR_COST_FB" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元/吨
                             </td>
                         </tr>
                         <tr>
@@ -303,7 +356,9 @@
                                 人工费反馈小计：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_labour_dispart_reference" runat="server" ReadOnly="true"></asp:TextBox>元
+                                <asp:TextBox ID="txt_labour_dispart_reference" runat="server" Style="text-align: right"
+                                    ReadOnly="True"></asp:TextBox>
+                                元
                             </td>
                         </tr>
                     </table>
@@ -386,12 +441,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -491,12 +544,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -596,12 +647,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -701,12 +750,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -806,12 +853,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -911,12 +956,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -1016,12 +1059,10 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        元
+                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
                                         <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
@@ -1194,17 +1235,32 @@
         </asp:TabPanel>
     </asp:TabContainer>
 
-    <script src="../Assets/WXPTJS/jquery.1.4.2-min.js" type="text/javascript"></script>
+    <script src="../JS/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 
     <script>
+
+
+        //检查输入的是否为数字
         function InputNumberOnly() {
             if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 46) { event.returnValue = false; alert('请输入数字 ！'); } else { event.returnValue = true; }
         }
+        //计算预算总额、毛利润、毛利率
+        function Calculate() {
+            var a = parseFloat($('#<%=txt_YS_MATERIAL_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_LABOUR_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_TRANS_COST.ClientID %>').val());
+            if (!isNaN(a)) {
+                $('#<%=txt_YS_TOTALCOST_ALL.ClientID %>').val((parseFloat($('#<%=txt_YS_MATERIAL_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_LABOUR_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_TRANS_COST.ClientID %>').val())).toFixed(4));
+                $('#<%=txt_YS_PROFIT.ClientID %>').val((parseFloat($('#<%=txt_YS_BUDGET_INCOME.ClientID %>').val()) - parseFloat($('#<%=txt_YS_TOTALCOST_ALL.ClientID %>').val())).toFixed(4));
+                if (parseFloat($('#<%=txt_YS_BUDGET_INCOME.ClientID %>').val()) != 0) {
+                    $('#<%=txt_YS_PROFIT_RATE.ClientID %>').val((parseFloat($('#<%=txt_YS_PROFIT.ClientID %>').val()) * 100 / parseFloat($('#<%=txt_YS_BUDGET_INCOME.ClientID %>').val())).toFixed(2));
 
-        $("#btn_calculate").onclick(function() {
-            alert("123");
-            $("#<%=txt_YS_TOTALCOST_ALL.ClientID %>").val() = $("#<%=txt_YS_MATERIAL_COST.ClientID %>").val() + $("#<%=txt_YS_LABOUR_COST.ClientID %>").val() + $("#<%=txt_YS_TRANS_COST.ClientID %>").val()
-        });
+                } else {
+                    $('#<%=txt_YS_PROFIT_RATE.ClientID %>').val("任务号收入为0")
+                }
+            }
+
+
+
+        }
         
     </script>
 
