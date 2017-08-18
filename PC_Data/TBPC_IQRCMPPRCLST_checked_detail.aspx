@@ -1,11 +1,11 @@
-Ôªø<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.Master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/Masters/RightCotentMaster.Master" AutoEventWireup="true"
     CodeBehind="TBPC_IQRCMPPRCLST_checked_detail.aspx.cs" Inherits="ZCZJ_DPF.PC_Data.TBPC_IQRCMPPRCLST_checked_detail"
-    Title="ÊØî‰ª∑ÂçïÁÆ°ÁêÜ" %>
+    Title="±»º€µ•π‹¿Ì" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    ËØ¢ÊØî‰ª∑ÂçïÂÆ°Ê†∏
+    —Ø±»º€µ•…Û∫À
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
@@ -43,7 +43,7 @@
            var SfCzbfgxint="<%=Get_zero_itemcount()%>";
             if(SfCzbfgxint!=0)
             {
-            if(window.confirm('Â≠òÂú®Âçï‰ª∑‰∏∫0ÁöÑÈ°πÔºåËã•‰∏∫ÊàêÂ•óË¥≠‰π∞ËØ∑ÂÅöÊ†áËØÜÔºõÁ°ÆÂÆöÂ∞ÜÁõ¥Êé•Êèê‰∫§ÔºåÊòØÂê¶Á°ÆÂÆöÔºÅ')){ 
+            if(window.confirm('¥Ê‘⁄µ•º€Œ™0µƒœÓ£¨»ÙŒ™≥…Ã◊π∫¬Ú«Î◊ˆ±Í ∂£ª»∑∂®Ω´÷±Ω”Ã·Ωª£¨ «∑Ò»∑∂®£°')){ 
                 return true; 
                 }else{  
                 return false; 
@@ -141,52 +141,52 @@
                     <table width="100%">
                         <tr>
                             <td>
-                                ËØ¢ÊØî‰ª∑Âçï
+                                —Ø±»º€µ•
                             </td>
                             <td align="right" width="32%">
-                                <asp:Button ID="btn_fuzhi" runat="server" Text="Â§çÂà∂" OnClick="btn_fuzhi_Click" Visible="false" />
+                                <asp:Button ID="btn_fuzhi" runat="server" Text="∏¥÷∆" OnClick="btn_fuzhi_Click" Visible="false" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_chaifen" runat="server" Text="ÊãÜÂàÜ" OnClick="btn_chaifen_Click" />
+                                <asp:Button ID="btn_chaifen" runat="server" Text="≤∑÷" OnClick="btn_chaifen_Click" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_yincang" runat="server" Text="ÈöêËóèËÆæÁΩÆ" OnClientClick="viewCondition()" />
+                                <asp:Button ID="btn_yincang" runat="server" Text="“˛≤ÿ…Ë÷√" OnClientClick="viewCondition()" />
                                 <asp:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btn_yincang"
                                     PopupControlID="PanelCondition" Drag="false" Enabled="True" DynamicServicePath=""
                                     Y="80" CancelControlID="btnClose">
                                 </asp:ModalPopupExtender>
                                 &nbsp;&nbsp;
-                                <asp:Button runat="server" ID="btnReplace" OnClick="btnReplace_Click" Text="Áâ©Êñô‰ª£Áî®"
+                                <asp:Button runat="server" ID="btnReplace" OnClick="btnReplace_Click" Text="ŒÔ¡œ¥˙”√"
                                     Enabled="false" />
                             </td>
                             <td align="right">
-                                <asp:CheckBox ID="Chb_Zb" Text="ÊãõÊ†áÁâ©Êñô" runat="server" class="zbjc" onclick="sinCheck(this)" />&nbsp;
-                                <asp:CheckBox ID="Chb_Jc" Text="ÈõÜÈááÈááË¥≠" runat="server" class="zbjc" onclick="sinCheck(this)" />&nbsp;
-                                <asp:CheckBox ID="chk_array" Text="ÊàêÂ•óÊ†áËØÜ" runat="server" OnCheckedChanged="chk_array_CheckedChanged" AutoPostBack="true" />&nbsp;&nbsp;&nbsp;
-                                <asp:CheckBox ID="chk_qxarray" Text="ÂèñÊ∂àÊàêÂ•óÊ†áËØÜ" runat="server" OnCheckedChanged="chk_qxarray_CheckedChanged" AutoPostBack="true" />&nbsp;&nbsp;&nbsp;
-                                <asp:Button runat="server" ID="CancelZb" Text="ÂèñÊ∂àÊãõÊ†á" OnClick="CancelJc_Click" Visible="false" />
+                                <asp:CheckBox ID="Chb_Zb" Text="’–±ÍŒÔ¡œ" runat="server" class="zbjc" onclick="sinCheck(this)" />&nbsp;
+                                <asp:CheckBox ID="Chb_Jc" Text="ºØ≤…≤…π∫" runat="server" class="zbjc" onclick="sinCheck(this)" />&nbsp;
+                                <asp:CheckBox ID="chk_array" Text="≥…Ã◊±Í ∂" runat="server" OnCheckedChanged="chk_array_CheckedChanged" AutoPostBack="true" />&nbsp;&nbsp;&nbsp;
+                                <asp:CheckBox ID="chk_qxarray" Text="»°œ˚≥…Ã◊±Í ∂" runat="server" OnCheckedChanged="chk_qxarray_CheckedChanged" AutoPostBack="true" />&nbsp;&nbsp;&nbsp;
+                                <asp:Button runat="server" ID="CancelZb" Text="»°œ˚’–±Í" OnClick="CancelJc_Click" Visible="false" />
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:Button runat="server" ID="CancelJc" Text="ÂèñÊ∂àÈõÜÈáá" OnClick="CancelJc_Click" Visible="false" />
+                                <asp:Button runat="server" ID="CancelJc" Text="»°œ˚ºØ≤…" OnClick="CancelJc_Click" Visible="false" />
                                 &nbsp;&nbsp;&nbsp;
-                                <asp:CheckBox ID="cbpower" runat="server" Text="ÊãõÊ†áÂÆ°Ê†∏" Enabled="false" OnCheckedChanged="cbpower_CheckedChanged"
+                                <asp:CheckBox ID="cbpower" runat="server" Text="’–±Í…Û∫À" Enabled="false" OnCheckedChanged="cbpower_CheckedChanged"
                                     AutoPostBack="true" Visible="false" />
-                                <asp:Button ID="btn_edit" runat="server" Text="ÁºñËæë" OnClick="btn_edit_Click" Enabled="false" />
+                                <asp:Button ID="btn_edit" runat="server" Text="±‡º≠" OnClick="btn_edit_Click" Enabled="false" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_confirm" runat="server" Text="Êèê  ‰∫§" OnClick="btn_confirm_Click" OnClientClick="return req_zero()"
+                                <asp:Button ID="btn_confirm" runat="server" Text="Ã·  Ωª" OnClick="btn_confirm_Click" OnClientClick="return req_zero()"
                                     Enabled="false" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_fanshen" runat="server" Text="ÂèçÂÆ°" OnClick="btn_fanshen_Click"
+                                <asp:Button ID="btn_fanshen" runat="server" Text="∑¥…Û" OnClick="btn_fanshen_Click"
                                     Enabled="false" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_shangcha" runat="server" Text="‰∏äÊü•" OnClick="btn_shangcha_Click" />
+                                <asp:Button ID="btn_shangcha" runat="server" Text="…œ≤È" OnClick="btn_shangcha_Click" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_xiacha" runat="server" Text="‰∏ãÊü•" OnClick="btn_xiacha_Click" />
+                                <asp:Button ID="btn_xiacha" runat="server" Text="œ¬≤È" OnClick="btn_xiacha_Click" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_biangeng" runat="server" Text="ÂèòÊõ¥Êü•ËØ¢" OnClick="btn_biangeng_Click" />
+                                <asp:Button ID="btn_biangeng" runat="server" Text="±‰∏¸≤È—Ø" OnClick="btn_biangeng_Click" />
                                 &nbsp;&nbsp;
-                                <asp:Button ID="btn_back" runat="server" Text="ËøîÂõû" OnClick="btn_back_Click" />&nbsp;&nbsp;
+                                <asp:Button ID="btn_back" runat="server" Text="∑µªÿ" OnClick="btn_back_Click" />&nbsp;&nbsp;
                                 <asp:Button ID="btn_nosto" runat="server" Text="wukucun" OnClick="btn_nosto_Click" />
                                 <asp:HyperLink ID="Hyp_print" runat="server" Target="_blank">
                                     <asp:Image ID="Img_print" runat="server" ImageUrl="~/Assets/icon-fuction/89.gif"
-                                        title="ÊâìÂç∞" Visible="false" /></asp:HyperLink>
+                                        title="¥Ú”°" Visible="false" /></asp:HyperLink>
                                 &nbsp;&nbsp;
                             </td>
                         </tr>
@@ -197,81 +197,81 @@
                                 <table width="60%" style="background-color: #CCCCFF; border: solid 1px black;" border="1">
                                     <tr>
                                         <td colspan="4" align="center">
-                                            ÈÄâÊã©ÈúÄË¶ÅÈöêËóèÁöÑÂàó<br />
-                                            Âè™ÈöêËóè‰ª∑Ê†ºËæìÂÖ•ÁïåÈù¢‰∏äÁöÑÂàó
+                                            —°‘Ò–Ë“™“˛≤ÿµƒ¡–<br />
+                                            ÷ª“˛≤ÿº€∏Ò ‰»ÎΩÁ√Ê…œµƒ¡–
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <asp:CheckBox ID="CheckBox1" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ËÆ°ÂàíË∑üË∏™Âè∑" TextAlign="Right"></asp:CheckBox>
+                                                Text="º∆ªÆ∏˙◊Ÿ∫≈" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox2" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="Áâ©ÊñôÁºñÁ†Å" TextAlign="Right"></asp:CheckBox>
+                                                Text="ŒÔ¡œ±‡¬Î" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox3" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÂõæÂè∑" TextAlign="Right"></asp:CheckBox>
+                                                Text="Õº∫≈" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox4" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÊùêË¥®" TextAlign="Right"></asp:CheckBox>
+                                                Text="≤ƒ÷ " TextAlign="Right"></asp:CheckBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <asp:CheckBox ID="CheckBox5" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÂõΩÊ†á" TextAlign="Right"></asp:CheckBox>
+                                                Text="π˙±Í" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox6" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÈááË¥≠Êï∞Èáè" TextAlign="Right"></asp:CheckBox>
+                                                Text="≤…π∫ ˝¡ø" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox7" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="Âçï‰Ωç" TextAlign="Right"></asp:CheckBox>
+                                                Text="µ•Œª" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox8" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="Á®éÁéá" TextAlign="Right"></asp:CheckBox>
+                                                Text="À∞¬ " TextAlign="Right"></asp:CheckBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <asp:CheckBox ID="CheckBox9" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÈáëÈ¢ù" TextAlign="Right"></asp:CheckBox>
+                                                Text="Ω∂Ó" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox10" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÈïøÂ∫¶" TextAlign="Right"></asp:CheckBox>
+                                                Text="≥§∂»" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox11" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ÂÆΩÂ∫¶" TextAlign="Right"></asp:CheckBox>
+                                                Text="øÌ∂»" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                         <td>
                                             <asp:CheckBox ID="CheckBox12" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="Â§áÊ≥®" TextAlign="Right"></asp:CheckBox>
+                                                Text="±∏◊¢" TextAlign="Right"></asp:CheckBox>
                                         </td>
                                     </tr>
                                     <tr visible="false">
                                         <td visible="false">
                                             <asp:CheckBox ID="CheckBox13" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ËæÖÂä©Êï∞Èáè" TextAlign="Right" Visible="false"></asp:CheckBox>
+                                                Text="∏®÷˙ ˝¡ø" TextAlign="Right" Visible="false"></asp:CheckBox>
                                         </td>
                                         <td visible="false">
                                             <asp:CheckBox ID="CheckBox14" CssClass="checkBoxCss" BorderStyle="None" runat="server"
-                                                Text="ËæÖÂä©Âçï‰Ωç" TextAlign="Right" Visible="false"></asp:CheckBox>
+                                                Text="∏®÷˙µ•Œª" TextAlign="Right" Visible="false"></asp:CheckBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" align="center">
-                                            <asp:Button ID="QueryButton" runat="server" OnClick="QueryButton_Click" Text="Á°ÆÂÆö" />
+                                            <asp:Button ID="QueryButton" runat="server" OnClick="QueryButton_Click" Text="»∑∂®" />
                                             &nbsp;&nbsp;&nbsp;
-                                            <input type="button" id="btnClose" value="ÂèñÊ∂à" />
+                                            <input type="button" id="btnClose" value="»°œ˚" />
                                             &nbsp;&nbsp;&nbsp;
-                                            <asp:Button ID="btnReset" runat="server" Text="ÈáçÁΩÆ" OnClick="btnReset_Click" />
+                                            <asp:Button ID="btnReset" runat="server" Text="÷ÿ÷√" OnClick="btnReset_Click" />
                                             &nbsp;&nbsp;&nbsp;
                                         </td>
                                     </tr>
@@ -289,16 +289,16 @@
                         <table width="100%">
                             <tr>
                                 <td align="left">
-                                    ËØ¢ÊØî‰ª∑ÂçïÁºñÂè∑:<asp:TextBox ID="TextBoxNO" runat="server" Enabled="false"></asp:TextBox>
+                                    —Ø±»º€µ•±‡∫≈:<asp:TextBox ID="TextBoxNO" runat="server" Enabled="false"></asp:TextBox>
                                 </td>
                                 <td align="right">
-                                    ÊòæÁ§∫‰æõÂ∫îÂïÜÊï∞ÈáèÔºö<asp:TextBox ID="TextBox1" runat="server" Text="3"></asp:TextBox>&nbsp;&nbsp;
+                                    œ‘ æπ©”¶…Ã ˝¡ø£∫<asp:TextBox ID="TextBox1" runat="server" Text="3"></asp:TextBox>&nbsp;&nbsp;
                                 </td>
                             </tr>
                         </table>
                         <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
                             ActiveTabIndex="0">
-                            <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="ËØ¢ÊØî‰ª∑Âçï">
+                            <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="—Ø±»º€µ•">
                                 <ContentTemplate>
                                     <div style="border: 1px solid #000000; height: 480px">
                                         <div class="cpbox4 xscroll">
@@ -307,33 +307,33 @@
                                                     <HeaderTemplate>
                                                         <tr id="row" align="center" style="background-color: #B9D3EE">
                                                             <td id="wlxx" runat="server" rowspan="3">
-                                                                Áâ©Êñô‰ø°ÊÅØ
+                                                                ŒÔ¡œ–≈œ¢
                                                             </td>
                                                             <td colspan="1" rowspan="3">
-                                                                ÊØî‰ª∑ÁªìÊûú
+                                                                ±»º€Ω·π˚
                                                             </td>
                                                             <td id="GYS" runat="server" colspan="18" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ‰ø°ÊÅØ
+                                                                π©”¶…Ã–≈œ¢
                                                             </td>
                                                         </tr>
                                                         <tr align="center" style="background-color: #B9D3EE">
                                                             <td id="gys1" runat="server" colspan="3" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ1
+                                                                π©”¶…Ã1
                                                             </td>
                                                             <td id="gys2" runat="server" colspan="3" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ2
+                                                                π©”¶…Ã2
                                                             </td>
                                                             <td id="gys3" runat="server" colspan="3" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ3
+                                                                π©”¶…Ã3
                                                             </td>
                                                             <td id="gys4" runat="server" colspan="3" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ4
+                                                                π©”¶…Ã4
                                                             </td>
                                                             <td id="gys5" runat="server" colspan="3" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ5
+                                                                π©”¶…Ã5
                                                             </td>
                                                             <td id="gys6" runat="server" colspan="3" rowspan="1">
-                                                                ‰æõÂ∫îÂïÜ6
+                                                                π©”¶…Ã6
                                                             </td>
                                                         </tr>
                                                         <tr align="left" style="background-color: #B9D3EE">
@@ -373,153 +373,153 @@
                                                                 &nbsp;
                                                             </td>
                                                             <td>
-                                                                <strong>Ë°åÂè∑</strong>
+                                                                <strong>––∫≈</strong>
                                                             </td>
                                                             <td id="td1" runat="server">
-                                                                <strong>ËÆ°ÂàíÂè∑Ë∑üË∏™Âè∑</strong>
+                                                                <strong>º∆ªÆ∫≈∏˙◊Ÿ∫≈</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>ÈÉ®‰ª∂ÂêçÁß∞</strong>
+                                                                <strong>≤øº˛√˚≥∆</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>ÈÉ®‰ª∂ÂõæÂè∑</strong>
+                                                                <strong>≤øº˛Õº∫≈</strong>
                                                             </td>
                                                             <td id="td5" runat="server">
-                                                                <strong>ÂõΩÊ†á</strong>
+                                                                <strong>π˙±Í</strong>
                                                             </td>
                                                             <td id="td3" runat="server">
-                                                                <strong>ÂõæÂè∑</strong>
+                                                                <strong>Õº∫≈</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>Áâ©ÊñôÂêçÁß∞</strong>
+                                                                <strong>ŒÔ¡œ√˚≥∆</strong>
                                                             </td>
                                                             <td id="td13" runat="server" visible="false">
-                                                                <strong>ÈîÄÂîÆÂêàÂêå</strong>
+                                                                <strong>œ˙ €∫œÕ¨</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>ËßÑÊ†º</strong>
+                                                                <strong>πÊ∏Ò</strong>
                                                             </td>
                                                             <td id="td4" runat="server">
-                                                                <strong>ÊùêË¥®</strong>
+                                                                <strong>≤ƒ÷ </strong>
                                                             </td>
                                                             <td id="td9" runat="server">
-                                                                <strong>ÈïøÂ∫¶</strong>
+                                                                <strong>≥§∂»</strong>
                                                             </td>
                                                             <td id="td10" runat="server">
-                                                                <strong>ÂÆΩÂ∫¶</strong>
+                                                                <strong>øÌ∂»</strong>
                                                             </td>
                                                             <%-- <td>
-                                                                <strong>Êï∞Èáè</strong>
+                                                                <strong> ˝¡ø</strong>
                                                             </td>--%>
                                                             <td id="td7" runat="server">
-                                                                <strong>Âçï‰Ωç</strong>
+                                                                <strong>µ•Œª</strong>
                                                             </td>
                                                             <td id="td6" runat="server">
-                                                                <strong>ÈááË¥≠Êï∞Èáè</strong>
+                                                                <strong>≤…π∫ ˝¡ø</strong>
                                                             </td>
                                                             <td id="fzunit1" runat="server">
-                                                                <strong>ËæÖÂä©Âçï‰Ωç</strong>
+                                                                <strong>∏®÷˙µ•Œª</strong>
                                                             </td>
                                                             <td id="fznum1" runat="server">
-                                                                <strong>ËæÖÂä©Êï∞Èáè</strong>
+                                                                <strong>∏®÷˙ ˝¡ø</strong>
                                                             </td>
                                                             <%--  <td>
-                                                                <strong>Á®éÁéá(%)</strong>
+                                                                <strong>À∞¬ (%)</strong>
                                                             </td>--%>
                                                             <td id="td8" runat="server">
-                                                                <strong>ÈáëÈ¢ù</strong>
+                                                                <strong>Ω∂Ó</strong>
                                                             </td>
                                                             <%--<td id="zxfznum1" runat="server">
-                                                                <strong>ÊâßË°åËæÖÂä©Êï∞Èáè</strong>
+                                                                <strong>÷¥––∏®÷˙ ˝¡ø</strong>
                                                             </td>--%>
                                                             <%-- <td>
-                                                                <strong>ËÆ°ÂàíÊ®°Âºè</strong>
+                                                                <strong>º∆ªÆƒ£ Ω</strong>
                                                             </td>--%>
                                                             <%-- <td>
-                                                                <strong>ÊòØÂê¶ÂÖ≥ÈîÆÈÉ®‰ª∂</strong>
+                                                                <strong> «∑Òπÿº¸≤øº˛</strong>
                                                             </td>--%>
                                                             <td id="td11" runat="server">
-                                                                <strong>Â§áÊ≥®</strong>
+                                                                <strong>±∏◊¢</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>Á±ªÂûã</strong>
+                                                                <strong>¿‡–Õ</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>Áî≥ËØ∑‰∫∫</strong>
+                                                                <strong>…Í«Î»À</strong>
                                                             </td>
                                                             <td id="td2" runat="server">
-                                                                <strong>Áâ©ÊñôÁºñÁ†Å</strong>
+                                                                <strong>ŒÔ¡œ±‡¬Î</strong>
                                                             </td>
                                                             <td>
-                                                                <strong>ÊØî‰ª∑ÁªìÊûú</strong>
+                                                                <strong>±»º€Ω·π˚</strong>
                                                             </td>
                                                             <td id="dyc1" runat="server">
-                                                                <strong>‰∫§Ë¥ßÊúü</strong>
+                                                                <strong>Ωªªı∆⁄</strong>
                                                             </td>
                                                             <td id="dec1" runat="server">
-                                                                <strong>Âçï‰ª∑(Âê´Á®é)</strong>
+                                                                <strong>µ•º€(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="zz1" runat="server">
-                                                                <strong>ÈáëÈ¢ù(Âê´Á®é)</strong>
+                                                                <strong>Ω∂Ó(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="dyc2" runat="server">
-                                                                <strong>‰∫§Ë¥ßÊúü</strong>
+                                                                <strong>Ωªªı∆⁄</strong>
                                                             </td>
                                                             <td id="dec2" runat="server">
-                                                                <strong>Âçï‰ª∑(Âê´Á®é)</strong>
+                                                                <strong>µ•º€(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="zz2" runat="server">
-                                                                <strong>ÈáëÈ¢ù(Âê´Á®é)</strong>
+                                                                <strong>Ω∂Ó(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="dyc3" runat="server">
-                                                                <strong>‰∫§Ë¥ßÊúü</strong>
+                                                                <strong>Ωªªı∆⁄</strong>
                                                             </td>
                                                             <td id="dec3" runat="server">
-                                                                <strong>Âçï‰ª∑(Âê´Á®é)</strong>
+                                                                <strong>µ•º€(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="zz3" runat="server">
-                                                                <strong>ÈáëÈ¢ù(Âê´Á®é)</strong>
+                                                                <strong>Ω∂Ó(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="dyc4" runat="server">
-                                                                <strong>‰∫§Ë¥ßÊúü</strong>
+                                                                <strong>Ωªªı∆⁄</strong>
                                                             </td>
                                                             <td id="dec4" runat="server">
-                                                                <strong>Âçï‰ª∑(Âê´Á®é)</strong>
+                                                                <strong>µ•º€(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="zz4" runat="server">
-                                                                <strong>ÈáëÈ¢ù(Âê´Á®é)</strong>
+                                                                <strong>Ω∂Ó(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="dyc5" runat="server">
-                                                                <strong>‰∫§Ë¥ßÊúü</strong>
+                                                                <strong>Ωªªı∆⁄</strong>
                                                             </td>
                                                             <td id="dec5" runat="server">
-                                                                <strong>Âçï‰ª∑(Âê´Á®é)</strong>
+                                                                <strong>µ•º€(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="zz5" runat="server">
-                                                                <strong>ÈáëÈ¢ù(Âê´Á®é)</strong>
+                                                                <strong>Ω∂Ó(∫¨À∞)</strong>
                                                             </td>
                                                             <td id="dyc6" runat="server">
-                                                                <strong>‰∫§Ë¥ßÊúü</strong>
+                                                                <strong>Ωªªı∆⁄</strong>
                                                             </td>
                                                             <td id="dec6" runat="server">
-                                                                <strong>Âçï‰ª∑</strong>
+                                                                <strong>µ•º€</strong>
                                                             </td>
                                                             <td id="zz6" runat="server">
-                                                                <strong>ÈáëÈ¢ù</strong>
+                                                                <strong>Ω∂Ó</strong>
                                                             </td>
                                                         </tr>
                                                     </HeaderTemplate>
                                                     <FooterTemplate>
                                                         <tr align="center">
                                                             <td id="foottd1" runat="server" rowspan="1">
-                                                                Ê±áÊÄª(RMB/ÂÖÉ)
+                                                                ª„◊‹(RMB/‘™)
                                                             </td>
                                                             <td id="tk4" runat="server">
-                                                                <%--Èïø--%>
+                                                                <%--≥§--%>
                                                                 <asp:Label ID="Label9" runat="server" Text=""></asp:Label>
                                                             </td>
                                                             <td id="tk5" runat="server">
-                                                                <%--ÂÆΩ--%>
+                                                                <%--øÌ--%>
                                                                 <asp:Label ID="Label10" runat="server" Text=""></asp:Label>
                                                             </td>
                                                             <td id="tk3" runat="server">
@@ -579,8 +579,8 @@
                                                                 <asp:CheckBox ID="CKBOX_SELECT" runat="server" BorderStyle="None" Checked="false"
                                                                     CssClass="checkBoxCss" onclick="checkme(this)" />
                                                                 &nbsp;
-                                                                <asp:Label ID="lbUrgency" runat="server" Text="Âä†ÊÄ•" ForeColor="Red" Visible="false"/>
-                                                                <asp:Label ID="IFFAST" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>
+                                                                <asp:Label ID="lbUrgency" runat="server" Text="º”º±" ForeColor="Red" Visible="false"/>
+                                                                <%--<asp:Label ID="IFFAST" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>--%>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="rownum" runat="server" Text="<%#Container.ItemIndex + 1 %>"></asp:Label>
@@ -734,7 +734,7 @@
                                                 <tr>
                                                     <td colspan="36">
                                                         <asp:Panel ID="NoDataPane1" runat="server" Visible="False">
-                                                            Ê≤°ÊúâËÆ∞ÂΩïÔºÅ</asp:Panel>
+                                                            √ª”–º«¬º£°</asp:Panel>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -816,7 +816,7 @@
                                     </div>
                                 </ContentTemplate>
                             </asp:TabPanel>
-                            <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="ÊØî‰ª∑ÁªìÊûú" TabIndex="1">
+                            <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="±»º€Ω·π˚" TabIndex="1">
                                 <ContentTemplate>
                                     <div class="fixbox" style="height: 440px">
                                         <table id="Table1" class="nowrap fixtable fullwidth" width="100%">
@@ -827,79 +827,79 @@
                                                             &nbsp;
                                                         </td>
                                                         <td>
-                                                            <strong>Ë°åÂè∑</strong>
+                                                            <strong>––∫≈</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ËÆ°ÂàíË∑üË∏™Âè∑</strong>
+                                                            <strong>º∆ªÆ∏˙◊Ÿ∫≈</strong>
                                                         </td>
                                                         <td runat="server" visible="false">
-                                                            <strong>ÈîÄÂîÆÂêàÂêå</strong>
+                                                            <strong>œ˙ €∫œÕ¨</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>Áâ©ÊñôÁºñÁ†Å</strong>
+                                                            <strong>ŒÔ¡œ±‡¬Î</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÂêçÁß∞</strong>
+                                                            <strong>√˚≥∆</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÂõæÂè∑</strong>
+                                                            <strong>Õº∫≈</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ËßÑÊ†º</strong>
+                                                            <strong>πÊ∏Ò</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÊùêË¥®</strong>
+                                                            <strong>≤ƒ÷ </strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÂõΩÊ†á</strong>
+                                                            <strong>π˙±Í</strong>
                                                         </td>
                                                         <td runat="server" visible="false">
-                                                            <strong>Êï∞Èáè</strong>
+                                                            <strong> ˝¡ø</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÈááË¥≠Êï∞Èáè</strong>
+                                                            <strong>≤…π∫ ˝¡ø</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>Âçï‰Ωç</strong>
+                                                            <strong>µ•Œª</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>‰æõÂ∫îÂïÜ</strong>
+                                                            <strong>π©”¶…Ã</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>‰∫§Ë¥ßÊúü</strong>
+                                                            <strong>Ωªªı∆⁄</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>Âçï‰ª∑(Âê´Á®é)</strong>
+                                                            <strong>µ•º€(∫¨À∞)</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÈáëÈ¢ù</strong>
+                                                            <strong>Ω∂Ó</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>Á®éÁéá(%)</strong>
+                                                            <strong>À∞¬ (%)</strong>
                                                         </td>
                                                         <td id="fzn1" runat="server">
-                                                            <strong>ËæÖÂä©Êï∞Èáè</strong>
+                                                            <strong>∏®÷˙ ˝¡ø</strong>
                                                         </td>
                                                         <td id="zxfzn1" runat="server">
-                                                            <strong>ÊâßË°åËæÖÂä©Êï∞Èáè</strong>
+                                                            <strong>÷¥––∏®÷˙ ˝¡ø</strong>
                                                         </td>
                                                         <td id="fzu1" runat="server">
-                                                            <strong>ËæÖÂä©Âçï‰Ωç</strong>
+                                                            <strong>∏®÷˙µ•Œª</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÈïøÂ∫¶</strong>
+                                                            <strong>≥§∂»</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÂÆΩÂ∫¶</strong>
+                                                            <strong>øÌ∂»</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>Â§áÊ≥®</strong>
+                                                            <strong>±∏◊¢</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÂÖ≥Èó≠Ê†áÂøó</strong>
+                                                            <strong>πÿ±’±Í÷æ</strong>
                                                         </td>
                                                         <td>
-                                                            <strong>ÊàêÂ•óÊ†áËØÜ</strong>
+                                                            <strong>≥…Ã◊±Í ∂</strong>
                                                         </td>
                                                     </tr>
                                                 </HeaderTemplate>
@@ -912,8 +912,8 @@
                                                         <td>
                                                             <asp:Label ID="rownum" runat="server" Text="<%#Container.ItemIndex + 1 %>"></asp:Label>
                                                             &nbsp;
-                                                                <asp:Label ID="lbUrgency2" runat="server" Text="Âä†ÊÄ•" ForeColor="Red" Visible="false"/>
-                                                                <asp:Label ID="IFFAST2" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>
+                                                                <asp:Label ID="lbUrgency2" runat="server" Text="º”º±" ForeColor="Red" Visible="false"/>
+                                                                <%--<asp:Label ID="IFFAST2" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>--%>
                                                         </td>
                                                         <td>
                                                             <asp:Label ID="PIC_PCODE" runat="server" Text='<%#Eval("ptcode")%>' Visible="false"></asp:Label>
@@ -1011,7 +1011,7 @@
                                                 <FooterTemplate>
                                                     <tr align="center">
                                                         <td colspan="10" rowspan="1">
-                                                            Ê±áÊÄª(RMB/ÂÖÉ)
+                                                            ª„◊‹(RMB/‘™)
                                                         </td>
                                                         <td runat="server" visible="false">
                                                             <asp:Label ID="totalnum" runat="server" Text="0"></asp:Label>
@@ -1032,14 +1032,14 @@
                                             <tr>
                                                 <td align="center" colspan="27">
                                                     <asp:Panel ID="NoDataPane2" runat="server" Visible="false">
-                                                        Ê≤°ÊúâÊï∞ÊçÆÔºÅ</asp:Panel>
+                                                        √ª”– ˝æ›£°</asp:Panel>
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </ContentTemplate>
                             </asp:TabPanel>
-                            <asp:TabPanel ID="TabPanel3" runat="server" HeaderText="ËØÑÂÆ°ÁªìÊûú" TabIndex="2">
+                            <asp:TabPanel ID="TabPanel3" runat="server" HeaderText="∆¿…ÛΩ·π˚" TabIndex="2">
                                 <ContentTemplate>
                                     <div style="border: 1px solid #000000; height: 450px; overflow: auto">
                                         <asp:Panel ID="Pan_shenheren" runat="server">
@@ -1047,7 +1047,7 @@
                                                 <asp:Panel ID="Panel_zd" runat="server">
                                                     <tr>
                                                         <td>
-                                                            Âà∂ÂçïÊÑèËßÅ:
+                                                            ÷∆µ•“‚º˚:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_zdanyj" runat="server" Columns="100" Rows="6"
@@ -1056,7 +1056,7 @@
                                                     </tr>
                                                     <tr runat="server" visible="false">
                                                         <td>
-                                                            ÂÆ°Ê†∏‰∫∫Êï∞:
+                                                            …Û∫À»À ˝:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_pnum" runat="server" Enabled="false"></asp:TextBox>
@@ -1064,10 +1064,10 @@
                                                     </tr>
                                                     <tr>
                                                         <td align="right" colspan="2" style="border-bottom: solid 1px black;">
-                                                            Âà∂Âçï‰∫∫:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_zdanren" runat="server" CssClass="text1style"
+                                                            ÷∆µ•»À:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_zdanren" runat="server" CssClass="text1style"
                                                                 Enabled="False"></asp:TextBox>
                                                             <asp:TextBox ID="TB_zdanrenid" runat="server" Visible="false"></asp:TextBox>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Âà∂ÂçïÊó∂Èó¥:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_tjiaot"
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;÷∆µ• ±º‰:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_tjiaot"
                                                                 runat="server" CssClass="text1style" Enabled="False"></asp:TextBox>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </td>
@@ -1076,7 +1076,7 @@
                                                 <asp:Panel ID="Pan_shenheren1" runat="server" Enabled="false">
                                                     <tr>
                                                         <td>
-                                                            ÈááË¥≠‰∏ªÁÆ°ÊÑèËßÅ:
+                                                            ≤…π∫÷˜π‹“‚º˚:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheyj1" runat="server" Columns="100" Rows="3"
@@ -1085,22 +1085,22 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            ÂÆ°Ê†∏ÁªìËÆ∫:
+                                                            …Û∫ÀΩ·¬€:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;
                                                             <asp:RadioButton ID="Rad_tongyi1" runat="server" AutoPostBack="true" GroupName="shenhe1"
-                                                                OnCheckedChanged="Rad_tongyi1_checkedchanged" Text="ÂêåÊÑè" TextAlign="Right" />
+                                                                OnCheckedChanged="Rad_tongyi1_checkedchanged" Text="Õ¨“‚" TextAlign="Right" />
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:RadioButton ID="Rad_butongyi1" runat="server"
-                                                                GroupName="shenhe1" Text="ÊãíÁªù" TextAlign="Right" />
+                                                                GroupName="shenhe1" Text="æ‹æ¯" TextAlign="Right" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td align="right" colspan="2" style="border-bottom: solid 1px black;">
-                                                            ÂÆ°Ê†∏‰∫∫:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheren1" runat="server" CssClass="text1style"
+                                                            …Û∫À»À:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheren1" runat="server" CssClass="text1style"
                                                                 Enabled="false"></asp:TextBox>
                                                             <asp:TextBox ID="Tb_shenherencode1" runat="server" Visible="false"></asp:TextBox>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÂÆ°Ê†∏Êó∂Èó¥:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenhet1"
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;…Û∫À ±º‰:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenhet1"
                                                                 runat="server" CssClass="text1style" Enabled="false"></asp:TextBox>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </td>
@@ -1109,7 +1109,7 @@
                                                 <asp:Panel ID="Pan_shenheren2" runat="server" Enabled="false">
                                                     <tr>
                                                         <td>
-                                                            ÂÆ°Ê†∏ÊÑèËßÅ:
+                                                            …Û∫À“‚º˚:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheyj2" runat="server" Columns="100" Rows="3"
@@ -1118,33 +1118,33 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            ÂÆ°Ê†∏ÁªìËÆ∫:
+                                                            …Û∫ÀΩ·¬€:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;
                                                             <asp:RadioButton ID="Rad_tongyi2" runat="server" AutoPostBack="true" GroupName="shenhe2"
-                                                                OnCheckedChanged="Rad_tongyi2_checkedchanged" Text="ÂêåÊÑè" TextAlign="Right" />
+                                                                OnCheckedChanged="Rad_tongyi2_checkedchanged" Text="Õ¨“‚" TextAlign="Right" />
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:RadioButton ID="Rad_butongyi2" runat="server"
-                                                                GroupName="shenhe2" Text="ÊãíÁªù" TextAlign="Right" />
+                                                                GroupName="shenhe2" Text="æ‹æ¯" TextAlign="Right" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td align="right" colspan="2" style="border-bottom: solid 1px black;">
-                                                            ÂÆ°Ê†∏‰∫∫:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheren2" runat="server" CssClass="text1style"
+                                                            …Û∫À»À:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheren2" runat="server" CssClass="text1style"
                                                                 Enabled="false"></asp:TextBox>
                                                             <asp:TextBox ID="Tb_shenherencode2" runat="server" Visible="false"></asp:TextBox>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÂÆ°Ê†∏Êó∂Èó¥:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenhet2"
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;…Û∫À ±º‰:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenhet2"
                                                                 runat="server" CssClass="text1style" Enabled="false"></asp:TextBox>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </td>
                                                     </tr>
                                                 </asp:Panel>
                                                 
-                                                <%--ÂÆ°Ê†∏‰∫∫3(ÊÄªÁªèÁêÜ)--%>
+                                                <%--…Û∫À»À3(◊‹æ≠¿Ì)--%>
                                                 <asp:Panel ID="Pan_shenheren3" runat="server" Enabled="false">
                                                     <tr>
                                                         <td>
-                                                            ÂÆ°Ê†∏ÊÑèËßÅ:
+                                                            …Û∫À“‚º˚:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheyj3" runat="server" Columns="100" Rows="3"
@@ -1153,22 +1153,22 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            ÂÆ°Ê†∏ÁªìËÆ∫:
+                                                            …Û∫ÀΩ·¬€:
                                                         </td>
                                                         <td>
                                                             &nbsp;&nbsp;
                                                             <asp:RadioButton ID="Rad_tongyi3" runat="server" AutoPostBack="true" GroupName="shenhe3"
-                                                                OnCheckedChanged="Rad_tongyi3_checkedchanged" Text="ÂêåÊÑè" TextAlign="Right" />
+                                                                OnCheckedChanged="Rad_tongyi3_checkedchanged" Text="Õ¨“‚" TextAlign="Right" />
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:RadioButton ID="Rad_butongyi3" runat="server"
-                                                                GroupName="shenhe3" Text="ÊãíÁªù" TextAlign="Right" />
+                                                                GroupName="shenhe3" Text="æ‹æ¯" TextAlign="Right" />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td align="right" colspan="2" style="border-bottom: solid 1px black;">
-                                                            ÂÆ°Ê†∏‰∫∫:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheren3" runat="server" CssClass="text1style"
+                                                            …Û∫À»À:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenheren3" runat="server" CssClass="text1style"
                                                                 Enabled="false"></asp:TextBox>
                                                             <asp:TextBox ID="Tb_shenherencode3" runat="server" Visible="false"></asp:TextBox>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÂÆ°Ê†∏Êó∂Èó¥:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenhet3"
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;…Û∫À ±º‰:&nbsp;&nbsp;&nbsp;<asp:TextBox ID="Tb_shenhet3"
                                                                 runat="server" CssClass="text1style" Enabled="false"></asp:TextBox>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </td>
