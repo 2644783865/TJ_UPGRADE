@@ -233,7 +233,7 @@ namespace ZCZJ_DPF.OM_Data
                 return;
             }
             string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;
-            string savePath = @"D:/" + filename;//TOCHANGE
+            string savePath = @"E:/薪酬异动" + filename;//TOCHANGE
             FileUpload.SaveAs(savePath);
             DataTable ImportDate = new ExcelHelper(savePath).ExportExcelToDataTable();
             Det_Repeater.DataSource = GetImportDate(ImportDate);
