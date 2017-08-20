@@ -232,13 +232,26 @@ namespace ZCZJ_DPF.OM_Data
                 Response.Write("<script>alert('只可以选择Excel文件')</script>");
                 return;//当选择的不是Excel文件时,返回
             }
-                
-            string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;  //获取Execle文件名  DateTime日期函数
-            string savePath = @"E:/餐补异动" + filename;//Server.MapPath 获得虚拟服务器相对路径
-            FileUpload.SaveAs(savePath);
-            DataTable ImprotDate = new ExcelHelper(savePath).ExportExcelToDataTable();
-            Det_Repeater.DataSource = GetImprotData(ImprotDate);
-            Det_Repeater.DataBind();
+            try
+            {
+                string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;  //获取Execle文件名  DateTime日期函数
+                string savePath = @"E:/餐补异动" + filename;//Server.MapPath 获得虚拟服务器相对路径
+                FileUpload.SaveAs(savePath);
+                ExcelHelper EH = new ExcelHelper(savePath);
+                DataTable ImportDate = EH.ExportExcelToDataTable();
+                if (EH.IsError(ImportDate, "调整天数") || EH.IsError(ImportDate, "餐补标准") || EH.IsError(ImportDate, "补发"))
+                {
+                    Response.Write("<script>alert('Excel数据有误！请检查标记为ERROR的单元格。')</script>");
+                }
+                Det_Repeater.DataSource = GetImprotData(ImportDate);
+                Det_Repeater.DataBind();
+            }
+            catch (System.Exception ex)
+            {
+                Response.Write("<script>alert('导入出错！请检查导入文件格式！" + ex.Message + "')</script>");
+                return;
+            }
+            
         
         }
 

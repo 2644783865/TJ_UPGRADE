@@ -223,6 +223,44 @@ namespace ZCZJ_DPF.CommonClass
             return ExportToList<T>(_IWorkbook.GetSheetAt(sheetIndex - 1), fields);
         }
 
+        /// <summary>
+        /// 判断DataTale中判断某个字段中包含某个数据
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="columnName"></param>
+        /// <param name="fieldData"></param>
+        /// <returns></returns>
+        public Boolean IsColumnIncludeData(DataTable dt, String columnName, string fieldData)
+        {
+            if (dt == null)
+            {
+                return false;
+            }
+            else
+            {
+                DataRow[] dataRows = dt.Select(columnName + "='" + fieldData + "'");
+                if (dataRows.Length.Equals(1))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 判断DataTale中判断某个字段中包含错误标记"ERROR"
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="columnName"></param>
+        /// <returns></returns>
+        public Boolean IsError(DataTable dt, String columnName)
+        {
+            return IsColumnIncludeData(dt, columnName, "ERROR");         
+        }
 
     }
 }

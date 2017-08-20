@@ -229,16 +229,28 @@ namespace ZCZJ_DPF.OM_Data
 
             if (System.IO.Path.GetExtension(FileUpload.FileName).ToString().ToLower() != ".xls")
             {
-                Response.Write("<script>alert('只可以选择Excel文件')</script>");
+                Response.Write("<script>alert('只可以选择Excel（.xls）文件')</script>");
                 return;
             }
-            string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;
-            string savePath = @"E:/薪酬异动" + filename;//TOCHANGE
-            FileUpload.SaveAs(savePath);
-            DataTable ImportDate = new ExcelHelper(savePath).ExportExcelToDataTable();
-            Det_Repeater.DataSource = GetImportDate(ImportDate);
-            Det_Repeater.DataBind();
-
+            try
+            {
+                string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;
+                string savePath = @"E:/薪酬异动" + filename;//TOCHANGE
+                FileUpload.SaveAs(savePath);
+                ExcelHelper EH = new ExcelHelper(savePath);
+                DataTable ImportDate = EH.ExportExcelToDataTable();
+                if (EH.IsError(ImportDate, "补发加班费") || EH.IsError(ImportDate, "补发中夜班费") || EH.IsError(ImportDate, "调整补发") || EH.IsError(ImportDate, "调整补扣"))
+                {
+                    Response.Write("<script>alert('Excel数据有误！请检查标记为ERROR的单元格。')</script>");
+                }
+                Det_Repeater.DataSource = GetImportDate(ImportDate);
+                Det_Repeater.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('导入出错！请检查导入文件格式！"+ex.Message+"')</script>");
+                return;
+            }           
         }
 
         protected DataTable GetImportDate(DataTable ExcelDt) 
