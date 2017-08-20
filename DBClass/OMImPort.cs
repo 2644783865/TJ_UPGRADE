@@ -85,7 +85,7 @@ namespace ZCZJ_DPF.CommonClass
                                 dataRow[r] = cell.StringCellValue;
                                 break;
                             case CellType.NUMERIC:
-                                dataRow[r] = cell.NumericCellValue;
+                                dataRow[r] = Math.Round(cell.NumericCellValue, 2);//保留2位小数
                                 break;
                             case CellType.BOOLEAN:
                                 dataRow[r] = cell.BooleanCellValue;
