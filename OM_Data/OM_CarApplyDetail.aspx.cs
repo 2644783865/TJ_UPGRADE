@@ -355,9 +355,13 @@ namespace ZCZJ_DPF.OM_Data
                 }
                 else
                 {
-                    //sqltext = "delete from TBOM_CARAPPLY where CODE='" + txtCode.Text.Trim() + "'";
-                    //list_sql.Add(sqltext);
-                    //int Num = Convert.ToInt16(txtNum.Text.Trim());
+                    //检查是否已存在
+                    if (isExist())
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请勿重复提交！');", true);
+                        return;
+                    }                    
+
                     sqltext = "insert into TBOM_CARAPPLY(CODE,DEPARTMENT,REASON,SFPLACE,DESTINATION,NUM,APPLYER,APPLYERID,PHONE,TIME1,TIME2,NOTE,FANKUI,SQTIME,LICHENG1,LICHENG2,SHRID,USETIME1,USETIME2)" +
                     "Values('" + txtCode.Text.Trim() + "','" + txtDepartment.Text.Trim() + "','" + txtReason.Text.Trim() + "','"+txt_sfd.Text.Trim()+"','" + txtMdd.Text.Trim() + "','" + txtNum.Text.Trim() + "','" + sqr.Text.Trim() + "','" + sqrid.Trim() + "','" + txtPhone.Text.Trim() + "','" + txtTime1.Value.Trim() + "','" + txtTime2.Value.Trim() + "','" + txtNote.Text.Trim() + "','0','" + sqrq.Text.Trim() + "','" + txtlicheng1.Text.Trim() + "','" + txtlicheng2.Text.Trim() + "','" + ddl_leixing.SelectedValue.Trim() + "','" + usetime1.Value.Trim() + "','" + usetime2.Value.Trim() + "')";
                     list_sql.Add(sqltext);
@@ -516,6 +520,22 @@ namespace ZCZJ_DPF.OM_Data
         {
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "window.opener=null;window.open('','_self');window.close();", true);
             Response.Redirect("OM_CarApply.aspx");
+        }
+
+        private Boolean isExist()
+        {
+            string isExistSql = string.Format("SELECT 1 FROM View_TBOM_CARAPLLRVW WHERE CODE='{0}'", txtCode.Text.Trim());
+            SqlDataReader reader = DBCallCommon.GetDRUsingSqlText(isExistSql);
+            if (reader.Read())
+            {
+                reader.Close();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                return false;
+            }            
         }
     }
 }
