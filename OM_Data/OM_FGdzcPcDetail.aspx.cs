@@ -17,9 +17,9 @@ namespace ZCZJ_DPF.OM_Data
         string id = string.Empty;
         string name;
         string model;
-        string num;
+        float num;
         string location;
-        string xqtime;
+        DateTime xqtime;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["action"] != null)
@@ -408,16 +408,26 @@ namespace ZCZJ_DPF.OM_Data
                 if (name != "")
                 {
                     model = ((TextBox)gr.FindControl("txtModel")).Text.Trim();
-                    num = ((TextBox)gr.FindControl("txtNum")).Text.Trim();
+                    //num = ((TextBox)gr.FindControl("txtNum")).Text.Trim();
                     location = ((TextBox)gr.FindControl("txtLocation")).Text.Trim();
-                    xqtime = ((TextBox)gr.FindControl("txtXqtime")).Text.Trim();
-                    if (model == "" || num == "" || location == "" || xqtime == "")
+                    //xqtime = ((TextBox)gr.FindControl("txtXqtime")).Text.Trim();
+                    if (!DateTime.TryParse(((TextBox)gr.FindControl("txtXqtime")).Text.Trim(),out xqtime))
+                    {
+                        Response.Write("<script>alert('需求时间填写格式有误!')</script>");
+                        return;
+                    }
+                    if (!float.TryParse(((TextBox)gr.FindControl("txtNum")).Text.Trim(), out num))
+                    {
+                        Response.Write("<script>alert('数量填写格式有误!')</script>");
+                        return;
+                    }
+                    if (model == "" || num.ToString() == "" || location == "" || xqtime.ToString() == "")
                     {
                         Response.Write("<script>alert('第" + (i + 1) + "行数据不能为空！')</script>");
                         return;
                     }
                     sqltext = "insert into TBOM_GDZCPCAPPLY(CODE,DEPARTMENT,LINKMAN,PHONE,NAME,MODEL,NUM,LOCATION,XQTIME,REASON,NOTE,AGENT,AGENTID,ADDTIME,STATE,BC_CONTEXT,PCTYPE)";
-                    sqltext += "values('" + lblCode.Text + "','" + lblDepartment.Text + "','" + txtLinkman.Text.Trim() + "','" + txtPhone.Text.Trim() + "','" + name + "','" + model + "','" + num + "','" + location + "','" + xqtime + "','" + txtReason.Text.Trim() + "','" + txtNote.Text.Trim() + "','" + lblAgent.Text + "','" + lblAgent_id.Text.Trim() + "','" + lblAddtime.Text + "',0,'" + context + "','1')";
+                    sqltext += "values('" + lblCode.Text + "','" + lblDepartment.Text + "','" + txtLinkman.Text.Trim() + "','" + txtPhone.Text.Trim() + "','" + name + "','" + model + "','" + num + "','" + location + "','" + xqtime.ToString() + "','" + txtReason.Text.Trim() + "','" + txtNote.Text.Trim() + "','" + lblAgent.Text + "','" + lblAgent_id.Text.Trim() + "','" + lblAddtime.Text + "',0,'" + context + "','1')";
                     list_sql.Add(sqltext);
                 }
                 //if (name == "")
