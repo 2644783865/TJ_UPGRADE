@@ -9,7 +9,6 @@
     <style>
         input
         {
-            height: 17px;
         }
         #tb_baseInfo
         {
@@ -24,10 +23,8 @@
     <table width="100%">
         <tr>
             <td colspan="5" align="right" style="padding-top: 15px">
-                <asp:Button ID="Button9" runat="server" Text="编辑" />
-                <asp:Button ID="Button2" runat="server" Text="保存" OnClick="Button2_Click" />&nbsp;
-                <asp:Button ID="Button3" runat="server" Text="下推至部门反馈" />&nbsp;
-                <asp:Button ID="Button5" runat="server" Text="提交反馈" />&nbsp;
+                <asp:Button ID="btn_Save" Visible="false" runat="server" Text="保存" OnClick="btn_Save_Click" />&nbsp;
+                <asp:Button ID="btn_PushDown" Visible="false" runat="server" Text="下推至部门反馈" />&nbsp;
             </td>
         </tr>
     </table>
@@ -35,7 +32,7 @@
         <%--预算汇总--%>
         <asp:TabPanel runat="server" HeaderText="预算汇总" ID="TabPanel10">
             <ContentTemplate>
-                <div style="height: 420px; overflow: auto; background-color: #EEF7FD; border: 5px solid #C4D9EB;">
+                <div style="height: 470px; overflow: auto; background-color: #EEF7FD; border: 5px solid #C4D9EB;">
                     <table id="tb_baseInfo" style="" cellpadding="6" cellspacing="10" class="grid" border="0"
                         frame="border">
                         <tr>
@@ -103,7 +100,7 @@
                                 备注：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_NOTE" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_NOTE" runat="server" ReadOnly="True"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -118,16 +115,16 @@
                                 材料费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_MATERIAL_COST" runat="server" Style="text-align: right" onkeyup="Calculate()"
-                                    onkeypress="InputNumberOnly()"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_MATERIAL_COST" runat="server" Style="text-align: right" oninput="Calculate()"
+                                    onkeypress="InputNumberOnly()" ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
                             <td style="text-align: right">
                                 人工费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_LABOUR_COST" runat="server" Style="text-align: right" onkeyup="Calculate()"
-                                    onkeypress="InputNumberOnly()"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_LABOUR_COST" runat="server" Style="text-align: right" oninput="Calculate()"
+                                    onkeypress="InputNumberOnly()" ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
                             <td style="text-align: right">
@@ -347,7 +344,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txt_YS_UNIT_LABOUR_COST_FB" runat="server" Style="text-align: right"
-                                    ReadOnly="True"></asp:TextBox>
+                                    onkeypress="InputNumberOnly()" oninput="CalculateLabourCostFB()" ReadOnly="false"></asp:TextBox>
                                 元/吨
                             </td>
                         </tr>
@@ -368,7 +365,7 @@
         <%--黑色金属--%>
         <asp:TabPanel runat="server" HeaderText="黑色金属" ID="TabPanel1">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_FERROUS_METAL" runat="server">
@@ -418,17 +415,18 @@
                                         <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
                                     </td>
                                     <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        <asp:Label ID="lb_YS_FERROUS_METAL_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
                                     </td>
                                     <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        <asp:Label ID="lb_YS_FERROUS_METAL_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
                                     </td>
                                     <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_Average_Price_FB"
+                                            onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
                                     </td>
                                     <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
+                                        <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB"
+                                            Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
                                     </td>
                                     <td align="center">
                                         <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
@@ -441,21 +439,21 @@
                                         合计：
                                     </th>
                                     <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
+                                        预算总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price" runat="server"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
+                                        反馈总价合计 ：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price_FB" runat="server"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                       
                                     </th>
                                 </tr>
                                 <tr>
                                     <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                                        反馈人：<asp:Label ID="Label3" runat="server" Text='<%#Eval("YS_ADDPER") %>'></asp:Label>
                                     </th>
                                     <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text='<%#Eval("YS_ADDTIME") %>'></asp:Label>
                                     </th>
                                     <th>
                                     </th>
@@ -471,7 +469,7 @@
         <%--外购件--%>
         <asp:TabPanel runat="server" HeaderText="外 购 件" ID="TabPanel2">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_PURCHASE_PART" runat="server">
@@ -547,10 +545,10 @@
                                         预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
+                                        反馈总价合计 ：<asp:Label ID="lb_" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                        
                                     </th>
                                 </tr>
                                 <tr>
@@ -574,7 +572,7 @@
         <%--加工件--%>
         <asp:TabPanel runat="server" HeaderText="加 工 件" ID="TabPanel3">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_MACHINING_PART" runat="server">
@@ -653,7 +651,7 @@
                                         反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                        
                                     </th>
                                 </tr>
                                 <tr>
@@ -677,7 +675,7 @@
         <%--油漆涂料--%>
         <asp:TabPanel runat="server" HeaderText="油漆涂料" ID="TabPanel4">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_PAINT_COATING" runat="server">
@@ -756,7 +754,7 @@
                                         反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                        
                                     </th>
                                 </tr>
                                 <tr>
@@ -780,7 +778,7 @@
         <%--电气电料--%>
         <asp:TabPanel runat="server" HeaderText="电气电料" ID="TabPanel5">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_ELECTRICAL" runat="server">
@@ -859,7 +857,7 @@
                                         反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                       
                                     </th>
                                 </tr>
                                 <tr>
@@ -883,7 +881,7 @@
         <%--铸锻件--%>
         <asp:TabPanel runat="server" HeaderText="铸锻件" ID="TabPanel7">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="Repeater1" runat="server">
@@ -893,22 +891,22 @@
                                         序号
                                     </th>
                                     <th>
-                                        物料代码（01.03）
+                                        物料代码（01.08、01.09）
                                     </th>
                                     <th>
                                         物料名称
                                     </th>
                                     <th>
-                                        数量
+                                        数量（吨）
                                     </th>
                                     <th>
-                                        预算单价
+                                        预算单价（吨/元）
                                     </th>
                                     <th>
                                         预算总价（元）
                                     </th>
                                     <th>
-                                        反馈单价
+                                        反馈单价（吨/元）
                                     </th>
                                     <th>
                                         反馈总价（元）
@@ -962,7 +960,7 @@
                                         反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                        
                                     </th>
                                 </tr>
                                 <tr>
@@ -986,7 +984,7 @@
         <%--其他材料--%>
         <asp:TabPanel runat="server" HeaderText="其他材料" ID="TabPanel6">
             <ContentTemplate>
-                <div style="overflow: auto; height: 400px;">
+                <div style="overflow: auto; height: 470px;">
                     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
                         border="1" frame="border">
                         <asp:Repeater ID="rpt_YS_OTHERMAT_COST" runat="server">
@@ -1065,7 +1063,7 @@
                                         反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
                                     </th>
                                     <th>
-                                        <asp:Button ID="Button8" runat="server" Text="计算反馈总价" />
+                                       
                                     </th>
                                 </tr>
                                 <tr>
@@ -1087,15 +1085,15 @@
             </ContentTemplate>
         </asp:TabPanel>
         <%--审核详情--%>
-        <asp:TabPanel runat="server" HeaderText="审 核" ID="TabPanel11">
+        <asp:TabPanel runat="server" HeaderText="审核与反馈" ID="TabPanel11">
             <ContentTemplate>
-                <div style="overflow: auto; height: 380px; background-color: #EEF7FD; border: 5px solid #C4D9EB;
+                <div style="overflow: auto; height: 450px; background-color: #EEF7FD; border: 5px solid #C4D9EB;
                     padding-top: 10px;">
                     <div style="text-align: right">
-                        <asp:Button ID="Button6" runat="server" Text="驳回至财务填写" />&nbsp;
-                        <asp:Button ID="Button7" runat="server" Text="驳回至采购反馈" />&nbsp;
-                        <asp:Button ID="Button4" runat="server" Text="驳回至生产反馈" />&nbsp;
-                        <asp:Button ID="Button1" runat="server" Text="提交至领导审核" />&nbsp;
+                        <asp:Button ID="btn_RebutToCaiWu" Visible="False" runat="server" Text="驳回至财务填写" />
+                        <asp:Button ID="btn_RebutToCaiGou" Visible="False" runat="server" Text="驳回至采购反馈" />
+                        <asp:Button ID="btn_RebutToShengChan" Visible="False" runat="server" Text="驳回至生产反馈" />
+                        <asp:Button ID="btn_Submit" Visible="False" runat="server" Text="提交审批" />&nbsp;&nbsp;&nbsp;
                     </div>
                     <div style="width: 90%; margin: 0 auto;">
                         <asp:Panel ID="Panel3" runat="server">
@@ -1104,17 +1102,17 @@
                             <table width="100%">
                                 <tr>
                                     <td>
-                                        审批人：<asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
+                                        反馈人：<asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td>
-                                        审核结论：<asp:RadioButtonList ID="RadioButtonList4" runat="server" RepeatDirection="Horizontal"
-                                            RepeatLayout="Flow">
+                                        反馈结论：<asp:RadioButtonList ID="rdl_CaiGouCheck" runat="server" RepeatDirection="Horizontal"
+                                            RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_CaiGouCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                     <td>
-                                        审核时间：<asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+                                        反馈时间：<asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1131,17 +1129,17 @@
                             <table width="100%">
                                 <tr>
                                     <td>
-                                        审批人：<asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
+                                        反馈人：<asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td>
-                                        审核结论：<asp:RadioButtonList ID="RadioButtonList5" runat="server" RepeatDirection="Horizontal"
-                                            RepeatLayout="Flow">
+                                        反馈结论：<asp:RadioButtonList ID="rdl_ShengChanCheck" runat="server" RepeatDirection="Horizontal"
+                                            RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_ShengChanCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
                                     <td>
-                                        审核时间：<asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
+                                        反馈时间：<asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1161,8 +1159,8 @@
                                         审批人：<asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td>
-                                        审核结论：<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal"
-                                            RepeatLayout="Flow">
+                                        审核结论：<asp:RadioButtonList ID="rdl_CaiWuCheck" runat="server" RepeatDirection="Horizontal"
+                                            RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_CaiWuCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
@@ -1188,8 +1186,8 @@
                                         审批人：<asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td>
-                                        审核结论：<asp:RadioButtonList ID="RadioButtonList2" runat="server" RepeatDirection="Horizontal"
-                                            RepeatLayout="Flow">
+                                        审核结论：<asp:RadioButtonList ID="rdl_YiJiCheck" runat="server" RepeatDirection="Horizontal"
+                                            RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_YiJiCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
@@ -1211,8 +1209,8 @@
                                         审批人：<asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
                                     </td>
                                     <td>
-                                        审核结论：<asp:RadioButtonList ID="RadioButtonList3" runat="server" RepeatDirection="Horizontal"
-                                            RepeatLayout="Flow">
+                                        审核结论：<asp:RadioButtonList ID="rdl_ErJiCheck" runat="server" RepeatDirection="Horizontal"
+                                            RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_ErJiCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
@@ -1237,14 +1235,20 @@
 
     <script src="../JS/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 
-    <script>
+    <script type="text/javascript">
 
+        $(function() {
+            CalculateTextboxSumToLabel('txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB', 'lb_YS_FERROUS_METAL_TOTAL_Price_FB');
+            CalculateLabelSumToLabel('lb_YS_FERROUS_METAL_SUBTOTAL_Price', 'lb_YS_FERROUS_METAL_TOTAL_Price');
 
-        //检查输入的是否为数字
+        })
+
+        //检查输入的是否为数字，绑定到onkeypress事件
         function InputNumberOnly() {
             if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 46) { event.returnValue = false; alert('请输入数字 ！'); } else { event.returnValue = true; }
         }
-        //计算预算总额、毛利润、毛利率
+
+        //材料费或人工费更改时，计算预算总额、毛利润、毛利率，绑定到oninput事件
         function Calculate() {
             var a = parseFloat($('#<%=txt_YS_MATERIAL_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_LABOUR_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_TRANS_COST.ClientID %>').val());
             if (!isNaN(a)) {
@@ -1257,9 +1261,44 @@
                     $('#<%=txt_YS_PROFIT_RATE.ClientID %>').val("任务号收入为0")
                 }
             }
+        }
+
+        //单位人工费反馈更改时，计算人工费小计（=单位人工费*任务号重量），绑定到oninput事件
+        function CalculateLabourCostFB() {
+            $('#<%=txt_labour_dispart_reference.ClientID %>').val((parseFloat($('#<%=txt_YS_WEIGHT.ClientID %>').val()) * parseFloat($('#<%=txt_YS_UNIT_LABOUR_COST_FB.ClientID %>').val())).toFixed(4));
+        }
+
+
+        //反馈单价更改时，自动计算反馈总价、反馈总价合计
+        $('input[id$=txt_YS_FERROUS_METAL_Average_Price_FB]').on('input', function() {
+            //计算反馈总价
+            $(this).parent().next().children().val((parseFloat($(this).val()) * parseFloat($(this).parent().prev().prev().prev().children().text())).toFixed(4));
+            //计算反馈总价合计
+            CalculateTextboxSumToLabel('txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB', 'lb_YS_FERROUS_METAL_TOTAL_Price_FB');
+
+        })
 
 
 
+        //遍历所有txtbox的值并求和，将结果输出到一个label中
+        function CalculateTextboxSumToLabel(txt_nums, lb_sum) {
+            var sum = 0;
+            $('input[id$=' + txt_nums + ']').each(function() {
+                if ($(this).val() != '') {
+                    sum += parseFloat($(this).val());
+                }
+            });
+            $('span[id$=' + lb_sum + ']').text(sum.toFixed(4));
+        }
+        //遍历所有txtbox的值并求和，将结果输出到一个label中
+        function CalculateLabelSumToLabel(lb_nums, lb_sum) {
+            var sum = 0;
+            $('span[id$=' + lb_nums + ']').each(function() {
+                if ($(this).text() != '') {
+                    sum += parseFloat($(this).text());
+                }
+            });            
+            $('span[id$=' + lb_sum + ']').text(sum.toFixed(4));
         }
         
     </script>

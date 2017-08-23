@@ -23,40 +23,22 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
         
         /// <summary>
-        /// Button9 控件。
+        /// btn_Save 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button9;
+        protected global::System.Web.UI.WebControls.Button btn_Save;
         
         /// <summary>
-        /// Button2 控件。
+        /// btn_PushDown 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
-        /// Button3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-        
-        /// <summary>
-        /// Button5 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.Button btn_PushDown;
         
         /// <summary>
         /// tab_Detail 控件。
@@ -572,40 +554,40 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::AjaxControlToolkit.TabPanel TabPanel11;
         
         /// <summary>
-        /// Button6 控件。
+        /// btn_RebutToCaiWu 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button btn_RebutToCaiWu;
         
         /// <summary>
-        /// Button7 控件。
+        /// btn_RebutToCaiGou 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Button btn_RebutToCaiGou;
         
         /// <summary>
-        /// Button4 控件。
+        /// btn_RebutToShengChan 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button btn_RebutToShengChan;
         
         /// <summary>
-        /// Button1 控件。
+        /// btn_Submit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btn_Submit;
         
         /// <summary>
         /// Panel3 控件。
@@ -626,13 +608,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// RadioButtonList4 控件。
+        /// rdl_CaiGouCheck 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList4;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdl_CaiGouCheck;
         
         /// <summary>
         /// Label13 控件。
@@ -671,13 +653,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// RadioButtonList5 控件。
+        /// rdl_ShengChanCheck 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList5;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdl_ShengChanCheck;
         
         /// <summary>
         /// Label15 控件。
@@ -716,13 +698,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// RadioButtonList1 控件。
+        /// rdl_CaiWuCheck 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdl_CaiWuCheck;
         
         /// <summary>
         /// Label7 控件。
@@ -761,13 +743,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// RadioButtonList2 控件。
+        /// rdl_YiJiCheck 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList2;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdl_YiJiCheck;
         
         /// <summary>
         /// Label9 控件。
@@ -797,13 +779,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// RadioButtonList3 控件。
+        /// rdl_ErJiCheck 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList3;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdl_ErJiCheck;
         
         /// <summary>
         /// Label11 控件。

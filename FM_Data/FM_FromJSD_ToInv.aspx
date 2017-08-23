@@ -47,6 +47,8 @@ else{
                                                         <asp:ListItem Value="50">50</asp:ListItem>
                                                         <asp:ListItem Value="100">100</asp:ListItem>
                                                         <asp:ListItem Value="200">200</asp:ListItem>
+                                                        <asp:ListItem Value="1000">1000</asp:ListItem>
+                                                        
                                 </asp:DropDownList>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>

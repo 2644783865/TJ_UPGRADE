@@ -15,18 +15,23 @@ using System.Data.SqlClient;
 
 namespace ZCZJ_DPF.YS_Data
 {
-    public partial class YS_Cost_Budget_Add_Detail : System.Web.UI.Page
+    public partial class YS_Cost_Budget_Add_Detail : BasicPage
     {
         int shengChan, caiGou, caiWu, jinDu, shenHe, yiJi, erJi;
-        string tsaId;
+        string tsaId, userName, uid, depId;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            userName = Session["UserName"].ToString();
+            uid = Session["UserID"].ToString();
+            depId = Session["UserDeptID"].ToString();
+            //获取任务号
+            tsaId = Request.QueryString["tsaId"].ToString();
 
             if (!IsPostBack)
-            { 
-                tsaId = Request.QueryString["tsaId"].ToString();
+            {
+
                 SetTSAInfo(tsaId);
+                ControlerVisile();
                 BindRepeaterSource(rpt_YS_FERROUS_METAL, pal_No_YS_FERROUS_METAL, tsaId, "01.07");//黑色金属
                 BindRepeaterSource(rpt_YS_PURCHASE_PART, pan_No_YS_PURCHASE_PART, tsaId, "01.11");//外购件
                 BindRepeaterSource(rpt_YS_MACHINING_PART, pan_No_YS_MACHINING_PART, tsaId, "01.08");//加工件
@@ -34,21 +39,67 @@ namespace ZCZJ_DPF.YS_Data
                 BindRepeaterSource(rpt_YS_ELECTRICAL, pal_No_YS_ELECTRICAL, tsaId, "01.03");//电气电料            
                 BindRepeaterSource(rpt_YS_OTHERMAT_COST, pal_No_YS_OTHERMAT_COST, tsaId);//其他材料
             }
-
-
-
         }
 
         /// <summary>
-        /// 设置任务号的基本信息
+        /// 控件的可见性
+        /// </summary>
+        protected void ControlerVisile()
+        {
+            if (depId == "06")    //06财务部s
+            {
+                if (jinDu <= 1)    //预算编制进度为新增或财务填写中
+                {
+                    //输入
+                    txt_YS_MATERIAL_COST.ReadOnly = false;
+                    txt_YS_LABOUR_COST.ReadOnly = false;
+                    txt_YS_NOTE.ReadOnly = false;
+                    //按钮
+                    btn_Save.Visible = true;
+                    btn_PushDown.Visible = true;
+                    
+                }
+                else if (caiWu == 1 && userName == "李树波")    //财务调整与审核为待审批时，且登陆人为李树波
+                {
+                    //输入
+                    txt_YS_MATERIAL_COST.ReadOnly = false;
+                    txt_YS_LABOUR_COST.ReadOnly = false;
+                    txt_YS_NOTE.ReadOnly = false;
+                    //按钮
+                    btn_PushDown.Visible = false;
+                    rdl_CaiWuCheck.Enabled = true;
+                }
+
+            }
+            else if (depId == "05" && caiGou == 1)    //05采购部，财务状态为待反馈
+            {
+                btn_Save.Visible = true;
+                rdl_CaiGouCheck.Enabled = true;
+            }
+            else if (depId == "04" && shengChan == 1)    //04生产部
+            {
+                btn_Save.Visible = true;
+                rdl_ShengChanCheck.Enabled = true;
+            }
+
+        }
+
+
+        /// <summary>
+        /// 填充任务号的基本信息
         /// </summary>
         /// <param name="id">任务号</param>
         public void SetTSAInfo(string id)
         {
-            string sql = @"select *,(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,YS_PROFIT/YS_TOTALCOST_ALL AS YS_PROFIT_RATE,
+            string sql = @"select YS_BUDGET_INCOME,YS_WEIGHT,YS_CONTRACT_NO,YS_PROJECTNAME,YS_ENGINEERNAME,YS_ADDNAME,YS_ADDTIME,YS_NOTE,
+YS_MATERIAL_COST,YS_LABOUR_COST,YS_TRANS_COST,
+(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,YS_PROFIT/YS_TOTALCOST_ALL AS YS_PROFIT_RATE,
+YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_CASTING_FORGING_COST,YS_OTHERMAT_COST,
 (YS_FERROUS_METAL+YS_PURCHASE_PART+YS_MACHINING_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_CASTING_FORGING_COST+YS_OTHERMAT_COST) AS materil_history_reference,
+YS_FERROUS_METAL_FB,YS_PURCHASE_PART_FB,YS_MACHINING_PART_FB,YS_PAINT_COATING_FB,YS_ELECTRICAL_FB,YS_CASTING_FORGING_COST_FB,YS_OTHERMAT_COST_FB,
 (YS_FERROUS_METAL_FB+YS_PURCHASE_PART_FB+YS_MACHINING_PART_FB+YS_PAINT_COATING_FB+YS_ELECTRICAL_FB+YS_CASTING_FORGING_COST_FB+YS_OTHERMAT_COST_FB) AS materil_dispart_reference,
-YS_WEIGHT*YS_UNIT_LABOUR_COST_FB AS labour_dispart_reference
+YS_UNIT_LABOUR_COST_FB,YS_WEIGHT*YS_UNIT_LABOUR_COST_FB AS labour_dispart_reference, 
+YS_SHENGCHAN,YS_CAIGOU,YS_CAIWU,YS_STATE,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE 
 from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
 
@@ -62,6 +113,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
             txt_YS_ADDNAME.Text = dt.Rows[0]["YS_ADDNAME"].ToString();//财务制单人
             txt_YS_ADDTIME.Text = dt.Rows[0]["YS_ADDTIME"].ToString();//提交时间
             txt_YS_NOTE.Text = dt.Rows[0]["YS_NOTE"].ToString();//备注
+            //txt_YS_NOTE.Text = uid + userName + depId;
 
             //预算费用分配
             txt_YS_MATERIAL_COST.Text = dt.Rows[0]["YS_MATERIAL_COST"].ToString();//材料费
@@ -104,6 +156,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
             shenHe = int.Parse(dt.Rows[0]["YS_REVSTATE"].ToString());
             yiJi = int.Parse(dt.Rows[0]["YS_FIRST_REVSTATE"].ToString());
             erJi = int.Parse(dt.Rows[0]["YS_SECOND_REVSTATE"].ToString());
+
         }
 
         /// <summary>
@@ -114,7 +167,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
         /// <param name="code">物料编码前5位，(带.)</param>
         protected void BindRepeaterSource(Repeater rpt, Panel panel, string id, string code)
         {
-            string sql1 = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB from  YS_COST_BUDGET_DETAIL 
+            string sql1 = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB,YS_ADDPER,YS_ADDTIME  from  YS_COST_BUDGET_DETAIL 
 where YS_TSA_ID='{0}' AND YS_CODE LIKE '{1}%' ORDER BY YS_CODE", id, code);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql1);
             if (dt.Rows.Count != 0)
@@ -157,6 +210,31 @@ where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%
 
 
 
+        //财务填写【保存】
+        //
+
+
+        //财务填写【下推至部门反馈】
+
+        //采购部【保存】
+
+        //采购部【提交反馈】
+
+        //生产部【保存】
+
+        //生产部【提交反馈】
+
+        //【同意】
+        //弹出提交按钮
+
+        //【不同意】
+        //弹出驳回的按钮
+
+        //财务调整与审核
+
+
+
+
 
 
         public string GetProduct(string n1, string n2)
@@ -164,17 +242,125 @@ where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%
             return (Convert.ToDouble(n1) * Convert.ToDouble(n2)).ToString("0.0000");
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// 保存按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_Save_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_NOTE='{0}' WHERE YS_TSA_ID='{1}'", txt_YS_NOTE.Text.Trim(), tsaId);
-            if (DBCallCommon.ExeSqlTextGetInt(sql)>0)
+
+            if (depId == "06")//财务填写阶段
             {
-                Response.Write("<script>alert('保存成功')</script>");
+                Response.Write("<script>alert('ok')</script>");
+            }
+
+
+
+
+
+
+
+
+            string sql = string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_NOTE='{0}' WHERE YS_TSA_ID='{1}'", txt_YS_NOTE.Text.Trim(), tsaId);
+            if (DBCallCommon.ExeSqlTextGetInt(sql) > 0)
+            {
+
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "if(confirm('操作成功，是否返回列表界面？')){window.close();window.opener.location.reload();}", true);
             }
             else
             {
                 Response.Write("<script>alert('保存失败')</script>");
+
+            }
+
+        }
+
+        #region 审核与反馈结果单选按钮触发的事件
+
+        //采购
+        protected void rdl_CaiGouCheck_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdl_CaiGouCheck.SelectedIndex == 0)    //同意
+            {
+                btn_RebutToCaiWu.Visible = false;
+                btn_Submit.Visible = true;
+            }
+            else    //不同意
+            {
+                btn_RebutToCaiWu.Visible = true;
+                btn_Submit.Visible = false;
             }
         }
+        //生产
+        protected void rdl_ShengChanCheck_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdl_ShengChanCheck.SelectedIndex == 0)    //同意
+            {
+                btn_RebutToCaiWu.Visible = false;
+                btn_Submit.Visible = true;
+            }
+            else    //不同意
+            {
+                btn_RebutToCaiWu.Visible = true;
+                btn_Submit.Visible = false;
+            }
+        }
+        //财务
+        protected void rdl_CaiWuCheck_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdl_CaiWuCheck.SelectedIndex == 0)    //同意
+            {
+                btn_RebutToCaiWu.Visible = false;
+                btn_RebutToCaiGou.Visible = false;
+                btn_RebutToShengChan.Visible = false;
+                btn_Submit.Visible = true;
+            }
+            else
+            {
+                btn_RebutToCaiWu.Visible = true;
+                btn_RebutToCaiGou.Visible = true;
+                btn_RebutToShengChan.Visible = true;
+                btn_Submit.Visible = false;
+            }
+        }
+        //一级审核
+        protected void rdl_YiJiCheck_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdl_YiJiCheck.SelectedIndex == 0)    //同意
+            {
+                btn_RebutToCaiWu.Visible = false;
+                btn_RebutToCaiGou.Visible = false;
+                btn_RebutToShengChan.Visible = false;
+                btn_Submit.Visible = true;
+            }
+            else
+            {
+                btn_RebutToCaiWu.Visible = true;
+                btn_RebutToCaiGou.Visible = true;
+                btn_RebutToShengChan.Visible = true;
+                btn_Submit.Visible = false;
+            }
+        }
+        //二级审核
+        protected void rdl_ErJiCheck_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdl_ErJiCheck.SelectedIndex == 0)    //同意
+            {
+                btn_RebutToCaiWu.Visible = false;
+                btn_RebutToCaiGou.Visible = false;
+                btn_RebutToShengChan.Visible = false;
+                btn_Submit.Visible = true;
+            }
+            else
+            {
+                btn_RebutToCaiWu.Visible = true;
+                btn_RebutToCaiGou.Visible = true;
+                btn_RebutToShengChan.Visible = true;
+                btn_Submit.Visible = false;
+            }
+        }
+        #endregion
     }
 }

@@ -253,10 +253,12 @@ namespace ZCZJ_DPF.YS_Data
                 case "0":
                     retValue = "未下推"; break;
                 case "1":
-                    retValue = "已反馈"; break;
-                case "2":
                     retValue = "未反馈"; break;
+                case "2":
+                    retValue = "同意"; break;
                 case "3":
+                    retValue = "不同意"; break;
+                case "4":
                     retValue = "被驳回"; break;
                 default:
                     break;
@@ -313,9 +315,9 @@ namespace ZCZJ_DPF.YS_Data
                 case "1":
                     retValue = "审核中"; break;
                 case "2":
-                    retValue = "已通过"; break;
+                    retValue = "同意"; break;
                 case "3":
-                    retValue = "被驳回"; break;
+                    retValue = "不同意"; break;
                 default:
                     break;
             }
@@ -337,9 +339,9 @@ namespace ZCZJ_DPF.YS_Data
                 case "1":
                     retValue = "待审核"; break;
                 case "2":
-                    retValue = "已同意"; break;
+                    retValue = "同意"; break;
                 case "3":
-                    retValue = "已驳回"; break;
+                    retValue = "不同意"; break;
                 default:
                     break;
             }
