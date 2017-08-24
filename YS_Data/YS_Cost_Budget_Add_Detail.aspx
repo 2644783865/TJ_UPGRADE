@@ -7,9 +7,6 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style>
-        input
-        {
-        }
         #tb_baseInfo
         {
             border: 0;
@@ -59,8 +56,8 @@
                                 任务号重量：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_WEIGHT" runat="server" ReadOnly="True"></asp:TextBox>
-                                吨
+                                <asp:TextBox ID="txt_YS_WEIGHT" runat="server" ReadOnly="True" Style="text-align: right"></asp:TextBox>
+                                kg
                             </td>
                         </tr>
                         <tr>
@@ -199,22 +196,14 @@
                                 元
                             </td>
                             <td style="text-align: right">
-                                加工件：
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txt_YS_MACHINING_PART" runat="server" Style="text-align: right"
-                                    ReadOnly="True"></asp:TextBox>
-                                元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right">
                                 油漆涂料：
                             </td>
                             <td>
                                 <asp:TextBox ID="txt_YS_PAINT_COATING" runat="server" Style="text-align: right" ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
+                        </tr>
+                        <tr>
                             <td style="text-align: right">
                                 电气电料：
                             </td>
@@ -230,8 +219,6 @@
                                     ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
-                        </tr>
-                        <tr>
                             <td style="text-align: right">
                                 其他材料：
                             </td>
@@ -280,16 +267,6 @@
                                 元
                             </td>
                             <td style="text-align: right">
-                                加工件反馈：
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txt_YS_MACHINING_PART_FB" runat="server" Style="text-align: right"
-                                    ReadOnly="True"></asp:TextBox>
-                                元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right">
                                 油漆涂料反馈：
                             </td>
                             <td>
@@ -297,6 +274,8 @@
                                     ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
+                        </tr>
+                        <tr>
                             <td style="text-align: right">
                                 电气电料反馈：
                             </td>
@@ -312,8 +291,6 @@
                                     ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
-                        </tr>
-                        <tr>
                             <td style="text-align: right">
                                 其他材料反馈：
                             </td>
@@ -345,7 +322,7 @@
                             <td>
                                 <asp:TextBox ID="txt_YS_UNIT_LABOUR_COST_FB" runat="server" Style="text-align: right"
                                     onkeypress="InputNumberOnly()" oninput="CalculateLabourCostFB()" ReadOnly="false"></asp:TextBox>
-                                元/吨
+                                元/kg
                             </td>
                         </tr>
                         <tr>
@@ -366,101 +343,97 @@
         <asp:TabPanel runat="server" HeaderText="黑色金属" ID="TabPanel1">
             <ContentTemplate>
                 <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="rpt_YS_FERROUS_METAL" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码（01.07）
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量（吨）
-                                    </th>
-                                    <th>
-                                        预算单价（元/吨）
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价（元/吨）
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_FERROUS_METAL_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_FERROUS_METAL_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_Average_Price_FB"
-                                            onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB"
-                                            Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price" runat="server"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price_FB" runat="server"></asp:Label>元
-                                    </th>
-                                    <th>
-                                       
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text='<%#Eval("YS_ADDPER") %>'></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text='<%#Eval("YS_ADDTIME") %>'></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
+                    <div style="overflow: auto; height: 430px;">
+                        <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
+                            border="1" frame="border">
+                            <asp:Repeater ID="rpt_YS_FERROUS_METAL" runat="server">
+                                <HeaderTemplate>
+                                    <tr class="tableTitle" style="background-color: #B9D3EE">
+                                        <th>
+                                            序号
+                                        </th>
+                                        <th>
+                                            物料代码（01.07）
+                                        </th>
+                                        <th>
+                                            物料名称
+                                        </th>
+                                        <th>
+                                            数量（吨）
+                                        </th>
+                                        <th>
+                                            预算单价（元/吨）
+                                        </th>
+                                        <th>
+                                            预算总价（元）
+                                        </th>
+                                        <th>
+                                            反馈单价（元/吨）
+                                        </th>
+                                        <th>
+                                            反馈总价（元）
+                                        </th>
+                                        <th>
+                                            说明
+                                        </th>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_FERROUS_METAL_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_FERROUS_METAL_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_Average_Price_FB"
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB"
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+                    <asp:Panel ID="pal_YS_FERROUS_METAL_info" runat="server">
+                        <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
+                            <tr>
+                                <th>
+                                    反馈人：<asp:Label ID="Label16" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    反馈时间：<asp:Label ID="Label17" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    黑色金属预算总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price" runat="server"></asp:Label>
+                                    元
+                                </th>
+                                <th>
+                                    黑色金属反馈总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price_FB" runat="server"></asp:Label>
+                                    元
+                                </th>
+                            </tr>
+                        </table>
+                    </asp:Panel>
                     <asp:Panel ID="pal_No_YS_FERROUS_METAL" runat="server" Visible="false">
                         该任务号无该类物料!</asp:Panel>
                 </div>
@@ -470,204 +443,98 @@
         <asp:TabPanel runat="server" HeaderText="外 购 件" ID="TabPanel2">
             <ContentTemplate>
                 <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="rpt_YS_PURCHASE_PART" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码（01.11）
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量（台、套）
-                                    </th>
-                                    <th>
-                                        预算单价（元/台、套）
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价（元/台、套）
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="lb_" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th>
-                                        
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
-                    <asp:Panel ID="pan_No_YS_PURCHASE_PART" runat="server" Visible="false">
-                        该任务号无该类物料!</asp:Panel>
-                </div>
-            </ContentTemplate>
-        </asp:TabPanel>
-        <%--加工件--%>
-        <asp:TabPanel runat="server" HeaderText="加 工 件" ID="TabPanel3">
-            <ContentTemplate>
-                <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="rpt_YS_MACHINING_PART" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码（01.08）
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量（吨）
-                                    </th>
-                                    <th>
-                                        预算单价（元/吨）
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价（元/吨）
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th>
-                                        
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
-                    <asp:Panel ID="pan_No_YS_MACHINING_PART" runat="server" Visible="false">
+                    <div style="overflow: auto; height: 430px;">
+                        <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
+                            border="1" frame="border">
+                            <asp:Repeater ID="rpt_YS_PURCHASE_PART" runat="server">
+                                <HeaderTemplate>
+                                    <tr class="tableTitle" style="background-color: #B9D3EE">
+                                        <th>
+                                            序号
+                                        </th>
+                                        <th>
+                                            物料代码（01.11）
+                                        </th>
+                                        <th>
+                                            物料名称
+                                        </th>
+                                        <th>
+                                            数量（台、套）
+                                        </th>
+                                        <th>
+                                            预算单价（元/台、套）
+                                        </th>
+                                        <th>
+                                            预算总价（元）
+                                        </th>
+                                        <th>
+                                            反馈单价（元/台、套）
+                                        </th>
+                                        <th>
+                                            反馈总价（元）
+                                        </th>
+                                        <th>
+                                            说明
+                                        </th>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_PURCHASE_PART_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_PURCHASE_PART_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PURCHASE_PART_Average_Price_FB"
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PURCHASE_PART_SUBTOTAL_Price_FB"
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+                    <asp:Panel ID="pal_YS_PURCHASE_PART_Info" runat="server">
+                        <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
+                            <tr>
+                                <th>
+                                    反馈人：<asp:Label ID="Label18" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    反馈时间：<asp:Label ID="Label19" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    外购件预算总价合计：<asp:Label ID="lb_YS_PURCHASE_PART_TOTAL_Price" runat="server"></asp:Label>
+                                    元
+                                </th>
+                                <th>
+                                    外购件反馈总价合计：<asp:Label ID="lb_YS_PURCHASE_PART_TOTAL_Price_FB" runat="server"></asp:Label>
+                                    元
+                                </th>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                    <asp:Panel ID="pal_No_YS_PURCHASE_PART" runat="server" Visible="false">
                         该任务号无该类物料!</asp:Panel>
                 </div>
             </ContentTemplate>
@@ -676,101 +543,98 @@
         <asp:TabPanel runat="server" HeaderText="油漆涂料" ID="TabPanel4">
             <ContentTemplate>
                 <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="rpt_YS_PAINT_COATING" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码（01.15）
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量
-                                    </th>
-                                    <th>
-                                        预算单价
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th>
-                                        
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
-                    <asp:Panel ID="pan_No_YS_PAINT_COATING" runat="server" Visible="false">
+                    <div style="overflow: auto; height: 430px;">
+                        <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
+                            border="1" frame="border">
+                            <asp:Repeater ID="rpt_YS_PAINT_COATING" runat="server">
+                                <HeaderTemplate>
+                                    <tr class="tableTitle" style="background-color: #B9D3EE">
+                                        <th>
+                                            序号
+                                        </th>
+                                        <th>
+                                            物料代码（01.15）
+                                        </th>
+                                        <th>
+                                            物料名称
+                                        </th>
+                                        <th>
+                                            数量
+                                        </th>
+                                        <th>
+                                            预算单价
+                                        </th>
+                                        <th>
+                                            预算总价（元）
+                                        </th>
+                                        <th>
+                                            反馈单价
+                                        </th>
+                                        <th>
+                                            反馈总价（元）
+                                        </th>
+                                        <th>
+                                            说明
+                                        </th>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_PAINT_COATING_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_PAINT_COATING_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PAINT_COATING_Average_Price_FB"
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PAINT_COATING_SUBTOTAL_Price_FB"
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+                    <asp:Panel ID="pal_YS_PAINT_COATING_Info" runat="server">
+                        <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
+                            <tr>
+                                <th>
+                                    反馈人：<asp:Label ID="Label22" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    反馈时间：<asp:Label ID="Label23" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    油漆涂料预算总价合计：<asp:Label ID="lb_YS_PAINT_COATING_TOTAL_Price" runat="server"></asp:Label>
+                                    元
+                                </th>
+                                <th>
+                                    油漆涂料反馈总价合计：<asp:Label ID="lb_YS_PAINT_COATING_TOTAL_Price_FB" runat="server"></asp:Label>
+                                    元
+                                </th>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                    <asp:Panel ID="pal_No_YS_PAINT_COATING" runat="server" Visible="false">
                         该任务号无该类物料!</asp:Panel>
                 </div>
             </ContentTemplate>
@@ -779,100 +643,97 @@
         <asp:TabPanel runat="server" HeaderText="电气电料" ID="TabPanel5">
             <ContentTemplate>
                 <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="rpt_YS_ELECTRICAL" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码（01.03）
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量
-                                    </th>
-                                    <th>
-                                        预算单价
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th>
-                                       
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
+                    <div style="overflow: auto; height: 430px;">
+                        <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
+                            border="1" frame="border">
+                            <asp:Repeater ID="rpt_YS_ELECTRICAL" runat="server">
+                                <HeaderTemplate>
+                                    <tr class="tableTitle" style="background-color: #B9D3EE">
+                                        <th>
+                                            序号
+                                        </th>
+                                        <th>
+                                            物料代码（01.03）
+                                        </th>
+                                        <th>
+                                            物料名称
+                                        </th>
+                                        <th>
+                                            数量
+                                        </th>
+                                        <th>
+                                            预算单价
+                                        </th>
+                                        <th>
+                                            预算总价（元）
+                                        </th>
+                                        <th>
+                                            反馈单价
+                                        </th>
+                                        <th>
+                                            反馈总价（元）
+                                        </th>
+                                        <th>
+                                            说明
+                                        </th>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_ELECTRICAL_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_ELECTRICAL_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_ELECTRICAL_Average_Price_FB"
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_ELECTRICAL_SUBTOTAL_Price_FB"
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+                    <asp:Panel ID="pal_YS_ELECTRICAL_Info" runat="server">
+                        <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
+                            <tr>
+                                <th>
+                                    反馈人：<asp:Label ID="Label26" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    反馈时间：<asp:Label ID="Label27" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    电气电料预算总价合计：<asp:Label ID="lb_YS_ELECTRICAL_TOTAL_Price" runat="server"></asp:Label>
+                                    元
+                                </th>
+                                <th>
+                                    电气电料反馈总价合计：<asp:Label ID="lb_YS_ELECTRICAL_TOTAL_Price_FB" runat="server"></asp:Label>
+                                    元
+                                </th>
+                            </tr>
+                        </table>
+                    </asp:Panel>
                     <asp:Panel ID="pal_No_YS_ELECTRICAL" runat="server" Visible="false">
                         该任务号无该类物料!</asp:Panel>
                 </div>
@@ -882,101 +743,104 @@
         <asp:TabPanel runat="server" HeaderText="铸锻件" ID="TabPanel7">
             <ContentTemplate>
                 <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码（01.08、01.09）
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量（吨）
-                                    </th>
-                                    <th>
-                                        预算单价（吨/元）
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价（吨/元）
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th>
-                                        
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
-                    <asp:Panel ID="Panel5" runat="server" Visible="false">
+                    <div style="overflow: auto; height: 430px;">
+                        <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
+                            border="1" frame="border">
+                            <asp:Repeater ID="rpt_YS_CASTING_FORGING_COST" runat="server">
+                                <HeaderTemplate>
+                                    <tr class="tableTitle" style="background-color: #B9D3EE">
+                                        <th>
+                                            序号
+                                        </th>
+                                        <th>
+                                            物料代码（01.08、01.09）
+                                        </th>
+                                        <th>
+                                            物料名称
+                                        </th>
+                                        <th>
+                                            数量（个）
+                                        </th>
+                                        <th>
+                                            理论重量（kg/个）
+                                        </th>
+                                        <th>
+                                            预算单价（元/kg）
+                                        </th>
+                                        <th>
+                                            预算总价（元）
+                                        </th>
+                                        <th>
+                                            反馈单价（元/kg）
+                                        </th>
+                                        <th>
+                                            反馈总价（元）
+                                        </th>
+                                        <th>
+                                            说明
+                                        </th>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_WEIGHT" runat="server" Text='<%# Eval("YS_WEIGHT") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_CASTING_FORGING_COST_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_CASTING_FORGING_COST_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_WEIGHT").ToString(),Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_CASTING_FORGING_COST_Average_Price_FB"
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_CASTING_FORGING_COST_SUBTOTAL_Price_FB"
+                                                Text='<%# GetProduct(Eval("YS_WEIGHT").ToString(),Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+                    <asp:Panel ID="pal_YS_CASTING_FORGING_COST_Info" runat="server">
+                        <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
+                            <tr>
+                                <th>
+                                    反馈人：<asp:Label ID="Label30" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    反馈时间：<asp:Label ID="Label31" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    铸锻件预算总价合计：<asp:Label ID="lb_YS_CASTING_FORGING_COST_TOTAL_Price" runat="server"></asp:Label>
+                                    元
+                                </th>
+                                <th>
+                                    铸锻件反馈总价合计：<asp:Label ID="lb_YS_CASTING_FORGING_COST_TOTAL_Price_FB" runat="server"></asp:Label>
+                                    元
+                                </th>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                    <asp:Panel ID="pal_No_YS_CASTING_FORGING_COST" runat="server" Visible="false">
                         该任务号无该类物料!</asp:Panel>
                 </div>
             </ContentTemplate>
@@ -985,100 +849,97 @@
         <asp:TabPanel runat="server" HeaderText="其他材料" ID="TabPanel6">
             <ContentTemplate>
                 <div style="overflow: auto; height: 470px;">
-                    <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
-                        border="1" frame="border">
-                        <asp:Repeater ID="rpt_YS_OTHERMAT_COST" runat="server">
-                            <HeaderTemplate>
-                                <tr class="tableTitle" style="background-color: #B9D3EE">
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        物料代码
-                                    </th>
-                                    <th>
-                                        物料名称
-                                    </th>
-                                    <th>
-                                        数量
-                                    </th>
-                                    <th>
-                                        预算单价
-                                    </th>
-                                    <th>
-                                        预算总价（元）
-                                    </th>
-                                    <th>
-                                        反馈单价
-                                    </th>
-                                    <th>
-                                        反馈总价（元）
-                                    </th>
-                                    <th>
-                                        说明
-                                    </th>
-                                </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
-                                    </td>
-                                    <td align="right">
-                                        <asp:Label ID="lb_YS_MONEY" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox2" onkeypress="InputNumberOnly()"
-                                            Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox3"></asp:TextBox>
-                                    </td>
-                                    <td align="center">
-                                        <asp:TextBox Style="text-align: right" runat="server" ID="TextBox1"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <tr>
-                                    <th colspan="4" rowspan="2" style="height: 60px;">
-                                        合计：
-                                    </th>
-                                    <th colspan="2">
-                                        预算总价合计：<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th colspan="2">
-                                        反馈总价合计 ：<asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>元
-                                    </th>
-                                    <th>
-                                       
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        反馈人：<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th colspan="2">
-                                        反馈时间 ：<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </table>
+                    <div style="overflow: auto; height: 430px;">
+                        <table width="100%" align="center" cellpadding="4" cellspacing="1" class="nowrap toptable grid"
+                            border="1" frame="border">
+                            <asp:Repeater ID="rpt_YS_OTHERMAT_COST" runat="server">
+                                <HeaderTemplate>
+                                    <tr class="tableTitle" style="background-color: #B9D3EE">
+                                        <th>
+                                            序号
+                                        </th>
+                                        <th>
+                                            物料代码
+                                        </th>
+                                        <th>
+                                            物料名称
+                                        </th>
+                                        <th>
+                                            数量
+                                        </th>
+                                        <th>
+                                            预算单价
+                                        </th>
+                                        <th>
+                                            预算总价（元）
+                                        </th>
+                                        <th>
+                                            反馈单价
+                                        </th>
+                                        <th>
+                                            反馈总价（元）
+                                        </th>
+                                        <th>
+                                            说明
+                                        </th>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Label ID="Label1" runat="server" Text="<%#Container.ItemIndex+1%>"></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_CODE" runat="server" Text='<% #Eval("YS_CODE") %>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Label ID="lb_YS_NAME" runat="server" Text='<% #Eval("YS_NAME") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_Union_Amount" runat="server" Text='<%# Eval("YS_Union_Amount") %>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_OTHERMAT_COST_Average_Price" runat="server" Text='<%# Eval("YS_Average_Price","{0:f4}")%>'></asp:Label>
+                                        </td>
+                                        <td align="right">
+                                            <asp:Label ID="lb_YS_OTHERMAT_COST_SUBTOTAL_Price" runat="server" Text='<%# GetProduct(Eval("YS_Average_Price").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:Label>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_OTHERMAT_COST_Average_Price_FB"
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_OTHERMAT_COST_SUBTOTAL_Price_FB"
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                        </td>
+                                        <td align="center">
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </table>
+                    </div>
+                    <asp:Panel ID="pal_YS_OTHERMAT_COST_Info" runat="server">
+                        <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
+                            <tr>
+                                <th>
+                                    反馈人：<asp:Label ID="Label2" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    反馈时间：<asp:Label ID="Label3" runat="server"></asp:Label>
+                                </th>
+                                <th>
+                                    其他材料预算总价合计：<asp:Label ID="lb_YS_OTHERMAT_COST_TOTAL_Price" runat="server"></asp:Label>
+                                    元
+                                </th>
+                                <th>
+                                    其他材料反馈总价合计：<asp:Label ID="lb_YS_OTHERMAT_COST_TOTAL_Price_FB" runat="server"></asp:Label>
+                                    元
+                                </th>
+                            </tr>
+                        </table>
+                    </asp:Panel>
                     <asp:Panel ID="pal_No_YS_OTHERMAT_COST" runat="server" Visible="false">
                         该任务号无该类物料!</asp:Panel>
                 </div>
@@ -1235,19 +1096,10 @@
 
     <script src="../JS/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 
+    <script src="YS_Data_P.js" type="text/javascript"></script>
+
     <script type="text/javascript">
-
-        $(function() {
-            CalculateTextboxSumToLabel('txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB', 'lb_YS_FERROUS_METAL_TOTAL_Price_FB');
-            CalculateLabelSumToLabel('lb_YS_FERROUS_METAL_SUBTOTAL_Price', 'lb_YS_FERROUS_METAL_TOTAL_Price');
-
-        })
-
-        //检查输入的是否为数字，绑定到onkeypress事件
-        function InputNumberOnly() {
-            if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 46) { event.returnValue = false; alert('请输入数字 ！'); } else { event.returnValue = true; }
-        }
-
+        
         //材料费或人工费更改时，计算预算总额、毛利润、毛利率，绑定到oninput事件
         function Calculate() {
             var a = parseFloat($('#<%=txt_YS_MATERIAL_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_LABOUR_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_TRANS_COST.ClientID %>').val());
@@ -1259,48 +1111,16 @@
 
                 } else {
                     $('#<%=txt_YS_PROFIT_RATE.ClientID %>').val("任务号收入为0")
+
                 }
             }
         }
+
 
         //单位人工费反馈更改时，计算人工费小计（=单位人工费*任务号重量），绑定到oninput事件
         function CalculateLabourCostFB() {
             $('#<%=txt_labour_dispart_reference.ClientID %>').val((parseFloat($('#<%=txt_YS_WEIGHT.ClientID %>').val()) * parseFloat($('#<%=txt_YS_UNIT_LABOUR_COST_FB.ClientID %>').val())).toFixed(4));
         }
-
-
-        //反馈单价更改时，自动计算反馈总价、反馈总价合计
-        $('input[id$=txt_YS_FERROUS_METAL_Average_Price_FB]').on('input', function() {
-            //计算反馈总价
-            $(this).parent().next().children().val((parseFloat($(this).val()) * parseFloat($(this).parent().prev().prev().prev().children().text())).toFixed(4));
-            //计算反馈总价合计
-            CalculateTextboxSumToLabel('txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB', 'lb_YS_FERROUS_METAL_TOTAL_Price_FB');
-
-        })
-
-
-
-        //遍历所有txtbox的值并求和，将结果输出到一个label中
-        function CalculateTextboxSumToLabel(txt_nums, lb_sum) {
-            var sum = 0;
-            $('input[id$=' + txt_nums + ']').each(function() {
-                if ($(this).val() != '') {
-                    sum += parseFloat($(this).val());
-                }
-            });
-            $('span[id$=' + lb_sum + ']').text(sum.toFixed(4));
-        }
-        //遍历所有txtbox的值并求和，将结果输出到一个label中
-        function CalculateLabelSumToLabel(lb_nums, lb_sum) {
-            var sum = 0;
-            $('span[id$=' + lb_nums + ']').each(function() {
-                if ($(this).text() != '') {
-                    sum += parseFloat($(this).text());
-                }
-            });            
-            $('span[id$=' + lb_sum + ']').text(sum.toFixed(4));
-        }
-        
     </script>
 
 </asp:Content>

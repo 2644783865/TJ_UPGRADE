@@ -212,15 +212,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.TextBox txt_YS_PURCHASE_PART;
         
         /// <summary>
-        /// txt_YS_MACHINING_PART 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_YS_MACHINING_PART;
-        
-        /// <summary>
         /// txt_YS_PAINT_COATING 控件。
         /// </summary>
         /// <remarks>
@@ -282,15 +273,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_YS_PURCHASE_PART_FB;
-        
-        /// <summary>
-        /// txt_YS_MACHINING_PART_FB 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_YS_MACHINING_PART_FB;
         
         /// <summary>
         /// txt_YS_PAINT_COATING_FB 控件。
@@ -374,6 +356,51 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Repeater rpt_YS_FERROUS_METAL;
         
         /// <summary>
+        /// pal_YS_FERROUS_METAL_info 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_YS_FERROUS_METAL_info;
+        
+        /// <summary>
+        /// Label16 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label16;
+        
+        /// <summary>
+        /// Label17 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label17;
+        
+        /// <summary>
+        /// lb_YS_FERROUS_METAL_TOTAL_Price 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_FERROUS_METAL_TOTAL_Price;
+        
+        /// <summary>
+        /// lb_YS_FERROUS_METAL_TOTAL_Price_FB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_FERROUS_METAL_TOTAL_Price_FB;
+        
+        /// <summary>
         /// pal_No_YS_FERROUS_METAL 控件。
         /// </summary>
         /// <remarks>
@@ -401,40 +428,58 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Repeater rpt_YS_PURCHASE_PART;
         
         /// <summary>
-        /// pan_No_YS_PURCHASE_PART 控件。
+        /// pal_YS_PURCHASE_PART_Info 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pan_No_YS_PURCHASE_PART;
+        protected global::System.Web.UI.WebControls.Panel pal_YS_PURCHASE_PART_Info;
         
         /// <summary>
-        /// TabPanel3 控件。
+        /// Label18 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel3;
+        protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// rpt_YS_MACHINING_PART 控件。
+        /// Label19 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt_YS_MACHINING_PART;
+        protected global::System.Web.UI.WebControls.Label Label19;
         
         /// <summary>
-        /// pan_No_YS_MACHINING_PART 控件。
+        /// lb_YS_PURCHASE_PART_TOTAL_Price 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pan_No_YS_MACHINING_PART;
+        protected global::System.Web.UI.WebControls.Label lb_YS_PURCHASE_PART_TOTAL_Price;
+        
+        /// <summary>
+        /// lb_YS_PURCHASE_PART_TOTAL_Price_FB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_PURCHASE_PART_TOTAL_Price_FB;
+        
+        /// <summary>
+        /// pal_No_YS_PURCHASE_PART 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_No_YS_PURCHASE_PART;
         
         /// <summary>
         /// TabPanel4 控件。
@@ -455,13 +500,58 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Repeater rpt_YS_PAINT_COATING;
         
         /// <summary>
-        /// pan_No_YS_PAINT_COATING 控件。
+        /// pal_YS_PAINT_COATING_Info 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pan_No_YS_PAINT_COATING;
+        protected global::System.Web.UI.WebControls.Panel pal_YS_PAINT_COATING_Info;
+        
+        /// <summary>
+        /// Label22 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label22;
+        
+        /// <summary>
+        /// Label23 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label23;
+        
+        /// <summary>
+        /// lb_YS_PAINT_COATING_TOTAL_Price 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_PAINT_COATING_TOTAL_Price;
+        
+        /// <summary>
+        /// lb_YS_PAINT_COATING_TOTAL_Price_FB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_PAINT_COATING_TOTAL_Price_FB;
+        
+        /// <summary>
+        /// pal_No_YS_PAINT_COATING 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_No_YS_PAINT_COATING;
         
         /// <summary>
         /// TabPanel5 控件。
@@ -482,6 +572,51 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Repeater rpt_YS_ELECTRICAL;
         
         /// <summary>
+        /// pal_YS_ELECTRICAL_Info 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_YS_ELECTRICAL_Info;
+        
+        /// <summary>
+        /// Label26 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label26;
+        
+        /// <summary>
+        /// Label27 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label27;
+        
+        /// <summary>
+        /// lb_YS_ELECTRICAL_TOTAL_Price 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_ELECTRICAL_TOTAL_Price;
+        
+        /// <summary>
+        /// lb_YS_ELECTRICAL_TOTAL_Price_FB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_ELECTRICAL_TOTAL_Price_FB;
+        
+        /// <summary>
         /// pal_No_YS_ELECTRICAL 控件。
         /// </summary>
         /// <remarks>
@@ -500,22 +635,67 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::AjaxControlToolkit.TabPanel TabPanel7;
         
         /// <summary>
-        /// Repeater1 控件。
+        /// rpt_YS_CASTING_FORGING_COST 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Repeater rpt_YS_CASTING_FORGING_COST;
         
         /// <summary>
-        /// Panel5 控件。
+        /// pal_YS_CASTING_FORGING_COST_Info 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel5;
+        protected global::System.Web.UI.WebControls.Panel pal_YS_CASTING_FORGING_COST_Info;
+        
+        /// <summary>
+        /// Label30 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label30;
+        
+        /// <summary>
+        /// Label31 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label31;
+        
+        /// <summary>
+        /// lb_YS_CASTING_FORGING_COST_TOTAL_Price 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_CASTING_FORGING_COST_TOTAL_Price;
+        
+        /// <summary>
+        /// lb_YS_CASTING_FORGING_COST_TOTAL_Price_FB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_CASTING_FORGING_COST_TOTAL_Price_FB;
+        
+        /// <summary>
+        /// pal_No_YS_CASTING_FORGING_COST 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_No_YS_CASTING_FORGING_COST;
         
         /// <summary>
         /// TabPanel6 控件。
@@ -534,6 +714,51 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpt_YS_OTHERMAT_COST;
+        
+        /// <summary>
+        /// pal_YS_OTHERMAT_COST_Info 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_YS_OTHERMAT_COST_Info;
+        
+        /// <summary>
+        /// Label2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// Label3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// lb_YS_OTHERMAT_COST_TOTAL_Price 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_OTHERMAT_COST_TOTAL_Price;
+        
+        /// <summary>
+        /// lb_YS_OTHERMAT_COST_TOTAL_Price_FB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_OTHERMAT_COST_TOTAL_Price_FB;
         
         /// <summary>
         /// pal_No_YS_OTHERMAT_COST 控件。

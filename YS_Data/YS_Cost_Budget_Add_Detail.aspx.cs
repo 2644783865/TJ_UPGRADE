@@ -33,10 +33,10 @@ namespace ZCZJ_DPF.YS_Data
                 SetTSAInfo(tsaId);
                 ControlerVisile();
                 BindRepeaterSource(rpt_YS_FERROUS_METAL, pal_No_YS_FERROUS_METAL, tsaId, "01.07");//黑色金属
-                BindRepeaterSource(rpt_YS_PURCHASE_PART, pan_No_YS_PURCHASE_PART, tsaId, "01.11");//外购件
-                BindRepeaterSource(rpt_YS_MACHINING_PART, pan_No_YS_MACHINING_PART, tsaId, "01.08");//加工件
-                BindRepeaterSource(rpt_YS_PAINT_COATING, pan_No_YS_PAINT_COATING, tsaId, "01.15");//油漆涂料
-                BindRepeaterSource(rpt_YS_ELECTRICAL, pal_No_YS_ELECTRICAL, tsaId, "01.03");//电气电料            
+                BindRepeaterSource(rpt_YS_PURCHASE_PART, pal_No_YS_PURCHASE_PART, tsaId, "01.11");//外购件                
+                BindRepeaterSource(rpt_YS_PAINT_COATING, pal_No_YS_PAINT_COATING, tsaId, "01.15");//油漆涂料
+                BindRepeaterSource(rpt_YS_ELECTRICAL, pal_No_YS_ELECTRICAL, tsaId, "01.03");//电气电料  
+                BindCastingForgingRepeaterSource(rpt_YS_CASTING_FORGING_COST, pal_No_YS_CASTING_FORGING_COST, tsaId);//铸锻件
                 BindRepeaterSource(rpt_YS_OTHERMAT_COST, pal_No_YS_OTHERMAT_COST, tsaId);//其他材料
             }
         }
@@ -94,10 +94,10 @@ namespace ZCZJ_DPF.YS_Data
             string sql = @"select YS_BUDGET_INCOME,YS_WEIGHT,YS_CONTRACT_NO,YS_PROJECTNAME,YS_ENGINEERNAME,YS_ADDNAME,YS_ADDTIME,YS_NOTE,
 YS_MATERIAL_COST,YS_LABOUR_COST,YS_TRANS_COST,
 (YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,YS_PROFIT/YS_TOTALCOST_ALL AS YS_PROFIT_RATE,
-YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_CASTING_FORGING_COST,YS_OTHERMAT_COST,
-(YS_FERROUS_METAL+YS_PURCHASE_PART+YS_MACHINING_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_CASTING_FORGING_COST+YS_OTHERMAT_COST) AS materil_history_reference,
-YS_FERROUS_METAL_FB,YS_PURCHASE_PART_FB,YS_MACHINING_PART_FB,YS_PAINT_COATING_FB,YS_ELECTRICAL_FB,YS_CASTING_FORGING_COST_FB,YS_OTHERMAT_COST_FB,
-(YS_FERROUS_METAL_FB+YS_PURCHASE_PART_FB+YS_MACHINING_PART_FB+YS_PAINT_COATING_FB+YS_ELECTRICAL_FB+YS_CASTING_FORGING_COST_FB+YS_OTHERMAT_COST_FB) AS materil_dispart_reference,
+YS_FERROUS_METAL,YS_PURCHASE_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_CASTING_FORGING_COST,YS_OTHERMAT_COST,
+(YS_FERROUS_METAL+YS_PURCHASE_PART+YS_PAINT_COATING+YS_ELECTRICAL+YS_CASTING_FORGING_COST+YS_OTHERMAT_COST) AS materil_history_reference,
+YS_FERROUS_METAL_FB,YS_PURCHASE_PART_FB,YS_PAINT_COATING_FB,YS_ELECTRICAL_FB,YS_CASTING_FORGING_COST_FB,YS_OTHERMAT_COST_FB,
+(YS_FERROUS_METAL_FB+YS_PURCHASE_PART_FB+YS_PAINT_COATING_FB+YS_ELECTRICAL_FB+YS_CASTING_FORGING_COST_FB+YS_OTHERMAT_COST_FB) AS materil_dispart_reference,
 YS_UNIT_LABOUR_COST_FB,YS_WEIGHT*YS_UNIT_LABOUR_COST_FB AS labour_dispart_reference, 
 YS_SHENGCHAN,YS_CAIGOU,YS_CAIWU,YS_STATE,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE 
 from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
@@ -125,8 +125,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
 
             //材料费参考
             txt_YS_FERROUS_METAL.Text = dt.Rows[0]["YS_FERROUS_METAL"].ToString();
-            txt_YS_PURCHASE_PART.Text = dt.Rows[0]["YS_PURCHASE_PART"].ToString();
-            txt_YS_MACHINING_PART.Text = dt.Rows[0]["YS_MACHINING_PART"].ToString();
+            txt_YS_PURCHASE_PART.Text = dt.Rows[0]["YS_PURCHASE_PART"].ToString();            
             txt_YS_PAINT_COATING.Text = dt.Rows[0]["YS_PAINT_COATING"].ToString();
             txt_YS_ELECTRICAL.Text = dt.Rows[0]["YS_ELECTRICAL"].ToString();
             txt_YS_CASTING_FORGING_COST.Text = dt.Rows[0]["YS_CASTING_FORGING_COST"].ToString();
@@ -135,8 +134,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
 
             //部门反馈
             txt_YS_FERROUS_METAL_FB.Text = dt.Rows[0]["YS_FERROUS_METAL_FB"].ToString();
-            txt_YS_PURCHASE_PART_FB.Text = dt.Rows[0]["YS_PURCHASE_PART_FB"].ToString();
-            txt_YS_MACHINING_PART_FB.Text = dt.Rows[0]["YS_MACHINING_PART_FB"].ToString();
+            txt_YS_PURCHASE_PART_FB.Text = dt.Rows[0]["YS_PURCHASE_PART_FB"].ToString();           
             txt_YS_PAINT_COATING_FB.Text = dt.Rows[0]["YS_PAINT_COATING_FB"].ToString();
             txt_YS_ELECTRICAL_FB.Text = dt.Rows[0]["YS_ELECTRICAL_FB"].ToString();
             txt_YS_CASTING_FORGING_COST_FB.Text = dt.Rows[0]["YS_CASTING_FORGING_COST_FB"].ToString();
@@ -167,7 +165,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
         /// <param name="code">物料编码前5位，(带.)</param>
         protected void BindRepeaterSource(Repeater rpt, Panel panel, string id, string code)
         {
-            string sql1 = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB,YS_ADDPER,YS_ADDTIME  from  YS_COST_BUDGET_DETAIL 
+            string sql1 = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB,YS_NOTE from  YS_COST_BUDGET_DETAIL 
 where YS_TSA_ID='{0}' AND YS_CODE LIKE '{1}%' ORDER BY YS_CODE", id, code);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql1);
             if (dt.Rows.Count != 0)
@@ -182,6 +180,30 @@ where YS_TSA_ID='{0}' AND YS_CODE LIKE '{1}%' ORDER BY YS_CODE", id, code);
             }
 
         }
+        /// <summary>
+        /// 绑定铸锻件repeater
+        /// </summary>
+        /// <param name="rpt"></param>
+        /// <param name="panel"></param>
+        /// <param name="id"></param>
+        protected void BindCastingForgingRepeaterSource(Repeater rpt, Panel panel, string id)
+        {
+            string sql1 = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount,YS_WEIGHT ,YS_Average_Price,YS_Average_Price_FB,YS_NOTE from  YS_COST_BUDGET_DETAIL 
+where YS_TSA_ID='{0}' AND ( YS_CODE LIKE '01.08%' OR YS_CODE LIKE '01.09%') ORDER BY YS_CODE", id);
+            DataTable dt = DBCallCommon.GetDTUsingSqlText(sql1);
+            if (dt.Rows.Count != 0)
+            {
+                rpt.DataSource = dt;
+                rpt.DataBind();
+            }
+            else
+            {
+                rpt.Visible = false;
+                panel.Visible = true;
+            }
+
+        }
+
 
         /// <summary>
         /// 绑定其他材料Repeater数据
@@ -192,8 +214,8 @@ where YS_TSA_ID='{0}' AND YS_CODE LIKE '{1}%' ORDER BY YS_CODE", id, code);
         /// <param name="code">物料编码前5位，(带.)</param>
         protected void BindRepeaterSource(Repeater rpt, Panel panel, string id)
         {
-            string sql = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB from  YS_COST_BUDGET_DETAIL 
-where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%' AND YS_CODE NOT LIKE '01.08%' AND YS_CODE NOT LIKE '01.15%' AND YS_CODE NOT LIKE '01.03%' ORDER BY YS_CODE", id);
+            string sql = String.Format(@"select YS_CODE ,YS_NAME ,YS_Union_Amount ,YS_Average_Price,YS_Average_Price_FB,YS_NOTE from  YS_COST_BUDGET_DETAIL 
+where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%' AND YS_CODE NOT LIKE '01.08%'AND YS_CODE NOT LIKE '01.09%' AND YS_CODE NOT LIKE '01.15%' AND YS_CODE NOT LIKE '01.03%' ORDER BY YS_CODE", id);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             if (dt.Rows.Count != 0)
             {
@@ -236,11 +258,17 @@ where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%
 
 
 
-
+        #region 计算预算总价、反馈总价
         public string GetProduct(string n1, string n2)
         {
             return (Convert.ToDouble(n1) * Convert.ToDouble(n2)).ToString("0.0000");
         }
+
+        public string GetProduct(string n1, string n2, string n3)
+        {
+            return (Convert.ToDouble(n1) * Convert.ToDouble(n2)*Convert.ToDouble(n3)).ToString("0.0000");
+        }
+        #endregion
 
 
         /// <summary>

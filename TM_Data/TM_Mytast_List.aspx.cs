@@ -295,7 +295,7 @@ namespace ZCZJ_DPF.TM_Data
             else
             {
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算主表中已经有该任务号的预算编制，请勿重复提交');</script>");
-                
+
                 string sqltext = "update TBPM_TCTSASSGN set TSA_FINISHSTATE ='1' where TSA_ID='" + tsaId + "'";
                 DBCallCommon.ExeSqlTextGetInt(sqltext);
 
@@ -368,6 +368,7 @@ namespace ZCZJ_DPF.TM_Data
         {
             string contractNo = "", projectName = "", engineerName = "";//合同号，项目名称，设备名称
             decimal budgetIncome = 0, transCost = 0;//任务号预算收入
+            double tsaWeight = 0;
 
 
             #region 获取任务号的相关信息（合同号，项目名称，设备名称）
@@ -416,6 +417,25 @@ namespace ZCZJ_DPF.TM_Data
                     transCost = 0;
                 }
             }
+            drTrans.Close();
+            #endregion
+
+            #region 获取任务号总序为1的图纸总重作为任务的重量，单位kg
+            string sqlWeight = "SELECT BM_TUTOTALWGHT FROM TBPM_STRINFODQO WHERE BM_ZONGXU='1' AND BM_ENGID='" + tsaId + "'";
+            SqlDataReader drWeight = DBCallCommon.GetDRUsingSqlText(sqlWeight);
+            if (drWeight.Read())
+            {
+                try
+                {
+                    tsaWeight = Convert.ToDouble(drWeight["BM_TUTOTALWGHT"]);
+                }
+                catch
+                {
+
+                    tsaWeight = 0;
+                }
+            }
+            drWeight.Close();
             #endregion
 
 
@@ -426,7 +446,8 @@ namespace ZCZJ_DPF.TM_Data
           YS_TSA_ID ,
           YS_ENGINEERNAME ,
           YS_BUDGET_INCOME ,
-YS_TRANS_COST,
+          YS_TRANS_COST,
+          YS_WEIGHT,
           YS_CAIWU ,
           YS_CAIGOU ,
           YS_SHENGCHAN ,
@@ -434,11 +455,12 @@ YS_TRANS_COST,
           YS_FIRST_REVSTATE ,
           YS_SECOND_REVSTATE ,
           YS_REVSTATE ,
+          YS_REBUT,
           YS_TEC_SUBMIT_NAME ,
           YS_ADDTIME ,
           YS_ADDFINISHTIME 
         )
-VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + engineerName + "' , '" + budgetIncome + "' , '" + transCost + @"' , 
+VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + engineerName + "' , '" + budgetIncome + "' , '" + transCost + "','" + tsaWeight + @"' , 
           '0' , -- YS_CAIWU - char(1)
           '0' , -- YS_CAIGOU - char(1)
           '0' , -- YS_SHENGCHAN - char(1)
@@ -446,6 +468,7 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
           '0' , -- YS_FIRST_REVSTATE - char(1)
           '0' , -- YS_SECOND_REVSTATE - char(1)
           '0' , -- YS_REVSTATE - char(1)
+          '0' , -- YS_REBUT - varchar(10)
           '" + Session["UserName"] + @"' , -- YS_TEC_SUBMIT_NAME 技术提交人姓名 - varchar(50)
           GETDATE() , --技术提交时间
           DATEADD(ww, 2, GETDATE()) --预算编制截止时间
@@ -471,11 +494,13 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
         /// <returns>true：插入成功；fals：插入失败</returns>
         protected void InsertIntoYSDetailTable(string tsaId)
         {
+            string unitPriceOfCastingAndForging = ConfigurationSettings.AppSettings["UnitPriceOfCastingAndForging"];//从配置文件获铸锻件单价
             string sqlInsertDetail = @"INSERT  INTO dbo.YS_COST_BUDGET_DETAIL
         ( YS_TSA_ID ,
           YS_CODE ,
           YS_NAME ,
           YS_Union_Amount ,
+          YS_WEIGHT,
           YS_Average_Price,
           YS_Average_Price_FB 
         )
@@ -483,6 +508,7 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
                 pp.SI_MARID ,
                 pp.MNAME ,
                 n.AMOUNT ,
+                pp.MWEIGHT ,
                 pp.SI_UPRICE,
                 pp.SI_UPRICE
         FROM    ( SELECT    PO_MARID ,
@@ -493,6 +519,7 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
                 ) n
                 LEFT JOIN ( SELECT SI_MARID ,
                                     MNAME ,
+                                    MWEIGHT,
                                     SI_UPRICE
                              FROM   ( SELECT    SI_MARID ,
                                                 SI_UPRICE
@@ -505,10 +532,11 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
                                       WHERE     t.ccc = '1'
                                     ) p
                                     LEFT JOIN TBMA_MATERIAL ON p.SI_MARID = TBMA_MATERIAL.ID
-                           ) pp ON pp.SI_MARID = n.PO_MARID ORDER BY pp.SI_MARID";
+                           ) pp ON pp.SI_MARID = n.PO_MARID ORDER BY pp.SI_MARID;
+ UPDATE dbo.YS_COST_BUDGET_DETAIL SET YS_Average_Price='" + unitPriceOfCastingAndForging + "' ,YS_Average_Price_FB='" + unitPriceOfCastingAndForging + "' WHERE YS_TSA_ID='" + tsaId + "' AND( YS_CODE LIKE '01.08%' OR YS_CODE LIKE '01.09%') ";
 
             DBCallCommon.ExeSqlText(sqlInsertDetail);
-           
+
         }
 
     }
