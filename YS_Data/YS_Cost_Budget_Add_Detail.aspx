@@ -16,7 +16,7 @@
     </style>
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    <%--头部--%>
+    <%--工具按钮--%>
     <table width="100%">
         <tr>
             <td colspan="5" align="right" style="padding-top: 15px">
@@ -112,16 +112,16 @@
                                 材料费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_MATERIAL_COST" runat="server" Style="text-align: right" oninput="Calculate()"
-                                    onkeypress="InputNumberOnly()" ReadOnly="True"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_MATERIAL_COST" runat="server" Style="text-align: right" oninput="CalculateTotal()"
+                                    onfocus="this.select()" onkeypress="InputNumberOnly()" ReadOnly="True"></asp:TextBox>
                                 元
                             </td>
                             <td style="text-align: right">
                                 人工费：
                             </td>
                             <td>
-                                <asp:TextBox ID="txt_YS_LABOUR_COST" runat="server" Style="text-align: right" oninput="Calculate()"
-                                    onkeypress="InputNumberOnly()" ReadOnly="True"></asp:TextBox>
+                                <asp:TextBox ID="txt_YS_LABOUR_COST" runat="server" Style="text-align: right" oninput="CalculateTotal()"
+                                    onfocus="this.select()" onkeypress="InputNumberOnly()" ReadOnly="true"></asp:TextBox>
                                 元
                             </td>
                             <td style="text-align: right">
@@ -400,11 +400,12 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
@@ -500,11 +501,11 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PURCHASE_PART_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PURCHASE_PART_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
@@ -600,11 +601,11 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PAINT_COATING_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PAINT_COATING_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
@@ -704,10 +705,10 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_ELECTRICAL_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' onfocus="this.select()"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -806,11 +807,11 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_CASTING_FORGING_COST_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_CASTING_FORGING_COST_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_WEIGHT").ToString(),Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_WEIGHT").ToString(),Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
@@ -906,11 +907,11 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_OTHERMAT_COST_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_OTHERMAT_COST_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
@@ -1097,30 +1098,5 @@
     <script src="../JS/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 
     <script src="YS_Data_P.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        
-        //材料费或人工费更改时，计算预算总额、毛利润、毛利率，绑定到oninput事件
-        function Calculate() {
-            var a = parseFloat($('#<%=txt_YS_MATERIAL_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_LABOUR_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_TRANS_COST.ClientID %>').val());
-            if (!isNaN(a)) {
-                $('#<%=txt_YS_TOTALCOST_ALL.ClientID %>').val((parseFloat($('#<%=txt_YS_MATERIAL_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_LABOUR_COST.ClientID %>').val()) + parseFloat($('#<%=txt_YS_TRANS_COST.ClientID %>').val())).toFixed(4));
-                $('#<%=txt_YS_PROFIT.ClientID %>').val((parseFloat($('#<%=txt_YS_BUDGET_INCOME.ClientID %>').val()) - parseFloat($('#<%=txt_YS_TOTALCOST_ALL.ClientID %>').val())).toFixed(4));
-                if (parseFloat($('#<%=txt_YS_BUDGET_INCOME.ClientID %>').val()) != 0) {
-                    $('#<%=txt_YS_PROFIT_RATE.ClientID %>').val((parseFloat($('#<%=txt_YS_PROFIT.ClientID %>').val()) * 100 / parseFloat($('#<%=txt_YS_BUDGET_INCOME.ClientID %>').val())).toFixed(2));
-
-                } else {
-                    $('#<%=txt_YS_PROFIT_RATE.ClientID %>').val("任务号收入为0")
-
-                }
-            }
-        }
-
-
-        //单位人工费反馈更改时，计算人工费小计（=单位人工费*任务号重量），绑定到oninput事件
-        function CalculateLabourCostFB() {
-            $('#<%=txt_labour_dispart_reference.ClientID %>').val((parseFloat($('#<%=txt_YS_WEIGHT.ClientID %>').val()) * parseFloat($('#<%=txt_YS_UNIT_LABOUR_COST_FB.ClientID %>').val())).toFixed(4));
-        }
-    </script>
 
 </asp:Content>
