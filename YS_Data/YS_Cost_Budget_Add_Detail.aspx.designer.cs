@@ -365,24 +365,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel pal_YS_FERROUS_METAL_info;
         
         /// <summary>
-        /// Label16 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
-        
-        /// <summary>
-        /// Label17 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
-        
-        /// <summary>
         /// lb_YS_FERROUS_METAL_TOTAL_Price 控件。
         /// </summary>
         /// <remarks>
@@ -435,24 +417,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pal_YS_PURCHASE_PART_Info;
-        
-        /// <summary>
-        /// Label18 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
-        
-        /// <summary>
-        /// Label19 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
         
         /// <summary>
         /// lb_YS_PURCHASE_PART_TOTAL_Price 控件。
@@ -509,24 +473,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel pal_YS_PAINT_COATING_Info;
         
         /// <summary>
-        /// Label22 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label22;
-        
-        /// <summary>
-        /// Label23 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label23;
-        
-        /// <summary>
         /// lb_YS_PAINT_COATING_TOTAL_Price 控件。
         /// </summary>
         /// <remarks>
@@ -579,24 +525,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pal_YS_ELECTRICAL_Info;
-        
-        /// <summary>
-        /// Label26 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label26;
-        
-        /// <summary>
-        /// Label27 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label27;
         
         /// <summary>
         /// lb_YS_ELECTRICAL_TOTAL_Price 控件。
@@ -653,24 +581,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel pal_YS_CASTING_FORGING_COST_Info;
         
         /// <summary>
-        /// Label30 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label30;
-        
-        /// <summary>
-        /// Label31 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label31;
-        
-        /// <summary>
         /// lb_YS_CASTING_FORGING_COST_TOTAL_Price 控件。
         /// </summary>
         /// <remarks>
@@ -723,24 +633,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pal_YS_OTHERMAT_COST_Info;
-        
-        /// <summary>
-        /// Label2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// Label3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// lb_YS_OTHERMAT_COST_TOTAL_Price 控件。
@@ -824,13 +716,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel Panel3;
         
         /// <summary>
-        /// Label12 控件。
+        /// lb_YS_CAIGOU_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label lb_YS_CAIGOU_NAME;
         
         /// <summary>
         /// rdl_CaiGouCheck 控件。
@@ -842,22 +734,22 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.RadioButtonList rdl_CaiGouCheck;
         
         /// <summary>
-        /// Label13 控件。
+        /// lb_YS_CAIGOU_SJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.WebControls.Label lb_YS_CAIGOU_SJ;
         
         /// <summary>
-        /// TextBox31 控件。
+        /// txt_YS_CAIGOU_YJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox31;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_CAIGOU_YJ;
         
         /// <summary>
         /// Panel4 控件。
@@ -869,13 +761,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel Panel4;
         
         /// <summary>
-        /// Label14 控件。
+        /// lb_YS_SHENGCHAN_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label lb_YS_SHENGCHAN_NAME;
         
         /// <summary>
         /// rdl_ShengChanCheck 控件。
@@ -887,22 +779,22 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.RadioButtonList rdl_ShengChanCheck;
         
         /// <summary>
-        /// Label15 控件。
+        /// lb_YS_SHENGCHAN_SJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
+        protected global::System.Web.UI.WebControls.Label lb_YS_SHENGCHAN_SJ;
         
         /// <summary>
-        /// TextBox32 控件。
+        /// txt_YS_SHENGCHAN_YJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox32;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_SHENGCHAN_YJ;
         
         /// <summary>
         /// Panel1 控件。
@@ -914,13 +806,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// Label6 控件。
+        /// lb_YS_CAIWU_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label lb_YS_CAIWU_NAME;
         
         /// <summary>
         /// rdl_CaiWuCheck 控件。
@@ -932,22 +824,22 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.RadioButtonList rdl_CaiWuCheck;
         
         /// <summary>
-        /// Label7 控件。
+        /// lb_YS_CAIWU_SJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label lb_YS_CAIWU_SJ;
         
         /// <summary>
-        /// TextBox4 控件。
+        /// txt_YS_CAIWU_YJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_CAIWU_YJ;
         
         /// <summary>
         /// Panel2 控件。
@@ -959,13 +851,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// Label8 控件。
+        /// lb_YS_FIRST_REV_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lb_YS_FIRST_REV_NAME;
         
         /// <summary>
         /// rdl_YiJiCheck 控件。
@@ -977,31 +869,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.RadioButtonList rdl_YiJiCheck;
         
         /// <summary>
-        /// Label9 控件。
+        /// lb_YS_FIRST_REV_SJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lb_YS_FIRST_REV_SJ;
         
         /// <summary>
-        /// TextBox5 控件。
+        /// txt_YS_FIRST_REV_YJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_FIRST_REV_YJ;
         
         /// <summary>
-        /// Label10 控件。
+        /// lb_YS_SECOND_REV_NAME 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label lb_YS_SECOND_REV_NAME;
         
         /// <summary>
         /// rdl_ErJiCheck 控件。
@@ -1013,21 +905,21 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.RadioButtonList rdl_ErJiCheck;
         
         /// <summary>
-        /// Label11 控件。
+        /// lb_YS_SECOND_REV_SJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
+        protected global::System.Web.UI.WebControls.Label lb_YS_SECOND_REV_SJ;
         
         /// <summary>
-        /// TextBox6 控件。
+        /// txt_YS_SECOND_REV_YJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox txt_YS_SECOND_REV_YJ;
     }
 }

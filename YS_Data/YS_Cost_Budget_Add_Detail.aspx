@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    预算详情
+    预算详情  
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style>
@@ -20,12 +20,15 @@
     <table width="100%">
         <tr>
             <td colspan="5" align="right" style="padding-top: 15px">
-                <asp:Button ID="btn_Save" Visible="false" runat="server" Text="保存" OnClick="btn_Save_Click" />&nbsp;
-                <asp:Button ID="btn_PushDown" Visible="false" runat="server" Text="下推至部门反馈" />&nbsp;
+                <asp:Button ID="btn_Save" Visible="false" runat="server" Text="保存" OnClick="btn_Save_Click" />
+                &nbsp;
+                <asp:Button ID="btn_PushDown" Visible="false" runat="server" Text="下推至部门反馈" 
+                    onclick="btn_PushDown_Click" />&nbsp;
             </td>
         </tr>
     </table>
-    <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" ActiveTabIndex="0">
+    <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" 
+        ActiveTabIndex="7">
         <%--预算汇总--%>
         <asp:TabPanel runat="server" HeaderText="预算汇总" ID="TabPanel10">
             <ContentTemplate>
@@ -321,7 +324,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txt_YS_UNIT_LABOUR_COST_FB" runat="server" Style="text-align: right"
-                                    onkeypress="InputNumberOnly()" oninput="CalculateLabourCostFB()" ReadOnly="false"></asp:TextBox>
+                                    onkeypress="InputNumberOnly()"  ReadOnly="true"></asp:TextBox>
                                 元/kg
                             </td>
                         </tr>
@@ -400,7 +403,8 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_FERROUS_METAL_SUBTOTAL_Price_FB"
@@ -408,7 +412,8 @@
                                                 ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -418,19 +423,15 @@
                     <asp:Panel ID="pal_YS_FERROUS_METAL_info" runat="server">
                         <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
                             <tr>
+                                <%--<th>
+                                    反馈人：<asp:Label ID="Label16" runat="server"></asp:Label></th>
                                 <th>
-                                    反馈人：<asp:Label ID="Label16" runat="server"></asp:Label>
+                                    反馈时间：<asp:Label ID="Label17" runat="server"></asp:Label></th>--%>
+                                <th>
+                                    黑色金属预算总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price" runat="server"></asp:Label>元
                                 </th>
                                 <th>
-                                    反馈时间：<asp:Label ID="Label17" runat="server"></asp:Label>
-                                </th>
-                                <th>
-                                    黑色金属预算总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price" runat="server"></asp:Label>
-                                    元
-                                </th>
-                                <th>
-                                    黑色金属反馈总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price_FB" runat="server"></asp:Label>
-                                    元
+                                    黑色金属反馈总价合计：<asp:Label ID="lb_YS_FERROUS_METAL_TOTAL_Price_FB" runat="server"></asp:Label>元
                                 </th>
                             </tr>
                         </table>
@@ -501,14 +502,15 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PURCHASE_PART_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()" ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PURCHASE_PART_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -518,19 +520,15 @@
                     <asp:Panel ID="pal_YS_PURCHASE_PART_Info" runat="server">
                         <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
                             <tr>
+                               <%-- <th>
+                                    反馈人：<asp:Label ID="Label18" runat="server"></asp:Label></th>
                                 <th>
-                                    反馈人：<asp:Label ID="Label18" runat="server"></asp:Label>
+                                    反馈时间：<asp:Label ID="Label19" runat="server"></asp:Label></th>--%>
+                                <th>
+                                    外购件预算总价合计：<asp:Label ID="lb_YS_PURCHASE_PART_TOTAL_Price" runat="server"></asp:Label>元
                                 </th>
                                 <th>
-                                    反馈时间：<asp:Label ID="Label19" runat="server"></asp:Label>
-                                </th>
-                                <th>
-                                    外购件预算总价合计：<asp:Label ID="lb_YS_PURCHASE_PART_TOTAL_Price" runat="server"></asp:Label>
-                                    元
-                                </th>
-                                <th>
-                                    外购件反馈总价合计：<asp:Label ID="lb_YS_PURCHASE_PART_TOTAL_Price_FB" runat="server"></asp:Label>
-                                    元
+                                    外购件反馈总价合计：<asp:Label ID="lb_YS_PURCHASE_PART_TOTAL_Price_FB" runat="server"></asp:Label>元
                                 </th>
                             </tr>
                         </table>
@@ -601,14 +599,15 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PAINT_COATING_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()" ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_PAINT_COATING_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -618,19 +617,15 @@
                     <asp:Panel ID="pal_YS_PAINT_COATING_Info" runat="server">
                         <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
                             <tr>
+                                <%--<th>
+                                    反馈人：<asp:Label ID="Label22" runat="server"></asp:Label></th>
                                 <th>
-                                    反馈人：<asp:Label ID="Label22" runat="server"></asp:Label>
+                                    反馈时间：<asp:Label ID="Label23" runat="server"></asp:Label></th>--%>
+                                <th>
+                                    油漆涂料预算总价合计：<asp:Label ID="lb_YS_PAINT_COATING_TOTAL_Price" runat="server"></asp:Label>元
                                 </th>
                                 <th>
-                                    反馈时间：<asp:Label ID="Label23" runat="server"></asp:Label>
-                                </th>
-                                <th>
-                                    油漆涂料预算总价合计：<asp:Label ID="lb_YS_PAINT_COATING_TOTAL_Price" runat="server"></asp:Label>
-                                    元
-                                </th>
-                                <th>
-                                    油漆涂料反馈总价合计：<asp:Label ID="lb_YS_PAINT_COATING_TOTAL_Price_FB" runat="server"></asp:Label>
-                                    元
+                                    油漆涂料反馈总价合计：<asp:Label ID="lb_YS_PAINT_COATING_TOTAL_Price_FB" runat="server"></asp:Label>元
                                 </th>
                             </tr>
                         </table>
@@ -701,14 +696,15 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_ELECTRICAL_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>'></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()" ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_ELECTRICAL_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' onfocus="this.select()"></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'
+                                                 ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -718,19 +714,15 @@
                     <asp:Panel ID="pal_YS_ELECTRICAL_Info" runat="server">
                         <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
                             <tr>
+                                <%--<th>
+                                    反馈人：<asp:Label ID="Label26" runat="server"></asp:Label></th>
                                 <th>
-                                    反馈人：<asp:Label ID="Label26" runat="server"></asp:Label>
+                                    反馈时间：<asp:Label ID="Label27" runat="server"></asp:Label></th>--%>
+                                <th>
+                                    电气电料预算总价合计：<asp:Label ID="lb_YS_ELECTRICAL_TOTAL_Price" runat="server"></asp:Label>元
                                 </th>
                                 <th>
-                                    反馈时间：<asp:Label ID="Label27" runat="server"></asp:Label>
-                                </th>
-                                <th>
-                                    电气电料预算总价合计：<asp:Label ID="lb_YS_ELECTRICAL_TOTAL_Price" runat="server"></asp:Label>
-                                    元
-                                </th>
-                                <th>
-                                    电气电料反馈总价合计：<asp:Label ID="lb_YS_ELECTRICAL_TOTAL_Price_FB" runat="server"></asp:Label>
-                                    元
+                                    电气电料反馈总价合计：<asp:Label ID="lb_YS_ELECTRICAL_TOTAL_Price_FB" runat="server"></asp:Label>元
                                 </th>
                             </tr>
                         </table>
@@ -807,14 +799,15 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_CASTING_FORGING_COST_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()" ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_CASTING_FORGING_COST_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_WEIGHT").ToString(),Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_WEIGHT").ToString(),Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -824,19 +817,15 @@
                     <asp:Panel ID="pal_YS_CASTING_FORGING_COST_Info" runat="server">
                         <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
                             <tr>
+                                <%--<th>
+                                    反馈人：<asp:Label ID="Label30" runat="server"></asp:Label></th>
                                 <th>
-                                    反馈人：<asp:Label ID="Label30" runat="server"></asp:Label>
+                                    反馈时间：<asp:Label ID="Label31" runat="server"></asp:Label></th>--%>
+                                <th>
+                                    铸锻件预算总价合计：<asp:Label ID="lb_YS_CASTING_FORGING_COST_TOTAL_Price" runat="server"></asp:Label>元
                                 </th>
                                 <th>
-                                    反馈时间：<asp:Label ID="Label31" runat="server"></asp:Label>
-                                </th>
-                                <th>
-                                    铸锻件预算总价合计：<asp:Label ID="lb_YS_CASTING_FORGING_COST_TOTAL_Price" runat="server"></asp:Label>
-                                    元
-                                </th>
-                                <th>
-                                    铸锻件反馈总价合计：<asp:Label ID="lb_YS_CASTING_FORGING_COST_TOTAL_Price_FB" runat="server"></asp:Label>
-                                    元
+                                    铸锻件反馈总价合计：<asp:Label ID="lb_YS_CASTING_FORGING_COST_TOTAL_Price_FB" runat="server"></asp:Label>元
                                 </th>
                             </tr>
                         </table>
@@ -907,14 +896,15 @@
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_OTHERMAT_COST_Average_Price_FB"
-                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()"></asp:TextBox>
+                                                onkeypress="InputNumberOnly()" Text='<%# Eval("YS_Average_Price_FB") %>' onfocus="this.select()" ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
                                             <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_OTHERMAT_COST_SUBTOTAL_Price_FB"
-                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>' ReadOnly="true"></asp:TextBox>
+                                                Text='<%# GetProduct(Eval("YS_Average_Price_FB").ToString(),Eval("YS_Union_Amount").ToString())%>'
+                                                ReadOnly="true"></asp:TextBox>
                                         </td>
                                         <td align="center">
-                                            <asp:TextBox Style="text-align: right" runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>'></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txt_YS_NOTE" Text='<%# Eval("YS_NOTE") %>' ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -924,19 +914,15 @@
                     <asp:Panel ID="pal_YS_OTHERMAT_COST_Info" runat="server">
                         <table width="100%" style="background-color: #EEF7FD; margin-top: 8px;">
                             <tr>
+                                <%--<th>
+                                    反馈人：<asp:Label ID="Label2" runat="server"></asp:Label></th>
                                 <th>
-                                    反馈人：<asp:Label ID="Label2" runat="server"></asp:Label>
+                                    反馈时间：<asp:Label ID="Label3" runat="server"></asp:Label></th>--%>
+                                <th>
+                                    其他材料预算总价合计：<asp:Label ID="lb_YS_OTHERMAT_COST_TOTAL_Price" runat="server"></asp:Label>元
                                 </th>
                                 <th>
-                                    反馈时间：<asp:Label ID="Label3" runat="server"></asp:Label>
-                                </th>
-                                <th>
-                                    其他材料预算总价合计：<asp:Label ID="lb_YS_OTHERMAT_COST_TOTAL_Price" runat="server"></asp:Label>
-                                    元
-                                </th>
-                                <th>
-                                    其他材料反馈总价合计：<asp:Label ID="lb_YS_OTHERMAT_COST_TOTAL_Price_FB" runat="server"></asp:Label>
-                                    元
+                                    其他材料反馈总价合计：<asp:Label ID="lb_YS_OTHERMAT_COST_TOTAL_Price_FB" runat="server"></asp:Label>元
                                 </th>
                             </tr>
                         </table>
@@ -952,10 +938,12 @@
                 <div style="overflow: auto; height: 450px; background-color: #EEF7FD; border: 5px solid #C4D9EB;
                     padding-top: 10px;">
                     <div style="text-align: right">
-                        <asp:Button ID="btn_RebutToCaiWu" Visible="False" runat="server" Text="驳回至财务填写" />
+                        <asp:Button ID="btn_RebutToCaiWu" Visible="False" runat="server" Text="驳回至财务填写" 
+                            onclick="btn_RebutToCaiWu_Click" />
                         <asp:Button ID="btn_RebutToCaiGou" Visible="False" runat="server" Text="驳回至采购反馈" />
                         <asp:Button ID="btn_RebutToShengChan" Visible="False" runat="server" Text="驳回至生产反馈" />
-                        <asp:Button ID="btn_Submit" Visible="False" runat="server" Text="提交审批" />&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btn_Submit" Visible="False" runat="server" Text="提交审批" 
+                            onclick="btn_Submit_Click" />&nbsp;&nbsp;&nbsp;
                     </div>
                     <div style="width: 90%; margin: 0 auto;">
                         <asp:Panel ID="Panel3" runat="server">
@@ -963,24 +951,23 @@
                                 采购部</h3>
                             <table width="100%">
                                 <tr>
-                                    <td>
-                                        反馈人：<asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
-                                    </td>
-                                    <td>
-                                        反馈结论：<asp:RadioButtonList ID="rdl_CaiGouCheck" runat="server" RepeatDirection="Horizontal"
+                                    <td style="width:30%">
+                                        反馈人：<asp:Label ID="lb_YS_CAIGOU_NAME" runat="server" Text="Label"></asp:Label></td>
+                                    <td style="width:30%">
+                                        反馈结果：<asp:RadioButtonList ID="rdl_CaiGouCheck" runat="server" RepeatDirection="Horizontal"
                                             RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_CaiGouCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
-                                    <td>
-                                        反馈时间：<asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
-                                    </td>
+                                    <td style="width:40%">
+                                        反馈时间：<asp:Label ID="lb_YS_CAIGOU_SJ" runat="server" Text="Label"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <asp:TextBox ID="TextBox31" runat="server" TextMode="MultiLine" Width="99.5%" Height="50px"
-                                            Style="resize: none"></asp:TextBox>
+                                        <asp:TextBox ID="txt_YS_CAIGOU_YJ" runat="server" TextMode="MultiLine" 
+                                            Width="99.5%" Height="50px"
+                                            Style="resize: none"  ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                             </table>
@@ -990,24 +977,23 @@
                                 生产部</h3>
                             <table width="100%">
                                 <tr>
-                                    <td>
-                                        反馈人：<asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
-                                    </td>
-                                    <td>
+                                    <td style="width:30%">
+                                        反馈人：<asp:Label ID="lb_YS_SHENGCHAN_NAME" runat="server" Text="Label"></asp:Label></td>
+                                    <td style="width:30%">
                                         反馈结论：<asp:RadioButtonList ID="rdl_ShengChanCheck" runat="server" RepeatDirection="Horizontal"
                                             RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_ShengChanCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
-                                    <td>
-                                        反馈时间：<asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
-                                    </td>
+                                    <td style="width:40%">
+                                        反馈时间：<asp:Label ID="lb_YS_SHENGCHAN_SJ" runat="server" Text="Label"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <asp:TextBox ID="TextBox32" runat="server" TextMode="MultiLine" Width="99.5%" Height="50px"
-                                            Style="resize: none"></asp:TextBox>
+                                        <asp:TextBox ID="txt_YS_SHENGCHAN_YJ" runat="server" TextMode="MultiLine" 
+                                            Width="99.5%" Height="50px"
+                                            Style="resize: none"  ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                             </table>
@@ -1017,24 +1003,23 @@
                                 财务部</h3>
                             <table width="100%">
                                 <tr>
-                                    <td>
-                                        审批人：<asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
-                                    </td>
-                                    <td>
+                                    <td style="width:30%">
+                                        审批人：<asp:Label ID="lb_YS_CAIWU_NAME" runat="server" Text="Label"></asp:Label></td>
+                                    <td style="width:30%">
                                         审核结论：<asp:RadioButtonList ID="rdl_CaiWuCheck" runat="server" RepeatDirection="Horizontal"
                                             RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_CaiWuCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
-                                    <td>
-                                        审核时间：<asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-                                    </td>
+                                    <td style="width:40%">
+                                        审核时间：<asp:Label ID="lb_YS_CAIWU_SJ" runat="server" Text="Label"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <asp:TextBox ID="TextBox4" runat="server" TextMode="MultiLine" Width="99.5%" Height="50px"
-                                            Style="resize: none"></asp:TextBox>
+                                        <asp:TextBox ID="txt_YS_CAIWU_YJ" runat="server" TextMode="MultiLine" 
+                                            Width="99.5%" Height="50px"
+                                            Style="resize: none" ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                             </table>
@@ -1044,47 +1029,45 @@
                                 领导审核</h3>
                             <table width="100%">
                                 <tr>
-                                    <td>
-                                        审批人：<asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
-                                    </td>
-                                    <td>
+                                    <td style="width:30%">
+                                        审批人：<asp:Label ID="lb_YS_FIRST_REV_NAME" runat="server" Text="Label"></asp:Label></td>
+                                    <td style="width:30%">
                                         审核结论：<asp:RadioButtonList ID="rdl_YiJiCheck" runat="server" RepeatDirection="Horizontal"
                                             RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_YiJiCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
-                                    <td>
-                                        审核时间：<asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
-                                    </td>
+                                    <td style="width:40%">
+                                        审核时间：<asp:Label ID="lb_YS_FIRST_REV_SJ" runat="server" Text="Label"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <asp:TextBox ID="TextBox5" runat="server" TextMode="MultiLine" Width="99.5%" Height="50px"
-                                            Style="resize: none"></asp:TextBox>
+                                        <asp:TextBox ID="txt_YS_FIRST_REV_YJ" runat="server" TextMode="MultiLine" 
+                                            Width="99.5%" Height="50px"
+                                            Style="resize: none" ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                             </table>
                             <table width="100%" style="margin-top: 10px;">
                                 <tr>
-                                    <td>
-                                        审批人：<asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
-                                    </td>
-                                    <td>
+                                    <td style="width:30%">
+                                        审批人：<asp:Label ID="lb_YS_SECOND_REV_NAME" runat="server" Text="Label"></asp:Label></td>
+                                    <td style="width:30%">
                                         审核结论：<asp:RadioButtonList ID="rdl_ErJiCheck" runat="server" RepeatDirection="Horizontal"
                                             RepeatLayout="Flow" AutoPostBack="True" Enabled="False" OnSelectedIndexChanged="rdl_ErJiCheck_SelectedIndexChanged">
                                             <asp:ListItem Text="同意" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
                                         </asp:RadioButtonList>
                                     </td>
-                                    <td>
-                                        审核时间：<asp:Label ID="Label11" runat="server" Text="Label"></asp:Label>
-                                    </td>
+                                    <td style="width:40%">
+                                        审核时间：<asp:Label ID="lb_YS_SECOND_REV_SJ" runat="server" Text="Label"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <asp:TextBox ID="TextBox6" runat="server" TextMode="MultiLine" Width="99.5%" Height="50px"
-                                            Style="resize: none"></asp:TextBox>
+                                        <asp:TextBox ID="txt_YS_SECOND_REV_YJ" runat="server" TextMode="MultiLine" 
+                                            Width="99.5%" Height="50px"
+                                            Style="resize: none" ReadOnly="True"></asp:TextBox>
                                     </td>
                                 </tr>
                             </table>

@@ -18,9 +18,13 @@ namespace ZCZJ_DPF.YS_Data
     public partial class YS_Cost_Budget_View : BasicPage
     {
         PagerQueryParam pager = new PagerQueryParam();
-
+        string userName, uid, depId;
         protected void Page_Load(object sender, EventArgs e)
         {
+            userName = Session["UserName"].ToString();
+            uid = Session["UserID"].ToString();
+            depId = Session["UserDeptID"].ToString();
+           
             if (!IsPostBack)
             {
                 BindPer();
@@ -138,7 +142,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "YS_COST_BUDGET";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,YS_PROJECTNAME,[YS_ENGINEERNAME],YS_BUDGET_INCOME,[YS_TOTALCOST_ALL],(YS_BUDGET_INCOME-YS_TOTALCOST_ALL) AS YS_PROFIT,(YS_BUDGET_INCOME-YS_TOTALCOST_ALL)/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_MATERIAL_COST,YS_LABOUR_COST,YS_TRANS_COST,YS_CAIWU, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
+            pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,YS_PROJECTNAME,[YS_ENGINEERNAME],YS_BUDGET_INCOME,(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST)) AS YS_PROFIT,(YS_BUDGET_INCOME-(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST))/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_MATERIAL_COST,YS_LABOUR_COST,YS_TRANS_COST,YS_CAIWU, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
             "YS_TEC_SUBMIT_NAME, YS_ADDTIME,YS_ADDNAME,YS_ADDFINISHTIME,YS_STATE,YS_NOTE";
             pager.OrderField = "YS_ADDTIME";
             pager.StrWhere = this.GetStrWhere();
@@ -253,13 +257,12 @@ namespace ZCZJ_DPF.YS_Data
                 case "0":
                     retValue = "未下推"; break;
                 case "1":
-                    retValue = "未反馈"; break;
+                    retValue = "待反馈"; break;
                 case "2":
-                    retValue = "同意"; break;
+                    retValue = "已反馈"; break;
                 case "3":
-                    retValue = "不同意"; break;
-                case "4":
-                    retValue = "被驳回"; break;
+                    retValue = "驳回"; break;
+                
                 default:
                     break;
             }
@@ -381,6 +384,24 @@ namespace ZCZJ_DPF.YS_Data
        
         #endregion
 
+
+
+
+
+       protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string tsaId = e.Row.Cells[1].Text.Trim();
+
+                SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(string.Format("SELECT YS_REBUT FROM dbo.YS_COST_BUDGET WHERE YS_TSA_ID='{0}'", tsaId));
+                if (dr.Read() && dr["YS_REBUT"].ToString()==depId)
+                {
+                    e.Row.BackColor = System.Drawing.Color.Red;
+                }
+                dr.Close();
+            }
+        }
 
     }
 }

@@ -59,7 +59,7 @@
     </table>
     <div style="width: 100%; overflow: auto;">
         <asp:GridView ID="GridView1" CssClass="toptable grid nowrap" runat="server" AutoGenerateColumns="False"
-            CellPadding="4" ForeColor="#333333">
+            CellPadding="4" ForeColor="#333333" OnRowDataBound="GridView1_RowDataBound">
             <RowStyle BackColor="#EFF3FB" />
             <Columns>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="序号" HeaderStyle-Wrap="false">
@@ -76,11 +76,11 @@
                 <asp:BoundField DataField="YS_ENGINEERNAME" ItemStyle-HorizontalAlign="center" HeaderText="设备名称"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Right" HeaderText="任务号收入"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:N2}"></asp:BoundField>
+                    HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
                 <asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Right" HeaderText="任务预算总额"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:N2}"></asp:BoundField>
+                    HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
                 <asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Right" HeaderText="预算毛利润"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:N2}"></asp:BoundField>
+                    HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
                 <asp:BoundField DataField="YS_PROFIT_RATE" ItemStyle-HorizontalAlign="Right" HeaderText="预算毛利率"
                     HeaderStyle-Wrap="false" DataFormatString="{0:P}"></asp:BoundField>
                 <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="采购反馈" HeaderStyle-Wrap="false">
@@ -119,11 +119,9 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="YS_MATERIAL_COST" ItemStyle-HorizontalAlign="Right" HeaderText="材料费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" >
-                </asp:BoundField>
+                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown"></asp:BoundField>
                 <asp:BoundField DataField="YS_LABOUR_COST" ItemStyle-HorizontalAlign="Right" HeaderText="人工费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" >
-                </asp:BoundField>
+                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown"></asp:BoundField>
                 <%--<asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Right" HeaderText="黑色金属"
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
                 </asp:BoundField>
@@ -152,8 +150,7 @@
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Salmon" DataFormatString="{0:N2}">
                 </asp:BoundField>--%>
                 <asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Right" HeaderText="运费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" >
-                </asp:BoundField>
+                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green"></asp:BoundField>
                 <asp:BoundField DataField="YS_TEC_SUBMIT_NAME" HeaderText="技术部提交人" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
                 <asp:BoundField DataField="YS_ADDTIME" HeaderText="技术部提交时间" ItemStyle-HorizontalAlign="Center"

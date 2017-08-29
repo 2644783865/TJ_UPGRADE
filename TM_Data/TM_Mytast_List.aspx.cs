@@ -448,6 +448,8 @@ namespace ZCZJ_DPF.TM_Data
           YS_BUDGET_INCOME ,
           YS_TRANS_COST,
           YS_WEIGHT,
+YS_LABOUR_COST,
+          YS_UNIT_LABOUR_COST_FB,
           YS_CAIWU ,
           YS_CAIGOU ,
           YS_SHENGCHAN ,
@@ -461,6 +463,8 @@ namespace ZCZJ_DPF.TM_Data
           YS_ADDFINISHTIME 
         )
 VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + engineerName + "' , '" + budgetIncome + "' , '" + transCost + "','" + tsaWeight + @"' , 
+          '0' , -- YS_LABOUR_COST - decimal(18,14)   
+          '0' , -- YS_UNIT_LABOUR_COST_FB - decimal(18,14)          
           '0' , -- YS_CAIWU - char(1)
           '0' , -- YS_CAIGOU - char(1)
           '0' , -- YS_SHENGCHAN - char(1)

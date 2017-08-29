@@ -62,7 +62,9 @@ function CalculateTotal() {
 
 
 
-
+$('input[id$=txt_YS_UNIT_LABOUR_COST_FB]').on('input', function() {
+$('input[id$=txt_labour_dispart_reference]').val((parseFloat($(this).val()) * parseFloat($('input[id$=txt_YS_WEIGHT]').val())).toFixed(4));
+})
 
 
 //黑色金属反馈单价更改时，自动计当前页面算反馈总价、反馈总价合计，以及预算汇总页面的单项材料费反馈、材料费反馈小计
