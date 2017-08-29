@@ -100,16 +100,16 @@ namespace ZCZJ_DPF.YS_Data
                     }
                     else
                     {
-                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 5]) + "')");
+                        //e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 5]) + "')");
                         e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                         if (db_pass > 0)
                         {
-                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
+                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万");
                         }
                         else
                         {
                             db_pass = Math.Abs(db_pass);
-                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
+                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额");
                         }
                     }
                 }

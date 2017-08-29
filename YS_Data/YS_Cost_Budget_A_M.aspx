@@ -227,6 +227,8 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="YS_BUDGET_INCOME" HeaderText="预算收入" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                        <asp:BoundField DataField="YS_Cost" HeaderText="预算费用合计" ItemStyle-HorizontalAlign="Left"
+                            HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_RealCost" HeaderText="实际费用合计" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="毛利润(预)" HeaderStyle-ForeColor="#660066"
@@ -346,20 +348,33 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="直接人工费(预)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="材料费合计(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
-                                    <asp:HiddenField ID="hidden_TEAM_CONTRACT" runat="Server" Value='<%#Eval("YS_TEAM_CONTRACT_BG_hide_percent","{0:N2}") %>' />
+                                    <asp:HiddenField ID="hidden_MATERIAL_COST" runat="Server" Value='<%#Eval("YS_MATERIAL_COST_BG_hide_percent","{0:N2}") %>' />
                                     <div style="width: 100px; position: static; z-index: 100; top: 4px; text-align: left;">
-                                        <asp:Label ID="lab_TEAM_CONTRACT" runat="server" Text='<%#Eval("YS_TEAM_CONTRACT_BG","{0:N2}") %>'></asp:Label>
+                                        <asp:Label ID="lab_MATERIAL_COST" runat="server" Text='<%#Eval("YS_MATERIAL_COST_BG","{0:N2}") %>'></asp:Label>
                                     </div>
-                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_TEAM_CONTRACT_BG_percent").ToString()) %>"
+                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_MATERIAL_COST_BG_percent").ToString()) %>"
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(预)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="人工费合计(预)" HeaderStyle-ForeColor="Brown"
+                            HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <div style="position: static; width: 100px;">
+                                    <asp:HiddenField ID="hidden_LABOUR_COST" runat="Server" Value='<%#Eval("YS_LABOUR_COST_BG_hide_percent","{0:N2}") %>' />
+                                    <div style="width: 100px; position: static; z-index: 100; top: 4px; text-align: left;">
+                                        <asp:Label ID="lab_LABOUR_COST" runat="server" Text='<%#Eval("YS_LABOUR_COST_BG","{0:N2}") %>'></asp:Label>
+                                    </div>
+                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_LABOUR_COST_BG_percent").ToString()) %>"
+                                        height="9" /><br />
+                                </div>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                       <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -384,7 +399,7 @@
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="制造费用(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
@@ -508,12 +523,19 @@
                                 <asp:Label ID="lab_OTHERMAT_COST_R" runat="server" Text='<%#Eval("YS_OTHERMAT_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="直接人工费(实)" HeaderStyle-Wrap="false">
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="材料费合计(实)" HeaderStyle-Wrap="false"
+                        HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
-                                <asp:Label ID="lab_TEAM_CONTRACT_R" runat="server" Text='<%#Eval("YS_TEAM_CONTRACT","{0:N2}") %>'></asp:Label>
+                                <asp:Label ID="lab_MATERIAL_COST_R" runat="server" Text='<%#Eval("YS_MATERIAL_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(实)" HeaderStyle-Wrap="false">
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="人工费合计(实)" HeaderStyle-Wrap="false"
+                         HeaderStyle-ForeColor="Green">
+                            <ItemTemplate>
+                                <asp:Label ID="lab_LABOUR_COST_R" runat="server" Text='<%#Eval("YS_LABOUR_COST","{0:N2}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(实)" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_FAC_CONTRACT_R" runat="server" Text='<%#Eval("YS_FAC_CONTRACT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
@@ -522,7 +544,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="lab_PRODUCT_OUT_R" runat="server" Text='<%#Eval("YS_PRODUCT_OUT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                          <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="制造费用(订)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
