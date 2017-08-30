@@ -18,16 +18,19 @@ namespace ZCZJ_DPF.YS_Data
     public partial class YS_Cost_Budget_View : BasicPage
     {
         PagerQueryParam pager = new PagerQueryParam();
-        string userName, uid, depId;
+        string userName, uid, depId, position, type;
         protected void Page_Load(object sender, EventArgs e)
         {
             userName = Session["UserName"].ToString();
             uid = Session["UserID"].ToString();
             depId = Session["UserDeptID"].ToString();
+            position = Session["POSITION"].ToString(); ;
+            type = Request.QueryString["type"].ToString();
            
             if (!IsPostBack)
             {
                 BindPer();
+                
                 BindState();
                 BindRevState();
                 BindProject();
@@ -35,11 +38,43 @@ namespace ZCZJ_DPF.YS_Data
                 BindTsaId();
                 InitVar();
                 GetTechRequireData();
-
+               
             }
             InitVar();
+            SetGVColsVisible();
             //CheckUser(ControlFinder);
         }
+
+        #region 判断gridview列的可见性
+        protected void SetGVColsVisible()
+        {
+
+            if (type=="0")//由预算编制进入
+            {
+
+            }
+            else if (type == "1")//由审批进入
+            {
+                for (int i = 16; i < 21; i++)
+                {
+                    GridView1.Columns[i].Visible = false;
+                }
+
+
+                if (position == "0102")//副总经理登陆
+                {
+                    GridView1.Columns[14].Visible = true;
+                }
+                else if (position == "0101")//总经理登陆
+                {
+                    GridView1.Columns[15].Visible = true;
+                }
+            }
+
+        }
+
+
+        #endregion
 
         #region 填充下拉框键值对
 
@@ -94,7 +129,7 @@ namespace ZCZJ_DPF.YS_Data
         protected void BindState()
         {
             string sqltext = "SELECT DISTINCT YS_REVSTATE AS DDLVALUE,case when YS_REVSTATE is null then '未送审' when YS_REVSTATE='0' then '未送审'" +
-            " when YS_REVSTATE='1' then '审核中'when YS_REVSTATE='2' then '已通过'when YS_REVSTATE='3' then '被驳回' end  AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_REVSTATE";
+            " when YS_REVSTATE='1' then '审核中'when YS_REVSTATE='2' then '通过'when YS_REVSTATE='3' then '驳回' end  AS DDLTEXT FROM YS_COST_BUDGET ORDER BY YS_REVSTATE";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_YS_REVSTATE, sqltext, dataText, dataValue);

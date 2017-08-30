@@ -62,66 +62,73 @@
             CellPadding="4" ForeColor="#333333" OnRowDataBound="GridView1_RowDataBound">
             <RowStyle BackColor="#EFF3FB" />
             <Columns>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="序号" HeaderStyle-Wrap="false">
+                <%--0--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="序号" HeaderStyle-Wrap="false">
                     <ItemTemplate>
                         <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="YS_TSA_ID" ItemStyle-HorizontalAlign="center" HeaderText="任务号"
-                    HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_CONTRACT_NO" ItemStyle-HorizontalAlign="center" HeaderText="合同号"
-                    HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_PROJECTNAME" ItemStyle-HorizontalAlign="center" HeaderText="项目名称"
-                    HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_ENGINEERNAME" ItemStyle-HorizontalAlign="center" HeaderText="设备名称"
-                    HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Right" HeaderText="任务号收入"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
-                <asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Right" HeaderText="任务预算总额"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
-                <asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Right" HeaderText="预算毛利润"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
-                <asp:BoundField DataField="YS_PROFIT_RATE" ItemStyle-HorizontalAlign="Right" HeaderText="预算毛利率"
-                    HeaderStyle-Wrap="false" DataFormatString="{0:P}"></asp:BoundField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="采购反馈" HeaderStyle-Wrap="false">
+                <%--1--%><asp:BoundField DataField="YS_TSA_ID" ItemStyle-HorizontalAlign="center"
+                    HeaderText="任务号" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--2--%><asp:BoundField DataField="YS_CONTRACT_NO" ItemStyle-HorizontalAlign="center"
+                    HeaderText="合同号" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--3--%><asp:BoundField DataField="YS_PROJECTNAME" ItemStyle-HorizontalAlign="center"
+                    HeaderText="项目名称" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--4--%><asp:BoundField DataField="YS_ENGINEERNAME" ItemStyle-HorizontalAlign="center"
+                    HeaderText="设备名称" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--5--%><asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="任务号收入" HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
+                <%--6--%><asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="任务预算总额" HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
+                <%--7--%><asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="预算毛利润" HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
+                <%--8--%><asp:BoundField DataField="YS_PROFIT_RATE" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="预算毛利率" HeaderStyle-Wrap="false" DataFormatString="{0:P}"></asp:BoundField>
+                <%--9--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="采购反馈"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_CAIGOU" runat="server" Text='<%# GetFeedBackState(Eval("YS_CAIGOU").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="生产反馈" HeaderStyle-Wrap="false">
+                <%--10--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="生产反馈"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_SHENGCHAN" runat="server" Text='<%# GetFeedBackState(Eval("YS_SHENGCHAN").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="财务调整与审核" HeaderStyle-Wrap="false">
+                <%--11--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="财务调整与审核"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_SHENGCHAN" runat="server" Text='<%# GetDisRevState(Eval("YS_CAIWU").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="预算编制进度" HeaderStyle-Wrap="false">
+                <%--12--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="预算编制进度"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_STATE" runat="server" Text='<%# GetState(Eval("YS_STATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="领导审核进度" HeaderStyle-Wrap="false">
+                <%--13--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="领导审核进度"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_REVSTATE" runat="server" Text='<%# GetRevState( Eval("YS_REVSTATE").ToString() )%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="一级审核" HeaderStyle-Wrap="false">
+                <%--14--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="我的审核"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_FIRST_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_FIRST_REVSTATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="二级审核" HeaderStyle-Wrap="false">
+                <%--15--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="我的审核"
+                    HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_SECOND_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_SECOND_REVSTATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="YS_MATERIAL_COST" ItemStyle-HorizontalAlign="Right" HeaderText="材料费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown"></asp:BoundField>
-                <asp:BoundField DataField="YS_LABOUR_COST" ItemStyle-HorizontalAlign="Right" HeaderText="人工费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown"></asp:BoundField>
+                <%--16--%><asp:BoundField DataField="YS_MATERIAL_COST" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="材料费" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--17--%><asp:BoundField DataField="YS_LABOUR_COST" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="人工费" HeaderStyle-Wrap="false"></asp:BoundField>
                 <%--<asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Right" HeaderText="黑色金属"
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
                 </asp:BoundField>
@@ -149,19 +156,19 @@
                 <asp:BoundField DataField="YS_PRODUCT_OUT" ItemStyle-HorizontalAlign="Right" HeaderText="生产外协"
                     HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Salmon" DataFormatString="{0:N2}">
                 </asp:BoundField>--%>
-                <asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Right" HeaderText="运费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green"></asp:BoundField>
-                <asp:BoundField DataField="YS_TEC_SUBMIT_NAME" HeaderText="技术部提交人" ItemStyle-HorizontalAlign="Center"
+                <%--18--%><asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Right"
+                    HeaderText="运费" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--19--%><asp:BoundField DataField="YS_TEC_SUBMIT_NAME" HeaderText="技术部提交人" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_ADDTIME" HeaderText="技术部提交时间" ItemStyle-HorizontalAlign="Center"
+                <%--20--%><asp:BoundField DataField="YS_ADDTIME" HeaderText="技术部提交时间" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_ADDNAME" ItemStyle-HorizontalAlign="Center" HeaderText="财务制单人"
+                <%--21--%><asp:BoundField DataField="YS_ADDNAME" ItemStyle-HorizontalAlign="Center"
+                    HeaderText="财务制单人" HeaderStyle-Wrap="false"></asp:BoundField>
+                <%--22--%><asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_ADDFINISHTIME" HeaderText="制单完成期限" ItemStyle-HorizontalAlign="Center"
+                <%--23--%><asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
                     HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
-                    HeaderStyle-Wrap="false"></asp:BoundField>
-                <asp:TemplateField HeaderText="详情" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
+                <%--24--%><asp:TemplateField HeaderText="详情" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
                     ItemStyle-HorizontalAlign="Center">
                     <ItemTemplate>
                         <asp:HyperLink ID="HyperLink1" Target="_blank" CssClass="link" NavigateUrl='<%#"YS_Cost_Budget_Add_Detail.aspx?tsaId="+Eval("YS_TSA_ID")%>'
