@@ -663,7 +663,7 @@
                                                 </td>
                                                 <td id="ph1" runat="server">
                                                     <asp:Label ID="PUR_PCODE" runat="server" Text='<%#Eval("PUR_PCODE")%>'></asp:Label>
-                                                    <asp:Label ID="PUR_IFFAST" runat="server"  Visible="false"></asp:Label>
+                                                    <asp:Label ID="PUR_IFFAST" runat="server" Text='<%#Eval("PUR_IFFAST")%>' Visible="false"></asp:Label>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>

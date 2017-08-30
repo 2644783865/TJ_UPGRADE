@@ -580,7 +580,7 @@
                                                                     CssClass="checkBoxCss" onclick="checkme(this)" />
                                                                 &nbsp;
                                                                 <asp:Label ID="lbUrgency" runat="server" Text="속선" ForeColor="Red" Visible="false"/>
-                                                                <%--<asp:Label ID="IFFAST" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>--%>
+                                                                <asp:Label ID="IFFAST" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>
                                                             </td>
                                                             <td>
                                                                 <asp:Label ID="rownum" runat="server" Text="<%#Container.ItemIndex + 1 %>"></asp:Label>
@@ -913,7 +913,7 @@
                                                             <asp:Label ID="rownum" runat="server" Text="<%#Container.ItemIndex + 1 %>"></asp:Label>
                                                             &nbsp;
                                                                 <asp:Label ID="lbUrgency2" runat="server" Text="속선" ForeColor="Red" Visible="false"/>
-                                                                <%--<asp:Label ID="IFFAST2" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>--%>
+                                                                <asp:Label ID="IFFAST2" runat="server" Text='<%#Eval("IFFAST") %>' Visible="false"/>
                                                         </td>
                                                         <td>
                                                             <asp:Label ID="PIC_PCODE" runat="server" Text='<%#Eval("ptcode")%>' Visible="false"></asp:Label>

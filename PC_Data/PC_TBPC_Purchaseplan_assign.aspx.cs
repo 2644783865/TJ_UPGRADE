@@ -1279,7 +1279,7 @@ namespace ZCZJ_DPF.PC_Data
                 string sqltext = "";
                 sqltext = "SELECT planno,pjnm,engnm,ptcode,PUR_TUHAO,marid,marnm," +
                              "margg ,marcz,margb,PUR_MASHAPE,length,width,rpnum,marunit,rpfznum,marfzunit, " +
-                            "cgrnm,purnote " +
+                            "cgrnm,purnote,PUR_IFFAST as 'IFFAST' " +
                             "FROM  View_TBPC_PURCHASEPLAN_IRQ_ORDER where  ptcode in (" + ordercode + ") order by planno desc,ptcode asc";
                 System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
                 ExportDataItem(dt);
@@ -1292,73 +1292,6 @@ namespace ZCZJ_DPF.PC_Data
         }
         private void ExportDataItem(System.Data.DataTable dt)
         {
-            //Application m_xlApp = new Application();
-            //Workbooks workbooks = m_xlApp.Workbooks;
-            //Workbook workbook;// = workbooks.Add(XlWBATemplate.xlWBATWorksheet);
-            //Worksheet wksheet;
-            //workbook = m_xlApp.Workbooks.Open(System.Web.HttpContext.Current.Server.MapPath("采购计划明细") + ".xls", Type.Missing, false, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-
-            //m_xlApp.Visible = false;    // Excel不显示  
-            //m_xlApp.DisplayAlerts = false;        // 关闭提示，采用默认的方案执行（合并单元格的时候，如果两个单元格都有数据，会出现一个确认提示）  
-
-            //wksheet = (Worksheet)workbook.Sheets.get_Item(1);
-
-            //System.Data.DataTable dt = objdt;
-
-            //// 填充数据
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //    wksheet.Cells[i + 3, 1] = Convert.ToString(i + 1);//序号
-
-            //    wksheet.Cells[i + 3, 2] = "'" + dt.Rows[i]["planno"].ToString();//批号
-
-            //    wksheet.Cells[i + 3, 3] = "'" + dt.Rows[i]["pjnm"].ToString();//项目
-
-            //    wksheet.Cells[i + 3, 4] = "'" + dt.Rows[i]["engnm"].ToString();//工程
-
-            //    wksheet.Cells[i + 3, 5] = "'" + dt.Rows[i]["ptcode"].ToString();//计划号
-
-            //    wksheet.Cells[i + 3, 6] = "'" + dt.Rows[i]["PUR_TUHAO"].ToString();//图号
-
-            //    wksheet.Cells[i + 3, 7] = "'" + dt.Rows[i]["marid"].ToString();//物料编码
-
-            //    wksheet.Cells[i + 3, 8] = "'" + dt.Rows[i]["marnm"].ToString();//名称
-
-            //    wksheet.Cells[i + 3, 9] = "'" + dt.Rows[i]["margg"].ToString();//规格
-
-            //    wksheet.Cells[i + 3, 10] = "'" + dt.Rows[i]["marcz"].ToString();//材质
-
-            //    wksheet.Cells[i + 3, 11] = "'" + dt.Rows[i]["margb"].ToString();//国标
-
-            //    wksheet.Cells[i + 3, 12] = "'" + dt.Rows[i]["PUR_MASHAPE"].ToString();//类型
-
-            //    wksheet.Cells[i + 3, 13] = "'" + dt.Rows[i]["length"].ToString();//长度
-
-            //    wksheet.Cells[i + 3, 14] = "'" + dt.Rows[i]["width"].ToString();//宽度
-
-            //    wksheet.Cells[i + 3, 15] = dt.Rows[i]["rpnum"].ToString();//数量
-
-            //    wksheet.Cells[i + 3, 16] = "'" + dt.Rows[i]["marunit"].ToString();//单位
-
-            //    wksheet.Cells[i + 3, 17] = dt.Rows[i]["rpfznum"].ToString();//辅助数量
-
-            //    wksheet.Cells[i + 3, 18] = "'" + dt.Rows[i]["marfzunit"].ToString();//辅助单位
-
-            //    wksheet.Cells[i + 3, 19] = dt.Rows[i]["cgrnm"].ToString();//采购人
-
-            //    wksheet.Cells[i + 3, 20] = dt.Rows[i]["purnote"].ToString();//金额
-
-            //    wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 20]).HorizontalAlignment = XlHAlign.xlHAlignCenter;
-            //    wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 20]).VerticalAlignment = XlVAlign.xlVAlignCenter;
-            //    wksheet.get_Range(wksheet.Cells[i + 3, 1], wksheet.Cells[i + 3, 20]).Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-            //}
-            ////设置列宽
-            //wksheet.Columns.EntireColumn.AutoFit();//列宽自适应
-
-            //string filename = Server.MapPath("/PC_Data/ExportFile/" + "采购计划明细" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls");
-
-            //ExportExcel_Exit(filename, workbook, m_xlApp, wksheet);
-
             string filename = "采购计划明细" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls";
             HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
             HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
@@ -1368,19 +1301,21 @@ namespace ZCZJ_DPF.PC_Data
             {
                 IWorkbook wk = new HSSFWorkbook(fs);
                 ISheet sheet0 = wk.GetSheetAt(0);
+                string Fast = string.Empty;
 
                 #region 写入数据
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 2);
-                    row.CreateCell(0).SetCellValue(i + 1);
+                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
+
                     for (int j = 0; j < dt.Columns.Count; j++)
                     {
                         row.CreateCell(j + 1).SetCellValue(dt.Rows[i][j].ToString());
                     }
 
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     row.CreateCell(1).SetCellValue("'" + dt.Rows[i]["planno"].ToString());//批号
                     row.CreateCell(2).SetCellValue("'" + dt.Rows[i]["pjnm"].ToString());//项目
                     row.CreateCell(3).SetCellValue("'" + dt.Rows[i]["engnm"].ToString());//工程
