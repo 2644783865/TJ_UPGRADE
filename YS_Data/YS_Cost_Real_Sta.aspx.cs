@@ -79,20 +79,20 @@ namespace ZCZJ_DPF.YS_Data
             DataTable dt9 = new DataTable();
             dt9 = DBCallCommon.GetDTUsingSqlText(sqltext9);
 
-            string sqltext10 = "select Convert(decimal(10,2), (YS_TEAM_CONTRACT1/10000)) AS YS_TEAM_CONTRACT1,Convert(decimal(10,2), (YS_TEAM_CONTRACT_BG1/10000)) AS YS_TEAM_CONTRACT_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
+            //string sqltext10 = "select Convert(decimal(10,2), (YS_TEAM_CONTRACT1/10000)) AS YS_TEAM_CONTRACT1,Convert(decimal(10,2), (YS_TEAM_CONTRACT_BG1/10000)) AS YS_TEAM_CONTRACT_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
 
-            DataTable dt10 = new DataTable();
-            dt10 = DBCallCommon.GetDTUsingSqlText(sqltext10);
+            //DataTable dt10 = new DataTable();
+            //dt10 = DBCallCommon.GetDTUsingSqlText(sqltext10);
 
-            string sqltext11 = "select Convert(decimal(10,2), (YS_FAC_CONTRACT1/10000)) AS YS_FAC_CONTRACT1,Convert(decimal(10,2), (YS_FAC_CONTRACT_BG1/10000)) AS YS_FAC_CONTRACT_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
+            //string sqltext11 = "select Convert(decimal(10,2), (YS_FAC_CONTRACT1/10000)) AS YS_FAC_CONTRACT1,Convert(decimal(10,2), (YS_FAC_CONTRACT_BG1/10000)) AS YS_FAC_CONTRACT_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
 
-            DataTable dt11 = new DataTable();
-            dt11 = DBCallCommon.GetDTUsingSqlText(sqltext11);
+            //DataTable dt11 = new DataTable();
+            //dt11 = DBCallCommon.GetDTUsingSqlText(sqltext11);
 
-            string sqltext12 = "select Convert(decimal(10,2), (YS_PRODUCT_OUT1/10000)) AS YS_PRODUCT_OUT1,Convert(decimal(10,2), (YS_PRODUCT_OUT_BG1/10000)) AS YS_PRODUCT_OUT_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
+            //string sqltext12 = "select Convert(decimal(10,2), (YS_PRODUCT_OUT1/10000)) AS YS_PRODUCT_OUT1,Convert(decimal(10,2), (YS_PRODUCT_OUT_BG1/10000)) AS YS_PRODUCT_OUT_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
 
-            DataTable dt12 = new DataTable();
-            dt12 = DBCallCommon.GetDTUsingSqlText(sqltext12);
+            //DataTable dt12 = new DataTable();
+            //dt12 = DBCallCommon.GetDTUsingSqlText(sqltext12);
 
             string sqltext13 = "select Convert(decimal(10,2), (YS_TRANS_COST1/10000)) AS YS_TRANS_COST1,Convert(decimal(10,2), (YS_TRANS_COST_BG1/10000)) AS YS_TRANS_COST_BG1, YEARMONTH from View_YS__BUDGET_STA where " + strstring1() + " order by YEARMONTH asc";
 
@@ -229,44 +229,44 @@ namespace ZCZJ_DPF.YS_Data
             Chart10.Series["人工费用预算总值"].ChartType = SeriesChartType.Column;
             Chart10.Series["人工费用实际总值"].ChartType = SeriesChartType.Column;
 
-            if (dt10.Rows.Count > 0)
-            {
-                DataView dv10 = new DataView(dt10);
-                Chart11.Series["直接人工费用预算总值"].Points.DataBindXY(dv10, "YEARMONTH", dv10, "YS_TEAM_CONTRACT_BG1");
-                Chart11.Series["直接人工费用实际总值"].Points.DataBindXY(dv10, "YEARMONTH", dv10, "YS_TEAM_CONTRACT1");
-                Chart11.Series["直接人工费用预算总值"].Label = "#VALY";
-                Chart11.Series["直接人工费用实际总值"].Label = "#VALY";
-                Chart11.Series["直接人工费用预算总值"].ToolTip = "#VALY";
-                Chart11.Series["直接人工费用实际总值"].ToolTip = "#VALY";
-            }
-            Chart11.Series["直接人工费用预算总值"].ChartType = SeriesChartType.Column;
-            Chart11.Series["直接人工费用实际总值"].ChartType = SeriesChartType.Column;
+            //if (dt10.Rows.Count > 0)
+            //{
+            //    DataView dv10 = new DataView(dt10);
+            //    Chart11.Series["直接人工费用预算总值"].Points.DataBindXY(dv10, "YEARMONTH", dv10, "YS_TEAM_CONTRACT_BG1");
+            //    Chart11.Series["直接人工费用实际总值"].Points.DataBindXY(dv10, "YEARMONTH", dv10, "YS_TEAM_CONTRACT1");
+            //    Chart11.Series["直接人工费用预算总值"].Label = "#VALY";
+            //    Chart11.Series["直接人工费用实际总值"].Label = "#VALY";
+            //    Chart11.Series["直接人工费用预算总值"].ToolTip = "#VALY";
+            //    Chart11.Series["直接人工费用实际总值"].ToolTip = "#VALY";
+            //}
+            //Chart11.Series["直接人工费用预算总值"].ChartType = SeriesChartType.Column;
+            //Chart11.Series["直接人工费用实际总值"].ChartType = SeriesChartType.Column;
 
-            if (dt11.Rows.Count > 0)
-            {
-                DataView dv11 = new DataView(dt11);
-                Chart12.Series["厂内分包费用预算总值"].Points.DataBindXY(dv11, "YEARMONTH", dv11, "YS_FAC_CONTRACT_BG1");
-                Chart12.Series["厂内分包费用实际总值"].Points.DataBindXY(dv11, "YEARMONTH", dv11, "YS_FAC_CONTRACT1");
-                Chart12.Series["厂内分包费用预算总值"].Label = "#VALY";
-                Chart12.Series["厂内分包费用实际总值"].Label = "#VALY";
-                Chart12.Series["厂内分包费用预算总值"].ToolTip = "#VALY";
-                Chart12.Series["厂内分包费用实际总值"].ToolTip = "#VALY";
-            }
-            Chart12.Series["厂内分包费用预算总值"].ChartType = SeriesChartType.Column;
-            Chart12.Series["厂内分包费用实际总值"].ChartType = SeriesChartType.Column;
+            //if (dt11.Rows.Count > 0)
+            //{
+            //    DataView dv11 = new DataView(dt11);
+            //    Chart12.Series["厂内分包费用预算总值"].Points.DataBindXY(dv11, "YEARMONTH", dv11, "YS_FAC_CONTRACT_BG1");
+            //    Chart12.Series["厂内分包费用实际总值"].Points.DataBindXY(dv11, "YEARMONTH", dv11, "YS_FAC_CONTRACT1");
+            //    Chart12.Series["厂内分包费用预算总值"].Label = "#VALY";
+            //    Chart12.Series["厂内分包费用实际总值"].Label = "#VALY";
+            //    Chart12.Series["厂内分包费用预算总值"].ToolTip = "#VALY";
+            //    Chart12.Series["厂内分包费用实际总值"].ToolTip = "#VALY";
+            //}
+            //Chart12.Series["厂内分包费用预算总值"].ChartType = SeriesChartType.Column;
+            //Chart12.Series["厂内分包费用实际总值"].ChartType = SeriesChartType.Column;
 
-            if (dt12.Rows.Count > 0)
-            {
-                DataView dv12 = new DataView(dt12);
-                Chart13.Series["生产外协费用预算总值"].Points.DataBindXY(dv12, "YEARMONTH", dv12, "YS_PRODUCT_OUT_BG1");
-                Chart13.Series["生产外协费用实际总值"].Points.DataBindXY(dv12, "YEARMONTH", dv12, "YS_PRODUCT_OUT1");
-                Chart13.Series["生产外协费用预算总值"].Label = "#VALY";
-                Chart13.Series["生产外协费用实际总值"].Label = "#VALY";
-                Chart13.Series["生产外协费用预算总值"].ToolTip = "#VALY";
-                Chart13.Series["生产外协费用实际总值"].ToolTip = "#VALY";
-            }
-            Chart13.Series["生产外协费用预算总值"].ChartType = SeriesChartType.Column;
-            Chart13.Series["生产外协费用实际总值"].ChartType = SeriesChartType.Column;
+            //if (dt12.Rows.Count > 0)
+            //{
+            //    DataView dv12 = new DataView(dt12);
+            //    Chart13.Series["生产外协费用预算总值"].Points.DataBindXY(dv12, "YEARMONTH", dv12, "YS_PRODUCT_OUT_BG1");
+            //    Chart13.Series["生产外协费用实际总值"].Points.DataBindXY(dv12, "YEARMONTH", dv12, "YS_PRODUCT_OUT1");
+            //    Chart13.Series["生产外协费用预算总值"].Label = "#VALY";
+            //    Chart13.Series["生产外协费用实际总值"].Label = "#VALY";
+            //    Chart13.Series["生产外协费用预算总值"].ToolTip = "#VALY";
+            //    Chart13.Series["生产外协费用实际总值"].ToolTip = "#VALY";
+            //}
+            //Chart13.Series["生产外协费用预算总值"].ChartType = SeriesChartType.Column;
+            //Chart13.Series["生产外协费用实际总值"].ChartType = SeriesChartType.Column;
 
             if (dt13.Rows.Count > 0)
             {

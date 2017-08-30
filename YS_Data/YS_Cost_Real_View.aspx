@@ -165,6 +165,8 @@
                             HeaderStyle-ForeColor="Green" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_MAR_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="材料费小计"
                             HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <asp:BoundField DataField="YS_LAB_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="人工费小计"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
                         <%--材料费小计--%>
                        <%-- <asp:BoundField DataField="YS_FINA_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="分摊费小计"
                             HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />--%>

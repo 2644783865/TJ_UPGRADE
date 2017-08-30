@@ -3,7 +3,7 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    预算分析统计
+    预算分析统计 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <link href="FixTable.css" rel="stylesheet" type="text/css" />
@@ -511,7 +511,7 @@
                            </tr>
                            
                            
-                           <tr>
+                           <%--<tr>
                                <td>
                                    <asp:Chart ID="Chart11" runat="server" Height="356px" Width="1000px" Palette="BrightPastel" ImageType="Png" BorderDashStyle="Solid" BackSecondaryColor="White" BackGradientStyle="VerticalCenter" BorderWidth="2px" BackColor="211, 223, 240" BorderColor="#1A3B69">
                                         <Titles>
@@ -644,7 +644,7 @@
                                         </ChartAreas>
                                     </asp:Chart>
                                </td>
-                           </tr>
+                           </tr>--%>
                            
 
                                                     

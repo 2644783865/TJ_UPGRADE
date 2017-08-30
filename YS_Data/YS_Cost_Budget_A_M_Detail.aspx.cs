@@ -51,9 +51,10 @@ namespace ZCZJ_DPF.YS_Data
 
             BindData(ContractNo, FatherCode);
         }
-
+        
         protected void BindData(string ContractNo, string FatherCode)
         {
+            
             switch (FatherCode)
             {
                 //case "OUT_LAB_MAR": this.Bind_OUT(ContractNo, FatherCode); break;
@@ -144,9 +145,25 @@ namespace ZCZJ_DPF.YS_Data
         protected void Bind_MAR(string ContractNo, string FatherCode)
         {
             string fatherid = "";
+            string fatherid1 = "";
+            if (FatherCode == "FERROUS_METAL")
+            {
+                fatherid = "01.07";
+                fatherid1 = "01.07"; 
+            }
+            if (FatherCode == "PURCHASE_PART")
+            {
+                fatherid = "01.11";
+                fatherid1 = "01.11";
+            }
+            if (FatherCode == "MACHINING_PART")
+            {
+                fatherid = "01.08";
+                fatherid = "01.09";
+            }
             string sql_MAR = "select YS_CODE,YS_NAME,YS_MONEY as YS_MONEY_BG,YS_Union_Amount as YS_Union_Amount_BG," +
                 "YS_Average_Price as YS_Average_Price_BG from YS_COST_BUDGET_DETAIL where YS_TSA_ID='" + ContractNo + "'" +
-                " and YS_FATHER='" + FatherCode + "' ";
+                " and (YS_CODE LIKE '" + fatherid + "%' or YS_CODE LIKE '" + fatherid1+"%')";
             System.Data.DataTable dt_MAR = DBCallCommon.GetDTUsingSqlText(sql_MAR);
             dt_MAR.Columns.Add("YS_Union_Amount");
             dt_MAR.Columns.Add("YS_Average_Price");
@@ -172,24 +189,24 @@ namespace ZCZJ_DPF.YS_Data
 
             #region 黑色金属
             if (FatherCode == "FERROUS_METAL")
-            {
-                fatherid = "01.07";
+            {              
                 string sql_money = "select sum(Amount) as Amount,sum(RealNumber) as RealNumber, sum(Amount)/sum(RealNumber) as UnitPrice from View_SM_OUT where  TSAID = '" + ENGID + "' AND TSAID != '' and MaterialCode like'" + fatherid + "%'";
                 for (int j = 0; j < dt_MAR.Rows.Count; j++)
                 {
                     string sql = "";
-                    if (dt_MAR.Rows[j]["YS_NAME"].ToString() == "轨道系统")
-                    {
-                        sql = sql_money + " and MaterialName like '%轨道%'";
-                    }
-                    else if (dt_MAR.Rows[j]["YS_NAME"].ToString() == "定尺板")
-                    {
-                        sql = sql_money + " and PlanMode='定尺板'";
-                    }
-                    else if (dt_MAR.Rows[j]["YS_NAME"].ToString() == "普通材料")
-                    {
-                        sql = sql_money + " and charindex('轨道',MaterialName)=0  and PlanMode !='定尺板'";
-                    }
+                    sql = sql_money + " and MaterialName = '" + dt_MAR.Rows[j]["YS_NAME"].ToString() + "'";
+                    //if (dt_MAR.Rows[j]["YS_NAME"].ToString() == "轨道系统")
+                    //{
+                    //    sql = sql_money + " and MaterialName like '%轨道%'";
+                    //}
+                    //else if (dt_MAR.Rows[j]["YS_NAME"].ToString() == "定尺板")
+                    //{
+                    //    sql = sql_money + " and PlanMode='定尺板'";
+                    //}
+                    //else if (dt_MAR.Rows[j]["YS_NAME"].ToString() == "普通材料")
+                    //{
+                    //    sql = sql_money + " and charindex('轨道',MaterialName)=0  and PlanMode !='定尺板'";
+                    //}
                     double money = 0;
                     double num = 0;
                     double price = 0;
