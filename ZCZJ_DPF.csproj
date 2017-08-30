@@ -4939,6 +4939,13 @@
     <Compile Include="PC_Data\TBPC_IQRCMPPRC_resultprint2.aspx.designer.cs">
       <DependentUpon>TBPC_IQRCMPPRC_resultprint2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PC_Data\TBPC_Order_Amount_detail.aspx.cs">
+      <DependentUpon>TBPC_Order_Amount_detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PC_Data\TBPC_Order_Amount_detail.aspx.designer.cs">
+      <DependentUpon>TBPC_Order_Amount_detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PC_Data\TBPC_Purorderdetail_xiugai.aspx.cs">
       <DependentUpon>TBPC_Purorderdetail_xiugai.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -11144,6 +11151,7 @@
     <None Include="PC_Data\采购合同.xls" />
     <None Include="PC_Data\采购比价单.xls" />
     <None Include="PC_Data\采购比价单明细.xls" />
+    <None Include="PC_Data\采购比价单明细批量导出模板.xls" />
     <None Include="PC_Data\采购计划导出.xls" />
     <None Include="PC_Data\采购计划明细.xls" />
     <None Include="PC_Data\采购订单明细表模版.xls" />
@@ -11188,6 +11196,7 @@
     <Content Include="PC_Data\PC_ZHAOBIAOLOGIN.aspx" />
     <Content Include="PC_Data\PC_ZHAOBIAOMANAGEMENT.aspx" />
     <Content Include="PC_Data\PC_ZHAOBIAOQUERY.aspx" />
+    <Content Include="PC_Data\TBPC_Order_Amount_detail.aspx" />
     <Content Include="PC_Data\ZHAOBIAOEDIT.aspx" />
     <Content Include="PL_Data\MainPlanProView.aspx" />
     <Content Include="PL_Data\MainPlan_AjaxHandler.aspx" />

@@ -55,8 +55,8 @@ namespace ZCZJ_DPF.YS_Data
                 //双击合同号，查看合同详细信息
                 string lbl_CONTRACT_NO = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lbl_YS_CONTRACT_NO")).Text.ToString();
                 string lbl_pcon_sch = ((System.Web.UI.WebControls.Label)e.Row.FindControl("lbl_pcon_sch")).Text.ToString();
-                //e.Row.Cells[1].Attributes.Add("ondblclick", "ShowContract('" + lbl_CONTRACT_NO + "')");//第二格，即合同号上添加双击事件
-                //e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
+                e.Row.Cells[1].Attributes.Add("ondblclick", "ShowContract('" + lbl_CONTRACT_NO + "')");//第二格，即合同号上添加双击事件
+                e.Row.Cells[1].Attributes.Add("title", "双击关联合同信息！");
 
                 Encrypt_Decrypt ed = new Encrypt_Decrypt();
                 string CONTRACT_NO = ed.EncryptText(lbl_CONTRACT_NO);

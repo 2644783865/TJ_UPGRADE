@@ -34,7 +34,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             BindProject();
             BindEngineer();
-            string sql_updatetime = "select top 1 YS_UPDATE_TIME from YS_COST_REAL ";
+            string sql_updatetime = "select top 1 YS_UPDATE_TIME from YS_COST_REAL order by YS_UPDATE_TIME desc";
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_updatetime);
             if (dt.Rows.Count > 0)
             {
