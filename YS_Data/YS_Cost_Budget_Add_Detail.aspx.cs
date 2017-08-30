@@ -19,12 +19,13 @@ namespace ZCZJ_DPF.YS_Data
     public partial class YS_Cost_Budget_Add_Detail : BasicPage
     {
         int shengChan, caiGou, caiWu, jinDu, shenHe, yiJi, erJi;
-        string tsaId, userName, uid, depId;
+        string tsaId, userName, uid, depId, position;
         protected void Page_Load(object sender, EventArgs e)
         {
             userName = Session["UserName"].ToString();
             uid = Session["UserID"].ToString();
-            depId = Session["UserDeptID"].ToString();            
+            depId = Session["UserDeptID"].ToString();
+            position = Session["POSITION"].ToString(); ;
             tsaId = Request.QueryString["tsaId"].ToString();
             GetState(tsaId);
 
@@ -60,14 +61,17 @@ namespace ZCZJ_DPF.YS_Data
                     btn_PushDown.Visible = true;
 
                 }
-                else if (caiWu == 1 && userName == "李树波")    //财务调整与审核为待审批时，且登陆人为李树波
+                else if (caiWu == 1 && position == "0601")    //财务调整与审核为待审批时，且登陆角色为0501
                 {
                     //输入
                     txt_YS_MATERIAL_COST.ReadOnly = false;
                     txt_YS_LABOUR_COST.ReadOnly = false;
                     txt_YS_NOTE.ReadOnly = false;
-                    //按钮                    
+                    //按钮
+                    btn_Save.Visible = true;
                     rdl_CaiWuCheck.Enabled = true;
+                    txt_YS_CAIWU_YJ.ReadOnly = false;
+                    txt_YS_CAIWU_YJ.BackColor = System.Drawing.Color.Orange;
                 }
 
             }
@@ -118,6 +122,20 @@ namespace ZCZJ_DPF.YS_Data
                 txt_YS_SHENGCHAN_YJ.ReadOnly = false;
                 txt_YS_SHENGCHAN_YJ.BackColor = System.Drawing.Color.Orange;
             }
+            else if (yiJi == 1 && position == "0102")
+            {
+                rdl_YiJiCheck.Enabled = true;
+                txt_YS_FIRST_REV_YJ.ReadOnly = false;
+                txt_YS_FIRST_REV_YJ.BackColor = System.Drawing.Color.Orange;
+            }
+            else if (erJi == 1 && position == "0101")
+            {
+                rdl_ErJiCheck.Enabled = true;
+                txt_YS_SECOND_REV_YJ.ReadOnly = false;
+                txt_YS_SECOND_REV_YJ.BackColor = System.Drawing.Color.Orange;
+            }
+
+
 
         }
 
@@ -208,7 +226,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
 
 
 
-            //审批页面
+
             #region 绑定审批结果、审批人、审批时间
             switch (caiGou)
             {
@@ -252,8 +270,8 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
 
             switch (erJi)
             {
-                case 2: rdl_YiJiCheck.SelectedIndex = 0; break;
-                case 3: rdl_YiJiCheck.SelectedIndex = 1; break;
+                case 2: rdl_ErJiCheck.SelectedIndex = 0; break;
+                case 3: rdl_ErJiCheck.SelectedIndex = 1; break;
                 default: break;
             }
             lb_YS_SECOND_REV_NAME.Text = dt.Rows[0]["YS_SECOND_REV_NAME"].ToString();
@@ -433,7 +451,7 @@ where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%
 
 
         /// <summary>
-        /// 保存按钮:财务填写、采购部反馈、生产部反馈使用
+        /// 保存按钮:财务填写、采购部反馈、生产部反馈、财务调整使用
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -442,9 +460,10 @@ where YS_TSA_ID='{0}' AND YS_CODE NOT LIKE '01.07%' AND YS_CODE NOT LIKE '01.11%
             List<string> listsql = new List<string>();//保存更新语句
 
 
-            #region 财务填写保存
+
             if (depId == "06")
             {
+                #region 财务填写保存
                 if (jinDu <= 1)
                 {
                     listsql.Clear();
@@ -490,9 +509,42 @@ WHERE   YS_TSA_ID = '{16}';",
                     listsql.Clear();
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功！');window.close();window.opener.location.reload();", true);
                 }
+                #endregion
 
+                #region 财务调整保存
+                else if (caiWu == 1 && position == "0601")
+                {
+                    listsql.Clear();
+                    listsql.Add(string.Format(@"UPDATE  dbo.YS_COST_BUDGET
+SET     YS_NOTE = '{0}' ,
+        YS_MATERIAL_COST = '{1}' ,
+        YS_LABOUR_COST = '{2}' ,        
+        YS_FERROUS_METAL = '{3}' ,
+        YS_PURCHASE_PART = '{4}' ,
+        YS_PAINT_COATING = '{5}' ,
+        YS_ELECTRICAL = '{6}' ,
+        YS_CASTING_FORGING_COST = '{7}' ,
+        YS_OTHERMAT_COST = '{8}' 
+WHERE   YS_TSA_ID = '{9}';",
+                    Request.Form[txt_YS_NOTE.UniqueID].Trim(),
+                    Request.Form[txt_YS_MATERIAL_COST.UniqueID].Trim(),
+                    Request.Form[txt_YS_LABOUR_COST.UniqueID].Trim(),
+                    Request.Form[txt_YS_FERROUS_METAL.UniqueID].Trim(),
+                    Request.Form[txt_YS_PURCHASE_PART.UniqueID].Trim(),
+                    Request.Form[txt_YS_PAINT_COATING.UniqueID].Trim(),
+                    Request.Form[txt_YS_ELECTRICAL.UniqueID].Trim(),
+                    Request.Form[txt_YS_CASTING_FORGING_COST.UniqueID].Trim(),
+                    Request.Form[txt_YS_OTHERMAT_COST.UniqueID].Trim(),
+                    tsaId));
+                    DBCallCommon.ExecuteTrans(listsql);
+                    listsql.Clear();
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功！');window.close();window.opener.location.reload();", true);
+
+
+                }
+                #endregion
             }
-            #endregion
+
 
             #region 采购部反馈保存
             else if (caiGou == 1 && depId == "05")
@@ -505,7 +557,26 @@ WHERE   YS_TSA_ID = '{16}';",
                 GetDeatils(rpt_YS_ELECTRICAL, "txt_YS_ELECTRICAL_Average_Price_FB", listsql);
                 GetDeatils(rpt_YS_CASTING_FORGING_COST, "txt_YS_CASTING_FORGING_COST_Average_Price_FB", listsql);
                 GetDeatils(rpt_YS_OTHERMAT_COST, "txt_YS_OTHERMAT_COST_Average_Price_FB", listsql);
+                listsql.Add(string.Format(@"UPDATE  dbo.YS_COST_BUDGET
+SET     
+        
+        YS_FERROUS_METAL_FB = '{0}' ,
+        YS_PURCHASE_PART_FB = '{1}' ,        
+        YS_PAINT_COATING_FB = '{2}' ,        
+        YS_ELECTRICAL_FB = '{3}' ,        
+        YS_CASTING_FORGING_COST_FB = '{4}' ,        
+        YS_OTHERMAT_COST_FB = '{5}' ,
+        YS_UNIT_LABOUR_COST_FB = '{6}'
+WHERE   YS_TSA_ID = '{7}';",
 
+                    Request.Form[txt_YS_FERROUS_METAL_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_PURCHASE_PART_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_PAINT_COATING_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_ELECTRICAL_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_CASTING_FORGING_COST_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_OTHERMAT_COST_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_UNIT_LABOUR_COST_FB.UniqueID].Trim(),
+                    tsaId));
                 listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_REVSTATE=0 WHERE YS_TSA_ID='{0}'", tsaId));
                 DBCallCommon.ExecuteTrans(listsql);
                 listsql.Clear();
@@ -523,10 +594,6 @@ WHERE   YS_TSA_ID = '{16}';",
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功!');window.close();window.opener.location.reload();", true);
             }
             #endregion
-
-
-
-
 
 
         }
@@ -583,7 +650,7 @@ WHERE   YS_TSA_ID = '{16}';",
             //保存财务制单人
             listsql.Add(string.Format("UPDATE  dbo.YS_COST_BUDGET SET YS_ADDNAME = '{0}' WHERE YS_TSA_ID = '{1}' AND YS_ADDNAME IS NULL", userName, tsaId));
             //更新状态
-            listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=2, YS_SHENGCHAN=1,YS_CAIGOU=1,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
+            listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=2, YS_SHENGCHAN=1,YS_SHENGCHAN_SJ=NULL, YS_SHENGCHAN_NAME=NULL,YS_SHENGCHAN_YJ=NULL,YS_CAIGOU=1,YS_CAIGOU_SJ=NULL ,YS_CAIGOU_NAME=NULL,YS_CAIGOU_YJ=NULL,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
             DBCallCommon.ExecuteTrans(listsql);
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('下推成功!');window.close();window.opener.location.reload();", true);
         }
@@ -596,7 +663,7 @@ WHERE   YS_TSA_ID = '{16}';",
         protected void btn_Submit_Click(object sender, EventArgs e)
         {
             List<string> listsql = new List<string>();//保存更新语句
-            
+
             #region 采购部提交
             if (caiGou == 1 && depId == "05")    //05采购部，采购状态为待反馈
             {
@@ -608,6 +675,27 @@ WHERE   YS_TSA_ID = '{16}';",
                 GetDeatils(rpt_YS_ELECTRICAL, "txt_YS_ELECTRICAL_Average_Price_FB", listsql);
                 GetDeatils(rpt_YS_CASTING_FORGING_COST, "txt_YS_CASTING_FORGING_COST_Average_Price_FB", listsql);
                 GetDeatils(rpt_YS_OTHERMAT_COST, "txt_YS_OTHERMAT_COST_Average_Price_FB", listsql);
+                listsql.Add(string.Format(@"UPDATE  dbo.YS_COST_BUDGET
+SET     
+        
+        YS_FERROUS_METAL_FB = '{0}' ,
+        YS_PURCHASE_PART_FB = '{1}' ,        
+        YS_PAINT_COATING_FB = '{2}' ,        
+        YS_ELECTRICAL_FB = '{3}' ,        
+        YS_CASTING_FORGING_COST_FB = '{4}' ,        
+        YS_OTHERMAT_COST_FB = '{5}' ,
+        YS_UNIT_LABOUR_COST_FB = '{6}'
+WHERE   YS_TSA_ID = '{7}';",
+
+                    Request.Form[txt_YS_FERROUS_METAL_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_PURCHASE_PART_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_PAINT_COATING_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_ELECTRICAL_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_CASTING_FORGING_COST_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_OTHERMAT_COST_FB.UniqueID].Trim(),
+                    Request.Form[txt_YS_UNIT_LABOUR_COST_FB.UniqueID].Trim(),
+                    tsaId));
+
                 listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIGOU=2,YS_CAIGOU_NAME='{0}',YS_CAIGOU_YJ='{1}',YS_CAIGOU_SJ=GETDATE(),YS_REVSTATE=0 WHERE YS_TSA_ID='{2}'", userName, Request.Form[txt_YS_CAIGOU_YJ.UniqueID], tsaId));
                 DBCallCommon.ExecuteTrans(listsql);
 
@@ -617,7 +705,7 @@ WHERE   YS_TSA_ID = '{16}';",
 
                 if (dt.Rows[0]["YS_SHENGCHAN"].ToString() == "2" && dt.Rows[0]["YS_CAIGOU"].ToString() == "2")
                 {
-                    DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=3,YS_CAIWU=1,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
+                    DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=3,YS_CAIWU=1,YS_CAIWU_NAME=NULL,YS_CAIWU_SJ=NULL,YS_CAIWU_YJ=NULL,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
                 }
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.close();window.opener.location.reload();", true);
             }
@@ -636,32 +724,92 @@ WHERE   YS_TSA_ID = '{16}';",
 
                 if (dt.Rows[0]["YS_SHENGCHAN"].ToString() == "2" && dt.Rows[0]["YS_CAIGOU"].ToString() == "2")
                 {
-                    DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=3,YS_CAIWU=1,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
+                    DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=3,YS_CAIWU=1,YS_CAIWU_NAME=NULL,YS_CAIWU_SJ=NULL,YS_CAIWU_YJ=NULL,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
                 }
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.close();window.opener.location.reload();", true);
             }
             #endregion
 
+            #region 财务调整提交
+            else if (caiWu == 1 && position == "0601")    //财务部长进行财务调整
+            {
+                listsql.Clear();
+                listsql.Add(string.Format(@"UPDATE  dbo.YS_COST_BUDGET
+SET     YS_NOTE = '{0}' ,
+        YS_MATERIAL_COST = '{1}' ,
+        YS_LABOUR_COST = '{2}' ,        
+        YS_FERROUS_METAL = '{3}' ,
+        YS_PURCHASE_PART = '{4}' ,
+        YS_PAINT_COATING = '{5}' ,
+        YS_ELECTRICAL = '{6}' ,
+        YS_CASTING_FORGING_COST = '{7}' ,
+        YS_OTHERMAT_COST = '{8}' 
+WHERE   YS_TSA_ID = '{9}';",
+                    Request.Form[txt_YS_NOTE.UniqueID].Trim(),
+                    Request.Form[txt_YS_MATERIAL_COST.UniqueID].Trim(),
+                    Request.Form[txt_YS_LABOUR_COST.UniqueID].Trim(),
+                    Request.Form[txt_YS_FERROUS_METAL.UniqueID].Trim(),
+                    Request.Form[txt_YS_PURCHASE_PART.UniqueID].Trim(),
+                    Request.Form[txt_YS_PAINT_COATING.UniqueID].Trim(),
+                    Request.Form[txt_YS_ELECTRICAL.UniqueID].Trim(),
+                    Request.Form[txt_YS_CASTING_FORGING_COST.UniqueID].Trim(),
+                    Request.Form[txt_YS_OTHERMAT_COST.UniqueID].Trim(),
+                    tsaId));
+                listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIWU='2',YS_CAIWU_NAME='{0}',YS_CAIWU_SJ=GETDATE(),YS_CAIWU_YJ='{1}',YS_STATE='4',YS_REVSTATE='1',YS_FIRST_REVSTATE='1',YS_REBUT='0' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId));
+                DBCallCommon.ExecuteTrans(listsql);
+                listsql.Clear();
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功！');window.close();window.opener.location.reload();", true);
+
+            }
+            #endregion
+
+            #region 一级提交
+            else if (yiJi == 1 && position == "0102")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=2,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_SECOND_REVSTATE=1 WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已提交审批!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+            #region 二级提交
+            else if (erJi == 1 && position == "0101")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=2,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_STATE=5,YS_REVSTATE=2 WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已提交审批!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
         }
 
         /// <summary>
-        /// 驳回至财务填写：采购部反馈、生产部反馈、财务调整使用
+        /// 驳回至财务填写：采购部反馈、生产部反馈、财务调整、一级审批、二级审批使用
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btn_RebutToCaiWu_Click(object sender, EventArgs e)
         {
-           
+
             #region 采购部反馈驳回到财务填写
             if (depId == "05" && caiGou == 1)
             {
-                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=0,YS_CAIGOU=3,YS_CAIGOU_NAME='{0}',YS_CAIGOU_YJ='{1}',YS_CAIGOU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';",userName,Request.Form[txt_YS_CAIGOU_YJ.UniqueID], tsaId)) > 0)
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=0,YS_CAIGOU=3,YS_CAIGOU_NAME='{0}',YS_CAIGOU_YJ='{1}',YS_CAIGOU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIGOU_YJ.UniqueID], tsaId)) > 0)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
                 }
             }
             #endregion
@@ -669,21 +817,162 @@ WHERE   YS_TSA_ID = '{16}';",
             #region 生产部反馈驳回到财务填写
             else if (depId == "04" && shengChan == 1)
             {
-                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=3,YS_CAIGOU=0,YS_SHENGCHAN_NAME='{0}',YS_SHENGCHAN_YJ='{1}',YS_SHENGCHAN_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';",userName,Request.Form[txt_YS_SHENGCHAN_YJ.UniqueID], tsaId)) > 0)
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=3,YS_CAIGOU=0,YS_SHENGCHAN_NAME='{0}',YS_SHENGCHAN_YJ='{1}',YS_SHENGCHAN_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SHENGCHAN_YJ.UniqueID], tsaId)) > 0)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('驳回失败!');window.close();window.opener.location.reload();", true);
                 }
             }
             #endregion
 
             #region 财务调整驳回到财务填写
+            else if (depId == "06" && caiWu == 1 && position == "0601")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIWU=3,YS_CAIWU_NAME='{0}',YS_CAIWU_YJ='{1}',YS_CAIWU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
 
+            #region 一级驳回
+            else if (yiJi == 1 && position == "0102")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=3,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+            #region 二级驳回
+            else if (erJi == 1 && position == "0101")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=3,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+        }
+
+
+        /// <summary>
+        /// 驳回至采购反馈：财务调整、一级审批、二级审批使用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_RebutToCaiGou_Click(object sender, EventArgs e)
+        {
+            #region 财务调整
+            if (depId == "06" && caiWu == 1 && position == "0601")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIGOU=1,YS_CAIWU=3,YS_CAIWU_NAME='{0}',YS_CAIWU_YJ='{1}',YS_CAIWU_SJ=GETDATE(),YS_STATE=2,YS_REBUT='05' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新反馈!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+            #region 一级驳回
+            else if (yiJi == 1 && position == "0102")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=3,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_CAIGOU=1,YS_REBUT='05' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+            #region 二级驳回
+            else if (erJi == 1 && position == "0101")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=3,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_CAIGOU=1,YS_REBUT='05' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
             #endregion
         }
+        /// <summary>
+        /// 驳回至生产反馈：财务调整、一级审批、二级审批使用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_RebutToShengChan_Click(object sender, EventArgs e)
+        {
+            #region 财务调整
+            if (depId == "06" && caiWu == 1 && position == "0601")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=1,YS_CAIWU=3,YS_CAIWU_NAME='{0}',YS_CAIWU_YJ='{1}',YS_CAIWU_SJ=GETDATE(),YS_STATE=2,YS_REBUT='04' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新反馈!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+            #region 一级驳回
+            else if (yiJi == 1 && position == "0102")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=3,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_SHENGCHAN=1,YS_REBUT='04' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+
+            #region 二级驳回
+            else if (erJi == 1 && position == "0101")
+            {
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=3,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_SHENGCHAN=1,YS_REBUT='04' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新填写!');window.close();window.opener.location.reload();", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('错误！');window.close();window.opener.location.reload();", true);
+                }
+            }
+            #endregion
+        }
+
+
 
 
         #region 计算预算总价、反馈总价
@@ -718,7 +1007,10 @@ WHERE   YS_TSA_ID = '{16}';",
         }
 
 
-     
+
+
+
+
 
 
 

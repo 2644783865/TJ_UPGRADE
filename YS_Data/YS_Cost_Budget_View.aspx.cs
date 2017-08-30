@@ -320,7 +320,7 @@ namespace ZCZJ_DPF.YS_Data
                 case "2":
                     retValue = "同意"; break;
                 case "3":
-                    retValue = "不同意"; break;
+                    retValue = "驳回"; break;
                 default:
                     break;
             }
@@ -344,7 +344,7 @@ namespace ZCZJ_DPF.YS_Data
                 case "2":
                     retValue = "同意"; break;
                 case "3":
-                    retValue = "不同意"; break;
+                    retValue = "驳回"; break;
                 default:
                     break;
             }

@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    预算详情  
+    预算详情   
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style>
@@ -940,9 +940,11 @@
                     <div style="text-align: right">
                         <asp:Button ID="btn_RebutToCaiWu" Visible="False" runat="server" Text="驳回至财务填写" 
                             onclick="btn_RebutToCaiWu_Click" />
-                        <asp:Button ID="btn_RebutToCaiGou" Visible="False" runat="server" Text="驳回至采购反馈" />
-                        <asp:Button ID="btn_RebutToShengChan" Visible="False" runat="server" Text="驳回至生产反馈" />
-                        <asp:Button ID="btn_Submit" Visible="False" runat="server" Text="提交审批" 
+                        <asp:Button ID="btn_RebutToCaiGou" Visible="False" runat="server" 
+                            Text="驳回至采购反馈" onclick="btn_RebutToCaiGou_Click" />
+                        <asp:Button ID="btn_RebutToShengChan" Visible="False" runat="server" 
+                            Text="驳回至生产反馈" onclick="btn_RebutToShengChan_Click" />
+                        <asp:Button ID="btn_Submit" Visible="False" runat="server" Text="提交" 
                             onclick="btn_Submit_Click" />&nbsp;&nbsp;&nbsp;
                     </div>
                     <div style="width: 90%; margin: 0 auto;">
