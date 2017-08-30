@@ -1183,7 +1183,7 @@ namespace ZCZJ_DPF.PC_Data
         //批量导出
         protected void btn_daochu_all_Click(object sender, EventArgs e)
         {
-            string sqltext = " select picno,ptcode,PIC_CHILDENGNAME,PIC_MAP,margb,PIC_TUHAO,marnm,margg,marcz,length,width,marnum,marunit,marfznum,marfzunit,supplierresnm, " +
+            string sqltext = " select (CASE PIC_IFFAST WHEN '1' THEN'加急' ELSE ''END) AS 'ISFAST',picno,ptcode,PIC_CHILDENGNAME,PIC_MAP,margb,PIC_TUHAO,marnm,margg,marcz,length,width,marnum,marunit,marfznum,marfzunit,supplierresnm, " +
                     " price,detamount,detailnote,supplieranm,qoutefstsa,qoutescdsa,qoutelstsa,supplierbnm,qoutefstsb,qoutescdsb,qoutelstsb,suppliercnm,qoutefstsc,qoutescdsc,qoutelstsc, " +
                     " supplierdnm,qoutefstsd,qoutescdsd,qoutelstsd,supplierenm,qoutefstse,qoutescdse,qoutelstse,supplierfnm,qoutefstsf,qoutescdsf,qoutelstsf " +
                       "from View_TBPC_IQRCMPPRICE_RVW1  where ";
@@ -1200,7 +1200,7 @@ namespace ZCZJ_DPF.PC_Data
             else
             {
                 string filename = "采购比价单明细" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls";
-                exportCommanmethod.exporteasy(sqltext, filename, "采购比价单明细.xls", 3, true, true, true);
+                exportCommanmethod.exporteasy(sqltext, filename, "采购比价单明细批量导出模板.xls", 3, true, true, true);
             }
 
 
@@ -1232,7 +1232,7 @@ namespace ZCZJ_DPF.PC_Data
                 sqltext = "SELECT   picno, zdrnm, supplierresnm, pjnm, engnm, ptcode, marid, marnm, margg, marcz, margb,case when margb='' then PIC_TUHAO else '' end as PIC_TUHAO, length, width, marnum, " +
                           "marunit, marfznum, marfzunit, price, detamount, detailnote , qoutefstsa, qoutescdsa, qoutelstsa, qoutefstsb, qoutescdsb, qoutelstsb, qoutefstsc, qoutescdsc," +
                           "qoutelstsc, qoutefstsd, qoutescdsd, qoutelstsd, qoutefstse, qoutescdse, qoutelstse, qoutefstsf, qoutescdsf, qoutelstsf, supplieranm, supplierbnm, " +
-                          "suppliercnm, supplierdnm, supplierenm, supplierfnm,PIC_MAP,PIC_CHILDENGNAME  " +
+                          "suppliercnm, supplierdnm, supplierenm, supplierfnm,PIC_MAP,PIC_CHILDENGNAME,PIC_IFFAST as 'IFFAST'  " +
                           "from View_TBPC_IQRCMPPRICE_RVW1  where picno in (" + ordercode + ") order by picno desc,ptcode asc";
                 System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
                 ExportDataItem(dt);
@@ -1356,14 +1356,16 @@ namespace ZCZJ_DPF.PC_Data
             {
                 IWorkbook wk = new HSSFWorkbook(fs);
                 ISheet sheet0 = wk.GetSheetAt(0);
+                string Fast = string.Empty;
 
                 #region 写入数据
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 3);
+                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
 
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["picno"].ToString());//比价单号
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["ptcode"].ToString());//计划跟踪号
                     row.CreateCell(3).SetCellValue(dt.Rows[i]["PIC_CHILDENGNAME"].ToString());//部件名称
@@ -1468,7 +1470,7 @@ namespace ZCZJ_DPF.PC_Data
                             " totalcstate, totalstate, totalnote, supplierresid, supplierresnm,PIC_ID,  " +
                             "pjnm, engnm, ptcode,CONVERT(float, price) as price, shuilv, marid, marnm, margg, margb, " +
                             "marcz, marunit, marfzunit, length, width, CONVERT(float, marnum) AS marnum, marfznum, marzxnum,case when margb='' then PIC_TUHAO else '' end as PIC_TUHAO,PIC_MASHAPE,shbid,shcid,shdid,sheid,shfid,shgid, " +
-                            "marzxfznum, isnull(detailstate,0) as detailstate, isnull(detailcstate,0) as detailcstate,detamount,detailnote, zdjnum, zdjprice, orderno, zxrid, zxrnm,sqrnm,PIC_MAP,PIC_CHILDENGNAME " +
+                            "marzxfznum, isnull(detailstate,0) as detailstate, isnull(detailcstate,0) as detailcstate,detamount,detailnote, zdjnum, zdjprice, orderno, zxrid, zxrnm,sqrnm,PIC_MAP,PIC_CHILDENGNAME,PIC_IFFAST as 'IFFAST' " +
                           "from View_TBPC_IQRCMPPRICE_RVW1  where picno in (" + ordercode + ") order by picno desc,ptcode asc";
                 System.Data.DataTable xjddt = DBCallCommon.GetDTUsingSqlText(sqltext);
                 int m = 0;
@@ -1547,11 +1549,14 @@ namespace ZCZJ_DPF.PC_Data
                 row1.GetCell(16).SetCellValue(xjddt.Rows[0]["picno"].ToString());//询价单号
                 //row10.GetCell(1).SetCellValue(dt.Rows[0]["supplierresnm"].ToString());//供应商
                 row13.GetCell(15).SetCellValue(xjddt.Rows[0]["irqdata"].ToString().Substring(0, 10).Trim());//制单日期
+                string Fast = string.Empty;
                 for (int i = 0; i < xjddt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 19);
                     row.HeightInPoints = 14;//行高
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    Fast = xjddt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
+
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     //row.CreateCell(1).SetCellValue(xjddt.Rows[i]["marid"].ToString());//物料编码
                     row.CreateCell(1).SetCellValue(xjddt.Rows[i]["marnm"].ToString());//物料名称
                     row.CreateCell(2).SetCellValue(xjddt.Rows[i]["PIC_TUHAO"].ToString());//图号,规格，材质，国标
@@ -1597,7 +1602,7 @@ namespace ZCZJ_DPF.PC_Data
                 row21.CreateCell(1).SetCellValue("部门：");
                 row21.CreateCell(2).SetCellValue("采购部");
                 row21.CreateCell(5).SetCellValue("部长：");
-                row21.CreateCell(6).SetCellValue("高浩");
+                row21.CreateCell(6).SetCellValue("董治收");
                 row21.CreateCell(8).SetCellValue("业务员：");
                 row21.CreateCell(9).SetCellValue(xjddt.Rows[0]["zxrnm"].ToString());
                 row21.CreateCell(11).SetCellValue("制单：");
@@ -1633,6 +1638,7 @@ namespace ZCZJ_DPF.PC_Data
                 ISheet sheet0 = wk.GetSheetAt(0);
                 IRow row2 = sheet0.GetRow(2);
                 IRow row13 = sheet0.GetRow(13);
+                string Fast = string.Empty;
                 #region 写入数据
                 //string jhtime = "";
                 //string sqljhq = "select qoutefstsa,qoutefstsb,qoutefstsc,qoutefstsd, qoutefstse,qoutelstsf, supplieranm, supplierbnm,suppliercnm, supplierdnm, supplierenm, supplierfnm from View_TBPC_IQRCMPPRICE_RVW1 where picno='" + dt.Rows[0]["picno"].ToString() + "'";
@@ -1672,7 +1678,9 @@ namespace ZCZJ_DPF.PC_Data
                 {
                     IRow row = sheet0.CreateRow(i + 19);
                     row.HeightInPoints = 14;//行高
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
+                    Fast = xjddt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
+
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
                     //row.CreateCell(1).SetCellValue(xjddt.Rows[i]["marid"].ToString());//物料编码
                     row.CreateCell(1).SetCellValue(xjddt.Rows[i]["marnm"].ToString());//物料名称
                     row.CreateCell(2).SetCellValue(xjddt.Rows[i]["PIC_TUHAO"].ToString());//图号,规格，材质，国标
@@ -1707,7 +1715,7 @@ namespace ZCZJ_DPF.PC_Data
                 row21.CreateCell(1).SetCellValue("部门：");
                 row21.CreateCell(2).SetCellValue("采购部");
                 row21.CreateCell(3).SetCellValue("部长：");
-                row21.CreateCell(4).SetCellValue("高浩");
+                row21.CreateCell(4).SetCellValue("董治收");
                 row21.CreateCell(6).SetCellValue("业务员：");
                 row21.CreateCell(7).SetCellValue(xjddt.Rows[0]["zxrnm"].ToString());
                 row21.CreateCell(9).SetCellValue("制单：");

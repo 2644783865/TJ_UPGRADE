@@ -20,7 +20,6 @@
 
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div style="width: 100%">
                 <table width="100%">
@@ -29,6 +28,10 @@
                             &nbsp;&nbsp;&nbsp;行数：
                             <asp:TextBox ID="txtNum" runat="server" Width="50px" onblur="CheckNum(this);"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnadd" runat="server" Text="确 定" OnClick="btnadd_Click" />
+                        </td>
+                        <td align="left">
+                            <asp:FileUpload ID="FileUpload" runat="server" />&nbsp;&nbsp;
+                            <asp:Button ID="btnImport" Text="导入" runat="server" OnClick="btnImport_Click" />
                         </td>
                         <td align="right">
                            年月：
@@ -141,5 +144,4 @@
             <br />
             <br />
         </ContentTemplate>
-    </asp:UpdatePanel>
 </asp:Content>

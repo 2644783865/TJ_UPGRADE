@@ -12,6 +12,8 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using System.IO;
+using ZCZJ_DPF.CommonClass;
+using System.Text;
 
 namespace ZCZJ_DPF.OM_Data
 {
@@ -215,6 +217,84 @@ namespace ZCZJ_DPF.OM_Data
                 DBCallCommon.ExecuteTrans(list);
                 Response.Redirect("OM_GZTZSPdetail.aspx?spid=" + bh);
             }
+        }
+
+        protected void btnImport_Click(object sender, EventArgs e)
+        {
+            if (!FileUpload.HasFile)
+            {
+                Response.Write("<script>alert('尚未上传Excel表格')</script>");
+                return;
+            }
+
+            if (System.IO.Path.GetExtension(FileUpload.FileName).ToString().ToLower() != ".xls")
+            {
+                Response.Write("<script>alert('只可以选择Excel（.xls）文件')</script>");
+                return;
+            }
+            try
+            {
+                string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;
+                string savePath = @"E:/薪酬异动" + filename;//TOCHANGE
+                FileUpload.SaveAs(savePath);
+                ExcelHelper EH = new ExcelHelper(savePath);
+                DataTable ImportDate = EH.ExportExcelToDataTable();
+                if (EH.IsError(ImportDate, "补发加班费") || EH.IsError(ImportDate, "补发中夜班费") || EH.IsError(ImportDate, "调整补发") || EH.IsError(ImportDate, "调整补扣"))
+                {
+                    Response.Write("<script>alert('Excel数据有误！请检查标记为ERROR的单元格。')</script>");
+                }
+                Det_Repeater.DataSource = GetImportDate(ImportDate);
+                Det_Repeater.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('导入出错！请检查导入文件格式！"+ex.Message+"')</script>");
+                return;
+            }           
+        }
+
+        protected DataTable GetImportDate(DataTable ExcelDt) 
+        {
+            ExcelDt.Columns["姓名"].ColumnName = "gztz_name";
+            ExcelDt.Columns["补发加班费"].ColumnName = "gztz_bfjbf";
+            ExcelDt.Columns["补发中夜班费"].ColumnName = "gztz_bfzybf";
+            ExcelDt.Columns["调整补发"].ColumnName = "gztz_bf";
+            ExcelDt.Columns["调整补扣"].ColumnName = "gztz_bk";
+            ExcelDt.Columns["备注"].ColumnName = "gztz_note";
+            ExcelDt.Columns.Add("gztz_stid", Type.GetType("System.String"));
+            ExcelDt.Columns.Add("gztz_gh", Type.GetType("System.String"));
+            ExcelDt.Columns.Add("gztz_bm", Type.GetType("System.String"));
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < ExcelDt.Rows.Count;i++ )
+            {
+                sb.Append("'");
+                sb.Append(ExcelDt.Rows[i]["gztz_name"].ToString());
+                sb.Append("'");
+                sb.Append(",");
+            }
+            sb.Remove(sb.Length - 1, 1);
+            string sql = string.Format("SELECT ST_ID AS 'gztz_stid',ST_NAME AS 'gztz_name',DEP_NAME AS 'gztz_bm',ST_WORKNO AS 'gztz_gh' FROM dbo.View_TBDS_STAFFINFO WHERE ST_NAME in ({0})", sb.ToString());
+            string _name = string.Empty;
+            try
+            {
+                DataTable SQLDt = DBCallCommon.GetDTUsingSqlText(sql);
+                for (int j = 0; j < ExcelDt.Rows.Count;j++ )
+                {
+                    _name = ExcelDt.Rows[j]["gztz_name"].ToString();
+                    DataRow dr = (SQLDt.Select(string.Format("gztz_name = '{0}'", _name)))[0];
+                    ExcelDt.Rows[j]["gztz_stid"] = dr["gztz_stid"];
+                    ExcelDt.Rows[j]["gztz_gh"] = dr["gztz_gh"];
+                    ExcelDt.Rows[j]["gztz_bm"] = dr["gztz_bm"];
+                }
+            }
+            catch (System.Exception ex)
+            {
+                string ErrorMessage = string.Format("<script>alert('数据：{0} 存在问题，请检查！错误信息：{1}')</script>", _name, ex.Message.ToString());
+                Response.Write(ErrorMessage);
+            }
+
+            return ExcelDt;
         }
     }
 }

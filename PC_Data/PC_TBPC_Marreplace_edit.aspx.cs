@@ -222,9 +222,9 @@ namespace ZCZJ_DPF.PC_Data
                 }
                 if (!string.IsNullOrEmpty(lead))
                 {
-
+                    //2017.8.29修改，MP_CHARGEID修改为技术部长ID，原为写死'曹卫亮'ID。
                     sqltext = "update TBPC_MARREPLACETOTAL set MP_STATE='000',MP_LEADER="+lead+",MP_REASON='',MP_FILLFMTIME='" + Tb_Date.Text + "'," +
-                                  "MP_REVIEWAADVC='',MP_REVIEWATIME='',MP_CHARGEID='146',MP_CHARGETIME='',MP_CHARGEADVC='',MP_NOTE='" + Tb_Abstract.Text + "'  where MP_CODE='" + Tb_Code.Text + "'";
+                                  "MP_REVIEWAADVC='',MP_REVIEWATIME='',MP_CHARGEID=(SELECT TOP 1 st_id FROM dbo.TBDS_STAFFINFO WHERE ST_POSITION='0301' and ST_PD='0'),MP_CHARGETIME='',MP_CHARGEADVC='',MP_NOTE='" + Tb_Abstract.Text + "'  where MP_CODE='" + Tb_Code.Text + "'";
                     sqltextlist.Add(sqltext);
 
                     sqltext = "delete from TBPC_MARREPLACEDETAIL where MP_CODE='" + Tb_Code.Text + "'";

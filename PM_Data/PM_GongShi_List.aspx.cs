@@ -82,7 +82,8 @@ namespace ZCZJ_DPF.PM_Data
         {
             StringBuilder sqltext = new StringBuilder();
             if (0 == 0)
-            { sqltext.Append("0=0"); }           
+            { sqltext.Append("0=0"); }
+            sqltext.Append(" and GS_CONTR like '%" + txt_search.Text.ToString()+"%'");
             if (ddlgongshiyear.SelectedValue.ToString() != "%")
             {
                 sqltext.Append(" and DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "'");
@@ -317,6 +318,14 @@ namespace ZCZJ_DPF.PM_Data
             DBCallCommon.ExeSqlText(sqldelete1);
             DBCallCommon.ExeSqlText(sqldelete2);
             this.InitVar();
+            UCPaging1.CurrentPage = 1;
+            this.bindRepeater();
+        }
+
+        protected void btn_search_OnClick(object sender, EventArgs e)
+        {
+            this.GetSqlText();       
+            InitVar();
             UCPaging1.CurrentPage = 1;
             this.bindRepeater();
         }

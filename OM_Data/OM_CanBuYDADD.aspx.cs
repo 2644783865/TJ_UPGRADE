@@ -11,6 +11,13 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using System.IO;
+using NPOI.SS.UserModel;
+using NPOI;
+using NPOI.HSSF.UserModel;
+using Microsoft.Office.Interop;
+using ZCZJ_DPF.CommonClass;
+using System.Text;
 
 namespace ZCZJ_DPF.OM_Data
 {
@@ -18,6 +25,7 @@ namespace ZCZJ_DPF.OM_Data
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
                 CreateNewRow(12);
@@ -209,5 +217,91 @@ namespace ZCZJ_DPF.OM_Data
                 Response.Redirect("OM_CanBuYDSPdetail.aspx?spid=" + bh);
             }
         }
+
+        protected void btnImprot_Click(object sender, EventArgs e)
+        {
+            if (!FileUpload.HasFile)
+            {
+                Response.Write("<script>alert('尚未上传Excel表格')</script>");
+                return;
+            }
+
+            //System.IO.Path.GetExtension获得文件的扩展名
+            if (System.IO.Path.GetExtension(FileUpload.FileName).ToString().ToLower() != ".xls")
+            {
+                Response.Write("<script>alert('只可以选择Excel文件')</script>");
+                return;//当选择的不是Excel文件时,返回
+            }
+            try
+            {
+                string filename = DateTime.Now.ToString("yyyyMMddhhmmss") + FileUpload.FileName;  //获取Execle文件名  DateTime日期函数
+                string savePath = @"E:/餐补异动" + filename;//Server.MapPath 获得虚拟服务器相对路径
+                FileUpload.SaveAs(savePath);
+                ExcelHelper EH = new ExcelHelper(savePath);
+                DataTable ImportDate = EH.ExportExcelToDataTable();
+                if (EH.IsError(ImportDate, "调整天数") || EH.IsError(ImportDate, "餐补标准") || EH.IsError(ImportDate, "补发"))
+                {
+                    Response.Write("<script>alert('Excel数据有误！请检查标记为ERROR的单元格。')</script>");
+                }
+                Det_Repeater.DataSource = GetImprotData(ImportDate);
+                Det_Repeater.DataBind();
+            }
+            catch (System.Exception ex)
+            {
+                Response.Write("<script>alert('导入出错！请检查导入文件格式！" + ex.Message + "')</script>");
+                return;
+            }
+            
+        
+        }
+
+        /// <summary>
+        /// 通过导入Excel表的人员姓名查询ID、部门、编号
+        /// </summary>
+        /// <param name="ExcelDt"></param>
+        /// <returns></returns>
+        protected DataTable GetImprotData(DataTable ExcelDt)
+        {
+            ExcelDt.Columns["姓名"].ColumnName = "cbyd_name";
+            ExcelDt.Columns["调整天数"].ColumnName = "cbyd_tzts";
+            ExcelDt.Columns["餐补标准"].ColumnName = "cbyd_cbbz";
+            ExcelDt.Columns["补发"].ColumnName = "cbyd_bf";
+            ExcelDt.Columns["备注"].ColumnName = "cbyd_note";
+            ExcelDt.Columns.Add("cbyd_stid", Type.GetType("System.String"));
+            ExcelDt.Columns.Add("cbyd_gh", Type.GetType("System.String"));
+            ExcelDt.Columns.Add("cbyd_bm", Type.GetType("System.String"));
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < ExcelDt.Rows.Count; i++)
+            {
+                sb.Append("'");
+                sb.Append(ExcelDt.Rows[i]["cbyd_name"].ToString());
+                sb.Append("'");
+                sb.Append(",");
+            }
+            sb.Remove(sb.Length - 1, 1);
+            string sql = string.Format("SELECT ST_ID AS 'cbyd_stid',ST_NAME AS 'cbyd_name',DEP_NAME AS 'cbyd_bm',ST_WORKNO AS 'cbyd_gh' FROM dbo.View_TBDS_STAFFINFO WHERE ST_NAME in ({0})", sb.ToString());
+            string _name = string.Empty;
+            try
+            {
+                DataTable SQLDt = DBCallCommon.GetDTUsingSqlText(sql);            
+                for (int j = 0; j < ExcelDt.Rows.Count; j++)
+                {
+                    _name = ExcelDt.Rows[j]["cbyd_name"].ToString();
+                    DataRow dr = (SQLDt.Select(string.Format("cbyd_name = '{0}'", _name)))[0];
+                    ExcelDt.Rows[j]["cbyd_stid"] = dr["cbyd_stid"];
+                    ExcelDt.Rows[j]["cbyd_gh"] = dr["cbyd_gh"];
+                    ExcelDt.Rows[j]["cbyd_bm"] = dr["cbyd_bm"];
+                }
+            }
+            catch (System.Exception ex)
+            {
+                string ErrorMessage = string.Format("<script>alert('数据：{0} 存在问题，请检查！错误信息：{1}')</script>",_name,ex.Message.ToString());
+                Response.Write(ErrorMessage);
+            }          
+
+            return ExcelDt;
+        }
+
     }
 }

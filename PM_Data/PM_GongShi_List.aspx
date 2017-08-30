@@ -64,6 +64,10 @@
                                             <asp:ListItem Value="12">12</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
+                                    <td style="width: 265px">
+                                    合同号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
+                                    </asp:TextBox><asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
+                                    </td>
                             <td align="right">
                              <asp:Button ID="btnSC" runat="server" Text="删除该月数据" OnClientClick="javascript:return confirm('将会删除该月数据，确定要删除吗？');" onclick="btnSC_Click"  />
                             </td>

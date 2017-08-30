@@ -544,11 +544,11 @@ namespace ZCZJ_DPF.Basic_Data
                         TextBZ6.Text = note;
                         if (yj == "1")//同意
                         {
-                            RadioTY4.Checked = true;
+                            RadioTY6.Checked = true;
                         }
                         else if (yj == "2")
                         {
-                            RadioJJ4.Checked = true;
+                            RadioJJ6.Checked = true;
                         }
                     }
                     

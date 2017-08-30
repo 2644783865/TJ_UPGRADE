@@ -14,6 +14,15 @@ namespace ZCZJ_DPF.YS_Data {
     public partial class YS_Cost_Budget_A_M {
         
         /// <summary>
+        /// LabelTitle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTitle;
+        
+        /// <summary>
         /// ToolkitScriptManager1 控件。
         /// </summary>
         /// <remarks>
@@ -84,6 +93,15 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnShowPopup;
+        
+        /// <summary>
+        /// btnShowSta 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowSta;
         
         /// <summary>
         /// ModalPopupExtenderSearch 控件。

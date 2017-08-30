@@ -135,7 +135,7 @@ namespace ZCZJ_DPF
             catch (Exception)
             {
                 throw;
-            }            
+            }
         }
 
         public static SqlDataReader GetDRUsingSqlText(string sqlText, int time)
@@ -796,84 +796,83 @@ namespace ZCZJ_DPF
 
         public static string SendEmail(string to, List<string> ccs, List<string> bccs, string subject, string body)
         {
-            //测试需要，将邮件服务注释
-            return string.Empty;
-            //try
-            //{
+            try
+            {
 
-            //    MailMessage email = new MailMessage();
+                MailMessage email = new MailMessage();
 
-            //    MailAddress fromAddress = new MailAddress("erp@ztsm.net", "数字管理平台");
+                MailAddress fromAddress = new MailAddress("erp@ztsm.net", "数字管理平台");
 
-            //    //MailAddress toAddress = new MailAddress(txtReceiver.Text.Trim(), "");
+                //MailAddress toAddress = new MailAddress(txtReceiver.Text.Trim(), "");
 
-            //    // Set the properties of the MailMessage to the
-            //    // values on the form
+                // Set the properties of the MailMessage to the
+                // values on the form
 
 
-            //    email.IsBodyHtml = false;
+                email.IsBodyHtml = false;
 
 
-            //    email.From = fromAddress;
+                email.From = fromAddress;
 
-            //    email.To.Add(to);
+                email.To.Add(to);
 
-            //    #region 抄送
+                #region 抄送
 
-            //    // CC and BCC optional
-            //    // MailAddressCollection class is used to send the email to various users
-            //    // You can specify Address as new MailAddress("admin1@yoursite.com")
-            //    if (ccs != null)
-            //    {
-            //        foreach (string cc in ccs)
-            //        {
-            //            if (cc != "")
-            //                email.CC.Add(cc);
-            //        }
-            //    }
+                // CC and BCC optional
+                // MailAddressCollection class is used to send the email to various users
+                // You can specify Address as new MailAddress("admin1@yoursite.com")
+                if (ccs != null)
+                {
+                    foreach (string cc in ccs)
+                    {
+                        if (cc != "")
+                            email.CC.Add(cc);
+                    }
+                }
 
-            //    // You can specify Address directly as string
-            //    if (bccs != null)
-            //    {
-            //        foreach (string bcc in bccs)
-            //        {
-            //            if (bcc != "")
-            //                email.Bcc.Add(new MailAddress(bcc));
-            //        }
-            //    }
+                // You can specify Address directly as string
+                if (bccs != null)
+                {
+                    foreach (string bcc in bccs)
+                    {
+                        if (bcc != "")
+                            email.Bcc.Add(new MailAddress(bcc));
+                    }
+                }
 
-            //    #endregion
+                #endregion
 
 
 
-            //    email.Subject = subject;
+                email.Subject = subject;
 
-            //    email.Body = body + "\r\n\r\n******************************************************" + "\r\n" +
-            //                "这是一封系统自动发送的邮件通知，请不要直接回复，如有疑问，请联系开发人员。" + "\r\n" +
-            //                "\r\n祝 工作愉快！";
+                email.Body = body + "\r\n\r\n******************************************************" + "\r\n" +
+                            "这是一封系统自动发送的邮件通知，请不要直接回复，如有疑问，请联系开发人员。" + "\r\n" +
+                            "\r\n祝 工作愉快！";
 
 
 
 
-            //    // Set the SMTP server and send the email
+                // Set the SMTP server and send the email
 
-            //    SmtpClient smtpClient = new SmtpClient();
+                SmtpClient smtpClient = new SmtpClient();
 
-            //    smtpClient.Host = "10.11.11.3";
+                smtpClient.Host = "10.11.11.3";
 
-            //    smtpClient.Port = 25;
+                smtpClient.Port = 25;
 
-            //    smtpClient.Credentials = new System.Net.NetworkCredential("erp@ztsm.net", "123456");
+                smtpClient.Credentials = new System.Net.NetworkCredential("erp@ztsm.net", "123456");
 
-            //    smtpClient.Send(email);
+                //测试需要，将邮件服务注释,正式部署时请将下行反注释
+                //smtpClient.Send(email);
 
-            //    return "邮件已发送!";
+                return "邮件已发送!";
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    return "邮件发送失败!";
-            //}
+            }
+            catch (Exception ex)
+            {
+                return "邮件发送失败!";
+            }
 
         }
         /// <summary>
@@ -883,111 +882,109 @@ namespace ZCZJ_DPF
         /// <returns></returns>
         public static string GetEmailAddressByUserID(string userid)
         {
-            //测试需要，将邮件服务注释
-            return string.Empty;
-            //string retEmail = "";
-            //string sql = "SELECT [EMAIL] FROM [dbo].[TBDS_STAFFINFO] WHERE [ST_ID]='" + userid + "'";
-            //SqlDataReader dr_email = DBCallCommon.GetDRUsingSqlText(sql);
-            //if (dr_email.HasRows)
-            //{
-            //    dr_email.Read();
-            //    retEmail = dr_email["EMAIL"].ToString();
-            //}
-            //dr_email.Close();
-            //return retEmail;
+            string retEmail = "";
+            string sql = "SELECT [EMAIL] FROM [dbo].[TBDS_STAFFINFO] WHERE [ST_ID]='" + userid + "'";
+            SqlDataReader dr_email = DBCallCommon.GetDRUsingSqlText(sql);
+            if (dr_email.HasRows)
+            {
+                dr_email.Read();
+                retEmail = dr_email["EMAIL"].ToString();
+            }
+            dr_email.Close();
+            return retEmail;
         }
 
         // 发送邮件第二种类型
 
         public static string dobSendEmail(List<string> to, List<string> ccs, List<string> bccs, string subject, string body)
         {
-            //测试需要，将邮件服务注释
-            return string.Empty;
-            //try
-            //{
+            try
+            {
 
-            //    MailMessage email = new MailMessage();
+                MailMessage email = new MailMessage();
 
-            //    MailAddress fromAddress = new MailAddress("erp@ztsm.net", "PMS项目管理系统");
+                MailAddress fromAddress = new MailAddress("erp@ztsm.net", "PMS项目管理系统");
 
-            //    //MailAddress toAddress = new MailAddress(txtReceiver.Text.Trim(), "");
+                //MailAddress toAddress = new MailAddress(txtReceiver.Text.Trim(), "");
 
-            //    // Set the properties of the MailMessage to the
-            //    // values on the form
+                // Set the properties of the MailMessage to the
+                // values on the form
 
 
-            //    email.IsBodyHtml = false;
+                email.IsBodyHtml = false;
 
 
-            //    email.From = fromAddress;
+                email.From = fromAddress;
 
-            //    #region 发送
-            //    if (to != null)
-            //    {
-            //        foreach (string t in to)
-            //        {
-            //            if (t != "")
-            //                email.To.Add(t);
-            //        }
-            //    }
-            //    #endregion
+                #region 发送
+                if (to != null)
+                {
+                    foreach (string t in to)
+                    {
+                        if (t != "")
+                            email.To.Add(t);
+                    }
+                }
+                #endregion
 
-            //    #region 抄送
+                #region 抄送
 
-            //    // CC and BCC optional
-            //    // MailAddressCollection class is used to send the email to various users
-            //    // You can specify Address as new MailAddress("admin1@yoursite.com")
-            //    if (ccs != null)
-            //    {
-            //        foreach (string cc in ccs)
-            //        {
-            //            if (cc != "")
-            //                email.CC.Add(cc);
-            //        }
-            //    }
+                // CC and BCC optional
+                // MailAddressCollection class is used to send the email to various users
+                // You can specify Address as new MailAddress("admin1@yoursite.com")
+                if (ccs != null)
+                {
+                    foreach (string cc in ccs)
+                    {
+                        if (cc != "")
+                            email.CC.Add(cc);
+                    }
+                }
 
-            //    // You can specify Address directly as string
-            //    if (bccs != null)
-            //    {
-            //        foreach (string bcc in bccs)
-            //        {
-            //            if (bcc != "")
-            //                email.Bcc.Add(new MailAddress(bcc));
-            //        }
-            //    }
+                // You can specify Address directly as string
+                if (bccs != null)
+                {
+                    foreach (string bcc in bccs)
+                    {
+                        if (bcc != "")
+                            email.Bcc.Add(new MailAddress(bcc));
+                    }
+                }
 
-            //    #endregion
+                #endregion
 
 
 
-            //    email.Subject = subject;
+                email.Subject = subject;
 
-            //    email.Body = body + "\r\n\r\n******************************************************" + "\r\n" +
-            //                "这是一封系统自动发送的邮件通知，请不要直接回复，如有疑问，请联系开发人员。" + "\r\n" +
-            //                "\r\n祝 工作愉快！";
+                email.Body = body + "\r\n\r\n******************************************************" + "\r\n" +
+                            "这是一封系统自动发送的邮件通知，请不要直接回复，如有疑问，请联系开发人员。" + "\r\n" +
+                            "\r\n祝 工作愉快！";
 
 
 
 
-            //    // Set the SMTP server and send the email
+                // Set the SMTP server and send the email
 
-            //    SmtpClient smtpClient = new SmtpClient();
+                SmtpClient smtpClient = new SmtpClient();
 
-            //    smtpClient.Host = "10.6.0.1";
+                smtpClient.Host = "10.6.0.1";
 
-            //    smtpClient.Port = 25;
+                smtpClient.Port = 25;
 
-            //    smtpClient.Credentials = new System.Net.NetworkCredential("erp@ztsm.net", "123456");
+                smtpClient.Credentials = new System.Net.NetworkCredential("erp@ztsm.net", "123456");
 
-            //    smtpClient.Send(email);
 
-            //    return "邮件已发送!";
+                //测试需要，将邮件服务注释,正式部署时请将下行反注释
+                //smtpClient.Send(email);
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    return "邮件发送失败!";
-            //}
+                return "邮件已发送!";
+
+            }
+            catch (Exception ex)
+            {
+                return "邮件发送失败!";
+            }
 
         }
         /// <summary>

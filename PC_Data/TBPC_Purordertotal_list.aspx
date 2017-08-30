@@ -646,7 +646,7 @@
                                             <td id="td1" runat="server">
                                                 <asp:CheckBox ID="CKBOX_SELECT" CssClass="checkBoxCss" BorderStyle="None" runat="server">
                                                 </asp:CheckBox><%--onclick="checkme(this)"--%>
-                                                <asp:Label ID="lbjiaji" runat="server" Text="加急" Visible="false"></asp:Label>
+                                                <asp:Label ID="lbjiaji" runat="server" Text="加急" Visible="false" ForeColor="Red"></asp:Label>
                                             </td>
                                             <td id="td2" runat="server">
                                                 <asp:Label ID="rownum" runat="server" Text='<%# Container.ItemIndex + 1+(Convert.ToDouble(UCPaging1.CurrentPage)-1)*(Convert.ToDouble(DropDownList1.SelectedValue))%>'></asp:Label>

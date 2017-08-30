@@ -1302,7 +1302,11 @@ namespace ZCZJ_DPF.OM_Data
             updategeshui();
             UCPaging1.CurrentPage = 1;
             bindrpt();
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('生成成功，缺失数据：" + strdataifall + "！');", true);
+            if (!string.IsNullOrEmpty(strdataifall))
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('生成成功，缺失数据：" + strdataifall + "！');", true);
+            }
+            
         }
 
         private void updategeshui()
@@ -1537,7 +1541,10 @@ namespace ZCZJ_DPF.OM_Data
             ModalPopupExtenderSearch.Hide();
             UCPaging1.CurrentPage = 1;
             bindrpt();
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('缺失数据：" + weidaoru.Substring(0,weidaoru.Length-2) + "！');", true);
+            if (!string.IsNullOrEmpty(weidaoru))
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('缺失数据：" + weidaoru.Substring(0, weidaoru.Length - 2) + "！');", true);
+            }
         }
 
         //采暖补贴导入

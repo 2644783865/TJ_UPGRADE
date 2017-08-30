@@ -153,7 +153,14 @@ namespace ZCZJ_DPF.OM_Data
             string sql = "1=1 and OM_GZSCBZ='1'";
             if (txtName.Text.Trim() != "")
             {
-                sql += " and ST_NAME like '%" + txtName.Text.Trim() + "%'";
+                string[] strarray = txtName.Text.Trim().Split(',', '，');
+                string strname = "";
+                for (int i = 0; i < strarray.Length; i++)
+                {
+                    strname += "'" + strarray[i] + "',";
+                }
+                strname = strname.Substring(0, strname.Length - 1);
+                sql += " and ST_NAME in(" + strname + ")";
             }
             if (txtworkno.Text.Trim() != "")
             {

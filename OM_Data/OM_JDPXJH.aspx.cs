@@ -119,7 +119,8 @@ namespace ZCZJ_DPF.OM_Data
 
         private string StrWhere()
         {
-            string sql = " SPZT='y' and PX_YEAR='" + DateTime.Now.Year.ToString() + "'";
+            string sql = " SPZT='y' ";
+            string TimeYear = DateTime.Now.Year.ToString();
             if (ddlBM.SelectedValue != "0")
             {
                 sql += " and PX_BM like '%" + ddlBM.SelectedValue + "%'";
@@ -131,12 +132,15 @@ namespace ZCZJ_DPF.OM_Data
             if (dplYear.SelectedValue != "-请选择-" && dplMonth.SelectedValue == "-请选择-")
             {
                 sql += " and PX_SJSJ like '%" + dplYear.SelectedValue + "%'";
+                TimeYear = dplYear.SelectedValue;
             }
             if (dplYear.SelectedValue != "-请选择-" && dplMonth.SelectedValue != "-请选择-")
             {
                 string YearMonth = dplYear.SelectedValue.ToString() + "-" + dplMonth.SelectedValue.ToString();
                 sql += " and PX_SJSJ like '%" + YearMonth + "%'";
+                TimeYear = dplYear.SelectedValue;
             }
+            sql += " and PX_YEAR='" + TimeYear + "'";
             return sql;
         }
 

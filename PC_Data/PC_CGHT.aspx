@@ -4,7 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    采购合同
+    采购合同 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style type="text/css">
@@ -235,7 +235,7 @@
                     $("#<%=tb9.ClientID%>").hide();
                     $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                 }
                 if ($(this).val() == "2") {
@@ -250,7 +250,7 @@
                     $("#<%=tb9.ClientID%>").hide();
                     $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -268,7 +268,7 @@
                     $("#<%=tb9.ClientID%>").hide();
                     $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -290,7 +290,7 @@
                     $("#<%=tb10.ClientID%>").show();
 //                    $("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHRCG.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHRCG.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHRCG.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHRShenC.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHRShenC.ClientID%>").val("于来义");
@@ -323,7 +323,7 @@
                     fz();
                     $("#<%=tb1.ClientID%>").show();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                 }
                 if ($(this).val() == "2") {
@@ -331,7 +331,7 @@
                     $("#<%=tb1.ClientID%>").show();
                     $("#<%=tb2.ClientID%>").show();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -343,7 +343,7 @@
                     $("#<%=tb2.ClientID%>").show();
                     $("#<%=tb3.ClientID%>").show();
                     if ($("#<%=txt_HT_SHR1.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR1.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHR1.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHR2.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
@@ -363,7 +363,7 @@
                     $("#<%=tb10.ClientID%>").show();
                     //$("#<%=tb10.ClientID%>").hide();
                     if ($("#<%=txt_HT_SHRCG.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHRCG.ClientID%>").val("高浩");
+                        $("#<%=txt_HT_SHRCG.ClientID%>").val("董治收");
                     }
                     if ($("#<%=txt_HT_SHRShenC.ClientID%>").val() == "") {
                         $("#<%=txt_HT_SHRShenC.ClientID%>").val("于来义");
@@ -499,9 +499,10 @@
     <div style="width: 100%;" align="right">
         <asp:Button runat="server" ID="btnSubmit" Text="提 交" OnClick="btnSubmit_OnClick" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button runat="server" ID="btnBack" Text="返 回" OnClick="btnBack_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button runat="server" ID="btnBack" Text="返 回" OnClick="btnBack_OnClick" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
-    <asp:TabContainer runat="server" ID="TabContainer0">
+    <asp:TabContainer runat="server" ID="TabContainer0" ActiveTabIndex="1">
         <asp:TabPanel runat="server" ID="TabPanel0" HeaderText="买卖合同">
             <ContentTemplate>
                 <div id="div2" style="width: 100%;" align="center">
@@ -515,7 +516,7 @@
                             <tr>
                                 <td align="center" style="font-size: xx-large;">
                                     <strong>买&nbsp;&nbsp;卖&nbsp;&nbsp;合&nbsp;&nbsp;同</strong>
-                                    <asp:HiddenField ID="hidZY" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidZY" runat="server" />
                                 </td>
                             </tr>
                         </table>
@@ -533,9 +534,11 @@
                                 <td style="width: 30%">
                                     <asp:TextBox runat="server" ID="txt_HT_GF" onchange="dai()"></asp:TextBox>
                                     <asp:AutoCompleteExtender runat="server" ID="aceGYS" TargetControlID="txt_HT_GF"
-                                        ServicePath="PC_ZDPP.asmx" CompletionSetCount="10" MinimumPrefixLength="1" CompletionInterval="10"
-                                        ServiceMethod="GetGYS_NAME" FirstRowSelected="true" CompletionListCssClass="autocomplete_completionListElement"
-                                        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                        ServicePath="PC_ZDPP.asmx" MinimumPrefixLength="1" CompletionInterval="10"
+                                        ServiceMethod="GetGYS_NAME" FirstRowSelected="True" CompletionListCssClass="autocomplete_completionListElement"
+                                        CompletionListItemCssClass="autocomplete_listItem" 
+                                        CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" 
+                                        DelimiterCharacters="" Enabled="True">
                                     </asp:AutoCompleteExtender>
                                 </td>
                             </tr>
@@ -568,31 +571,27 @@
                                 </td>
                             </tr>
                             <tr>
-                            </tr>
-                            <tr>
                                 <td style="font-size: large">
                                     <strong>合同总价：</strong>
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txt_HT_HTZJ" onchange="DaXie(this)"></asp:TextBox>
+                                    <asp:TextBox ID="txt_HT_HTZJ" runat="server" onchange="DaXie(this)"></asp:TextBox>
                                 </td>
                                 <td colspan="2">
                                 </td>
                             </tr>
                             <tr>
-                            </tr>
-                            <tr>
-                                <td colspan="4" style="font-size: large;">
+                                <td style="font-size: large" colspan="4">
                                     <strong>结算方式及期限：</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    1、
+                                    1、 
                                 </td>
-                                <td colspan="3" align="center">
-                                    <asp:RadioButtonList runat="server" ID="rbl_HT_JSFS" RepeatDirection="Horizontal"
-                                        Width="60%" onchange="beizhu()">
+                                <td align="center" colspan="3">
+                                    <asp:RadioButtonList ID="rbl_HT_JSFS" runat="server" onchange="beizhu()" 
+                                        RepeatDirection="Horizontal" Width="60%">
                                         <asp:ListItem Text="货到付款型" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="款到发货型" Value="2"></asp:ListItem>
                                     </asp:RadioButtonList>
@@ -600,32 +599,31 @@
                             </tr>
                             <tr>
                                 <td colspan="4" align="left">
-                                    备注：<asp:TextBox runat="server" ID="txt_HT_JSFSBZ" Text="" TextMode="MultiLine" Rows="2"
-                                        Width="96%"></asp:TextBox>
+                                    备注：<asp:TextBox ID="txt_HT_JSFSBZ" runat="server" Rows="2" TextMode="MultiLine" 
+                                        Width="96%"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="4">
+                                    2、<asp:CheckBox ID="cbxHT_JSFS1" runat="server" onclick="fkfs2(this)" 
+                                        Text="发货款" />
+                                    <asp:TextBox ID="txt_HT_JSFS1BZ" runat="server" Width="90%"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="4" align="left">
-                                    2、<asp:CheckBox runat="server" ID="cbxHT_JSFS1" Text="发货款" onclick="fkfs2(this)" />
-                                    <asp:TextBox runat="server" ID="txt_HT_JSFS1BZ" Text="" Width="90%"></asp:TextBox>
+                                    3、<asp:CheckBox ID="cbxHT_JSFS2" runat="server" onclick="fkfs3(this)" 
+                                        Text="质保金" />
+                                    <asp:TextBox runat="server" ID="txt_HT_JSFS2BZ"
+                                        Width="90%"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="4" align="left">
-                                    3、<asp:CheckBox runat="server" ID="cbxHT_JSFS2" Text="质保金" onclick="fkfs3(this)" />
-                                    <asp:TextBox runat="server" ID="txt_HT_JSFS2BZ" Text="" Width="90%"></asp:TextBox>
-                                </td>
+                                    其他：<asp:TextBox runat="server" ID="txt_HT_JSFS3" Width="96%" Rows="2" 
+                                        TextMode="MultiLine"></asp:TextBox></td>
                             </tr>
                             <tr>
-                                <td colspan="4" align="left">
-                                    其他：<asp:TextBox runat="server" ID="txt_HT_JSFS3" Text="" Width="96%" TextMode="MultiLine"
-                                        Rows="2"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr>
-                                <td align="center" style="font-size: x-large;" colspan="4">
+                                <td colspan="4" align="center" style="font-size: x-large;">
                                     <strong>合&nbsp;&nbsp;同&nbsp;&nbsp;签&nbsp;&nbsp;字</strong>
                                 </td>
                             </tr>
@@ -633,22 +631,22 @@
                                 <td colspan="2" align="center">
                                     需方
                                 </td>
-                                <td colspan="2" align="center">
-                                    供方
+                                <td align="center" colspan="2">
+                                    供方 
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    单位名称：
+                                    单位名称： 
                                 </td>
                                 <td>
-                                    中材（天津）重型机械有限公司
+                                    中材（天津）重型机械有限公司 
                                 </td>
                                 <td>
-                                    单位名称
+                                    单位名称 
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txt_HT_GF1" onfocus="this.blur()"></asp:TextBox>
+                                    <asp:TextBox ID="txt_HT_GF1" runat="server" onfocus="this.blur()"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -656,13 +654,13 @@
                                     单位地址：
                                 </td>
                                 <td>
-                                    天津市津围公路北辰科技园区华泰道2号
+                                    天津市津围公路北辰科技园区华泰道2号 
                                 </td>
                                 <td>
-                                    单位地址：
+                                    单位地址： 
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txt_HT_DZ"></asp:TextBox>
+                                    <asp:TextBox ID="txt_HT_DZ" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -673,10 +671,10 @@
                                     彭明德
                                 </td>
                                 <td>
-                                    法定代表人：
+                                    法定代表人： 
                                 </td>
                                 <td>
-                                    <asp:TextBox runat="server" ID="txt_HT_FDDBR"></asp:TextBox>
+                                    <asp:TextBox ID="txt_HT_FDDBR" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -998,8 +996,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="30" align="left">
-                                            备注：<asp:TextBox runat="server" ID="txt_HT_DDBZ" TextMode="MultiLine" Rows="6" Width="90%"></asp:TextBox>
-                                        </td>
+                                            备注：<asp:TextBox runat="server" ID="txt_HT_DDBZ" TextMode="MultiLine" Rows="6" Width="90%"></asp:TextBox></td>
                                     </tr>
                                 </table>
                             </div>
@@ -1572,12 +1569,13 @@
                                 <asp:BoundField DataField="BP_YKRQ" HeaderText="付款日期" DataFormatString="{0:d}">
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:BoundField>
-                                <asp:TemplateField HeaderText="备注" ItemStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="备注">
                                     <ItemTemplate>
                                         <div style="width: 200px">
                                             <label>
                                                 <%# Eval("BP_NOTE")%></label></div>
                                     </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="编辑">
                                     <ItemTemplate>

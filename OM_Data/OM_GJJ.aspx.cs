@@ -55,6 +55,7 @@ namespace ZCZJ_DPF.OM_Data
         private void InitPage()
         {
             txtname.Text = "";
+            txtname.ToolTip = "查询多人请用逗号隔开姓名!";
             //显示当月
             dplYear.ClearSelection();
             foreach (ListItem li in dplYear.Items)
@@ -188,7 +189,14 @@ namespace ZCZJ_DPF.OM_Data
             }
             if (txtname.Text != "")
             {
-                sqlwhere += " and (ST_NAME like '%" + txtname.Text.ToString().Trim() + "%' or ST_WORKNO like '%" + txtname.Text.ToString().Trim() + "%') ";
+                string[] strarray = txtname.Text.Trim().Split(',', '，');
+                string strname = "";
+                for (int i = 0; i < strarray.Length; i++)
+                {
+                    strname += "'" + strarray[i] + "',";
+                }
+                strname = strname.Substring(0, strname.Length - 1);
+                sqlwhere += string.Format(" and ST_NAME in ({0}) or ST_WORKNO in ({0})", strname);
             }
             if (ddl_Depart.SelectedValue != "00")
             {

@@ -88,11 +88,12 @@
     
     function add()
     {
-        var sRet = window.showModalDialog('OM_CarApplyDetail.aspx?action=add','obj','dialogWidth=900px;dialogHeight=600px');
-        if (sRet == "refresh") 
-        {
-            window.location.href = window.location.href;
-        }
+        window.location.href = 'OM_CarApplyDetail.aspx?action=add'
+//        var sRet = window.showModalDialog('OM_CarApplyDetail.aspx?action=add','obj','dialogWidth=900px;dialogHeight=600px');
+//        if (sRet == "refresh") 
+//        {
+//            window.location.href = window.location.href;
+//        }
     }
 
     function chkchange(obj)
@@ -164,7 +165,7 @@ if($(this).find(":checked").length==0){ $(this).css("background","#C8F7FF");}
                                 OnClientClick="return confirm('确认发车吗?')"></asp:Button>
                         </td>
                         <td align="right">
-                            <asp:Button ID="btnApply" runat="server" Text="新增用车申请" OnClientClick="add()" />
+                            <a href='OM_CarApplyDetail.aspx?action=add'>新增用车申请</a>
                         </td>
                     </tr>
                 </table>

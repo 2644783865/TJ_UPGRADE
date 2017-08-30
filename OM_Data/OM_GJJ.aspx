@@ -65,7 +65,9 @@ function viewCondition() {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>姓名：</strong><asp:TextBox
                         ID="txtname" ForeColor="Gray" runat="server" onfocus="DefaultTextOnFocus(this);"
                         onblur="DefaultTextOnBlur(this);" Width="120px"></asp:TextBox>
-                    &nbsp;&nbsp;
+                    &nbsp;
+                    
+                    &nbsp;
                 </td>
                 <td>
                     &nbsp;&nbsp;&nbsp;

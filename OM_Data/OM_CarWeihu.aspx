@@ -511,7 +511,7 @@
                                                 <ItemTemplate>
                                                     <asp:Image ID="Image11" ImageUrl="~/Assets/images/res.gif" runat="server" border="0"
                                                         hspace="2" align="absmiddle" />
-                                                    <asp:LinkButton ID="lnkDelete2" runat="server" CommandArgument='<%# Eval("ID")%>'
+                                                    <asp:LinkButton ID="lnkDelete2" runat="server" CommandArgument='<%# string.Format("{0},{1},{2}",Eval("ID"),Eval("MONEY"),Eval("CARDID"))%>'
                                                         OnClick="lnkDelete2_OnClick" CommandName="Del" OnClientClick="return confirm('确认删除吗?')">删除</asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>

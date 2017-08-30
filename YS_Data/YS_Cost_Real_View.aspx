@@ -43,7 +43,7 @@
                 <table width="100%">
                     <tr>
                         <td>
-                            合同号:
+                            任务号:
                             <asp:TextBox ID="txt_search" runat="server" Text="" Width="150px"></asp:TextBox><asp:Button
                                 ID="btn_search" runat="server" Text="查询" OnClick="btn_search_OnClick" />
                         </td>
@@ -73,7 +73,7 @@
                             </asp:RadioButtonList>
                         </td>
                         <td align="left">
-                            <asp:CheckBox ID="ckb_JS_OK" runat="server" AutoPostBack="true" Text="只显示可结算" OnCheckedChanged="ckb_JS_OK_OnCheckedChanged" />
+                            <%--<asp:CheckBox ID="ckb_JS_OK" runat="server" AutoPostBack="true" Text="只显示可结算" OnCheckedChanged="ckb_JS_OK_OnCheckedChanged" />--%>
                         </td>
                         <td align="center">
                             项目名称:
@@ -105,7 +105,7 @@
                             <ItemTemplate>
                                 <asp:CheckBox ID="CheckBox1" runat="server" />
                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
-                                <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("YS_CONTRACT_NO") %>' />
+                                <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("PCON_SCH") %>' />
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
@@ -117,7 +117,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="任务号" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:Label ID="lbl_YS_TSA_ID" runat="server" Text='<%#Eval("YS_TSA_ID") %>'
+                                <asp:Label ID="lbl_YS_TSA_ID" runat="server" Text='<%#Eval("PCON_SCH") %>'
                                     ></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -165,16 +165,18 @@
                             HeaderStyle-ForeColor="Green" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_MAR_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="材料费小计"
                             HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        <asp:BoundField DataField="YS_LAB_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="人工费小计"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
                         <%--材料费小计--%>
                        <%-- <asp:BoundField DataField="YS_FINA_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="分摊费小计"
                             HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />--%>
                         <%--财务费小计--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否结算" HeaderStyle-Wrap="false">
+                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否结算" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_JSstate" runat="server" Text='<%# GetJSState(Eval("YS_ADDDATE").ToString(),Eval("YS_XS_Finished").ToString()) %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否完结" HeaderStyle-Wrap="false">
+                        </asp:TemplateField>--%>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否结算" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_Finstate" runat="server" Text='<%# GetFinState(Eval("YS_XS_Finished").ToString()) %>'></asp:Label>
                             </ItemTemplate>

@@ -214,11 +214,13 @@ namespace ZCZJ_DPF.PM_Data
                 {
                     //string sqltext = "update TBPM_PAINTSCHEME set PS_LOOKSTATUS='1' where PS_ID='" + psid + "'";
                     //DBCallCommon.ExeSqlText(sqltext);
-                    Response.Redirect("PM_YOUQI_datail.aspx?action=look&id=" + psid + "");
+                    //Response.Redirect("PM_YOUQI_datail.aspx?action=look&id=" + psid + "");
+                    Response.Write("<script>window.open('PM_YOUQI_datail.aspx?action=look&id=" + psid + "','_blank')</script>");
                 }
                 else
                 {
-                    Response.Redirect("PM_YOUQI_datail.aspx?action=look&id=" + psid + "");
+                    //Response.Redirect("PM_YOUQI_datail.aspx?action=look&id=" + psid + "");
+                    Response.Write("<script>window.open('PM_YOUQI_datail.aspx?action=look&id=" + psid + "','_blank')</script>");
 
                 }
         }

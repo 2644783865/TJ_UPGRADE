@@ -3,7 +3,7 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-   财务指标分析
+    财务指标分析 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <link href="FixTable.css" rel="stylesheet" type="text/css" />
@@ -17,14 +17,14 @@
         <table width="98%">
              <tr>
                 <td>
-                    &nbsp;&nbsp;&nbsp;
-                    年月从:<input type="text" style="width:80px" id="yearmonthstart" data-options="formatter:function(date){var y=date.getFullYear();var m=(date.getMonth()+1).toString();var lenth=m.length;if(lenth<2){m='0'+m;}; return y+'-'+m;}" runat="server" class="easyui-datebox" />&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp; 年月从:<input type="text" style="width:80px" id="yearmonthstart" data-options="formatter:function(date){var y=date.getFullYear();var m=(date.getMonth()+1).toString();var lenth=m.length;if(lenth<2){m='0'+m;}; return y+'-'+m;}" runat="server" class="easyui-datebox" />&nbsp;&nbsp; 
                     到:<input type="text" style="width:80px" id="yearmonthend" data-options="formatter:function(date){var y=date.getFullYear();var m=(date.getMonth()+1).toString();var lenth=m.length;if(lenth<2){m='0'+m;}; return y+'-'+m;}" runat="server" class="easyui-datebox" />&nbsp;&nbsp;
-                    <a id="btnsearch" class="easyui-linkbutton" runat="server" onserverclick="btnsearch_click">查询</a>
+                    <a id="btnsearch" class="easyui-linkbutton" runat="server" onserverclick="btnsearch_click">
+                    查询</a>
                 </td>
                 <td align="right">
                    <asp:Label runat="server" ID="notice0" Text="提示：鼠标停留在条形上可看到数值" ForeColor="Red"></asp:Label>
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>
             </tr>
         </table>

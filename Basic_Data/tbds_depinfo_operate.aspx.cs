@@ -291,7 +291,7 @@ namespace ZCZJ_DPF.Basic_Data
                 if(Radiogrouportw .SelectedValue =="0")//增加工种
                 {
                     #region
-                    if (addhasexist(DEP_NAME.Text.ToString().Trim(), "JC_NAME", "TBDS_JOBCATINFO"))        //判断增的部门名称是否存在，不允许添加相同名称的部门
+                    if (addhasexist("TBDS_JOBCATINFO", "JC_NAME", DEP_NAME.Text.ToString().Trim(), "JC_DEPID", fatherdept.SelectedValue.ToString()))        //判断增的工种名称是否存在，不允许添加相同名称的工种
                     {
                         Response.Write("<script>alert('工种名称“" + DEP_NAME.Text.ToString().Trim() + "”已存在，不允许添加相同名称的工种，请重新输入！')</script>");
                         DEP_NAME.Focus();
@@ -309,19 +309,19 @@ namespace ZCZJ_DPF.Basic_Data
                 else //增加岗位/班组
                 {
                     #region
-                    //if (addhasexist(DEP_NAME.Text.ToString().Trim(), "DEP_NAME", "TBDS_DEPINFO"))        //判断增的部门名称是否存在，不允许添加相同名称的部门
-                    //{
-                    //    Response.Write("<script>alert('部门名称“" + DEP_NAME.Text.ToString().Trim() + "”已存在，不允许添加相同名称的部门，请重新输入！')</script>");
-                    //    DEP_NAME.Focus();
-                    //    lblupdate.Visible = true;
-                    //    lblupdate.Text = "操作失败";
-                    //}
-                    //else
-                    //{
-                        //lblupdate.Visible = true;
+                    if (addhasexist("TBDS_DEPINFO", "DEP_NAME", DEP_NAME.Text.ToString().Trim(), "DEP_FATHERID", fatherdept.SelectedValue.ToString()))        //判断增的部门名称是否存在，不允许添加相同名称的部门
+                    {
+                        Response.Write("<script>alert('部门名称“" + DEP_NAME.Text.ToString().Trim() + "”已存在，不允许添加相同名称的部门，请重新输入！')</script>");
+                        DEP_NAME.Focus();
+                        lblupdate.Visible = true;
+                        lblupdate.Text = "操作失败";
+                    }
+                    else
+                    {
+                    lblupdate.Visible = true;
                         cmdstring = "insert into TBDS_DEPINFO(DEP_CODE,DEP_NAME,DEP_FATHERID,DEP_ISYENODE,DEP_CY,DEP_SFJY,DEP_MANCLERK,DEP_FILLDATE,DEP_NOTE,DEP_BZYN) values( @DEP_CODE,@DEP_NAME,@fatherdept,@DEP_ISYENODE,@DEP_CY,@DEP_SFJY,@DEP_MANCLERK,@DEP_FILLDATE,@DEP_NOTE,@DEP_BZYN)";
                         dr1 = tbds_depinf_update(DEP_CODE.Text.ToString(), DEP_NAME.Text.ToString().Trim(), fatherdept.SelectedValue.ToString(), DEP_ISYENODE.SelectedValue.ToString(),DEP_CY.SelectedValue.ToString(),DEP_SFJY.SelectedValue.ToString(), DEP_MANCLERK.Text.ToString(), DEP_FILLDATE.Text.ToString(), DEP_NOTE.Text.ToString(),rdbzyn.SelectedValue, cmdstring);
-                    //}
+                    }
                     #endregion
                 }
             }
@@ -330,7 +330,7 @@ namespace ZCZJ_DPF.Basic_Data
                 if (Radiogrouportw.SelectedValue == "0")//修改工种
                 {
                     #region
-                    if (changehasexist(Convert.ToString(Session["depcode"]), "JC_ID", "JC_NAME", DEP_NAME.Text.ToString().Trim(), "TBDS_JOBCATINFO"))        //判断修改的部门名称是否存在，不允许添加相同名称的部门
+                    if (changehasexist("TBDS_JOBCATINFO", "JC_NAME", DEP_NAME.Text.Trim(), "JC_DEPID", fatherdept.SelectedValue.ToString(), "JC_ID", DEP_CODE.Text.Trim()))        //判断修改的工种名称是否存在，不允许添加相同名称的工种
                     {
                         Response.Write("<script>alert('工种名称“" + DEP_NAME.Text.ToString().Trim() + "”已存在，不允许有相同名称的工种，请重新输入！')</script>");
                         DEP_NAME.Focus();
@@ -347,7 +347,7 @@ namespace ZCZJ_DPF.Basic_Data
                 else//修改部门/岗位/班组
                 {
                     #region
-                    if (changehasexist(Convert.ToString(Session["depcode"]), "DEP_CODE", "DEP_NAME", DEP_NAME.Text.ToString().Trim(), "TBDS_DEPINFO"))        //判断修改的部门名称是否存在，不允许添加相同名称的部门
+                    if (changehasexist("TBDS_DEPINFO", "DEP_NAME", DEP_NAME.Text.Trim(), "DEP_FATHERID", fatherdept.SelectedValue.ToString(), "DEP_CODE", DEP_CODE.Text.Trim()))        //判断修改的部门名称是否存在，不允许添加相同名称的部门
                     {
                         Response.Write("<script>alert('部门名称“" + DEP_NAME.Text.ToString().Trim() + "”已存在，不允许有相同名称的部门，请重新输入！')</script>");
                         DEP_NAME.Focus();
@@ -513,11 +513,12 @@ namespace ZCZJ_DPF.Basic_Data
             item.Value = "0";
             fatherdept.Items.Insert(0, item);
         }
-        protected bool addhasexist(string fieldvalue,string fieldname ,string tablename)
+        protected bool addhasexist(string tablename, string SameParm1,string SameVal1, string SameParm2, string SameVal2)
         {
             bool existornot=false;
-            fieldvalue = ignoreSpaces(fieldvalue);
-            string sqlText = "select distinct " + fieldname + " from " + tablename + " where " + fieldname + "='" + fieldvalue + "'";
+            SameVal1 = ignoreSpaces(SameVal1);
+            SameVal2 = ignoreSpaces(SameVal2);
+            string sqlText = string.Format("SELECT DISTINCT 1 FROM {0} WHERE {1} = '{2}' AND {3} = '{4}'", tablename, SameParm1, SameVal1, SameParm2, SameVal2);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlText);
             int rowsnum = dt.Rows.Count;
             if(rowsnum >0)
@@ -526,12 +527,13 @@ namespace ZCZJ_DPF.Basic_Data
             }
             return existornot;
         }
-        protected bool changehasexist(string codevalue, string codefield, string fieldname, string fieldvalue, string tablename)
+        protected bool changehasexist(string tablename, string SameParm1, string SameVal1, string SameParm2, string SameVal2, string DisParm1, string DisVal1)
         {
             bool existornot = false;
-            fieldvalue = ignoreSpaces(fieldvalue);
-            codevalue = ignoreSpaces(codevalue);
-            string sqlText = "select distinct " + fieldname + " from " + tablename + " where " + fieldname + "='" + fieldvalue + "' and " + codefield + "<>'" + codevalue + "'";
+            SameVal1 = ignoreSpaces(SameVal1);
+            SameVal2 = ignoreSpaces(SameVal2);
+            DisVal1 = ignoreSpaces(DisVal1);
+            string sqlText = string.Format("SELECT DISTINCT 1 FROM {0} WHERE {1} = '{2}' AND {3} = '{4}' AND {5} <> '{6}'", tablename, SameParm1, SameVal1, SameParm2, SameVal2, DisParm1, DisVal1);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlText);
             int rowsnum = dt.Rows.Count;
             if (rowsnum > 0)
