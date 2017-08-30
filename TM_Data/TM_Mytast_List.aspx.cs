@@ -515,11 +515,11 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
                 pp.MWEIGHT ,
                 pp.SI_UPRICE,
                 pp.SI_UPRICE
-        FROM    ( SELECT    PO_MARID ,
-                            SUM(PO_QUANTITY) AS AMOUNT
-                  FROM      dbo.TBPC_PURORDERDETAIL
-                  WHERE     PO_PCODE LIKE '%" + tsaId + @"%'
-                  GROUP BY  PO_MARID
+        FROM    ( SELECT    PUR_MARID ,
+                            SUM(PUR_NUM) AS AMOUNT
+                  FROM      dbo.TBPC_PURCHASEPLAN
+                  WHERE     PUR_PCODE LIKE '%" + tsaId + @"%'
+                  GROUP BY  PUR_MARID
                 ) n
                 LEFT JOIN ( SELECT SI_MARID ,
                                     MNAME ,
@@ -536,7 +536,7 @@ VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + 
                                       WHERE     t.ccc = '1'
                                     ) p
                                     LEFT JOIN TBMA_MATERIAL ON p.SI_MARID = TBMA_MATERIAL.ID
-                           ) pp ON pp.SI_MARID = n.PO_MARID ORDER BY pp.SI_MARID;
+                           ) pp ON pp.SI_MARID = n.PUR_MARID ORDER BY pp.SI_MARID;
  UPDATE dbo.YS_COST_BUDGET_DETAIL SET YS_Average_Price='" + unitPriceOfCastingAndForging + "' ,YS_Average_Price_FB='" + unitPriceOfCastingAndForging + "' WHERE YS_TSA_ID='" + tsaId + "' AND( YS_CODE LIKE '01.08%' OR YS_CODE LIKE '01.09%') ";
 
             DBCallCommon.ExeSqlText(sqlInsertDetail);
