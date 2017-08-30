@@ -92,7 +92,7 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void BindProject()//绑定项目名称下拉框
         {
-            string sqltext = "SELECT DISTINCT PCON_PJNAME AS DDLVALUE,PCON_PJNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='3' ";
+            string sqltext = "SELECT DISTINCT PCON_PJNAME AS DDLVALUE,PCON_PJNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='2' ";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_project, sqltext, dataText, dataValue);
@@ -100,7 +100,7 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void BindEngineer()//绑定工程名称下拉框
         {
-            string sqltext = "SELECT DISTINCT PCON_ENGNAME AS DDLVALUE,PCON_ENGNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='3' and PCON_PJNAME='" + ddl_project.SelectedItem.ToString() + "'";
+            string sqltext = "SELECT DISTINCT PCON_ENGNAME AS DDLVALUE,PCON_ENGNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='2' and PCON_PJNAME='" + ddl_project.SelectedItem.ToString() + "'";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_engineer, sqltext, dataText, dataValue);
@@ -172,7 +172,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1 ";
-            strwhere += " and YS_REVSTATE='3' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += " and YS_REVSTATE='2' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
 
             string this_month = DateTime.Now.ToString("yyyy-MM");
             this_month += "-01";

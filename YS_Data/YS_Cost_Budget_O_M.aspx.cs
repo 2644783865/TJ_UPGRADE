@@ -183,7 +183,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1";
-            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_XS_Finished is NULL  and YS_REVSTATE='3'";
+            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_XS_Finished is NULL  and YS_REVSTATE='2'";
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
                 strwhere += " and PCON_PJNAME='" + ddl_project.SelectedValue + "'";
@@ -248,11 +248,12 @@ namespace ZCZJ_DPF.YS_Data
                 sqlConn.Close();
                 if (Convert.ToInt32(sqlCmd.Parameters["@retVal"].Value) == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');", true);
                     UCPaging1.CurrentPage = 1;
                     InitVar();
                     GetTechRequireData();
                     //lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                    
                 }
             }
             catch (Exception)

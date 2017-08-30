@@ -7817,6 +7817,7 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\ExportDataFromYS.cs" />
     <Compile Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx.cs">
       <DependentUpon>YS_Cost_Budget_Add_Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7838,12 +7839,40 @@
     <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.designer.cs">
       <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_A_M_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_A_M_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_O_M.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_O_M.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_O_M_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_O_M_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_O_M_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.cs">
       <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_View.aspx.designer.cs">
       <DependentUpon>YS_Cost_Budget_View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_Sta.aspx.cs">
+      <DependentUpon>YS_Cost_Real_Sta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Real_Sta.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Real_Sta.aspx</DependentUpon>
     </Compile>
     <Compile Include="YS_Data\YS_Cost_Real_View.aspx.cs">
       <DependentUpon>YS_Cost_Real_View.aspx</DependentUpon>
@@ -7873,12 +7902,40 @@
     <Compile Include="YS_Data\YS_Index.aspx.designer.cs">
       <DependentUpon>YS_Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\YS_IN_Detail_WW.aspx.cs">
+      <DependentUpon>YS_IN_Detail_WW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_IN_Detail_WW.aspx.designer.cs">
+      <DependentUpon>YS_IN_Detail_WW.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Menu.aspx.cs">
       <DependentUpon>YS_Menu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="YS_Data\YS_Menu.aspx.designer.cs">
       <DependentUpon>YS_Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Order_Detail.aspx.cs">
+      <DependentUpon>YS_Order_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Order_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Order_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_OUT_Detail_MAR.aspx.cs">
+      <DependentUpon>YS_OUT_Detail_MAR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_OUT_Detail_MAR.aspx.designer.cs">
+      <DependentUpon>YS_OUT_Detail_MAR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Statiatics_LABOR.aspx.cs">
+      <DependentUpon>YS_Statiatics_LABOR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Statiatics_LABOR.aspx.designer.cs">
+      <DependentUpon>YS_Statiatics_LABOR.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -11620,6 +11677,8 @@
     <None Include="TM_Data\材料需用计划表（JS-003-01%29.xls" />
     <None Include="TM_Data\涂装细化方案.xls" />
     <None Include="TM_Data\生产制号.xls" />
+    <None Include="YS_Data\成本监控表.xls" />
+    <None Include="YS_Data\订单监控表.xls" />
     <Content Include="TM_Data\GeneralHandler.ashx" />
     <Content Include="TM_Data\js\jquery-1.4.2-vsdoc.js" />
     <Content Include="TM_Data\js\jquery-1.4.2.js" />
@@ -12581,7 +12640,6 @@
     <Content Include="SM_Data\SM_Warehouse_InventorySchema.aspx" />
     <Content Include="SM_Data\SM_Warehouse_InventorySummary.aspx" />
     <Content Include="top.aspx" />
-    <Content Include="YS_Data\budget_detail.js" />
     <Content Include="YS_Data\LightSalmon.jpg" />
     <Content Include="YS_Data\pink.jpg" />
     <Content Include="YS_Data\Red.jpg" />
@@ -12596,13 +12654,21 @@
     <Content Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_Audit_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_O_M.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_O_M_Detail.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_View.aspx" />
+    <Content Include="YS_Data\YS_Cost_Real_Sta.aspx" />
     <Content Include="YS_Data\YS_Cost_Real_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Real_View_Detail.aspx" />
     <Content Include="YS_Data\YS_Data_P.js" />
     <Content Include="YS_Data\YS_Desk.aspx" />
     <Content Include="YS_Data\YS_Index.aspx" />
+    <Content Include="YS_Data\YS_IN_Detail_WW.aspx" />
     <Content Include="YS_Data\YS_Menu.aspx" />
+    <Content Include="YS_Data\YS_Order_Detail.aspx" />
+    <Content Include="YS_Data\YS_OUT_Detail_MAR.aspx" />
+    <Content Include="YS_Data\YS_Statiatics_LABOR.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Contract_Data\CheckRequest.rdlc" />
