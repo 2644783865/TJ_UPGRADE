@@ -53,10 +53,20 @@ namespace ZCZJ_DPF.YS_Data
             if (type=="0")//由预算编制进入
             {
                 //预算的状态全都显示出来
-                for (int i = 9; i < 16; i++)
+                //for (int i = 9; i < 16; i++)
+                //{
+                //    GridView1.Columns[i].Visible = true;
+                //}
+                
+                switch(depId)
                 {
-                    GridView1.Columns[i].Visible = true;
+                    case "06": GridView1.Columns[13].Visible = true; break;
+                    case "05": GridView1.Columns[9].Visible = true; break;
+                    case "04": GridView1.Columns[10].Visible = true; break;
+                    default: break;
                 }
+
+
             }
             else if (type == "1")//由审批进入
             {
@@ -71,13 +81,14 @@ namespace ZCZJ_DPF.YS_Data
                 ddl_addper.Visible = false;
                 lb_addper.Visible = false;
 
-                if (position == "0102")//副总经理登陆
+                switch (position)
                 {
-                    GridView1.Columns[14].Visible = true;
-                }
-                else if (position == "0101")//总经理登陆
-                {
-                    GridView1.Columns[15].Visible = true;
+                    case "0102":
+                        GridView1.Columns[14].Visible = true; break;
+                    case "0101":
+                        GridView1.Columns[15].Visible = true; break;
+                    default:
+                        GridView1.Columns[13].Visible = true; break;
                 }
             }
 
@@ -440,7 +451,7 @@ namespace ZCZJ_DPF.YS_Data
                 string tsaId = e.Row.Cells[1].Text.Trim();
 
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(string.Format("SELECT YS_REBUT FROM dbo.YS_COST_BUDGET WHERE YS_TSA_ID='{0}'", tsaId));
-                if (dr.Read() && dr["YS_REBUT"].ToString() == depId && position!="0601")
+                if (type=="0"&&dr.Read() && dr["YS_REBUT"].ToString() == depId && position!="0601")
                 {
                     e.Row.BackColor = System.Drawing.Color.Red;
                 }
@@ -449,10 +460,7 @@ namespace ZCZJ_DPF.YS_Data
                 if (e.Row.Cells[5].Text == "0.0000")
                 {
                     e.Row.Cells[8].Text = "分母为0";
-                }
-                
-                
-                
+                }               
             }
         }
 

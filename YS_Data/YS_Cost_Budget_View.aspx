@@ -102,18 +102,18 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%--12--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="预算编制进度"
-                    HeaderStyle-Wrap="false" Visible="false">
+                    HeaderStyle-Wrap="false" Visible="true">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_STATE" runat="server" Text='<%# GetState(Eval("YS_STATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <%--13--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="领导审核进度"
+                <%--13--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="审核"
                     HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_REVSTATE" runat="server" Text='<%# GetRevState( Eval("YS_REVSTATE").ToString() )%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <%--14--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="我的审核1"
+                <%--14--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="我的审核"
                     HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_FIRST_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_FIRST_REVSTATE").ToString()) %>'></asp:Label>
