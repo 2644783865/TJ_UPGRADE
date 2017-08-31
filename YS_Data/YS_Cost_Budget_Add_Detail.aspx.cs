@@ -22,10 +22,11 @@ namespace ZCZJ_DPF.YS_Data
         string tsaId, userName, uid, depId, position;
         protected void Page_Load(object sender, EventArgs e)
         {
+            DBCallCommon.SessionLostToLogIn(Session["UserID"]);
             userName = Session["UserName"].ToString();
             uid = Session["UserID"].ToString();
             depId = Session["UserDeptID"].ToString();
-            position = Session["POSITION"].ToString(); ;
+            position = Session["POSITION"].ToString(); 
             tsaId = Request.QueryString["tsaId"].ToString();
             GetState(tsaId);
 
@@ -652,7 +653,7 @@ WHERE   YS_TSA_ID = '{16}';",
             //更新状态
             listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=2, YS_SHENGCHAN=1,YS_SHENGCHAN_SJ=NULL, YS_SHENGCHAN_NAME=NULL,YS_SHENGCHAN_YJ=NULL,YS_CAIGOU=1,YS_CAIGOU_SJ=NULL ,YS_CAIGOU_NAME=NULL,YS_CAIGOU_YJ=NULL,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
             DBCallCommon.ExecuteTrans(listsql);
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('下推成功!');window.close();window.opener.location.reload();", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('下推成功!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
         }
 
         /// <summary>
@@ -707,7 +708,7 @@ WHERE   YS_TSA_ID = '{7}';",
                 {
                     DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=3,YS_CAIWU=1,YS_CAIWU_NAME=NULL,YS_CAIWU_SJ=NULL,YS_CAIWU_YJ=NULL,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
                 }
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.close();window.opener.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
             }
             #endregion
 
@@ -726,7 +727,7 @@ WHERE   YS_TSA_ID = '{7}';",
                 {
                     DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_STATE=3,YS_CAIWU=1,YS_CAIWU_NAME=NULL,YS_CAIWU_SJ=NULL,YS_CAIWU_YJ=NULL,YS_REVSTATE=0,YS_REBUT=0 WHERE YS_TSA_ID='{0}'", tsaId));
                 }
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.close();window.opener.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
             }
             #endregion
 
@@ -758,7 +759,7 @@ WHERE   YS_TSA_ID = '{9}';",
                 listsql.Add(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIWU='2',YS_CAIWU_NAME='{0}',YS_CAIWU_SJ=GETDATE(),YS_CAIWU_YJ='{1}',YS_STATE='4',YS_REVSTATE='1',YS_FIRST_REVSTATE='1',YS_REBUT='0' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId));
                 DBCallCommon.ExecuteTrans(listsql);
                 listsql.Clear();
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功！');window.close();window.opener.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功！');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
 
             }
             #endregion
@@ -768,7 +769,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=2,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_SECOND_REVSTATE=1 WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已提交审批!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已提交审批!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -782,7 +783,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=2,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_STATE=5,YS_REVSTATE=2 WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已提交审批!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已提交审批!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -805,7 +806,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIGOU=3,YS_CAIGOU_NAME='{0}',YS_CAIGOU_YJ='{1}',YS_CAIGOU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIGOU_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -819,7 +820,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=3,YS_SHENGCHAN_NAME='{0}',YS_SHENGCHAN_YJ='{1}',YS_SHENGCHAN_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SHENGCHAN_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -833,7 +834,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIWU=3,YS_CAIWU_NAME='{0}',YS_CAIWU_YJ='{1}',YS_CAIWU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -847,7 +848,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=3,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -861,7 +862,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=3,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -885,7 +886,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIGOU=1,YS_CAIWU=3,YS_CAIWU_NAME='{0}',YS_CAIWU_YJ='{1}',YS_CAIWU_SJ=GETDATE(),YS_STATE=2,YS_REBUT='05' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新反馈!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新反馈!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -899,7 +900,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=3,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_CAIGOU=1,YS_REBUT='05' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -913,7 +914,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=3,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_CAIGOU=1,YS_REBUT='05' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到采购部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -934,7 +935,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=1,YS_CAIWU=3,YS_CAIWU_NAME='{0}',YS_CAIWU_YJ='{1}',YS_CAIWU_SJ=GETDATE(),YS_STATE=2,YS_REBUT='04' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIWU_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新反馈!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新反馈!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -948,7 +949,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_FIRST_REVSTATE=3,YS_FIRST_REV_NAME='{0}',YS_FIRST_REV_YJ='{1}',YS_FIRST_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_SHENGCHAN=1,YS_REBUT='04' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_FIRST_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {
@@ -962,7 +963,7 @@ WHERE   YS_TSA_ID = '{9}';",
             {
                 if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SECOND_REVSTATE=3,YS_SECOND_REV_NAME='{0}',YS_SECOND_REV_YJ='{1}',YS_SECOND_REV_SJ=GETDATE(),YS_REVSTATE=3,YS_STATE=2,YS_SHENGCHAN=1,YS_REBUT='04' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SECOND_REV_YJ.UniqueID], tsaId)) > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新填写!');window.close();window.opener.location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到生产部重新填写!');window.close();window.opener.location.reload();window.opener.parent.left.location.reload();", true);
                 }
                 else
                 {

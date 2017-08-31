@@ -21,6 +21,7 @@ namespace ZCZJ_DPF.YS_Data
         string userName, uid, depId, position, type;
         protected void Page_Load(object sender, EventArgs e)
         {
+            DBCallCommon.SessionLostToLogIn(Session["UserID"]);
             userName = Session["UserName"].ToString();
             uid = Session["UserID"].ToString();
             depId = Session["UserDeptID"].ToString();
@@ -51,6 +52,7 @@ namespace ZCZJ_DPF.YS_Data
 
             if (type=="0")//由预算编制进入
             {
+                //预算的状态全都显示出来
                 for (int i = 9; i < 16; i++)
                 {
                     GridView1.Columns[i].Visible = true;
@@ -185,7 +187,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "YS_COST_BUDGET";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,YS_PROJECTNAME,[YS_ENGINEERNAME],YS_BUDGET_INCOME,(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST)) AS YS_PROFIT,(YS_BUDGET_INCOME-(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST))/YS_BUDGET_INCOME AS YS_PROFIT_RATE,YS_MATERIAL_COST,YS_LABOUR_COST,YS_TRANS_COST,YS_CAIWU, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
+            pager.ShowFields = "YS_TSA_ID,YS_CONTRACT_NO,YS_PROJECTNAME,[YS_ENGINEERNAME],YS_BUDGET_INCOME,(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST) AS YS_TOTALCOST_ALL,(YS_BUDGET_INCOME-(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST)) AS YS_PROFIT,(YS_BUDGET_INCOME-(YS_MATERIAL_COST+YS_LABOUR_COST+YS_TRANS_COST)-0.0001)/(YS_BUDGET_INCOME-0.0001) AS YS_PROFIT_RATE,YS_MATERIAL_COST,YS_LABOUR_COST,YS_TRANS_COST,YS_CAIWU, YS_CAIGOU,YS_SHENGCHAN,YS_REVSTATE,YS_FIRST_REVSTATE,YS_SECOND_REVSTATE," +
             "YS_TEC_SUBMIT_NAME, YS_ADDTIME,YS_ADDNAME,YS_ADDFINISHTIME,YS_STATE,YS_NOTE";
             pager.OrderField = "YS_ADDTIME";
             pager.StrWhere = this.GetStrWhere();
@@ -438,11 +440,19 @@ namespace ZCZJ_DPF.YS_Data
                 string tsaId = e.Row.Cells[1].Text.Trim();
 
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(string.Format("SELECT YS_REBUT FROM dbo.YS_COST_BUDGET WHERE YS_TSA_ID='{0}'", tsaId));
-                if (dr.Read() && dr["YS_REBUT"].ToString()==depId)
+                if (dr.Read() && dr["YS_REBUT"].ToString() == depId && position!="0601")
                 {
                     e.Row.BackColor = System.Drawing.Color.Red;
                 }
                 dr.Close();
+                //设置收入为0的利率
+                if (e.Row.Cells[5].Text == "0.0000")
+                {
+                    e.Row.Cells[8].Text = "分母为0";
+                }
+                
+                
+                
             }
         }
 
