@@ -803,7 +803,7 @@ WHERE   YS_TSA_ID = '{9}';",
             #region 采购部反馈驳回到财务填写
             if (depId == "05" && caiGou == 1)
             {
-                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=0,YS_CAIGOU=3,YS_CAIGOU_NAME='{0}',YS_CAIGOU_YJ='{1}',YS_CAIGOU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIGOU_YJ.UniqueID], tsaId)) > 0)
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_CAIGOU=3,YS_CAIGOU_NAME='{0}',YS_CAIGOU_YJ='{1}',YS_CAIGOU_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_CAIGOU_YJ.UniqueID], tsaId)) > 0)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
                 }
@@ -817,7 +817,7 @@ WHERE   YS_TSA_ID = '{9}';",
             #region 生产部反馈驳回到财务填写
             else if (depId == "04" && shengChan == 1)
             {
-                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=3,YS_CAIGOU=0,YS_SHENGCHAN_NAME='{0}',YS_SHENGCHAN_YJ='{1}',YS_SHENGCHAN_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SHENGCHAN_YJ.UniqueID], tsaId)) > 0)
+                if (DBCallCommon.ExeSqlTextGetInt(string.Format("UPDATE dbo.YS_COST_BUDGET SET YS_SHENGCHAN=3,YS_SHENGCHAN_NAME='{0}',YS_SHENGCHAN_YJ='{1}',YS_SHENGCHAN_SJ=GETDATE(),YS_STATE=1,YS_REBUT='06' WHERE YS_TSA_ID='{2}';", userName, Request.Form[txt_YS_SHENGCHAN_YJ.UniqueID], tsaId)) > 0)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('已驳回到财务部重新填写!');window.close();window.opener.location.reload();", true);
                 }

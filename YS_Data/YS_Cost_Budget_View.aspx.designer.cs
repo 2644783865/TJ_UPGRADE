@@ -68,6 +68,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.DropDownList ddl_State;
         
         /// <summary>
+        /// lb_YS_REVSTATE 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_YS_REVSTATE;
+        
+        /// <summary>
         /// ddl_YS_REVSTATE 控件。
         /// </summary>
         /// <remarks>
@@ -75,6 +84,15 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_YS_REVSTATE;
+        
+        /// <summary>
+        /// lb_addper 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_addper;
         
         /// <summary>
         /// ddl_addper 控件。

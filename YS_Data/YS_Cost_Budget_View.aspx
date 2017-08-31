@@ -43,16 +43,16 @@
                 </asp:DropDownList>
             </td>
             <td align="center">
-                预算编制进度：<asp:DropDownList ID="ddl_State" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                预算编制进度：<asp:DropDownList ID="ddl_State" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick" >
                 </asp:DropDownList>
             </td>
             <td>
-                领导审核进度：<asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true"
+                <asp:Label ID="lb_YS_REVSTATE" runat="server" Text="领导审核进度："></asp:Label><asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true"
                     OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
             <td align="center">
-                制制单人：<asp:DropDownList ID="ddl_addper" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                <asp:Label ID="lb_addper" runat="server" Text="制单人："></asp:Label><asp:DropDownList ID="ddl_addper" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -78,7 +78,7 @@
                 <%--5--%><asp:BoundField DataField="YS_BUDGET_INCOME" ItemStyle-HorizontalAlign="Right"
                     HeaderText="任务号收入" HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
                 <%--6--%><asp:BoundField DataField="YS_TOTALCOST_ALL" ItemStyle-HorizontalAlign="Right"
-                    HeaderText="任务预算总额" HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
+                    HeaderText="预算总额" HeaderStyle-Wrap="true" DataFormatString="{0:N4}"></asp:BoundField>
                 <%--7--%><asp:BoundField DataField="YS_PROFIT" ItemStyle-HorizontalAlign="Right"
                     HeaderText="预算毛利润" HeaderStyle-Wrap="false" DataFormatString="{0:N4}"></asp:BoundField>
                 <%--8--%><asp:BoundField DataField="YS_PROFIT_RATE" ItemStyle-HorizontalAlign="Right"
@@ -113,7 +113,7 @@
                         <asp:Label ID="lab_YS_REVSTATE" runat="server" Text='<%# GetRevState( Eval("YS_REVSTATE").ToString() )%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <%--14--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="我的审核"
+                <%--14--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="我的审核1"
                     HeaderStyle-Wrap="false" Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_FIRST_REVSTATE" runat="server" Text='<%# GetDisRevState(Eval("YS_FIRST_REVSTATE").ToString()) %>'></asp:Label>
@@ -175,7 +175,7 @@
                             runat="server">
                             <asp:Image ID="img_look" ImageUrl="~/Assets/images/res.gif" border="0" hspace="2"
                                 align="absmiddle" runat="server" />
-                            详细信息》
+                            详情》
                         </asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>

@@ -51,15 +51,23 @@ namespace ZCZJ_DPF.YS_Data
 
             if (type=="0")//由预算编制进入
             {
-
+                for (int i = 9; i < 16; i++)
+                {
+                    GridView1.Columns[i].Visible = true;
+                }
             }
             else if (type == "1")//由审批进入
             {
-                for (int i = 16; i < 21; i++)
+                for (int i = 16; i < 22; i++)
                 {
                     GridView1.Columns[i].Visible = false;
                 }
 
+                GridView1.Columns[12].Visible = true;
+                ddl_YS_REVSTATE.Visible = false;
+                lb_YS_REVSTATE.Visible = false;
+                ddl_addper.Visible = false;
+                lb_addper.Visible = false;
 
                 if (position == "0102")//副总经理登陆
                 {
