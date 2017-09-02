@@ -89,6 +89,7 @@ namespace ZCZJ_DPF.PC_Data
             btn_shanchu.Attributes.Add("OnClick", "Javascript:return confirm('将删除整个订单，是否确定删除?删除之后会保留历史记录！');");
             btn_shangcha.Attributes.Add("onclick", "form.target='_blank'");
             btn_xiacha.Attributes.Add("onclick", "form.target='_blank'");
+            
             //btn_biangeng.Attributes.Add("onclick", "form.target='_blank'");
             if (!IsPostBack)
             {
@@ -149,6 +150,7 @@ namespace ZCZJ_DPF.PC_Data
         private void initpage()
         {
             string orderno = gloabsheetno;
+                        
             string sqltext = "";
             sqltext = "SELECT orderno AS Code,supplierid,suppliernm AS Supplier,substring(zdtime,1,10) AS Date,abstract AS Abstract," +
                 "versionno AS VersionNo,changdate AS ChangeDate,changmanid,changnm AS ChangeMan,changreason AS ChangeReason," +
@@ -1273,6 +1275,21 @@ namespace ZCZJ_DPF.PC_Data
 
         protected void btn_baojian_Click(object sender, EventArgs e)
         {
+            //已有质检结果不允许再报检
+            for (int m = 0; m < tbpc_order_detailRepeater.Items.Count; m++)
+            {
+                if ((tbpc_order_detailRepeater.Items[m].FindControl("CKBOX_SELECT") as System.Web.UI.WebControls.CheckBox).Checked)
+                {
+                    string ptcode = (tbpc_order_detailRepeater.Items[m].FindControl("ptcode") as System.Web.UI.WebControls.Label).Text.Trim();
+                    SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(" SELECT TOP 1 RESULT FROM View_TBQM_APLYFORITEM WHERE PTC='" + ptcode + "'");
+                    if (dr.Read())
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提示：存在已报检的条目！');", true);
+                        return;
+                    }
+                    dr.Close();
+                }
+            }
 
             //一个订单有多个项目
 
