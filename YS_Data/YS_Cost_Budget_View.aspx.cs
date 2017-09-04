@@ -290,7 +290,7 @@ namespace ZCZJ_DPF.YS_Data
 
             if (ckb_time.Checked == true)
             {
-                strwhere += " and YS_ADDFINISHTIME<GETDATE() and isnull(YS_STATE,'')!='3'";
+                strwhere += " and YS_ADDFINISHTIME<GETDATE() and isnull(YS_STATE,'')!='5'";
             }
 
             return strwhere;

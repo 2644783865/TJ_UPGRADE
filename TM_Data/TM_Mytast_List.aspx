@@ -240,7 +240,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="技术准备" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
-                                    ItemStyle-HorizontalAlign="Center">
+                                    ItemStyle-HorizontalAlign="Center" Visible="false">
                                     <ItemTemplate>
                                     <asp:HiddenField ID="hid_Finish" runat="server" Value='<%#Eval("TSA_FINISHSTATE") %>'></asp:HiddenField>
                                         <asp:LinkButton ID="lbtn_Finish" runat="server" CssClass="link" OnClientClick="javascript:return ConfirmFinish()"  OnClick="lbtn_Finish_onclick" CommandArgument='<%# Eval("TSA_ID") %>' >

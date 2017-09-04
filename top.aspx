@@ -79,12 +79,12 @@
                     <asp:HyperLink ID="HyperLink10" NavigateUrl="PL_Data/PL_Index.aspx" Target="_top"
                         onclick="SelectMenu('HyperLink10')" runat="server">体系管理|</asp:HyperLink>
                     <asp:HyperLink ID="HyperLink12" NavigateUrl="~/YS_Data/YS_Index.aspx" Target="_top"
-                        onclick="SelectMenu('HyperLink12')" runat="server">预算管理|</asp:HyperLink>
+                        onclick="SelectMenu('HyperLink12')" runat="server" Visible="false">预算管理|</asp:HyperLink>
                     <asp:HyperLink ID="HypBasicData" NavigateUrl="Basic_Data/BD_Index.aspx" Target="_top"
                         onclick="SelectMenu('HypBasicData')" runat="server">基础数据</asp:HyperLink>
 
                     <div style="display: none">
-                        <asp:TextBox ID="gdid" runat="server" AutoPostBack="true" OnTextChanged="gdid_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="gdid" runat="server" AutoPostBack="false" OnTextChanged="gdid_TextChanged"></asp:TextBox>
                     </div>
                 </span>
             </td>
