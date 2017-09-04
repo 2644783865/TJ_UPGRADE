@@ -380,7 +380,7 @@ namespace ZCZJ_DPF.PC_Data
                 //"purnote as PUR_NOTE,picno as PIC_SHEETNO,SUBSTRING(irqdata,1,10) as ICL_IQRDATE," +CONVERT(varchar(12) , irqdata, 102 ) as ICL_IQRDATE,
                         "purnote as PUR_NOTE,'' as PIC_SHEETNO," +
                         "'' as ICL_REVIEWA,'' as ICL_REVIEWANM,'' as ZXNUM,'' as ZXFZNUM," +
-                        "'' as PO_SHEETNO,case when margb='' then PUR_TUHAO else '' end as PUR_TUHAO,PUR_MASHAPE,PR_MAP,PR_CHILDENGNAME,PUR_IFFAST ";
+                        "'' as PO_SHEETNO,PUR_TUHAO,PUR_MASHAPE,PR_MAP,PR_CHILDENGNAME,PUR_IFFAST ";
 
             //数据库中的主键
             string OrderField = "planno desc,ptcode";

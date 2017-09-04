@@ -242,7 +242,11 @@
                                 <asp:Panel ID="Panel1" runat="server">
                                     <div style="text-align: right">
                                         合同号：
-                                        <asp:TextBox ID="CONTR" runat="server" CssClass="center" Width="100px"></asp:TextBox>
+                                        <asp:TextBox ID="CONTR" runat="server" CssClass="center" Width="100px"></asp:TextBox>&nbsp; &nbsp;
+                                        交货内容：
+                                        <asp:TextBox ID="txtENGNAME" runat="server" CssClass="center" Width="100px" />&nbsp; &nbsp;
+                                        图号：
+                                        <asp:TextBox ID="txtMap" runat="server" CssClass="center" Width="100px" />&nbsp; &nbsp;
                                         <asp:Button ID="btnadd" runat="server" Text="确 定" OnClick="btnadd_Click" />
                                         &nbsp; &nbsp; &nbsp; &nbsp;
                                     </div>

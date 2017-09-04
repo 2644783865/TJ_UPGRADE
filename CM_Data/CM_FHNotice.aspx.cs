@@ -206,18 +206,122 @@ namespace ZCZJ_DPF.CM_Data
         {
             if (CONTR.Text.Trim() != "")
             {
-                //string sql = "select ID, a.CM_ID,CM_CONTR,CM_PROJ,TSA_ID,TSA_ENGNAME,TSA_MAP,TSA_NUMBER,TSA_UNIT,TSA_IDNOTE,'0' as CM_FHNUM,(case when b.CM_YFSM is null then '0' else CM_YFSM end) as TSA_YFSM from View_CM_Task as a left join (select sum(CM_FHNUM) as CM_YFSM,CM_ID from VIEW_CM_FaHuo where CM_CONFIRM!=3 group by CM_ID) as b on a.CM_ID=b.CM_ID where CM_CONTR like '%" + CONTR.Text.Trim() + "%'";
-                string sql = "";
+                //string sql = "";
+                StringBuilder sqlBuilder = new StringBuilder();
                 if (action == "add")
                 {
-                    //sql = "select a.BM_XUHAO as ID,a.BM_ID as CM_ID,BM_PJID as CM_CONTR,b.CM_PROJ,a.BM_ENGID as TSA_ID,a.BM_CHANAME as TSA_ENGNAME,a.BM_TUHAO as TSA_MAP,a.BM_PNUMBER as TSA_NUMBER,a.BM_TECHUNIT as TSA_UNIT,b.TSA_ENGNAME as TSA_IDNOTE,(CAST(a.BM_PNUMBER as int)-CAST((case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as int)) as CM_FHNUM,(case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as TSA_YFSM from dbo.TBPM_STRINFODQO as a left join View_CM_TSAJOINPROJ as b on a.BM_ENGID=b.TSA_ID  left join (select sum(CM_FHNUM) as CM_YFSM,CM_ID from VIEW_CM_FaHuo where CM_CONFIRM!=3 group by CM_ID) as c on convert(varchar(20),a.BM_ID)=c.CM_ID where ((a.BM_MARID is null or a.BM_MARID='') or (a.BM_MARID is not null and a.BM_MARID<>'' and a.BM_KU like '%S%')) and a.BM_PJID like '%" + CONTR.Text.Trim() + "%'  and BM_PJID not like '%JSB.BOM%' and BM_MSSTATUS<>'1' and dbo.Splitnum(BM_ZONGXU,'.')<3 order by TSA_ID,ID asc";
-                    sql = "select a.BM_XUHAO as ID,a.BM_ID as CM_ID,BM_PJID as CM_CONTR,b.CM_PROJ,a.BM_ENGID as TSA_ID,a.BM_CHANAME as TSA_ENGNAME,a.BM_TUHAO as TSA_MAP,a.BM_PNUMBER as TSA_NUMBER,a.BM_TECHUNIT as TSA_UNIT,b.TSA_ENGNAME as TSA_IDNOTE,(CAST(a.BM_PNUMBER as int)-CAST((case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as int)) as CM_FHNUM,(case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as TSA_YFSM from dbo.TBPM_STRINFODQO as a left join View_CM_TSAJOINPROJ as b on a.BM_ENGID=b.TSA_ID  left join (select sum(CM_FHNUM) as CM_YFSM,CM_ID from VIEW_CM_FaHuo where CM_CONFIRM!=3 group by CM_ID) as c on convert(varchar(20),a.BM_ID)=c.CM_ID where ((a.BM_MARID is null or a.BM_MARID='') or (a.BM_MARID is not null and a.BM_MARID<>'' and a.BM_KU is not null and (a.BM_KU<>'' or ((a.BM_KU='' or a.BM_KU is null) and a.BM_MARID like '%.%')))) and a.BM_PJID like '%" + CONTR.Text.Trim() + "%'  and BM_PJID not like '%JSB.BOM%' and BM_MSSTATUS<>'1' and dbo.Splitnum(BM_ZONGXU,'.')<3 order by TSA_ID,ID asc";
+                    sqlBuilder.Append(@" SELECT  a.BM_XUHAO AS ID ,
+                                                a.BM_ID AS CM_ID ,
+                                                BM_PJID AS CM_CONTR ,
+                                                b.CM_PROJ ,
+                                                a.BM_ENGID AS TSA_ID ,
+                                                a.BM_CHANAME AS TSA_ENGNAME ,
+                                                a.BM_TUHAO AS TSA_MAP ,
+                                                a.BM_PNUMBER AS TSA_NUMBER ,
+                                                a.BM_TECHUNIT AS TSA_UNIT ,
+                                                b.TSA_ENGNAME AS TSA_IDNOTE ,
+                                                ( CAST(a.BM_PNUMBER AS INT)
+                                                  - CAST(( CASE WHEN c.CM_YFSM IS NULL THEN '0'
+                                                                ELSE c.CM_YFSM
+                                                           END ) AS INT) ) AS CM_FHNUM ,
+                                                ( CASE WHEN c.CM_YFSM IS NULL THEN '0'
+                                                       ELSE c.CM_YFSM
+                                                  END ) AS TSA_YFSM ");
+                    sqlBuilder.Append(@" FROM    dbo.TBPM_STRINFODQO AS a
+                                                    LEFT JOIN View_CM_TSAJOINPROJ AS b ON a.BM_ENGID = b.TSA_ID
+                                                    LEFT JOIN ( SELECT  SUM(CM_FHNUM) AS CM_YFSM ,
+                                                                        CM_ID
+                                                                FROM    View_CM_FaHuo
+                                                                WHERE   CM_CONFIRM != 3
+                                                                GROUP BY CM_ID
+                                                              ) AS c ON CONVERT(VARCHAR(20), a.BM_ID) = c.CM_ID ");
+                    sqlBuilder.Append(@" WHERE   ( ( a.BM_MARID IS NULL
+                                                    OR a.BM_MARID = ''
+                                                  )
+                                                  OR ( a.BM_MARID IS NOT NULL
+                                                       AND a.BM_MARID <> ''
+                                                       AND a.BM_KU IS NOT NULL
+                                                       AND ( a.BM_KU <> ''
+                                                             OR ( ( a.BM_KU = ''
+                                                                    OR a.BM_KU IS NULL
+                                                                  )
+                                                                  AND a.BM_MARID LIKE '%.%'
+                                                                )
+                                                           )
+                                                     )
+                                                )
+                                                AND BM_PJID NOT LIKE '%JSB.BOM%'
+                                                AND BM_MSSTATUS <> '1'
+                                                AND dbo.Splitnum(BM_ZONGXU, '.') < 3 ");
+                    if (!string.IsNullOrEmpty(CONTR.Text))
+                    {
+                        sqlBuilder.Append(" and a.BM_PJID like '%" + CONTR.Text.Trim() + "%' ");
+                    }                    
+                    if (!string.IsNullOrEmpty(txtENGNAME.Text))
+                    {
+                        sqlBuilder.Append(" and a.BM_CHANAME like '%" + txtENGNAME.Text.Trim() + "%' ");
+                    }
+                    if (!string.IsNullOrEmpty(txtMap.Text))
+                    {
+                        sqlBuilder.Append(" and a.BM_TUHAO like '%" + txtMap.Text.Trim() + "%' ");
+                    }
+                    sqlBuilder.Append(" order by TSA_ID,ID asc ");
                 }
                 else if (action == "edit")
                 {
-                    sql = "select a.BM_XUHAO as ID,a.BM_ID as CM_ID,BM_PJID as CM_CONTR,b.CM_PROJ,a.BM_ENGID as TSA_ID,a.BM_CHANAME as TSA_ENGNAME,a.BM_TUHAO as TSA_MAP,a.BM_PNUMBER as TSA_NUMBER,a.BM_TECHUNIT as TSA_UNIT,b.TSA_ENGNAME as TSA_IDNOTE,(CAST(a.BM_PNUMBER as int)-CAST((case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as int)) as CM_FHNUM,(case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as TSA_YFSM from dbo.TBPM_STRINFODQO as a left join View_CM_TSAJOINPROJ as b on a.BM_ENGID=b.TSA_ID  left join (select sum(CM_FHNUM) as CM_YFSM,CM_ID from VIEW_CM_FaHuo where CM_CONFIRM!=3 group by CM_ID) as c on convert(varchar(20),a.BM_ID)=c.CM_ID where ((a.BM_MARID is null or a.BM_MARID='') or (a.BM_MARID is not null and a.BM_MARID<>'' and a.BM_KU like '%S%' )) and a.BM_PJID like '%" + CONTR.Text.Trim() + "%'  and BM_PJID not like '%JSB.BOM%' and BM_MSSTATUS<>'1' and dbo.Splitnum(BM_ZONGXU,'.')<3 order by TSA_ID,ID asc";
+                    //sql = "select a.BM_XUHAO as ID,a.BM_ID as CM_ID,BM_PJID as CM_CONTR,b.CM_PROJ,a.BM_ENGID as TSA_ID,a.BM_CHANAME as TSA_ENGNAME,a.BM_TUHAO as TSA_MAP,a.BM_PNUMBER as TSA_NUMBER,a.BM_TECHUNIT as TSA_UNIT,b.TSA_ENGNAME as TSA_IDNOTE,(CAST(a.BM_PNUMBER as int)-CAST((case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as int)) as CM_FHNUM,(case when c.CM_YFSM is null then '0' else c.CM_YFSM end) as TSA_YFSM from dbo.TBPM_STRINFODQO as a left join View_CM_TSAJOINPROJ as b on a.BM_ENGID=b.TSA_ID  left join (select sum(CM_FHNUM) as CM_YFSM,CM_ID from VIEW_CM_FaHuo where CM_CONFIRM!=3 group by CM_ID) as c on convert(varchar(20),a.BM_ID)=c.CM_ID where ((a.BM_MARID is null or a.BM_MARID='') or (a.BM_MARID is not null and a.BM_MARID<>'' and a.BM_KU like '%S%' )) and a.BM_PJID like '%" + CONTR.Text.Trim() + "%'  and BM_PJID not like '%JSB.BOM%' and BM_MSSTATUS<>'1' and dbo.Splitnum(BM_ZONGXU,'.')<3 order by TSA_ID,ID asc";
+
+                    sqlBuilder.Append(@" SELECT  a.BM_XUHAO AS ID ,
+                                                a.BM_ID AS CM_ID ,
+                                                BM_PJID AS CM_CONTR ,
+                                                b.CM_PROJ ,
+                                                a.BM_ENGID AS TSA_ID ,
+                                                a.BM_CHANAME AS TSA_ENGNAME ,
+                                                a.BM_TUHAO AS TSA_MAP ,
+                                                a.BM_PNUMBER AS TSA_NUMBER ,
+                                                a.BM_TECHUNIT AS TSA_UNIT ,
+                                                b.TSA_ENGNAME AS TSA_IDNOTE ,
+                                                ( CAST(a.BM_PNUMBER AS INT)
+                                                  - CAST(( CASE WHEN c.CM_YFSM IS NULL THEN '0'
+                                                                ELSE c.CM_YFSM
+                                                           END ) AS INT) ) AS CM_FHNUM ,
+                                                ( CASE WHEN c.CM_YFSM IS NULL THEN '0'
+                                                       ELSE c.CM_YFSM
+                                                  END ) AS TSA_YFSM ");
+                    sqlBuilder.Append(@" FROM    dbo.TBPM_STRINFODQO AS a
+                                            LEFT JOIN View_CM_TSAJOINPROJ AS b ON a.BM_ENGID = b.TSA_ID
+                                            LEFT JOIN ( SELECT  SUM(CM_FHNUM) AS CM_YFSM ,
+                                                                CM_ID
+                                                        FROM    View_CM_FaHuo
+                                                        WHERE   CM_CONFIRM != 3
+                                                        GROUP BY CM_ID
+                                                      ) AS c ON CONVERT(VARCHAR(20), a.BM_ID) = c.CM_ID ");
+                    sqlBuilder.Append(@" WHERE   ( ( a.BM_MARID IS NULL
+                                                    OR a.BM_MARID = ''
+                                                  )
+                                                  OR ( a.BM_MARID IS NOT NULL
+                                                       AND a.BM_MARID <> ''
+                                                       AND a.BM_KU LIKE '%S%'
+                                                     )
+                                                )
+                                                AND BM_PJID NOT LIKE '%JSB.BOM%'
+                                                AND BM_MSSTATUS <> '1'
+                                                AND dbo.Splitnum(BM_ZONGXU, '.') < 3 ");
+                    if (!string.IsNullOrEmpty(CONTR.Text))
+                    {
+                        sqlBuilder.Append(" AND a.BM_PJID LIKE '%" + CONTR.Text.Trim() + "%' ");
+                    }                    
+                    if (!string.IsNullOrEmpty(txtENGNAME.Text))
+                    {
+                        sqlBuilder.Append(" AND a.BM_CHANAME LIKE '%" + txtENGNAME.Text.Trim() + "%' ");
+                    }
+                    if (!string.IsNullOrEmpty(txtMap.Text))
+                    {
+                        sqlBuilder.Append(" AND a.BM_TUHAO LIKE '%" + txtMap.Text.Trim() + "%' ");
+                    }
+                    sqlBuilder.Append(" ORDER BY TSA_ID,ID ASC ");
                 }
-                DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
+                DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlBuilder.ToString());
                 Det_Repeater.DataSource = dt;
                 Det_Repeater.DataBind();
                 InitVar();
