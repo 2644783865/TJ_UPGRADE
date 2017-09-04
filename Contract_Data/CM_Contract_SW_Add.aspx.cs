@@ -261,6 +261,8 @@ namespace ZCZJ_DPF.CM_Data
                 txtPCON_ENGTYPE.Text = dr["PCON_ENGTYPE"].ToString();
                 //合同金额
                 txtPCON_JINE.Text = dr["PCON_JINE"].ToString();
+                //预计运费，预算时使用
+                txtTrans_Cost.Text = dr["TSA_Trans_Cost"].ToString();
                 //txtHTJE.Text = dr["PCON_JINE"].ToString();//变更
                 //Other_MONUNIT.Text = dr["OTHER_MONUNIT"].ToString();
                 //货币单位
@@ -464,6 +466,8 @@ namespace ZCZJ_DPF.CM_Data
             string pcon_engtype = txtPCON_ENGTYPE.Text.Trim();
             //合同金额10
             decimal pcon_jine = Convert.ToDecimal(txtPCON_JINE.Text.Trim());
+            //预计运费
+            decimal tsa_trans_cost = Convert.ToDecimal(txtTrans_Cost.Text.Trim());
             //其他金额
             //decimal other_monunit = Convert.ToDecimal(Other_MONUNIT.Text.Trim());
             //货币单位11
@@ -526,13 +530,13 @@ namespace ZCZJ_DPF.CM_Data
             }
             if (action == "Add")
             {
-                sqltext = "insert into TBPM_CONPCHSINFO(PCON_BCODE,PCON_PJID,PCON_RSPDEPID,PCON_ENGID,PCON_ENGNAME,PCON_TYPE,PCON_ENGTYPE,PCON_JINE,PCON_FILLDATE,PCON_VALIDDATE,PCON_CUSTMNAME,PCON_CUSTMID,PCON_RESPONSER,PCON_BALANCEACNT,PCON_NOTE,PCON_FORM,PCON_STATE,PCON_YFK,PCON_YFKLJ,PCON_SFKLJ,PCON_YFWK,PCON_ERROR,PCON_YZHTH,PCON_REVID,GUID)" +
-                    "values('" + pcon_bcode + "','" + pcon_pjid + "','" + pcon_rspdepid + "','" + pcon_engid + "','" + pcon_engname + "','" + pcon_type + "','" + pcon_engtype + "','" + pcon_jine + "','" + pcon_filldate + "','" + pcon_validdate + "','" + pcon_custmname + "','" + pcon_custmid + "','" + pcon_responser + "','" + pcon_balanceacnt + "','" + pcon_note + "','" + pcon_form + "'," + pcon_state + "," + pcon_yfk + "," + pcon_yfklj + "," + pcon_sfklj + "," + pcon_yfwk + "," + pcon_error + ",'" + pcon_yzhth + "','" + pcon_revid + "','" + guid + "')";
+                sqltext = "insert into TBPM_CONPCHSINFO(PCON_BCODE,PCON_PJID,PCON_RSPDEPID,PCON_ENGID,PCON_ENGNAME,PCON_TYPE,PCON_ENGTYPE,PCON_JINE,TSA_Trans_Cost,PCON_FILLDATE,PCON_VALIDDATE,PCON_CUSTMNAME,PCON_CUSTMID,PCON_RESPONSER,PCON_BALANCEACNT,PCON_NOTE,PCON_FORM,PCON_STATE,PCON_YFK,PCON_YFKLJ,PCON_SFKLJ,PCON_YFWK,PCON_ERROR,PCON_YZHTH,PCON_REVID,GUID)" +
+                    "values('" + pcon_bcode + "','" + pcon_pjid + "','" + pcon_rspdepid + "','" + pcon_engid + "','" + pcon_engname + "','" + pcon_type + "','" + pcon_engtype + "','" + pcon_jine+"','" +tsa_trans_cost+ "','" + pcon_filldate + "','" + pcon_validdate + "','" + pcon_custmname + "','" + pcon_custmid + "','" + pcon_responser + "','" + pcon_balanceacnt + "','" + pcon_note + "','" + pcon_form + "'," + pcon_state + "," + pcon_yfk + "," + pcon_yfklj + "," + pcon_sfklj + "," + pcon_yfwk + "," + pcon_error + ",'" + pcon_yzhth + "','" + pcon_revid + "','" + guid + "')";
                 list_sql.Add(sqltext);
             }
             else if (action == "Edit")
             {
-                sqltext = "update TBPM_CONPCHSINFO set PCON_BCODE='" + pcon_bcode + "',PCON_PJID='" + pcon_pjid + "',PCON_RSPDEPID='" + pcon_rspdepid + "',PCON_ENGID='" + pcon_engid + "',PCON_ENGNAME='" + pcon_engname + "',PCON_TYPE='" + pcon_type + "',PCON_ENGTYPE='" + pcon_engtype + "',PCON_JINE='" + pcon_jine + "',PCON_FILLDATE='" + pcon_filldate + "',PCON_VALIDDATE='" + pcon_validdate + "',PCON_CUSTMNAME='" + pcon_custmname + "',PCON_CUSTMID='" + pcon_custmid + "',PCON_RESPONSER='" + pcon_responser + "',PCON_BALANCEACNT='" + pcon_balanceacnt + "',PCON_NOTE='" + pcon_note + "',PCON_FORM='" + pcon_form + "',PCON_STATE='" + pcon_state + "',PCON_QTCHG=PCON_QTCHG+" + qt_chg + ",PCON_YZHTH='" + pcon_yzhth + "',PCON_REVID='" + pcon_revid + "'" +
+                sqltext = "update TBPM_CONPCHSINFO set PCON_BCODE='" + pcon_bcode + "',PCON_PJID='" + pcon_pjid + "',PCON_RSPDEPID='" + pcon_rspdepid + "',PCON_ENGID='" + pcon_engid + "',PCON_ENGNAME='" + pcon_engname + "',PCON_TYPE='" + pcon_type + "',PCON_ENGTYPE='" + pcon_engtype + "',PCON_JINE='" + pcon_jine+ "',TSA_Trans_Cost='"+tsa_trans_cost+ "',PCON_FILLDATE='" + pcon_filldate + "',PCON_VALIDDATE='" + pcon_validdate + "',PCON_CUSTMNAME='" + pcon_custmname + "',PCON_CUSTMID='" + pcon_custmid + "',PCON_RESPONSER='" + pcon_responser + "',PCON_BALANCEACNT='" + pcon_balanceacnt + "',PCON_NOTE='" + pcon_note + "',PCON_FORM='" + pcon_form + "',PCON_STATE='" + pcon_state + "',PCON_QTCHG=PCON_QTCHG+" + qt_chg + ",PCON_YZHTH='" + pcon_yzhth + "',PCON_REVID='" + pcon_revid + "'" +
                     " where PCON_BCODE='" + Hid_Contr.Value + "'";
                 list_sql.Add(sqltext);
                 sqltext = "delete from TBPM_DETAIL where CM_CONTR='" + pcon_bcode + "'";

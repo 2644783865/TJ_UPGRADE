@@ -161,7 +161,7 @@ namespace ZCZJ_DPF.YS_Data
             string strwhere = " 1=1 ";
             string type = (ViewState["type"].ToString() == "1" ? " and [YS_XS_Finished] ='1'" : " and YS_XS_Finished is null");
             strwhere += type;
-            strwhere += " and YS_REVSTATE='3' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += " and YS_REVSTATE='2' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
 
             string this_month = DateTime.Now.ToString("yyyy-MM");
             this_month += "-01";
@@ -364,22 +364,22 @@ namespace ZCZJ_DPF.YS_Data
                     double db_pass = Math.Round(db_Order - db_Budget, 1);
                     if (j < 16)
                     {
-                        e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
+                        //e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
                         e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                         if (db_pass > 0)
                         {
-                            e.Row.Cells[j].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
-                            e.Row.Cells[j + 10].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                            e.Row.Cells[j].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万");
+                            //e.Row.Cells[j + 10].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
                             e.Row.Cells[j + 10].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j + 10].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看明细");
+                            e.Row.Cells[j + 10].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万");
                         }
                         else
                         {
                             db_pass = Math.Abs(db_pass);
-                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
-                            e.Row.Cells[j + 10].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 8]) + "')");
+                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额");
+                            //e.Row.Cells[j + 10].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
                             e.Row.Cells[j + 10].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j + 10].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看明细");
+                            e.Row.Cells[j + 10].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额");
 
                         }
                     }
@@ -442,7 +442,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             string str_where = GetStrWhere();
             string sqltext = "";
-            sqltext = "select [YS_CONTRACT_NO] , [PCON_SCH] , [PCON_PJNAME] , [PCON_ENGNAME] , [YS_BUDGET_INCOME] ,[YS_FERROUS_METAL] + [YS_PURCHASE_PART] + [YS_PAINT_COATING]+ [YS_MACHINING_PART] + [YS_ELECTRICAL] + [YS_OTHERMAT_COST] + [YS_FAC_CONTRACT] + [YS_TEAM_CONTRACT] + [YS_PRODUCT_OUT] + [YS_TRANS_COST] AS YS_RealCost, [YS_PROFIT_BG], [YS_FERROUS_METAL_BG] , [YS_PURCHASE_PART_BG] , [YS_MACHINING_PART_BG] , [YS_PAINT_COATING_BG] , [YS_ELECTRICAL_BG], [YS_OTHERMAT_COST_BG] , [YS_TEAM_CONTRACT_BG] , [YS_FAC_CONTRACT_BG] , [YS_PRODUCT_OUT_BG] , [YS_TRANS_COST_BG] ,[YS_PROFIT], [YS_FERROUS_METAL] , [YS_PURCHASE_PART] , [YS_PAINT_COATING] , [YS_MACHINING_PART] , [YS_ELECTRICAL] , [YS_OTHERMAT_COST], [YS_TEAM_CONTRACT] ,  [YS_FAC_CONTRACT] ,[YS_PRODUCT_OUT] ,[YS_TRANS_COST] ,[YS_ADDNAME], [YS_ADDTIME] , [YS_Finshtime] ,[YS_NOTE] from View_YS_COST_BUDGET_REAL where YS_REVSTATE='3' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
+            sqltext = "select [YS_CONTRACT_NO] , [PCON_SCH] , [PCON_PJNAME] , [PCON_ENGNAME] , [YS_BUDGET_INCOME] ,[YS_FERROUS_METAL] + [YS_PURCHASE_PART] + [YS_PAINT_COATING]+ [YS_MACHINING_PART] + [YS_ELECTRICAL] + [YS_OTHERMAT_COST] + [YS_FAC_CONTRACT] + [YS_TEAM_CONTRACT] + [YS_PRODUCT_OUT] + [YS_TRANS_COST] AS YS_RealCost, [YS_PROFIT_BG], [YS_FERROUS_METAL_BG] , [YS_PURCHASE_PART_BG] , [YS_MACHINING_PART_BG] , [YS_PAINT_COATING_BG] , [YS_ELECTRICAL_BG], [YS_OTHERMAT_COST_BG] , [YS_TEAM_CONTRACT_BG] , [YS_FAC_CONTRACT_BG] , [YS_PRODUCT_OUT_BG] , [YS_TRANS_COST_BG] ,[YS_PROFIT], [YS_FERROUS_METAL] , [YS_PURCHASE_PART] , [YS_PAINT_COATING] , [YS_MACHINING_PART] , [YS_ELECTRICAL] , [YS_OTHERMAT_COST], [YS_TEAM_CONTRACT] ,  [YS_FAC_CONTRACT] ,[YS_PRODUCT_OUT] ,[YS_TRANS_COST] ,[YS_ADDNAME], [YS_ADDTIME] , [YS_Finshtime] ,[YS_NOTE] from View_YS_COST_BUDGET_REAL where YS_REVSTATE='2' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
             ExportDataItem(dt);
         }

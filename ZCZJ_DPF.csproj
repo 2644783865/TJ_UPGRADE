@@ -7825,6 +7825,20 @@
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
     <Compile Include="YS_Data\ExportDataFromYS.cs" />
+    <Compile Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_Add_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_Add_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_Audit_View.aspx.cs">
+      <DependentUpon>YS_Cost_Budget_Audit_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\YS_Cost_Budget_Audit_View.aspx.designer.cs">
+      <DependentUpon>YS_Cost_Budget_Audit_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\YS_Cost_Budget_A_M.aspx.cs">
       <DependentUpon>YS_Cost_Budget_A_M.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10460,7 +10474,6 @@
     <Content Include="JS\ckeditor\skins\moono\images\lock.png" />
     <Content Include="JS\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="JS\ckeditor\styles.js" />
-    <Content Include="JS\d3.v3.min.js" />
     <Content Include="JS\DatePicker.js" />
     <Content Include="JS\Datetime.js" />
     <Content Include="JS\EasyUICommon.js" />
@@ -11138,6 +11151,7 @@
     <None Include="PC_Data\采购合同.xls" />
     <None Include="PC_Data\采购比价单.xls" />
     <None Include="PC_Data\采购比价单明细.xls" />
+    <None Include="PC_Data\采购比价单明细批量导出模板.xls" />
     <None Include="PC_Data\采购计划导出.xls" />
     <None Include="PC_Data\采购计划明细.xls" />
     <None Include="PC_Data\采购订单明细表模版.xls" />
@@ -12646,6 +12660,8 @@
     <Content Include="YS_Data\update4.jpg" />
     <Content Include="YS_Data\update5.jpg" />
     <Content Include="YS_Data\Yellow.jpg" />
+    <Content Include="YS_Data\YS_Cost_Budget_Add_Detail.aspx" />
+    <Content Include="YS_Data\YS_Cost_Budget_Audit_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_A_M.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_A_M_Detail.aspx" />
     <Content Include="YS_Data\YS_Cost_Budget_O_M.aspx" />
@@ -12654,6 +12670,7 @@
     <Content Include="YS_Data\YS_Cost_Real_Sta.aspx" />
     <Content Include="YS_Data\YS_Cost_Real_View.aspx" />
     <Content Include="YS_Data\YS_Cost_Real_View_Detail.aspx" />
+    <Content Include="YS_Data\YS_Data_P.js" />
     <Content Include="YS_Data\YS_Desk.aspx" />
     <Content Include="YS_Data\YS_Index.aspx" />
     <Content Include="YS_Data\YS_IN_Detail_WW.aspx" />

@@ -140,7 +140,7 @@
                         <asp:BoundField DataField="YS_PURCHASE_PART" ItemStyle-HorizontalAlign="Center" HeaderText="外购件"
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_MACHINING_PART" ItemStyle-HorizontalAlign="Center"
-                            HeaderStyle-ForeColor="Brown" HeaderText="加工件" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                            HeaderStyle-ForeColor="Brown" HeaderText="铸锻件" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_PAINT_COATING" ItemStyle-HorizontalAlign="Center" HeaderText="油漆涂料"
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_ELECTRICAL" ItemStyle-HorizontalAlign="Center" HeaderText="电气电料"

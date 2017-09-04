@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using ZCZJ_DPF;
 
 namespace ZCZJ_DPF.TM_Data
 {
@@ -29,11 +30,11 @@ namespace ZCZJ_DPF.TM_Data
             CheckUser(ControlFinder);
         }
 
-        private string  GetMyTast()
+        private string GetMyTast()
         {
             string sql = "";
             sql += " TSA_TCCLERKNM ='" + Session["UserName"] + "' ";
-            
+
 
             if (rblstatus.SelectedIndex == 0)
             {
@@ -46,16 +47,16 @@ namespace ZCZJ_DPF.TM_Data
             //项目
             if (ddlProName.SelectedIndex != 0 && ddlProName.SelectedIndex != -1)
             {
-                sql += " and TSA_PJID='"+ddlProName.SelectedValue.ToString()+"'";
+                sql += " and TSA_PJID='" + ddlProName.SelectedValue.ToString() + "'";
             }
             //工程
-            if (ddlEngName.SelectedIndex != 0&&ddlEngName.SelectedIndex!=-1)
+            if (ddlEngName.SelectedIndex != 0 && ddlEngName.SelectedIndex != -1)
             {
-                sql += " and TSA_ID='" + ddlEngName.SelectedValue.ToString() + "' OR TSA_ID LIKE '"+ddlEngName.SelectedValue+"-%'";
+                sql += " and TSA_ID='" + ddlEngName.SelectedValue.ToString() + "' OR TSA_ID LIKE '" + ddlEngName.SelectedValue + "-%'";
             }
             return sql;
         }
-       
+
 
         //初始化信息（给页面控件赋值）
         private void InitInfo()
@@ -122,9 +123,9 @@ namespace ZCZJ_DPF.TM_Data
             //材料计划驳回
             string mp_reject = "select count(MP_STATE) from View_TM_MPFORALLRVW where MP_ENGID='" + taskid + "' and  MP_STATE in('3','5','7')";
             string mp_reject_bg = "select count(MP_STATE) from View_TM_MPCHANGERVW where MP_ENGID='" + taskid + "' and  MP_STATE in('3','5','7')";
-            int num_mp =Convert.ToInt16(DBCallCommon.GetDTUsingSqlText(mp_reject).Rows[0][0].ToString());
+            int num_mp = Convert.ToInt16(DBCallCommon.GetDTUsingSqlText(mp_reject).Rows[0][0].ToString());
             int num_mp_bg = Convert.ToInt16(DBCallCommon.GetDTUsingSqlText(mp_reject_bg).Rows[0][0].ToString());
-            if(num_mp!=0||num_mp_bg!=0)
+            if (num_mp != 0 || num_mp_bg != 0)
             {
                 ((Label)grow.FindControl("lblMP")).Text = "(" + num_mp + ") (" + num_mp_bg + ")";
             }
@@ -165,7 +166,7 @@ namespace ZCZJ_DPF.TM_Data
         /// </summary>
         private void GetProNameData()
         {
-            sqlText = "select distinct TSA_PJID from View_TM_TaskAssign where TSA_TCCLERKNM='"+Session["UserName"].ToString()+"' ";
+            sqlText = "select distinct TSA_PJID from View_TM_TaskAssign where TSA_TCCLERKNM='" + Session["UserName"].ToString() + "' ";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlText);
             ddlProName.DataSource = dt;
             ddlProName.DataTextField = "TSA_PJID";
@@ -225,7 +226,7 @@ namespace ZCZJ_DPF.TM_Data
         {
             pager.TableName = "View_TM_TaskAssign";
             pager.PrimaryKey = "TSA_ID";
-            pager.ShowFields = "TSA_ID,CM_PROJ,TSA_PJID,TSA_ENGNAME,TSA_TCCLERKNM,TSA_STARTDATE,TSA_MANCLERKNAME,TSA_STATE,TSA_CONTYPE,ID";
+            pager.ShowFields = "TSA_ID,CM_PROJ,TSA_PJID,TSA_ENGNAME,TSA_TCCLERKNM,TSA_STARTDATE,TSA_MANCLERKNAME,TSA_STATE,TSA_CONTYPE,ID,TSA_FINISHSTATE";
             pager.OrderField = "TSA_STARTDATE";
             pager.StrWhere = this.GetMyTast();
             pager.OrderType = 1;
@@ -256,8 +257,291 @@ namespace ZCZJ_DPF.TM_Data
             GetBoundData();
         }
         #endregion
+        /// <summary>
+        /// 技术准备完成按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void lbtn_Finish_onclick(object sender, EventArgs e)
+        {
+            string tsaId = "";//任务号
+            LinkButton finish = (LinkButton)sender;
+            tsaId = finish.CommandArgument.ToString();//获取传递的任务号
 
 
+            //检查预算主表中是否有重复任务号，如果没有重复任务号向预算主表插入数据，再成功后向预算明细表插入数据
+
+            if (!TsaRepeatInMainTable(tsaId))
+            {
+                if (InsertIntoYSMainTableSuccessed(tsaId))
+                {
+                    InsertIntoYSDetailTable(tsaId);
+
+                    string sqltext = "update TBPM_TCTSASSGN set TSA_FINISHSTATE ='1' where TSA_ID='" + tsaId + "'";
+                    DBCallCommon.ExeSqlTextGetInt(sqltext);
+
+                    finish.Visible = false;
+                    ((Image)finish.Parent.FindControl("img_Finish")).Visible = true;
+                    ((Label)finish.Parent.FindControl("lb_Finish")).Visible = true;
+
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('技术准备状态更改完成，提交预算成功');</script>");
+
+                }
+                else
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算提交失败');</script>");
+                }
+            }
+            else
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('预算主表中已经有该任务号的预算编制，请勿重复提交');</script>");
+
+                string sqltext = "update TBPM_TCTSASSGN set TSA_FINISHSTATE ='1' where TSA_ID='" + tsaId + "'";
+                DBCallCommon.ExeSqlTextGetInt(sqltext);
+
+                finish.Visible = false;
+                ((Image)finish.Parent.FindControl("img_Finish")).Visible = true;
+                ((Label)finish.Parent.FindControl("lb_Finish")).Visible = true;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //判断技术准备是否已经完成，如果是则显示“√”图片，否则显示“点击完成”按钮
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string finish = ((HiddenField)e.Row.FindControl("hid_Finish")).Value.ToString();
+                if (finish.Equals("1"))
+                {
+                    ((LinkButton)e.Row.FindControl("lbtn_Finish")).Visible = false;
+                    ((Image)e.Row.FindControl("img_Finish")).Visible = true;
+                    ((Label)e.Row.FindControl("lb_Finish")).Visible = true;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 检查预算主表中是否已经有该任务号
+        /// </summary>
+        /// <param name="tsaId">任务号</param>
+        /// <returns>true：预算主表中已经有该任务号；false：预算主表中没有给任务号</returns>
+        protected bool TsaRepeatInMainTable(string tsaId)
+        {
+            string sqlCheckMain = "SELECT YS_TSA_ID FROM dbo.YS_COST_BUDGET WHERE YS_TSA_ID='" + tsaId + "'";
+            SqlDataReader drCheckMain = DBCallCommon.GetDRUsingSqlText(sqlCheckMain);
+            if (drCheckMain.HasRows)
+            {
+                drCheckMain.Close();
+                return true;
+            }
+            else
+            {
+                drCheckMain.Close();
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// 将某个任务号的预算信息插入到预算主表中
+        /// </summary>
+        /// <param name="tsaId">任务号</param>
+        /// <returns>true：插入成功；fals：插入失败</returns>
+        protected bool InsertIntoYSMainTableSuccessed(string tsaId)
+        {
+            string contractNo = "", projectName = "", engineerName = "";//合同号，项目名称，设备名称
+            decimal budgetIncome = 0, transCost = 0;//任务号预算收入
+            double tsaWeight = 0;
+
+
+            #region 获取任务号的相关信息（合同号，项目名称，设备名称）
+            string sqlInfo = "SELECT TSA_ID,CM_PROJ,TSA_PJID,TSA_ENGNAME FROM dbo.View_TM_TaskAssign WHERE TSA_ID='" + tsaId + "'";
+            SqlDataReader drInfo = DBCallCommon.GetDRUsingSqlText(sqlInfo);
+            if (drInfo.Read())
+            {
+                contractNo = drInfo["TSA_PJID"].ToString();
+                projectName = drInfo["CM_PROJ"].ToString();
+                engineerName = drInfo["TSA_ENGNAME"].ToString();
+            }
+            drInfo.Close();
+            #endregion
+
+
+
+            #region 获取任务号的预算收入
+            string sqlMoney = " SELECT * FROM  (SELECT a.TSA_ID, SUM(a.CM_COUNT)*10000/1.17 AS BUDGET_INCOME FROM dbo.TBPM_DETAIL AS a GROUP BY TSA_ID)b  WHERE b.TSA_ID='" + tsaId + "'";
+            SqlDataReader drMoney = DBCallCommon.GetDRUsingSqlText(sqlMoney);
+            if (drMoney.Read())
+            {
+                try
+                {
+                    budgetIncome = Convert.ToDecimal(drMoney["BUDGET_INCOME"]);
+                }
+                catch
+                {
+                    budgetIncome = 0;
+                }
+            }
+            drMoney.Close();
+            #endregion
+
+            #region 获取合同的预计运费
+            string sqlTrans = "SELECT TSA_Trans_Cost FROM dbo.TBPM_CONPCHSINFO WHERE PCON_BCODE='" + contractNo + "'";
+            SqlDataReader drTrans = DBCallCommon.GetDRUsingSqlText(sqlTrans);
+            if (drTrans.Read())
+            {
+                try
+                {
+                    transCost = Convert.ToDecimal(drTrans["TSA_Trans_Cost"]);
+                }
+                catch
+                {
+
+                    transCost = 0;
+                }
+            }
+            drTrans.Close();
+            #endregion
+
+            #region 获取任务号总序为1的图纸总重作为任务的重量，单位kg
+            string sqlWeight = "SELECT BM_TUTOTALWGHT FROM TBPM_STRINFODQO WHERE BM_ZONGXU='1' AND BM_ENGID='" + tsaId + "'";
+            SqlDataReader drWeight = DBCallCommon.GetDRUsingSqlText(sqlWeight);
+            if (drWeight.Read())
+            {
+                try
+                {
+                    tsaWeight = Convert.ToDouble(drWeight["BM_TUTOTALWGHT"]);
+                }
+                catch
+                {
+
+                    tsaWeight = 0;
+                }
+            }
+            drWeight.Close();
+            #endregion
+
+
+            #region 插入主表
+            string sqlInsertMain = @"INSERT  INTO dbo.YS_COST_BUDGET
+        ( YS_CONTRACT_NO ,
+          YS_PROJECTNAME ,
+          YS_TSA_ID ,
+          YS_ENGINEERNAME ,
+          YS_BUDGET_INCOME ,
+          YS_TRANS_COST,
+          YS_WEIGHT,
+YS_LABOUR_COST,
+          YS_UNIT_LABOUR_COST_FB,
+          YS_CAIWU ,
+          YS_CAIGOU ,
+          YS_SHENGCHAN ,
+          YS_STATE ,
+          YS_FIRST_REVSTATE ,
+          YS_SECOND_REVSTATE ,
+          YS_REVSTATE ,
+          YS_REBUT,
+          YS_TEC_SUBMIT_NAME ,
+          YS_ADDTIME ,
+          YS_ADDFINISHTIME 
+        )
+VALUES  ( '" + contractNo + "' , '" + projectName + "' , '" + tsaId + "' , '" + engineerName + "' , '" + budgetIncome + "' , '" + transCost + "','" + tsaWeight + @"' , 
+          '0' , -- YS_LABOUR_COST - decimal(18,14)   
+          '0' , -- YS_UNIT_LABOUR_COST_FB - decimal(18,14)          
+          '0' , -- YS_CAIWU - char(1)
+          '0' , -- YS_CAIGOU - char(1)
+          '0' , -- YS_SHENGCHAN - char(1)
+          '0' , -- YS_STATE - char(1)
+          '0' , -- YS_FIRST_REVSTATE - char(1)
+          '0' , -- YS_SECOND_REVSTATE - char(1)
+          '0' , -- YS_REVSTATE - char(1)
+          '0' , -- YS_REBUT - varchar(10)
+          '" + Session["UserName"] + @"' , -- YS_TEC_SUBMIT_NAME 技术提交人姓名 - varchar(50)
+          GETDATE() , --技术提交时间
+          DATEADD(ww, 2, GETDATE()) --预算编制截止时间
+        )";
+            if (DBCallCommon.ExeSqlTextGetInt(sqlInsertMain) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            #endregion
+
+
+        }
+
+
+        /// <summary>
+        /// 将某个任务号的预算信息插入到预算明细表中
+        /// </summary>
+        /// <param name="tsaId">任务号</param>
+        /// <returns>true：插入成功；fals：插入失败</returns>
+        protected void InsertIntoYSDetailTable(string tsaId)
+        {
+            string unitPriceOfCastingAndForging = ConfigurationSettings.AppSettings["UnitPriceOfCastingAndForging"];//从配置文件获铸锻件单价
+            string sqlInsertDetail = @"INSERT  INTO dbo.YS_COST_BUDGET_DETAIL
+        ( YS_TSA_ID ,
+          YS_CODE ,
+          YS_NAME ,
+          YS_Union_Amount ,
+          YS_WEIGHT,
+          YS_Average_Price,
+          YS_Average_Price_FB 
+        )
+        SELECT  '" + tsaId + @"' AS YS_TSA_ID ,
+                pp.SI_MARID ,
+                pp.MNAME ,
+                n.AMOUNT ,
+                pp.MWEIGHT ,
+                pp.SI_UPRICE,
+                pp.SI_UPRICE
+        FROM    ( SELECT    PUR_MARID ,
+                            SUM(PUR_NUM) AS AMOUNT
+                  FROM      dbo.TBPC_PURCHASEPLAN
+                  WHERE     PUR_PCODE LIKE '%" + tsaId + @"%'
+                  GROUP BY  PUR_MARID
+                ) n
+                LEFT JOIN ( SELECT SI_MARID ,
+                                    MNAME ,
+                                    MWEIGHT,
+                                    SI_UPRICE
+                             FROM   ( SELECT    SI_MARID ,
+                                                SI_UPRICE
+                                      FROM      ( SELECT    SI_MARID ,
+                                                            SI_UPRICE ,
+                                                            ROW_NUMBER() OVER ( PARTITION BY SI_MARID ORDER BY SI_MARID, SI_ID DESC ) AS ccc
+                                                  FROM      TBFM_STORAGEBAL
+                                                  WHERE     SI_UPRICE > 0
+                                                ) t
+                                      WHERE     t.ccc = '1'
+                                    ) p
+                                    LEFT JOIN TBMA_MATERIAL ON p.SI_MARID = TBMA_MATERIAL.ID
+                           ) pp ON pp.SI_MARID = n.PUR_MARID ORDER BY pp.SI_MARID;
+ UPDATE dbo.YS_COST_BUDGET_DETAIL SET YS_Average_Price='" + unitPriceOfCastingAndForging + "' ,YS_Average_Price_FB='" + unitPriceOfCastingAndForging + "' WHERE YS_TSA_ID='" + tsaId + "' AND( YS_CODE LIKE '01.08%' OR YS_CODE LIKE '01.09%') ";
+
+            DBCallCommon.ExeSqlText(sqlInsertDetail);
+
+        }
 
     }
 }

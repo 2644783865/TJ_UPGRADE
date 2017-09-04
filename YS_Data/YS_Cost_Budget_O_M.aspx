@@ -156,7 +156,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="加工件(预)" HeaderStyle-ForeColor="#363636"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="铸锻件(预)" HeaderStyle-ForeColor="#363636"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -232,7 +232,7 @@
                             <asp:Label ID="lab_PURCHASE_PART_O" runat="server" Text='<%#Eval("YS_PURCHASE_PART","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="加工件(订)" HeaderStyle-ForeColor="#8E388E"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="铸锻件(订)" HeaderStyle-ForeColor="#8E388E"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                             <asp:Label ID="lab_MACHINING_PART_O" runat="server" Text='<%#Eval("YS_MACHINING_PART","{0:N2}") %>'></asp:Label>

@@ -86,13 +86,13 @@ namespace ZCZJ_DPF.YS_Data
                     {
                         if (db_pass > 0)
                         {
-                            e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + PCON_SCH + "')");
+                            //e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + PCON_SCH + "')");
                             e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                             e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万,达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万，双击查看材料总额明细");
                         }
                         else
                         {
-                            e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + PCON_SCH + "')");
+                            //e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView_Amount('" + PCON_SCH + "')");
                             e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                             e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万,达预算" + (100 * percent_O_B).ToString() + "%,未超额，双击查看材料总额明细");
                         }
@@ -183,7 +183,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1";
-            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_XS_Finished is NULL  and YS_REVSTATE='3'";
+            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_XS_Finished is NULL  and YS_REVSTATE='2'";
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
                 strwhere += " and PCON_PJNAME='" + ddl_project.SelectedValue + "'";
@@ -248,11 +248,12 @@ namespace ZCZJ_DPF.YS_Data
                 sqlConn.Close();
                 if (Convert.ToInt32(sqlCmd.Parameters["@retVal"].Value) == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');location.reload();", true);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');", true);
                     UCPaging1.CurrentPage = 1;
                     InitVar();
                     GetTechRequireData();
                     //lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                    
                 }
             }
             catch (Exception)
