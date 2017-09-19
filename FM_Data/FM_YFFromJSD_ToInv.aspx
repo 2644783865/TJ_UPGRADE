@@ -50,9 +50,9 @@ else{
                             <strong>每页显示记录条数</strong>
                             <asp:DropDownList ID="DropDownListCount" runat="server" Width="128px" OnSelectedIndexChanged="Count_Change"
                                 AutoPostBack="true">
-                                <asp:ListItem Value="20" Selected="True" Text="">20</asp:ListItem>
-                                <asp:ListItem Value="50">50</asp:ListItem>
-                                <asp:ListItem Value="100">100</asp:ListItem>
+                                <asp:ListItem Value="20" >20</asp:ListItem>
+                                <asp:ListItem Value="50" >50</asp:ListItem>
+                                <asp:ListItem Value="100" Selected="True" Text="">100</asp:ListItem>
                                 <asp:ListItem Value="200">200</asp:ListItem>
                             </asp:DropDownList>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

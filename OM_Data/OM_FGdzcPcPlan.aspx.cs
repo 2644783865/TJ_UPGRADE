@@ -112,7 +112,7 @@ namespace ZCZJ_DPF.OM_Data
             pager.ShowFields = "*";
             pager.OrderField = "";
             pager.StrWhere = GetWhere();
-            pager.OrderType = 0;
+            pager.OrderType = 1;
             pager.PageSize = 10;
         }
         void Pager_PageChanged(int pageNumber)
