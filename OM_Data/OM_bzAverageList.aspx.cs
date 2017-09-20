@@ -40,7 +40,7 @@ namespace ZCZJ_DPF.OM_Data
             pager.ShowFields = "*";
             pager.OrderField = "Id";
             pager.StrWhere = strWhere();
-            pager.OrderType = 0;
+            pager.OrderType = 1;
             pager.PageSize = 20;
             UCPaging1.PageSize = pager.PageSize;
             pager.PageIndex = UCPaging1.CurrentPage;
