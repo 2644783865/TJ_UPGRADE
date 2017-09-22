@@ -11,6 +11,7 @@ namespace ZCZJ_DPF.OM_Data
     public partial class OM_JDPXJH_SS : System.Web.UI.Page
     {
         int PX_SJSX;
+        static List<string> st_depID_list = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,16 +45,33 @@ namespace ZCZJ_DPF.OM_Data
 
         protected void cbxBM_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            cbxRY.Items.Clear();
             foreach (ListItem item in cbxBM.Items)
             {
                 if (item.Selected)
                 {
-                    string sql = " select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID = '" + item.Value + "' and ST_PD='0'";
-                    DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
-                    for (int i = 0, length = dt.Rows.Count; i < length; i++)
+                    if (!st_depID_list.Contains(item.Value))
                     {
-                        cbxRY.Items.Add(new ListItem(dt.Rows[i]["ST_NAME"].ToString(), dt.Rows[i]["ST_ID"].ToString()));
+                        st_depID_list.Add(item.Value);
+
+                        string sql = " select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID = '" + item.Value + "' and ST_PD='0'";
+                        DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
+                        for (int i = 0, length = dt.Rows.Count; i < length; i++)
+                        {
+                            cbxRY.Items.Add(new ListItem(dt.Rows[i]["ST_NAME"].ToString(), dt.Rows[i]["ST_ID"].ToString()));
+                        }
+                    }
+                }
+                else
+                {
+                    if (st_depID_list.Contains(item.Value))
+                    {
+                        string sql = " select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID = '" + item.Value + "' and ST_PD='0'";
+                        DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
+                        for (int i = 0, length = dt.Rows.Count; i < length; i++)
+                        {
+                            cbxRY.Items.Remove((new ListItem(dt.Rows[i]["ST_NAME"].ToString(), dt.Rows[i]["ST_ID"].ToString())));
+                        }
+                        st_depID_list.Remove(item.Value);
                     }
                 }
             }

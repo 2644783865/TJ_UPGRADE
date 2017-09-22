@@ -696,14 +696,14 @@
                         </tr>
                         <tr>
                             <td style="padding-left: 40px;">
-                                服务承诺：
+                                价格：
                             </td>
                             <td style="padding-left: 10px;">
                                 <asp:CheckBoxList ID="CheckBoxList9" runat="server" RepeatColumns="3" RepeatDirection="Horizontal"
                                     onClick="javascript:change9()">
                                     <asp:ListItem Text="较高" Value="0"></asp:ListItem>
                                     <asp:ListItem Text="合理" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="较差" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="较低" Value="2"></asp:ListItem>
                                 </asp:CheckBoxList>
                             </td>
                         </tr>
