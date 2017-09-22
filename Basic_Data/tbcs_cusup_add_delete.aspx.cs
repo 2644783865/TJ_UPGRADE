@@ -1884,9 +1884,16 @@ namespace ZCZJ_DPF.Basic_Data
         {
             if (txtCS_CODE.Text == "")
             {
-                string sql_id = string.Format("SELECT TOP 1 CS_CODE FROM TBCS_CUSUP_ReView WHERE fatherid={0}", id);
-                DataTable id_dt = DBCallCommon.GetDTUsingSqlText(sql_id);
-                txtCS_CODE.Text = id_dt.Rows[0][0].ToString();
+                if (action == "Review")
+                {
+                    string sql_id = string.Format("SELECT TOP 1 CS_CODE FROM TBCS_CUSUP_ReView WHERE fatherid={0}", id);
+                    DataTable id_dt = DBCallCommon.GetDTUsingSqlText(sql_id);
+                    txtCS_CODE.Text = id_dt.Rows[0][0].ToString();
+                }
+                else
+                {
+                    txtCS_CODE.Text = id;
+                }
             }
 
             string sql = "select * from TBMA_FILES where SUPPLYID='" + txtCS_CODE.Text + "' ";
