@@ -864,7 +864,7 @@ namespace ZCZJ_DPF
                 smtpClient.Credentials = new System.Net.NetworkCredential("erp@ztsm.net", "123456");
 
                 //测试需要，将邮件服务注释,正式部署时请将下行反注释
-                smtpClient.Send(email);
+                //smtpClient.Send(email);
 
                 return "邮件已发送!";
 
@@ -976,7 +976,7 @@ namespace ZCZJ_DPF
 
 
                 //测试需要，将邮件服务注释,正式部署时请将下行反注释
-                smtpClient.Send(email);
+                //smtpClient.Send(email);
 
                 return "邮件已发送!";
 
