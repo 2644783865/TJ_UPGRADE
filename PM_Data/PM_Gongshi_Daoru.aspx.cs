@@ -143,7 +143,7 @@ namespace ZCZJ_DPF.PM_Data
                        
                         if (ps_xh != "")
                         {
-                            string sqlcheck = "select count(*) from TBMP_GS_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + ps_rw + "'AND GS_CUSNAME='" + ps_gk + "' AND GS_CONTR= '" + ps_ht + "' AND GS_TUHAO = '" + ps_th + "'AND GS_TUMING='" + ps_tm + "'AND GS_EQUID='" + ps_sbh + "'AND IsDel='0'";
+                            string sqlcheck = "select count(*) from TBMP_GS_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + ps_rw + "'AND GS_CUSNAME='" + ps_gk + "' AND GS_CONTR= '" + ps_ht + "' AND GS_TUHAO = '" + ps_th + "'AND GS_TUMING='" + ps_tm + "'AND GS_EQUNAME='" + ps_sbmc + "'AND GS_HOURS='" + ps_gs + "'AND GS_MONEY='" + ps_my + "'AND IsDel='0'";
                             SqlCommand sqlcmd = new SqlCommand(sqlcheck, cn);
                             int count = Convert.ToInt32(sqlcmd.ExecuteScalar().ToString());
 
