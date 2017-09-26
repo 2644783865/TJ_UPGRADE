@@ -143,10 +143,10 @@ namespace ZCZJ_DPF.PM_Data
                        
                         if (ps_xh != "")
                         {
-                            string sqlcheck = "select count(*) from TBMP_GS_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + ps_rw + "'AND GS_CUSNAME='" + ps_gk + "' AND GS_CONTR= '" + ps_ht + "' AND GS_TUHAO = '" + ps_th + "'AND GS_TUMING='" + ps_tm + "'AND GS_EQUNAME='" + ps_sbmc + "'AND GS_HOURS='" + ps_gs + "'AND GS_MONEY='" + ps_my + "'AND IsDel='0'";
-                            SqlCommand sqlcmd = new SqlCommand(sqlcheck, cn);
-                            int count = Convert.ToInt32(sqlcmd.ExecuteScalar().ToString());
-
+                            //string sqlcheck = "select count(*) from TBMP_GS_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + ps_rw + "'AND GS_CUSNAME='" + ps_gk + "' AND GS_CONTR= '" + ps_ht + "' AND GS_TUHAO = '" + ps_th + "'AND GS_TUMING='" + ps_tm + "'AND GS_EQUNAME='" + ps_sbmc + "'AND GS_HOURS='" + ps_gs + "'AND GS_MONEY='" + ps_my + "'AND IsDel='0'";
+                            //SqlCommand sqlcmd = new SqlCommand(sqlcheck, cn);
+                            //int count = Convert.ToInt32(sqlcmd.ExecuteScalar().ToString());
+                            int count = 0;
                             if (count == 0)
                             {
                                 string insertstr = "insert into TBMP_GS_LIST (GS_NUM,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_HOURS,GS_MONEY,GS_NOTE,DATEYEAR,DATEMONTH,IsDel)";
