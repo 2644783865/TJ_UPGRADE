@@ -156,7 +156,7 @@ namespace ZCZJ_DPF.OM_Data
                 {
                     panGK.Enabled = true;
                 }
-                if (asd.userid == dr["LZ_GDZCGLYID"].ToString())
+                if (asd.userid == dr["LZ_GDZCGLYID"].ToString())  //固定资产转移
                 {
                     panGDZC.Enabled = true;
                 }
@@ -196,9 +196,12 @@ namespace ZCZJ_DPF.OM_Data
                 {
                     panXX.Enabled = true;
                 }
-                if (asd.userid == dr["LZ_ZHBBZID"].ToString())
+                if (asd.userid == dr["LZ_ZHBBZID"].ToString()) //综合办公室负责人
                 {
-                    panC.Enabled = true;
+                    if (dr["LZ_SPZT"].ToString()=="3y") 
+                    {
+                        panC.Enabled = true;
+                    }
                 }
                 if (asd.userid == dr["LZ_LDID"].ToString())
                 {
