@@ -346,7 +346,7 @@ namespace ZCZJ_DPF.OM_Data
         {
             string userid = Session["UserId"].ToString();
 
-            string sql = "select count(1) from View_TBOM_BGYPAPPLY where ((REVIEWSTATE='0' and REVIEWID='" + userid + "') or (REVIEWSTATE='1' and APPLYID='" + userid + "') or (REVIEWSTATE='2' and (WLSLS is null or WLSLS='') and " + Session["UserGroup"].ToString() + "='行政专员'))";
+            string sql = "select count(1) from View_TBOM_BGYPAPPLY where ((REVIEWSTATE='0' and REVIEWID='" + userid + "') or (REVIEWSTATE='1' and APPLYID='" + userid + "') or (REVIEWSTATE='2' and (WLSLS is null or WLSLS='') and '行政专员' in (" + Session["UserGroup"].ToString() + ")))";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             if (dt.Rows[0][0].ToString() != "0")
             {
@@ -476,7 +476,7 @@ namespace ZCZJ_DPF.OM_Data
             string sql = "select count(1) from TBDS_KaoHe_JXList  where (state='1' and SPRID='" + Id + "') or (state='3' and ZDRID='" + Id + "') ";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
 
-            sql = "select count(1) from (select d.Id from dbo.TBDS_KaoheDeaprtMonth as a left join dbo.TBDS_BZAVERAGE as b on a.Year=b.Year and a.Month=b.Month  left join dbo.TBDS_KaoheDeaprtMonth_Detail as c on a.Context=c.Context left join dbo.TBDS_KaoHe_JXList as d on a.Year=d.Year and a.Month=b.Month and c.DepartId=d.DepId where a.state='2' and b.state='4' and a.Month='" + month + "' and a.Year='" + year + "' and (d.state='2' or d.state='0' or d.state='1' or d.state is null))e where e.Id is null and " + Session["UserGroup"].ToString() + "='人力资源专员'";
+            sql = "select count(1) from (select d.Id from dbo.TBDS_KaoheDeaprtMonth as a left join dbo.TBDS_BZAVERAGE as b on a.Year=b.Year and a.Month=b.Month  left join dbo.TBDS_KaoheDeaprtMonth_Detail as c on a.Context=c.Context left join dbo.TBDS_KaoHe_JXList as d on a.Year=d.Year and a.Month=b.Month and c.DepartId=d.DepId where a.state='2' and b.state='4' and a.Month='" + month + "' and a.Year='" + year + "' and (d.state='2' or d.state='0' or d.state='1' or d.state is null))e where e.Id is null and '人力资源专员' in (" + Session["UserGroup"].ToString() + ")";
             DataTable dt1 = DBCallCommon.GetDTUsingSqlText(sql);
 
             int i = CommonFun.ComTryInt(dt.Rows[0][0].ToString()) + CommonFun.ComTryInt(dt1.Rows[0][0].ToString());
@@ -544,7 +544,7 @@ namespace ZCZJ_DPF.OM_Data
         private void GetYY()
         {
             string Id = Session["UserID"].ToString().Trim();
-            string sql = "select count(1) from OM_YONGYINLIST where ((State ='1' and SPRIDA='" + Id + "') or ( State='2' and SPRIDB='" + Id + "')or ( State='4' and splevel='8' and " + Session["UserID"].ToString() + "='171' )  or (State='4' and splevel<>'8' and " + Session["UserGroup"].ToString() + "='行政专员') or  ( State='3' and SPRIDC='" + Session["UserId"].ToString() + "')or ( State='7' and SPRIDD='" + Id + "'))";
+            string sql = "select count(1) from OM_YONGYINLIST where ((State ='1' and SPRIDA='" + Id + "') or ( State='2' and SPRIDB='" + Id + "')or ( State='4' and splevel='8' and " + Session["UserID"].ToString() + "='171' )  or (State='4' and splevel<>'8' and '行政专员' in (" + Session["UserGroup"].ToString() + ")) or  ( State='3' and SPRIDC='" + Session["UserId"].ToString() + "')or ( State='7' and SPRIDD='" + Id + "'))";
            
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             if (dt.Rows[0][0].ToString() != "0")
@@ -557,7 +557,7 @@ namespace ZCZJ_DPF.OM_Data
         private void GetComputer()
         {
             string Id = Session["UserID"].ToString().Trim();
-            string sql = "select count(1) from OM_COMPUTERLIST where ((State ='1' and SPRIDA='" + Id + "') or ( State='2' and SPRIDB='" + Id + "') or (State='3' and " + Session["UserGroup"].ToString() + "='管理员'))";
+            string sql = "select count(1) from OM_COMPUTERLIST where ((State ='1' and SPRIDA='" + Id + "') or ( State='2' and SPRIDB='" + Id + "') or (State='3' and '管理员' in (" + Session["UserGroup"].ToString() + ")))";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             if (dt.Rows[0][0].ToString() != "0")
             {

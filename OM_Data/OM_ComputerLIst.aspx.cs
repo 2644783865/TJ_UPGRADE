@@ -93,7 +93,7 @@ namespace ZCZJ_DPF.OM_Data
             }
             else if (rblState.SelectedValue == "4")
             {
-                strWhere += " and ((State ='1' and SPRIDA='" + Session["UserId"].ToString() + "') or ( State='2' and SPRIDB='" + Session["UserId"].ToString() + "')or (State='3' and " + Session["UserGroup"].ToString() + "='管理员'))";
+                strWhere += " and ((State ='1' and SPRIDA='" + Session["UserId"].ToString() + "') or ( State='2' and SPRIDB='" + Session["UserId"].ToString() + "')or (State='3' and '管理员' in (" + Session["UserGroup"].ToString() + ")))";
             }
             else if (rblState.SelectedValue == "5")
             {

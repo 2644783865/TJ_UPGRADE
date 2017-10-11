@@ -141,32 +141,68 @@
                     </div>
                     <div class="box-outer">
                         <table align="center" width="100%" cellpadding="4" cellspacing="1" class="toptable grid"
-                            border="1">
+                            border="1">                        
                             <tr>
                                 <td align="center">
                                     一级审核
                                 </td>
-                                <td colspan="3">
+                                <td>
                                     <table width="100%" cellpadding="4" cellspacing="1" border="1">
                                         <tr style="height: 25px">
                                             <td align="center" style="width: 10%">
                                                 审批人
                                             </td>
                                             <td style="width: 20%">
-                                                <asp:TextBox ID="txt_first" runat="server" Enabled="false" Text="王自清" Width="80px"></asp:TextBox>
-                                                <asp:HiddenField ID="firstid" Value="311" runat="Server" />
-                                                <%--<input id="firstid" type="text" runat="server" readonly="readonly" style="display: none" />--%>
-                                                <%--<asp:HyperLink ID="hlSelect1" Enabled="false" runat="server" CssClass="hand" onClick="SelTechPersons1()">
-                                                    <asp:Image ID="AddImage1" ImageUrl="~/Assets/images/h1.gif" border="0" hspace="2"
-                                                        align="absmiddle" runat="server" />
-                                                    选择
-                                                </asp:HyperLink>--%>
+                                                <asp:TextBox ID="TextBoxSHR1" runat="server" Enabled="False" Text="蔡伟疆" 
+                                                    Width="80px"></asp:TextBox>
+                                                <asp:HiddenField ID="HiddenFieldSHR1" Value="311" runat="server" />
                                             </td>
                                             <td align="center" style="width: 10%">
                                                 审核结论
                                             </td>
                                             <td align="center" style="width: 20%">
-                                                <asp:RadioButtonList ID="rblfirst" Enabled="false" RepeatColumns="2" runat="server"
+                                                <asp:RadioButtonList ID="RadioButtonListSHR1" Enabled="False" RepeatColumns="2" runat="server"
+                                                    Height="20px">
+                                                    <asp:ListItem Text="同意" Value="0" ></asp:ListItem>
+                                                    <asp:ListItem Text="不同意" Value="1"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核时间
+                                            </td>
+                                            <td style="width: 20%">
+                                                <asp:Label ID="LabelSHR1" runat="server" Width="100%"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <asp:TextBox ID="TextBoxSHR2" Enabled="False" runat="server" TextMode="MultiLine"
+                                                    Width="100%" Height="42px"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    二级审核
+                                </td>
+                                <td>
+                                    <table width="100%" cellpadding="4" cellspacing="1" border="1">
+                                        <tr style="height: 25px">
+                                            <td align="center" style="width: 10%">
+                                                审批人
+                                            </td>
+                                            <td style="width: 20%">
+                                                <asp:TextBox ID="txt_first" runat="server" Enabled="False" Text="王自清" 
+                                                    Width="80px"></asp:TextBox>
+                                                <asp:HiddenField ID="firstid" Value="311" runat="server" />
+                                            </td>
+                                            <td align="center" style="width: 10%">
+                                                审核结论
+                                            </td>
+                                            <td align="center" style="width: 20%">
+                                                <asp:RadioButtonList ID="rblfirst" Enabled="False" RepeatColumns="2" runat="server"
                                                     Height="20px">
                                                     <asp:ListItem Text="同意" Value="0"></asp:ListItem>
                                                     <asp:ListItem Text="不同意" Value="1"></asp:ListItem>
@@ -181,7 +217,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="6">
-                                                <asp:TextBox ID="first_opinion" Enabled="false" runat="server" TextMode="MultiLine"
+                                                <asp:TextBox ID="first_opinion" Enabled="False" runat="server" TextMode="MultiLine"
                                                     Width="100%" Height="42px"></asp:TextBox>
                                             </td>
                                         </tr>
@@ -189,7 +225,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <asp:Label ID="lblStatus" runat="server" Text="" Visible="false"></asp:Label>
+                        <asp:Label ID="lblStatus" runat="server" Visible="False"></asp:Label>
                         <input id="Hidden1" type="hidden" value="" />
                     </div>
                 </div>

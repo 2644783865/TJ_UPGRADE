@@ -90,7 +90,7 @@ namespace ZCZJ_DPF.OM_Data
                 }
                 else
                 {
-                    strWhere += " and ((REVIEWSTATE='0' and REVIEWID='" + userid + "') or (REVIEWSTATE='1' and APPLYID='" + userid + "') or (REVIEWSTATE='2' and (WLSLS is null or WLSLS='') and " + Session["UserGroup"].ToString() + "='行政专员'))";
+                    strWhere += " and ((REVIEWSTATE='0' and REVIEWID='" + userid + "') or (REVIEWSTATE='1' and APPLYID='" + userid + "') or (REVIEWSTATE='2' and (WLSLS is null or WLSLS='') and '行政专员' in (" + Session["UserGroup"].ToString() + ")))";
                 }
 
             }

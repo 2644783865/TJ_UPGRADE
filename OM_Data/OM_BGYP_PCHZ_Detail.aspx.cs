@@ -27,7 +27,7 @@ namespace ZCZJ_DPF.OM_Data
 
                     Binddata_add();
                 }
-                if (flag == "view")
+                if (flag == "view") //这是"查看"办公用品采购汇总审批
                 {
                     txt_note.Enabled = false;
                     btnsave.Visible = false;
@@ -52,6 +52,18 @@ namespace ZCZJ_DPF.OM_Data
                         first_time.Text = dt.Rows[0]["SHRFDATE"].ToString();
                         txt_note.Text = dt.Rows[0]["NOTE"].ToString();
                     }
+
+                    //对一级审核人填写信息进行展示
+                    string sql2 = "select * from TBOM_BGYPPCAPPLY WHERE HZCODE='" + Id + "'";
+                    DataTable dt2 = DBCallCommon.GetDTUsingSqlText(sql2);
+                    if (dt2.Rows.Count > 0)
+                    {
+                        TextBoxSHR1.Text = dt2.Rows[0]["SHRF"].ToString();  //审核人
+                        RadioButtonListSHR1.SelectedValue = "0";   //已经同意
+                        LabelSHR1.Text = dt2.Rows[0]["SHRFDATE"].ToString(); //审核时间
+                        TextBoxSHR2.Text = dt2.Rows[0]["SHRFNOTE"].ToString();  //审核人意见
+                    }
+
                     string sqltxt = "select * from View_TBOM_BGYPPCAPPLYINFO WHERE HZCODE='" + Id + "'";
                     DataTable DT = DBCallCommon.GetDTUsingSqlText(sqltxt);
                     GridView1.DataSource = DT;
@@ -82,6 +94,18 @@ namespace ZCZJ_DPF.OM_Data
                         first_time.Text = dt.Rows[0]["SHRFDATE"].ToString();
                         txt_note.Text = dt.Rows[0]["NOTE"].ToString();
                     }
+
+                    //对一级审核人填写信息进行展示
+                    string sql2 = "select * from TBOM_BGYPPCAPPLY WHERE HZCODE='" + Id + "'";
+                    DataTable dt2 = DBCallCommon.GetDTUsingSqlText(sql2);
+                    if (dt2.Rows.Count > 0)
+                    {
+                        TextBoxSHR1.Text = dt2.Rows[0]["SHRF"].ToString();  //审核人
+                        RadioButtonListSHR1.SelectedValue = "0";   //已经同意
+                        LabelSHR1.Text = dt2.Rows[0]["SHRFDATE"].ToString(); //审核时间
+                        TextBoxSHR2.Text = dt2.Rows[0]["SHRFNOTE"].ToString();  //审核人意见
+                    }
+
                     string sqltxt = "select * from View_TBOM_BGYPPCAPPLYINFO WHERE HZCODE='" + Id + "'";
                     DataTable DT = DBCallCommon.GetDTUsingSqlText(sqltxt);
                     GridView1.DataSource = DT;

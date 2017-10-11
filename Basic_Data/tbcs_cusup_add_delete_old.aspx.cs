@@ -79,7 +79,7 @@ namespace ZCZJ_DPF.Basic_Data
             }
             else if (action == "Delete")
             {
-                if (Session["UserGroup"].ToString() == "'管理员'")
+                if (Session["UserGroup"].ToString().Contains("管理员"))
                 {
                     Tab_Review.Visible = false;
                     this.GetDataByID(id);
@@ -188,7 +188,7 @@ namespace ZCZJ_DPF.Basic_Data
             else if (action == "Add")
             {
                 // GetCSCODE();
-                if (Session["UserGroup"].ToString() == "'管理员'")
+                if (Session["UserGroup"].ToString().Contains("管理员"))
                 {
                     Tab_Review.Visible = false;
                     //绑定地区

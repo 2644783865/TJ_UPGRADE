@@ -72,10 +72,10 @@
                         <ItemStyle HorizontalAlign="Center" Wrap="false" />
                     </asp:BoundField>
                   
-                    <asp:BoundField DataField="SHRF" HeaderText="一级审核人">
+                    <asp:BoundField DataField="SHRF" HeaderText="二级审核人">
                         <ItemStyle HorizontalAlign="Center" Wrap="false" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="SHRFDATE" HeaderText="一级日期" ItemStyle-HorizontalAlign="Center"
+                    <asp:BoundField DataField="SHRFDATE" HeaderText="二级日期" ItemStyle-HorizontalAlign="Center"
                         ItemStyle-Wrap="false">
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>

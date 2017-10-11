@@ -203,7 +203,7 @@ namespace ZCZJ_DPF.OM_Data
 
                 if (rblState.SelectedValue == "2" )
                 {
-                    if ((Session["UserGroup"].ToString() == "'行政专员'" && lbl_splevel_v.Text == "2") || (Session["UserGroup"].ToString() == "'行政专员'" && lbl_splevel_v.Text == "3") || (Session["UserGroup"].ToString() == "'行政专员'" && lbl_splevel_v.Text == "6") || (Session["UserGroup"].ToString() == "'行政专员'" && lbl_splevel_v.Text == "7") || (Session["UserGroup"].ToString() == "'行政专员'" && lbl_splevel_v.Text == "10") || (Session["UserGroup"].ToString() == "'行政专员'" && lbl_splevel_v.Text == "9"))
+                    if ((Session["UserGroup"].ToString().Contains("行政专员") && lbl_splevel_v.Text == "2") || (Session["UserGroup"].ToString().Contains("行政专员") && lbl_splevel_v.Text == "3") || (Session["UserGroup"].ToString().Contains("行政专员") && lbl_splevel_v.Text == "6") || (Session["UserGroup"].ToString().Contains("行政专员") && lbl_splevel_v.Text == "7") || (Session["UserGroup"].ToString().Contains("行政专员") && lbl_splevel_v.Text == "10") || (Session["UserGroup"].ToString().Contains("行政专员") && lbl_splevel_v.Text == "9"))
                     {
                         hlGZ.Visible = true;
                     }
@@ -231,7 +231,7 @@ namespace ZCZJ_DPF.OM_Data
         protected void hlDelete_OnClick(object sender, EventArgs e)
         {
 
-            if (Session["UserGroup"].ToString() == "'行政专员'" || Session["UserGroup"].ToString() == "'管理员'")
+            if (Session["UserGroup"].ToString().Contains("行政专员") || Session["UserGroup"].ToString().Contains("管理员"))
             {
                 string context = ((LinkButton)sender).CommandName;
                 string sql = "delete from OM_YONGYINLIST  where Context='" + context + "'";
