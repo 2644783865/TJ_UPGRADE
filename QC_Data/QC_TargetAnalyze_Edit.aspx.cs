@@ -30,9 +30,17 @@ namespace ZCZJ_DPF.QC_Data
                 //InitGridview();
                 //GetDepartment();
                 //GetTJDepartment();
-                if (action == "view")
+                if (action == "view")  //查看
                 {
-                    btnSave.Visible = false;
+                    btnSave.Visible = false;  //保存按钮不可见
+                    btnDelete.Visible = false;   //删除按钮不可见
+                    btnInsert.Visible = false;  //插入按钮不可见
+                    txtNum.Visible = false; //插入条数不可见
+                }
+                if (action == "edit")  //查看结果-编辑
+                {
+                    btnInsert.Visible = false;  //插入按钮不可见
+                    txtNum.Visible = false; //插入条数不可见
                 }
             }
         }
@@ -214,6 +222,7 @@ namespace ZCZJ_DPF.QC_Data
             {
                 DataRow newrow = dt.NewRow();
                 newrow[0] = "00";
+                newrow[3] = Session["UserName"].ToString(); //添加填写人
 
                 dt.Rows.Add(newrow);
             }
@@ -237,22 +246,23 @@ namespace ZCZJ_DPF.QC_Data
             newRow[0] = ((DropDownList)gRow.FindControl("ddlDepId")).SelectedValue;
             newRow[1] = ((DropDownList)gRow.FindControl("ddlTiXi")).SelectedValue;
             newRow[2] = ((HtmlInputText)gRow.FindControl("txtManager")).Value.Trim();
-            newRow[3] = ((HtmlInputText)gRow.FindControl("txtMuBiao")).Value.Trim();
-            newRow[4] = ((HtmlInputText)gRow.FindControl("txtJan")).Value.Trim();
-            newRow[5] = ((HtmlInputText)gRow.FindControl("txtFeb")).Value.Trim();
-            newRow[6] = ((HtmlInputText)gRow.FindControl("txtMar")).Value.Trim();
-            newRow[7] = ((HtmlInputText)gRow.FindControl("txtApr")).Value.Trim();
-            newRow[8] = ((HtmlInputText)gRow.FindControl("txtMay")).Value.Trim();
-            newRow[9] = ((HtmlInputText)gRow.FindControl("txtJun")).Value.Trim();
-            newRow[10] = ((HtmlInputText)gRow.FindControl("txtJuy")).Value.Trim();
-            newRow[11] = ((HtmlInputText)gRow.FindControl("txtAug")).Value.Trim();
-            newRow[12] = ((HtmlInputText)gRow.FindControl("txtSep")).Value.Trim();
-            newRow[13] = ((HtmlInputText)gRow.FindControl("txtOct")).Value.Trim();
-            newRow[14] = ((HtmlInputText)gRow.FindControl("txtNov")).Value.Trim();
-            newRow[15] = ((HtmlInputText)gRow.FindControl("txtDec")).Value.Trim();
-            newRow[16] = ((HtmlInputText)gRow.FindControl("txtComplete")).Value.Trim();
-            newRow[17] = ((HtmlInputHidden)gRow.FindControl("hidTarId")).Value.Trim();
-            newRow[18] = ((DropDownList)gRow.FindControl("ddlTJDepId")).SelectedValue;
+            newRow[3] = ((HtmlInputText)gRow.FindControl("txtEditor")).Value.Trim();
+            newRow[4] = ((HtmlInputText)gRow.FindControl("txtMuBiao")).Value.Trim();
+            newRow[5] = ((HtmlInputText)gRow.FindControl("txtJan")).Value.Trim();
+            newRow[6] = ((HtmlInputText)gRow.FindControl("txtFeb")).Value.Trim();
+            newRow[7] = ((HtmlInputText)gRow.FindControl("txtMar")).Value.Trim();
+            newRow[8] = ((HtmlInputText)gRow.FindControl("txtApr")).Value.Trim();
+            newRow[9] = ((HtmlInputText)gRow.FindControl("txtMay")).Value.Trim();
+            newRow[10] = ((HtmlInputText)gRow.FindControl("txtJun")).Value.Trim();
+            newRow[11] = ((HtmlInputText)gRow.FindControl("txtJuy")).Value.Trim();
+            newRow[12] = ((HtmlInputText)gRow.FindControl("txtAug")).Value.Trim();
+            newRow[13] = ((HtmlInputText)gRow.FindControl("txtSep")).Value.Trim();
+            newRow[14] = ((HtmlInputText)gRow.FindControl("txtOct")).Value.Trim();
+            newRow[15] = ((HtmlInputText)gRow.FindControl("txtNov")).Value.Trim();
+            newRow[16] = ((HtmlInputText)gRow.FindControl("txtDec")).Value.Trim();
+            newRow[17] = ((HtmlInputText)gRow.FindControl("txtComplete")).Value.Trim();
+            newRow[18] = ((HtmlInputHidden)gRow.FindControl("hidTarId")).Value.Trim();
+            newRow[19] = ((DropDownList)gRow.FindControl("ddlTJDepId")).SelectedValue;
             dt.Rows.Add(newRow);
         }
 
@@ -262,6 +272,7 @@ namespace ZCZJ_DPF.QC_Data
             dt.Columns.Add("TARGET_DEPID");
             dt.Columns.Add("TARGET_TIXI");
             dt.Columns.Add("TARGET_MANAGER");
+            dt.Columns.Add("TARGET_Editor"); //添加填写人
             dt.Columns.Add("TARGET_MUBIAO");
             dt.Columns.Add("TARGET_JAN");
             dt.Columns.Add("TARGET_FEB");
@@ -324,6 +335,7 @@ namespace ZCZJ_DPF.QC_Data
                     string depId = ((DropDownList)gRow.FindControl("ddlDepId")).SelectedValue;
                     string TiXi = ((DropDownList)gRow.FindControl("ddlTiXi")).SelectedValue;
                     string Manager = ((HtmlInputText)gRow.FindControl("txtManager")).Value.Trim();
+                    string Editor = ((HtmlInputText)gRow.FindControl("txtEditor")).Value.Trim(); //填写人
                     string MuBiao = ((HtmlInputText)gRow.FindControl("txtMuBiao")).Value.Trim();
                     string Jan = ((HtmlInputText)gRow.FindControl("txtJan")).Value.Trim();
                     string Feb = ((HtmlInputText)gRow.FindControl("txtFeb")).Value.Trim();
@@ -340,15 +352,15 @@ namespace ZCZJ_DPF.QC_Data
                     string complete = ((HtmlInputText)gRow.FindControl("txtComplete")).Value.Trim();
                     string tjdepId = ((DropDownList)gRow.FindControl("ddlTJDepId")).SelectedValue;
                     string fId = hidId.Value;
-                    if (!(depId == "00" & TiXi == "" & Manager == "" & MuBiao == "") && !(depId != "00" & TiXi != "" & Manager != "" & MuBiao != ""))//四项中有1-3项为空
+                    if (!(depId == "00" & TiXi == "" & Manager == "" & Editor == "" & MuBiao == "") && !(depId != "00" & TiXi != "" & Manager != "" & Editor != "" & MuBiao != ""))//四项中有1-3项为空
                     {
 
                         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请将基本信息补全,第" + Convert.ToInt32(((Label)gRow.FindControl("lblIndex")).Text.Trim()) + "行');", true);
                         return;
                     }
-                    if (depId != "00" & TiXi != "" & Manager != "" & MuBiao != "")
+                    if (depId != "00" & TiXi != "" & Manager != "" & Editor != "" & MuBiao != "")
                     {
-                        sqlText = "insert into TBQC_TARGET_DETAIL values('" + depId + "','" + TiXi + "','" + MuBiao + "','" + Manager + "','" + Jan + "','" + Feb + "','" + Mar + "','" + Apr + "','" + May + "','" + Jun + "','" + Juy + "','" + Aug + "','" + Sep + "','" + Oct + "','" + Nov + "','" + Dec + "'," + fId + ",'" + complete + "','" + tjdepId + "')";
+                        sqlText = "insert into TBQC_TARGET_DETAIL values('" + depId + "','" + TiXi + "','" + MuBiao + "','" + Manager + "','" + Editor + "','" + Jan + "','" + Feb + "','" + Mar + "','" + Apr + "','" + May + "','" + Jun + "','" + Juy + "','" + Aug + "','" + Sep + "','" + Oct + "','" + Nov + "','" + Dec + "'," + fId + ",'" + complete + "','" + tjdepId + "')";
                         list.Add(sqlText);
                     }
                 }
@@ -407,6 +419,7 @@ namespace ZCZJ_DPF.QC_Data
                     ((DropDownList)e.Row.FindControl("ddlDepId")).Enabled = false;
                     ((DropDownList)e.Row.FindControl("ddlTiXi")).Enabled = false;
                     ((HtmlInputText)e.Row.FindControl("txtManager")).Disabled = true;
+                    ((HtmlInputText)e.Row.FindControl("txtEditor")).Disabled = true;
                     ((HtmlInputText)e.Row.FindControl("txtMuBiao")).Disabled = true;
                     ((HtmlInputText)e.Row.FindControl("txtComplete")).Disabled = true;
                 }
@@ -456,21 +469,22 @@ namespace ZCZJ_DPF.QC_Data
                     row.CreateCell(1).SetCellValue("" + objdt.Rows[i]["DEP_NAME"].ToString());
                     row.CreateCell(2).SetCellValue("" + objdt.Rows[i]["TARGET_TIXI"].ToString());
                     row.CreateCell(3).SetCellValue("" + objdt.Rows[i]["TARGET_MANAGER"].ToString());
-                    row.CreateCell(4).SetCellValue("" + objdt.Rows[i]["TARGET_MUBIAO"].ToString());
-                    row.CreateCell(5).SetCellValue("" + objdt.Rows[i]["TARGET_COMPLETE"].ToString());
-                    row.CreateCell(6).SetCellValue("" + objdt.Rows[i]["TJDEP_NAME"].ToString());
-                    row.CreateCell(7).SetCellValue("" + objdt.Rows[i]["TARGET_JAN"].ToString());
-                    row.CreateCell(8).SetCellValue("" + objdt.Rows[i]["TARGET_FEB"].ToString());
-                    row.CreateCell(9).SetCellValue("" + objdt.Rows[i]["TARGET_MAR"].ToString());
-                    row.CreateCell(10).SetCellValue("" + objdt.Rows[i]["TARGET_APR"].ToString());
-                    row.CreateCell(11).SetCellValue("" + objdt.Rows[i]["TARGET_MAY"].ToString());
-                    row.CreateCell(12).SetCellValue("" + objdt.Rows[i]["TARGET_JUN"].ToString());
-                    row.CreateCell(13).SetCellValue("" + objdt.Rows[i]["TARGET_JUL"].ToString());
-                    row.CreateCell(14).SetCellValue("" + objdt.Rows[i]["TARGET_AUG"].ToString());
-                    row.CreateCell(15).SetCellValue("" + objdt.Rows[i]["TARGET_SEP"].ToString());
-                    row.CreateCell(16).SetCellValue("" + objdt.Rows[i]["TARGET_OCT"].ToString());
-                    row.CreateCell(17).SetCellValue("" + objdt.Rows[i]["TARGET_NOV"].ToString());
-                    row.CreateCell(18).SetCellValue("" + objdt.Rows[i]["TARGET_DEC"].ToString());
+                    row.CreateCell(4).SetCellValue("" + objdt.Rows[i]["TARGET_Editor"].ToString());
+                    row.CreateCell(5).SetCellValue("" + objdt.Rows[i]["TARGET_MUBIAO"].ToString());
+                    row.CreateCell(6).SetCellValue("" + objdt.Rows[i]["TARGET_COMPLETE"].ToString());
+                    row.CreateCell(7).SetCellValue("" + objdt.Rows[i]["TJDEP_NAME"].ToString());
+                    row.CreateCell(8).SetCellValue("" + objdt.Rows[i]["TARGET_JAN"].ToString());
+                    row.CreateCell(9).SetCellValue("" + objdt.Rows[i]["TARGET_FEB"].ToString());
+                    row.CreateCell(10).SetCellValue("" + objdt.Rows[i]["TARGET_MAR"].ToString());
+                    row.CreateCell(11).SetCellValue("" + objdt.Rows[i]["TARGET_APR"].ToString());
+                    row.CreateCell(12).SetCellValue("" + objdt.Rows[i]["TARGET_MAY"].ToString());
+                    row.CreateCell(13).SetCellValue("" + objdt.Rows[i]["TARGET_JUN"].ToString());
+                    row.CreateCell(14).SetCellValue("" + objdt.Rows[i]["TARGET_JUL"].ToString());
+                    row.CreateCell(15).SetCellValue("" + objdt.Rows[i]["TARGET_AUG"].ToString());
+                    row.CreateCell(16).SetCellValue("" + objdt.Rows[i]["TARGET_SEP"].ToString());
+                    row.CreateCell(17).SetCellValue("" + objdt.Rows[i]["TARGET_OCT"].ToString());
+                    row.CreateCell(18).SetCellValue("" + objdt.Rows[i]["TARGET_NOV"].ToString());
+                    row.CreateCell(19).SetCellValue("" + objdt.Rows[i]["TARGET_DEC"].ToString());
 
                 }
 

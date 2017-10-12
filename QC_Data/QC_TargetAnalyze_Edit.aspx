@@ -126,6 +126,13 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="填写人" ItemStyle-HorizontalAlign="Center">
+                <ItemTemplate>
+                    <input id="txtEditor" type="text" runat="server" value='<% #Eval("TARGET_Editor") %>'
+                        style="width: 35px" />
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="分解目标" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <input type="text" runat="server" value='<%# Eval("TARGET_MUBIAO") %>' id="txtMuBiao"

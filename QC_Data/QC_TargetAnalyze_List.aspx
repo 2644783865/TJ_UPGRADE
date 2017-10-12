@@ -67,7 +67,7 @@
                             <asp:HyperLink ID="HyperLink2" NavigateUrl='<%# "~/QC_Data/QC_TargetAnalyze_Edit.aspx?action=edit&tarId="+Eval("TARGET_ID")%>'
                                 runat="server">
                                 <asp:Image ID="Image16" ImageUrl="~/Assets/images/res.gif" runat="server" border="0"
-                                    hspace="2" align="absmiddle" />填写结果</asp:HyperLink>
+                                    hspace="2" align="absmiddle" />修改目标</asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
                     
