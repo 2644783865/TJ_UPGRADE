@@ -56,18 +56,22 @@ namespace ZCZJ_DPF.OM_Data
         {
             foreach (DropDownList ddl in listDrop)
             {
-                string sqlText = string.Format("select min(ST_ID) as ST_ID,{0},min(ST_DEPID) as ST_DEPID from TBDS_STAFFINFO as a left join TBDS_DEPINFO as b on a.ST_DEPID=b.DEP_CODE where {0} is not null and {0}<>'' group by {0} order by ST_ID ", ddl.ID.ToString());
-
-                DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlText);
-                ((DropDownList)ddl).DataSource = dt;
-                ((DropDownList)ddl).DataTextField = ddl.ID.ToString();
-                if (((DropDownList)ddl).ID != "DEP_NAME")
+                string sqlText="";  //数据库执行语句
+                if (((DropDownList)ddl).ID == "DEP_NAME")
                 {
+                    sqlText="select distinct DEP_CODE,DEP_NAME from TBDS_DEPINFO where DEP_CODE LIKE '[0-9][0-9]'";
+                    DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlText);
+                    ((DropDownList)ddl).DataSource = dt;
+                    ((DropDownList)ddl).DataTextField = ddl.ID.ToString();
+                    ((DropDownList)ddl).DataValueField = "DEP_CODE";
                     ((DropDownList)ddl).DataBind();
                 }
                 else
                 {
-                    ((DropDownList)ddl).DataValueField = "ST_DEPID";
+                    sqlText = string.Format("select min(ST_ID) as ST_ID,{0},min(ST_DEPID) as ST_DEPID from TBDS_STAFFINFO as a left join TBDS_DEPINFO as b on a.ST_DEPID=b.DEP_CODE where {0} is not null and {0}<>'' group by {0} order by ST_ID ", ddl.ID.ToString());
+                    DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlText);
+                    ((DropDownList)ddl).DataSource = dt;
+                    ((DropDownList)ddl).DataTextField = ddl.ID.ToString();
                     ((DropDownList)ddl).DataBind();
                 }
                 AddNew(((DropDownList)ddl));
