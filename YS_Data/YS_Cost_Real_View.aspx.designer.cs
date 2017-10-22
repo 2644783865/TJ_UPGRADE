@@ -77,15 +77,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Btn_update;
         
         /// <summary>
-        /// rbl_type 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbl_type;
-        
-        /// <summary>
         /// ddl_project 控件。
         /// </summary>
         /// <remarks>
@@ -102,24 +93,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_engineer;
-        
-        /// <summary>
-        /// btnModify 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnModify;
-        
-        /// <summary>
-        /// ModImahe 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ModImahe;
         
         /// <summary>
         /// GridView1 控件。
