@@ -3,7 +3,7 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    预算分析统计 
+    合同成本分析统计 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <link href="FixTable.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
     </div>
     <asp:TabContainer runat="server" ID="TabContainer1" TabStripPlacement="Top" 
          ActiveTabIndex="0" >       
-         <asp:TabPanel runat="server" ID="TabPanel1" HeaderText="预算获利统计" TabIndex="4">
+         <asp:TabPanel runat="server" ID="TabPanel1" HeaderText="预算盈利统计" TabIndex="4">
             <ContentTemplate>
                   <div style="width:100%">
                        <table width="98%">
@@ -55,9 +55,9 @@
                                         </Legends>
                                         <BorderSkin SkinStyle="Emboss"></BorderSkin>
                                         <Series>
-                                            <asp:Series Name="预算毛利润">
+                                            <asp:Series Name="毛利润预算值">
                                             </asp:Series>
-                                            <asp:Series Name="实际毛利润">
+                                            <asp:Series Name="毛利润实际值">
                                             </asp:Series>
                                             
                                         </Series>
@@ -293,9 +293,9 @@
                                         </Legends>
                                         <BorderSkin SkinStyle="Emboss"></BorderSkin>
                                         <Series>
-                                            <asp:Series Name="加工件费用预算总值">
+                                            <asp:Series Name="铸锻件费用预算总值">
                                             </asp:Series>
-                                            <asp:Series Name="加工件费用实际总值">
+                                            <asp:Series Name="铸锻件费用实际总值">
                                             </asp:Series>
                                         </Series>
                                         <ChartAreas>
@@ -511,7 +511,7 @@
                            </tr>
                            
                            
-                           <%--<tr>
+                           <tr>
                                <td>
                                    <asp:Chart ID="Chart11" runat="server" Height="356px" Width="1000px" Palette="BrightPastel" ImageType="Png" BorderDashStyle="Solid" BackSecondaryColor="White" BackGradientStyle="VerticalCenter" BorderWidth="2px" BackColor="211, 223, 240" BorderColor="#1A3B69">
                                         <Titles>
@@ -644,7 +644,7 @@
                                         </ChartAreas>
                                     </asp:Chart>
                                </td>
-                           </tr>--%>
+                           </tr>
                            
 
                                                     

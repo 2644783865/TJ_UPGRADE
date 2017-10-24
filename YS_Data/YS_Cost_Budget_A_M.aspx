@@ -4,7 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    <asp:Label ID="LabelTitle" runat="server" Text="预算监控"></asp:Label>
+    <asp:Label ID="LabelTitle" runat="server" Text="任务预算信息"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
@@ -49,29 +49,20 @@
 
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    <div class="box-inner">
+        <div class="box-inner">
         <div class="box_right">
             <div class="box-title">
-                <table width="100%">
+                <table width="98%">
                     <tr>
-                        <td>
-                            <asp:RadioButtonList ID="rbl_profit" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick"
-                                RepeatDirection="Horizontal">
-                                <asp:ListItem Text="全部" Value="0" Selected="True"></asp:ListItem>
-                                <asp:ListItem Text="毛利润赤字" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="毛利润非赤字" Value="2"></asp:ListItem>
-                            </asp:RadioButtonList>
+                        <td align="left">
+                            合同号：
+                            <asp:Label ID="lbl_con" runat="server"></asp:Label>
                         </td>
-                        <td align="center">
-                            项目名称:
-                            <asp:DropDownList ID="ddl_project" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
-                            </asp:DropDownList>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 工程名称:
-                            <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
-                            </asp:DropDownList>
+                        <td align="left">
+                            项目名称：<asp:Label ID="lbl_project" runat="server"></asp:Label>
                         </td>
-                        <td align="right">
-                            <asp:Button ID="btn_daochu" runat="server" Text="导出Excel" OnClick="btn_daochu_Click" />&nbsp;
+                        <td align="left">
+                            工程名称：<asp:Label ID="lbl_engineer" runat="server"></asp:Label>
                         </td>
                     </tr>
                 </table>
@@ -83,17 +74,50 @@
             <div class="box-title">
                 <table width="100%">
                     <tr>
-                        <td>
-                            任务号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
+                        <%--<td>
+                            <asp:RadioButtonList ID="rbl_profit" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick"
+                                RepeatDirection="Horizontal">
+                                <asp:ListItem Text="全部" Value="0" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="毛利润赤字" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="毛利润非赤字" Value="2"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </td>--%>
+                        <td width="300">
+                            任务号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">&nbsp;
                             </asp:TextBox><asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
-                            <asp:Button ID="btnShowPopup" runat="server" Text="更多筛选" />
-                            <asp:Button ID="btnShowSta" runat="server" Text="查看统计信息" OnClick="btn_ShowSta_OnClick"/>
+                            <%--<asp:Button ID="btnShowPopup" runat="server" Text="更多筛选" />
+                   
                             <asp:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btnShowPopup"
                                 PopupControlID="Pal_condition" Drag="false" Enabled="True" DynamicServicePath=""
-                                Y="80">
-                             
-                            </asp:ModalPopupExtender>
+                                Y="80">                        
+                            </asp:ModalPopupExtender>--%>  
                         </td>
+                        <td >
+                            <%--项目名称:
+                            <asp:DropDownList ID="ddl_project" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 工程名称:
+                            <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>--%>
+                            任务名称:
+                            <asp:DropDownList ID="ddl_task" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                        </td>
+                        <td align="right">
+                        <a href="#" onclick="javascript :history.back(-1);">返回</a>
+                            <%--<asp:Button ID="btn_daochu" runat="server" Text="导出Excel" OnClick="btn_daochu_Click" />--%>&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%--<div class="box-inner">
+        <div class="box_right">
+            <div class="box-title">
+                <table width="100%">
+                    <tr>
+                        
                     </tr>
                 </table>
                 <asp:Panel ID="Pal_condition" runat="server" UpdateMode="Conditional">
@@ -113,14 +137,14 @@
                                 生产制号：<asp:TextBox ID="txtprotect_num" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <%--<td>
+                            <td>
                                 外协费用：<asp:DropDownList ID="dpl_waixie" runat="server">
                                     <asp:ListItem Text="--请选择--" Value="0"></asp:ListItem>
                                     <asp:ListItem Text="小于90%" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="达到90%（黄字）" Value="2"></asp:ListItem>
                                     <asp:ListItem Text="超出预算（红字）" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
-                            </td>--%>
+                            </td>
                             <td>
                                 材料费用：<asp:DropDownList ID="dpl_materials" runat="server">
                                     <asp:ListItem Text="--请选择--" Value="0"></asp:ListItem>
@@ -129,8 +153,8 @@
                                     <asp:ListItem Text="超出预算（红字）" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                        <%--</tr>
-                        <tr>--%>
+                        </tr>
+                        <tr>
                             <td>
                                 人工费用：<asp:DropDownList ID="dpl_labor" runat="server">
                                     <asp:ListItem Text="--请选择--" Value="0"></asp:ListItem>
@@ -139,14 +163,14 @@
                                     <asp:ListItem Text="超出预算（红字）" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                           <%-- <td>
+                            <td>
                                 其它费用：<asp:DropDownList ID="dpl_other" runat="server">
                                     <asp:ListItem Text="--请选择--" Value="0"></asp:ListItem>
                                     <asp:ListItem Text="小于90%" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="达到90%（黄字）" Value="2"></asp:ListItem>
                                     <asp:ListItem Text="超出预算（红字）" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
-                            </td>--%>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -186,7 +210,7 @@
                 </asp:Panel>
             </div>
         </div>
-    </div>
+    </div>--%>
     <div class="box-wrapper">
         <div class="box-outer">
             <div style="width: 100%; overflow: auto; overflow-x: yes; overflow-y: hidden;">
@@ -201,19 +225,19 @@
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="合同号" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+                        <%--<asp:TemplateField HeaderText="合同号" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_YS_CONTRACT_NO" runat="server" Text='<%#Eval("YS_CONTRACT_NO") %>'
                                     ToolTip="双击关联合同信息！"></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="任务号" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_pcon_sch" runat="server" Text='<%#Eval("PCON_SCH") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="项目名称" HeaderStyle-Wrap="false">
+                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="项目名称" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_pcon_pjname" runat="server" Text='<%#Eval("PCON_PJNAME") %>'></asp:Label>
                             </ItemTemplate>
@@ -224,8 +248,14 @@
                                 <asp:Label ID="lbl_pcon_engname" runat="server" Text='<%#Eval("PCON_ENGNAME") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>--%>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="任务名称" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_pcon_eqname" runat="server" Text='<%#Eval("PCON_EQNAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="YS_BUDGET_INCOME" HeaderText="预算收入" ItemStyle-HorizontalAlign="Left"
+                       <%-- <asp:BoundField DataField="YS_BUDGET_INCOME" HeaderText="预算收入" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_Cost" HeaderText="预算费用合计" ItemStyle-HorizontalAlign="Left"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
@@ -243,7 +273,7 @@
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="净利润(预)" HeaderStyle-ForeColor="#660066"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
@@ -300,11 +330,11 @@
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
-                                    <asp:HiddenField ID="hidden_MACHINING_PART" runat="Server" Value='<%#Eval("YS_MACHINING_PART_BG_hide_percent","{0:N2}") %>' />
+                                    <asp:HiddenField ID="hidden_CASTING_FORGING" runat="Server" Value='<%#Eval("YS_CASTING_FORGING_BG_hide_percent","{0:N2}") %>' />
                                     <div style="width: 100px; position: static; z-index: 100; top: 4px; text-align: left;">
-                                        <asp:Label ID="lab_MACHINING_PART" runat="server" Text='<%#Eval("YS_MACHINING_PART_BG","{0:N2}") %>'></asp:Label>
+                                        <asp:Label ID="lab_CASTING_FORGING" runat="server" Text='<%#Eval("YS_CASTING_FORGING_COST_BG","{0:N2}") %>'></asp:Label>
                                     </div>
-                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_MACHINING_PART_BG_percent").ToString()) %>"
+                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_CASTING_FORGING_BG_percent").ToString()) %>"
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
@@ -361,20 +391,20 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="人工费合计(预)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="直接人工(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
-                                    <asp:HiddenField ID="hidden_LABOUR_COST" runat="Server" Value='<%#Eval("YS_LABOUR_COST_BG_hide_percent","{0:N2}") %>' />
+                                    <asp:HiddenField ID="hidden_TEAM_CONTRACT" runat="Server" Value='<%#Eval("YS_TEAM_CONTRACT_BG_hide_percent","{0:N2}") %>' />
                                     <div style="width: 100px; position: static; z-index: 100; top: 4px; text-align: left;">
-                                        <asp:Label ID="lab_LABOUR_COST" runat="server" Text='<%#Eval("YS_LABOUR_COST_BG","{0:N2}") %>'></asp:Label>
+                                        <asp:Label ID="lab_TEAM_CONTRACT" runat="server" Text='<%#Eval("YS_TEAM_CONTRACT_BG","{0:N2}") %>'></asp:Label>
                                     </div>
-                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_LABOUR_COST_BG_percent").ToString()) %>"
+                                    <img alt="" src="/YS_Data/update1.jpg" width="<%#GetIMGWidth(Eval("YS_TEAM_CONTRACT_BG_percent").ToString()) %>"
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
-                       <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(预)" HeaderStyle-ForeColor="Brown"
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -399,7 +429,7 @@
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
-                        </asp:TemplateField>--%>
+                        </asp:TemplateField>
                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="制造费用(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
@@ -452,7 +482,7 @@
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="运费(预)" HeaderStyle-ForeColor="Brown"
+                        <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="运费(预)" HeaderStyle-ForeColor="Brown"
                             HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <div style="position: static; width: 100px;">
@@ -464,13 +494,13 @@
                                         height="9" /><br />
                                 </div>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="毛利润(实)" HeaderStyle-Wrap="false"
+                        </asp:TemplateField>--%>
+                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="毛利润(实)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
                                 <asp:Label ID="lab_PROFIT_R" runat="server" Text='<%#Eval("YS_PROFIT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                          <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="净利润(实)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Black">
                             <ItemTemplate>
@@ -502,7 +532,7 @@
                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="铸锻件(实)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Brown">
                             <ItemTemplate>
-                                <asp:Label ID="lab_MACHINING_PART_R" runat="server" Text='<%#Eval("YS_MACHINING_PART","{0:N2}") %>'></asp:Label>
+                                <asp:Label ID="lab_CASTING_FORGING_R" runat="server" Text='<%#Eval("YS_CASTING_FORGING","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                          <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="油漆涂料(实)" HeaderStyle-Wrap="false"
@@ -529,13 +559,13 @@
                                 <asp:Label ID="lab_MATERIAL_COST_R" runat="server" Text='<%#Eval("YS_MATERIAL_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="人工费合计(实)" HeaderStyle-Wrap="false"
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="直接人工(实)" HeaderStyle-Wrap="false"
                          HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
-                                <asp:Label ID="lab_LABOUR_COST_R" runat="server" Text='<%#Eval("YS_LABOUR_COST","{0:N2}") %>'></asp:Label>
+                                <asp:Label ID="lab_TEAM_CONTRACT_R" runat="server" Text='<%#Eval("YS_TEAM_CONTRACT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(实)" HeaderStyle-Wrap="false">
+                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="厂内分包(实)" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_FAC_CONTRACT_R" runat="server" Text='<%#Eval("YS_FAC_CONTRACT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
@@ -544,7 +574,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="lab_PRODUCT_OUT_R" runat="server" Text='<%#Eval("YS_PRODUCT_OUT","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>--%>
+                        </asp:TemplateField>
                          <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="制造费用(订)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
@@ -569,18 +599,18 @@
                                 <asp:Label ID="lab_Taxes_Cost_R" runat="server" Text='<%#Eval("YS_Taxes_Cost","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                         <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="运费(实)" HeaderStyle-Wrap="false"
+                         <%--<asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="运费(实)" HeaderStyle-Wrap="false"
                             HeaderStyle-ForeColor="Green">
                             <ItemTemplate>
                                 <asp:Label ID="lab_TRANS_COST_R" runat="server" Text='<%#Eval("YS_TRANS_COST","{0:N2}") %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="YS_ADDNAME" HeaderText="制单人" ItemStyle-HorizontalAlign="Center"
+                        </asp:TemplateField>--%>
+                        <%--<asp:BoundField DataField="YS_ADDNAME" HeaderText="制单人" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" />
                         <asp:BoundField DataField="YS_ADDDATE" HeaderText="制单时间" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" ItemStyle-Wrap="false" />
                         <asp:BoundField DataField="YS_Finshtime" HeaderText="完成时间" ItemStyle-HorizontalAlign="Center"
-                            HeaderStyle-Wrap="false" />
+                            HeaderStyle-Wrap="false" />--%>
                         <asp:BoundField DataField="YS_NOTE" HeaderText="备注" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-Wrap="false" />
                     </Columns>

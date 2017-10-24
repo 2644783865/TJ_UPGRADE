@@ -406,27 +406,27 @@ namespace ZCZJ_DPF.YS_Data
         }
 
         //重置条件
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            //txtprotect_num.Text = "";
-            //dpl_waixie.SelectedIndex = 0;
-            dpl_materials.SelectedIndex = 0;
-            dpl_labor.SelectedIndex = 0;
-            //dpl_other.SelectedIndex = 0;
-            //dpl_people.SelectedIndex = 0;
-            dpl_all_profit.SelectedIndex = 0;
-            //finish_sta_time.Text = "";
-            //finish_end_time.Text = "";
-            //txt_make_sta.Text = "";
-            //txt_make_end.Text = "";
-            ModalPopupExtenderSearch.Show();
-        }
+        //protected void btnReset_Click(object sender, EventArgs e)
+        //{
+        //    //txtprotect_num.Text = "";
+        //    //dpl_waixie.SelectedIndex = 0;
+        //    dpl_materials.SelectedIndex = 0;
+        //    dpl_labor.SelectedIndex = 0;
+        //    //dpl_other.SelectedIndex = 0;
+        //    //dpl_people.SelectedIndex = 0;
+        //    dpl_all_profit.SelectedIndex = 0;
+        //    //finish_sta_time.Text = "";
+        //    //finish_end_time.Text = "";
+        //    //txt_make_sta.Text = "";
+        //    //txt_make_end.Text = "";
+        //    ModalPopupExtenderSearch.Show();
+        //}
 
         //取消
-        protected void btnClose_Click(object sender, EventArgs e)
-        {
-            ModalPopupExtenderSearch.Hide();
-        }
+        //protected void btnClose_Click(object sender, EventArgs e)
+        //{
+        //    ModalPopupExtenderSearch.Hide();
+        //}
 
         protected void btn_ShowSta_OnClick(object sender, EventArgs e)
         {
@@ -668,13 +668,13 @@ namespace ZCZJ_DPF.YS_Data
             }
             if (YS_CONTRACT_NO != "")
             {
-                string sql_fin = "select YS_XS_Finished from YS_COST_BUDGET where YS_TSA_ID='" + CONTRACT_NO + "'";
+                string sql_fin = "select YS_XS_Finished from TBPM_CONPCHSINFO where PCON_BCODE='" + CONTRACT_NO + "'";
                 System.Data.DataTable dt_fin = DBCallCommon.GetDTUsingSqlText(sql_fin);
                 if (dt_fin.Rows.Count > 0)
                 {
                     if (dt_fin.Rows[0][0].ToString() == "1")
                     {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('该任务已完成结算！');", true);
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('该合同已完成结算！');", true);
                         return;
                     }
                     else
@@ -698,9 +698,9 @@ namespace ZCZJ_DPF.YS_Data
                         {
                             throw;
                         }
-                        string sql1 = "update YS_COST_BUDGET set YS_XS_Finished='1',YS_Finshtime=GETDATE() where YS_TSA_ID='" + CONTRACT_NO + "'";
+                        string sql1 = "update TBPM_CONPCHSINFO set YS_XS_Finished='1',YS_Finshtime=GETDATE() where PCON_BCODE='" + CONTRACT_NO + "'";
                         DBCallCommon.ExeSqlText(sql1);
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('任务结算成功！');", true);
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('合同结算成功！');", true);
                         UCPaging1.CurrentPage = 1;
                         InitVar();
                         GetTechRequireData();
@@ -711,6 +711,32 @@ namespace ZCZJ_DPF.YS_Data
             {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请选择要修改的行！！！');", true);
             }
+        }
+
+        protected void btn_ShowTask_OnClick(object sender, EventArgs e)
+        {
+            string YS_CONTRACT_NO = "";
+            string CONTRACT_NO = "";
+            foreach (GridViewRow grow in GridView1.Rows)
+            {
+                System.Web.UI.WebControls.CheckBox ckb = (System.Web.UI.WebControls.CheckBox)grow.FindControl("CheckBox1");
+                if (ckb.Checked)
+                {
+                    CONTRACT_NO = ((HiddenField)grow.FindControl("hdfMP_ID")).Value.ToString();
+                    Encrypt_Decrypt ed = new Encrypt_Decrypt();
+                    YS_CONTRACT_NO = ed.EncryptText(CONTRACT_NO);
+                    break;
+                }
+            }
+            if (YS_CONTRACT_NO != "")
+            {
+                string URL = "YS_Cost_Budget_A_M.aspx?ContractNo=" + CONTRACT_NO;
+                Response.Redirect(URL);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请选择要查看的行！！！');", true);
+            }           
         }
     }
 }

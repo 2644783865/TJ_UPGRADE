@@ -86,19 +86,24 @@
             <div class="box-title">
                 <table width="100%">
                     <tr>
-                        <td>
-                            合同号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
+                        <td style="width: 250px">
+                            合同号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">&nbsp;
                             </asp:TextBox><asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
-                            <asp:Button ID="btnShowPopup" runat="server" Text="更多筛选" />
-                            <asp:Button ID="btnShowSta" runat="server" Text="查看统计信息" OnClick="btn_ShowSta_OnClick"/>
-                            <asp:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btnShowPopup"
+                            <%--<asp:Button ID="btnShowPopup" runat="server" Text="更多筛选" />--%>
+                            <%--<asp:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btnShowPopup"
                                 PopupControlID="Pal_condition" Drag="false" Enabled="True" DynamicServicePath=""
                                 Y="80">                            
-                            </asp:ModalPopupExtender>
-                        </td>
+                            </asp:ModalPopupExtender>--%>
+                            </td>
+                            <td align="left">
+                            <asp:Button ID="btnShowTask" runat="server" Text="查看任务预算" OnClick="btn_ShowTask_OnClick"/>&nbsp&nbsp&nbsp
+                            <asp:Button ID="btnShowSta" runat="server" Text="查看成本统计信息" OnClick="btn_ShowSta_OnClick"/>
+                            </td>
+                            
+                        
                     </tr>
                 </table>
-                <asp:Panel ID="Pal_condition" runat="server" UpdateMode="Conditional">
+                <%--<asp:Panel ID="Pal_condition" runat="server" UpdateMode="Conditional">
                     <table width="100%" style="background-color: #CCCCFF; border: solid 1px black;">
                         <tr>
                             <td colspan="2" align="center">
@@ -185,7 +190,7 @@
                             </td>
                         </tr>
                     </table>
-                </asp:Panel>
+                </asp:Panel>--%>
             </div>
         </div>
     </div>

@@ -34,6 +34,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             BindProject();
             BindEngineer();
+            BindTask();
             string sql_updatetime = "select top 1 YS_UPDATE_TIME from YS_COST_REAL order by YS_UPDATE_TIME desc";
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_updatetime);
             if (dt.Rows.Count > 0)
@@ -92,7 +93,7 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void BindProject()//绑定项目名称下拉框
         {
-            string sqltext = "SELECT DISTINCT PCON_PJNAME AS DDLVALUE,PCON_PJNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='2' ";
+            string sqltext = "SELECT DISTINCT PCON_PJNAME AS DDLVALUE,PCON_PJNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='5' ";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_project, sqltext, dataText, dataValue);
@@ -100,10 +101,18 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void BindEngineer()//绑定工程名称下拉框
         {
-            string sqltext = "SELECT DISTINCT PCON_ENGNAME AS DDLVALUE,PCON_ENGNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='2' and PCON_PJNAME='" + ddl_project.SelectedItem.ToString() + "'";
+            string sqltext = "SELECT DISTINCT PCON_ENGNAME AS DDLVALUE,PCON_ENGNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='5' and PCON_PJNAME='" + ddl_project.SelectedItem.ToString() + "'";
             string dataText = "DDLTEXT";
             string dataValue = "DDLVALUE";
             DBCallCommon.BindDdl(ddl_engineer, sqltext, dataText, dataValue);
+        }
+
+        protected void BindTask()//绑定工程名称下拉框
+        {
+            string sqltext = "SELECT  PCON_EQNAME AS DDLVALUE,PCON_EQNAME AS DDLTEXT FROM View_YS_COST_BUDGET_REAL where YS_REVSTATE='5' and PCON_PJNAME='" + ddl_project.SelectedItem.ToString() + "' and PCON_ENGNAME='" + ddl_engineer.SelectedItem.ToString() + "'";
+            string dataText = "DDLTEXT";
+            string dataValue = "DDLVALUE";
+            DBCallCommon.BindDdl(ddl_task, sqltext, dataText, dataValue);
         }
 
         #region 分页
@@ -133,7 +142,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "View_YS_COST_BUDGET_REAL";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_PJNAME,PCON_ENGNAME,YS_FERROUS_METAL," +
+            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_PJNAME,PCON_ENGNAME,PCON_EQNAME,YS_FERROUS_METAL," +
             "YS_PURCHASE_PART,YS_CASTING_FORGING,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_TEAM_CONTRACT, " +
             "YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST," +
             "YS_ADDDATE,YS_NOTE,YS_REVSTATE, " +
@@ -172,7 +181,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1 ";
-            strwhere += " and YS_REVSTATE='2' and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += " and YS_REVSTATE='5' and YS_CONTRACT_NO like '%" + txt_search.Text.ToString() + "%'";
 
             string this_month = DateTime.Now.ToString("yyyy-MM");
             this_month += "-01";
@@ -184,6 +193,10 @@ namespace ZCZJ_DPF.YS_Data
             if (ddl_engineer.SelectedIndex != 0)//工程名称
             {
                 strwhere += " and PCON_ENGNAME='" + ddl_engineer.SelectedValue + "'";
+            }
+            if (ddl_task.SelectedIndex != 0)//任务名称
+            {
+                strwhere += " and PCON_EQNAME='" + ddl_task.SelectedValue + "'";
             }
 
             //if (rbl_type.SelectedValue == "0")
