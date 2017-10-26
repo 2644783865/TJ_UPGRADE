@@ -208,15 +208,6 @@ namespace ZCZJ_DPF.YS_Data
 
 
         /// <summary>
-        /// 更新GridView控件和页码控件数据，没有用的？？？
-        /// </summary>
-        private void InitInfo()
-        {
-
-            GetTechRequireData();
-        }
-
-        /// <summary>
         /// 使用页面查询对象更新GridView的数据和页码控件的数据
         /// </summary>
         protected void GetTechRequireData()

@@ -111,6 +111,11 @@
                 event.returnValue = false;
                 return false;
             }
+            if ($("#<%=TSA_ID.ClientID%>").val() == '') {
+                alert("请新输入任务号！");
+                event.returnValue = false;
+                return false;
+            }
             var list = document.getElementById('<%=Panel2.ClientID %>');
             var cbl = list.getElementsByTagName('input');
             var n = 0;
@@ -162,7 +167,7 @@
                     }
                     else {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val('');
                         return false;
                     }
                 })
@@ -171,6 +176,8 @@
                 $("#<%=TSA_ID.ClientID%>").unbind("blur");
             }
         })
+
+        
 
         function rblLX_onchange(obj) {
             $("#<%=TSA_ID.ClientID%>").unbind("blur");
@@ -181,7 +188,7 @@
                 if (rwh != "") {
                     if (rwh != hth) {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val('');
                     }
                 }
                 $("#<%=TSA_ID.ClientID%>").blur(function() {
@@ -192,7 +199,7 @@
                     }
                     else {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val(''); 
                         return false;
                     }
                 })
@@ -203,7 +210,7 @@
                 if (rwh != "") {
                     if (rwh != hth) {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val('');
                     }
                 }
                 $("#<%=TSA_ID.ClientID%>").blur(function() {
@@ -214,7 +221,7 @@
                     }
                     else {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val('');
                         return false;
                     }
                 })
@@ -225,7 +232,7 @@
                 if (rwh != "") {
                     if (rwh != hth) {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val('');
                     }
                 }
                 $("#<%=TSA_ID.ClientID%>").blur(function() {
@@ -236,7 +243,7 @@
                     }
                     else {
                         alert("您输入的任务号不属于该合同号！！！请重新输入任务号");
-                        $("#<%=TSA_ID.ClientID%>").focus();
+                        $("#<%=TSA_ID.ClientID%>").val('');
                         return false;
                     }
                 })

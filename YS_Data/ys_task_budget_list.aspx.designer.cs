@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZCZJ_DPF.Basic_Data {
+namespace ZCZJ_DPF.YS_Data.UI {
     
     
-    public partial class tbds_locinfo_List {
+    public partial class ys_task_budget_list {
         
         /// <summary>
         /// ControlFinder 控件。
@@ -23,40 +23,85 @@ namespace ZCZJ_DPF.Basic_Data {
         protected global::System.Web.UI.WebControls.Label ControlFinder;
         
         /// <summary>
-        /// ddlSearch 控件。
+        /// txt_task_code 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearch;
+        protected global::System.Web.UI.WebControls.TextBox txt_task_code;
         
         /// <summary>
-        /// ddlSearchchild 控件。
+        /// txt_contract_code 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchchild;
+        protected global::System.Web.UI.WebControls.TextBox txt_contract_code;
         
         /// <summary>
-        /// selectaddgroupd 控件。
+        /// txt_project_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList selectaddgroupd;
+        protected global::System.Web.UI.WebControls.TextBox txt_project_name;
         
         /// <summary>
-        /// Reproject1 控件。
+        /// ddl_state 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Reproject1;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_state;
+        
+        /// <summary>
+        /// btn_search 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_search;
+        
+        /// <summary>
+        /// Image1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
+        /// pal_container 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pal_container;
+        
+        /// <summary>
+        /// rpt_task_list 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpt_task_list;
+        
+        /// <summary>
+        /// UCPaging 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::ZCZJ_DPF.UCPaging UCPaging;
         
         /// <summary>
         /// NoDataPanel 控件。
@@ -66,23 +111,5 @@ namespace ZCZJ_DPF.Basic_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel NoDataPanel;
-        
-        /// <summary>
-        /// btnDelete 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
-        /// UCPaging1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::ZCZJ_DPF.UCPaging UCPaging1;
     }
 }

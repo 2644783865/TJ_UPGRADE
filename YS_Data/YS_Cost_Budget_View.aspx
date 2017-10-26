@@ -43,16 +43,17 @@
                 </asp:DropDownList>
             </td>
             <td align="center">
-                预算编制进度：<asp:DropDownList ID="ddl_State" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick" >
+                预算编制进度：<asp:DropDownList ID="ddl_State" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
             <td>
-                <asp:Label ID="lb_YS_REVSTATE" runat="server" Text="领导审核进度："></asp:Label><asp:DropDownList ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true"
-                    OnSelectedIndexChanged="btn_search_OnClick">
+                <asp:Label ID="lb_YS_REVSTATE" runat="server" Text="领导审核进度："></asp:Label><asp:DropDownList
+                    ID="ddl_YS_REVSTATE" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
             <td align="center">
-                <asp:Label ID="lb_addper" runat="server" Text="制单人："></asp:Label><asp:DropDownList ID="ddl_addper" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                <asp:Label ID="lb_addper" runat="server" Text="制单人："></asp:Label><asp:DropDownList
+                    ID="ddl_addper" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -107,8 +108,8 @@
                         <asp:Label ID="lab_YS_STATE" runat="server" Text='<%# GetState(Eval("YS_STATE").ToString()) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <%--13--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="审核"
-                    HeaderStyle-Wrap="false" Visible="false">
+                <%--13--%><asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="审核" HeaderStyle-Wrap="false"
+                    Visible="false">
                     <ItemTemplate>
                         <asp:Label ID="lab_YS_REVSTATE" runat="server" Text='<%# GetRevState( Eval("YS_REVSTATE").ToString() )%>'></asp:Label>
                     </ItemTemplate>
@@ -129,33 +130,6 @@
                     HeaderText="材料费" HeaderStyle-Wrap="false"></asp:BoundField>
                 <%--17--%><asp:BoundField DataField="YS_LABOUR_COST" ItemStyle-HorizontalAlign="Right"
                     HeaderText="人工费" HeaderStyle-Wrap="false"></asp:BoundField>
-                <%--<asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Right" HeaderText="黑色金属"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_PURCHASE_PART" ItemStyle-HorizontalAlign="Right" HeaderText="外购件"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_MACHINING_PART" ItemStyle-HorizontalAlign="Right" HeaderText="加工件"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_PAINT_COATING" ItemStyle-HorizontalAlign="Right" HeaderText="油漆涂料"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_ELECTRICAL" ItemStyle-HorizontalAlign="Right" HeaderText="电气电料"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_OTHERMAT_COST" ItemStyle-HorizontalAlign="Right" HeaderText="其它材料费"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_TEAM_CONTRACT" ItemStyle-HorizontalAlign="Right" HeaderText="直接人工"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Salmon" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_FAC_CONTRACT" ItemStyle-HorizontalAlign="Right" HeaderText="厂内分包"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Salmon" DataFormatString="{0:N2}">
-                </asp:BoundField>
-                <asp:BoundField DataField="YS_PRODUCT_OUT" ItemStyle-HorizontalAlign="Right" HeaderText="生产外协"
-                    HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Salmon" DataFormatString="{0:N2}">
-                </asp:BoundField>--%>
                 <%--18--%><asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Right"
                     HeaderText="运费" HeaderStyle-Wrap="false"></asp:BoundField>
                 <%--19--%><asp:BoundField DataField="YS_TEC_SUBMIT_NAME" HeaderText="技术部提交人" ItemStyle-HorizontalAlign="Center"
@@ -193,4 +167,7 @@
         <strong>单位：</strong>元
     </div>
     <uc1:UCPaging ID="UCPaging1" runat="server" />
+
+    
+
 </asp:Content>

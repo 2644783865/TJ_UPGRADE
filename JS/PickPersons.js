@@ -7,12 +7,13 @@ $(function() {
         height: 350,
         closed: true,
         cache: false,
-        modal: true,
+        modal: true,        
         buttons: '#buttons'
     });
 });
 //初始化部门下拉框
 $(function() {
+    
     $('#dep').combobox({
         url: '../QC_Data/QC_AjaxHandler.aspx?method=InitDep',
         valueField: 'dep_code',
@@ -20,11 +21,12 @@ $(function() {
         onSelect: function(rec) {
             $('#dg').datagrid('load', {
                 dep: rec.dep_code,
-                auditjs:auditjs,
+                auditjs: auditjs,
                 method: 'InitDepPeo'
             });
         }
     });
+    
 });
 
 //选择人员，弹出对话框

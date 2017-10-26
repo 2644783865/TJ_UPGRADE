@@ -71,7 +71,7 @@ namespace ZCZJ_DPF
         public static void AddParameterToStoredProc(SqlCommand cmd, string paramName, string paramValue,
             SqlDbType paramType, int paramSize)
         {
-            SqlParameter sqlParam = new SqlParameter();
+            SqlParameter sqlParam = new SqlParameter();            
 
             sqlParam.ParameterName = paramName;
             sqlParam.SqlDbType = paramType;

@@ -351,6 +351,36 @@ namespace ZCZJ_DPF
         }
 
         /// <summary>
+        ///  将dt中数据在rpt中分页显示
+        /// </summary>
+        /// author:庞世宝
+        /// date：2017.10.23
+        /// <param name="rpt">Repeater控件</param>
+        /// <param name="dt">DataTable</param>
+        /// <param name="ucp">UCPaging控件</param>
+        /// <param name="container">放置Repeater和UCPaging的控件</param>
+        /// <param name="noDataPanel">显示“无记录”的Panel控件</param> 
+        public static void Paging(Repeater rpt, DataTable dt,  UCPaging ucp, Panel container,Panel noDataPanel)
+        {
+            rpt.DataSource = dt;
+            rpt.DataBind();
+            int totalCount = 0;
+            if (dt.Rows.Count > 0)
+            {
+                container.Visible = true;
+                totalCount = (int)dt.Rows[0]["TotalCount"];
+                ucp.TotalItems = totalCount;            
+                ucp.InitPageInfo();
+                noDataPanel.Visible = false;
+            }
+            else
+            {
+                noDataPanel.Visible = true;
+                container.Visible = false;
+            }
+        }
+
+        /// <summary>
         ///  将dt中数据分页显示    </summary>
         /// <param name="dt">DataTable</param>
         /// <param name="repeater">Repeater控件</param>
