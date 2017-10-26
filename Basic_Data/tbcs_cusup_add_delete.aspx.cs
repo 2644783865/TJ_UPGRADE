@@ -334,31 +334,49 @@ namespace ZCZJ_DPF.Basic_Data
         private void bind_Per()
         {
             //绑定生产部审批人
-            string sql_ddl_one = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='04' and ST_POSITION='0401') and ST_PD=0";
+            string sql_ddl_one = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where R_NAME LIKE '%生产部部长%' and ST_PD=0";
             DataTable dt_ddl_one = DBCallCommon.GetDTUsingSqlText(sql_ddl_one);
-            ddl_onePer.Text = dt_ddl_one.Rows[0]["ST_NAME"].ToString();
-            firstid.Value = dt_ddl_one.Rows[0]["ST_ID"].ToString();
+            if (dt_ddl_one.Rows.Count!=0)
+            {
+                ddl_onePer.Text = dt_ddl_one.Rows[0]["ST_NAME"].ToString();
+                firstid.Value = dt_ddl_one.Rows[0]["ST_ID"].ToString();
+            }
+
             //绑定设备部审批人
-            string sql_ddl_addone = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='10' and ST_POSITION='1001') and ST_PD=0";
+            string sql_ddl_addone = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where  R_NAME LIKE '%设备安全部部长%' and ST_PD=0";
             DataTable dt_ddl_addone = DBCallCommon.GetDTUsingSqlText(sql_ddl_addone);
-            ddl_oneper_add.Text = dt_ddl_addone.Rows[0]["ST_NAME"].ToString();
-            first_addid.Value = dt_ddl_addone.Rows[0]["ST_ID"].ToString();
+            if (dt_ddl_addone.Rows.Count!=0)
+            {
+                ddl_oneper_add.Text = dt_ddl_addone.Rows[0]["ST_NAME"].ToString();
+                first_addid.Value = dt_ddl_addone.Rows[0]["ST_ID"].ToString();
+            }
             //绑定技术部审批人
-            string sql_ddl_two = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='03' and ST_POSITION='0301') and ST_PD=0";
+            string sql_ddl_two = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where R_NAME LIKE '%技术部部长%' and ST_PD=0 order by ST_ID desc";
             DataTable dt_ddl_two = DBCallCommon.GetDTUsingSqlText(sql_ddl_two);
-            ddl_two.Text = dt_ddl_two.Rows[0]["ST_NAME"].ToString();
-            secondid.Value = dt_ddl_two.Rows[0]["ST_ID"].ToString();
+            if (dt_ddl_two.Rows.Count!=0)
+            {
+                ddl_two.Text = dt_ddl_two.Rows[0]["ST_NAME"].ToString();
+                secondid.Value = dt_ddl_two.Rows[0]["ST_ID"].ToString();
+            }
+
             //绑定质量部审批人
-            string sql_ddl_QA = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='12' and ST_POSITION='1205') and ST_PD=0";
+            string sql_ddl_QA = "select ST_NAME,ST_ID from TBDS_STAFFINFO where (R_NAME LIKE '%质量部部长助理%' or R_NAME LIKE '%质量部部长%') and ST_PD=0";
             DataTable dt_ddl_QA = DBCallCommon.GetDTUsingSqlText(sql_ddl_QA);
-            ddl_QA.Text = dt_ddl_QA.Rows[0]["ST_NAME"].ToString();
-            QAid.Value = dt_ddl_QA.Rows[0]["ST_ID"].ToString();
+            if (dt_ddl_QA.Rows.Count!=0)
+            {
+                ddl_QA.Text = dt_ddl_QA.Rows[0]["ST_NAME"].ToString();
+                QAid.Value = dt_ddl_QA.Rows[0]["ST_ID"].ToString();
+            }
 
             //绑定采购部审批人
-            string sql_ddl_addtwo = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='05' and ST_POSITION='0501') and ST_PD=0";
+            string sql_ddl_addtwo = "select ST_NAME,ST_ID from  TBDS_STAFFINFO where R_NAME LIKE '%采购部部长%' and ST_PD=0";
             DataTable dtl_ddl_addtwo = DBCallCommon.GetDTUsingSqlText(sql_ddl_addtwo);
-            ddl_two_add.Text = dtl_ddl_addtwo.Rows[0]["ST_NAME"].ToString();
-            second_addid.Value = dtl_ddl_addtwo.Rows[0]["ST_ID"].ToString();
+            if (dtl_ddl_addtwo.Rows.Count!=0)
+            {
+                ddl_two_add.Text = dtl_ddl_addtwo.Rows[0]["ST_NAME"].ToString();
+                second_addid.Value = dtl_ddl_addtwo.Rows[0]["ST_ID"].ToString();
+            }
+
             //绑定主管经理审批人
             string sql_ddl_three = "select TOP 1 ST_NAME,ST_ID from  TBDS_STAFFINFO where (ST_DEPID ='01' and ST_POSITION='0102') and ST_PD=0 ORDER BY ST_ID";
             DataTable dt_ddl_three = DBCallCommon.GetDTUsingSqlText(sql_ddl_three);
@@ -873,7 +891,7 @@ namespace ZCZJ_DPF.Basic_Data
         {
             bool HasPer;
             //插入前判断是否选择审批人
-            if (firstid.Value != "" && first_addid.Value != "" && secondid.Value != "" && second_addid.Value != "" && thirdid.Value != "")
+            if (firstid.Value != "" && first_addid.Value != "" && secondid.Value != "" && second_addid.Value != "" && thirdid.Value != "" && QAid.Value!="")
             {
                 HasPer = true;
             }

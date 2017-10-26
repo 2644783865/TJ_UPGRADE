@@ -28,14 +28,13 @@ namespace ZCZJ_DPF.YS_Data
                 InitUrl();
             }
 
-           
         }
 
         private void InitUrl()
         {
             HyperLink1.NavigateUrl = "ys_task_budget_list.aspx";
-            HyperLink3.NavigateUrl = "YS_Cost_Budget_A_M.aspx?type=1";
-            HyperLink7.NavigateUrl = "YS_Cost_Budget_A_M.aspx?type=0";
+            HyperLink3.NavigateUrl = "YS_Cost_Budget_A_M_CON.aspx?type=1";
+            HyperLink7.NavigateUrl = "YS_Cost_Budget_A_M_CON.aspx?type=0";
             HyperLink5.NavigateUrl = "YS_Cost_Real_View.aspx";            
             HyperLink4.NavigateUrl = "YS_Cost_Budget_O_M.aspx";
         }
@@ -47,7 +46,6 @@ namespace ZCZJ_DPF.YS_Data
 
 
      
-
 
     }
 }

@@ -40,6 +40,20 @@ namespace ZCZJ_DPF.YS_Data
             string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_COST_BUDGET_REAL where 1=1";
             DBCallCommon.FillDroplist(ddl_project, sqltext_PJ);
             DBCallCommon.FillDroplist(ddl_engineer, sqltext_ENG);
+            string sql_updatetime = "select top 1 YS_UPDATE_TIME from YS_COST_BUDGET_ORDER order by YS_UPDATE_TIME desc";
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sql_updatetime);
+            if (dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0][0].ToString() != "")
+                {
+                    DateTime time = Convert.ToDateTime(dt.Rows[0][0].ToString());
+                    lab_updatetime.Text = time.ToString("yyyy-MM-dd HH:mm");
+                }
+            }
+            else
+            {
+                lab_updatetime.Text = "未更新";
+            }
            
         }
 
@@ -183,7 +197,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1";
-            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_XS_Finished is NULL  and YS_REVSTATE='2'";
+            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_REVSTATE='2'";
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
                 strwhere += " and PCON_PJNAME='" + ddl_project.SelectedValue + "'";
@@ -252,7 +266,7 @@ namespace ZCZJ_DPF.YS_Data
                     UCPaging1.CurrentPage = 1;
                     InitVar();
                     GetTechRequireData();
-                    //lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                    lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
                     
                 }
             }
