@@ -351,6 +351,8 @@ namespace ZCZJ_DPF.OM_Data
             string jbr = LabelDoc.Text;  //制单人
             string note = txt_note.Text;  //制单人备注
 
+            string totalprice = lbljine.Text.Trim();  //总的金额大小
+
             if (flag == "add")
             {
                 //判断审核人有没有填写正确
@@ -394,20 +396,20 @@ namespace ZCZJ_DPF.OM_Data
                     {
                         //一级审核
                         case 0:
-                            sql = "INSERT INTO TBOM_BGYPPCHZ(PCCODE,JBR,JBRID,SHRF,SHRFID,DATE,STATE,NOTE,SHRNUM) VALUES ('" +
-                            Code + "','" + jbr + "','" + jbrid + "','" + txt_HT_SHR1.Text.ToString() + "','" + SHR1id.Text.ToString().Trim() + "','" + Date + "','1','" + note.Trim() + "',1)";
+                            sql = "INSERT INTO TBOM_BGYPPCHZ(PCCODE,JBR,JBRID,SHRF,SHRFID,DATE,STATE,NOTE,SHRNUM,TOTALPRICE) VALUES ('" +
+                            Code + "','" + jbr + "','" + jbrid + "','" + txt_HT_SHR1.Text.ToString() + "','" + SHR1id.Text.ToString().Trim() + "','" + Date + "','1','" + note.Trim() + "',1,'" + totalprice + "')";
                             break;
 
                         //二级审核
                         case 1:
-                            sql = "INSERT INTO TBOM_BGYPPCHZ(PCCODE,JBR,JBRID,SHRF,SHRFID,SHRS,SHRSID,DATE,STATE,NOTE,SHRNUM) VALUES ('" +
-                            Code + "','" + jbr + "','" + jbrid + "','" + txt_HT_SHR1.Text.ToString() + "','" + SHR1id.Text.ToString().Trim() + "','" + txt_HT_SHR2.Text.ToString() + "','" + SHR2id.Text.ToString().Trim() + "','" + Date + "','1','" + note.Trim() + "',2)";
+                            sql = "INSERT INTO TBOM_BGYPPCHZ(PCCODE,JBR,JBRID,SHRF,SHRFID,SHRS,SHRSID,DATE,STATE,NOTE,SHRNUM,TOTALPRICE) VALUES ('" +
+                            Code + "','" + jbr + "','" + jbrid + "','" + txt_HT_SHR1.Text.ToString() + "','" + SHR1id.Text.ToString().Trim() + "','" + txt_HT_SHR2.Text.ToString() + "','" + SHR2id.Text.ToString().Trim() + "','" + Date + "','1','" + note.Trim() + "',2,'" + totalprice + "')";
                             break;
 
                         //三级审核
                         case 2:
-                            sql = "INSERT INTO TBOM_BGYPPCHZ(PCCODE,JBR,JBRID,SHRF,SHRFID,SHRS,SHRSID,SHRT,SHRTID,DATE,STATE,NOTE,SHRNUM) VALUES ('" +
-                            Code + "','" + jbr + "','" + jbrid + "','" + txt_HT_SHR1.Text.ToString() + "','" + SHR1id.Text.ToString().Trim() + "','" + txt_HT_SHR2.Text.ToString() + "','" + SHR2id.Text.ToString().Trim() + "','" + txt_HT_SHR3.Text.ToString() + "','" + SHR3id.Text.ToString().Trim() + "','" + Date + "','1','" + note.Trim() + "',3)";
+                            sql = "INSERT INTO TBOM_BGYPPCHZ(PCCODE,JBR,JBRID,SHRF,SHRFID,SHRS,SHRSID,SHRT,SHRTID,DATE,STATE,NOTE,SHRNUM,TOTALPRICE) VALUES ('" +
+                            Code + "','" + jbr + "','" + jbrid + "','" + txt_HT_SHR1.Text.ToString() + "','" + SHR1id.Text.ToString().Trim() + "','" + txt_HT_SHR2.Text.ToString() + "','" + SHR2id.Text.ToString().Trim() + "','" + txt_HT_SHR3.Text.ToString() + "','" + SHR3id.Text.ToString().Trim() + "','" + Date + "','1','" + note.Trim() + "',3,'" + totalprice + "')";
                             break;
                     }
                     sqllist.Add(sql);
