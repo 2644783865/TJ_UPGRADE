@@ -68,14 +68,27 @@
                         ItemStyle-Wrap="false">
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="DATE" HeaderText="日期">
+                    <asp:BoundField DataField="DATE" HeaderText="申请日期">
                         <ItemStyle HorizontalAlign="Center" Wrap="false" />
                     </asp:BoundField>
-                  
-                    <asp:BoundField DataField="SHRF" HeaderText="二级审核人">
+                    <asp:BoundField DataField="SHRF" HeaderText="一级审核人">
                         <ItemStyle HorizontalAlign="Center" Wrap="false" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="SHRFDATE" HeaderText="二级日期" ItemStyle-HorizontalAlign="Center"
+                    <asp:BoundField DataField="SHRFDATE" HeaderText="一级日期" ItemStyle-HorizontalAlign="Center"
+                        ItemStyle-Wrap="false">
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRS" HeaderText="二级审核人">
+                        <ItemStyle HorizontalAlign="Center" Wrap="false" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRSDATE" HeaderText="二级日期" ItemStyle-HorizontalAlign="Center"
+                        ItemStyle-Wrap="false">
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRT" HeaderText="三级审核人">
+                        <ItemStyle HorizontalAlign="Center" Wrap="false" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRTDATE" HeaderText="三级日期" ItemStyle-HorizontalAlign="Center"
                         ItemStyle-Wrap="false">
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>

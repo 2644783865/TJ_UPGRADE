@@ -207,7 +207,12 @@ namespace ZCZJ_DPF.MT_Data
 
         private void GetBGYPHZSP()
         {
-            string sql = string.Format("select * from TBOM_BGYPPCHZ where  State ='1' and SHRFID='" + Session["UserId"].ToString() + "'");
+            string strWhere = " 1=1";
+            strWhere += " and ((SHRFID='" + Session["UserID"].ToString() + "' and SHRFRESULT IS NULL) or ";
+            strWhere += " (SHRSID='" + Session["UserID"].ToString() + "' and SHRSRESULT IS NULL and SHRFRESULT IS NOT NULL) or ";
+            strWhere += " (SHRTID='" + Session["UserID"].ToString() + "' and SHRTRESULT IS NULL and SHRFRESULT IS NOT NULL and SHRSRESULT IS NOT NULL))";
+
+            string sql = string.Format("select * from TBOM_BGYPPCHZ where"+strWhere);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             if (dt.Rows.Count > 0)
             {

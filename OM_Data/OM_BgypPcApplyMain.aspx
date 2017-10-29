@@ -86,8 +86,8 @@
     <div class="box-wrapper">
         <div class="box-outer" style="width: 100%; overflow: auto">
             <asp:GridView ID="GridView1" CssClass="toptable grid" runat="server" OnRowDataBound="GridView1_DATABOUND"
-                AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333">
-                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="#1E5C95" />
+                AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" ShowFooter="true">
+                <FooterStyle BackColor="#EFF3FB" Font-Bold="True" ForeColor="#1E5C95" />
                 <RowStyle BackColor="#EFF3FB" />
                 <Columns>
                     <asp:TemplateField HeaderText="ÐÐºÅ" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="25px">

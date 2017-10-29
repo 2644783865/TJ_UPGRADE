@@ -1,79 +1,96 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/RightCotentMaster.Master"
     CodeBehind="OM_BgypPcApply.aspx.cs" Inherits="ZCZJ_DPF.OM_Data.OM_BgypPcApply" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
     新增办公用品采购申请
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
+    <style type="text/css">
+        .tab
+        {
+            width: 80%;
+            border: solid 1px #E5E5E5;
+        }
+        .tab tr
+        {
+            height: 30px;
+        }
+        .tab tr td
+        {
+            border: solid 1px #E5E5E5;
+            border-collapse: collapse;
+        }
+    </style>
+    <style type="text/css">
+        .autocomplete_completionListElement
+        {
+            margin: 0px;
+            background-color: #1C86EE;
+            color: windowtext;
+            cursor: 'default';
+            text-align: left;
+            list-style: none;
+            padding: 0px;
+            border: solid 1px gray;
+            width: 400px !important;
+        }
+        .autocomplete_listItem
+        {
+            border-style: solid;
+            border: #FFEFDB;
+            border-width: 1px;
+            background-color: #EEDC82;
+            color: windowtext;
+        }
+        .autocomplete_highlightedListItem
+        {
+            background-color: #1C86EE;
+            color: black;
+            padding: 1px;
+        }
+    </style>
+    
+    <link rel="Stylesheet" type="text/css" href="../Assets/main.css" />
+    <link type="text/css" href="../PC_Data/FixTable.css" rel="stylesheet" />
     <link href="../Assets/AutoCompleteTextBox.css" rel="stylesheet" type="text/css" />
-
+    <link href="../PC_Data/PcJs/superTables_compressed.css" rel="stylesheet" type="text/css" />
+    
+    <script src="../PC_Data/PcJs/superTables_compressed.js" type="text/javascript"></script>
+    <script src="../PC_Data/PcJs/rowcolor.js" type="text/javascript"></script>
+    <script src="../JS/KeyControlTask.js" type="text/javascript"></script>
+    <script src="../JS/DatePicker.js" type="text/javascript"></script>
     <script src="../JS/PickPersons.js" type="text/javascript"></script>
-
+    
     <script type="text/javascript">
-        var state;
-        function allsel() {
-            var table = document.getElementById("ctl00_PrimaryContent_GridView1");
-            var tr = table.getElementsByTagName("tr");
-            for (var i = 1; i < tr.length; i++) {
-                if (tr[i].getElementsByTagName("td")[0].getElementsByTagName("input")[0] != null) {
-                    tr[i].getElementsByTagName("td")[0].getElementsByTagName("input")[0].checked = true;
-                }
-            }
-        }
 
-        function cancelsel() {
-            var table = document.getElementById("ctl00_PrimaryContent_GridView1");
-            var tr = table.getElementsByTagName("tr");
-            for (var i = 1; i < tr.length; i++) {
-                if (tr[i].getElementsByTagName("td")[0].getElementsByTagName("input")[0] != null) {
-                    tr[i].getElementsByTagName("td")[0].getElementsByTagName("input")[0].checked = false;
-                    //tr[i].style.backgroundColor='#EFF3FB'; 
-                }
-            }
-        }
-
-        function consel() {
-            table = document.getElementById("ctl00_PrimaryContent_GridView1");
-            tr = table.getElementsByTagName("tr"); //这里的tr是一个数组
-            for (var i = 1; i < (tr.length - 1); i++) {
-                obj = tr[i].getElementsByTagName("td")[0].getElementsByTagName("input")[0];
-                if (obj.type.toLowerCase() == "checkbox" && obj.value != "") {
-                    if (obj.checked) {
-                        obj.checked = true;
-                        //                obj.parentNode.parentNode.style.backgroundColor ='#55DF55'; 
-                        for (var j = i + 1; j < tr.length; j++) {
-                            var nextobj = tr[j].getElementsByTagName("td")[0].getElementsByTagName("input")[0];
-                            if (nextobj != null) {
-
-                                if (nextobj.type.toLowerCase() == "checkbox" && nextobj.value != "") {
-                                    if (nextobj.checked) {
-                                        for (var k = i + 1; k < j + 1; k++) {
-                                            tr[k].getElementsByTagName("td")[0].getElementsByTagName("input")[0].checked = true;
-                                            //                                    tr[k].style.backgroundColor ='#55DF55'; 
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        var i;
-        array = new Array();
-        var $ddlDep;
-        function SelTechPersons1() {
-            $("#hidPerson").val("first");
-            SelPersons();
-        }
-        function SelTechPersons2() {
-            $("#hidPerson").val("second");
+        function xr1() {
+            $("#hidPerson").val("person1");
             SelPersons();
         }
 
+        function savePick() {
+            var r = Save();
+            var id = $("#hidPerson").val();
+            if (id == "person1") {
+                $("#<%=txt_first.ClientID %>").val(r.st_name);
+                $("#<%=SHR1id.ClientID %>").val(r.st_id);
+            }
+            $('#win').dialog('close');
+        }
+    </script>
+    
+    <script type="text/javascript">
+    $(function(){
+    $('input[id$=WLNUM]').bind('blur',function(){
+    //&& parseFloat($(this).val())<parseFloat($(this).parent().next().next().next().children().val())
+    
+    if ($(this).val() != ''&& parseFloat($(this).val())<=parseFloat($(this).parent().next().next().next().children().val())) {
+      alert('提示：该物品可以直接申请使用，请进一步确认采购数量！');
+    }
 
-
+    });
+    });
     </script>
 
     <script type="text/javascript">
@@ -90,7 +107,7 @@
                 $tr.find("input[name*=WLUNIT]").val(array[3]);
                 $tr.find("input[name*=WLBM]").val(array[4]);
                 $tr.find("input[name*=WLCODE]").val(array[5]);
-                $tr.find("input[name*=WLNUM]").val("1");
+                $tr.find("input[name*=WLNUM]").val("");
                 $tr.find("input[name*=WLJE]").val(array[2]);
                 $tr.find("input[name*=num]").val(array[6]);
 
@@ -112,8 +129,8 @@
     
     </script>
 
-    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </cc1:ToolkitScriptManager>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>
     <div class="box-inner">
         <div class="box_right">
             <div class="box-title">
@@ -132,9 +149,9 @@
             </div>
         </div>
     </div>
-    <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
+    <asp:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
         ActiveTabIndex="0" AutoPostBack="false">
-        <cc1:TabPanel ID="TabPanel1" runat="server" HeaderText="申请采购明细" TabIndex="0">
+        <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="申请采购明细" TabIndex="0">
             <ContentTemplate>
                 <div class="box-wrapper">
                     <div class="box-outer">
@@ -142,13 +159,12 @@
                             <table width="90%" align="center" cellpadding="4" cellspacing="1" class="toptable grid">
                                 <tr>
                                     <td style="width: 50%" align="left">
-                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            
-                               增加行:<asp:TextBox ID="txtNum" runat="server" Width="50px" 
-                                            CssClass="center"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;  <asp:Button ID="btnadd" runat="server" Text="确 定" OnClick="btninsert_Click"  />
-                            
-                         
-                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:Label ID="addrow" runat="server" Text="增加行:"></asp:Label>
+                                        <asp:TextBox ID="txtNum" runat="server" Width="50px" CssClass="center"></asp:TextBox>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:Button ID="btnadd" runat="server" Text="确 定" OnClick="btninsert_Click" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <asp:Button ID="btndelete" runat="server" Text="删除行" OnClick="btndelete_Click" OnClientClick="return alert('确定删除此条目吗？')" />
                                     </td>
                                 </tr>
@@ -188,11 +204,6 @@
                                             runat="server" Visible="false"></asp:Label></tr>
                             </table>
                         </asp:Panel>
-                        <%-- <div>
-                &nbsp;&nbsp;&nbsp;<input id="all" type="button" value="全选" onclick="allsel()" />&nbsp;&nbsp;&nbsp;<input
-                    id="continue" type="button" value="连选" onclick="consel()" />
-                &nbsp;&nbsp;&nbsp;<input id="cancelsel1" type="button" value="取消" onclick="cancelsel()" />
-            </div>--%>
                         <asp:Panel ID="PanelBody" runat="server" Style="height: 350px;">
                             <div style="width: 100%; margin: 0 auto">
                                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" PageSize="20"
@@ -213,14 +224,14 @@
                                         <asp:TemplateField HeaderText="编码">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="WLBM" runat="server" Text='<%#Eval("WLBM") %>' onchange="autoCode(this)"
-                                                    name="maId"></asp:TextBox>
-                                                <cc1:AutoCompleteExtender ID="marid_AutoCompleteExtender" runat="server" CompletionSetCount="15"
+                                                    name="maId" ></asp:TextBox>
+                                                <asp:AutoCompleteExtender ID="marid_AutoCompleteExtender2" runat="server" CompletionSetCount="15"
                                                     CompletionListCssClass="autocomplete_completionListElement" CompletionListItemCssClass="autocomplete_listItem"
                                                     CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" DelimiterCharacters=""
                                                     Enabled="True" MinimumPrefixLength="1" ServiceMethod="HmCode" FirstRowSelected="true"
                                                     ServicePath="~/OM_Data/Ajax.asmx" TargetControlID="WLBM" UseContextKey="True"
                                                     CompletionInterval="10">
-                                                </cc1:AutoCompleteExtender>
+                                                </asp:AutoCompleteExtender>
                                                 <input id="CODE" runat="server" name="code" type="hidden" value='<%#Eval("CODE") %>' />
                                                 <input id="WLCODE" runat="server" name="sId" type="hidden" value='<%#Eval("WLCODE") %>' />
                                             </ItemTemplate>
@@ -228,8 +239,15 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="名称">
                                             <ItemTemplate>
-                                                <input id="WLNAME" name="name" runat="server" style="border-style: none; width: 80px"
-                                                    type="text" value='<%#Eval("WLNAME") %>' />
+                                                <asp:TextBox ID="WLNAME" name="name" runat="server" Width="80px" onchange="autoCode(this)"
+                                                    Text='<%#Eval("WLNAME") %>'></asp:TextBox>
+                                                <asp:AutoCompleteExtender ID="marid_AutoCompleteExtender" runat="server" CompletionSetCount="15"
+                                                    CompletionListCssClass="autocomplete_completionListElement" CompletionListItemCssClass="autocomplete_listItem"
+                                                    CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" DelimiterCharacters=""
+                                                    Enabled="True" MinimumPrefixLength="1" ServiceMethod="HmCode" FirstRowSelected="true"
+                                                    ServicePath="~/OM_Data/Ajax.asmx" TargetControlID="WLNAME" UseContextKey="True"
+                                                    CompletionInterval="10">
+                                                </asp:AutoCompleteExtender>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" Width="80px" />
                                         </asp:TemplateField>
@@ -263,21 +281,19 @@
                                         <asp:TemplateField HeaderText="金额" ItemStyle-HorizontalAlign="Center">
                                             <ItemTemplate>
                                                 <input id="WLJE" name="je" runat="server" style="border-style: none; width: 80px"
-                                                    type="text" value='<%#Eval("WLJE") %>' />
+                                                    readonly="readonly" type="text" value='<%#Eval("WLJE") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="库存数量" ItemStyle-HorizontalAlign="Center">
                                             <ItemTemplate>
                                                 <input id="num" name="num_store" runat="server" style="border-style: none; width: 80px"
-                                                    type="text" value='<%#Eval("num") %>' />
+                                                    readonly="readonly" type="text" value='<%#Eval("num") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="申请部门" ItemStyle-HorizontalAlign="Center">
                                             <ItemTemplate>
-                                            <%--    <input id="txtDep" name="num_store" runat="server" style="border-style: none; width: 80px"
-                                                    type="text" value='<%#Eval("DEPNAME") %>' />--%>
-                        <asp:TextBox runat="server" TextMode="MultiLine" Width="150px" ID="txtDep" Text='<%#Eval("DEPNAME") %>'></asp:TextBox>
-                                     
+                                                <input id="txtDep" name="dep_name" runat="server" style="border-style: none; width: 80px"
+                                                    type="text" value='<%#Eval("DEPNAME") %>' />        
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="备注" ItemStyle-HorizontalAlign="Center">
@@ -306,8 +322,8 @@
                     </div>
                 </div>
             </ContentTemplate>
-        </cc1:TabPanel>
-        <cc1:TabPanel ID="TabPanel2" runat="server" HeaderText="审  核" TabIndex="1">
+        </asp:TabPanel>
+        <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="审  核" TabIndex="1">
             <ContentTemplate>
                 <div class="box-wrapper">
                     <div style="height: 6px" class="box_top">
@@ -326,14 +342,10 @@
                                                 审批人
                                             </td>
                                             <td style="width: 20%">
-                                                <asp:TextBox ID="txt_first" runat="server" Enabled="false" Text="蔡伟疆" Width="80px"></asp:TextBox>
-                                                <asp:HiddenField ID="firstid" Value="3" runat="Server" />
-                                                <%--<input id="firstid" type="text" runat="server" readonly="readonly" style="display: none" />--%>
-                                                <%--<asp:HyperLink ID="hlSelect1" Enabled="false" runat="server" CssClass="hand" onClick="SelTechPersons1()">
-                                                    <asp:Image ID="AddImage1" ImageUrl="~/Assets/images/h1.gif" border="0" hspace="2"
-                                                        align="absmiddle" runat="server" />
-                                                    选择
-                                                </asp:HyperLink>--%>
+                                                <asp:TextBox ID="txt_first" runat="server" onfocus="this.blur()" Width="120px"></asp:TextBox>
+                                                <asp:TextBox ID="SHR1id" runat="server" style="display:none;"></asp:TextBox>
+                                                <asp:Image runat="server" ID="imgSHR1" ImageUrl="../Assets/images/username_bg.gif"
+                                                        onclick="xr1()" align="middle" Style="cursor: pointer" title="选择" />
                                             </td>
                                             <td align="center" style="width: 10%">
                                                 审核结论
@@ -360,43 +372,43 @@
                                         </tr>
                                     </table>
                                 </td>
-                            </tr>
-                          
+                            </tr>                        
                         </table>
                         <asp:Label ID="lblStatus" runat="server" Text="" Visible="false"></asp:Label>
                         <input id="Hidden1" type="hidden" value="" />
                     </div>
                 </div>
-                <%--<div>
-                    <div id="win" visible="false">
-                        <div>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <strong>指定人员</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                    <td>
-                                        按部门查询：
-                                    </td>
-                                    <td>
-                                        <input id="dep" name="dept" value="02" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div style="width: 430px; height: 230px">
-                            <table id="dg">
-                            </table>
-                        </div>
+                
+                <div id="win" visible="false">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <strong>指定人员</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    按部门查询：
+                                </td>
+                                <td>
+                                    <input id="dep" name="dept" value="05">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div id="buttons" style="text-align: right" visible="false">
-                        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="savePick();">
-                            保存</a> <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true"
-                                onclick="javascript:$('#win').dialog('close')">取消</a>
-                        <input id="hidPerson" type="hidden" value="" />
+                    <div style="width: 430px; height: 230px">
+                        <table id="dg">
+                        </table>
                     </div>
-                </div>--%>
+                </div>
+                
+                <div id="buttons" style="text-align: right" visible="false">
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="savePick();">
+                        保存</a> &nbsp;&nbsp;&nbsp; <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true"
+                            onclick="javascript:$('#win').dialog('close')">取消</a> &nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton"
+                                data-options="iconCls:'icon-ok',plain:true" onclick="xiuGai();">修改</a>
+                    <input id="hidPerson" type="hidden" value="" />
+                </div>
             </ContentTemplate>
-        </cc1:TabPanel>
-    </cc1:TabContainer>
+        </asp:TabPanel>
+    </asp:TabContainer>
 </asp:Content>

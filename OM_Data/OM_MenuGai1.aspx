@@ -526,40 +526,41 @@
                         </asp:HyperLink>
                     </div>
                     <div title="&nbsp &nbsp 办公用品管理" style="overflow: auto; background-color: #E3F1FA;">
+                        <asp:HyperLink ID="HyperLink19" runat="server" onClick="SelectMenu(19);" CssClass="LeftMenuNoSelected"
+                            NavigateUrl="~/OM_Data/OM_BgypPcApplyMain.aspx" Target="right">
+                            <p>
+                                &nbsp &nbsp 各部门采购申请<asp:Label ID="lblBGYPPC" runat="server" Text="" ForeColor="Red"></asp:Label></p>
+                        </asp:HyperLink>
                         <asp:HyperLink ID="HyperLink18" runat="server" onClick="SelectMenu(18);" CssClass="LeftMenuNoSelected"
                             NavigateUrl="~/OM_Data/OM_BgypApplyMain.aspx" Target="right">
                             <p>
                                 &nbsp &nbsp 使用申请<asp:Label ID="lblBGYPSQ" runat="server" Text="" ForeColor="Red"></asp:Label></p>
                         </asp:HyperLink>
-                        <asp:HyperLink ID="HyperLink19" runat="server" onClick="SelectMenu(19);" CssClass="LeftMenuNoSelected"
-                            NavigateUrl="~/OM_Data/OM_BgypPcApplyMain.aspx" Target="right">
-                            <p>
-                                &nbsp &nbsp 采购申请<asp:Label ID="lblBGYPPC" runat="server" Text="" ForeColor="Red"></asp:Label></p>
-                        </asp:HyperLink>
-                        <asp:HyperLink ID="HyperLink96" runat="server" onClick="SelectMenu(96);" CssClass="LeftMenuNoSelected"
-                            NavigateUrl="~/OM_Data/OM_BgypChangeRecord.aspx" Target="right">
-                            <p>
-                                &nbsp &nbsp 以旧换新查询</p>
-                        </asp:HyperLink>
                         <asp:HyperLink ID="HyperLink81" runat="server" onClick="SelectMenu(81);" CssClass="LeftMenuNoSelected"
                             NavigateUrl="~/OM_Data/OM_BGYP_PCHZ.aspx" Target="right">
                             <p>
-                                &nbsp &nbsp 办公用品汇总审批<asp:Label ID="lblBGYPHZSP" runat="server" Text="" ForeColor="Red"></asp:Label></p>
+                                &nbsp &nbsp 公司采购申请汇总<asp:Label ID="lblBGYPHZSP" runat="server" Text="" ForeColor="Red"></asp:Label></p>
                         </asp:HyperLink>
                         <asp:HyperLink ID="HyperLink16" runat="server" onClick="SelectMenu(16);" CssClass="LeftMenuNoSelected"
                             NavigateUrl="~/OM_Data/OM_BGYP_In_List.aspx" Target="right">
                             <p>
                                 &nbsp &nbsp 入库管理<asp:Label ID="lblBGYPIN" runat="server" Text="" ForeColor="Red"></asp:Label></p>
                         </asp:HyperLink>
-                        <asp:HyperLink ID="HyperLink17" runat="server" onClick="SelectMenu(17);" CssClass="LeftMenuNoSelected"
-                            NavigateUrl="~/OM_Data/OM_BGYP_Store.aspx" Target="right"><p>&nbsp &nbsp 库存查询</p></asp:HyperLink>
-                        <asp:HyperLink ID="HyperLink27" runat="server" onClick="SelectMenu(27);" CssClass="LeftMenuNoSelected"
-                            NavigateUrl="~/OM_Data/OM_Bgyp_DingE.aspx" Target="right"><p>&nbsp &nbsp  超额情况查询</p></asp:HyperLink>
                         <asp:HyperLink ID="HyperLink10" runat="server" onClick="SelectMenu(10);" CssClass="LeftMenuNoSelected"
                             NavigateUrl="~/OM_Data/OM_BGYP_SafeStore.aspx" Target="right">
                             <p>
                                 &nbsp &nbsp 办公用品安全库存<asp:Label ID="lblSafe" runat="server" Text="" ForeColor="Red"></asp:Label></p>
-                        </asp:HyperLink>
+                        </asp:HyperLink>                              
+                        <asp:HyperLink ID="HyperLink17" runat="server" onClick="SelectMenu(17);" CssClass="LeftMenuNoSelected"
+                            NavigateUrl="~/OM_Data/OM_BGYP_Store.aspx" Target="right"><p>&nbsp &nbsp 库存查询</p></asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink27" runat="server" onClick="SelectMenu(27);" CssClass="LeftMenuNoSelected"
+                            NavigateUrl="~/OM_Data/OM_Bgyp_DingE.aspx" Target="right"><p>&nbsp &nbsp  超额情况查询</p></asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink96" runat="server" onClick="SelectMenu(96);" CssClass="LeftMenuNoSelected"
+                            NavigateUrl="~/OM_Data/OM_BgypChangeRecord.aspx" Target="right">
+                            <p>
+                                &nbsp &nbsp 以旧换新查询</p>
+                        </asp:HyperLink> 
+                        
                     </div>
                     <div title="&nbsp &nbsp 住宿管理" style="overflow: auto; background-color: #E3F1FA;">
                         <asp:HyperLink ID="HyperLink53" runat="server" onClick="SelectMenu(53);" CssClass="LeftMenuNoSelected"

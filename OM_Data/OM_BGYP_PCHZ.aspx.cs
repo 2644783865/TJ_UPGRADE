@@ -61,25 +61,26 @@ namespace ZCZJ_DPF.OM_Data
         }
 
 
-
         private string strWhere()
         {
             string strWhere = "1=1 ";
-            if (rblState.SelectedValue == "1")
+            if (rblState.SelectedValue == "1")   //审核中
             {
                 strWhere += " and State ='1'";
             }
-            else if (rblState.SelectedValue == "2")
+            else if (rblState.SelectedValue == "2")   //已审核
             {
                 strWhere += " and State ='2'";
             }
-            else if (rblState.SelectedValue == "3")
+            else if (rblState.SelectedValue == "3")   //驳回
             {
                 strWhere += " and State ='3'";
             }
-            else if (rblState.SelectedValue == "4")
+            else if (rblState.SelectedValue == "4")   //我的任务
             {
-                strWhere += " and State ='1' and SHRFID='" + Session["UserId"].ToString() + "'";
+                strWhere += " and ((SHRFID='" + Session["UserID"].ToString() + "' and SHRFRESULT IS NULL) or ";
+                strWhere += " (SHRSID='" + Session["UserID"].ToString() + "' and SHRSRESULT IS NULL and SHRFRESULT IS NOT NULL) or ";
+                strWhere += " (SHRTID='" + Session["UserID"].ToString() + "' and SHRTRESULT IS NULL and SHRFRESULT IS NOT NULL and SHRSRESULT IS NOT NULL))";
             }
             return strWhere;
         }
@@ -100,15 +101,14 @@ namespace ZCZJ_DPF.OM_Data
 
             if (rblState.SelectedValue == "4")
             {
-                GridView1.Columns[7].Visible = true;
+                GridView1.Columns[11].Visible = true;
             }
             else
             {
-                GridView1.Columns[7].Visible = false;
+                GridView1.Columns[11].Visible = false;
             }
 
         }
-
 
     }
 }

@@ -59,6 +59,15 @@ namespace ZCZJ_DPF.OM_Data {
         protected global::AjaxControlToolkit.TabPanel TabPanel1;
         
         /// <summary>
+        /// addrow 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label addrow;
+        
+        /// <summary>
         /// txtNum 控件。
         /// </summary>
         /// <remarks>
@@ -221,13 +230,22 @@ namespace ZCZJ_DPF.OM_Data {
         protected global::System.Web.UI.WebControls.TextBox txt_first;
         
         /// <summary>
-        /// firstid 控件。
+        /// SHR1id 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField firstid;
+        protected global::System.Web.UI.WebControls.TextBox SHR1id;
+        
+        /// <summary>
+        /// imgSHR1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgSHR1;
         
         /// <summary>
         /// rblfirst 控件。
