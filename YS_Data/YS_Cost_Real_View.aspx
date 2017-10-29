@@ -2,7 +2,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    实际发生费
+    任务实际发生费
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
@@ -42,16 +42,27 @@
             <div class="box-title">
                 <table width="100%">
                     <tr>
-                        <td>
-                            任务号:
-                            <asp:TextBox ID="txt_search" runat="server" Text="" Width="150px"></asp:TextBox><asp:Button
-                                ID="btn_search" runat="server" Text="查询" OnClick="btn_search_OnClick" />
+                        <td style="width: 250px">
+                            合同号:
+                            <asp:TextBox ID="txt_search" runat="server" Text="" Width="150px"></asp:TextBox>&nbsp;
+                            <asp:Button ID="btn_search" runat="server" Text="查询" OnClick="btn_search_OnClick" />
                         </td>
-                        <td align="right">
+                        <td >
+                         项目名称:
+                            <asp:DropDownList ID="ddl_project" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_project_OnSelectedIndexChanged">
+                            </asp:DropDownList>
+                            &nbsp; 工程名称:
+                            <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                            &nbsp; 任务名称:
+                            <asp:DropDownList ID="ddl_task" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
+                            </asp:DropDownList>
+                        </td>
+                        <td align="left">
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
-                                    上次更新时间：<asp:Label ID="lab_updatetime" runat="server" ForeColor="Red"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="Btn_update" runat="server" Text="实际费用更新" OnClick="Btn_update_OnClick" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    上次更新时间：<asp:Label ID="lab_updatetime" runat="server" ForeColor="Red"></asp:Label>&nbsp;&nbsp;
+                                    <asp:Button ID="Btn_update" runat="server" Text="实际费用更新" OnClick="Btn_update_OnClick" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
@@ -60,28 +71,23 @@
             </div>
         </div>
     </div>
-    <div class="box-inner">
+    <%--<div class="box-inner">
         <div class="box_right">
             <div class="box-title">
                 <table width="100%">
                     <tr>
                         <td align="left">
-                            <asp:RadioButtonList ID="rbl_type" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick"
+                           <asp:RadioButtonList ID="rbl_type" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick"
                                 RepeatDirection="Horizontal">
                                 <asp:ListItem Text="未结算" Value="0" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="已结算" Value="1"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                         <td align="left">
-                            <%--<asp:CheckBox ID="ckb_JS_OK" runat="server" AutoPostBack="true" Text="只显示可结算" OnCheckedChanged="ckb_JS_OK_OnCheckedChanged" />--%>
+                            <asp:CheckBox ID="ckb_JS_OK" runat="server" AutoPostBack="true" Text="只显示可结算" OnCheckedChanged="ckb_JS_OK_OnCheckedChanged" />
                         </td>
                         <td align="center">
-                            项目名称:
-                            <asp:DropDownList ID="ddl_project" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_project_OnSelectedIndexChanged">
-                            </asp:DropDownList>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 工程名称:
-                            <asp:DropDownList ID="ddl_engineer" runat="server" AutoPostBack="true" OnSelectedIndexChanged="btn_search_OnClick">
-                            </asp:DropDownList>
+                           
                         </td>
                         <td align="right">
                             <asp:LinkButton ID="btnModify" runat="server" OnClick="btnModify_OnClick">
@@ -92,7 +98,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div>--%>
     <div class="box-wrapper">
         <div class="box-outer">
             <div style="width: 100%; overflow: auto; overflow-x: yes; overflow-y: hidden;">
@@ -103,9 +109,9 @@
                         <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Wrap="false" HeaderText="序号"
                             ItemStyle-Wrap="false">
                             <ItemTemplate>
-                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                <%--<asp:CheckBox ID="CheckBox1" runat="server" />--%>
                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
-                                <asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("PCON_SCH") %>' />
+                                <%--<asp:HiddenField ID="hdfMP_ID" runat="server" Value='<%# Eval("PCON_SCH") %>' />--%>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
@@ -133,13 +139,19 @@
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="任务名称" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_pcon_eqname" runat="server" Text='<%#Eval("PCON_EQNAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
                         <%--<asp:BoundField DataField="YS_OUT_LAB_MAR" ItemStyle-HorizontalAlign="Center" HeaderText="技术外协"
                             HeaderStyle-ForeColor="Black" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />--%>
                         <asp:BoundField DataField="YS_FERROUS_METAL" ItemStyle-HorizontalAlign="Center" HeaderText="黑色金属"
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_PURCHASE_PART" ItemStyle-HorizontalAlign="Center" HeaderText="外购件"
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
-                        <asp:BoundField DataField="YS_MACHINING_PART" ItemStyle-HorizontalAlign="Center"
+                        <asp:BoundField DataField="YS_CASTING_FORGING" ItemStyle-HorizontalAlign="Center"
                             HeaderStyle-ForeColor="Brown" HeaderText="铸锻件" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_PAINT_COATING" ItemStyle-HorizontalAlign="Center" HeaderText="油漆涂料"
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
@@ -147,6 +159,8 @@
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_OTHERMAT_COST" ItemStyle-HorizontalAlign="Center" HeaderText="其它材料费"
                             HeaderStyle-ForeColor="Brown" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
+                            <asp:BoundField DataField="YS_MAR_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="材料费小计"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_TEAM_CONTRACT" ItemStyle-HorizontalAlign="Center" HeaderText="直接人工费"
                             HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="YS_FAC_CONTRACT" ItemStyle-HorizontalAlign="Center" HeaderText="厂内分包"
@@ -163,10 +177,9 @@
                             HeaderStyle-ForeColor="Green" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />--%>
                         <asp:BoundField DataField="YS_TRANS_COST" ItemStyle-HorizontalAlign="Center" HeaderText="运费"
                             HeaderStyle-ForeColor="Green" HeaderStyle-Wrap="false" DataFormatString="{0:N2}" />
-                        <asp:BoundField DataField="YS_MAR_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="材料费小计"
-                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
-                        <asp:BoundField DataField="YS_LAB_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="人工费小计"
-                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />
+                        
+                        <%--<asp:BoundField DataField="YS_LAB_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="人工费小计"
+                            HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Brown" DataFormatString="{0:N2}" />--%>
                         <%--材料费小计--%>
                        <%-- <asp:BoundField DataField="YS_FINA_SUM" ItemStyle-HorizontalAlign="Center" HeaderText="分摊费小计"
                             HeaderStyle-Wrap="false" HeaderStyle-ForeColor="Green" DataFormatString="{0:N2}" />--%>
@@ -176,11 +189,11 @@
                                 <asp:Label ID="lab_JSstate" runat="server" Text='<%# GetJSState(Eval("YS_ADDDATE").ToString(),Eval("YS_XS_Finished").ToString()) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否结算" HeaderStyle-Wrap="false">
+                       <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="是否结算" HeaderStyle-Wrap="false">
                             <ItemTemplate>
                                 <asp:Label ID="lab_Finstate" runat="server" Text='<%# GetFinState(Eval("YS_XS_Finished").ToString()) %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>--%>
                     </Columns>
                     <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

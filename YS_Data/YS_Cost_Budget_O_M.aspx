@@ -4,7 +4,7 @@
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    订单监控
+    任务订单监控
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
@@ -39,14 +39,15 @@
         }
         
     </script>
-
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>
     <div class="box-inner">
         <div class="box_right">
             <div class="box-title">
                 <table width="100%">
                     <tr>
                         <td>
-                            任务号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">
+                            任务号：<asp:TextBox ID="txt_search" runat="server" Text="" Width="150px">&nbsp;
                             </asp:TextBox><asp:Button ID="search1" runat="server" Text="查 询" OnClick="btn_search_OnClick" />
                         </td>
                         <td>
@@ -58,10 +59,15 @@
                             </asp:DropDownList>
                         </td>
                         <td>
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                        上次更新时间：<asp:Label ID="lab_updatetime" runat="server" ForeColor="Red"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="Btn_update" runat="server" Text="订单费用更新" OnClick="Btn_update_OnClick" />
+                        </ContentTemplate>
+                            </asp:UpdatePanel>
                         </td>               
                         <td align="right">
-                            <asp:Button ID="btn_daochu" runat="server" Text="导出Excel" OnClick="btn_daochu_Click" />&nbsp;
+                            <asp:Button ID="btn_daochu" runat="server" Text="导出Excel" OnClick="btn_daochu_Click" Visible="false"/>&nbsp;
                         </td>
                     </tr>
                 </table>

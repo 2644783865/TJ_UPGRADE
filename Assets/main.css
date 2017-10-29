@@ -240,8 +240,8 @@ background: #fff url(images/notify-information.gif) 10px 4px no-repeat;
 	}
 .tableTitle {
 line-height:25px;
-font-weight:bolder;
-background-color:#fff;
+font-weight:normal;
+background-color:#E3F1FA;
 }
 .tableTitle1 {
 line-height:25px;

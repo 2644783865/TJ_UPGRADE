@@ -39,6 +39,7 @@ namespace ZCZJ_DPF
 	    private QueryStringArgument<int> _PageNumber = new QueryStringArgument<int>(SiteConfig.Page_QS,-1);
 
         public delegate void PageHandler(int pageNumber);
+       
         public event PageHandler PageChanged;
         
         public void InitPageInfo()
