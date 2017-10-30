@@ -106,6 +106,33 @@ namespace ZCZJ_DPF.OM_Data
                     codeList.Add(code);
                 }
             }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                //以跨栏的方式合并单元格
+                e.Row.Cells[0].ColumnSpan = 10;
+                //隐藏除第一个单元格之后的所有单元格
+                for (int index = 1; index <= e.Row.Cells.Count - 1; index++)
+                {
+                    e.Row.Cells[index].Visible = false;
+                }
+
+                //合计
+                string sqltext = "select sum(WLJE) from View_TBOM_BGYPPCAPPLYINFO where " + GetSqlWhere();
+                string sum = "";
+                try
+                {
+                    System.Data.DataTable dtSum = DBCallCommon.GetDTUsingSqlText(sqltext);
+                    sum = dtSum.Rows[0][0].ToString();
+                }
+                catch (Exception)
+                {
+
+                    sum = "error";
+                }
+
+                e.Row.Cells[0].Text = "合 计：" + sum;
+            }
+
         }
         /// <summary>
         /// 动态添加审核状态项(待审核、审核中、通过、驳回、驳回已处理)
@@ -189,8 +216,7 @@ namespace ZCZJ_DPF.OM_Data
         {
             pager.TableName = "TBOM_BGYPPCAPPLY";
             pager.PrimaryKey = "PCCODE";
-            pager.ShowFields = "PCCODE,JBR,JBRID,SHRF,SHRFID,SHRFDATE,SHRFNOTE,SHRS,SHRSID,SHRSDATE,SHRSNOTE,STATE,DATE,JINE";
-
+            pager.ShowFields = "PCCODE,JBR,JBRID,JBRDEPID,SHRF,SHRFID,SHRFDATE,SHRFNOTE,SHRS,SHRSID,SHRSDATE,SHRSNOTE,STATE,DATE,JINE";
             pager.OrderField = "PCCODE";
             pager.StrWhere = GetSqlWhere();
             pager.OrderType = 1;//按任务名称升序排列
@@ -231,6 +257,7 @@ namespace ZCZJ_DPF.OM_Data
                 sqlwhere += " and  DATE <='" + txt_endtime.Text + "'";
             }
 
+            sqlwhere += " and JBRDEPID='" + Session["UserDeptID"].ToString() + "'";
             return sqlwhere;
         }
         private void GetAuditData()

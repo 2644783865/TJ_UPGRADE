@@ -42,8 +42,13 @@ namespace ZCZJ_DPF.OM_Data
                     txtshr.Enabled = false;
                     hlSelect0.Visible = false;
                     btnsave.Visible = false;
+                    
+                    //增加行不可见
+                    addrow.Visible = false;
+                    txtNum.Visible = false;
                     btnadd.Visible = false;
                     btndelete.Visible = false;
+
                     string Id = Request.QueryString["id"].ToString();
                     string sql = "select * from View_TBOM_BGYPAPPLY where CODE='" + Id + "'";
                     //string sql = "select * from View_TBOM_BGYPAPPLY where CODE='"+ Id + "'";
@@ -77,9 +82,14 @@ namespace ZCZJ_DPF.OM_Data
                     TextBoxDate.Enabled = false;
                     txtshr.Enabled = false;
                     hlSelect0.Visible = false;
+                    drop_view.Visible = true;
+
+                    //增加行不可见
+                    addrow.Visible = false;
+                    txtNum.Visible = false;
                     btnadd.Visible = false;
                     btndelete.Visible = false;
-                    drop_view.Visible = true;
+
                     string Id = Request.QueryString["id"].ToString();
                     string sql = "select * from View_TBOM_BGYPAPPLY where CODE='" + Id + "'";
                     DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);

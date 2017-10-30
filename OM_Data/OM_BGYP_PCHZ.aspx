@@ -4,10 +4,10 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    办公用品汇总申请
+    办公用品汇总申请 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
-   <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
+    <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
     <div class="box-inner">
         <div class="box_right">
             <div class="box-title">
@@ -16,7 +16,7 @@
                         <td align="right">
                             <strong>审核状态:</strong>
                         </td>
-                        <td>
+                        <td style="width: 327px" align="left">
                             <asp:RadioButtonList ID="rblState" RepeatColumns="5" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_Year_SelectedIndexChanged">
                                 <asp:ListItem Text="全部" Value=""></asp:ListItem>
                                 <asp:ListItem Text="审核中" Value="1"></asp:ListItem>
@@ -25,12 +25,17 @@
                                 <asp:ListItem Text="我的审核任务" Value="4" Selected="True"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
-                        <td style="width: 40%" align="left">
+                        <td align="left" style="width: 119px">
+                            <strong>总计:</strong>
+                            <asp:Label ID="totalprice" runat="server"></asp:Label>
+                        </td>
+                        <td style="width: 37%" align="left">
                             申请时间：<asp:TextBox runat="server" ID="txt_starttime" class="easyui-datebox" editable="false"
                                 Width="100px" Height="18px"></asp:TextBox>到
                             <asp:TextBox runat="server" ID="txt_endtime" class="easyui-datebox" editable="false"
                                 Width="100px" Height="18px"></asp:TextBox>
-                            <asp:Button ID="btnQuery" runat="server" Text="查  询" />&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnQuery" runat="server" Text="查  询" 
+                                onclick="btnQuery_Click" />&nbsp;&nbsp;&nbsp;
                         </td>
                         <td>
                             <asp:HyperLink ID="hlAdd" CssClass="link" NavigateUrl="~/OM_Data/OM_BGYP_PCHZ_Detail.aspx?action=add"
@@ -68,14 +73,30 @@
                         ItemStyle-Wrap="false">
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="DATE" HeaderText="日期">
+                    <asp:BoundField DataField="DATE" HeaderText="申请日期">
                         <ItemStyle HorizontalAlign="Center" Wrap="false" />
                     </asp:BoundField>
-                  
-                    <asp:BoundField DataField="SHRF" HeaderText="二级审核人">
+                    <asp:BoundField DataField="TOTALPRICE" HeaderText="金额">
                         <ItemStyle HorizontalAlign="Center" Wrap="false" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="SHRFDATE" HeaderText="二级日期" ItemStyle-HorizontalAlign="Center"
+                    <asp:BoundField DataField="SHRF" HeaderText="一级审核人">
+                        <ItemStyle HorizontalAlign="Center" Wrap="false" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRFDATE" HeaderText="一级日期" ItemStyle-HorizontalAlign="Center"
+                        ItemStyle-Wrap="false">
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRS" HeaderText="二级审核人">
+                        <ItemStyle HorizontalAlign="Center" Wrap="false" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRSDATE" HeaderText="二级日期" ItemStyle-HorizontalAlign="Center"
+                        ItemStyle-Wrap="false">
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRT" HeaderText="三级审核人">
+                        <ItemStyle HorizontalAlign="Center" Wrap="false" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="SHRTDATE" HeaderText="三级日期" ItemStyle-HorizontalAlign="Center"
                         ItemStyle-Wrap="false">
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>

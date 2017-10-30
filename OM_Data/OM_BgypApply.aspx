@@ -132,8 +132,11 @@
             <div style="margin: 0px 0px 0px 10px">
                 <table width="99%" align="center" cellpadding="4" cellspacing="1" class="toptable grid">
                     <tr>
+                    
                         <td style="width: 50%" align="left">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 增加行:<asp:TextBox ID="txtNum" runat="server" Width="50px"
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Label ID="addrow" runat="server" Text="增加行:"></asp:Label>
+                            <asp:TextBox ID="txtNum" runat="server" Width="50px"
                                 CssClass="center"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnadd" runat="server" Text="确 定" OnClick="btninsert_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;

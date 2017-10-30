@@ -194,102 +194,237 @@ namespace ZCZJ_DPF.OM_Data {
         protected global::AjaxControlToolkit.TabPanel TabPanel2;
         
         /// <summary>
-        /// TextBoxSHR1 控件。
+        /// panSP 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxSHR1;
+        protected global::System.Web.UI.WebControls.Panel panSP;
         
         /// <summary>
-        /// HiddenFieldSHR1 控件。
+        /// tb 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldSHR1;
+        protected global::System.Web.UI.WebControls.Panel tb;
         
         /// <summary>
-        /// RadioButtonListSHR1 控件。
+        /// rblShdj 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListSHR1;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblShdj;
         
         /// <summary>
-        /// LabelSHR1 控件。
+        /// ImageAUDIT 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelSHR1;
+        protected global::System.Web.UI.WebControls.Image ImageAUDIT;
         
         /// <summary>
-        /// TextBoxSHR2 控件。
+        /// FirstSHPanel 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxSHR2;
+        protected global::System.Web.UI.WebControls.Panel FirstSHPanel;
         
         /// <summary>
-        /// txt_first 控件。
+        /// Table1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_first;
+        protected global::System.Web.UI.HtmlControls.HtmlTable Table1;
         
         /// <summary>
-        /// firstid 控件。
+        /// txt_HT_SHR1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField firstid;
+        protected global::System.Web.UI.WebControls.TextBox txt_HT_SHR1;
         
         /// <summary>
-        /// rblfirst 控件。
+        /// SHR1id 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblfirst;
+        protected global::System.Web.UI.WebControls.TextBox SHR1id;
         
         /// <summary>
-        /// first_time 控件。
+        /// imgSHR1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label first_time;
+        protected global::System.Web.UI.WebControls.Image imgSHR1;
         
         /// <summary>
-        /// first_opinion 控件。
+        /// rbl_HT_SHR1_JL 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox first_opinion;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_HT_SHR1_JL;
         
         /// <summary>
-        /// lblStatus 控件。
+        /// lb_HT_SHR1_SJ 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected global::System.Web.UI.WebControls.Label lb_HT_SHR1_SJ;
+        
+        /// <summary>
+        /// txt_HT_SHR1_JY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HT_SHR1_JY;
+        
+        /// <summary>
+        /// SecondSHPanel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SecondSHPanel;
+        
+        /// <summary>
+        /// txt_HT_SHR2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HT_SHR2;
+        
+        /// <summary>
+        /// SHR2id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SHR2id;
+        
+        /// <summary>
+        /// imgSHR2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgSHR2;
+        
+        /// <summary>
+        /// rbl_HT_SHR2_JL 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_HT_SHR2_JL;
+        
+        /// <summary>
+        /// lb_HT_SHR2_SJ 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_HT_SHR2_SJ;
+        
+        /// <summary>
+        /// txt_HT_SHR2_JY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HT_SHR2_JY;
+        
+        /// <summary>
+        /// ThirdSHPanel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ThirdSHPanel;
+        
+        /// <summary>
+        /// txt_HT_SHR3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HT_SHR3;
+        
+        /// <summary>
+        /// SHR3id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SHR3id;
+        
+        /// <summary>
+        /// imgSHR3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgSHR3;
+        
+        /// <summary>
+        /// rbl_HT_SHR3_JL 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_HT_SHR3_JL;
+        
+        /// <summary>
+        /// lb_HT_SHR3_SJ 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_HT_SHR3_SJ;
+        
+        /// <summary>
+        /// txt_HT_SHR3_JY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HT_SHR3_JY;
     }
 }
