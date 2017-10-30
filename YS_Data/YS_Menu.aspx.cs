@@ -39,13 +39,5 @@ namespace ZCZJ_DPF.YS_Data
             HyperLink4.NavigateUrl = "YS_Cost_Budget_O_M.aspx";
         }
 
-        
-
-
-       
-
-
-     
-
     }
 }

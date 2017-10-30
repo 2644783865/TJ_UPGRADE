@@ -133,7 +133,7 @@ namespace ZCZJ_DPF.YS_Data.Model
         /// </summary>
         public DateTime end_time { get; set; }
         /// <summary>
-        /// 预算编制状态（1：初步预算，2：部门反馈，3：预算调整，4：编制完成）
+        /// 预算编制状态（1：初步预算，2：部门反馈，3：预算调整，4：预算审核，5：编制完成）
         /// </summary>
         public byte state { get; set; }
         /// <summary>

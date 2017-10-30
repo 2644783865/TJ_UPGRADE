@@ -18,6 +18,10 @@ namespace ZCZJ_DPF.YS_Data.BLL
         /// <summary>
         /// 初始化页面查询对象
         /// </summary>
+        /// <param name="taskCode">任务号</param>
+        /// <param name="contractCode">合同号</param>
+        /// <param name="projectName">项目名称</param>
+        /// <param name="state">编制进度</param>
         public void initPager(PagerQueryParam pager,string taskCode,string contractCode,string projectName,string state)
         {            
             pager.TableName = " ys_task_budget ";
@@ -29,10 +33,17 @@ namespace ZCZJ_DPF.YS_Data.BLL
             pager.PageSize = 10;
         }
 
+        /// <summary>
+        /// 获取查询对象的where语句
+        /// </summary>
+        /// <param name="taskCode">任务号</param>
+        /// <param name="contractCode">合同号</param>
+        /// <param name="projectName">项目名称</param>
+        /// <param name="state">编制进度</param>
+        /// <returns>查询对象的where语句</returns>
         public string getStrWhere(string taskCode, string contractCode, string projectName,string state) 
         {
-            StringBuilder strWhere = new StringBuilder();
-            strWhere.Append(" 1=1 ");
+            StringBuilder strWhere = new StringBuilder(" 1=1");            
             if(!string.IsNullOrEmpty(taskCode))
             {
                 strWhere.Append("and task_code like '%"+taskCode+"%' ");
@@ -45,7 +56,7 @@ namespace ZCZJ_DPF.YS_Data.BLL
             {
                 strWhere.Append("and project_name like '%" + projectName + "%' ");
             }
-            if (!(string.IsNullOrEmpty(state) || state.Equals("-请选择-")))
+            if (!(string.IsNullOrEmpty(state)||state.Equals("-请选择-")))
             {
                 strWhere.Append("and state =" +state);
             }
@@ -55,8 +66,8 @@ namespace ZCZJ_DPF.YS_Data.BLL
         /// <summary>
         /// 翻译预算编制状态
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
+        /// <param name="type">数据库查到的编制状态，是阿拉伯数字</param>
+        /// <returns>根据阿拉伯数字翻译后的编制状态</returns>
         public string getTaskState(string type)
         {
             switch (type)
