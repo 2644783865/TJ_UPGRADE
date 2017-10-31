@@ -49,6 +49,7 @@ namespace ZCZJ_DPF.CM_Data
                 InitVar();
                 if (action == "change")
                 {
+                    TSA_ID.Visible = false;
                     btnadd.Visible = false;
                     delete.Visible = false;
                     chan.Visible = true;
