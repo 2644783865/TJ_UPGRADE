@@ -33,18 +33,7 @@
             var returnValue = window.showModalDialog("TM_MyTaskNote.aspx?nouse=" + time + "&engid=" + obj.title, '', "dialogHeight:400px;dialogWidth:700px;status:no;scroll:yes;center:yes;toolbar=no;menubar=no");
         }
 
-        
-       
 
-        function ConfirmFinish() {
-            if (confirm("\n注意：是否确定已经完成技术准备并需要开始预算？\n\n    技术准备完成需要满足以下两个条件：\n        1.该任务号下的所有BOM已经输入完成\n        2.所有的BOM物料已经推送的需用计划\n")) {
-                return confirm("\n下推预算后不更改，是否确定下推？\n")
-            } else {
-                return false;
-            }
-        }
-
-        
     </script>
 
     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
@@ -100,7 +89,7 @@
                     <div style="width: 100%;">
                         <asp:GridView ID="GridView1" Width="100%" CssClass="toptable grid" runat="server"
                             AutoGenerateColumns="False" CellPadding="3" ForeColor="#333333" 
-                            Style="white-space: normal" onrowdatabound="GridView1_RowDataBound"      >
+                            Style="white-space: normal">
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="#1E5C95" />
                             <RowStyle BackColor="#EFF3FB" />
                             <Columns>
@@ -239,15 +228,11 @@
                                         </asp:HyperLink>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="技术准备" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
-                                    ItemStyle-HorizontalAlign="Center" Visible="false">
+                                <asp:TemplateField HeaderText="预算" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
+                                    ItemStyle-HorizontalAlign="Center" Visible="true">
                                     <ItemTemplate>
-                                    <asp:HiddenField ID="hid_Finish" runat="server" Value='<%#Eval("TSA_FINISHSTATE") %>'></asp:HiddenField>
-                                        <asp:LinkButton ID="lbtn_Finish" runat="server" CssClass="link" OnClientClick="javascript:return ConfirmFinish()"  OnClick="lbtn_Finish_onclick" CommandArgument='<%# Eval("TSA_ID") %>' >
-                                           <asp:Image ID="Image4" runat="server" ImageUrl="~/Assets/icons/dealdispatcher.gif" ImageAlign="AbsMiddle"></asp:Image>点击完成
-                                        </asp:LinkButton>
-                                        <asp:Image ID="img_Finish" ImageUrl="~/Assets/icons/positive.gif" border="0" hspace="2"
-                                                align="absmiddle" runat="server" Visible="false" /><asp:Label ID="lb_Finish" runat="server" Text="已提交预算" Visible="false"></asp:Label>
+                                        <asp:LinkButton ID="lbtn_Finish" runat="server" CssClass="link" OnClientClick="javascript:return confirm('是否要重新提交预算?')"  OnClick="lbtn_Finish_onclick" CommandArgument='<%# Eval("TSA_ID") %>' >
+                                           <asp:Image ID="Image4" runat="server" ImageUrl="~/Assets/icons/dealdispatcher.gif" ImageAlign="AbsMiddle"></asp:Image> 提交</asp:LinkButton>                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

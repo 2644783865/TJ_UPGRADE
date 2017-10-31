@@ -198,27 +198,7 @@ from YS_COST_BUDGET where YS_TSA_ID='" + id + "'";
             txt_YS_MATERIAL_COST.Text = dt.Rows[0]["YS_MATERIAL_COST"].ToString();//材料费
             txt_YS_LABOUR_COST.Text = dt.Rows[0]["YS_LABOUR_COST"].ToString();//人工费
             txt_YS_TRANS_COST.Text = dt.Rows[0]["YS_TRANS_COST"].ToString();//运费
-            //txt_YS_TOTALCOST_ALL.Text = dt.Rows[0]["YS_TOTALCOST_ALL"].ToString();//预算总额
-            //txt_YS_PROFIT.Text = dt.Rows[0]["YS_PROFIT"].ToString();//毛利润
-            //txt_YS_PROFIT_RATE.Text = dt.Rows[0]["YS_PROFIT_RATE"].ToString();//毛利率
-
-            //材料费参考
-            //txt_YS_FERROUS_METAL.Text = dt.Rows[0]["YS_FERROUS_METAL"].ToString();
-            //txt_YS_PURCHASE_PART.Text = dt.Rows[0]["YS_PURCHASE_PART"].ToString();
-            //txt_YS_PAINT_COATING.Text = dt.Rows[0]["YS_PAINT_COATING"].ToString();
-            //txt_YS_ELECTRICAL.Text = dt.Rows[0]["YS_ELECTRICAL"].ToString();
-            //txt_YS_CASTING_FORGING_COST.Text = dt.Rows[0]["YS_CASTING_FORGING_COST"].ToString();
-            //txt_YS_OTHERMAT_COST.Text = dt.Rows[0]["YS_OTHERMAT_COST"].ToString();
-            //txt_materil_history_reference.Text = dt.Rows[0]["materil_history_reference"].ToString();
-
-            //部门反馈
-            //txt_YS_FERROUS_METAL_FB.Text = dt.Rows[0]["YS_FERROUS_METAL_FB"].ToString();
-            //txt_YS_PURCHASE_PART_FB.Text = dt.Rows[0]["YS_PURCHASE_PART_FB"].ToString();
-            //txt_YS_PAINT_COATING_FB.Text = dt.Rows[0]["YS_PAINT_COATING_FB"].ToString();
-            //txt_YS_ELECTRICAL_FB.Text = dt.Rows[0]["YS_ELECTRICAL_FB"].ToString();
-            //txt_YS_CASTING_FORGING_COST_FB.Text = dt.Rows[0]["YS_CASTING_FORGING_COST_FB"].ToString();
-            //txt_YS_OTHERMAT_COST_FB.Text = dt.Rows[0]["YS_OTHERMAT_COST_FB"].ToString();
-            //txt_materil_dispart_reference.Text = dt.Rows[0]["materil_dispart_reference"].ToString();
+            
 
             txt_YS_UNIT_LABOUR_COST_FB.Text = dt.Rows[0]["YS_UNIT_LABOUR_COST_FB"].ToString();
             txt_labour_dispart_reference.Text = dt.Rows[0]["labour_dispart_reference"].ToString();

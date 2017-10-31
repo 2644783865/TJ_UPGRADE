@@ -31,20 +31,57 @@ namespace ZCZJ_DPF.YS_Data.UI
                 initDdl();
                 UCPaging_PageChanged(1);
             }
-
         }
 
+        #region 页面加载初始化代码
+        /// <summary>
+        /// 初始化页面查询对象
+        /// </summary>
         private void initPager()
         {
             bll.initPager(pager, txt_task_code.Text.Trim(), txt_contract_code.Text.Trim(), txt_project_name.Text.Trim(),ddl_state.SelectedValue);
         }
-
+        /// <summary>
+        /// 初始化翻页控件
+        /// </summary>
         private void initUCPaging()
         {
             UCPaging.PageChanged += new UCPaging.PageHandler(UCPaging_PageChanged);
             UCPaging.PageSize = pager.PageSize;
         }
 
+        /// <summary>
+        /// 初始化状态下拉框
+        /// </summary>
+        private void initDdl()
+        {
+            string sqltext = "SELECT DISTINCT state AS DDLVALUE,case when state='1' then '初步预算'when state='2' then '部门反馈'when state='3' then '财务调整'when state='4' then '预算审核' when state='5' then '编制完成' end  AS DDLTEXT FROM ys_task_budget WHERE state IS NOT NULL ORDER BY state";
+            DBCallCommon.BindDdl(ddl_state, sqltext, "DDLTEXT", "DDLVALUE");
+        }
+        #endregion
+
+        
+        /// <summary>
+        /// 翻译预算编制状态
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public string getTaskState(string type)
+        {
+            return bll.getTaskState(type);
+        }
+
+        #region 操作事件处理程序
+
+        protected void btn_search_Click(object sender, EventArgs e)
+        {
+            UCPaging_PageChanged(1);
+        }      
+
+        /// <summary>
+        /// 翻页事件处理程序
+        /// </summary>
+        /// <param name="i">判读是否用代码触发，如果i=1,则是用代码触发</param>
         private void UCPaging_PageChanged(int i)
         {
             switch (i)
@@ -55,26 +92,25 @@ namespace ZCZJ_DPF.YS_Data.UI
             CommonFun.Paging(rpt_task_list, CommonFun.GetDataByPagerQueryParam(pager), UCPaging, pal_container, NoDataPanel);
         }
 
-        private void initDdl()
+
+        protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            string sqltext = "SELECT DISTINCT state AS DDLVALUE,case when state='1' then '初步预算'when state='2' then '部门反馈'when state='3' then '财务调整'when state='4' then '预算审核' when state='5' then '编制完成' end  AS DDLTEXT FROM ys_task_budget WHERE state IS NOT NULL ORDER BY state";
-            DBCallCommon.BindDdl(ddl_state, sqltext, "DDLTEXT", "DDLVALUE");
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                if ((e.Item.ItemIndex + 1) % 2 == 0)
+                {
+                    ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#FF0000";
+                }
+                else
+                {
+                    ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#000000";
+                }
+            }
+
         }
 
-        protected void btn_search_Click(object sender, EventArgs e)
-        {
-            UCPaging_PageChanged(1);
-        }
+        #endregion
 
-        public string getTaskState(string type)
-        {
-            return bll.getTaskState(type);
-        }
-
-        protected void ddl_state_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UCPaging_PageChanged(1);
-        }
 
     }
 }

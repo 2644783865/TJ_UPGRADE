@@ -4,7 +4,7 @@
 
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    任务预算编制列表
+    任务预算编制列表 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style type="text/css">
@@ -45,7 +45,7 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="ddl_state" runat="server" class="txtbox" AutoPostBack="true"
-                        onselectedindexchanged="ddl_state_SelectedIndexChanged">
+                        onselectedindexchanged="btn_search_Click">
                     </asp:DropDownList>
                 </td>
                 <td>
@@ -59,7 +59,8 @@
         <asp:Panel ID="pal_container" runat="server">
             <div style="height: 350px;">
                 <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
-                    <asp:Repeater ID="rpt_task_list" runat="server">
+                    <asp:Repeater ID="rpt_task_list" runat="server" 
+                        onitemdatabound="rpt_task_list_ItemDataBound" >
                         <HeaderTemplate>
                             <tr class="tableTitle">
                                 <th>
@@ -92,7 +93,7 @@
                             </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <tr align="center" class="baseGadget" onmouseover="this.className='highlight'" onmouseout="this.className='baseGadget'">
+                            <tr align="center" class="baseGadget" id="row" runat="Server" onmouseover="this.className='highlight'" onmouseout="this.className='baseGadget'">
                                 <td>
                                     <%#Container.ItemIndex + 1%>
                                 </td>
