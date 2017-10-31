@@ -210,66 +210,50 @@ namespace ZCZJ_DPF.Basic_Data
                 {
                     tcbm = drbm["st_depid"].ToString(); drbm.Close();
                 }
+
+                BMSHEnabledF();
+                EJSHEnalbedF();
+                SJSHEnabledF();
+                SI_JSHEnalbedF();
+                WU_JSHEnabledF();
+                QA_JSHEnableF();
+
                 if (currentguy_name == TextSHR1.Text.ToString())
                 {
-                    EJSHEnalbedF();
-                    SJSHEnabledF();
-                    SI_JSHEnalbedF();
-                    WU_JSHEnabledF();
-                    QA_JSHEnableF();
+                    RadioJJ1.Enabled = true;
+                    RadioTY1.Enabled = true;
+                    TextBZ1.Enabled = true;
                 }
-                else if (currentguy_name == TextSHR2.Text.ToString())
+                if (currentguy_name == TextSHR2.Text.ToString())
                 {
-                    BMSHEnabledF();
-                    SJSHEnabledF();
-                    SI_JSHEnalbedF();
-                    WU_JSHEnabledF();
-                    QA_JSHEnableF();
+                    RadioTY2.Enabled = true;
+                    RadioJJ2.Enabled = true;
+                    TextBZ2.Enabled = true;
                 }
-                else if (currentguy_name == TextSHR3.Text.ToString())
+                if (currentguy_name == TextSHR3.Text.ToString())
                 {
-                    BMSHEnabledF();
-                    EJSHEnalbedF();
-                    SI_JSHEnalbedF();
-                    WU_JSHEnabledF();
-                    QA_JSHEnableF();
+                    RadioJJ3.Enabled = true;
+                    RadioTY3.Enabled = true;
+                    TextBZ3.Enabled = true;
                 }
-                else if (currentguy_name == TextSHR4.Text.ToString())
+                if (currentguy_name == TextSHR4.Text.ToString())
                 {
-                    BMSHEnabledF();
-                    EJSHEnalbedF();
-                    SJSHEnabledF();
-                    WU_JSHEnabledF();
-                    QA_JSHEnableF();
-                    
+                    RadioJJ4.Enabled = true;
+                    RadioTY4.Enabled = true;
+                    TextBZ4.Enabled = true;
                 }
-                else if (currentguy_name == TextSHR5.Text.ToString())
+                if (currentguy_name == TextSHR5.Text.ToString())
                 {
-                    BMSHEnabledF();
-                    EJSHEnalbedF();
-                    SJSHEnabledF();
-                    SI_JSHEnalbedF();
-                    QA_JSHEnableF();
+                    RadioJJ5.Enabled = true;
+                    RadioTY5.Enabled = true;
+                    TextBZ5.Enabled = true;
                 }
-                else if (currentguy_name == TextSHR6.Text.ToString())
+                if (currentguy_name == TextSHR6.Text.ToString())
                 {
-                    BMSHEnabledF();
-                    EJSHEnalbedF();
-                    SJSHEnabledF();
-                    SI_JSHEnalbedF();
-                    WU_JSHEnabledF();
+                    RadioJJ6.Enabled = true;
+                    RadioTY6.Enabled = true;
+                    TextBZ6.Enabled = true;
                 }
-                else
-                {
-                    BMSHEnabledF();
-                    EJSHEnalbedF();
-                    SJSHEnabledF();
-                    SI_JSHEnalbedF();
-                    WU_JSHEnabledF();
-                    QA_JSHEnableF();
-
-                }
-               // shenheliucheng();
             }
 
             else if (action == "Add")
@@ -494,7 +478,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ1.Checked = true;
                         }
                     }
-                    else if (type == "2")//设备部审批
+                    if (type == "2")//设备部审批
                     {
                         TextSHR2.Text = person;
                         first_addid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -509,7 +493,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ2.Checked = true;
                         }
                     }
-                    else if (type == "3") //技术部审批
+                    if (type == "3") //技术部审批
                     {
                         TextSHR3.Text = person;
                         secondid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -524,7 +508,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ3.Checked = true;
                         }
                     }
-                    else if (type == "4")//采购部审批
+                    if (type == "4")//采购部审批
                     {
                         TextSHR4.Text = person;
                         second_addid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -539,7 +523,7 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ4.Checked = true;
                         }
                     }
-                    else if (type == "5") //主管经理审批
+                    if(type == "5") //主管经理审批
                     {
                         TextSHR5.Text = person;
                         thirdid.Value = dt.Rows[i]["ST_ID"].ToString();
@@ -554,10 +538,10 @@ namespace ZCZJ_DPF.Basic_Data
                             RadioJJ5.Checked = true;
                         }
                     }
-                    else if (type == "6")//质量部审批
+                    if (type == "6")//质量部审批
                     {
                         TextSHR6.Text = person;
-                        second_addid.Value = dt.Rows[i]["ST_ID"].ToString();
+                        QAid.Value = dt.Rows[i]["ST_ID"].ToString();
                         TextSHRQ6.Text = time != "" ? time : "";
                         TextBZ6.Text = note;
                         if (yj == "1")//同意

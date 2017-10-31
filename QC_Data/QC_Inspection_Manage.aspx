@@ -55,6 +55,7 @@
                         </td>
                         <td align="left" width="7%">
                             <asp:Button ID="QueryButton" runat="server" OnClick="QueryButton_Click" Text="查询" />
+                            <asp:Button ID="btnDelete" runat="server" Text="删除" OnClick="btnDelete_Click" />
                         </td>
                         <td align="right" width="10%">
                             <asp:HyperLink ID="hlAdd" CssClass="link" NavigateUrl="~/QC_Data/QC_Inspection_Add_Blank.aspx?ACTION=NEW"
@@ -257,8 +258,7 @@
             </div>
             <asp:Panel ID="NoDataPanel" runat="server" ForeColor="Red">
                 没有任务!</asp:Panel>
-            <div style="text-align: left; padding-top: 5px; padding-left: 15px">
-                <asp:Button ID="btnDelete" runat="server" Text="删除" OnClick="btnDelete_Click" /></div>
+            <div style="text-align: left; padding-top: 5px; padding-left: 15px"></div>
             <uc1:UCPaging ID="UCPaging1" runat="server" />
         </div>
         <!--box-outer END -->
