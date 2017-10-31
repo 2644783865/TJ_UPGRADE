@@ -4,7 +4,7 @@
 
 <%@ Register Src="../Controls/UCPaging.ascx" TagName="UCPaging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    任务预算编制列表 
+    任务预算编制列表
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <style type="text/css">
@@ -44,23 +44,18 @@
                     编制进度
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddl_state" runat="server" class="txtbox" AutoPostBack="true"
-                        onselectedindexchanged="btn_search_Click">
+                    <asp:DropDownList ID="ddl_state" runat="server" class="txtbox">
                     </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="../Assets/images/search.gif" Style="vertical-align: top" />
-                        查 询
-                    </asp:LinkButton>
+                    <asp:Button ID="btn_search" runat="server" Text="查 询" OnClick="btn_search_Click" />
                 </td>
             </tr>
         </table>
         <asp:Panel ID="pal_container" runat="server">
             <div style="height: 350px;">
                 <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
-                    <asp:Repeater ID="rpt_task_list" runat="server" 
-                        onitemdatabound="rpt_task_list_ItemDataBound" >
+                    <asp:Repeater ID="rpt_task_list" runat="server">
                         <HeaderTemplate>
                             <tr class="tableTitle">
                                 <th>
@@ -93,7 +88,8 @@
                             </tr>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <tr align="center" class="baseGadget" id="row" runat="Server" onmouseover="this.className='highlight'" onmouseout="this.className='baseGadget'">
+                            <tr align="center" class="baseGadget" id="row" runat="Server" onmouseover="this.className='highlight'"
+                                onmouseout="this.className='baseGadget'">
                                 <td>
                                     <%#Container.ItemIndex + 1%>
                                 </td>
@@ -116,10 +112,10 @@
                                     <%#Eval("c_total_task_budget").ToString()%>
                                 </td>
                                 <td>
-                                    <%#getTaskState(Eval("state").ToString())%>
+                                    <%#Eval("state").ToString()%>
                                 </td>
                                 <td>
-                                    <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"ys_task_budget_detail.aspx?tsak_id="+Eval("task_code").ToString()%>'
+                                    <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"ys_task_budget_detail.aspx?tsak_code="+Eval("task_code").ToString()%>' Target="_blank"
                                         runat="server">
                                         <asp:Image ID="Image2" ImageUrl="~/assets/images/res.gif" border="0" hspace="2" align="absmiddle"
                                             runat="server" />
@@ -136,7 +132,6 @@
             没有记录!
         </asp:Panel>
     </div>
-
     <script src="../JS/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">

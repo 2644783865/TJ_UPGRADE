@@ -11,7 +11,6 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using ZCZJ_DPF;
-using System.Data.SqlClient;
 
 namespace ZCZJ_DPF.YS_Data.UI
 {
@@ -55,21 +54,13 @@ namespace ZCZJ_DPF.YS_Data.UI
         /// </summary>
         private void initDdl()
         {
-            string sqltext = "SELECT DISTINCT state AS DDLVALUE,case when state='1' then '初步预算'when state='2' then '部门反馈'when state='3' then '财务调整'when state='4' then '预算审核' when state='5' then '编制完成' end  AS DDLTEXT FROM ys_task_budget WHERE state IS NOT NULL ORDER BY state";
+            string sqltext = "SELECT DISTINCT state AS DDLVALUE,case when state='1' then '初步预算'when state='2' then '部门反馈'when state='3' then '财务调整'when state='4' then '预算审核' when state='5' then '编制完成' end  AS DDLTEXT FROM ys_task_budget ORDER BY state";
             DBCallCommon.BindDdl(ddl_state, sqltext, "DDLTEXT", "DDLVALUE");
         }
         #endregion
 
         
-        /// <summary>
-        /// 翻译预算编制状态
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public string getTaskState(string type)
-        {
-            return bll.getTaskState(type);
-        }
+
 
         #region 操作事件处理程序
 
@@ -93,21 +84,21 @@ namespace ZCZJ_DPF.YS_Data.UI
         }
 
 
-        protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                if ((e.Item.ItemIndex + 1) % 2 == 0)
-                {
-                    ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#FF0000";
-                }
-                else
-                {
-                    ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#000000";
-                }
-            }
+        //protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        //{
+        //    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        //    {
+        //        if ((e.Item.ItemIndex + 1) % 2 == 0)
+        //        {
+        //            ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#FF0000";
+        //        }
+        //        else
+        //        {
+        //            ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#000000";
+        //        }
+        //    }
 
-        }
+        //}
 
         #endregion
 

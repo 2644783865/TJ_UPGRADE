@@ -7824,7 +7824,9 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\BLL\ys_task_budget_detail.cs" />
     <Compile Include="YS_Data\BLL\ys_task_budget_list.cs" />
+    <Compile Include="YS_Data\DAL\ys_task_budget_detail.cs" />
     <Compile Include="YS_Data\DAL\ys_task_budget_list.cs" />
     <Compile Include="YS_Data\ExportDataFromYS.cs" />
     <Compile Include="YS_Data\Model\ys_line.cs" />

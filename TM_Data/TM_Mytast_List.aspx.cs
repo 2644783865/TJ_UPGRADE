@@ -22,6 +22,7 @@ namespace ZCZJ_DPF.TM_Data
         PagerQueryParam pager = new PagerQueryParam();
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 this.InitInfo();
@@ -261,7 +262,7 @@ namespace ZCZJ_DPF.TM_Data
 
 
         /// <summary>
-        /// 技术准备完成按钮事件
+        /// 预算提交按钮事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -401,8 +402,8 @@ namespace ZCZJ_DPF.TM_Data
         )
         SELECT TOP 1
                 '{0}' ,
+                CM_CONTR,
                 CM_PROJ ,
-                TSA_PJID ,
                 TSA_ENGNAME , 
                 ( SELECT BM_TUTOTALWGHT FROM TBPM_STRINFODQO WHERE BM_ZONGXU='1' AND BM_ENGID='{1}'),               
                 ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{2}' AND material_code LIKE '01.07%') ,
