@@ -16,21 +16,26 @@ namespace ZCZJ_DPF.YS_Data.UI
 {
     public partial class ys_task_budget_list : BasicPage
     {
+        
         PagerQueryParam pager = new PagerQueryParam();
         YS_Data.BLL.ys_task_budget_list bll = new YS_Data.BLL.ys_task_budget_list();
-
+        string contract_code;
         protected void Page_Load(object sender, EventArgs e)
         {
+            contract_code = Request.QueryString["contract_code"];
             //CheckUser(ControlFinder);
+            
             initPager();
             initUCPaging();
 
             if (!IsPostBack)
             {
-                initDdl();
+                initControl();                
                 UCPaging_PageChanged(1);
             }
         }
+
+       
 
         #region 页面加载初始化代码
         /// <summary>
@@ -38,7 +43,14 @@ namespace ZCZJ_DPF.YS_Data.UI
         /// </summary>
         private void initPager()
         {
-            bll.initPager(pager, txt_task_code.Text.Trim(), txt_contract_code.Text.Trim(), txt_project_name.Text.Trim(),ddl_state.SelectedValue);
+            if (string.IsNullOrEmpty(contract_code))
+            {
+                bll.initPager(pager, txt_task_code.Text.Trim(), txt_contract_code.Text.Trim(), txt_project_name.Text.Trim(), ddl_state.SelectedValue);                
+            }
+            else
+            {
+                bll.initPager(pager,null, contract_code, null, null);
+            }
         }
         /// <summary>
         /// 初始化翻页控件
@@ -49,6 +61,20 @@ namespace ZCZJ_DPF.YS_Data.UI
             UCPaging.PageSize = pager.PageSize;
         }
 
+
+        private void initControl()
+        {
+            if (string.IsNullOrEmpty(contract_code))
+            {
+                initDdl();
+                pal_contract.Visible = false;
+            }
+            else
+            {
+                lb_contract_code.Text = contract_code;
+                pal_search.Visible = false;
+            }
+        }
         /// <summary>
         /// 初始化状态下拉框
         /// </summary>
@@ -84,21 +110,21 @@ namespace ZCZJ_DPF.YS_Data.UI
         }
 
 
-        //protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        //{
-        //    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-        //    {
-        //        if ((e.Item.ItemIndex + 1) % 2 == 0)
-        //        {
-        //            ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#FF0000";
-        //        }
-        //        else
-        //        {
-        //            ((HtmlTableRow)e.Item.FindControl("row")).BgColor = "#000000";
-        //        }
-        //    }
+        protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                //if ((e.Item.ItemIndex + 1) % 2 == 0)
 
-        //}
+                if (((HtmlTableCell)e.Item.FindControl("td_state")).InnerText.Equals("初步预算"))
+                {
+                    ((HtmlTableCell)e.Item.FindControl("td_state")).BgColor = "#f00";
+                }
+                
+               
+            }
+
+        }
 
         #endregion
 

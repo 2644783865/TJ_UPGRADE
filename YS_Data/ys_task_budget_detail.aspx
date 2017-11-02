@@ -9,59 +9,494 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </asp:ToolkitScriptManager>
-    <%--<style type="text/css">
-        th
-        {
-            border-bottom: 0;
-            border-style: dotted;
-        }
-        .top-table
+    <style type="text/css">
+        table
         {
             width: 100%;
         }
-    </style>--%>
+        .number
+        {
+            text-align: right;
+        }
+    </style>
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
-    <table style="width:100%">
-            <tr>
-                <td>
-                    任务号：
-                </td>
-                <td>
-                    合同号：
-                </td>
-                <td>
-                    项目号：
-                </td>
-                <td>
-                    重 量：
-                </td>
-            </tr>
-            <tr>
-                <td>
-                材料费预算：
-                </td>
-                <td>
-                人工费预算：
-                </td>
-                <td>
-                厂内分包预算：
-                </td>
-                <td>
-                生产外协预算：
-                </td>
-            </tr>
-        </table>
+    <table style="width: 100%">
+        <tr>
+            <td>
+                任务号：
+            </td>
+            <td>
+                合同号：
+            </td>
+            <td>
+                项目名称：
+            </td>
+            <td>
+                任务号图纸总重：kg
+            </td>
+        </tr>
+    </table>
     <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" ActiveTabIndex="1">
-        
         <%--预算汇总--%>
         <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="预算汇总信息">
             <ContentTemplate>
+                <table>
+                    <tr>
+                        <th colspan='10'>
+                            任务号预算分配
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            总预算：
+                        </td>
+                        <td>
+                            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td>
+                            材料费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TextBox7" runat="server" class='number'></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            人工费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TextBox4" runat="server" class='number'></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            分包费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TextBox5" runat="server" class='number'></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            外协费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="TextBox6" runat="server" class='number'></asp:TextBox>
+                            元
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan='10'>
+                            <hr />
+                            同类型任务号预算信息
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan='10'>
+                            <div style="height: 350px; overflow: auto">
+                                <asp:Repeater ID='rpt_type' runat="Server">
+                                    <HeaderTemplate>
+                                        <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
+                                            <tr class="tableTitle">
+                                                <th>
+                                                    序号
+                                                </th>
+                                                <th>
+                                                    任务号
+                                                </th>
+                                                <th>
+                                                    合同号
+                                                </th>
+                                                <th>
+                                                    项目名称
+                                                </th>
+                                                <th>
+                                                    设备名称
+                                                </th>
+                                                <th>
+                                                    预算总额
+                                                </th>
+                                                <th>
+                                                    材料费
+                                                </th>
+                                                <th>
+                                                    人工费
+                                                </th>
+                                                <th>
+                                                    分包费
+                                                </th>
+                                                <th>
+                                                    外协费
+                                                </th>
+                                                <th>
+                                                    操作
+                                                </th>
+                                            </tr>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <tr align="center" class="baseGadget" id="row" runat="Server" onmouseover="this.className='highlight'"
+                                            onmouseout="this.className='baseGadget'" height="30px">
+                                            <td>
+                                                <%#Container.ItemIndex + 1%>
+                                            </td>
+                                            <td>
+                                                <%#Eval("task_code").ToString()%>
+                                            </td>
+                                            <td>
+                                                <%#Eval("contract_code").ToString()%>
+                                            </td>
+                                            <td>
+                                                <%#Eval("project_name").ToString()%>
+                                            </td>
+                                            <td>
+                                                <%#Eval("equipment_name").ToString()%>
+                                            </td>
+                                            <td>
+                                                <%#Eval("c_total_task_budget").ToString()%>
+                                            </td>
+                                            <td class='number'>
+                                                <%#Eval("total_material_budget").ToString()%>
+                                            </td>
+                                            <td class='number'>
+                                                <%#Eval("direct_labour_budget").ToString()%>
+                                            </td>
+                                            <td class='number'>
+                                                <%#Eval("sub_teamwork_budget").ToString()%>
+                                            </td>
+                                            <td class='number'>
+                                                <%#Eval("cooperative_product_budget").ToString()%>
+                                            </td>
+                                            <td>
+                                                <asp:HyperLink ID="HyperLink1" NavigateUrl='<%#"ys_task_budget_detail.aspx?tsak_code="+Eval("task_code").ToString()%>'
+                                                    Target="_blank" runat="server">
+                                                    <asp:Image ID="Image2" ImageUrl="~/assets/images/res.gif" border="0" hspace="2" align="absmiddle"
+                                                        runat="server" />
+                                                    查看</asp:HyperLink>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </table>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                                <asp:Panel ID="pal_no_type" runat="server" Visible="false">
+                                    <div style="margin-top: 150px; color: red; font-size: large">
+                                        暂无同类型且已完结的任务号</div>
+                                </asp:Panel>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </asp:TabPanel>
+        <%--分工与反馈--%>
+        <asp:TabPanel ID="TabPanel8" runat="server" HeaderText="分工与反馈">
+            <ContentTemplate>
+                <asp:Panel ID="Panel1" runat="server">
+                    <table>
+                        <tr>
+                            <th colspan='8'>
+                                <h2>
+                                    生产部反馈</h2>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                人 &nbsp;工 费：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox1" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td colspan='2'>
+                                <asp:TextBox ID="TextBox2" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label2" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="ddl_labour_user" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button1" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                分 &nbsp;包 费：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox3" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td colspan='2'>
+                                <asp:TextBox ID="TextBox8" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label3" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList1" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button2" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                外 &nbsp;协 费：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox9" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td colspan='2'>
+                                <asp:TextBox ID="TextBox10" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label4" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList2" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button3" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan='8'>
+                                <h2>
+                                    采购部反馈</h2>
+                            </th>
+                        </tr>
+                         <tr>
+                            <td>
+                                材料费合计：
+                            </td>
+                            <td>
+                                <asp:Label ID="Label17" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                材料费参考值合计：
+                            </td>
+                            <td>
+                                <asp:Label ID="Label18" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                黑色金属：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox11" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox12" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                参考值：
+                                <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label5" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList3" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button4" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                外 &nbsp;购 件：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox13" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox14" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                参考值：
+                                <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label8" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList4" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button5" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                油漆涂料：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox15" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox16" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                参考值：
+                                <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label10" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList5" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button6" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                电器电料：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox17" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox18" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                参考值：
+                                <asp:Label ID="Label11" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label12" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList6" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button7" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                铸 &nbsp;锻 件：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox19" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox20" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                参考值：
+                                <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label14" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList7" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button8" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                其他材料：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox21" runat="server" class='number'></asp:TextBox>
+                                元
+                            </td>
+                            <td>
+                                备 注：
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBox22" runat="server" Width='300px'></asp:TextBox>
+                            </td>
+                            <td>
+                                参考值：
+                                <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
+                            </td>
+                            <td>
+                                反馈时间：
+                                <asp:Label ID="Label16" runat="server">dd</asp:Label>
+                            </td>
+                            <td>
+                                反馈人：
+                                <asp:DropDownList ID="DropDownList8" runat="server">
+                                </asp:DropDownList>
+                            </td>
+                            <th>
+                                <asp:Button ID="Button9" runat="server" Text=" 确 定 " />
+                            </th>
+                        </tr>
+                       
+                    </table>
+                </asp:Panel>
+                <asp:Panel ID="Panel2" runat="server">
+                </asp:Panel>
             </ContentTemplate>
         </asp:TabPanel>
         <%--黑色金属明细--%>
         <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="黑色金属明细">
             <ContentTemplate>
-                <div style="height: 400px; overflow: auto">
+                <div style="height: 450px; overflow: auto">
                     <asp:Repeater ID='rpt_ferrous' runat="Server">
                         <HeaderTemplate>
                             <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
@@ -88,10 +523,10 @@
                                         需用数量
                                     </th>
                                     <th>
-                                        历史单价（元）
+                                        参考单价（元）
                                     </th>
                                     <th>
-                                        预计总价（元）
+                                        参考总价（元）
                                     </th>
                                 </tr>
                         </HeaderTemplate>
@@ -116,13 +551,13 @@
                                 <td>
                                     <%#Eval("unit").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("amount").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("unit_price").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("c_total_cost").ToString()%>
                                 </td>
                             </tr>
@@ -132,37 +567,16 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:Panel ID="pal_no_ferrous" runat="server" Visible="false">
-                        <div style="margin: 180px 450px 200px; color: red; font-size: large">
-                            该任务号目前没有此类物料，部门反馈请填写 0</div>
+                        <div style="margin: 150px 450px 200px; color: red; font-size: large">
+                            该任务号目前没有此类物料，采购反馈请填写 0</div>
                     </asp:Panel>
                 </div>
-                <table width="100%" style="margin-top: 8px; font-size: xx-large">
-                    <tr>
-                        <td>
-                            黑色金属历史参考：<asp:Label ID="lb_ferrous_his" runat="server"></asp:Label>
-                            元
-                        </td>
-                        <td>
-                            黑色金属部门反馈：<asp:TextBox ID="txt_ferrous_dep" runat="server"></asp:TextBox>
-                            元
-                        </td>
-                        <td>
-                            反馈人：<asp:Label ID="lb_ferrous_user" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            反馈时间：<asp:Label ID="lb_ferrous_end_time" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_ferrous_submit" runat="server" Text=" 提 交 " />
-                        </td>
-                    </tr>
-                </table>
             </ContentTemplate>
         </asp:TabPanel>
         <%--外购件明细--%>
         <asp:TabPanel ID="TabPanel3" runat="server" HeaderText="外购件明细">
             <ContentTemplate>
-                <div style="height: 400px; overflow: auto">
+                <div style="height: 450px; overflow: auto">
                     <asp:Repeater ID='rpt_purchase' runat="Server">
                         <HeaderTemplate>
                             <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
@@ -189,10 +603,10 @@
                                         需用数量
                                     </th>
                                     <th>
-                                        历史单价（元）
+                                        参考单价（元）
                                     </th>
                                     <th>
-                                        预计总价（元）
+                                        参考总价（元）
                                     </th>
                                 </tr>
                         </HeaderTemplate>
@@ -217,13 +631,13 @@
                                 <td>
                                     <%#Eval("unit").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td>
                                     <%#Eval("amount").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("unit_price").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("c_total_cost").ToString()%>
                                 </td>
                             </tr>
@@ -233,37 +647,16 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:Panel ID="pal_no_purchase" runat="server" Visible="false">
-                        <div style="margin: 180px 450px 200px; color: red; font-size: large">
-                            该任务号目前没有此类物料，部门反馈请填写 0</div>
+                        <div style="margin: 150px 450px 200px; color: red; font-size: large">
+                            该任务号目前没有此类物料，采购反馈请填写 0</div>
                     </asp:Panel>
                 </div>
-                <table width="100%" style="margin-top: 8px; font-size: xx-large">
-                    <tr>
-                        <td>
-                            外购件历史参考：<asp:Label ID="lb_purchase_his" runat="server"></asp:Label>
-                            元
-                        </td>
-                        <td>
-                            外购件部门反馈：<asp:TextBox ID="txt_purchase_dep" runat="server"></asp:TextBox>
-                            元
-                        </td>
-                        <td>
-                            反馈人：<asp:Label ID="lb_purchase_user" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            反馈时间：<asp:Label ID="lb_purchase_endtime" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_purchase_submit" runat="server" Text=" 提 交 " />
-                        </td>
-                    </tr>
-                </table>
             </ContentTemplate>
         </asp:TabPanel>
         <%--油漆涂料明细--%>
         <asp:TabPanel ID="TabPanel4" runat="server" HeaderText="油漆涂料明细">
             <ContentTemplate>
-                <div style="height: 400px; overflow: auto">
+                <div style="height: 450px; overflow: auto">
                     <asp:Repeater ID='rpt_paint' runat="Server">
                         <HeaderTemplate>
                             <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
@@ -290,10 +683,10 @@
                                         需用数量
                                     </th>
                                     <th>
-                                        历史单价（元）
+                                        参考单价（元）
                                     </th>
                                     <th>
-                                        预计总价（元）
+                                        参考总价（元）
                                     </th>
                                 </tr>
                         </HeaderTemplate>
@@ -318,13 +711,13 @@
                                 <td>
                                     <%#Eval("unit").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("amount").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("unit_price").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("c_total_cost").ToString()%>
                                 </td>
                             </tr>
@@ -334,37 +727,16 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:Panel ID="pal_no_paint" runat="server" Visible="false">
-                        <div style="margin: 180px 450px 200px; color: red; font-size: large">
-                            该任务号目前没有此类物料，部门反馈请填写 0</div>
+                        <div style="margin: 150px 450px 200px; color: red; font-size: large">
+                            该任务号目前没有此类物料，采购反馈请填写 0</div>
                     </asp:Panel>
                 </div>
-                <table width="100%" style="margin-top: 8px; font-size: xx-large">
-                    <tr>
-                        <td>
-                            油漆涂料历史参考：<asp:Label ID="lb_paint_his" runat="server"></asp:Label>
-                            元
-                        </td>
-                        <td>
-                            油漆涂料部门反馈：<asp:TextBox ID="txt_paint_dep" runat="server"></asp:TextBox>
-                            元
-                        </td>
-                        <td>
-                            反馈人：<asp:Label ID="lb_paint_user" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            反馈时间：<asp:Label ID="lb_paint_edntime" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_paint_submit" runat="server" Text=" 提 交 " />
-                        </td>
-                    </tr>
-                </table>
             </ContentTemplate>
         </asp:TabPanel>
         <%--电器电料明细--%>
         <asp:TabPanel ID="TabPanel5" runat="server" HeaderText="电器电料明细">
             <ContentTemplate>
-                <div style="height: 400px; overflow: auto">
+                <div style="height: 450px; overflow: auto">
                     <asp:Repeater ID='rpt_electrical' runat="Server">
                         <HeaderTemplate>
                             <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
@@ -391,10 +763,10 @@
                                         需用数量
                                     </th>
                                     <th>
-                                        历史单价（元）
+                                        参考单价（元）
                                     </th>
                                     <th>
-                                        预计总价（元）
+                                        参考总价（元）
                                     </th>
                                 </tr>
                         </HeaderTemplate>
@@ -419,13 +791,13 @@
                                 <td>
                                     <%#Eval("unit").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("amount").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("unit_price").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("c_total_cost").ToString()%>
                                 </td>
                             </tr>
@@ -435,37 +807,16 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:Panel ID="pal_no_electrical" runat="server" Visible="false">
-                        <div style="margin: 180px 450px 200px; color: red; font-size: large">
-                            该任务号目前没有此类物料，部门反馈请填写 0</div>
+                        <div style="margin: 150px 450px 200px; color: red; font-size: large">
+                            该任务号目前没有此类物料，采购反馈请填写 0</div>
                     </asp:Panel>
                 </div>
-                <table width="100%" style="margin-top: 8px; font-size: xx-large">
-                    <tr>
-                        <td>
-                            电器电料历史参考：<asp:Label ID="lb_electrical_his" runat="server"></asp:Label>
-                            元
-                        </td>
-                        <td>
-                            电器电料部门反馈：<asp:TextBox ID="txt_electrical_dep" runat="server"></asp:TextBox>
-                            元
-                        </td>
-                        <td>
-                            反馈人：<asp:Label ID="lb_electrical_user" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            反馈时间：<asp:Label ID="lb__electrical_endtime" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_electrical_submit" runat="server" Text=" 提 交 " />
-                        </td>
-                    </tr>
-                </table>
             </ContentTemplate>
         </asp:TabPanel>
         <%--铸锻件明细--%>
         <asp:TabPanel ID="TabPanel6" runat="server" HeaderText="铸锻件明细">
             <ContentTemplate>
-                <div style="height: 400px; overflow: auto">
+                <div style="height: 450px; overflow: auto">
                     <asp:Repeater ID='rpt_casting' runat="Server">
                         <HeaderTemplate>
                             <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
@@ -495,10 +846,10 @@
                                         单件重量（kg）
                                     </th>
                                     <th>
-                                        历史单价（元/kg）
+                                        参考单价（元/kg）
                                     </th>
                                     <th>
-                                        预计总价（元）
+                                        参考总价（元）
                                     </th>
                                 </tr>
                         </HeaderTemplate>
@@ -523,16 +874,16 @@
                                 <td>
                                     <%#Eval("unit").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("amount").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("weight").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("unit_price").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("c_total_cost").ToString()%>
                                 </td>
                             </tr>
@@ -542,37 +893,16 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:Panel ID="pal_no_casting" runat="server" Visible="false">
-                        <div style="margin: 180px 450px 200px; color: red; font-size: large">
-                            该任务号目前没有此类物料，部门反馈请填写 0</div>
+                        <div style="margin: 150px 450px 200px; color: red; font-size: large">
+                            该任务号目前没有此类物料，采购反馈请填写 0</div>
                     </asp:Panel>
                 </div>
-                <table width="100%" style="margin-top: 8px; font-size: xx-large">
-                    <tr>
-                        <td>
-                            铸锻件历史参考：<asp:Label ID="lb_casting_his" runat="server"></asp:Label>
-                            元
-                        </td>
-                        <td>
-                            铸锻件部门反馈：<asp:TextBox ID="txt_casting_dep" runat="server"></asp:TextBox>
-                            元
-                        </td>
-                        <td>
-                            反馈人：<asp:Label ID="lb_casting_user" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            反馈时间：<asp:Label ID="lb_casting_endtime" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_casting_submit" runat="server" Text=" 提 交 " />
-                        </td>
-                    </tr>
-                </table>
             </ContentTemplate>
         </asp:TabPanel>
         <%--其他材料明细--%>
         <asp:TabPanel ID="TabPanel7" runat="server" HeaderText="其他材料明细">
             <ContentTemplate>
-                <div style="height: 400px; overflow: auto">
+                <div style="height: 450px; overflow: auto">
                     <asp:Repeater ID='rpt_other' runat="Server">
                         <HeaderTemplate>
                             <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
@@ -599,10 +929,10 @@
                                         需用数量
                                     </th>
                                     <th>
-                                        历史单价（元）
+                                        参考单价（元）
                                     </th>
                                     <th>
-                                        预计总价（元）
+                                        参考总价（元）
                                     </th>
                                 </tr>
                         </HeaderTemplate>
@@ -627,13 +957,13 @@
                                 <td>
                                     <%#Eval("unit").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("amount").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("unit_price").ToString()%>
                                 </td>
-                                <td align="right">
+                                <td class='number'>
                                     <%#Eval("c_total_cost").ToString()%>
                                 </td>
                             </tr>
@@ -643,31 +973,10 @@
                         </FooterTemplate>
                     </asp:Repeater>
                     <asp:Panel ID="pal_no_other" runat="server" Visible="false">
-                        <div style="margin: 180px 450px 200px; color: red; font-size: large">
-                            该任务号目前没有此类物料，部门反馈请填写 0</div>
+                        <div style="margin: 150px 450px 200px; color: red; font-size: large">
+                            该任务号目前没有此类物料，采购反馈请填写 0</div>
                     </asp:Panel>
                 </div>
-                <table width="100%" style="margin-top: 8px; font-size: xx-large">
-                    <tr>
-                        <td>
-                            其他材料历史参考：<asp:Label ID="lb_other_his" runat="server"></asp:Label>
-                            元
-                        </td>
-                        <td>
-                            其他材料部门反馈：<asp:TextBox ID="txt_other_dep" runat="server"></asp:TextBox>
-                            元
-                        </td>
-                        <td>
-                            反馈人：<asp:Label ID="lb_other_user" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            反馈时间：<asp:Label ID="lb_other_endtime" runat="server"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_other_submit" runat="server" Text=" 提 交 " />
-                        </td>
-                    </tr>
-                </table>
             </ContentTemplate>
         </asp:TabPanel>
     </asp:TabContainer>

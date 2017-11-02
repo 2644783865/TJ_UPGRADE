@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZCZJ_DPF.YS_Data.UI {
+namespace ZCZJ_DPF.YS_Data {
     
     
-    public partial class ys_task_budget_list {
+    public partial class ys_contract_budget_list {
         
         /// <summary>
         /// ControlFinder 控件。
@@ -21,42 +21,6 @@ namespace ZCZJ_DPF.YS_Data.UI {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ControlFinder;
-        
-        /// <summary>
-        /// pal_contract 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pal_contract;
-        
-        /// <summary>
-        /// lb_contract_code 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_contract_code;
-        
-        /// <summary>
-        /// pal_search 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pal_search;
-        
-        /// <summary>
-        /// txt_task_code 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_task_code;
         
         /// <summary>
         /// txt_contract_code 控件。
@@ -77,15 +41,6 @@ namespace ZCZJ_DPF.YS_Data.UI {
         protected global::System.Web.UI.WebControls.TextBox txt_project_name;
         
         /// <summary>
-        /// ddl_state 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_state;
-        
-        /// <summary>
         /// btn_search 控件。
         /// </summary>
         /// <remarks>
@@ -104,13 +59,13 @@ namespace ZCZJ_DPF.YS_Data.UI {
         protected global::System.Web.UI.WebControls.Panel pal_container;
         
         /// <summary>
-        /// rpt_task_list 控件。
+        /// rpt_contract_list 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt_task_list;
+        protected global::System.Web.UI.WebControls.Repeater rpt_contract_list;
         
         /// <summary>
         /// UCPaging 控件。

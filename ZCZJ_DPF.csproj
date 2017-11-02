@@ -7824,16 +7824,22 @@
     <Compile Include="top.aspx.designer.cs">
       <DependentUpon>top.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\BLL\ys_contract_budget_list.cs" />
     <Compile Include="YS_Data\BLL\ys_task_budget_detail.cs" />
     <Compile Include="YS_Data\BLL\ys_task_budget_list.cs" />
-    <Compile Include="YS_Data\DAL\ys_task_budget_detail.cs" />
-    <Compile Include="YS_Data\DAL\ys_task_budget_list.cs" />
     <Compile Include="YS_Data\ExportDataFromYS.cs" />
     <Compile Include="YS_Data\Model\ys_line.cs" />
     <Compile Include="YS_Data\Model\ys_material_history_info.cs" />
     <Compile Include="YS_Data\Model\ys_node_definition.cs" />
     <Compile Include="YS_Data\Model\ys_node_instance.cs" />
     <Compile Include="YS_Data\Model\ys_task_budget.cs" />
+    <Compile Include="YS_Data\ys_contract_budget_list.aspx.cs">
+      <DependentUpon>ys_contract_budget_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\ys_contract_budget_list.aspx.designer.cs">
+      <DependentUpon>ys_contract_budget_list.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\ys_task_budget_detail.aspx.cs">
       <DependentUpon>ys_task_budget_detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -12684,6 +12690,7 @@
     <Content Include="YS_Data\pink.jpg" />
     <Content Include="YS_Data\Red.jpg" />
     <Content Include="YS_Data\Sienna.jpg" />
+    <Content Include="YS_Data\ys_contract_budget_list.aspx" />
     <Content Include="YS_Data\ys_task_budget_detail.aspx" />
     <Content Include="YS_Data\ys_task_budget_list.aspx" />
     <Content Include="YS_Data\update.jpg" />

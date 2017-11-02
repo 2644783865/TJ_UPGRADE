@@ -34,15 +34,15 @@ namespace ZCZJ_DPF.YS_Data
 
         protected void bindRepeater()
         {
-            bll.bindRepeater(rpt_ferrous, pal_no_ferrous, task_code, "material_code like '01.07%'");
-            bll.bindRepeater(rpt_purchase, pal_no_purchase, task_code, "material_code like '01.11%'");
-            bll.bindRepeater(rpt_paint, pal_no_paint, task_code, "material_code like '01.15%'");
-            bll.bindRepeater(rpt_electrical, pal_no_electrical, task_code, "material_code like '01.03%'");
-            bll.bindRepeater(rpt_casting, pal_no_casting, task_code, "material_code like '01.08%' or material_code like '01.09%'");
-            bll.bindRepeater(rpt_other, pal_no_other, task_code, @"material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
+            bll.bindMaterialRepeater(rpt_ferrous, pal_no_ferrous, task_code, "material_code like '01.07%'");
+            bll.bindMaterialRepeater(rpt_purchase, pal_no_purchase, task_code, "material_code like '01.11%'");
+            bll.bindMaterialRepeater(rpt_paint, pal_no_paint, task_code, "material_code like '01.15%'");
+            bll.bindMaterialRepeater(rpt_electrical, pal_no_electrical, task_code, "material_code like '01.03%'");
+            bll.bindMaterialRepeater(rpt_casting, pal_no_casting, task_code, "material_code like '01.08%' or material_code like '01.09%'");
+            bll.bindMaterialRepeater(rpt_other, pal_no_other, task_code, @"material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
                   AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%'");
 
-            
+            bll.bindTaskRepeater(rpt_type, pal_no_type, task_code,"");
         }
     }
 }
