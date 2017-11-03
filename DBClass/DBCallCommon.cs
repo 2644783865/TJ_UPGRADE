@@ -31,7 +31,10 @@ namespace ZCZJ_DPF
             return ((string)(configurationAppSettings.GetValue(name, typeof(string))));
         }
 
-        //打开数据库连接
+        /// <summary>
+        /// 打开数据库连接
+        /// </summary>
+        /// <param name="conn"></param>
         public static void openConn(SqlConnection conn)
         {
             if (conn.State == ConnectionState.Closed)
@@ -44,7 +47,10 @@ namespace ZCZJ_DPF
             }
         }
 
-        // 关闭数据库连接    
+        /// <summary>
+        /// 关闭数据库连接    
+        /// </summary>
+        /// <param name="conn"></param>
         public static void closeConn(SqlConnection conn)
         {
             if (conn.State == ConnectionState.Open)
@@ -68,10 +74,12 @@ namespace ZCZJ_DPF
 
             return;
         }
+
+
         public static void AddParameterToStoredProc(SqlCommand cmd, string paramName, string paramValue,
             SqlDbType paramType, int paramSize)
         {
-            SqlParameter sqlParam = new SqlParameter();            
+            SqlParameter sqlParam = new SqlParameter();
 
             sqlParam.ParameterName = paramName;
             sqlParam.SqlDbType = paramType;
@@ -85,7 +93,7 @@ namespace ZCZJ_DPF
 
             return;
         }
-        
+
 
         public static DataTable GetDataTableUsingCmd(SqlCommand cmd)
         {
@@ -120,6 +128,12 @@ namespace ZCZJ_DPF
             return dr;
         }
 
+
+        /// <summary>
+        /// 使用sql语句获取SqlDataReader
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <returns></returns>
         public static SqlDataReader GetDRUsingSqlText(string sqlText)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -138,6 +152,13 @@ namespace ZCZJ_DPF
             }
         }
 
+
+        /// <summary>
+        /// 使用ql语句获取SqlDataReader
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <param name="time">等待时间，单位：毫秒</param>
+        /// <returns></returns>
         public static SqlDataReader GetDRUsingSqlText(string sqlText, int time)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -157,7 +178,11 @@ namespace ZCZJ_DPF
             }
         }
 
-        //参考代码
+        /// <summary>
+        /// 使用sql语句获取SqlDataReader的参考代码
+        /// </summary>
+        /// <param name="MySQL"></param>
+        /// <returns></returns>
         public SqlDataReader GetSqlReader(String MySQL)
         {
             //// 数据库连接参数(对客户端应用程序配置文件的访问)
@@ -235,7 +260,12 @@ namespace ZCZJ_DPF
                 }
             }
         }
-        //
+
+        /// <summary>
+        /// 使用sql语句获取DataTable
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <returns></returns>
         public static DataTable GetDTUsingSqlText(string sqlText)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -261,8 +291,11 @@ namespace ZCZJ_DPF
             }
         }
 
-              
-        //执行SQL语句，不返回值
+
+        /// <summary>
+        ///执行SQL语句，不返回值
+        /// </summary>
+        /// <param name="sqlText"></param>
         public static void ExeSqlText(string sqlText)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -286,7 +319,11 @@ namespace ZCZJ_DPF
             }
         }
 
-        //执行SQL语句，返回受影响行数值
+        /// <summary>
+        /// 执行SQL语句，返回受影响行数值
+        /// </summary>
+        /// <param name="sqlText"></param>
+        /// <returns></returns>
         public static int ExeSqlTextGetInt(string sqlText)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -310,7 +347,10 @@ namespace ZCZJ_DPF
             }
         }
 
-        //执行事务
+        /// <summary>
+        /// 执行事务
+        /// </summary>
+        /// <param name="sqlTexts"></param>
         public static void ExecuteTrans(List<string> sqlTexts)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -343,11 +383,15 @@ namespace ZCZJ_DPF
             }
         }
 
-        //绑定操作
 
+        /// <summary>
+        /// 绑定操作
+        /// </summary>
+        /// <param name="cbl"></param>
+        /// <param name="sql"></param>
         public static void FillCheckBoxList(CheckBoxList cbl, string sql)
         {
-            DataSet dsDpl = new DataSet();            
+            DataSet dsDpl = new DataSet();
             dsDpl = FillDataSet(sql);
             cbl.Items.Clear();
 
@@ -407,6 +451,11 @@ namespace ZCZJ_DPF
             ddl.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// 绑定单选按钮组的数据源
+        /// </summary>
+        /// <param name="rbl"></param>
+        /// <param name="sql"></param>
         public static void FillRadioButtonList(RadioButtonList rbl, string sql)
         {
             DataSet dsDpl = new DataSet();
@@ -421,8 +470,8 @@ namespace ZCZJ_DPF
                 }
             }
         }
-        
-        
+
+
         /// <summary>
         ///  从数据库中读出记录并填充到repeater  </summary>
         /// <param name="dpl">Repeater控件名</param> 
@@ -432,14 +481,14 @@ namespace ZCZJ_DPF
             DataSet dsDpl = new DataSet();
             dsDpl = FillDataSet(sqlText);
             rep.DataSource = dsDpl;
-            rep.DataBind();            
-        } 
+            rep.DataBind();
+        }
 
         /// <summary>
         ///  将Dataset中的数据绑定到GridView中  </summary>
         /// <param name="ds">dataset</param> 
         /// <param name="gv">gridview</param>    
-        public static void BindGridView(GridView gv,string sqlText)
+        public static void BindGridView(GridView gv, string sqlText)
         {
             DataSet ds = new DataSet();
             ds = FillDataSet(sqlText);
@@ -603,7 +652,7 @@ namespace ZCZJ_DPF
                 }
             }
         }
-       
+
 
         ///<summary>以分块的方式下载文件</summary>
         ///<param name="fileName">客户端保存的文件名</param>
@@ -706,7 +755,7 @@ namespace ZCZJ_DPF
             }
             return i;
         }
-        
+
 
         //通过cookie记录用户信息
         public static void Cookie(String userName)

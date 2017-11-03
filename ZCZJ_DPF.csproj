@@ -7832,7 +7832,8 @@
     <Compile Include="YS_Data\Model\ys_material_history_info.cs" />
     <Compile Include="YS_Data\Model\ys_node_definition.cs" />
     <Compile Include="YS_Data\Model\ys_node_instance.cs" />
-    <Compile Include="YS_Data\Model\ys_task_budget.cs" />
+    <Compile Include="YS_Data\Model\TaskBudget.cs" />
+    <Compile Include="YS_Data\Service\BudgetFlowEngine.cs" />
     <Compile Include="YS_Data\ys_contract_budget_list.aspx.cs">
       <DependentUpon>ys_contract_budget_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -12759,7 +12760,6 @@
     <Folder Include="Service References\App_Data\" />
     <Folder Include="SM_Data\UploadFile\" />
     <Folder Include="staff_images\" />
-    <Folder Include="YS_Data\Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
