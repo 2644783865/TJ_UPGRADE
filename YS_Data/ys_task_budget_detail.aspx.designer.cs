@@ -59,6 +59,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_project_name;
         
         /// <summary>
+        /// Label1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// tab_Detail 控件。
         /// </summary>
         /// <remarks>
@@ -122,6 +131,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.TextBox txt_coopreative_budget;
         
         /// <summary>
+        /// Button10 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button10;
+        
+        /// <summary>
         /// rpt_type 控件。
         /// </summary>
         /// <remarks>
@@ -149,15 +167,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::AjaxControlToolkit.TabPanel TabPanel8;
         
         /// <summary>
-        /// Panel1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-        
-        /// <summary>
         /// txt_labour_dep 控件。
         /// </summary>
         /// <remarks>
@@ -165,15 +174,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_labour_dep;
-        
-        /// <summary>
-        /// txt_node_labour_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_labour_dep_note;
         
         /// <summary>
         /// lb_node_labour_dep_endtime 控件。
@@ -185,13 +185,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_labour_dep_endtime;
         
         /// <summary>
-        /// ddl_node_labour_dep_user_name 控件。
+        /// txt_node_labour_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_labour_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_labour_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_labour_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_labour_dep_user_id;
+        
+        /// <summary>
+        /// img_labour 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_labour;
         
         /// <summary>
         /// Button1 控件。
@@ -203,6 +221,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
+        /// txt_node_labour_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_labour_dep_note;
+        
+        /// <summary>
         /// txt_teamwork_dep 控件。
         /// </summary>
         /// <remarks>
@@ -210,15 +237,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_teamwork_dep;
-        
-        /// <summary>
-        /// txt_node_teamwork_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_teamwork_dep_note;
         
         /// <summary>
         /// lb_node_teamwork_dep_endtime 控件。
@@ -230,13 +248,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_teamwork_dep_endtime;
         
         /// <summary>
-        /// ddl_node_teamwork_dep_user_name 控件。
+        /// txt_node_teamwork_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_teamwork_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_teamwork_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_teamwork_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_teamwork_dep_user_id;
+        
+        /// <summary>
+        /// img_teamwork 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_teamwork;
         
         /// <summary>
         /// Button2 控件。
@@ -248,6 +284,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
+        /// txt_node_teamwork_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_teamwork_dep_note;
+        
+        /// <summary>
         /// txt_cooperative_dep 控件。
         /// </summary>
         /// <remarks>
@@ -255,15 +300,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_cooperative_dep;
-        
-        /// <summary>
-        /// txt_node_cooperative_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_cooperative_dep_note;
         
         /// <summary>
         /// lb_node_cooperative_dep_endtime 控件。
@@ -275,13 +311,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_cooperative_dep_endtime;
         
         /// <summary>
-        /// ddl_node_cooperative_dep_user_name 控件。
+        /// txt_node_cooperative_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_cooperative_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_cooperative_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_cooperative_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_cooperative_dep_user_id;
+        
+        /// <summary>
+        /// img_cooperative 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_cooperative;
         
         /// <summary>
         /// Button3 控件。
@@ -293,22 +347,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// lb_c_total_material_dep 控件。
+        /// txt_node_cooperative_dep_note 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_c_total_material_dep;
-        
-        /// <summary>
-        /// lb_c_total_material_his 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_c_total_material_his;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_cooperative_dep_note;
         
         /// <summary>
         /// txt_ferrous_dep 控件。
@@ -318,15 +363,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_ferrous_dep;
-        
-        /// <summary>
-        /// txt_node_ferrous_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_ferrous_dep_note;
         
         /// <summary>
         /// lb_ferrous_his 控件。
@@ -347,13 +383,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_ferrous_dep_endtime;
         
         /// <summary>
-        /// ddl_node_ferrous_dep_user_name 控件。
+        /// txt_node_ferrous_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_ferrous_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_ferrous_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_ferrous_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_ferrous_dep_user_id;
+        
+        /// <summary>
+        /// img_ferrous 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_ferrous;
         
         /// <summary>
         /// Button4 控件。
@@ -365,6 +419,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
+        /// txt_node_ferrous_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_ferrous_dep_note;
+        
+        /// <summary>
         /// txt_purchasepart_dep 控件。
         /// </summary>
         /// <remarks>
@@ -372,15 +435,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_purchasepart_dep;
-        
-        /// <summary>
-        /// txt_node_purchasepart_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_purchasepart_dep_note;
         
         /// <summary>
         /// lb_purchasepart_his 控件。
@@ -401,13 +455,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_purchasepart_dep_endtime;
         
         /// <summary>
-        /// ddl_node_purchasepart_dep_user_name 控件。
+        /// txt_node_purchasepart_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_purchasepart_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_purchasepart_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_purchasepart_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_purchasepart_dep_user_id;
+        
+        /// <summary>
+        /// img_purchasepart 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_purchasepart;
         
         /// <summary>
         /// Button5 控件。
@@ -419,6 +491,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button5;
         
         /// <summary>
+        /// txt_node_purchasepart_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_purchasepart_dep_note;
+        
+        /// <summary>
         /// txt_paint_dep 控件。
         /// </summary>
         /// <remarks>
@@ -426,15 +507,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_paint_dep;
-        
-        /// <summary>
-        /// txt_node_paint_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_paint_dep_note;
         
         /// <summary>
         /// lb_paint_his 控件。
@@ -455,13 +527,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_paint_dep_endtime;
         
         /// <summary>
-        /// ddl_node_paint_dep_user_name 控件。
+        /// txt_node_paint_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_paint_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_paint_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_paint_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_paint_dep_user_id;
+        
+        /// <summary>
+        /// img_paint 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_paint;
         
         /// <summary>
         /// Button6 控件。
@@ -473,6 +563,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button6;
         
         /// <summary>
+        /// txt_node_paint_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_paint_dep_note;
+        
+        /// <summary>
         /// txt_electrical_dep 控件。
         /// </summary>
         /// <remarks>
@@ -480,15 +579,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_electrical_dep;
-        
-        /// <summary>
-        /// txt_node_electrical_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_electrical_dep_note;
         
         /// <summary>
         /// lb_electrical_his 控件。
@@ -509,13 +599,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_electrical_dep_endtime;
         
         /// <summary>
-        /// ddl_node_electrical_dep_user_name 控件。
+        /// txt_node_electrical_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_electrical_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_electrical_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_electrical_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_electrical_dep_user_id;
+        
+        /// <summary>
+        /// img_electrical 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_electrical;
         
         /// <summary>
         /// Button7 控件。
@@ -527,6 +635,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button7;
         
         /// <summary>
+        /// txt_node_electrical_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_electrical_dep_note;
+        
+        /// <summary>
         /// txt_casting_dep 控件。
         /// </summary>
         /// <remarks>
@@ -534,15 +651,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_casting_dep;
-        
-        /// <summary>
-        /// txt_node_casting_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_casting_dep_note;
         
         /// <summary>
         /// lb_casting_his 控件。
@@ -563,13 +671,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_casting_dep_endtime;
         
         /// <summary>
-        /// ddl_node_casting_dep_user_name 控件。
+        /// txt_node_casting_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_casting_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_casting_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_casting_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_casting_dep_user_id;
+        
+        /// <summary>
+        /// img_casting 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_casting;
         
         /// <summary>
         /// Button8 控件。
@@ -581,6 +707,15 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button8;
         
         /// <summary>
+        /// txt_node_casting_dep_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_casting_dep_note;
+        
+        /// <summary>
         /// txt_othermat_dep 控件。
         /// </summary>
         /// <remarks>
@@ -588,15 +723,6 @@ namespace ZCZJ_DPF.YS_Data {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_othermat_dep;
-        
-        /// <summary>
-        /// txt_node_othermat_dep_note 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_node_othermat_dep_note;
         
         /// <summary>
         /// lb_othermat_his 控件。
@@ -617,13 +743,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Label lb_node_othermat_dep_endtime;
         
         /// <summary>
-        /// ddl_node_othermat_dep_user_name 控件。
+        /// txt_node_othermat_dep_user_name 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_node_othermat_dep_user_name;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_othermat_dep_user_name;
+        
+        /// <summary>
+        /// txt_node_othermat_dep_user_id 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_othermat_dep_user_id;
+        
+        /// <summary>
+        /// img_othermat 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image img_othermat;
         
         /// <summary>
         /// Button9 控件。
@@ -635,13 +779,148 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button Button9;
         
         /// <summary>
-        /// Panel2 控件。
+        /// txt_node_othermat_dep_note 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.TextBox txt_node_othermat_dep_note;
+        
+        /// <summary>
+        /// lb_c_total_material_dep 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_c_total_material_dep;
+        
+        /// <summary>
+        /// lb_c_total_material_his 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_c_total_material_his;
+        
+        /// <summary>
+        /// TabPanel9 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel9;
+        
+        /// <summary>
+        /// lb_node_production_check_user_name 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_node_production_check_user_name;
+        
+        /// <summary>
+        /// rbl_production_check 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_production_check;
+        
+        /// <summary>
+        /// lb_node_production_check_endtime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_node_production_check_endtime;
+        
+        /// <summary>
+        /// txt_node_production_check_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_production_check_note;
+        
+        /// <summary>
+        /// lb_node_purchase_check_user_name 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_node_purchase_check_user_name;
+        
+        /// <summary>
+        /// rbl_purchase_check 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_purchase_check;
+        
+        /// <summary>
+        /// lb_node_purchase_check_endtime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_node_purchase_check_endtime;
+        
+        /// <summary>
+        /// txt_node_purchase_check_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_purchase_check_note;
+        
+        /// <summary>
+        /// lb_node_budget_check_user_name 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_node_budget_check_user_name;
+        
+        /// <summary>
+        /// rbl_budget_check 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_budget_check;
+        
+        /// <summary>
+        /// lb_node_budget_check_endtime 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_node_budget_check_endtime;
+        
+        /// <summary>
+        /// txt_node_budget_check_note 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_node_budget_check_note;
         
         /// <summary>
         /// TabPanel2 控件。
