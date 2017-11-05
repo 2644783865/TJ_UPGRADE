@@ -58,6 +58,29 @@
                 return true;
             }
         }
+        
+        function xr1() {
+            $("#hidPerson").val("person1");
+            SelPersons();
+        }
+
+        function xr2() {
+            $("#hidPerson").val("person2");
+            SelPersons();
+        }
+        
+        function savePick() {
+            var r = Save();
+            var id = $("#hidPerson").val();
+            if (id == "person1") {
+                $("#<%=txtTZD_SPR1.ClientID %>").val(r.st_name);
+            }
+            if (id == "person2") {
+                $("#<%=txtTZD_SPR2.ClientID %>").val(r.st_name);
+            }
+            $('#win').dialog('close');
+        }
+   
     </script>
 
     <asp:ToolkitScriptManager runat="server" ID="ToolkitScriptManager0">
@@ -477,4 +500,32 @@
             </ContentTemplate>
         </asp:TabPanel>
     </asp:TabContainer>
+    <div id="win" visible="false">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <strong>指定人员</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        按部门查询：
+                    </td>
+                    <td>
+                        <input id="dep" name="dept" value="07">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="width: 430px; height: 230px">
+            <table id="dg">
+            </table>
+        </div>
+    </div>
+    <div id="buttons" style="text-align: right" visible="false">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="savePick();">
+            保存</a> &nbsp;&nbsp;&nbsp; <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true"
+                onclick="javascript:$('#win').dialog('close')">取消</a> &nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton"
+                    data-options="iconCls:'icon-ok',plain:true" onclick="xiuGai();">修改</a>
+        <input id="hidPerson" type="hidden" value="" />
+    </div>
 </asp:Content>
