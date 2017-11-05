@@ -1132,6 +1132,16 @@ namespace ZCZJ_DPF.PC_Data
             HttpContext.Current.Response.Clear();
             //1.读取Excel到FileStream
 
+            //读取制单人部门的部长姓名
+            string sql = "select ST_NAME from  TBDS_STAFFINFO where ST_DEPID='" + dt.Rows[0]["depid"].ToString() + "' and ST_PD='0' and ST_POSITION LIKE '%01'";
+            System.Data.DataTable depBoss = DBCallCommon.GetDTUsingSqlText(sql);
+            string depBossName = "";
+            if (depBoss.Rows.Count > 0)
+            {
+                depBossName = depBoss.Rows[0]["ST_NAME"].ToString();
+            }
+
+
             using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("采购订单钢材类.xls")))
             {
                 IWorkbook wk = new HSSFWorkbook(fs);
@@ -1237,9 +1247,9 @@ namespace ZCZJ_DPF.PC_Data
                 //页脚信息
                 IRow row20 = sheet0.CreateRow(dt.Rows.Count + 20);
                 row20.CreateCell(1).SetCellValue("部门：");
-                row20.CreateCell(2).SetCellValue("采购部");
+                row20.CreateCell(2).SetCellValue(dt.Rows[0]["depnm"].ToString());
                 row20.CreateCell(5).SetCellValue("部长：");
-                row20.CreateCell(6).SetCellValue("高浩");
+                row20.CreateCell(6).SetCellValue(depBossName);
                 row20.CreateCell(8).SetCellValue("业务员：");
                 row20.CreateCell(9).SetCellValue(dt.Rows[0]["zdrnm"].ToString());
                 row20.CreateCell(11).SetCellValue("制单：");
@@ -1267,6 +1277,15 @@ namespace ZCZJ_DPF.PC_Data
             HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
             HttpContext.Current.Response.Clear();
             //1.读取Excel到FileStream
+
+            //读取制单人部门的部长姓名
+            string sql = "select ST_NAME from  TBDS_STAFFINFO where ST_DEPID='" + dt.Rows[0]["depid"].ToString() + "' and ST_PD='0' and ST_POSITION LIKE '%01'";
+            System.Data.DataTable depBoss = DBCallCommon.GetDTUsingSqlText(sql);
+            string depBossName = "";
+            if (depBoss.Rows.Count > 0)
+            {
+                depBossName = depBoss.Rows[0]["ST_NAME"].ToString();
+            }
 
             using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("采购订单非钢材类.xls")))
             {
@@ -1328,9 +1347,9 @@ namespace ZCZJ_DPF.PC_Data
                 //页脚信息
                 IRow row20 = sheet0.CreateRow(dt.Rows.Count + 20);
                 row20.CreateCell(1).SetCellValue("部门：");
-                row20.CreateCell(2).SetCellValue("采购部");
+                row20.CreateCell(2).SetCellValue(dt.Rows[0]["depnm"].ToString());
                 row20.CreateCell(5).SetCellValue("部长：");
-                row20.CreateCell(6).SetCellValue("高浩");
+                row20.CreateCell(6).SetCellValue(depBossName);
                 row20.CreateCell(8).SetCellValue("业务员：");
                 row20.CreateCell(9).SetCellValue(dt.Rows[0]["zdrnm"].ToString());
                 row20.CreateCell(11).SetCellValue("制单：");
