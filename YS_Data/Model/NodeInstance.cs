@@ -2,9 +2,9 @@
 
 namespace ZCZJ_DPF.YS_Data.Model
 {
-    public class ys_node_instance
+    public class NodeInstance
     {
-        public ys_node_instance() { }
+        public NodeInstance() { }
 
         #region Model
         /// <summary>
@@ -32,7 +32,7 @@ namespace ZCZJ_DPF.YS_Data.Model
         /// </summary>
         public DateTime end_time { get; set; }
         /// <summary>
-        /// 当前node实例的状态（1：未处理，2：已通过，3：已驳回，4：被驳回）
+        /// 当前node实例的状态（1：未处理，2：已通过，3：被驳回）
         /// </summary>
         public byte state { get; set; }
         /// <summary>

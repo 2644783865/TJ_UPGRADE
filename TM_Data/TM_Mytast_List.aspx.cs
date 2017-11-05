@@ -280,6 +280,8 @@ namespace ZCZJ_DPF.TM_Data
                 listsql.Add(getInsertIntoTaskBudgetTableSqltext(tsaId));//向任务预算表重新插入信息
                 DBCallCommon.ExecuteTrans(listsql);
                 listsql.Clear();
+                string[] ids=new string[] {"63"};//季凌云
+                BudgetFlowEngine.activeFollowNode(tsaId,"0",ids);//向node实例表中插入第一个实例
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');", true);
             }
             else

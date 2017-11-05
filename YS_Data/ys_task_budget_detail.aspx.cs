@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -23,12 +24,12 @@ namespace ZCZJ_DPF.YS_Data
         YS_Data.Model.TaskBudget tb;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            task_code = Request.QueryString["tsak_code"].ToString();
+            tb = new YS_Data.Model.TaskBudget(task_code);
 
             if (!IsPostBack)
             {
-                task_code = Request.QueryString["tsak_code"].ToString();
-                tb = new YS_Data.Model.TaskBudget(task_code);
+
                 bindControlerValue();
                 bindRepeater();
             }
@@ -39,7 +40,7 @@ namespace ZCZJ_DPF.YS_Data
         /// 绑定各个控件的值
         /// </summary>
         protected void bindControlerValue()
-        {            
+        {
             lb_task_code.Text = tb.task_code;
             lb_contract_code.Text = tb.contract_code;
             lb_project_name.Text = tb.project_name;
@@ -150,5 +151,23 @@ namespace ZCZJ_DPF.YS_Data
                   AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%'");
             bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, "");
         }
+
+        protected void btn_bugdet_submit_Click(object sender, EventArgs e)
+        {
+            tb.labour_budget = txt_labour_budget.Text.Trim();
+            tb.teamwork_budget = txt_teamwork_budget.Text.Trim();
+            tb.cooperative_budget = txt_coopreative_budget.Text.Trim();
+            tb.total_material_budget = txt_total_material_budget.Text.Trim();
+            
+            bll.finishNode("1", tb);
+            ((Button)sender).Visible = false;
+
+        }
+
+
+
+
+
+
     }
 }

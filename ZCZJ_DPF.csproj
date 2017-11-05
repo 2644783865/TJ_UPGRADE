@@ -7831,7 +7831,7 @@
     <Compile Include="YS_Data\Model\ys_line.cs" />
     <Compile Include="YS_Data\Model\ys_material_history_info.cs" />
     <Compile Include="YS_Data\Model\ys_node_definition.cs" />
-    <Compile Include="YS_Data\Model\ys_node_instance.cs" />
+    <Compile Include="YS_Data\Model\NodeInstance.cs" />
     <Compile Include="YS_Data\Model\TaskBudget.cs" />
     <Compile Include="YS_Data\Service\BudgetFlowEngine.cs" />
     <Compile Include="YS_Data\ys_contract_budget_list.aspx.cs">

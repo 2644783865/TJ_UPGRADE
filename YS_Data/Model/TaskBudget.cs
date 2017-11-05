@@ -2,7 +2,6 @@
 
 
 using System;
-using ZCZJ_DPF.YS_Data.Service;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -88,7 +87,7 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_budget_edit_end_time = dr1["end_time"].ToString();
                 this.node_budget_edit_note = dr1["note"].ToString();
                 this.node_budget_edit_state = dr1["state"].ToString();
-            }
+            }            
             #endregion
 
             #region 生产部长反馈分工
