@@ -38,6 +38,9 @@
 
     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </cc1:ToolkitScriptManager>
+    
+    <asp:Image ID="img_spin" runat="server" ImageUrl="~/Assets/images/ajax-loader2.gif" Visible="false" style="position:absolute;top:200px;left:400px;height:30px"/>
+  
     <div class="box-inner">
         <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
         <div class="box_right">

@@ -3,7 +3,7 @@
 $(function() {
     $('#win').show().dialog({
         title: '人员信息结构表',
-        width: 445,
+        width: 451,
         height: 350,
         closed: true,
         cache: false,
@@ -51,7 +51,7 @@ function SelPersons() {
         { checkbox: true },
         { field: 'st_name', title: '姓名', width: 60, align: 'center' },
         { field: 'st_gender', title: '性别', width: 50, align: 'center' },
-        { field: 'dep_name', title: '部门名称', align: 'center', width: 150 },
+        { field: 'dep_name', title: '部门名称', align: 'center', width: 150},
         { field: 'dep_position', title: '岗位名称', align: 'center', width: 100 },
         { field: 'st_id', align: 'center', hidden: true }
 

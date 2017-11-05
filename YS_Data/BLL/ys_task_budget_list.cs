@@ -26,7 +26,7 @@ namespace ZCZJ_DPF.YS_Data.BLL
         {            
             pager.TableName = " ys_task_budget ";
             pager.PrimaryKey = "task_budget_id";
-            pager.ShowFields = " task_code,contract_code,project_name,equipment_name,task_type,state,c_total_task_budget ";
+            pager.ShowFields = " task_code,contract_code,project_name,equipment_name as product_name,task_type,case when state='1' then '初步预算'when state='2' then '部门反馈'when state='3' then '财务调整'when state='4' then '预算审核' when state='5' then '编制完成' end  AS state,c_total_task_budget ";
             pager.StrWhere = this.getStrWhere(taskCode,contractCode,projectName,state);
             pager.OrderField = "start_time";
             pager.OrderType = 1;
@@ -43,7 +43,7 @@ namespace ZCZJ_DPF.YS_Data.BLL
         /// <returns>查询对象的where语句</returns>
         public string getStrWhere(string taskCode, string contractCode, string projectName,string state) 
         {
-            StringBuilder strWhere = new StringBuilder(" 1=1");            
+            StringBuilder strWhere = new StringBuilder(" 1=1 ");            
             if(!string.IsNullOrEmpty(taskCode))
             {
                 strWhere.Append("and task_code like '%"+taskCode+"%' ");
@@ -63,22 +63,6 @@ namespace ZCZJ_DPF.YS_Data.BLL
             return strWhere.ToString();
         }
 
-        /// <summary>
-        /// 翻译预算编制状态
-        /// </summary>
-        /// <param name="type">数据库查到的编制状态，是阿拉伯数字</param>
-        /// <returns>根据阿拉伯数字翻译后的编制状态</returns>
-        public string getTaskState(string type)
-        {
-            switch (type)
-            {
-                case "1": return "初步预算";
-                case "2": return "部门反馈";
-                case "3": return "预算调整";
-                case "4": return "预算审核";
-                case "5": return "编制完成";
-                default: return "";
-            }
-        }
+
     }
 }
