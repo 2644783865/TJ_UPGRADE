@@ -131,9 +131,12 @@ FROM {1} WHERE from_node_definition_id={2}) AND task_code='{3}';", TABLE_NODE_IN
             }
         }
 
-        public static void backToPreNode()
+        public static void backToPreNode(string task_code,string note,string node_definition_id, string inids)
         {
-
+            List<string> listsql=new List<string>();
+            listsql.Add(string.Format("UPDATE {0} SET end_time=GETDATE(),state=2,note='{1}' WHERE node_definition_id={2} AND task_code='{3}';", TABLE_NODE_INSTANCE, note, node_definition_id, task_code));
+            listsql.Add(string.Format("UPDATE {0} SET state=3 WHERE task_code='{1}' AND node_definition_id in ( {2} );", TABLE_NODE_INSTANCE, task_code, inids));
+            DBCallCommon.ExecuteTrans(listsql);
         }
 
 

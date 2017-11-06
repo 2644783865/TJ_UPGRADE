@@ -17,8 +17,9 @@
         {
             width: 100%;
         }
-         .number{
-        text-align:right;
+        .number
+        {
+            text-align: right;
         }
     </style>
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
@@ -36,16 +37,20 @@
             <table class="top-table">
                 <tr>
                     <td>
-                        任务号： <asp:TextBox ID="txt_task_code" class="txtbox" runat="server"></asp:TextBox>
+                        任务号：
+                        <asp:TextBox ID="txt_task_code" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        合同号： <asp:TextBox ID="txt_contract_code" class="txtbox" runat="server"></asp:TextBox>
+                        合同号：
+                        <asp:TextBox ID="txt_contract_code" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        项目名称： <asp:TextBox ID="txt_project_name" class="txtbox" runat="server"></asp:TextBox>
+                        项目名称：
+                        <asp:TextBox ID="txt_project_name" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        编制进度： <asp:DropDownList ID="ddl_state" runat="server" class="txtbox">
+                        编制进度：
+                        <asp:DropDownList ID="ddl_state" runat="server" class="txtbox">
                         </asp:DropDownList>
                     </td>
                     <td>

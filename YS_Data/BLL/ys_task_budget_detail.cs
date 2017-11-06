@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Configuration;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -9,6 +7,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.Text;
 
 
 namespace ZCZJ_DPF.YS_Data.BLL
@@ -66,6 +65,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
             }
 
         }
+
 
         /// <summary>
         /// 完成当前节点并激活下一节点
@@ -167,7 +167,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
 
                 case "15": //预算调整
                     DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET direct_labour_budget={1},sub_teamwork_budget={2},cooperative_product_budget={3},total_material_budget={4}, state=4 WHERE task_code='{5}';", TABLE_TASK_BUDGET, tb.labour_budget, tb.teamwork_budget, tb.cooperative_budget, tb.total_material_budget, tb.task_code));
-                    string[] ids15 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0601 AND ST_PD=0;")};//获得财务部长id
+                    string[] ids15 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0601 AND ST_PD=0;") };//获得财务部长id
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, "NULL"))
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids15);
                     break;
@@ -177,9 +177,72 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_budget_check_note))
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids16);
                     break;
+                default:
+                    break;
             }
         }
 
+
+        /// <summary>
+        /// 完成当前节点并驳回到指定节点
+        /// </summary>
+        /// <param name="node_definition_id">当前节点的node类id</param>
+        /// <param name="tb">任务预算对象</param>
+        public void rejectNode(string node_definition_id, YS_Data.Model.TaskBudget tb, string inids)
+        {
+            switch (node_definition_id)
+            {
+                case "6"://生产部驳回
+                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET production_check={1} WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.production_check, tb.task_code));
+                    BudgetFlowEngine.backToPreNode(tb.task_code, tb.node_production_check_note, node_definition_id, inids);
+                    break;
+
+                case "14": //采购部驳回
+                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check={1} WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.purchase_check, tb.task_code));
+                    BudgetFlowEngine.backToPreNode(tb.task_code, tb.node_purchase_check_note, node_definition_id, inids);
+                    break;
+                case "16"://财务部驳回
+                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET state=3,budget_check={1} WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.budget_check, tb.task_code));
+                    BudgetFlowEngine.backToPreNode(tb.task_code, tb.node_budget_check_note, node_definition_id, inids);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+        /// <summary>
+        /// 用sql动态绑定CheckBoxList
+        /// </summary>
+        /// <param name="cbl">CheckBoxList控件</param>
+        /// <param name="sql">查询语句</param>
+        /// <param name="text">文本</param>
+        /// <param name="value">值</param>
+        public void bindCheckBoxList(CheckBoxList ckl, string sql, string text, string value)
+        {
+            ckl.DataSource = DBCallCommon.GetDTUsingSqlText(sql);
+            ckl.DataTextField = text;
+            ckl.DataValueField = value;
+            ckl.DataBind();
+        }
+
+
+        /// <summary>
+        /// 获取CheckBoxList选中的值
+        /// </summary>
+        /// <param name="ckl"></param>
+        /// <returns></returns>
+        public string getCheckBodListSelectedValue(CheckBoxList ckl)
+        {
+            string s = "";
+            foreach (ListItem li in ckl.Items)
+            {
+                if (li.Selected) s += li.Value + ",";
+            }
+            return s.Substring(0, s.Length - 1);
+
+        }
 
     }
 }

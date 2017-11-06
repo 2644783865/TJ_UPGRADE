@@ -44,6 +44,7 @@ namespace ZCZJ_DPF.YS_Data
             lb_task_code.Text = tb.task_code;
             lb_contract_code.Text = tb.contract_code;
             lb_project_name.Text = tb.project_name;
+            lb_task_weight.Text = tb.task_weight;
 
             lb_c_total_task_budget.Text = tb.c_total_task_budget;
             txt_total_material_budget.Text = tb.total_material_budget;
@@ -152,7 +153,7 @@ namespace ZCZJ_DPF.YS_Data
             bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, "");
         }
 
-
+        #region 各个节点的处理程序
         /// <summary>
         /// 初步预算编制
         /// </summary>
@@ -197,7 +198,6 @@ namespace ZCZJ_DPF.YS_Data
             ((Button)sender).Visible = false;
         }
 
-
         /// <summary>
         /// 分包费反馈
         /// </summary>
@@ -223,8 +223,6 @@ namespace ZCZJ_DPF.YS_Data
             bll.finishNode("5", tb);
             ((Button)sender).Visible = false;
         }
-
-        //缺6
 
         /// <summary>
         /// 采购部分工
@@ -322,34 +320,39 @@ namespace ZCZJ_DPF.YS_Data
             ((Button)sender).Visible = false;
         }
 
-
-
-
-
-
-
-
+        /// <summary>
+        /// 生产部长审核
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_production_check_Click(object sender, EventArgs e)
         {
-            tb.production_check = "0";
+            tb.production_check = rbl_production_check.SelectedIndex.ToString(); 
             tb.node_production_check_note = txt_node_production_check_note.Text.Trim();
 
             switch (rbl_production_check.SelectedIndex)
             {
-                case 0:                    
+                case 0:
                     bll.finishNode("6", tb);
                     ((Button)sender).Visible = false;
                     break;
                 case 1:
+                    bll.rejectNode("6", tb, bll.getCheckBodListSelectedValue(ckl_production_check));
                     break;
                 default:
                     break;
             }
+            ((Button)sender).Visible = false;
         }
 
+        /// <summary>
+        /// 采购部长审核
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_purchase_check_Click(object sender, EventArgs e)
         {
-            tb.purchase_check = "0";
+            tb.purchase_check = rbl_purchase_check.SelectedIndex.ToString();
             tb.node_purchase_check_note = txt_node_purchase_check_note.Text.Trim();
 
             switch (rbl_purchase_check.SelectedIndex)
@@ -359,10 +362,12 @@ namespace ZCZJ_DPF.YS_Data
                     ((Button)sender).Visible = false;
                     break;
                 case 1:
+                    bll.rejectNode("14", tb, bll.getCheckBodListSelectedValue(ckl_purchase_check));                    
                     break;
                 default:
                     break;
             }
+            ((Button)sender).Visible = false;
         }
 
         /// <summary>
@@ -372,19 +377,22 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="e"></param>
         protected void btn_budget_adjust_Click(object sender, EventArgs e)
         {
-
             tb.labour_budget = txt_labour_budget.Text.Trim();
             tb.teamwork_budget = txt_teamwork_budget.Text.Trim();
             tb.cooperative_budget = txt_coopreative_budget.Text.Trim();
             tb.total_material_budget = txt_total_material_budget.Text.Trim();
             bll.finishNode("15", tb);
             ((Button)sender).Visible = false;
-
         }
 
+        /// <summary>
+        /// 财务部长预算审核
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_budget_check_Click(object sender, EventArgs e)
         {
-            tb.budget_check = "0";
+            tb.budget_check = rbl_budget_check.SelectedIndex.ToString();
             tb.node_budget_check_note = txt_node_budget_check_note.Text.Trim();
 
             switch (rbl_budget_check.SelectedIndex)
@@ -394,52 +402,71 @@ namespace ZCZJ_DPF.YS_Data
                     ((Button)sender).Visible = false;
                     break;
                 case 1:
+                    bll.rejectNode("16", tb, bll.getCheckBodListSelectedValue(ckl_budget_check));
                     break;
                 default:
                     break;
             }
+            ((Button)sender).Visible = false;
         }
-
+        #endregion
 
 
 
         #region 选择审核结果触发的事件处理程序
-
+        /// <summary>
+        /// 生产审核结果
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void rbl_production_check_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (rbl_production_check.SelectedIndex)
             {
                 case 0: ckl_production_check.Visible = false;
                     break;
-                case 1: ckl_production_check.Visible = true;
+                case 1:
+                    bll.bindCheckBoxList(ckl_production_check, "SELECT node_definition_id,node_definition_name FROM dbo.YS_NODE_DEFINITION WHERE node_definition_id in (SELECT  from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=6);", "node_definition_name", "node_definition_id");
+                    ckl_production_check.Visible = true;
                     break;
                 default:
                     break;
             }
         }
-
+        /// <summary>
+        /// 采购审核结果
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void rbl_purchase_check_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (rbl_purchase_check.SelectedIndex)
             {
                 case 0: ckl_purchase_check.Visible = false;
-                    break;
+                    break;                
                 case 1:
-                    //绑定数据
+                    bll.bindCheckBoxList(ckl_purchase_check, "SELECT node_definition_id,node_definition_name FROM dbo.YS_NODE_DEFINITION WHERE node_definition_id in (SELECT  from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=14);", "node_definition_name", "node_definition_id");
                     ckl_purchase_check.Visible = true;
                     break;
                 default:
                     break;
             }
         }
-
+        /// <summary>
+        /// 财务审核结果
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void rbl_budget_check_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (rbl_budget_check.SelectedIndex)
             {
-                case 0: ckl_budget_check.Visible = false;
+                case 0:
+                    ckl_budget_check.Visible = false;
                     break;
-                case 1: ckl_budget_check.Visible = true;
+                case 1:
+                    bll.bindCheckBoxList(ckl_budget_check, "SELECT node_definition_id,node_definition_name FROM dbo.YS_NODE_DEFINITION WHERE node_definition_id in (SELECT  from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=16);", "node_definition_name", "node_definition_id");
+                    ckl_budget_check.Visible = true;
                     break;
                 default:
                     break;

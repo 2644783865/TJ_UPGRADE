@@ -29,11 +29,16 @@
         {
             border: solid 1px #B3CDE8;
         }
+        .cklContainer
+        {
+            width: 50%;
+            text-align: right;
+        }
         .myCkl
         {
             display: inline;
             vertical-align: -11px;
-            margin-left: 30px;
+            margin-right: 30px;
         }
         .tab-container
         {
@@ -45,17 +50,21 @@
     <table width="100%">
         <tr>
             <td>
-                任务号：<asp:Label ID="lb_task_code" runat="server"></asp:Label></td>
+                任务号：<asp:Label ID="lb_task_code" runat="server"></asp:Label>
+            </td>
             <td>
-                合同号：<asp:Label ID="lb_contract_code" runat="server"></asp:Label></td>
+                合同号：<asp:Label ID="lb_contract_code" runat="server"></asp:Label>
+            </td>
             <td>
-                项目名称：<asp:Label ID="lb_project_name" runat="server"></asp:Label></td>
+                项目名称：<asp:Label ID="lb_project_name" runat="server"></asp:Label>
+            </td>
             <td>
-                任务号图纸总重：<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>kg
+                任务号图纸总重：<asp:Label ID="lb_task_weight" runat="server"></asp:Label>
+                kg
             </td>
         </tr>
     </table>
-    <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" ActiveTabIndex="2">
+    <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" ActiveTabIndex="0">
         <%--预算汇总--%>
         <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="预算汇总信息">
             <ContentTemplate>
@@ -531,21 +540,22 @@
                     </tr>
                     <tr>
                         <td>
-                            审核人：<asp:Label ID="lb_node_production_check_user_name" runat="server"></asp:Label></td>
+                            审核人：<asp:Label ID="lb_node_production_check_user_name" runat="server"></asp:Label>
+                        </td>
                         <td>
-                            审核时间：<asp:Label ID="lb_node_production_check_endtime" runat="server"></asp:Label></td>
+                            审核时间：<asp:Label ID="lb_node_production_check_endtime" runat="server"></asp:Label>
+                        </td>
                         <td>
-                            审核结果：<asp:RadioButtonList ID="rbl_production_check" runat="server" RepeatDirection="Horizontal"
-                                RepeatLayout="Flow" AutoPostBack="True" 
-                                onselectedindexchanged="rbl_production_check_SelectedIndexChanged">
+                            审核结果：
+                            <asp:RadioButtonList ID="rbl_production_check" runat="server" RepeatDirection="Horizontal"
+                                RepeatLayout="Flow" AutoPostBack="True" OnSelectedIndexChanged="rbl_production_check_SelectedIndexChanged">
                                 <asp:ListItem Text="同 意" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="驳 回" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
-                        <td>
+                        <td class="cklContainer">
                             <asp:CheckBoxList ID="ckl_production_check" runat="server" RepeatDirection="Horizontal"
-                                class="myCkl">
-                                <asp:ListItem>Item 1</asp:ListItem>
+                                Visible="false" class="myCkl">
                             </asp:CheckBoxList>
                         </td>
                         <td>
@@ -566,21 +576,22 @@
                     </tr>
                     <tr>
                         <td>
-                            审核人：<asp:Label ID="lb_node_purchase_check_user_name" runat="server"></asp:Label></td>
+                            审核人：<asp:Label ID="lb_node_purchase_check_user_name" runat="server"></asp:Label>
+                        </td>
                         <td>
-                            审核时间：<asp:Label ID="lb_node_purchase_check_endtime" runat="server"></asp:Label></td>
+                            审核时间：<asp:Label ID="lb_node_purchase_check_endtime" runat="server"></asp:Label>
+                        </td>
                         <td>
-                            审核结果：<asp:RadioButtonList ID="rbl_purchase_check" runat="server" RepeatDirection="Horizontal"
+                            审核结果：
+                            <asp:RadioButtonList ID="rbl_purchase_check" runat="server" RepeatDirection="Horizontal"
                                 RepeatLayout="Flow" AutoPostBack="True" OnSelectedIndexChanged="rbl_purchase_check_SelectedIndexChanged">
                                 <asp:ListItem Text="同 意" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="驳 回" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
-                        <td>
+                        <td class="cklContainer">
                             <asp:CheckBoxList ID="ckl_purchase_check" runat="server" RepeatDirection="Horizontal"
-                                class="myCkl">
-                                <asp:ListItem>Item 1</asp:ListItem>
-                                <asp:ListItem>Item 1</asp:ListItem>
+                                Visible="false" class="myCkl">
                             </asp:CheckBoxList>
                         </td>
                         <td>
@@ -601,22 +612,22 @@
                     </tr>
                     <tr>
                         <td>
-                            审核人：<asp:Label ID="lb_node_budget_check_user_name" runat="server"></asp:Label></td>
+                            审核人：<asp:Label ID="lb_node_budget_check_user_name" runat="server"></asp:Label>
+                        </td>
                         <td>
-                            审核时间：<asp:Label ID="lb_node_budget_check_endtime" runat="server"></asp:Label></td>
+                            审核时间：<asp:Label ID="lb_node_budget_check_endtime" runat="server"></asp:Label>
+                        </td>
                         <td>
                             审核结果：
                             <asp:RadioButtonList ID="rbl_budget_check" runat="server" RepeatDirection="Horizontal"
-                                RepeatLayout="Flow" AutoPostBack="True" 
-                                onselectedindexchanged="rbl_budget_check_SelectedIndexChanged">
+                                RepeatLayout="Flow" AutoPostBack="True" OnSelectedIndexChanged="rbl_budget_check_SelectedIndexChanged">
                                 <asp:ListItem Text="同 意" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="驳 回" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
-                        <td>
+                        <td class="cklContainer">
                             <asp:CheckBoxList ID="ckl_budget_check" runat="server" RepeatDirection="Horizontal"
-                                class="myCkl">
-                                <asp:ListItem>Item 1</asp:ListItem>
+                                Visible="false" class="myCkl">
                             </asp:CheckBoxList>
                         </td>
                         <td>

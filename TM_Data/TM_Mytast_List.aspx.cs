@@ -399,8 +399,7 @@ namespace ZCZJ_DPF.TM_Data
           ys_othermat_cost ,
           maker_id ,
           start_time ,
-          state           
-          --start_node_instance_id
+          state     
         )
         SELECT TOP 1
                 '{0}' ,

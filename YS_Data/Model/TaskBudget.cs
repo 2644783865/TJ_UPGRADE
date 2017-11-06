@@ -32,7 +32,9 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.contract_code = dr_task["contract_code"].ToString();
                 this.project_name = dr_task["project_name"].ToString();
                 this.equipment_name = dr_task["equipment_name"].ToString();
+                this.task_weight = dr_task["task_weight"].ToString();
                 this.task_type = dr_task["task_type"].ToString();
+
 
                 this.total_material_budget = dr_task["total_material_budget"].ToString();
                 this.labour_budget = dr_task["direct_labour_budget"].ToString();
@@ -323,7 +325,11 @@ namespace ZCZJ_DPF.YS_Data.Model
         /// <summary>
         /// 设备名称（为当前任务号下所有的产品名称)
         /// </summary>
-        public string equipment_name { get; set; }
+        public string equipment_name { get; set; }        
+        /// <summary>
+        /// 任务号重量
+        /// </summary>
+        public string task_weight { get; set; }
         /// <summary>
         /// 任务号类型（区分任务号种类，用于比较相同类型任务号的预算）
         /// </summary>
