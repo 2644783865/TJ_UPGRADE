@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    任务预算详情 
+    任务预算详情
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
@@ -29,6 +29,12 @@
         {
             border: solid 1px #B3CDE8;
         }
+        .myCkl
+        {
+            display: inline;
+            vertical-align: -11px;
+            margin-left: 30px;
+        }
         .tab-container
         {
             overflow: auto;
@@ -49,8 +55,7 @@
             </td>
         </tr>
     </table>
-    <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" 
-        ActiveTabIndex="0">
+    <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" ActiveTabIndex="2">
         <%--预算汇总--%>
         <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="预算汇总信息">
             <ContentTemplate>
@@ -96,8 +101,8 @@
                             元
                         </td>
                         <td>
-                            <asp:Button ID="btn_bugdet_submit" runat="server" Text=" 提 交 " 
-                                onclick="btn_bugdet_submit_Click" />
+                            <asp:Button ID="btn_budget_submit" runat="server" Text=" 提 交 " OnClick="btn_budget_submit_Click" />
+                            <asp:Button ID="btn_budget_adjust" runat="server" Text=" 提 交 " OnClick="btn_budget_adjust_Click" />
                         </td>
                     </tr>
                     <tr>
@@ -182,11 +187,9 @@
                                                 <%#Eval("cooperative_product_budget").ToString()%>
                                             </td>
                                             <td>
-                                                <asp:HyperLink ID="HyperLink1" runat="server" 
-                                                    NavigateUrl='<%#"ys_task_budget_detail.aspx?tsak_code="+Eval("task_code").ToString()%>' 
+                                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"ys_task_budget_detail.aspx?tsak_code="+Eval("task_code").ToString()%>'
                                                     Target="_blank">
-                                                    <asp:Image ID="Image2" ImageUrl="~/assets/images/res.gif" 
-                                    border="0" hspace="2" align="absmiddle"
+                                                    <asp:Image ID="Image2" ImageUrl="~/assets/images/res.gif" border="0" hspace="2" align="absmiddle"
                                                         runat="server" />
                                                     查看</asp:HyperLink>
                                             </td>
@@ -227,11 +230,13 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_labour_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_labour_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_labour" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_labour_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_labour" runat="server" ImageUrl="../Assets/images/username_bg.gif"
+                                            onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button1" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_labour_dep" runat="server" Text=" 确 定 " OnClick="btn_labour_dep_Click" />
+                                <asp:Button ID="btn_production_divide" runat="server" Text=" 确认分工 " OnClick="btn_production_divide_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -250,11 +255,13 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_teamwork_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_teamwork_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_teamwork" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_teamwork_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_teamwork" runat="server"
+                                            ImageUrl="../Assets/images/username_bg.gif" onclick="choosePerson(this)" align="middle"
+                                            Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button2" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_teamwork_dep" runat="server" Text=" 确 定 " OnClick="btn_teamwork_dep_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -273,11 +280,13 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_cooperative_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_cooperative_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_cooperative" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_cooperative_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_cooperative" runat="server"
+                                            ImageUrl="../Assets/images/username_bg.gif" onclick="choosePerson(this)" align="middle"
+                                            Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button3" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_cooperative" runat="server" Text=" 确 定 " OnClick="btn_cooperative_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -307,11 +316,13 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_ferrous_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_ferrous_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_ferrous" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_ferrous_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_ferrous" runat="server" ImageUrl="../Assets/images/username_bg.gif"
+                                            onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button4" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_ferrous_dep" runat="server" Text=" 确 定 " OnClick="btn_ferrous_dep_Click" />
+                                <asp:Button ID="btn_purchase_divide" runat="server" Text=" 确认分工 " OnClick="btn_purchase_divide_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -335,11 +346,13 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_purchasepart_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_purchasepart_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_purchasepart" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_purchasepart_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_purchasepart" runat="server"
+                                            ImageUrl="../Assets/images/username_bg.gif" onclick="choosePerson(this)" align="middle"
+                                            Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button5" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_purchasepart_dep" runat="server" Text=" 确 定 " OnClick="btn_purchasepart_dep_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -363,11 +376,12 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_paint_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_paint_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_paint" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_paint_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_paint" runat="server" ImageUrl="../Assets/images/username_bg.gif"
+                                            onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button6" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_paint_dep" runat="server" Text=" 确 定 " OnClick="btn_paint_dep_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -391,11 +405,13 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_electrical_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_electrical_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_electrical" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_electrical_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_electrical" runat="server"
+                                            ImageUrl="../Assets/images/username_bg.gif" onclick="choosePerson(this)" align="middle"
+                                            Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button7" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_electrical_dep" runat="server" Text=" 确 定 " OnClick="btn_electrical_dep_Click" />
                             </th>
                         </tr>
                         <tr>
@@ -419,11 +435,12 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_casting_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_casting_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_casting" runat="server" ImageUrl="../Assets/images/username_bg.gif"
-                                    onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_casting_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_casting" runat="server" ImageUrl="../Assets/images/username_bg.gif"
+                                            onclick="choosePerson(this)" align="middle" Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button8" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_casting_dep" OnClick="btn_casting_dep_Click" runat="server" Text=" 确 定 " />
                             </th>
                         </tr>
                         <tr>
@@ -447,11 +464,14 @@
                             </td>
                             <td>
                                 反馈人：<asp:TextBox ID="txt_node_othermat_dep_user_name" runat="server" onfocus="this.blur()"
-                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_othermat_dep_user_id" runat="server" Style="display: none;"></asp:TextBox><asp:Image ID="img_othermat" runat="server" ImageUrl="../Assets/images/username_bg.gif" onclick="choosePerson(this)"
-                                    align="middle" Style="cursor: pointer" title="选择" />
+                                    Width="80px"></asp:TextBox><asp:TextBox ID="txt_node_othermat_dep_user_id" runat="server"
+                                        Style="display: none;"></asp:TextBox><asp:Image ID="img_othermat" runat="server"
+                                            ImageUrl="../Assets/images/username_bg.gif" onclick="choosePerson(this)" align="middle"
+                                            Style="cursor: pointer" title="选择" />
                             </td>
                             <th>
-                                <asp:Button ID="Button9" runat="server" Text=" 确 定 " />
+                                <asp:Button ID="btn_othermat_dep" OnClick="btn_othermat_dep_Click" runat="server"
+                                    Text=" 确 定 " />
                             </th>
                         </tr>
                         <tr>
@@ -486,7 +506,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div style=" height: 245px">
+                    <div style="height: 245px">
                         <table id="dg">
                         </table>
                     </div>
@@ -504,7 +524,7 @@
             <ContentTemplate>
                 <table class="mytable">
                     <tr>
-                        <th colspan='3'>
+                        <th colspan='5'>
                             <h2>
                                 生产部审核</h2>
                         </th>
@@ -513,23 +533,33 @@
                         <td>
                             审核人：<asp:Label ID="lb_node_production_check_user_name" runat="server"></asp:Label></td>
                         <td>
+                            审核时间：<asp:Label ID="lb_node_production_check_endtime" runat="server"></asp:Label></td>
+                        <td>
                             审核结果：<asp:RadioButtonList ID="rbl_production_check" runat="server" RepeatDirection="Horizontal"
-                                RepeatLayout="Flow" AutoPostBack="True">
-                                <asp:ListItem Text="同意" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
+                                RepeatLayout="Flow" AutoPostBack="True" 
+                                onselectedindexchanged="rbl_production_check_SelectedIndexChanged">
+                                <asp:ListItem Text="同 意" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="驳 回" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                         <td>
-                            审核时间：<asp:Label ID="lb_node_production_check_endtime" runat="server"></asp:Label></td>
+                            <asp:CheckBoxList ID="ckl_production_check" runat="server" RepeatDirection="Horizontal"
+                                class="myCkl">
+                                <asp:ListItem>Item 1</asp:ListItem>
+                            </asp:CheckBoxList>
+                        </td>
+                        <td>
+                            <asp:Button ID="btn_production_check" runat="server" Text=" 确 定 " OnClick="btn_production_check_Click" />
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="5">
                             <asp:TextBox ID="txt_node_production_check_note" runat="server" TextMode="MultiLine"
                                 Width="99.5%" Rows="5" Style="resize: none"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th colspan='3'>
+                        <th colspan='5'>
                             <h2>
                                 采购部审核</h2>
                         </th>
@@ -538,23 +568,33 @@
                         <td>
                             审核人：<asp:Label ID="lb_node_purchase_check_user_name" runat="server"></asp:Label></td>
                         <td>
+                            审核时间：<asp:Label ID="lb_node_purchase_check_endtime" runat="server"></asp:Label></td>
+                        <td>
                             审核结果：<asp:RadioButtonList ID="rbl_purchase_check" runat="server" RepeatDirection="Horizontal"
-                                RepeatLayout="Flow" AutoPostBack="True">
-                                <asp:ListItem Text="同意" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
+                                RepeatLayout="Flow" AutoPostBack="True" OnSelectedIndexChanged="rbl_purchase_check_SelectedIndexChanged">
+                                <asp:ListItem Text="同 意" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="驳 回" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                         <td>
-                            审核时间：<asp:Label ID="lb_node_purchase_check_endtime" runat="server"></asp:Label></td>
+                            <asp:CheckBoxList ID="ckl_purchase_check" runat="server" RepeatDirection="Horizontal"
+                                class="myCkl">
+                                <asp:ListItem>Item 1</asp:ListItem>
+                                <asp:ListItem>Item 1</asp:ListItem>
+                            </asp:CheckBoxList>
+                        </td>
+                        <td>
+                            <asp:Button ID="btn_purchase_check" runat="server" Text=" 确 定 " OnClick="btn_purchase_check_Click" />
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="5">
                             <asp:TextBox ID="txt_node_purchase_check_note" runat="server" TextMode="MultiLine"
                                 Width="99.5%" Rows="5" Style="resize: none"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <th colspan='3'>
+                        <th colspan='5'>
                             <h2>
                                 财务部审核</h2>
                         </th>
@@ -563,17 +603,28 @@
                         <td>
                             审核人：<asp:Label ID="lb_node_budget_check_user_name" runat="server"></asp:Label></td>
                         <td>
-                            审核结果：<asp:RadioButtonList ID="rbl_budget_check" runat="server" RepeatDirection="Horizontal"
-                                RepeatLayout="Flow" AutoPostBack="True">
-                                <asp:ListItem Text="同意" Value="1"></asp:ListItem>
-                                <asp:ListItem Text="不同意" Value="2"></asp:ListItem>
+                            审核时间：<asp:Label ID="lb_node_budget_check_endtime" runat="server"></asp:Label></td>
+                        <td>
+                            审核结果：
+                            <asp:RadioButtonList ID="rbl_budget_check" runat="server" RepeatDirection="Horizontal"
+                                RepeatLayout="Flow" AutoPostBack="True" 
+                                onselectedindexchanged="rbl_budget_check_SelectedIndexChanged">
+                                <asp:ListItem Text="同 意" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="驳 回" Value="2"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                         <td>
-                            审核时间：<asp:Label ID="lb_node_budget_check_endtime" runat="server"></asp:Label></td>
+                            <asp:CheckBoxList ID="ckl_budget_check" runat="server" RepeatDirection="Horizontal"
+                                class="myCkl">
+                                <asp:ListItem>Item 1</asp:ListItem>
+                            </asp:CheckBoxList>
+                        </td>
+                        <td>
+                            <asp:Button ID="btn_budget_check" runat="server" Text=" 确 定 " OnClick="btn_budget_check_Click" />
+                        </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="5">
                             <asp:TextBox ID="txt_node_budget_check_note" runat="server" TextMode="MultiLine"
                                 Width="99.5%" Rows="5" Style="resize: none"></asp:TextBox>
                         </td>

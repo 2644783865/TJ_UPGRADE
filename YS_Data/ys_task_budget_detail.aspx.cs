@@ -152,17 +152,313 @@ namespace ZCZJ_DPF.YS_Data
             bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, "");
         }
 
-        protected void btn_bugdet_submit_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// 初步预算编制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_budget_submit_Click(object sender, EventArgs e)
         {
+
             tb.labour_budget = txt_labour_budget.Text.Trim();
             tb.teamwork_budget = txt_teamwork_budget.Text.Trim();
             tb.cooperative_budget = txt_coopreative_budget.Text.Trim();
             tb.total_material_budget = txt_total_material_budget.Text.Trim();
-            
             bll.finishNode("1", tb);
             ((Button)sender).Visible = false;
 
         }
+
+        /// <summary>
+        /// 生产部分工
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_production_divide_Click(object sender, EventArgs e)
+        {
+            tb.node_labour_dep_user_id = txt_node_labour_dep_user_id.Text.Trim();
+            tb.node_teamwork_dep_user_id = txt_node_teamwork_dep_user_id.Text.Trim();
+            tb.node_cooperative_dep_user_id = txt_node_cooperative_dep_user_id.Text.Trim();
+            bll.finishNode("2", tb);
+            ((Button)sender).Visible = false;
+        }
+
+        /// <summary>
+        /// 人工费反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_labour_dep_Click(object sender, EventArgs e)
+        {
+            tb.labour_dep = txt_labour_dep.Text.Trim();
+            tb.node_labour_dep_note = txt_node_labour_dep_note.Text.Trim();
+            bll.finishNode("3", tb);
+            ((Button)sender).Visible = false;
+        }
+
+
+        /// <summary>
+        /// 分包费反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_teamwork_dep_Click(object sender, EventArgs e)
+        {
+            tb.teamwork_dep = txt_teamwork_dep.Text.Trim();
+            tb.node_teamwork_dep_note = txt_node_teamwork_dep_note.Text.Trim();
+            bll.finishNode("4", tb);
+            ((Button)sender).Visible = false;
+        }
+
+        /// <summary>
+        /// 外协费反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_cooperative_Click(object sender, EventArgs e)
+        {
+            tb.cooperative_dep = txt_cooperative_dep.Text.Trim();
+            tb.node_cooperative_dep_note = txt_node_cooperative_dep_note.Text.Trim();
+            bll.finishNode("5", tb);
+            ((Button)sender).Visible = false;
+        }
+
+        //缺6
+
+        /// <summary>
+        /// 采购部分工
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_purchase_divide_Click(object sender, EventArgs e)
+        {
+            tb.node_ferrous_dep_user_id = txt_node_ferrous_dep_user_id.Text.Trim();
+            tb.node_purchasepart_dep_user_id = txt_node_purchasepart_dep_user_id.Text.Trim();
+            tb.node_paint_dep_user_id = txt_node_paint_dep_user_id.Text.Trim();
+            tb.node_electrical_dep_user_id = txt_node_electrical_dep_user_id.Text.Trim();
+            tb.node_casting_dep_user_id = txt_node_casting_dep_user_id.Text.Trim();
+            tb.node_othermat_dep_user_id = txt_node_othermat_dep_user_id.Text.Trim();
+            bll.finishNode("7", tb);
+            ((Button)sender).Visible = false;
+        }
+
+        /// <summary>
+        /// 黑色金属反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_ferrous_dep_Click(object sender, EventArgs e)
+        {
+            tb.ferrous_dep = txt_ferrous_dep.Text.Trim();
+            tb.node_ferrous_dep_note = txt_node_ferrous_dep_note.Text.Trim();
+            bll.finishNode("8", tb);
+            ((Button)sender).Visible = false;
+        }
+        /// <summary>
+        /// 外购件反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_purchasepart_dep_Click(object sender, EventArgs e)
+        {
+            tb.purchasepart_dep = txt_purchasepart_dep.Text.Trim();
+            tb.node_purchasepart_dep_note = txt_node_purchasepart_dep_note.Text.Trim();
+            bll.finishNode("9", tb);
+            ((Button)sender).Visible = false;
+        }
+        /// <summary>
+        /// 油漆涂料反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_paint_dep_Click(object sender, EventArgs e)
+        {
+
+            tb.paint_dep = txt_paint_dep.Text.Trim();
+            tb.node_paint_dep_note = txt_node_paint_dep_note.Text.Trim();
+            bll.finishNode("10", tb);
+            ((Button)sender).Visible = false;
+        }
+
+        /// <summary>
+        /// 电器电料反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_electrical_dep_Click(object sender, EventArgs e)
+        {
+
+            tb.electrical_dep = txt_electrical_dep.Text.Trim();
+            tb.node_electrical_dep_note = txt_node_electrical_dep_note.Text.Trim();
+            bll.finishNode("11", tb);
+            ((Button)sender).Visible = false;
+        }
+        /// <summary>
+        /// 铸锻件反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_casting_dep_Click(object sender, EventArgs e)
+        {
+
+            tb.casting_dep = txt_casting_dep.Text.Trim();
+            tb.node_casting_dep_note = txt_node_casting_dep_note.Text.Trim();
+            bll.finishNode("12", tb);
+            ((Button)sender).Visible = false;
+        }
+
+        /// <summary>
+        /// 其他材料反馈
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_othermat_dep_Click(object sender, EventArgs e)
+        {
+
+            tb.othermat_dep = txt_othermat_dep.Text.Trim();
+            tb.node_othermat_dep_note = txt_node_othermat_dep_note.Text.Trim();
+            bll.finishNode("13", tb);
+            ((Button)sender).Visible = false;
+        }
+
+
+
+
+
+
+
+
+        protected void btn_production_check_Click(object sender, EventArgs e)
+        {
+            tb.production_check = "0";
+            tb.node_production_check_note = txt_node_production_check_note.Text.Trim();
+
+            switch (rbl_production_check.SelectedIndex)
+            {
+                case 0:                    
+                    bll.finishNode("6", tb);
+                    ((Button)sender).Visible = false;
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void btn_purchase_check_Click(object sender, EventArgs e)
+        {
+            tb.purchase_check = "0";
+            tb.node_purchase_check_note = txt_node_purchase_check_note.Text.Trim();
+
+            switch (rbl_purchase_check.SelectedIndex)
+            {
+                case 0:
+                    bll.finishNode("14", tb);
+                    ((Button)sender).Visible = false;
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 预算调整
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_budget_adjust_Click(object sender, EventArgs e)
+        {
+
+            tb.labour_budget = txt_labour_budget.Text.Trim();
+            tb.teamwork_budget = txt_teamwork_budget.Text.Trim();
+            tb.cooperative_budget = txt_coopreative_budget.Text.Trim();
+            tb.total_material_budget = txt_total_material_budget.Text.Trim();
+            bll.finishNode("15", tb);
+            ((Button)sender).Visible = false;
+
+        }
+
+        protected void btn_budget_check_Click(object sender, EventArgs e)
+        {
+            tb.budget_check = "0";
+            tb.node_budget_check_note = txt_node_budget_check_note.Text.Trim();
+
+            switch (rbl_budget_check.SelectedIndex)
+            {
+                case 0:
+                    bll.finishNode("16", tb);
+                    ((Button)sender).Visible = false;
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+
+        #region 选择审核结果触发的事件处理程序
+
+        protected void rbl_production_check_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (rbl_production_check.SelectedIndex)
+            {
+                case 0: ckl_production_check.Visible = false;
+                    break;
+                case 1: ckl_production_check.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void rbl_purchase_check_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (rbl_purchase_check.SelectedIndex)
+            {
+                case 0: ckl_purchase_check.Visible = false;
+                    break;
+                case 1:
+                    //绑定数据
+                    ckl_purchase_check.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void rbl_budget_check_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (rbl_budget_check.SelectedIndex)
+            {
+                case 0: ckl_budget_check.Visible = false;
+                    break;
+                case 1: ckl_budget_check.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

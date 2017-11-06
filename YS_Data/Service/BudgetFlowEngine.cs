@@ -14,7 +14,7 @@ namespace ZCZJ_DPF
         const string TABLE_NODE_DEFINITION = "YS_NODE_DEFINITION";
         const string TABLE_LINE = "YS_line";//路线信息视图
         const string TABLE_TASK_BUDGET = "YS_TASK_BUDGET";
-
+        
 
 
         /// <summary>
@@ -32,6 +32,7 @@ namespace ZCZJ_DPF
 
             if (node_definition_id.Equals("0"))//如果是刚进入该任务
             {
+
                 DBCallCommon.ExeSqlText(string.Format(@"INSERT  INTO {0}
         ( node_definition_id ,
           task_code ,
@@ -45,8 +46,9 @@ namespace ZCZJ_DPF
                 GETDATE() ,
                 1); ", TABLE_NODE_INSTANCE, task_code, user_ids[0]));
             }
-            else
+            else//如果是任务内部推动
             {
+
                 List<string> listsql = new List<string>();
                 for (int i = 0; i < user_ids.Length; i++)
                 {
@@ -74,6 +76,7 @@ namespace ZCZJ_DPF
                 1; ", TABLE_NODE_INSTANCE, TABLE_LINE, node_definition_id, i, TABLE_LINE, node_definition_id, task_code, user_ids[i]));
                 }
                 DBCallCommon.ExecuteTrans(listsql);
+
             }
 
         }
@@ -90,14 +93,13 @@ namespace ZCZJ_DPF
         {
             
 
-
             //完成当前节点的结束时间、状态、备注更新
             DBCallCommon.ExeSqlText(string.Format(@"UPDATE {0} SET end_time=GETDATE(),state=2,note='{1}' 
 WHERE node_definition_id={2} AND task_code='{3}';", TABLE_NODE_INSTANCE, note, node_definition_id, task_code));
 
             //判断当前节点的类型，1：开始节点；2：中间节点；3：结束节点
             string type = getStringByDR(string.Format(@"SELECT node_definition_type FROM {0} WHERE node_definition_id={1};", TABLE_NODE_DEFINITION, node_definition_id));
-           
+
             if (type.Equals("3"))//如果是结束节点
             {
                 //在任务预算表中更新预算编制结束时间，预算编制状态
@@ -113,14 +115,17 @@ FROM {0} WHERE node_definition_id={1};", VIEW_TO_NODE, node_definition_id));
                 //如果后续节点是and-joi，且后续节点还有没有完成的前续节点
                 if (logic.Equals("2") && (!getStringByDR(string.Format(@"SELECT COUNT(1) FROM (SELECT from_node_definition_id 
 FROM dbo.YS_LINE WHERE to_node_definition_id=(SELECT TOP 1 to_node_definition_id FROM dbo.YS_LINE WHERE from_node_definition_id={0}) 
-EXCEPT SELECT node_instance_id FROM dbo.YS_NODE_INSTANCE WHERE task_code='{1}' AND state=2 AND node_definition_id IN 
+EXCEPT SELECT node_definition_id FROM dbo.YS_NODE_INSTANCE WHERE task_code='{1}' AND state=2 AND node_definition_id IN 
 (SELECT from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=(SELECT TOP 1 to_node_definition_id FROM 
 dbo.YS_LINE WHERE from_node_definition_id={2})))t;", node_definition_id, task_code, node_definition_id)).Equals("0")))
                 {
                     return false;
                 }
-                else//如果后续节点不是and-join，或后续节点的前续节点全部完成，激活下一个节点
+                else//如果后续节点不是and-join，或后续节点的前续节点全部完成，删除当前节点的所有后续节点（被驳回重新提交时有用、或防止程序错误，重复插入系节点），激活下一个节点
                 {
+                    DBCallCommon.ExeSqlText(string.Format(@"DELETE FROM {0} WHERE node_definition_id IN (SELECT to_node_definition_id 
+FROM {1} WHERE from_node_definition_id={2}) AND task_code='{3}';", TABLE_NODE_INSTANCE, TABLE_LINE, node_definition_id, task_code));
+
                     return true;
                 }
             }

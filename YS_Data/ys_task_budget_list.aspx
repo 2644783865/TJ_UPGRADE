@@ -17,6 +17,9 @@
         {
             width: 100%;
         }
+         .number{
+        text-align:right;
+        }
     </style>
     <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
     <div class="box-outer">
@@ -107,7 +110,7 @@
                                 <td>
                                     <%#Eval("task_type").ToString()%>
                                 </td>
-                                <td>
+                                <td class="number">
                                     <%#Eval("c_total_task_budget").ToString()%>
                                 </td>
                                 <td id='td_state' runat="Server">
