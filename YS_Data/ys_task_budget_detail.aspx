@@ -231,7 +231,7 @@
                         </tr>
                         <tr>
                             <td colspan='2'>
-                                <b>人 &nbsp;工 费：</b><asp:TextBox ID="txt_labour_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>人 &nbsp;工 费：</b><asp:TextBox ID="txt_labour_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -256,7 +256,7 @@
                         </tr>
                         <tr>
                             <td colspan='2'>
-                                <b>分 &nbsp;包 费：</b><asp:TextBox ID="txt_teamwork_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>分 &nbsp;包 费：</b><asp:TextBox ID="txt_teamwork_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -281,7 +281,7 @@
                         </tr>
                         <tr>
                             <td colspan='2'>
-                                <b>外 &nbsp;协 费：</b><asp:TextBox ID="txt_cooperative_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>外 &nbsp;协 费：</b><asp:TextBox ID="txt_cooperative_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -312,7 +312,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>黑色金属：</b><asp:TextBox ID="txt_ferrous_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>黑色金属：</b><asp:TextBox ID="txt_ferrous_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 参考值：
@@ -342,7 +342,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>外 &nbsp;购 件：</b><asp:TextBox ID="txt_purchasepart_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>外 &nbsp;购 件：</b><asp:TextBox ID="txt_purchasepart_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 参考值：
@@ -372,7 +372,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>油漆涂料：</b><asp:TextBox ID="txt_paint_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>油漆涂料：</b><asp:TextBox ID="txt_paint_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 参考值：
@@ -401,7 +401,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>电器电料：</b><asp:TextBox ID="txt_electrical_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>电器电料：</b><asp:TextBox ID="txt_electrical_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 参考值：
@@ -431,7 +431,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>铸 &nbsp;锻 件：</b><asp:TextBox ID="txt_casting_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>铸 &nbsp;锻 件：</b><asp:TextBox ID="txt_casting_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 参考值：
@@ -460,7 +460,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>其他材料：</b><asp:TextBox ID="txt_othermat_dep" runat="server" class='number'></asp:TextBox>元
+                                <b>其他材料：</b><asp:TextBox ID="txt_othermat_dep" runat="server" class='number'></asp:TextBox> 元
                             </td>
                             <td>
                                 参考值：
@@ -491,10 +491,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>材料费反馈合计：</b><asp:Label ID="lb_c_total_material_dep" runat="server"></asp:Label>元
+                                <b>材料费反馈合计：</b><asp:Label ID="lb_c_total_material_dep" runat="server"></asp:Label> 元
                             </td>
                             <td>
-                                <b>材料费参考值合计：</b><asp:Label ID="lb_c_total_material_his" runat="server"></asp:Label>元
+                                <b>材料费参考值合计：</b><asp:Label ID="lb_c_total_material_his" runat="server"></asp:Label> 元
                             </td>
                         </tr>
                     </table>
