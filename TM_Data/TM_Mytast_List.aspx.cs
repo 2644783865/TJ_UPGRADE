@@ -407,12 +407,12 @@ namespace ZCZJ_DPF.TM_Data
                 CM_PROJ ,
                 TSA_ENGNAME , 
                 ( SELECT BM_TUTOTALWGHT FROM TBPM_STRINFODQO WHERE BM_ZONGXU='1' AND BM_ENGID='{1}'),               
-                ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{2}' AND material_code LIKE '01.07%') ,
-                ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{3}' AND material_code LIKE '01.11%'),
-                ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{4}' AND material_code LIKE '01.15%'),
-                ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{5}' AND material_code LIKE '01.03%'),
-                ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{6}' AND (material_code LIKE '01.08%' OR material_code LIKE '01.09%')),
-                ( SELECT SUM(c_total_cost) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{7}' AND material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{2}' AND material_code LIKE '01.07%') ,
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{3}' AND material_code LIKE '01.11%'),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{4}' AND material_code LIKE '01.15%'),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{5}' AND material_code LIKE '01.03%'),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{6}' AND (material_code LIKE '01.08%' OR material_code LIKE '01.09%')),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{7}' AND material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
                   AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%'),
                 {8},
                 GETDATE(),

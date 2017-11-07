@@ -119,9 +119,10 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     }
                     break;
                 case "6"://生产部长审核
+                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET production_check={1} WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.production_check, tb.task_code));
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_production_check_note))
                     {
-                        DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET state=3 WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.task_code));
+                        DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET state=3 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
                         string[] ids6 = new string[] { "63" };//季凌云
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids6);
                     }
