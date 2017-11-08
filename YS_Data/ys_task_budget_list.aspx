@@ -45,7 +45,7 @@
                         <asp:TextBox ID="txt_contract_code" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                        项目名称：
+                         产品名称：
                         <asp:TextBox ID="txt_project_name" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>

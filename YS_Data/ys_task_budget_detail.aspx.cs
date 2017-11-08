@@ -19,7 +19,7 @@ namespace ZCZJ_DPF.YS_Data
 {
     public partial class ys_task_budget_detail : BasicPage
     {
-        string task_code;
+        string task_code, userid;
         YS_Data.BLL.ys_task_budget_detail bll = new YS_Data.BLL.ys_task_budget_detail();
         YS_Data.Model.TaskBudget tb;
         protected void Page_Load(object sender, EventArgs e)
@@ -29,8 +29,9 @@ namespace ZCZJ_DPF.YS_Data
 
             if (!IsPostBack)
             {
-
-                bindControlerValue();
+                userid = Session["UserID"].ToString();
+                initControlUseable();
+                bindControlValue();
                 bindRepeater();
             }
 
@@ -39,7 +40,7 @@ namespace ZCZJ_DPF.YS_Data
         /// <summary>
         /// 绑定各个控件的值
         /// </summary>
-        protected void bindControlerValue()
+        protected void bindControlValue()
         {
             lb_task_code.Text = tb.task_code;
             lb_contract_code.Text = tb.contract_code;
@@ -151,6 +152,174 @@ namespace ZCZJ_DPF.YS_Data
             bll.bindMaterialRepeater(rpt_other, pal_no_other, task_code, @"material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
                   AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%'");
             bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, "");
+        }
+
+
+        protected void initControlUseable()
+        {
+            //预算编制
+            if (tb.node_budget_edit_user_id.Equals(userid) && (tb.node_budget_edit_state.Equals("1") || tb.node_budget_edit_state.Equals("3")))
+            {
+                txt_labour_budget.Enabled = true;
+                txt_teamwork_budget.Enabled = true;
+                txt_coopreative_budget.Enabled = true;
+                txt_total_material_budget.Enabled = true;
+                btn_budget_submit.Visible = true;
+            }
+            //生产部分工
+            if (tb.node_production_divide_user_id.Equals(userid)&&(tb.node_production_divide_state.Equals("1") || tb.node_production_divide_state.Equals("3")))
+            {
+                txt_node_labour_dep_user_name.Enabled = true;
+                img_labour.Visible = true;
+                txt_node_teamwork_dep_user_name.Enabled = true;
+                img_teamwork.Visible = true;
+                txt_node_cooperative_dep_user_name.Enabled = true;
+                img_cooperative.Visible = true;
+                btn_production_divide.Visible = true;
+            }
+            //采购部分工
+            if (tb.node_purchase_divide_user_id.Equals(userid) && (tb.node_purchase_divide_state.Equals("1") || tb.node_purchase_divide_state.Equals("3")))
+            {
+                txt_node_ferrous_dep_user_name.Enabled = true;
+                img_ferrous.Visible = true;
+                txt_node_purchasepart_dep_user_name.Enabled = true;
+                img_purchasepart.Visible = true;
+                txt_node_paint_dep_user_name.Enabled = true;
+                img_paint.Visible = true;
+                txt_node_electrical_dep_user_name.Enabled = true;
+                img_electrical.Visible = true;
+                txt_node_casting_dep_user_name.Enabled = true;
+                img_casting.Visible = true;
+                txt_node_othermat_dep_user_name.Enabled = true;
+                img_othermat.Visible = true;
+                btn_purchase_divide.Visible = true;
+            }
+            //人工费反馈
+            {
+                if (tb.node_labour_dep_user_id.Equals(userid) && (tb.node_labour_dep_state.Equals("1") || tb.node_labour_dep_state.Equals("3")))
+                {
+                    txt_labour_dep.Enabled = true;
+                    txt_node_labour_dep_note.Enabled = true;
+                    btn_labour_dep.Visible = true;
+                }
+            }
+            //分包费反馈
+            {
+                if (tb.node_teamwork_dep_user_id.Equals(userid) && (tb.node_teamwork_dep_state.Equals("1") || tb.node_teamwork_dep_state.Equals("3")))
+                {
+                    txt_teamwork_dep.Enabled = true;
+                    txt_node_teamwork_dep_note.Enabled = true;
+                    btn_teamwork_dep.Visible = true;
+                }
+            }
+            //外协费反馈
+            {
+                if (tb.node_cooperative_dep_user_id.Equals(userid) && (tb.node_cooperative_dep_state.Equals("1") || tb.node_cooperative_dep_state.Equals("3")))
+                {
+                    txt_cooperative_dep.Enabled = true;
+                    txt_node_cooperative_dep_note.Enabled = true;
+                    btn_cooperative_dep.Visible = true;
+                }
+            }
+            //黑色金属反馈
+            {
+                if (tb.node_ferrous_dep_user_id.Equals(userid) && (tb.node_ferrous_dep_state.Equals("1") || tb.node_ferrous_dep_state.Equals("3")))
+                {
+                    txt_ferrous_dep.Enabled = true;
+                    txt_node_ferrous_dep_note.Enabled = true;
+                    btn_ferrous_dep.Visible = true;
+                }
+            }
+            //外购件反馈
+            {
+                if (tb.node_purchasepart_dep_user_id.Equals(userid) && (tb.node_purchasepart_dep_state.Equals("1") || tb.node_purchasepart_dep_state.Equals("3")))
+                {
+                    txt_purchasepart_dep.Enabled = true;
+                    txt_node_purchasepart_dep_note.Enabled = true;
+                    btn_purchasepart_dep.Visible = true;
+                }
+            }
+            //油漆涂料反馈
+            {
+                if (tb.node_paint_dep_user_id.Equals(userid) && (tb.node_paint_dep_state.Equals("1") || tb.node_paint_dep_state.Equals("3")))
+                {
+                    txt_paint_dep.Enabled = true;
+                    txt_node_paint_dep_note.Enabled = true;
+                    btn_paint_dep.Visible = true;
+                }
+            }
+            //电器电料反馈
+            {
+                if (tb.node_electrical_dep_user_id.Equals(userid) && (tb.node_electrical_dep_state.Equals("1") || tb.node_electrical_dep_state.Equals("3")))
+                {
+                    txt_electrical_dep.Enabled = true;
+                    txt_node_electrical_dep_note.Enabled = true;
+                    btn_electrical_dep.Visible = true;
+                }
+            }
+            //铸锻件反馈
+            {
+                if (tb.node_casting_dep_user_id.Equals(userid) && (tb.node_casting_dep_state.Equals("1") || tb.node_casting_dep_state.Equals("3")))
+                {
+                    txt_casting_dep.Enabled = true;
+                    txt_node_casting_dep_note.Enabled = true;
+                    btn_casting_dep.Visible = true;
+                }
+            }
+            //其他材料反馈
+            {
+                if (tb.node_othermat_dep_user_id.Equals(userid) && (tb.node_othermat_dep_state.Equals("1") || tb.node_othermat_dep_state.Equals("3")))
+                {
+                    txt_othermat_dep.Enabled = true;
+                    txt_node_othermat_dep_note.Enabled = true;
+                    btn_othermat_dep.Visible = true;
+                }
+            }
+
+
+            //生产部审核
+            {
+                if (tb.node_production_check_user_id.Equals(userid) && (tb.node_production_check_state.Equals("1") || tb.node_production_check_state.Equals("3")))
+                {
+                    rbl_production_check.Enabled = true;
+                    txt_node_production_check_note.Enabled = true;
+                    btn_production_check.Visible = true;
+                }
+            }
+
+
+
+            //采购部审核
+            {
+                if (tb.node_purchase_check_user_id.Equals(userid) && (tb.node_purchase_check_state.Equals("1") || tb.node_purchase_check_state.Equals("3")))
+                {
+                    rbl_purchase_check.Enabled = true;
+                    txt_node_purchase_check_note.Enabled = true;
+                    btn_purchase_check.Visible = true;
+                }
+            }
+            //预算调整
+            if (tb.node_budget_adjust_user_id.Equals(userid) && (tb.node_budget_adjust_state.Equals("1") || tb.node_budget_adjust_state.Equals("3")))
+            {
+                txt_labour_budget.Enabled = true;
+                txt_teamwork_budget.Enabled = true;
+                txt_coopreative_budget.Enabled = true;
+                txt_total_material_budget.Enabled = true;
+                btn_budget_adjust.Visible = true;
+            }
+
+            //财务部审核
+            {
+                if (tb.node_budget_check_user_id.Equals(userid) && (tb.node_budget_check_state.Equals("1") || tb.node_budget_check_state.Equals("3")))
+                {
+                    rbl_budget_check.Enabled = true;
+                    txt_node_budget_check_note.Enabled = true;
+                    btn_budget_check.Visible = true;
+                }
+            }
+
+
+
         }
 
         #region 各个节点的处理程序
@@ -327,7 +496,7 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="e"></param>
         protected void btn_production_check_Click(object sender, EventArgs e)
         {
-            tb.production_check = rbl_production_check.SelectedIndex.ToString(); 
+            tb.production_check = rbl_production_check.SelectedIndex.ToString();
             tb.node_production_check_note = txt_node_production_check_note.Text.Trim();
 
             switch (rbl_production_check.SelectedIndex)
@@ -362,7 +531,7 @@ namespace ZCZJ_DPF.YS_Data
                     ((Button)sender).Visible = false;
                     break;
                 case 1:
-                    bll.rejectNode("14", tb, bll.getCheckBodListSelectedValue(ckl_purchase_check));                    
+                    bll.rejectNode("14", tb, bll.getCheckBodListSelectedValue(ckl_purchase_check));
                     break;
                 default:
                     break;
@@ -443,7 +612,7 @@ namespace ZCZJ_DPF.YS_Data
             switch (rbl_purchase_check.SelectedIndex)
             {
                 case 0: ckl_purchase_check.Visible = false;
-                    break;                
+                    break;
                 case 1:
                     bll.bindCheckBoxList(ckl_purchase_check, "SELECT node_definition_id,node_definition_name FROM dbo.YS_NODE_DEFINITION WHERE node_definition_id in (SELECT  from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=14);", "node_definition_name", "node_definition_id");
                     ckl_purchase_check.Visible = true;

@@ -50,7 +50,7 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.casting_dep = dr_task["ys_casting_forging_dep"].ToString();
                 this.othermat_dep = dr_task["ys_othermat_cost_dep"].ToString();
                 this.c_total_material_dep = dr_task["c_total_material_dep"].ToString();
-                this.purchase_check = dr_task["purchase_check"].ToString();                
+                this.purchase_check = dr_task["purchase_check"].ToString();
 
                 this.labour_dep = dr_task["direct_labour_dep"].ToString();
                 this.teamwork_dep = dr_task["sub_teamwork_dep"].ToString();
@@ -80,7 +80,7 @@ namespace ZCZJ_DPF.YS_Data.Model
 
             #region 财务部预算编制
             DataRow[] drs1 = dt_node.Select("node_definition_id=1");
-            if (drs1.Length!=0)
+            if (drs1.Length != 0)
             {
                 DataRow dr1 = drs1[0];
                 this.node_budget_edit_user_id = dr1["user_id"].ToString();
@@ -89,7 +89,11 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_budget_edit_end_time = dr1["end_time"].ToString();
                 this.node_budget_edit_note = dr1["note"].ToString();
                 this.node_budget_edit_state = dr1["state"].ToString();
-            }            
+            }
+            else
+            {
+                this.node_budget_edit_user_id = "";
+            }
             #endregion
 
             #region 生产部长反馈分工
@@ -103,6 +107,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_production_divide_end_time = dr2["end_time"].ToString();
                 this.node_production_divide_note = dr2["note"].ToString();
                 this.node_production_divide_state = dr2["state"].ToString();
+            }
+            else
+            {
+                this.node_production_divide_user_id = "";
             }
             #endregion
 
@@ -118,6 +126,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_labour_dep_note = dr3["note"].ToString();
                 this.node_labour_dep_state = dr3["state"].ToString();
             }
+            else
+            {
+                this.node_labour_dep_user_id = "";
+            }
             #endregion
 
             #region 生产部分包费反馈
@@ -131,6 +143,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_teamwork_dep_end_time = dr4["end_time"].ToString();
                 this.node_teamwork_dep_note = dr4["note"].ToString();
                 this.node_teamwork_dep_state = dr4["state"].ToString();
+            }
+            else
+            {
+                this.node_teamwork_dep_user_id = "";
             }
             #endregion
 
@@ -146,6 +162,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_cooperative_dep_note = dr5["note"].ToString();
                 this.node_cooperative_dep_state = dr5["state"].ToString();
             }
+            else
+            {
+                this.node_cooperative_dep_user_id = "";
+            }
             #endregion
 
             #region 生产部长反馈审核
@@ -159,6 +179,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_production_check_end_time = dr6["end_time"].ToString();
                 this.node_production_check_note = dr6["note"].ToString();
                 this.node_production_check_state = dr6["state"].ToString();
+            }
+            else
+            {
+                this.node_production_check_user_id = "";
             }
             #endregion
 
@@ -174,6 +198,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_purchase_divide_note = dr7["note"].ToString();
                 this.node_purchase_divide_state = dr7["state"].ToString();
             }
+            else
+            {
+                this.node_purchase_divide_user_id = "";
+            }
             #endregion
 
             #region 采购部黑色金属反馈
@@ -187,6 +215,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_ferrous_dep_end_time = dr8["end_time"].ToString();
                 this.node_ferrous_dep_note = dr8["note"].ToString();
                 this.node_ferrous_dep_state = dr8["state"].ToString();
+            }
+            else
+            {
+                this.node_ferrous_dep_user_id = "";
             }
             #endregion
 
@@ -202,6 +234,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_purchasepart_dep_note = dr9["note"].ToString();
                 this.node_purchasepart_dep_state = dr9["state"].ToString();
             }
+            else
+            {
+                this.node_purchasepart_dep_user_id = "";
+            }
             #endregion
 
             #region 采购部油漆涂料反馈
@@ -215,6 +251,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_paint_dep_end_time = dr10["end_time"].ToString();
                 this.node_paint_dep_note = dr10["note"].ToString();
                 this.node_paint_dep_state = dr10["state"].ToString();
+            }
+            else
+            {
+                this.node_paint_dep_user_id = "";
             }
             #endregion
 
@@ -230,6 +270,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_electrical_dep_note = dr11["note"].ToString();
                 this.node_electrical_dep_state = dr11["state"].ToString();
             }
+            else
+            {
+                this.node_electrical_dep_user_id ="";
+            }
             #endregion
 
             #region 采购部铸锻件反馈
@@ -243,6 +287,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_casting_dep_end_time = dr12["end_time"].ToString();
                 this.node_casting_dep_note = dr12["note"].ToString();
                 this.node_casting_dep_state = dr12["state"].ToString();
+            }
+            else
+            {
+                this.node_casting_dep_user_id = "";
             }
             #endregion
 
@@ -258,6 +306,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_othermat_dep_note = dr13["note"].ToString();
                 this.node_othermat_dep_state = dr13["state"].ToString();
             }
+            else
+            {
+                this.node_othermat_dep_user_id = "";
+            }
             #endregion
 
             #region 采购部长反馈审核
@@ -271,6 +323,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_purchase_check_end_time = dr14["end_time"].ToString();
                 this.node_purchase_check_note = dr14["note"].ToString();
                 this.node_purchase_check_state = dr14["state"].ToString();
+            }
+            else
+            {
+                this.node_purchase_check_user_id = "";
             }
             #endregion
 
@@ -286,6 +342,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_budget_adjust_note = dr15["note"].ToString();
                 this.node_budget_adjust_state = dr15["state"].ToString();
             }
+            else
+            {
+                this.node_budget_adjust_user_id = "";
+            }
             #endregion
 
             #region 财务部长预算审核
@@ -299,6 +359,10 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.node_budget_check_end_time = dr16["end_time"].ToString();
                 this.node_budget_check_note = dr16["note"].ToString();
                 this.node_budget_check_state = dr16["state"].ToString();
+            }
+            else
+            {
+                this.node_budget_check_user_id = "";
             }
             #endregion
             #endregion
@@ -325,7 +389,7 @@ namespace ZCZJ_DPF.YS_Data.Model
         /// <summary>
         /// 设备名称（为当前任务号下所有的产品名称)
         /// </summary>
-        public string equipment_name { get; set; }        
+        public string equipment_name { get; set; }
         /// <summary>
         /// 任务号重量
         /// </summary>
@@ -341,11 +405,11 @@ namespace ZCZJ_DPF.YS_Data.Model
         /// <summary>
         /// 财务部确定：直接人工费预算
         /// </summary>
-        public string  labour_budget { get; set; }
+        public string labour_budget { get; set; }
         /// <summary>
         /// 财务部确定：厂内分包费预算
         /// </summary>
-        public string  teamwork_budget { get; set; }
+        public string teamwork_budget { get; set; }
         /// <summary>
         /// 财务部确定：生产外协费预算
         /// </summary>
@@ -887,7 +951,7 @@ namespace ZCZJ_DPF.YS_Data.Model
         public string node_budget_check_note { set; get; }
         #endregion
 
-        
+
 
         #endregion
     }
