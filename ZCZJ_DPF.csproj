@@ -7828,9 +7828,6 @@
     <Compile Include="YS_Data\BLL\ys_task_budget_detail.cs" />
     <Compile Include="YS_Data\BLL\ys_task_budget_list.cs" />
     <Compile Include="YS_Data\ExportDataFromYS.cs" />
-    <Compile Include="YS_Data\Model\ys_line.cs" />
-    <Compile Include="YS_Data\Model\ys_material_history_info.cs" />
-    <Compile Include="YS_Data\Model\ys_node_definition.cs" />
     <Compile Include="YS_Data\Model\NodeInstance.cs" />
     <Compile Include="YS_Data\Model\TaskBudget.cs" />
     <Compile Include="YS_Data\Service\BudgetFlowEngine.cs" />
