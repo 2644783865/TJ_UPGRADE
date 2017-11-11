@@ -730,7 +730,7 @@ namespace ZCZJ_DPF.YS_Data
             }
             if (YS_CONTRACT_NO != "")
             {
-                string URL = "YS_Cost_Budget_A_M.aspx?ContractNo=" + CONTRACT_NO;
+                string URL = "YS_Cost_Budget_A_M.aspx?ContractNo=" + YS_CONTRACT_NO;
                 Response.Redirect(URL);
             }
             else

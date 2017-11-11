@@ -197,7 +197,7 @@ namespace ZCZJ_DPF.YS_Data
         protected string GetStrWhere()
         {
             string strwhere = " 1=1";
-            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_REVSTATE='2'";
+            strwhere += " and PCON_SCH like '%" + txt_search.Text.ToString() + "%' and YS_REVSTATE='5'";
             if (ddl_project.SelectedIndex != 0)//项目名称
             {
                 strwhere += " and PCON_PJNAME='" + ddl_project.SelectedValue + "'";

@@ -53,7 +53,7 @@ namespace ZCZJ_DPF.YS_Data
             //string sqltext_people = "select distinct YS_ADDNAME,YS_ADDNAME from View_YS_COST_BUDGET_REAL where 1=1 " +type;
             //string sqltext_PJ = "SELECT DISTINCT PCON_PJNAME ,PCON_PJNAME FROM View_YS_COST_BUDGET_REAL where 1=1" +type;
             //string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_COST_BUDGET_REAL where 1=1" +type;
-            string sqltext_EQ = "SELECT PCON_EQNAME FROM View_YS_COST_BUDGET_REAL where 1=1 and YS_CONTRACT_NO='" + ContractNo + "' ";
+            string sqltext_EQ = "SELECT PCON_EQNAME,PCON_EQNAME FROM View_YS_COST_BUDGET_REAL where 1=1 and YS_CONTRACT_NO='" + ContractNo + "' ";
 
 
             //DBCallCommon.FillDroplist(dpl_people, sqltext_people);
@@ -126,7 +126,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             pager.TableName = "View_YS_COST_BUDGET_REAL";
             pager.PrimaryKey = "YS_CONTRACT_NO";
-            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_EQNAME" +
+            pager.ShowFields = "YS_CONTRACT_NO,PCON_SCH,PCON_EQNAME," +
                 "Convert(decimal(10,2), (YS_FERROUS_METAL/(YS_FERROUS_METAL_BG+1))) as YS_FERROUS_METAL_BG_percent,Convert(decimal(10,2), (YS_FERROUS_METAL/(YS_FERROUS_METAL_BG+1))) as YS_FERROUS_METAL_BG_hide_percent,YS_FERROUS_METAL_BG," +
                 "Convert(decimal(10,2), (YS_PURCHASE_PART/(YS_PURCHASE_PART_BG+1))) as YS_PURCHASE_PART_BG_percent,Convert(decimal(10,2), (YS_PURCHASE_PART/(YS_PURCHASE_PART_BG+1))) as YS_PURCHASE_PART_BG_hide_percent,YS_PURCHASE_PART_BG," +
                 "Convert(decimal(10,2), (YS_CASTING_FORGING/(YS_CASTING_FORGING_COST_BG+1))) as YS_CASTING_FORGING_BG_percent,Convert(decimal(10,2), (YS_CASTING_FORGING/(YS_CASTING_FORGING_COST_BG+1))) as YS_CASTING_FORGING_BG_hide_percent,YS_CASTING_FORGING_COST_BG," +
@@ -137,7 +137,7 @@ namespace ZCZJ_DPF.YS_Data
                 "Convert(decimal(10,2), (YS_TEAM_CONTRACT/(YS_TEAM_CONTRACT_BG+1))) as YS_TEAM_CONTRACT_BG_percent,Convert(decimal(10,2), (YS_TEAM_CONTRACT/(YS_TEAM_CONTRACT_BG+1))) as YS_TEAM_CONTRACT_BG_hide_percent,YS_TEAM_CONTRACT_BG," +
                 "Convert(decimal(10,2), (YS_FAC_CONTRACT/(YS_FAC_CONTRACT_BG+1))) as YS_FAC_CONTRACT_BG_percent,Convert(decimal(10,2), (YS_FAC_CONTRACT/(YS_FAC_CONTRACT_BG+1))) as YS_FAC_CONTRACT_BG_hide_percent,YS_FAC_CONTRACT_BG," +
                 "Convert(decimal(10,2), (YS_PRODUCT_OUT/(YS_PRODUCT_OUT_BG+1))) as YS_PRODUCT_OUT_BG_percent,Convert(decimal(10,2), (YS_PRODUCT_OUT/(YS_PRODUCT_OUT_BG+1))) as YS_PRODUCT_OUT_BG_hide_percent,YS_PRODUCT_OUT_BG," +
-                "YS_FERROUS_METAL,YS_PURCHASE_PART,YS_MACHINING_PART,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_MATERIAL_COST,YS_TEAM_CONTRACT,YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_NOTE";
+                "YS_FERROUS_METAL,YS_PURCHASE_PART,YS_CASTING_FORGING,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_MATERIAL_COST,YS_TEAM_CONTRACT,YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_NOTE";
             pager.OrderField = "PCON_EQNAME";
             pager.StrWhere = this.GetStrWhere();
             pager.OrderType = 1;//按任务名称升序排列
@@ -165,7 +165,7 @@ namespace ZCZJ_DPF.YS_Data
             string strwhere = " 1=1 ";
             //string type = (ViewState["type"].ToString() == "1" ? " and [YS_XS_Finished] ='1'" : " and YS_XS_Finished is null");
             //strwhere += type;
-            strwhere += " and YS_REVSTATE='5' and YS_CONTRACT_NO='" + ContractNo +" and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
+            strwhere += " and YS_REVSTATE='5' and YS_CONTRACT_NO='" + ContractNo +"' and PCON_SCH like '%" + txt_search.Text.ToString() + "%'";
 
             string this_month = DateTime.Now.ToString("yyyy-MM");
             this_month += "-01";
@@ -367,9 +367,9 @@ namespace ZCZJ_DPF.YS_Data
                 {
                     //if (j < 21)
                     //{
-                    double percent_O_B = ((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 3])).Value.ToString() == "" ? 0 : Convert.ToDouble(((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 9])).Value.ToString());//订单完成百分比
-                    double db_Budget = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 9])).Text.ToString()) / 10000, 1);//预算费用
-                    double db_Order = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 9] + "_R")).Text.ToString()) / 10000, 1);//实际费用
+                    double percent_O_B = ((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 3])).Value.ToString() == "" ? 0 : Convert.ToDouble(((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 3])).Value.ToString());//订单完成百分比
+                    double db_Budget = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) / 10000, 1);//预算费用
+                    double db_Order = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) / 10000, 1);//实际费用
                     double db_pass = Math.Round(db_Order - db_Budget, 1);
                     if (j < 10)
                     {
