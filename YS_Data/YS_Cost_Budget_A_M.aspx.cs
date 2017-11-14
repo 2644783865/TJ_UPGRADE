@@ -42,7 +42,7 @@ namespace ZCZJ_DPF.YS_Data
             Encrypt_Decrypt ed = new Encrypt_Decrypt();
             ContractNo = ed.DecryptText(Request.QueryString["ContractNo"].ToString());
             lbl_con.Text = ContractNo;
-            string sql_title = "select PCON_PJNAME,PCON_ENGNAME from TBPM_CONPCHSINFO where PCON_BCODE='" + ContractNo + "' ";
+            string sql_title = "select PCON_ENGNAME,PCON_ENGTYPE from TBPM_CONPCHSINFO where PCON_BCODE='" + ContractNo + "' ";
             System.Data.DataTable dt_title = DBCallCommon.GetDTUsingSqlText(sql_title);
             if (dt_title.Rows.Count > 0)
             {
