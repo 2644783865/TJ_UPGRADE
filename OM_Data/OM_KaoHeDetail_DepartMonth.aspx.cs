@@ -25,7 +25,7 @@ namespace ZCZJ_DPF.OM_Data
                 hidConext.Value = key;
                 if (action == "add")
                 {
-                    string sql = "select DEP_CODE as DepartId,DEP_NAME as DepartNM,'' as Score,'' as Note from dbo.TBDS_DEPINFO where DEP_CODE like '[0-9][0-9]' and DEP_CODE not in ('08','09','13','01','14','15','16','17') ";
+                    string sql = "select DEP_CODE as DepartId,DEP_NAME as DepartNM,'' as Score,'' as Note from dbo.TBDS_DEPINFO where DEP_CODE like '[0-9][0-9]' and DEP_CODE not in ('08','09','13','01','14','16','17') ";
                     DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
                     this.Det_Repeater.DataSource = dt;
                     this.Det_Repeater.DataBind();
