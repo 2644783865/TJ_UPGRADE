@@ -43,11 +43,13 @@ namespace ZCZJ_DPF.YS_Data
             string sqltext_ENG = "SELECT DISTINCT PCON_ENGNAME,PCON_ENGNAME FROM View_YS_CON_BUDGET_REAL where 1=1" + type;
             if (ViewState["type"].ToString() == "1")
             {
+                btnModify.Visible = false;
                 btnShowSta.Visible = true;
                 LabelTitle.Text = "合同预算分析";
             }
             else
             {
+                btnModify.Visible = true;
                 btnShowSta.Visible = false;
                 LabelTitle.Text = "合同预算监控";
             }
@@ -730,7 +732,7 @@ namespace ZCZJ_DPF.YS_Data
             }
             if (YS_CONTRACT_NO != "")
             {
-                string URL = "YS_Cost_Budget_A_M.aspx?ContractNo=" + CONTRACT_NO;
+                string URL = "YS_Cost_Budget_A_M.aspx?ContractNo=" + YS_CONTRACT_NO;
                 Response.Redirect(URL);
             }
             else
