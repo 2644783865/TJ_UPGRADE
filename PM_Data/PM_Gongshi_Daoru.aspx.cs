@@ -149,8 +149,8 @@ namespace ZCZJ_DPF.PM_Data
                             int count = 0;
                             if (count == 0)
                             {
-                                string insertstr = "insert into TBMP_GS_LIST (GS_NUM,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_HOURS,GS_MONEY,GS_NOTE,DATEYEAR,DATEMONTH,IsDel)";
-                                insertstr += " values('" + ps_xh + "','" + ps_gk + "','" + ps_ht + "','" + ps_rw + "','" + ps_th + "','" + ps_tm + "','" + ps_sbh + "','" + ps_sbmc + "','" + ps_sbdj + "','" + ps_gs + "','" + ps_my + "','" + ps_bz + "','" + year + "','" + month + "','0')";
+                                string insertstr = "insert into TBMP_GS_LIST (GS_NUM,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TUHAO,GS_TUMING,GS_EQUID,GS_EQUNAME,GS_EQUFACTOR,GS_HOURS,GS_MONEY,GS_NOTE,DATEYEAR,DATEMONTH,IsDel,Drtime)";
+                                insertstr += " values('" + ps_xh + "','" + ps_gk + "','" + ps_ht + "','" + ps_rw + "','" + ps_th + "','" + ps_tm + "','" + ps_sbh + "','" + ps_sbmc + "','" + ps_sbdj + "','" + ps_gs + "','" + ps_my + "','" + ps_bz + "','" + year + "','" + month + "','0',GETDATE())";
 
                                 SqlCommand cmd = new SqlCommand(insertstr, cn);
                                 try

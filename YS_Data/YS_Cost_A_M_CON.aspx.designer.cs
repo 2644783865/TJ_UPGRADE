@@ -11,16 +11,16 @@
 namespace ZCZJ_DPF.YS_Data {
     
     
-    public partial class YS_Cost_Real_View {
+    public partial class YS_Cost_A_M_CON {
         
         /// <summary>
-        /// ControlFinder 控件。
+        /// LabelTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ControlFinder;
+        protected global::System.Web.UI.WebControls.Label LabelTitle;
         
         /// <summary>
         /// ToolkitScriptManager1 控件。
@@ -32,22 +32,13 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
         
         /// <summary>
-        /// txt_search 控件。
+        /// rbl_profit 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_search;
-        
-        /// <summary>
-        /// btn_search 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_search;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_profit;
         
         /// <summary>
         /// ddl_project 控件。
@@ -68,31 +59,31 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.DropDownList ddl_engineer;
         
         /// <summary>
-        /// ddl_task 控件。
+        /// txt_search 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_task;
+        protected global::System.Web.UI.WebControls.TextBox txt_search;
         
         /// <summary>
-        /// UpdatePanel2 控件。
+        /// search1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.WebControls.Button search1;
         
         /// <summary>
-        /// lab_updatetime 控件。
+        /// btnShowTask 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lab_updatetime;
+        protected global::System.Web.UI.WebControls.Button btnShowTask;
         
         /// <summary>
         /// GridView1 控件。
@@ -122,12 +113,30 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::ZCZJ_DPF.UCPaging UCPaging1;
         
         /// <summary>
-        /// UpdateProgress1 控件。
+        /// labe1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
+        protected global::System.Web.UI.WebControls.Label labe1;
+        
+        /// <summary>
+        /// Label3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// Label2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
     }
 }

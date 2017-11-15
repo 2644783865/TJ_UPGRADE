@@ -368,27 +368,27 @@ namespace ZCZJ_DPF.YS_Data
                     //if (j < 21)
                     //{
                     double percent_O_B = ((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 3])).Value.ToString() == "" ? 0 : Convert.ToDouble(((HiddenField)e.Row.FindControl("hidden_" + fathername[j - 3])).Value.ToString());//订单完成百分比
-                    double db_Budget = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) / 10000, 1);//预算费用
-                    double db_Order = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) / 10000, 1);//实际费用
-                    double db_pass = Math.Round(db_Order - db_Budget, 1);
+                    double db_Budget = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3])).Text.ToString()) / 10000, 2);//预算费用
+                    double db_Order = Math.Round((((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) == "" ? 0 : Convert.ToDouble(((System.Web.UI.WebControls.Label)e.Row.FindControl("lab_" + fathername[j - 3] + "_R")).Text.ToString()) / 10000, 2);//实际费用
+                    double db_pass = Math.Round(db_Order - db_Budget, 2);
                     if (j < 10)
                     {
                         //e.Row.Cells[j].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
                         e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
                         if (db_pass > 0)
                         {
-                            e.Row.Cells[j].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万");
+                            e.Row.Cells[j].Attributes.Add("title", "实际费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超出预算" + db_pass.ToString() + "万");
                             //e.Row.Cells[j + 10].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
                             e.Row.Cells[j + 10].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j + 10].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万");
+                            e.Row.Cells[j + 10].Attributes.Add("title", "实际费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超出预算" + db_pass.ToString() + "万");
                         }
                         else
                         {
                             db_pass = Math.Abs(db_pass);
-                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额");
+                            e.Row.Cells[j].Attributes.Add("title", "实际费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,低于预算" + db_pass.ToString() + "万");
                             //e.Row.Cells[j + 10].Attributes.Add("ondblclick", "PurMarView('" + PCON_SCH + "','" + ed.EncryptText(fathername[j - 9]) + "')");
                             e.Row.Cells[j + 10].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j + 10].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额");
+                            e.Row.Cells[j + 10].Attributes.Add("title", "实际费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超出预算" + db_pass.ToString() + "万");
 
                         }
                     }
@@ -397,12 +397,12 @@ namespace ZCZJ_DPF.YS_Data
                         if (db_pass > 0)
                         {
                             e.Row.Cells[j].Attributes["style"] = "Cursor:hand";
-                            e.Row.Cells[j].Attributes.Add("title", "费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超额" + db_pass.ToString() + "万");
+                            e.Row.Cells[j].Attributes.Add("title", "实际费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,超出预算" + db_pass.ToString() + "万");
                         }
                         else
                         {
                             db_pass = Math.Abs(db_pass);
-                            e.Row.Cells[j].Attributes.Add("title", "订单达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,未超额");
+                            e.Row.Cells[j].Attributes.Add("title", "实际费用达到" + db_Order.ToString() + "万，达预算" + (100 * percent_O_B).ToString() + "%,低于预算" + db_pass.ToString() + "万");
                         }
                     }
                 }
@@ -650,7 +650,7 @@ namespace ZCZJ_DPF.YS_Data
                 }
                 else if (width < 1 && width > 0)
                 {
-                    width_img = 100 - width * 100;
+                    width_img = width * 100;
                 }
                 else
                 {
