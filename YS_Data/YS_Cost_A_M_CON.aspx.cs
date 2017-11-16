@@ -284,7 +284,41 @@ namespace ZCZJ_DPF.YS_Data
                 {
                     e.Row.Cells[0].BackColor = System.Drawing.Color.Orange;
                 }
-                
+
+                //结算时间报警
+                string sql_fin = "select [GS_TIME],[CNFB_TIME],[WX_TIME] from [View_YS_CON_TIME] where [YS_CONTRACT_NO]='" + lbl_CONTRACT_NO + "'";
+                System.Data.DataTable dt_fin = DBCallCommon.GetDTUsingSqlText(sql_fin);
+                if (dt_fin.Rows.Count > 0)
+                {
+                    string gs = dt_fin.Rows[0][0].ToString();
+                    string cnfb = dt_fin.Rows[0][1].ToString();
+                    string wx = dt_fin.Rows[0][2].ToString();
+                    if (gs != "")
+                    {
+                        DateTime gstime = Convert.ToDateTime(gs);
+                        if (gstime > deadtime)
+                        {
+                            e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
+                        }
+                    }
+                    if (cnfb != "")
+                    {
+                        DateTime cnfbtime = Convert.ToDateTime(cnfb);
+                        if (cnfbtime > deadtime)
+                        {
+                            e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
+                        }
+                    }
+                    if (wx != "")
+                    {
+                        DateTime wxtime = Convert.ToDateTime(wx);
+                        if (wxtime > deadtime)
+                        {
+                            e.Row.Cells[0].BackColor = System.Drawing.Color.Red;
+                        }
+                    }
+                }
+
 
 
                 Encrypt_Decrypt ed = new Encrypt_Decrypt();

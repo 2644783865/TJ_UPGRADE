@@ -439,8 +439,8 @@ namespace ZCZJ_DPF.PM_Data
                         sql1 += "'" + Convert.ToDouble(cell12.NumericCellValue.ToString().Trim()) + "',";
                         sql1 += "'" + cell13.ToString().Trim() + "',";
                         sql1 += "'" + cnfbyear.ToString().Trim() + "',";
-                        sql1 += "'" + cnfbmonth.ToString().Trim() + "'";
-                        string sqltext1 = "insert into TBMP_CNFB_LIST(CNFB_PROJNAME,CNFB_HTID,CNFB_TSAID,CNFB_TH,CNFB_SBNAME,CNFB_BYMYMONEY,CNFB_BYREALMONEY,CNFB_TYPE,CNFB_YEAR,CNFB_MONTH) values(" + sql1 + ")";
+                        sql1 += "'" + cnfbmonth.ToString().Trim() + "',GETDATE()";
+                        string sqltext1 = "insert into TBMP_CNFB_LIST(CNFB_PROJNAME,CNFB_HTID,CNFB_TSAID,CNFB_TH,CNFB_SBNAME,CNFB_BYMYMONEY,CNFB_BYREALMONEY,CNFB_TYPE,CNFB_YEAR,CNFB_MONTH,CNFB_DRTIME) values(" + sql1 + ")";
                         list.Add(sqltext1);
                     }
                     else
@@ -510,8 +510,8 @@ namespace ZCZJ_DPF.PM_Data
                         sql2 += "'" + Convert.ToDouble(cell12.NumericCellValue.ToString().Trim()) + "',";
                         sql2 += "'" + zb.ToString().Trim() + "',";
                         sql2 += "'" + cnfbyear.ToString().Trim() + "',";
-                        sql2 += "'" + cnfbmonth.ToString().Trim() + "'";
-                        string sqltext2 = "insert into TBMP_CNFB_LIST(CNFB_PROJNAME,CNFB_HTID,CNFB_TSAID,CNFB_TH,CNFB_SBNAME,CNFB_BYMYMONEY,CNFB_BYREALMONEY,CNFB_TYPE,CNFB_YEAR,CNFB_MONTH) values(" + sql2 + ")";
+                        sql2 += "'" + cnfbmonth.ToString().Trim() + "',GETDATE()";
+                        string sqltext2 = "insert into TBMP_CNFB_LIST(CNFB_PROJNAME,CNFB_HTID,CNFB_TSAID,CNFB_TH,CNFB_SBNAME,CNFB_BYMYMONEY,CNFB_BYREALMONEY,CNFB_TYPE,CNFB_YEAR,CNFB_MONTH,CNFB_DRTIME) values(" + sql2 + ")";
                         list.Add(sqltext2);
                     }
                     else
