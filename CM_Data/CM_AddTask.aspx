@@ -111,11 +111,6 @@
                 event.returnValue = false;
                 return false;
             }
-//            if ($("#<%=TSA_ID.ClientID%>").val() == '') {
-//                alert("请新输入任务号！");
-//                event.returnValue = false;
-//                return false;
-//            }
             var list = document.getElementById('<%=Panel2.ClientID %>');
             var cbl = list.getElementsByTagName('input');
             var n = 0;
