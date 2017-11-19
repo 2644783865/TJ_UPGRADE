@@ -62,7 +62,7 @@
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
                                     上次更新时间：<asp:Label ID="lab_updatetime" runat="server" ForeColor="Red"></asp:Label>&nbsp;&nbsp;
-                                    <asp:Button ID="Btn_update" runat="server" Text="实际费用更新" OnClick="Btn_update_OnClick" />
+                                    <%--<asp:Button ID="Btn_update" runat="server" Text="实际费用更新" OnClick="Btn_update_OnClick" Visible="false" />--%>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
