@@ -318,11 +318,11 @@
             
             if (id == "person11") {
                 $("#<%=tbxLZ_GKGLY.ClientID %>").val(r.st_name);
-                $("#<%=hidLZ_GDZCGLYID.ClientID%>").val(r.st_id);
+                $("#<%=hidLZ_GKGLYID.ClientID%>").val(r.st_id);
             }
             if (id == "person12") {
                 $("#<%=txtLZ_GDZCGLY.ClientID %>").val(r.st_name);
-                $("#<%=hidLZ_GKGLYID.ClientID%>").val(r.st_id);
+                $("#<%=hidLZ_GDZCGLYID.ClientID%>").val(r.st_id);
             }
             if (id == "person13") {
                 $("#<%=tbxLZ_TSGLY.ClientID %>").val(r.st_name);
@@ -948,7 +948,7 @@
                         </td>
                         <td align="right">
                             管理员：<asp:TextBox runat="server" ID="tbxLZ_GKGLY" Width="60px" onfocus="this.blur()"></asp:TextBox>
-                            <input type="hidden" runat="server" id="hidLZ_GDZCGLYID" />
+                            <input type="hidden" runat="server" id="hidLZ_GKGLYID" />
                             <asp:Image runat="server" ID="Image11" ImageUrl="../Assets/images/username_bg.gif"
                                 onclick="xr11()" align="middle" Style="cursor: pointer" title="选择" />
                         </td>
@@ -1083,7 +1083,7 @@
                     <tr>
                         <td align="right">
                             管理员：<asp:TextBox runat="server" ID="txtLZ_GDZCGLY" onfocus="this.blur()" Width="60px"></asp:TextBox>
-                            <input type="hidden" runat="server" id="hidLZ_GKGLYID" />
+                            <input type="hidden" runat="server" id="hidLZ_GDZCGLYID" />
                             <asp:Image runat="server" ID="Image12" ImageUrl="../Assets/images/username_bg.gif"
                                 onclick="xr12()" align="middle" Style="cursor: pointer" title="选择" />
                         </td>
