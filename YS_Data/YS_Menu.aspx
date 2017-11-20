@@ -29,7 +29,7 @@
             功能选项<asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label></div>
         <div id="menuContent">
             <asp:HyperLink ID="HyperLink1" onClick="SelectMenu(1);" CssClass="LeftMenuNoSelected"
-                Target="right" runat="server"><p>任务预算编制</p></asp:HyperLink>
+                Target="right" runat="server"><p>任务预算编制<asp:Label ID="lb_num" runat="server"  ForeColor="Red"></asp:Label></p></asp:HyperLink>
             <asp:HyperLink ID="HyperLink2" onClick="SelectMenu(2);" CssClass="LeftMenuNoSelected"
                 Target="right" runat="server"><p>合同预算查看</p></asp:HyperLink>
             <asp:HyperLink ID="HyperLink5" onClick="SelectMenu(5);" CssClass="LeftMenuNoSelected"

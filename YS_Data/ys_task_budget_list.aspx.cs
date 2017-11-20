@@ -25,6 +25,7 @@ namespace ZCZJ_DPF.YS_Data.UI
             contract_code = Request.QueryString["contract_code"];
             //CheckUser(ControlFinder);
             
+            
             initPager();
             initUCPaging();
 
@@ -45,11 +46,11 @@ namespace ZCZJ_DPF.YS_Data.UI
         {
             if (string.IsNullOrEmpty(contract_code))
             {
-                bll.initPager(pager, txt_task_code.Text.Trim(), txt_contract_code.Text.Trim(), txt_project_name.Text.Trim(), ddl_state.SelectedValue);                
+                bll.initPager(pager, txt_task_code.Text.Trim(), txt_contract_code.Text.Trim(), txt_project_name.Text.Trim(), ddl_state.SelectedValue, rbl_myState.SelectedValue, Session["UserID"]+"");                
             }
             else
             {
-                bll.initPager(pager,null, contract_code, null, null);
+                bll.initPager(pager,null, contract_code, null, null,null,null);
             }
         }
         /// <summary>
@@ -110,21 +111,21 @@ namespace ZCZJ_DPF.YS_Data.UI
         }
 
 
-        protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                //if ((e.Item.ItemIndex + 1) % 2 == 0)
+        //protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        //{
+        //    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        //    {
+        //        //if ((e.Item.ItemIndex + 1) % 2 == 0)
 
-                if (((HtmlTableCell)e.Item.FindControl("td_state")).InnerText.Equals("初步预算"))
-                {
-                    ((HtmlTableCell)e.Item.FindControl("td_state")).BgColor = "#f00";
-                }
+        //        if (((HtmlTableCell)e.Item.FindControl("td_state")).InnerText.Equals("初步预算"))
+        //        {
+        //            ((HtmlTableCell)e.Item.FindControl("td_state")).BgColor = "#f00";
+        //        }
                 
                
-            }
+        //    }
 
-        }
+        //}
 
         #endregion
 

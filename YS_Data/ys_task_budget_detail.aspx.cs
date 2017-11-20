@@ -28,13 +28,12 @@ namespace ZCZJ_DPF.YS_Data
             tb = new YS_Data.Model.TaskBudget(task_code);
 
             if (!IsPostBack)
-            {
+            {               
                 userid = Session["UserID"].ToString();
                 initControlUseable();
                 bindControlValue();
                 bindRepeater();
             }
-
 
         }
         /// <summary>
@@ -46,6 +45,12 @@ namespace ZCZJ_DPF.YS_Data
             lb_contract_code.Text = tb.contract_code;
             lb_project_name.Text = tb.project_name;
             lb_task_weight.Text = tb.task_weight;
+
+            lb_c_total_task_budget_pre.Text = tb.c_total_task_budget_pre;
+            txt_total_material_budget_pre.Text = tb.total_material_budget_pre;
+            txt_labour_budget_pre.Text = tb.labour_budget_pre;
+            txt_teamwork_budget_pre.Text = tb.teamwork_budget_pre;
+            txt_coopreative_budget_pre.Text = tb.cooperative_budget_pre;
 
             lb_c_total_task_budget.Text = tb.c_total_task_budget;
             txt_total_material_budget.Text = tb.total_material_budget;
@@ -154,20 +159,22 @@ namespace ZCZJ_DPF.YS_Data
             bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, "");
         }
 
-
+        /// <summary>
+        /// 根据登陆人以及预算的节点控制空间的可见性
+        /// </summary>
         protected void initControlUseable()
         {
             //预算编制
             if (tb.node_budget_edit_user_id.Equals(userid) && (tb.node_budget_edit_state.Equals("1") || tb.node_budget_edit_state.Equals("3")))
             {
-                txt_labour_budget.Enabled = true;
-                txt_teamwork_budget.Enabled = true;
-                txt_coopreative_budget.Enabled = true;
-                txt_total_material_budget.Enabled = true;
+                txt_labour_budget_pre.Enabled = true;
+                txt_teamwork_budget_pre.Enabled = true;
+                txt_coopreative_budget_pre.Enabled = true;
+                txt_total_material_budget_pre.Enabled = true;
                 btn_budget_submit.Visible = true;
             }
             //生产部分工
-            if (tb.node_production_divide_user_id.Equals(userid)&&(tb.node_production_divide_state.Equals("1") || tb.node_production_divide_state.Equals("3")))
+            if (tb.node_production_divide_user_id.Equals(userid) && (tb.node_production_divide_state.Equals("1") || tb.node_production_divide_state.Equals("3")))
             {
                 txt_node_labour_dep_user_name.Enabled = true;
                 img_labour.Visible = true;
@@ -195,108 +202,83 @@ namespace ZCZJ_DPF.YS_Data
                 btn_purchase_divide.Visible = true;
             }
             //人工费反馈
+            if (tb.node_labour_dep_user_id.Equals(userid) && (tb.node_labour_dep_state.Equals("1") || tb.node_labour_dep_state.Equals("3")))
             {
-                if (tb.node_labour_dep_user_id.Equals(userid) && (tb.node_labour_dep_state.Equals("1") || tb.node_labour_dep_state.Equals("3")))
-                {
-                    txt_labour_dep.Enabled = true;
-                    txt_node_labour_dep_note.Enabled = true;
-                    btn_labour_dep.Visible = true;
-                }
+                txt_labour_dep.Enabled = true;
+                txt_node_labour_dep_note.Enabled = true;
+                btn_labour_dep.Visible = true;
             }
+
             //分包费反馈
+            if (tb.node_teamwork_dep_user_id.Equals(userid) && (tb.node_teamwork_dep_state.Equals("1") || tb.node_teamwork_dep_state.Equals("3")))
             {
-                if (tb.node_teamwork_dep_user_id.Equals(userid) && (tb.node_teamwork_dep_state.Equals("1") || tb.node_teamwork_dep_state.Equals("3")))
-                {
-                    txt_teamwork_dep.Enabled = true;
-                    txt_node_teamwork_dep_note.Enabled = true;
-                    btn_teamwork_dep.Visible = true;
-                }
+                txt_teamwork_dep.Enabled = true;
+                txt_node_teamwork_dep_note.Enabled = true;
+                btn_teamwork_dep.Visible = true;
             }
+
             //外协费反馈
+            if (tb.node_cooperative_dep_user_id.Equals(userid) && (tb.node_cooperative_dep_state.Equals("1") || tb.node_cooperative_dep_state.Equals("3")))
             {
-                if (tb.node_cooperative_dep_user_id.Equals(userid) && (tb.node_cooperative_dep_state.Equals("1") || tb.node_cooperative_dep_state.Equals("3")))
-                {
-                    txt_cooperative_dep.Enabled = true;
-                    txt_node_cooperative_dep_note.Enabled = true;
-                    btn_cooperative_dep.Visible = true;
-                }
+                txt_cooperative_dep.Enabled = true;
+                txt_node_cooperative_dep_note.Enabled = true;
+                btn_cooperative_dep.Visible = true;
             }
             //黑色金属反馈
+            if (tb.node_ferrous_dep_user_id.Equals(userid) && (tb.node_ferrous_dep_state.Equals("1") || tb.node_ferrous_dep_state.Equals("3")))
             {
-                if (tb.node_ferrous_dep_user_id.Equals(userid) && (tb.node_ferrous_dep_state.Equals("1") || tb.node_ferrous_dep_state.Equals("3")))
-                {
-                    txt_ferrous_dep.Enabled = true;
-                    txt_node_ferrous_dep_note.Enabled = true;
-                    btn_ferrous_dep.Visible = true;
-                }
+                txt_ferrous_dep.Enabled = true;
+                txt_node_ferrous_dep_note.Enabled = true;
+                btn_ferrous_dep.Visible = true;
             }
             //外购件反馈
+            if (tb.node_purchasepart_dep_user_id.Equals(userid) && (tb.node_purchasepart_dep_state.Equals("1") || tb.node_purchasepart_dep_state.Equals("3")))
             {
-                if (tb.node_purchasepart_dep_user_id.Equals(userid) && (tb.node_purchasepart_dep_state.Equals("1") || tb.node_purchasepart_dep_state.Equals("3")))
-                {
-                    txt_purchasepart_dep.Enabled = true;
-                    txt_node_purchasepart_dep_note.Enabled = true;
-                    btn_purchasepart_dep.Visible = true;
-                }
+                txt_purchasepart_dep.Enabled = true;
+                txt_node_purchasepart_dep_note.Enabled = true;
+                btn_purchasepart_dep.Visible = true;
             }
             //油漆涂料反馈
+            if (tb.node_paint_dep_user_id.Equals(userid) && (tb.node_paint_dep_state.Equals("1") || tb.node_paint_dep_state.Equals("3")))
             {
-                if (tb.node_paint_dep_user_id.Equals(userid) && (tb.node_paint_dep_state.Equals("1") || tb.node_paint_dep_state.Equals("3")))
-                {
-                    txt_paint_dep.Enabled = true;
-                    txt_node_paint_dep_note.Enabled = true;
-                    btn_paint_dep.Visible = true;
-                }
+                txt_paint_dep.Enabled = true;
+                txt_node_paint_dep_note.Enabled = true;
+                btn_paint_dep.Visible = true;
             }
             //电器电料反馈
+            if (tb.node_electrical_dep_user_id.Equals(userid) && (tb.node_electrical_dep_state.Equals("1") || tb.node_electrical_dep_state.Equals("3")))
             {
-                if (tb.node_electrical_dep_user_id.Equals(userid) && (tb.node_electrical_dep_state.Equals("1") || tb.node_electrical_dep_state.Equals("3")))
-                {
-                    txt_electrical_dep.Enabled = true;
-                    txt_node_electrical_dep_note.Enabled = true;
-                    btn_electrical_dep.Visible = true;
-                }
+                txt_electrical_dep.Enabled = true;
+                txt_node_electrical_dep_note.Enabled = true;
+                btn_electrical_dep.Visible = true;
             }
             //铸锻件反馈
+            if (tb.node_casting_dep_user_id.Equals(userid) && (tb.node_casting_dep_state.Equals("1") || tb.node_casting_dep_state.Equals("3")))
             {
-                if (tb.node_casting_dep_user_id.Equals(userid) && (tb.node_casting_dep_state.Equals("1") || tb.node_casting_dep_state.Equals("3")))
-                {
-                    txt_casting_dep.Enabled = true;
-                    txt_node_casting_dep_note.Enabled = true;
-                    btn_casting_dep.Visible = true;
-                }
+                txt_casting_dep.Enabled = true;
+                txt_node_casting_dep_note.Enabled = true;
+                btn_casting_dep.Visible = true;
             }
             //其他材料反馈
+            if (tb.node_othermat_dep_user_id.Equals(userid) && (tb.node_othermat_dep_state.Equals("1") || tb.node_othermat_dep_state.Equals("3")))
             {
-                if (tb.node_othermat_dep_user_id.Equals(userid) && (tb.node_othermat_dep_state.Equals("1") || tb.node_othermat_dep_state.Equals("3")))
-                {
-                    txt_othermat_dep.Enabled = true;
-                    txt_node_othermat_dep_note.Enabled = true;
-                    btn_othermat_dep.Visible = true;
-                }
+                txt_othermat_dep.Enabled = true;
+                txt_node_othermat_dep_note.Enabled = true;
+                btn_othermat_dep.Visible = true;
             }
-
-
             //生产部审核
+            if (tb.node_production_check_user_id.Equals(userid) && (tb.node_production_check_state.Equals("1") || tb.node_production_check_state.Equals("3")))
             {
-                if (tb.node_production_check_user_id.Equals(userid) && (tb.node_production_check_state.Equals("1") || tb.node_production_check_state.Equals("3")))
-                {
-                    rbl_production_check.Enabled = true;
-                    txt_node_production_check_note.Enabled = true;
-                    btn_production_check.Visible = true;
-                }
+                rbl_production_check.Enabled = true;
+                txt_node_production_check_note.Enabled = true;
+                btn_production_check.Visible = true;
             }
-
-
-
             //采购部审核
+            if (tb.node_purchase_check_user_id.Equals(userid) && (tb.node_purchase_check_state.Equals("1") || tb.node_purchase_check_state.Equals("3")))
             {
-                if (tb.node_purchase_check_user_id.Equals(userid) && (tb.node_purchase_check_state.Equals("1") || tb.node_purchase_check_state.Equals("3")))
-                {
-                    rbl_purchase_check.Enabled = true;
-                    txt_node_purchase_check_note.Enabled = true;
-                    btn_purchase_check.Visible = true;
-                }
+                rbl_purchase_check.Enabled = true;
+                txt_node_purchase_check_note.Enabled = true;
+                btn_purchase_check.Visible = true;
             }
             //预算调整
             if (tb.node_budget_adjust_user_id.Equals(userid) && (tb.node_budget_adjust_state.Equals("1") || tb.node_budget_adjust_state.Equals("3")))
@@ -307,19 +289,13 @@ namespace ZCZJ_DPF.YS_Data
                 txt_total_material_budget.Enabled = true;
                 btn_budget_adjust.Visible = true;
             }
-
             //财务部审核
+            if (tb.node_budget_check_user_id.Equals(userid) && (tb.node_budget_check_state.Equals("1") || tb.node_budget_check_state.Equals("3")))
             {
-                if (tb.node_budget_check_user_id.Equals(userid) && (tb.node_budget_check_state.Equals("1") || tb.node_budget_check_state.Equals("3")))
-                {
-                    rbl_budget_check.Enabled = true;
-                    txt_node_budget_check_note.Enabled = true;
-                    btn_budget_check.Visible = true;
-                }
+                rbl_budget_check.Enabled = true;
+                txt_node_budget_check_note.Enabled = true;
+                btn_budget_check.Visible = true;
             }
-
-
-
         }
 
         #region 各个节点的处理程序
@@ -330,14 +306,12 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="e"></param>
         protected void btn_budget_submit_Click(object sender, EventArgs e)
         {
-
-            tb.labour_budget = txt_labour_budget.Text.Trim();
-            tb.teamwork_budget = txt_teamwork_budget.Text.Trim();
-            tb.cooperative_budget = txt_coopreative_budget.Text.Trim();
-            tb.total_material_budget = txt_total_material_budget.Text.Trim();
+            tb.labour_budget_pre = txt_labour_budget_pre.Text.Trim();
+            tb.teamwork_budget_pre = txt_teamwork_budget_pre.Text.Trim();
+            tb.cooperative_budget_pre = txt_coopreative_budget_pre.Text.Trim();
+            tb.total_material_budget_pre = txt_total_material_budget_pre.Text.Trim();
             bll.finishNode("1", tb);
             ((Button)sender).Visible = false;
-
         }
 
         /// <summary>

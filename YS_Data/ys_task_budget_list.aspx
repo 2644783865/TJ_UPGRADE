@@ -22,7 +22,6 @@
             text-align: right;
         }
     </style>
-    <asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>
     <div class="box-outer">
         <asp:Panel ID="pal_contract" runat="server">
             <table class="top-table">
@@ -37,6 +36,15 @@
             <table class="top-table">
                 <tr>
                     <td>
+                            
+                        <asp:RadioButtonList ID="rbl_myState" runat="server" RepeatDirection="Horizontal"
+                        AutoPostBack="True" OnSelectedIndexChanged="btn_search_Click">
+                            <asp:ListItem Text="全部"  ></asp:ListItem>                          
+                            <asp:ListItem Text="我的任务" Value="1" Selected="true" ></asp:ListItem>
+                            <asp:ListItem Text="被驳回" Value="3"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                    <td>
                         任务号：
                         <asp:TextBox ID="txt_task_code" class="txtbox" runat="server"></asp:TextBox>
                     </td>
@@ -45,7 +53,7 @@
                         <asp:TextBox ID="txt_contract_code" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>
-                         产品名称：
+                        产品名称：
                         <asp:TextBox ID="txt_project_name" class="txtbox" runat="server"></asp:TextBox>
                     </td>
                     <td>
@@ -62,7 +70,7 @@
         <asp:Panel ID="pal_container" runat="server">
             <div style="height: 350px;">
                 <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
-                    <asp:Repeater ID="rpt_task_list" runat="server" OnItemDataBound="rpt_task_list_ItemDataBound">
+                    <asp:Repeater ID="rpt_task_list" runat="server">
                         <HeaderTemplate>
                             <tr class="tableTitle">
                                 <th>

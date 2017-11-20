@@ -54,6 +54,18 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </asp:HyperLink>
+        <asp:HyperLink ID="HyperLink80" onClick="SelectMenu(80);" Target="right" CssClass="LeftMenuNoSelected"
+            runat="server">
+            <asp:UpdatePanel ID="UpdatePanel65" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                </Triggers>
+                <ContentTemplate>
+                    <p>
+                        »ŒŒÒ‘§À„±‡÷∆<asp:Label runat="server" ID="lbTaskBudgetNum" ForeColor="Red"></asp:Label></p>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </asp:HyperLink>
         <asp:HyperLink ID="HyperLink3" onClick="SelectMenu(3);" Target="right" CssClass="LeftMenuNoSelected"
             runat="server">
             <asp:UpdatePanel ID="UpdatePanel10" runat="server" UpdateMode="Conditional">

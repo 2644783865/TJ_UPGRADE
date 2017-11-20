@@ -238,6 +238,13 @@
                                            <asp:Image ID="Image4" runat="server" ImageUrl="~/Assets/icons/dealdispatcher.gif" ImageAlign="AbsMiddle"></asp:Image> 提交</asp:LinkButton>                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
+                                    HeaderText="预算时间">
+                                    <ItemTemplate>
+                                        <label>
+                                            <%# Eval("TSA_BUDGET_DATETIME")%></label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
                             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

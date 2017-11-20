@@ -37,7 +37,6 @@ CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_IN
                 rpt.Visible = false;
                 panel.Visible = true;
             }
-
         }
 
 
@@ -77,10 +76,10 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
             switch (node_definition_id)
             {
                 case "1": //财务初步编制
-                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET direct_labour_budget={1},sub_teamwork_budget={2},cooperative_product_budget={3},total_material_budget={4}, state=2 WHERE task_code='{5}';", TABLE_TASK_BUDGET, tb.labour_budget, tb.teamwork_budget, tb.cooperative_budget, tb.total_material_budget, tb.task_code));
+                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET direct_labour_budget_pre={1},sub_teamwork_budget_pre={2},cooperative_product_budget_pre={3},total_material_budget_pre={4}, state=2 WHERE task_code='{5}';", TABLE_TASK_BUDGET, tb.labour_budget_pre, tb.teamwork_budget_pre, tb.cooperative_budget_pre, tb.total_material_budget_pre, tb.task_code));
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, "NULL"))
                     {
-                        string[] ids1 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;"), BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };//获得生产部长、采购部长id
+                        string[] ids1 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;"), BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };//获得生产部长、采购部长id
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids1);
                     }
                     break;
@@ -96,7 +95,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_labour_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET production_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids3 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;") };
+                        string[] ids3 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids3);
                     }
                     break;
@@ -105,7 +104,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_teamwork_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET production_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids4 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;") };
+                        string[] ids4 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids4);
                     }
                     break;
@@ -114,7 +113,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_cooperative_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET production_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids5 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;") };
+                        string[] ids5 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0401 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids5);
                     }
                     break;
@@ -140,7 +139,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_ferrous_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids8 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
+                        string[] ids8 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids8);
                     }
                     break;
@@ -149,7 +148,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_purchasepart_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids9 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
+                        string[] ids9 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids9);
                     }
                     break;
@@ -158,7 +157,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_paint_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids10 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
+                        string[] ids10 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids10);
                     }
                     break;
@@ -167,7 +166,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_electrical_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids11 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
+                        string[] ids11 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids11);
                     }
                     break;
@@ -176,7 +175,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_casting_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids12 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
+                        string[] ids12 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids12);
                     }
                     break;
@@ -185,7 +184,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_othermat_dep_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET purchase_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids13 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
+                        string[] ids13 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0501 AND ST_PD=0;") };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids13);
                     }
                     break;
@@ -204,7 +203,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, "NULL"))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET budget_check=2 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids15 = new string[] { BudgetFlowEngine.getStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0601 AND ST_PD=0;") };//获得财务部长id
+                        string[] ids15 = new string[] { BudgetFlowEngine.getFirstCellStringByDR("SELECT ST_ID FROM TBDS_STAFFINFO WHERE ST_POSITION=0601 AND ST_PD=0;") };//获得财务部长id
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids15);
                     }
                     break;

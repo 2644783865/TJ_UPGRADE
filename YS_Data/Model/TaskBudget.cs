@@ -36,6 +36,14 @@ namespace ZCZJ_DPF.YS_Data.Model
                 this.task_type = dr_task["task_type"].ToString();
 
 
+                this.total_material_budget_pre = dr_task["total_material_budget_pre"].ToString();
+                this.labour_budget_pre = dr_task["direct_labour_budget_pre"].ToString();
+                this.teamwork_budget_pre = dr_task["sub_teamwork_budget_pre"].ToString();
+                this.cooperative_budget_pre = dr_task["cooperative_product_budget_pre"].ToString();
+                this.c_total_task_budget_pre = dr_task["c_total_task_budget_pre"].ToString();
+
+
+
                 this.total_material_budget = dr_task["total_material_budget"].ToString();
                 this.labour_budget = dr_task["direct_labour_budget"].ToString();
                 this.teamwork_budget = dr_task["sub_teamwork_budget"].ToString();
@@ -398,6 +406,26 @@ namespace ZCZJ_DPF.YS_Data.Model
         /// 任务号类型（区分任务号种类，用于比较相同类型任务号的预算）
         /// </summary>
         public string task_type { get; set; }
+        /// <summary>
+        /// 财务部下发：所有材料费预算
+        /// </summary>
+        public string total_material_budget_pre { get; set; }
+        /// <summary>
+        /// 财务部下发：直接人工费预算
+        /// </summary>
+        public string labour_budget_pre { get; set; }
+        /// <summary>
+        /// 财务部下发：厂内分包费预算
+        /// </summary>
+        public string teamwork_budget_pre { get; set; }
+        /// <summary>
+        /// 财务部下发：生产外协费预算
+        /// </summary>
+        public string cooperative_budget_pre { get; set; }
+        /// <summary>
+        /// 财务部下发：任务号总预算（计算列，只读）
+        /// </summary>
+        public string c_total_task_budget_pre { get; set; }        
         /// <summary>
         /// 财务部确定：所有材料费预算
         /// </summary>

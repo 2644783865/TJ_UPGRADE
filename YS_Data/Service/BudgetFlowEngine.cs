@@ -98,7 +98,7 @@ namespace ZCZJ_DPF
 WHERE node_definition_id={2} AND task_code='{3}';", TABLE_NODE_INSTANCE, note, node_definition_id, task_code));
 
             //判断当前节点的类型，1：开始节点；2：中间节点；3：结束节点
-            string type = getStringByDR(string.Format(@"SELECT node_definition_type FROM {0} WHERE node_definition_id={1};", TABLE_NODE_DEFINITION, node_definition_id));
+            string type = getFirstCellStringByDR(string.Format(@"SELECT node_definition_type FROM {0} WHERE node_definition_id={1};", TABLE_NODE_DEFINITION, node_definition_id));
 
             if (type.Equals("3"))//如果是结束节点
             {
@@ -109,11 +109,11 @@ WHERE node_definition_id={2} AND task_code='{3}';", TABLE_NODE_INSTANCE, note, n
             else//如果不是结束节点，还有后续节点
             {
                 //判断后续节点的逻辑，2：and-join
-                string logic = getStringByDR(string.Format(@"SELECT TOP 1 to_node_definition_logic 
+                string logic = getFirstCellStringByDR(string.Format(@"SELECT TOP 1 to_node_definition_logic 
 FROM {0} WHERE node_definition_id={1};", VIEW_TO_NODE, node_definition_id));
 
                 //如果后续节点是and-joi，且后续节点还有没有完成的前续节点
-                if (logic.Equals("2") && (!getStringByDR(string.Format(@"SELECT COUNT(1) FROM (SELECT from_node_definition_id 
+                if (logic.Equals("2") && (!getFirstCellStringByDR(string.Format(@"SELECT COUNT(1) FROM (SELECT from_node_definition_id 
 FROM dbo.YS_LINE WHERE to_node_definition_id=(SELECT TOP 1 to_node_definition_id FROM dbo.YS_LINE WHERE from_node_definition_id={0}) 
 EXCEPT SELECT node_definition_id FROM dbo.YS_NODE_INSTANCE WHERE task_code='{1}' AND state=2 AND node_definition_id IN 
 (SELECT from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=(SELECT TOP 1 to_node_definition_id FROM 
@@ -145,7 +145,7 @@ FROM {1} WHERE from_node_definition_id={2}) AND task_code='{3}';", TABLE_NODE_IN
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static string getStringByDR(string sql)
+        public static string getFirstCellStringByDR(string sql)
         {
             SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sql);
             if (dr.Read())

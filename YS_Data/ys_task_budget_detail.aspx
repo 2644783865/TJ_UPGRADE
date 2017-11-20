@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Masters/PopupBase.Master" AutoEventWireup="true"
     CodeBehind="ys_task_budget_detail.aspx.cs" Inherits="ZCZJ_DPF.YS_Data.ys_task_budget_detail"
-    Title="无标题页" %>
+    Title="任务号预算详情" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
@@ -76,10 +76,52 @@
                     </tr>
                     <tr>
                         <td>
-                            总预算：
+                            <b>下 发：</b> 总预算：
                         </td>
                         <td>
-                            <asp:Label ID="lb_c_total_task_budget" runat="server" Width="70px" class='number'></asp:Label> 元
+                            <asp:Label ID="lb_c_total_task_budget_pre" runat="server" Width="70px" class='number'></asp:Label>
+                            元
+                        </td>
+                        <td>
+                            材料费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txt_total_material_budget_pre" runat="server" class='number' Enabled="false"></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            人工费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txt_labour_budget_pre" runat="server" class='number' Enabled="false"></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            分包费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txt_teamwork_budget_pre" runat="server" class='number' Enabled="false"></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            外协费：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txt_coopreative_budget_pre" runat="server" class='number' Enabled="false"></asp:TextBox>
+                            元
+                        </td>
+                        <td>
+                            <asp:Button ID="btn_budget_submit" runat="server" Text=" 提 交 " OnClick="btn_budget_submit_Click"
+                                Visible="false" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>调 整：</b> 总预算：
+                        </td>
+                        <td>
+                            <asp:Label ID="lb_c_total_task_budget" runat="server" Width="70px" class='number'></asp:Label>
+                            元
                         </td>
                         <td>
                             材料费：
@@ -110,8 +152,6 @@
                             元
                         </td>
                         <td>
-                            <asp:Button ID="btn_budget_submit" runat="server" Text=" 提 交 " OnClick="btn_budget_submit_Click"
-                                Visible="false" />
                             <asp:Button ID="btn_budget_adjust" runat="server" Text=" 提 交 " OnClick="btn_budget_adjust_Click"
                                 Visible="false" />
                         </td>
@@ -1182,15 +1222,15 @@
             $('span[id$=lb_c_total_task_budget]').text(sum)
         }
 
-
+        //单击人员选择按钮
         function choosePerson(btn) {
-
             feedbackUserName = $(btn).prev().prev();
             feedbackUserID = $(btn).prev();
             $("#hidPerson").val("person1");
             SelPersons();
         }
-
+        
+        //人员选择后单机保存按钮
         function savePick() {
             var r = Save();
             var id = $("#hidPerson").val();
