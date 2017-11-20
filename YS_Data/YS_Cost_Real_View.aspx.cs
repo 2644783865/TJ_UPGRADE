@@ -21,6 +21,7 @@ namespace ZCZJ_DPF.YS_Data
         {
             if (!IsPostBack)
             {
+                Btn_update_OnClick();
                 Bind_title();
                 InitVar();//分页
                 GetTechRequireData();
@@ -379,7 +380,7 @@ namespace ZCZJ_DPF.YS_Data
         //    }
         //}
 
-        protected void Btn_update_OnClick(object sender, EventArgs e)
+        protected void Btn_update_OnClick()
         {
             try
             {
@@ -394,14 +395,14 @@ namespace ZCZJ_DPF.YS_Data
                 IAsyncResult result = sqlCmd.BeginExecuteNonQuery();
                 sqlCmd.EndExecuteNonQuery(result);
                 sqlConn.Close();
-                if (Convert.ToInt32(sqlCmd.Parameters["@retVal"].Value) == 0)
-                {
-                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');location.reload();", true);
-                    UCPaging1.CurrentPage = 1;
-                    InitVar();
-                    GetTechRequireData();
-                    lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-                }
+                //if (Convert.ToInt32(sqlCmd.Parameters["@retVal"].Value) == 0)
+                //{
+                //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('更新成功！！！');location.reload();", true);
+                //    UCPaging1.CurrentPage = 1;
+                //    InitVar();
+                //    GetTechRequireData();
+                //    lab_updatetime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                //}
             }
             catch (Exception)
             {

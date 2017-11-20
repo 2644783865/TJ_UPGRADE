@@ -33,13 +33,15 @@
             <asp:HyperLink ID="HyperLink2" onClick="SelectMenu(2);" CssClass="LeftMenuNoSelected"
                 Target="right" runat="server"><p>合同预算查看</p></asp:HyperLink>
             <asp:HyperLink ID="HyperLink5" onClick="SelectMenu(5);" CssClass="LeftMenuNoSelected"
-                Target="right" runat="server"><p>实际发生费</p></asp:HyperLink>
+                Target="right" runat="server"><p>预算实际发生费</p></asp:HyperLink>
             <asp:HyperLink ID="HyperLink7" onClick="SelectMenu(7);" CssClass="LeftMenuNoSelected"
-                Target="right" runat="server"><p>预算监控</p></asp:HyperLink>
-            <asp:HyperLink ID="HyperLink4" onClick="SelectMenu(4);" CssClass="LeftMenuNoSelected"
-                Target="right" runat="server"><p>订单跟踪</p></asp:HyperLink>
+                Target="right" runat="server"><p>预算实时监控</p></asp:HyperLink>
+            <%--<asp:HyperLink ID="HyperLink4" onClick="SelectMenu(4);" CssClass="LeftMenuNoSelected"
+                Target="right" runat="server"><p>订单跟踪</p></asp:HyperLink>--%>
             <asp:HyperLink ID="HyperLink3" onClick="SelectMenu(3);" CssClass="LeftMenuNoSelected"
-                Target="right" runat="server"><p>预算分析</p></asp:HyperLink>
+                Target="right" runat="server"><p>预算成本分析</p></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink6" onClick="SelectMenu(6);" CssClass="LeftMenuNoSelected"
+                Target="right" runat="server"><p>预算月度统计</p></asp:HyperLink>
         </div>
     </div>
     </form>

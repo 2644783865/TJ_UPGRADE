@@ -81,7 +81,7 @@ namespace ZCZJ_DPF.OM_Data
                         DataSet ds1 = DBCallCommon.FillDataSet(sqltext);
 
                         string FilePath = "";
-                        string[] imagr = new string[20];
+                        string[] imagr = new string[50];
                         int n = 0;
                         string ss = "";
                         string mm = "";

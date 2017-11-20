@@ -32,51 +32,6 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
         
         /// <summary>
-        /// rbl_profit 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbl_profit;
-        
-        /// <summary>
-        /// ddl_project 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_project;
-        
-        /// <summary>
-        /// ddl_engineer 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_engineer;
-        
-        /// <summary>
-        /// btnModify 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnModify;
-        
-        /// <summary>
-        /// ModImahe 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ModImahe;
-        
-        /// <summary>
         /// txt_search 控件。
         /// </summary>
         /// <remarks>
@@ -104,13 +59,22 @@ namespace ZCZJ_DPF.YS_Data {
         protected global::System.Web.UI.WebControls.Button btnShowTask;
         
         /// <summary>
-        /// btnShowSta 控件。
+        /// ddl_project 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowSta;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_project;
+        
+        /// <summary>
+        /// ddl_engineer 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_engineer;
         
         /// <summary>
         /// GridView1 控件。

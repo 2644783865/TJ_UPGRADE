@@ -22,7 +22,7 @@ namespace ZCZJ_DPF.PM_Data
         {
             if (tbyear.Text.ToString() != "" && tbmonth.Text.ToString() != "")
             {
-                string sqladd = "insert into TBMP_CNFB_LIST(CNFB_PROJNAME,CNFB_HTID,CNFB_TSAID,CNFB_TH,CNFB_SBNAME,CNFB_NUM,CNFB_BYMYMONEY,CNFB_BYREALMONEY,CNFB_YEAR,CNFB_MONTH,CNFB_TYPE) values('" + tbprojname.Text.ToString() + "','" + tbprojid.Text.ToString() + "','" + tbrwh.Text.ToString() + "','" + tbth.Text.ToString() + "','" + tbsbname.Text.ToString() + "','" + tbsl.Text.ToString() + "','" + tbbymymoney.Text.ToString() + "','" + tbbyrealmoney.Text.ToString() + "','" + tbyear.Text.ToString() + "','" + tbmonth.Text.ToString() + "','" + tbtype.Text.ToString() + "')";
+                string sqladd = "insert into TBMP_CNFB_LIST(CNFB_PROJNAME,CNFB_HTID,CNFB_TSAID,CNFB_TH,CNFB_SBNAME,CNFB_NUM,CNFB_BYMYMONEY,CNFB_BYREALMONEY,CNFB_YEAR,CNFB_MONTH,CNFB_TYPE,CNFB_DRTIME) values('" + tbprojname.Text.ToString() + "','" + tbprojid.Text.ToString() + "','" + tbrwh.Text.ToString() + "','" + tbth.Text.ToString() + "','" + tbsbname.Text.ToString() + "','" + tbsl.Text.ToString() + "','" + tbbymymoney.Text.ToString() + "','" + tbbyrealmoney.Text.ToString() + "','" + tbyear.Text.ToString() + "','" + tbmonth.Text.ToString() + "','" + tbtype.Text.ToString() + "',GETDATE())";
                 DBCallCommon.ExeSqlText(sqladd);
                 Response.Write("<script>alert('添加成功！')</script>");
                 Response.Write("<script>window.close()</script>");
