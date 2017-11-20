@@ -228,7 +228,7 @@ namespace ZCZJ_DPF.TM_Data
         {
             pager.TableName = "View_TM_TaskAssign";
             pager.PrimaryKey = "TSA_ID";
-            pager.ShowFields = "TSA_ID,CM_PROJ,TSA_PJID,TSA_ENGNAME,TSA_TCCLERKNM,TSA_STARTDATE,TSA_MANCLERKNAME,TSA_STATE,TSA_CONTYPE,ID,TSA_FINISHSTATE";
+            pager.ShowFields = "TSA_ID,CM_PROJ,TSA_PJID,TSA_ENGNAME,TSA_TCCLERKNM,TSA_STARTDATE,TSA_MANCLERKNAME,TSA_STATE,TSA_CONTYPE,ID,TSA_BUDGET_DATETIME";
             pager.OrderField = "TSA_STARTDATE";
             pager.StrWhere = this.GetMyTast();
             pager.OrderType = 1;
@@ -278,11 +278,13 @@ namespace ZCZJ_DPF.TM_Data
                 listsql.Add(string.Format("DELETE FROM dbo.YS_NODE_INSTANCE WHERE task_code='{0}';", tsaId));//删除node实例表中的信息
                 listsql.Add(getInsertIntoHistoryInfoTableSqltext(tsaId));//向历史表重新插入信息
                 listsql.Add(getInsertIntoTaskBudgetTableSqltext(tsaId));//向任务预算表重新插入信息
-                DBCallCommon.ExecuteTrans(listsql);
+                listsql.Add(string.Format("UPDATE dbo.TBPM_TCTSASSGN SET TSA_BUDGET_DATETIME=GETDATE() WHERE TSA_ID='{0}';", tsaId));//更新任务表中预算提交的时间
+                DBCallCommon.ExecuteTrans(listsql);                
                 listsql.Clear();
-                string[] ids=new string[] {"63"};//季凌云
+                string[] ids = new string[] { ConfigurationSettings.AppSettings["BudgetEditorId"] };//配置文件中读取预算编制人id
                 BudgetFlowEngine.activeFollowNode(tsaId,"0",ids);//向node实例表中插入第一个实例
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.location='TM_Mytast_List.aspx'", true);
+
             }
             else
             {

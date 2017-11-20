@@ -171,6 +171,7 @@ namespace ZCZJ_DPF.MT_Data
 
 
             GetlbGDZCZY();//固定资产转移审批
+            GetTaskBudgetNum();
         }
 
         private void GetlbLZSX()
@@ -212,7 +213,7 @@ namespace ZCZJ_DPF.MT_Data
             strWhere += " (SHRSID='" + Session["UserID"].ToString() + "' and SHRSRESULT IS NULL and SHRFRESULT IS NOT NULL) or ";
             strWhere += " (SHRTID='" + Session["UserID"].ToString() + "' and SHRTRESULT IS NULL and SHRFRESULT IS NOT NULL and SHRSRESULT IS NOT NULL))";
 
-            string sql = string.Format("select * from TBOM_BGYPPCHZ where"+strWhere);
+            string sql = string.Format("select * from TBOM_BGYPPCHZ where" + strWhere);
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
             if (dt.Rows.Count > 0)
             {
@@ -1080,6 +1081,7 @@ namespace ZCZJ_DPF.MT_Data
             HyperLink23.NavigateUrl = "../PC_Data/PC_TBPC_Purchange_new.aspx";//物料减少审批
             HyperLink27.NavigateUrl = "../PM_Data/PM_FINISHED_IN_Audit.aspx";//成品入库审批
             HyperLink28.NavigateUrl = "../OM_Data/OM_EATNEWLIST.aspx";//食堂管理
+            HyperLink80.NavigateUrl = "../YS_Data/ys_task_budget_list.aspx";//任务预算编制
         }
         /// <summary>
         /// 设备采购
@@ -2327,6 +2329,41 @@ namespace ZCZJ_DPF.MT_Data
             {
                 HyperLink78.Visible = false;
             }
+        }
+
+        /// <summary>
+        /// 获取预算编制的任务数目
+        /// </summary>
+        private void GetTaskBudgetNum()
+        {
+            int num = getActiveNodeInstanceNum(string.Format("SELECT COUNT(DISTINCT(task_code)) FROM dbo.YS_NODE_INSTANCE WHERE user_id={0} AND (state=1 OR state=3);", Session["UserId"]));
+            lbTaskBudgetNum.Text = "（" + num + "）";
+            HyperLink80.Visible = hasNum(num);
+        }
+
+        /// <summary>
+        /// 判断是否有任务
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        private bool hasNum(int num)
+        {
+            if (num.Equals(0))
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary>
+        /// 获取任务数目
+        /// </summary>
+        /// <param name="strWhere"></param>
+        /// <returns></returns>
+        private int getActiveNodeInstanceNum(string sql)
+        {
+            int num;
+            int.TryParse(BudgetFlowEngine.getFirstCellStringByDR(sql), out num);
+            return num;
         }
     }
 }

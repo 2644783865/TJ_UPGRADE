@@ -14,15 +14,6 @@ namespace ZCZJ_DPF.YS_Data.UI {
     public partial class ys_task_budget_list {
         
         /// <summary>
-        /// ControlFinder 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ControlFinder;
-        
-        /// <summary>
         /// pal_contract 控件。
         /// </summary>
         /// <remarks>
@@ -48,6 +39,15 @@ namespace ZCZJ_DPF.YS_Data.UI {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pal_search;
+        
+        /// <summary>
+        /// rbl_myState 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_myState;
         
         /// <summary>
         /// txt_task_code 控件。
