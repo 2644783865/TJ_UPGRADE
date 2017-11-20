@@ -56,8 +56,8 @@ namespace ZCZJ_DPF.CM_Data
 
                     txt_eighth.Text = "张鹏辉";
                     eighthId.Value = "85";
-                    txt_third.Text = "李秋英";
-                    thirdid.Value = "171";
+                    txt_third.Text = "张慧玲";
+                    thirdid.Value = "87";
 
                     #endregion
                 }
