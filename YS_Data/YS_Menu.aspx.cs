@@ -37,12 +37,10 @@ namespace ZCZJ_DPF.YS_Data
         private void InitUrl()
         {
             HyperLink1.NavigateUrl = "ys_task_budget_list.aspx";
-            HyperLink2.NavigateUrl = "ys_contract_budget_list.aspx";
-            
+            HyperLink2.NavigateUrl = "ys_contract_budget_list.aspx";            
             HyperLink3.NavigateUrl = "YS_Cost_A_M_CON.aspx";
             HyperLink7.NavigateUrl = "YS_Cost_Budget_A_M_CON.aspx?type=0";
-            HyperLink5.NavigateUrl = "YS_Cost_Real_View.aspx";
-           
+            HyperLink5.NavigateUrl = "YS_Cost_Real_View.aspx";           
             //HyperLink4.NavigateUrl = "YS_Cost_Budget_O_M.aspx";
             HyperLink6.NavigateUrl = "YS_Cost_Real_Sta.aspx";
         }
