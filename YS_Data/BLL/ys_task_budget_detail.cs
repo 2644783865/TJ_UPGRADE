@@ -208,7 +208,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     }
                     break;
                 case "16"://财务部长审核
-                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET budget_check={1}, state=5 WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.budget_check, tb.task_code));
+                    DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET budget_check={1}, state=5,end_time=GETDATE() WHERE task_code='{2}';", TABLE_TASK_BUDGET, tb.budget_check, tb.task_code));
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_budget_check_note))
                     {
                         string[] ids16 = new string[] { "0" };

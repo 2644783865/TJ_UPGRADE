@@ -24,7 +24,7 @@
         span.number
         {
             display: inline-block;
-            padding-right: 3px;
+            padding-right: 6px;
             font-size: 13px;
             width: 123px;
         }
@@ -87,11 +87,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>下 发：</b> 总预算
+                            <b>下 发：</b> 总额
                         </td>
                         <td>
-                            <asp:Label ID="lb_c_total_task_budget_pre" runat="server" class='number'></asp:Label>
-                            元
+                            <asp:Label ID="lb_c_total_task_budget_pre" runat="server" class='number'></asp:Label>元
                         </td>
                         <td>
                             材料费：
@@ -132,11 +131,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>调 整：</b> 总预算：
+                            <b>调 整：</b> 总额
                         </td>
                         <td>
-                            <asp:Label ID="lb_c_total_task_budget" runat="server" class='number'></asp:Label>
-                            元
+                            <asp:Label ID="lb_c_total_task_budget" runat="server" class='number'></asp:Label>元
                         </td>
                         <td>
                             材料费：
@@ -174,7 +172,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>差 额：下发-调整</b>
+                            <b>差 额：</b> 调整-下发
                         </td>
                         <td>
                             <span id="span_budget_mis" class="number"></span>元
@@ -312,13 +310,13 @@
                 <div class="tab-container">
                     <table class="mytable">
                         <tr>
-                            <th colspan='5'>
+                            <th colspan='6'>
                                 <h2>
                                     生产部反馈</h2>
                             </th>
                         </tr>
                         <tr>
-                            <td colspan='2'>
+                            <td colspan='3'>
                                 <b>人 &nbsp;工 费：</b><asp:TextBox ID="txt_labour_dep" runat="server" class='number'
                                     Enabled="false"></asp:TextBox>
                                 元
@@ -342,13 +340,13 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_labour_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan='2'>
+                            <td colspan='3'>
                                 <b>分 &nbsp;包 费：</b><asp:TextBox ID="txt_teamwork_dep" runat="server" class='number'
                                     Enabled="false"></asp:TextBox>
                                 元
@@ -370,13 +368,13 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_teamwork_dep_note" runat="server" TextMode="MultiLine"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan='2'>
+                            <td colspan='3'>
                                 <b>外 &nbsp;协 费：</b><asp:TextBox ID="txt_cooperative_dep" runat="server" class='number'
                                     Enabled="false"></asp:TextBox>
                                 元
@@ -398,13 +396,13 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_cooperative_dep_note" runat="server" TextMode="MultiLine"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <th colspan='5'>
+                            <th colspan='6'>
                                 <h2>
                                     采购部反馈</h2>
                             </th>
@@ -418,6 +416,9 @@
                                 参考值：
                                 <asp:Label ID="lb_ferrous_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="" class="puchaseFB_mis"></span> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -438,7 +439,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_ferrous_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
@@ -453,6 +454,9 @@
                                 参考值：
                                 <asp:Label ID="lb_purchasepart_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="" class="puchaseFB_mis"></span> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -471,7 +475,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_purchasepart_dep_note" runat="server" TextMode="MultiLine"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
@@ -485,6 +489,9 @@
                                 参考值：
                                 <asp:Label ID="lb_paint_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="" class="puchaseFB_mis"></span> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -503,7 +510,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_paint_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
@@ -517,6 +524,9 @@
                                 参考值：
                                 <asp:Label ID="lb_electrical_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="" class="puchaseFB_mis"></span> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -535,7 +545,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_electrical_dep_note" runat="server" TextMode="MultiLine"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
@@ -550,6 +560,9 @@
                                 参考值：
                                 <asp:Label ID="lb_casting_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="" class="puchaseFB_mis"></span> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -568,7 +581,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_casting_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
@@ -582,6 +595,9 @@
                                 参考值：
                                 <asp:Label ID="lb_othermat_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="" class="puchaseFB_mis"></span> 元
                             </td>
                             <td>
                                 反馈时间：
@@ -600,7 +616,7 @@
                             </th>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <asp:TextBox ID="txt_node_othermat_dep_note" runat="server" TextMode="MultiLine"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
@@ -613,6 +629,9 @@
                             <td>
                                 <b>材料费参考值合计：</b><asp:Label ID="lb_c_total_material_his" runat="server"></asp:Label>
                                 元
+                            </td>
+                            <td>
+                                差 值：<span id="span_puchaseTotalFB_mis"></span> 元
                             </td>
                         </tr>
                     </table>
@@ -1272,6 +1291,7 @@
             $('.budget_pre').bind('input', ccltTotalBudget_pre);
             $('input.number').bind('blur', validateNumber);
             cclMisBudget();
+            cclMisPurchaseFB();
         });
 
 

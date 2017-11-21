@@ -234,7 +234,7 @@
                                 <asp:TemplateField HeaderText="预算" ItemStyle-Wrap="false" HeaderStyle-Wrap="false"
                                     ItemStyle-HorizontalAlign="Center" Visible="true">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lbtn_Finish" runat="server" CssClass="link" OnClientClick="javascript:return confirm('是否要重新提交预算?')"  OnClick="lbtn_Finish_onclick" CommandArgument='<%# Eval("TSA_ID") %>' >
+                                        <asp:LinkButton ID="lbtn_Finish" runat="server" CssClass="link" OnClientClick="javascript:return confirm('是否要提交预算?')"  OnClick="lbtn_Finish_onclick" CommandArgument='<%# Eval("TSA_ID") %>' >
                                            <asp:Image ID="Image4" runat="server" ImageUrl="~/Assets/icons/dealdispatcher.gif" ImageAlign="AbsMiddle"></asp:Image> 提交</asp:LinkButton>                                        
                                     </ItemTemplate>
                                 </asp:TemplateField>

@@ -12,8 +12,7 @@ namespace ZCZJ_DPF
         const string VIEW_TO_NODE = "VIEW_YS_to_node_info";//to节点信息表
         const string TABLE_NODE_INSTANCE = "YS_NODE_INSTANCE";//node实例表
         const string TABLE_NODE_DEFINITION = "YS_NODE_DEFINITION";
-        const string TABLE_LINE = "YS_line";//路线信息视图
-        const string TABLE_TASK_BUDGET = "YS_TASK_BUDGET";
+        const string TABLE_LINE = "YS_line";//路线信息视图        
         
 
 
@@ -103,7 +102,7 @@ WHERE node_definition_id={2} AND task_code='{3}';", TABLE_NODE_INSTANCE, note, n
             if (type.Equals("3"))//如果是结束节点
             {
                 //在任务预算表中更新预算编制结束时间，预算编制状态
-                DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET end_time=GETDATE(),state=5 WHERE task_code='{1}';", TABLE_TASK_BUDGET, task_code));
+                //DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET end_time=GETDATE(),state=5 WHERE task_code='{1}';", TABLE_TASK_BUDGET, task_code));
                 return false;
             }
             else//如果不是结束节点，还有后续节点
@@ -117,7 +116,7 @@ FROM {0} WHERE node_definition_id={1};", VIEW_TO_NODE, node_definition_id));
 FROM dbo.YS_LINE WHERE to_node_definition_id=(SELECT TOP 1 to_node_definition_id FROM dbo.YS_LINE WHERE from_node_definition_id={0}) 
 EXCEPT SELECT node_definition_id FROM dbo.YS_NODE_INSTANCE WHERE task_code='{1}' AND state=2 AND node_definition_id IN 
 (SELECT from_node_definition_id FROM dbo.YS_LINE WHERE to_node_definition_id=(SELECT TOP 1 to_node_definition_id FROM 
-dbo.YS_LINE WHERE from_node_definition_id={2})))t;", node_definition_id, task_code, node_definition_id)).Equals("0")))
+dbo.YS_LINE WHERE from_node_definition_id={0})))t;", node_definition_id, task_code)).Equals("0")))
                 {
                     return false;
                 }
@@ -150,7 +149,7 @@ FROM {1} WHERE from_node_definition_id={2}) AND task_code='{3}';", TABLE_NODE_IN
             SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sql);
             if (dr.Read())
             {
-                string r = dr[0].ToString();
+                string r = dr[0]+"";
                 dr.Close();
                 return r;
             }

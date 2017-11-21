@@ -24,12 +24,12 @@ namespace ZCZJ_DPF.YS_Data
         YS_Data.Model.TaskBudget tb;
         protected void Page_Load(object sender, EventArgs e)
         {
-            task_code = Request.QueryString["tsak_code"].ToString();
+            task_code = Request.QueryString["tsak_code"]+"";
             tb = new YS_Data.Model.TaskBudget(task_code);
 
             if (!IsPostBack)
             {               
-                userid = Session["UserID"].ToString();
+                userid = Session["UserID"]+"";
                 initControlUseable();
                 bindControlValue();
                 bindRepeater();
@@ -153,10 +153,10 @@ namespace ZCZJ_DPF.YS_Data
             bll.bindMaterialRepeater(rpt_purchase, pal_no_purchase, task_code, "material_code like '01.11%'");
             bll.bindMaterialRepeater(rpt_paint, pal_no_paint, task_code, "material_code like '01.15%'");
             bll.bindMaterialRepeater(rpt_electrical, pal_no_electrical, task_code, "material_code like '01.03%'");
-            bll.bindMaterialRepeater(rpt_casting, pal_no_casting, task_code, "material_code like '01.08%' or material_code like '01.09%'");
-            bll.bindMaterialRepeater(rpt_other, pal_no_other, task_code, @"material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
-                  AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%'");
-            bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, "");
+            bll.bindMaterialRepeater(rpt_casting, pal_no_casting, task_code, "(material_code like '01.08%' or material_code like '01.09%')");
+            bll.bindMaterialRepeater(rpt_other, pal_no_other, task_code, @"(material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
+                  AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%')");
+            bll.bindTaskRepeater(rpt_type, pal_no_type, task_code, tb.task_type);
         }
 
         /// <summary>
@@ -470,7 +470,7 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="e"></param>
         protected void btn_production_check_Click(object sender, EventArgs e)
         {
-            tb.production_check = rbl_production_check.SelectedIndex.ToString();
+            tb.production_check = rbl_production_check.SelectedIndex+"";
             tb.node_production_check_note = txt_node_production_check_note.Text.Trim();
 
             switch (rbl_production_check.SelectedIndex)
@@ -495,7 +495,7 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="e"></param>
         protected void btn_purchase_check_Click(object sender, EventArgs e)
         {
-            tb.purchase_check = rbl_purchase_check.SelectedIndex.ToString();
+            tb.purchase_check = rbl_purchase_check.SelectedIndex+"";
             tb.node_purchase_check_note = txt_node_purchase_check_note.Text.Trim();
 
             switch (rbl_purchase_check.SelectedIndex)
@@ -535,7 +535,7 @@ namespace ZCZJ_DPF.YS_Data
         /// <param name="e"></param>
         protected void btn_budget_check_Click(object sender, EventArgs e)
         {
-            tb.budget_check = rbl_budget_check.SelectedIndex.ToString();
+            tb.budget_check = rbl_budget_check.SelectedIndex+"";
             tb.node_budget_check_note = txt_node_budget_check_note.Text.Trim();
 
             switch (rbl_budget_check.SelectedIndex)

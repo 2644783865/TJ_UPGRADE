@@ -22,9 +22,9 @@ namespace ZCZJ_DPF.YS_Data
         protected void Page_Load(object sender, EventArgs e)
         {
             DBCallCommon.SessionLostToLogIn(Session["UserID"]);
-            depId = Session["UserDeptID"].ToString();
-            position = Session["POSITION"].ToString();
-            userid = Session["UserID"].ToString();
+            depId = Session["UserDeptID"]+"";
+            position = Session["POSITION"]+"";
+            userid = Session["UserID"]+"";
             if (!IsPostBack)
             {
                 InitUrl();

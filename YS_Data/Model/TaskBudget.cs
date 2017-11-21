@@ -27,59 +27,59 @@ namespace ZCZJ_DPF.YS_Data.Model
 
             if (dr_task.Read())
             {
-                this.task_budget_id = dr_task["task_budget_id"].ToString();
+                this.task_budget_id = dr_task["task_budget_id"]+"";
                 this.task_code = task_code;
-                this.contract_code = dr_task["contract_code"].ToString();
-                this.project_name = dr_task["project_name"].ToString();
-                this.equipment_name = dr_task["equipment_name"].ToString();
-                this.task_weight = dr_task["task_weight"].ToString();
-                this.task_type = dr_task["task_type"].ToString();
+                this.contract_code = dr_task["contract_code"]+"";
+                this.project_name = dr_task["project_name"]+"";
+                this.equipment_name = dr_task["equipment_name"]+"";
+                this.task_weight = dr_task["task_weight"]+"";
+                this.task_type = dr_task["task_type"]+"";
 
 
-                this.total_material_budget_pre = dr_task["total_material_budget_pre"].ToString();
-                this.labour_budget_pre = dr_task["direct_labour_budget_pre"].ToString();
-                this.teamwork_budget_pre = dr_task["sub_teamwork_budget_pre"].ToString();
-                this.cooperative_budget_pre = dr_task["cooperative_product_budget_pre"].ToString();
-                this.c_total_task_budget_pre = dr_task["c_total_task_budget_pre"].ToString();
+                this.total_material_budget_pre = dr_task["total_material_budget_pre"]+"";
+                this.labour_budget_pre = dr_task["direct_labour_budget_pre"]+"";
+                this.teamwork_budget_pre = dr_task["sub_teamwork_budget_pre"]+"";
+                this.cooperative_budget_pre = dr_task["cooperative_product_budget_pre"]+"";
+                this.c_total_task_budget_pre = dr_task["c_total_task_budget_pre"]+"";
 
 
 
-                this.total_material_budget = dr_task["total_material_budget"].ToString();
-                this.labour_budget = dr_task["direct_labour_budget"].ToString();
-                this.teamwork_budget = dr_task["sub_teamwork_budget"].ToString();
-                this.cooperative_budget = dr_task["cooperative_product_budget"].ToString();
-                this.c_total_task_budget = dr_task["c_total_task_budget"].ToString();
-                this.budget_check = dr_task["budget_check"].ToString();
+                this.total_material_budget = dr_task["total_material_budget"]+"";
+                this.labour_budget = dr_task["direct_labour_budget"]+"";
+                this.teamwork_budget = dr_task["sub_teamwork_budget"]+"";
+                this.cooperative_budget = dr_task["cooperative_product_budget"]+"";
+                this.c_total_task_budget = dr_task["c_total_task_budget"]+"";
+                this.budget_check = dr_task["budget_check"]+"";
 
-                this.ferrous_dep = dr_task["ys_ferrous_metal_dep"].ToString();
-                this.purchasepart_dep = dr_task["ys_purchase_part_dep"].ToString();
-                this.paint_dep = dr_task["ys_paint_coating_dep"].ToString();
-                this.electrical_dep = dr_task["ys_electrical_dep"].ToString();
-                this.casting_dep = dr_task["ys_casting_forging_dep"].ToString();
-                this.othermat_dep = dr_task["ys_othermat_cost_dep"].ToString();
-                this.c_total_material_dep = dr_task["c_total_material_dep"].ToString();
-                this.purchase_check = dr_task["purchase_check"].ToString();
+                this.ferrous_dep = dr_task["ys_ferrous_metal_dep"]+"";
+                this.purchasepart_dep = dr_task["ys_purchase_part_dep"]+"";
+                this.paint_dep = dr_task["ys_paint_coating_dep"]+"";
+                this.electrical_dep = dr_task["ys_electrical_dep"]+"";
+                this.casting_dep = dr_task["ys_casting_forging_dep"]+"";
+                this.othermat_dep = dr_task["ys_othermat_cost_dep"]+"";
+                this.c_total_material_dep = dr_task["c_total_material_dep"]+"";
+                this.purchase_check = dr_task["purchase_check"]+"";
 
-                this.labour_dep = dr_task["direct_labour_dep"].ToString();
-                this.teamwork_dep = dr_task["sub_teamwork_dep"].ToString();
-                this.cooperative_dep = dr_task["cooperative_product_dep"].ToString();
-                this.production_check = dr_task["production_check"].ToString();
+                this.labour_dep = dr_task["direct_labour_dep"]+"";
+                this.teamwork_dep = dr_task["sub_teamwork_dep"]+"";
+                this.cooperative_dep = dr_task["cooperative_product_dep"]+"";
+                this.production_check = dr_task["production_check"]+"";
 
-                this.ferrous_his = dr_task["ys_ferrous_metal"].ToString();
-                this.purchasepart_his = dr_task["ys_purchase_part"].ToString();
-                this.paint_his = dr_task["ys_paint_coating"].ToString();
-                this.electrical_his = dr_task["ys_electrical"].ToString();
-                this.casting_his = dr_task["ys_casting_forging_cost"].ToString();
-                this.othermat_his = dr_task["ys_othermat_cost"].ToString();
-                this.c_total_material_his = dr_task["c_total_material_history"].ToString();
+                this.ferrous_his = dr_task["ys_ferrous_metal"]+"";
+                this.purchasepart_his = dr_task["ys_purchase_part"]+"";
+                this.paint_his = dr_task["ys_paint_coating"]+"";
+                this.electrical_his = dr_task["ys_electrical"]+"";
+                this.casting_his = dr_task["ys_casting_forging_cost"]+"";
+                this.othermat_his = dr_task["ys_othermat_cost"]+"";
+                this.c_total_material_his = dr_task["c_total_material_history"]+"";
 
-                this.maker_id = dr_task["maker_id"].ToString();
+                this.maker_id = dr_task["maker_id"]+"";
 
-                //this.start_time = dr_task["start_time"].ToString();
-                //this.end_time = dr_task["end_time"].ToString();
-                //this.state = dr_task["state"].ToString();
-                //this.note = dr_task["note"].ToString();
-                //this.start_node_instance_id = dr_task["start_node_instance_id"].ToString();  
+                //this.start_time = dr_task["start_time"]+"";
+                //this.end_time = dr_task["end_time"]+"";
+                //this.state = dr_task["state"]+"";
+                //this.note = dr_task["note"]+"";
+                //this.start_node_instance_id = dr_task["start_node_instance_id"]+"";  
             }
             dr_task.Close();
             #endregion
@@ -91,12 +91,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs1.Length != 0)
             {
                 DataRow dr1 = drs1[0];
-                this.node_budget_edit_user_id = dr1["user_id"].ToString();
-                this.node_budget_edit_user_name = dr1["user_name"].ToString();
-                this.node_budget_edit_start_time = dr1["start_time"].ToString();
-                this.node_budget_edit_end_time = dr1["end_time"].ToString();
-                this.node_budget_edit_note = dr1["note"].ToString();
-                this.node_budget_edit_state = dr1["state"].ToString();
+                this.node_budget_edit_user_id = dr1["user_id"]+"";
+                this.node_budget_edit_user_name = dr1["user_name"]+"";
+                this.node_budget_edit_start_time = dr1["start_time"]+"";
+                this.node_budget_edit_end_time = dr1["end_time"]+"";
+                this.node_budget_edit_note = dr1["note"]+"";
+                this.node_budget_edit_state = dr1["state"]+"";
             }
             else
             {
@@ -109,12 +109,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs2.Length != 0)
             {
                 DataRow dr2 = drs2[0];
-                this.node_production_divide_user_id = dr2["user_id"].ToString();
-                this.node_production_divide_user_name = dr2["user_name"].ToString();
-                this.node_production_divide_start_time = dr2["start_time"].ToString();
-                this.node_production_divide_end_time = dr2["end_time"].ToString();
-                this.node_production_divide_note = dr2["note"].ToString();
-                this.node_production_divide_state = dr2["state"].ToString();
+                this.node_production_divide_user_id = dr2["user_id"]+"";
+                this.node_production_divide_user_name = dr2["user_name"]+"";
+                this.node_production_divide_start_time = dr2["start_time"]+"";
+                this.node_production_divide_end_time = dr2["end_time"]+"";
+                this.node_production_divide_note = dr2["note"]+"";
+                this.node_production_divide_state = dr2["state"]+"";
             }
             else
             {
@@ -127,12 +127,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs3.Length != 0)
             {
                 DataRow dr3 = drs3[0];
-                this.node_labour_dep_user_id = dr3["user_id"].ToString();
-                this.node_labour_dep_user_name = dr3["user_name"].ToString();
-                this.node_labour_dep_start_time = dr3["start_time"].ToString();
-                this.node_labour_dep_end_time = dr3["end_time"].ToString();
-                this.node_labour_dep_note = dr3["note"].ToString();
-                this.node_labour_dep_state = dr3["state"].ToString();
+                this.node_labour_dep_user_id = dr3["user_id"]+"";
+                this.node_labour_dep_user_name = dr3["user_name"]+"";
+                this.node_labour_dep_start_time = dr3["start_time"]+"";
+                this.node_labour_dep_end_time = dr3["end_time"]+"";
+                this.node_labour_dep_note = dr3["note"]+"";
+                this.node_labour_dep_state = dr3["state"]+"";
             }
             else
             {
@@ -145,12 +145,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs4.Length != 0)
             {
                 DataRow dr4 = drs4[0];
-                this.node_teamwork_dep_user_id = dr4["user_id"].ToString();
-                this.node_teamwork_dep_user_name = dr4["user_name"].ToString();
-                this.node_teamwork_dep_start_time = dr4["start_time"].ToString();
-                this.node_teamwork_dep_end_time = dr4["end_time"].ToString();
-                this.node_teamwork_dep_note = dr4["note"].ToString();
-                this.node_teamwork_dep_state = dr4["state"].ToString();
+                this.node_teamwork_dep_user_id = dr4["user_id"]+"";
+                this.node_teamwork_dep_user_name = dr4["user_name"]+"";
+                this.node_teamwork_dep_start_time = dr4["start_time"]+"";
+                this.node_teamwork_dep_end_time = dr4["end_time"]+"";
+                this.node_teamwork_dep_note = dr4["note"]+"";
+                this.node_teamwork_dep_state = dr4["state"]+"";
             }
             else
             {
@@ -163,12 +163,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs5.Length != 0)
             {
                 DataRow dr5 = drs5[0];
-                this.node_cooperative_dep_user_id = dr5["user_id"].ToString();
-                this.node_cooperative_dep_user_name = dr5["user_name"].ToString();
-                this.node_cooperative_dep_start_time = dr5["start_time"].ToString();
-                this.node_cooperative_dep_end_time = dr5["end_time"].ToString();
-                this.node_cooperative_dep_note = dr5["note"].ToString();
-                this.node_cooperative_dep_state = dr5["state"].ToString();
+                this.node_cooperative_dep_user_id = dr5["user_id"]+"";
+                this.node_cooperative_dep_user_name = dr5["user_name"]+"";
+                this.node_cooperative_dep_start_time = dr5["start_time"]+"";
+                this.node_cooperative_dep_end_time = dr5["end_time"]+"";
+                this.node_cooperative_dep_note = dr5["note"]+"";
+                this.node_cooperative_dep_state = dr5["state"]+"";
             }
             else
             {
@@ -181,12 +181,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs6.Length != 0)
             {
                 DataRow dr6 = drs6[0];
-                this.node_production_check_user_id = dr6["user_id"].ToString();
-                this.node_production_check_user_name = dr6["user_name"].ToString();
-                this.node_production_check_start_time = dr6["start_time"].ToString();
-                this.node_production_check_end_time = dr6["end_time"].ToString();
-                this.node_production_check_note = dr6["note"].ToString();
-                this.node_production_check_state = dr6["state"].ToString();
+                this.node_production_check_user_id = dr6["user_id"]+"";
+                this.node_production_check_user_name = dr6["user_name"]+"";
+                this.node_production_check_start_time = dr6["start_time"]+"";
+                this.node_production_check_end_time = dr6["end_time"]+"";
+                this.node_production_check_note = dr6["note"]+"";
+                this.node_production_check_state = dr6["state"]+"";
             }
             else
             {
@@ -199,12 +199,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs7.Length != 0)
             {
                 DataRow dr7 = drs7[0];
-                this.node_purchase_divide_user_id = dr7["user_id"].ToString();
-                this.node_purchase_divide_user_name = dr7["user_name"].ToString();
-                this.node_purchase_divide_start_time = dr7["start_time"].ToString();
-                this.node_purchase_divide_end_time = dr7["end_time"].ToString();
-                this.node_purchase_divide_note = dr7["note"].ToString();
-                this.node_purchase_divide_state = dr7["state"].ToString();
+                this.node_purchase_divide_user_id = dr7["user_id"]+"";
+                this.node_purchase_divide_user_name = dr7["user_name"]+"";
+                this.node_purchase_divide_start_time = dr7["start_time"]+"";
+                this.node_purchase_divide_end_time = dr7["end_time"]+"";
+                this.node_purchase_divide_note = dr7["note"]+"";
+                this.node_purchase_divide_state = dr7["state"]+"";
             }
             else
             {
@@ -217,12 +217,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs8.Length != 0)
             {
                 DataRow dr8 = drs8[0];
-                this.node_ferrous_dep_user_id = dr8["user_id"].ToString();
-                this.node_ferrous_dep_user_name = dr8["user_name"].ToString();
-                this.node_ferrous_dep_start_time = dr8["start_time"].ToString();
-                this.node_ferrous_dep_end_time = dr8["end_time"].ToString();
-                this.node_ferrous_dep_note = dr8["note"].ToString();
-                this.node_ferrous_dep_state = dr8["state"].ToString();
+                this.node_ferrous_dep_user_id = dr8["user_id"]+"";
+                this.node_ferrous_dep_user_name = dr8["user_name"]+"";
+                this.node_ferrous_dep_start_time = dr8["start_time"]+"";
+                this.node_ferrous_dep_end_time = dr8["end_time"]+"";
+                this.node_ferrous_dep_note = dr8["note"]+"";
+                this.node_ferrous_dep_state = dr8["state"]+"";
             }
             else
             {
@@ -235,12 +235,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs9.Length != 0)
             {
                 DataRow dr9 = drs9[0];
-                this.node_purchasepart_dep_user_id = dr9["user_id"].ToString();
-                this.node_purchasepart_dep_user_name = dr9["user_name"].ToString();
-                this.node_purchasepart_dep_start_time = dr9["start_time"].ToString();
-                this.node_purchasepart_dep_end_time = dr9["end_time"].ToString();
-                this.node_purchasepart_dep_note = dr9["note"].ToString();
-                this.node_purchasepart_dep_state = dr9["state"].ToString();
+                this.node_purchasepart_dep_user_id = dr9["user_id"]+"";
+                this.node_purchasepart_dep_user_name = dr9["user_name"]+"";
+                this.node_purchasepart_dep_start_time = dr9["start_time"]+"";
+                this.node_purchasepart_dep_end_time = dr9["end_time"]+"";
+                this.node_purchasepart_dep_note = dr9["note"]+"";
+                this.node_purchasepart_dep_state = dr9["state"]+"";
             }
             else
             {
@@ -253,12 +253,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs10.Length != 0)
             {
                 DataRow dr10 = drs10[0];
-                this.node_paint_dep_user_id = dr10["user_id"].ToString();
-                this.node_paint_dep_user_name = dr10["user_name"].ToString();
-                this.node_paint_dep_start_time = dr10["start_time"].ToString();
-                this.node_paint_dep_end_time = dr10["end_time"].ToString();
-                this.node_paint_dep_note = dr10["note"].ToString();
-                this.node_paint_dep_state = dr10["state"].ToString();
+                this.node_paint_dep_user_id = dr10["user_id"]+"";
+                this.node_paint_dep_user_name = dr10["user_name"]+"";
+                this.node_paint_dep_start_time = dr10["start_time"]+"";
+                this.node_paint_dep_end_time = dr10["end_time"]+"";
+                this.node_paint_dep_note = dr10["note"]+"";
+                this.node_paint_dep_state = dr10["state"]+"";
             }
             else
             {
@@ -271,12 +271,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs11.Length != 0)
             {
                 DataRow dr11 = drs11[0];
-                this.node_electrical_dep_user_id = dr11["user_id"].ToString();
-                this.node_electrical_dep_user_name = dr11["user_name"].ToString();
-                this.node_electrical_dep_start_time = dr11["start_time"].ToString();
-                this.node_electrical_dep_end_time = dr11["end_time"].ToString();
-                this.node_electrical_dep_note = dr11["note"].ToString();
-                this.node_electrical_dep_state = dr11["state"].ToString();
+                this.node_electrical_dep_user_id = dr11["user_id"]+"";
+                this.node_electrical_dep_user_name = dr11["user_name"]+"";
+                this.node_electrical_dep_start_time = dr11["start_time"]+"";
+                this.node_electrical_dep_end_time = dr11["end_time"]+"";
+                this.node_electrical_dep_note = dr11["note"]+"";
+                this.node_electrical_dep_state = dr11["state"]+"";
             }
             else
             {
@@ -289,12 +289,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs12.Length != 0)
             {
                 DataRow dr12 = drs12[0];
-                this.node_casting_dep_user_id = dr12["user_id"].ToString();
-                this.node_casting_dep_user_name = dr12["user_name"].ToString();
-                this.node_casting_dep_start_time = dr12["start_time"].ToString();
-                this.node_casting_dep_end_time = dr12["end_time"].ToString();
-                this.node_casting_dep_note = dr12["note"].ToString();
-                this.node_casting_dep_state = dr12["state"].ToString();
+                this.node_casting_dep_user_id = dr12["user_id"]+"";
+                this.node_casting_dep_user_name = dr12["user_name"]+"";
+                this.node_casting_dep_start_time = dr12["start_time"]+"";
+                this.node_casting_dep_end_time = dr12["end_time"]+"";
+                this.node_casting_dep_note = dr12["note"]+"";
+                this.node_casting_dep_state = dr12["state"]+"";
             }
             else
             {
@@ -307,12 +307,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs13.Length != 0)
             {
                 DataRow dr13 = drs13[0];
-                this.node_othermat_dep_user_id = dr13["user_id"].ToString();
-                this.node_othermat_dep_user_name = dr13["user_name"].ToString();
-                this.node_othermat_dep_start_time = dr13["start_time"].ToString();
-                this.node_othermat_dep_end_time = dr13["end_time"].ToString();
-                this.node_othermat_dep_note = dr13["note"].ToString();
-                this.node_othermat_dep_state = dr13["state"].ToString();
+                this.node_othermat_dep_user_id = dr13["user_id"]+"";
+                this.node_othermat_dep_user_name = dr13["user_name"]+"";
+                this.node_othermat_dep_start_time = dr13["start_time"]+"";
+                this.node_othermat_dep_end_time = dr13["end_time"]+"";
+                this.node_othermat_dep_note = dr13["note"]+"";
+                this.node_othermat_dep_state = dr13["state"]+"";
             }
             else
             {
@@ -325,12 +325,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs14.Length != 0)
             {
                 DataRow dr14 = drs14[0];
-                this.node_purchase_check_user_id = dr14["user_id"].ToString();
-                this.node_purchase_check_user_name = dr14["user_name"].ToString();
-                this.node_purchase_check_start_time = dr14["start_time"].ToString();
-                this.node_purchase_check_end_time = dr14["end_time"].ToString();
-                this.node_purchase_check_note = dr14["note"].ToString();
-                this.node_purchase_check_state = dr14["state"].ToString();
+                this.node_purchase_check_user_id = dr14["user_id"]+"";
+                this.node_purchase_check_user_name = dr14["user_name"]+"";
+                this.node_purchase_check_start_time = dr14["start_time"]+"";
+                this.node_purchase_check_end_time = dr14["end_time"]+"";
+                this.node_purchase_check_note = dr14["note"]+"";
+                this.node_purchase_check_state = dr14["state"]+"";
             }
             else
             {
@@ -343,12 +343,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs15.Length != 0)
             {
                 DataRow dr15 = drs15[0];
-                this.node_budget_adjust_user_id = dr15["user_id"].ToString();
-                this.node_budget_adjust_user_name = dr15["user_name"].ToString();
-                this.node_budget_adjust_start_time = dr15["start_time"].ToString();
-                this.node_budget_adjust_end_time = dr15["end_time"].ToString();
-                this.node_budget_adjust_note = dr15["note"].ToString();
-                this.node_budget_adjust_state = dr15["state"].ToString();
+                this.node_budget_adjust_user_id = dr15["user_id"]+"";
+                this.node_budget_adjust_user_name = dr15["user_name"]+"";
+                this.node_budget_adjust_start_time = dr15["start_time"]+"";
+                this.node_budget_adjust_end_time = dr15["end_time"]+"";
+                this.node_budget_adjust_note = dr15["note"]+"";
+                this.node_budget_adjust_state = dr15["state"]+"";
             }
             else
             {
@@ -361,12 +361,12 @@ namespace ZCZJ_DPF.YS_Data.Model
             if (drs16.Length != 0)
             {
                 DataRow dr16 = drs16[0];
-                this.node_budget_check_user_id = dr16["user_id"].ToString();
-                this.node_budget_check_user_name = dr16["user_name"].ToString();
-                this.node_budget_check_start_time = dr16["start_time"].ToString();
-                this.node_budget_check_end_time = dr16["end_time"].ToString();
-                this.node_budget_check_note = dr16["note"].ToString();
-                this.node_budget_check_state = dr16["state"].ToString();
+                this.node_budget_check_user_id = dr16["user_id"]+"";
+                this.node_budget_check_user_name = dr16["user_name"]+"";
+                this.node_budget_check_start_time = dr16["start_time"]+"";
+                this.node_budget_check_end_time = dr16["end_time"]+"";
+                this.node_budget_check_note = dr16["note"]+"";
+                this.node_budget_check_state = dr16["state"]+"";
             }
             else
             {

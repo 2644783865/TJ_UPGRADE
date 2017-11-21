@@ -268,7 +268,7 @@ namespace ZCZJ_DPF.TM_Data
         /// <param name="e"></param>
         public void lbtn_Finish_onclick(object sender, EventArgs e)
         {
-            string tsaId = ((LinkButton)sender).CommandArgument.ToString();//获取传递的任务号
+            string tsaId = ((LinkButton)sender).CommandArgument+"";//获取传递的任务号
 
             if (canBeSumited(tsaId))
             {
@@ -348,7 +348,7 @@ namespace ZCZJ_DPF.TM_Data
                           FROM      ( SELECT    PUR_MARID ,
                                                 SUM(PUR_NUM) AS AMOUNT
                                       FROM      dbo.TBPC_PURCHASEPLAN
-                                      WHERE     PUR_PCODE LIKE '{1}%'
+                                      WHERE     PUR_PCODE LIKE '{0}%'
                                       GROUP BY  PUR_MARID
                                     ) n
                                     LEFT JOIN ( SELECT  SI_MARID ,--从库存存货余额表中查询物料编码、最新单价
@@ -369,15 +369,12 @@ namespace ZCZJ_DPF.TM_Data
                 ORDER BY np.PUR_MARID;
         UPDATE  dbo.YS_MATERIAL_HISTORY_INFO
         SET     weight = 1
-        WHERE   task_code = '{2}'
+        WHERE   task_code = '{0}'
                 AND material_code NOT LIKE '01.08%'
                 AND material_code NOT LIKE '01.09%';
-        UPDATE  dbo.YS_MATERIAL_HISTORY_INFO
-        SET     unit_price = {3}
-        WHERE   task_code = '{4}'
-                AND ( material_code LIKE '01.08%'
-                      OR material_code LIKE '01.09%'
-                    );", tsaId, tsaId, tsaId, ConfigurationSettings.AppSettings["UnitPriceOfCastingAndForging"], tsaId);
+        UPDATE  dbo.YS_MATERIAL_HISTORY_INFO SET unit_price = {1} WHERE task_code = '{0}' AND  material_code LIKE '01.08%';
+        UPDATE  dbo.YS_MATERIAL_HISTORY_INFO SET unit_price = {2} WHERE task_code = '{0}' AND  material_code LIKE '01.09%';
+        ", tsaId, ConfigurationSettings.AppSettings["UnitPriceOfCasting"], ConfigurationSettings.AppSettings["UnitPriceOfForging"]);
         }
 
         /// <summary>
@@ -392,7 +389,7 @@ namespace ZCZJ_DPF.TM_Data
           contract_code ,
           project_name ,
           equipment_name ,  
-          task_weight,        
+          task_weight,
           ys_ferrous_metal ,
           ys_purchase_part ,
           ys_paint_coating ,
@@ -401,26 +398,28 @@ namespace ZCZJ_DPF.TM_Data
           ys_othermat_cost ,
           maker_id ,
           start_time ,
-          state     
+          state,
+          task_type     
         )
         SELECT TOP 1
                 '{0}' ,
                 CM_CONTR,
                 CM_PROJ ,
                 TSA_ENGNAME , 
-                ( SELECT BM_TUTOTALWGHT FROM TBPM_STRINFODQO WHERE BM_ZONGXU='1' AND BM_ENGID='{1}'),               
-                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{2}' AND material_code LIKE '01.07%') ,
-                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{3}' AND material_code LIKE '01.11%'),
-                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{4}' AND material_code LIKE '01.15%'),
-                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{5}' AND material_code LIKE '01.03%'),
-                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{6}' AND (material_code LIKE '01.08%' OR material_code LIKE '01.09%')),
-                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{7}' AND material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
+                ( SELECT BM_TUTOTALWGHT FROM TBPM_STRINFODQO WHERE BM_ZONGXU='1' AND BM_ENGID='{0}'),               
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND material_code LIKE '01.07%') ,
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND material_code LIKE '01.11%'),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND material_code LIKE '01.15%'),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND material_code LIKE '01.03%'),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND (material_code LIKE '01.08%' OR material_code LIKE '01.09%')),
+                ( SELECT ISNULL(SUM(c_total_cost),0) FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND material_code NOT  LIKE '01.07%' AND material_code NOT  LIKE '01.11%' 
                   AND material_code NOT  LIKE '01.15%' AND material_code NOT  LIKE '01.03%' AND material_code NOT  LIKE '01.08%' AND material_code NOT  LIKE '01.09%'),
-                {8},
+                {1},
                 GETDATE(),
-                1
+                1,
+                ( SELECT  TSA_CONTYPE FROM TBPM_TCTSASSGN WHERE TSA_ID='{0}' )
         FROM    dbo.View_TM_TaskAssign
-        WHERE   TSA_ID = '{9}'", tsaId, tsaId, tsaId, tsaId, tsaId, tsaId, tsaId, tsaId, Session["UserID"],tsaId);
+        WHERE   TSA_ID = '{0}'", tsaId, Session["UserID"]);
         }
 
 
