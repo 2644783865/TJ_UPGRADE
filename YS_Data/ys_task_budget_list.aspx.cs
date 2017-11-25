@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using ZCZJ_DPF;
+using System.Collections.Generic;
 
 namespace ZCZJ_DPF.YS_Data.UI
 {
@@ -28,11 +29,14 @@ namespace ZCZJ_DPF.YS_Data.UI
             
             initPager();
             initUCPaging();
-
             if (!IsPostBack)
             {
-                initControl();                
+                initControl();
                 UCPaging_PageChanged(1);
+            }
+            else
+            {
+                initDdl();
             }
         }
 
@@ -109,6 +113,7 @@ namespace ZCZJ_DPF.YS_Data.UI
             }
             CommonFun.Paging(rpt_task_list, CommonFun.GetDataByPagerQueryParam(pager), UCPaging, pal_container, NoDataPanel);
         }
+
 
 
         //protected void rpt_task_list_ItemDataBound(object sender, RepeaterItemEventArgs e)

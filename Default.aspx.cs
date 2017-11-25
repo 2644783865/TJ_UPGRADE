@@ -49,7 +49,6 @@ namespace ZCZJ_DPF
 
         protected void LoginButton_Click(object sender, ImageClickEventArgs e)
         {
-
            
                 if (CheckUser())
                 {

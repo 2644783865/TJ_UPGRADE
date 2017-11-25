@@ -475,11 +475,11 @@ namespace ZCZJ_DPF.YS_Data
 
             switch (rbl_production_check.SelectedIndex)
             {
-                case 0:
+                case 0://同意
                     bll.finishNode("6", tb);
                     ((Button)sender).Visible = false;
                     break;
-                case 1:
+                case 1://不同意
                     bll.rejectNode("6", tb, bll.getCheckBodListSelectedValue(ckl_production_check));
                     break;
                 default:
@@ -500,11 +500,11 @@ namespace ZCZJ_DPF.YS_Data
 
             switch (rbl_purchase_check.SelectedIndex)
             {
-                case 0:
+                case 0://同意
                     bll.finishNode("14", tb);
                     ((Button)sender).Visible = false;
                     break;
-                case 1:
+                case 1://不同意
                     bll.rejectNode("14", tb, bll.getCheckBodListSelectedValue(ckl_purchase_check));
                     break;
                 default:

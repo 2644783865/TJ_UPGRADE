@@ -27,8 +27,7 @@
             <table class="top-table">
                 <tr>
                     <td>
-                        合同号：<asp:Label ID="lb_contract_code" runat="server"></asp:Label>
-                    </td>
+                        合同号：<asp:Label ID="lb_contract_code" runat="server"></asp:Label></td>
                 </tr>
             </table>
         </asp:Panel>
