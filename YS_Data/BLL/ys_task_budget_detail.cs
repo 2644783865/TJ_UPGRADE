@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Text;
+using System.Configuration;
 
 
 namespace ZCZJ_DPF.YS_Data.BLL
@@ -193,7 +194,7 @@ FROM dbo.YS_TASK_BUDGET WHERE   task_code <>'{0}' AND task_type='{1}' AND state=
                     if (BudgetFlowEngine.completeCurrentNode(tb.task_code, node_definition_id, tb.node_purchase_check_note))
                     {
                         DBCallCommon.ExeSqlText(string.Format("UPDATE {0} SET state=3 WHERE task_code='{1}';", TABLE_TASK_BUDGET, tb.task_code));
-                        string[] ids14 = new string[] { "63" };//季凌云
+                        string[] ids14 = new string[] { ConfigurationSettings.AppSettings["BudgetEditorId"] };
                         BudgetFlowEngine.activeFollowNode(tb.task_code, node_definition_id, ids14);
                     }
                     break;

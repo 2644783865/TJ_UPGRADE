@@ -12,7 +12,7 @@ function validateChar(e) {
     var reg = /[']+|[;]+/;
     var ele = e.target;
     if (reg.test($.trim($(ele).val()))) {
-        alert("输入中不能含有 ' ; 等字符，已被替换为  ’ ；")
+        alert("输入中不能含有英文半角字符 ' ; 等字符，已被替换为中文字符  ’ ；")
         ele.value = ele.value.replace(/[']/g, "’");
         ele.value = ele.value.replace(/[;]/g, "；");
     }
