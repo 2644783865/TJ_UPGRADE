@@ -1011,15 +1011,15 @@ namespace ZCZJ_DPF.CM_Data
 
         private void BindType(DropDownList ddl)
         {
-            string sql = "select CM_TYPE,CM_REFER from TBCM_TYPE";
-            DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
+            string sql = "select CM_TYPE,CM_REFER from TBCM_TYPE WHERE CM_ID>=27 ORDER BY CM_TYPE";
+            DataTable dt = DBCallCommon.GetDTUsingSqlText(sql); 
             //ddl.DataSource = dt;
             //ddl.DataValueField = "CM_TYPE";
             //ddl.DataTextField = "CM_REFER";
             //ddl.DataBind();
             foreach (DataRow dr in dt.Rows)
             {
-                ddl.Items.Add(new ListItem(dr["CM_TYPE"].ToString() + "--" + dr["CM_REFER"].ToString(), dr["CM_TYPE"].ToString()));
+                ddl.Items.Add(new ListItem(" "+dr["CM_TYPE"].ToString() + " -- " + dr["CM_REFER"].ToString(), dr["CM_TYPE"].ToString()));
             }
         }
 
@@ -1139,5 +1139,7 @@ namespace ZCZJ_DPF.CM_Data
             }
             return tctrl;
         }
+
+       
     }
 }

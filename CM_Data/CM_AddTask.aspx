@@ -441,10 +441,10 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="设备类型" ItemStyle-HorizontalAlign="Center">
-                                                            <ItemTemplate>
-                                                                <asp:DropDownList ID="TSA_TYPE" runat="server" Width="100px">
+                                                            <ItemTemplate>                                                           
+                                                                <asp:DropDownList ID="TSA_TYPE" runat="server" Width="150px" style="font-family:Lucida Console;font-size:larger">
                                                                 </asp:DropDownList>
-                                                                <asp:HiddenField runat="server" ID="Hid_Type" Value='<%#Eval("TSA_TYPE") %>' />
+                                                                <asp:HiddenField runat="server" ID="Hid_Type" Value='<%#Eval("TSA_TYPE") %>' />                                                            
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>

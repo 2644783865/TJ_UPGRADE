@@ -8893,6 +8893,9 @@
     <Content Include="CM_Data\CM_ZhengBuTask.aspx" />
     <Content Include="CM_Data\FixTable.css" />
     <Content Include="CM_Data\Getdata.ashx" />
+    <Content Include="CM_Data\PcJs\easyui.css" />
+    <Content Include="CM_Data\PcJs\jquery.easyui.min.js" />
+    <Content Include="CM_Data\PcJs\jquery.min.js" />
     <Content Include="CM_Data\Test.ashx" />
     <Content Include="CM_Data\CM_AddTask.aspx" />
     <Content Include="CM_Data\CM_Add_Assign.aspx" />
