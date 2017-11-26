@@ -8,6 +8,16 @@ function validateNumber(e) {
     }
 }
 
+function validateChar(e) {
+    var reg = /[']+|[;]+/;
+    var ele = e.target;
+    if (reg.test($.trim($(ele).val()))) {
+        alert("输入中不能含有 ' ; 等字符，已被替换为  ’ ；")
+        ele.value = ele.value.replace(/[']/g, "’");
+        ele.value = ele.value.replace(/[;]/g, "；");
+    }
+}
+
 //预算编制自动求和
 function ccltTotalBudget_pre() {
     var sum = 0;

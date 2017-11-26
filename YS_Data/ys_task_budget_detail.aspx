@@ -341,7 +341,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_labour_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
+                                <asp:TextBox ID="txt_node_labour_dep_note" runat="server" TextMode="MultiLine" class="note" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -369,7 +369,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_teamwork_dep_note" runat="server" TextMode="MultiLine"
+                                <asp:TextBox ID="txt_node_teamwork_dep_note" runat="server" TextMode="MultiLine" class="note"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -397,7 +397,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_cooperative_dep_note" runat="server" TextMode="MultiLine"
+                                <asp:TextBox ID="txt_node_cooperative_dep_note" runat="server" TextMode="MultiLine" class="note"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -440,7 +440,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_ferrous_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
+                                <asp:TextBox ID="txt_node_ferrous_dep_note" runat="server" TextMode="MultiLine" class="note" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -476,7 +476,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_purchasepart_dep_note" runat="server" TextMode="MultiLine"
+                                <asp:TextBox ID="txt_node_purchasepart_dep_note" runat="server" TextMode="MultiLine" class="note"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -511,7 +511,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_paint_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
+                                <asp:TextBox ID="txt_node_paint_dep_note" runat="server" TextMode="MultiLine" class="note" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -546,7 +546,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_electrical_dep_note" runat="server" TextMode="MultiLine"
+                                <asp:TextBox ID="txt_node_electrical_dep_note" runat="server" TextMode="MultiLine" class="note"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -582,7 +582,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_casting_dep_note" runat="server" TextMode="MultiLine" Width="99.5%"
+                                <asp:TextBox ID="txt_node_casting_dep_note" runat="server" TextMode="MultiLine" class="note" Width="99.5%"
                                     Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -617,7 +617,7 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <asp:TextBox ID="txt_node_othermat_dep_note" runat="server" TextMode="MultiLine"
+                                <asp:TextBox ID="txt_node_othermat_dep_note" runat="server" TextMode="MultiLine" class="note"
                                     Width="99.5%" Rows="3" Style="resize: none" Enabled="false"></asp:TextBox>
                             </td>
                         </tr>
@@ -702,7 +702,7 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <asp:TextBox ID="txt_node_production_check_note" runat="server" TextMode="MultiLine"
+                            <asp:TextBox ID="txt_node_production_check_note" runat="server" TextMode="MultiLine" class="note"
                                 Width="99.5%" Rows="5" Style="resize: none" Enabled="false"></asp:TextBox>
                         </td>
                     </tr>
@@ -739,7 +739,7 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <asp:TextBox ID="txt_node_purchase_check_note" runat="server" TextMode="MultiLine"
+                            <asp:TextBox ID="txt_node_purchase_check_note" runat="server" TextMode="MultiLine" class="note"
                                 Width="99.5%" Rows="5" Style="resize: none" Enabled="false"></asp:TextBox>
                         </td>
                     </tr>
@@ -776,7 +776,7 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <asp:TextBox ID="txt_node_budget_check_note" runat="server" TextMode="MultiLine"
+                            <asp:TextBox ID="txt_node_budget_check_note" runat="server" TextMode="MultiLine" class="note"
                                 Width="99.5%" Rows="5" Style="resize: none" Enabled="false"></asp:TextBox>
                         </td>
                     </tr>
@@ -1282,23 +1282,15 @@
     <script type="text/javascript" src="YS_Data_P.js"></script>
 
     <script type="text/javascript">
-
-
         $(function() {
-
             $('.myButton').bind('click', btn_confirm);
             $('.budget').bind('input', ccltTotalBudget);
             $('.budget_pre').bind('input', ccltTotalBudget_pre);
             $('input.number').bind('blur', validateNumber);
+            $('.note').bind('blur', validateChar);
             cclMisBudget();
             cclMisPurchaseFB();
         });
-
-
-        
-        
-        
-        
              
     </script>
 
