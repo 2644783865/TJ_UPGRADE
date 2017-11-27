@@ -1011,7 +1011,7 @@ namespace ZCZJ_DPF.CM_Data
 
         private void BindType(DropDownList ddl)
         {
-            string sql = "select CM_TYPE,CM_REFER from TBCM_TYPE WHERE CM_ID>=27 ORDER BY CM_TYPE";
+            string sql = "select CM_TYPE,CM_REFER from TBCM_TYPE ORDER BY CM_TYPE";
             DataTable dt = DBCallCommon.GetDTUsingSqlText(sql); 
             //ddl.DataSource = dt;
             //ddl.DataValueField = "CM_TYPE";
