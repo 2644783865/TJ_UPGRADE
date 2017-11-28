@@ -21,14 +21,14 @@ namespace ZCZJ_DPF
             {
                 Response.Write("<script>alert('会话已过期,请重新登录！！！');if(window.parent!=null)window.parent.location.href='../Default.aspx';else{window.location.href='./Default.aspx'} </script>");
             }
- 
+            initVisible();
             if (!IsPostBack)
             {
                 labAdmin.Text = Session["UserName"].ToString();
                 labDepart.Text = Session["UserDept"].ToString();
                 if (Session["id"] != null)
                 {
-                    gdid.Text = Session["id"].ToString();  
+                    gdid.Text = Session["id"].ToString();
                 }
                 //CheckUser(ControlFinder);
             }
@@ -44,10 +44,32 @@ namespace ZCZJ_DPF
                 gdid.Text = Session["id"].ToString();
             }
         }
-      
+
+        private void initVisible()
+        {
+            //从配置文件中获取有权限查看预算的部门的字符串
+            string availableYSLinkDepId = ConfigurationSettings.AppSettings["availableYSLinkDepId"] + "";
+            //如果配置文件字符串不为空，则进行判断
+            if (!string.IsNullOrEmpty(availableYSLinkDepId))
+            {
+                string depId = Session["UserDeptID"] + "";
+                string[] availableYSLinkDepIds = availableYSLinkDepId.Split(',');
+                foreach (string s in availableYSLinkDepIds)
+                {
+                    if (s.Trim().Equals(depId))
+                    {
+                        HyperLink12.Visible = true;
+                        break;
+                    }
+                }                
+            }
+           
+
+        }
+
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            string sqlText = "update tbbd_session set sn_endtm='"+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+"' where sn_id='"+Session.SessionID+"'";
+            string sqlText = "update tbbd_session set sn_endtm='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' where sn_id='" + Session.SessionID + "'";
             Application.Lock();
             int num = (int)Application["online"];
             if (num > 0)
@@ -64,9 +86,9 @@ namespace ZCZJ_DPF
             //sqlText = "insert into tbbd_session (sn_id,sn_crttm,sn_ip,sn_userhostname,sn_type,sn_num) values('" + Session.SessionID + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + ip + "','" + userHostName + "','安全退出','" + (int)Application["online"] + "')";
             //DBCallCommon.ExeSqlText(sqlText);
             //Response.Write("<script>if(window.parent!=null)window.parent.close();else{window.close();} </script>");
-            
+
             Response.Write("<script>if(window.parent!=null)window.parent.location.href='../Default.aspx';else{window.location.href='./Default.aspx'} </script>");
-            
+
         }
     }
 }
