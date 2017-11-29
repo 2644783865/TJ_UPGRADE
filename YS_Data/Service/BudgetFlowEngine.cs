@@ -22,7 +22,7 @@ namespace ZCZJ_DPF
         /// <param name="task_code">任务号</param>
         /// <param name="node_definition_id">当前节点的node类id</param>
         /// <param name="user_ids">存储后续节点中所有责任人id的数组，
-        /// 按照后续节点的id从小到大排序,例如
+        /// 按照后续节点的node_definition_id从小到大排序,例如
         /// 【生产部长、采购部长】
         /// 【人工费反馈人，分包费反馈人，外协反馈人】、
         /// 【黑色金属、外购件、油漆涂料、电器电料、铸锻件、其他材料】</param>
@@ -49,6 +49,7 @@ namespace ZCZJ_DPF
             {
 
                 List<string> listsql = new List<string>();
+                //依次按照NODE_DEFINITION表中node_definition_id的顺序匹配user_ids[]中的责任人，并激活
                 for (int i = 0; i < user_ids.Length; i++)
                 {
                     listsql.Add(string.Format(@"INSERT  INTO {0}
@@ -67,7 +68,7 @@ namespace ZCZJ_DPF
                                     to_node_definition_id
                             FROM    {4}
                             WHERE   from_node_definition_id = {5}
-                            ORDER BY from_node_definition_id )
+                            ORDER BY to_node_definition_id )
                 ) ,
                 '{6}' ,
                 {7} ,
