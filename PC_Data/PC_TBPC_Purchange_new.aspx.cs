@@ -25,27 +25,21 @@ namespace ZCZJ_DPF.PC_Data
             position = Session["POSITION"].ToString();
             if (!IsPostBack)
             {
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAME='" + name + "'";
-                if (position == "0301")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='2'";
-                }
-                if (position == "0501")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='3'";
-                }
-                if (position == "0502" || position == "0506" || position == "0505")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='4' and RESULT='审核中' and BG_SHRD='"+name+"'";
-                }
-                if (position != "0301" && position != "0501" && position != "0502" && position != "0506" && position != "0505")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))";
-                }
-                if (userid == "67")
-                {
-                    ViewState["StrWhere"] = "((BG_PTC is not null and BG_PTC!='' and BG_STATE='2') or (BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))))";
-                }
+                //初始化 
+                ViewState["StrWhere"] = "(BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAMEID='" + userid + "') or ";
+
+                //审核人A
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDA='" + userid + "' and BG_SHYJA IS NULL) or ";
+
+                //审核人B
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDB='" + userid + "' and BG_SHYJB IS NULL and BG_SHYJA IS NOT NULL) or ";
+
+                //审核人C
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDC='" + userid + "' and BG_SHYJC IS NULL and BG_SHYJB IS NOT NULL ) or ";
+
+                //审核人D
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDD='" + userid + "' and BG_SHYJD IS NULL and BG_SHYJC IS NOT NULL )";
+
                 UCPaging1.CurrentPage = 1;
                 this.InitVar();
                 this.bindGrid();
@@ -173,34 +167,31 @@ namespace ZCZJ_DPF.PC_Data
         protected void drp_state_SelectedIndexChanged(object sender,EventArgs e)
         {
             string condition = "BG_PTC is not null and BG_PTC!=''";
+
+            //我的任务
             if (radio_mytask.Checked)
             {
                 string name = Session["UserName"].ToString();
                 string userid = Session["UserID"].ToString();
-                string position = Session["POSITION"].ToString();
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAME='" + name + "'";
-                if (position == "0301")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='2'";
-                }
-                if (position == "0501")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='3'";
-                }
-                if (position == "0502" || position == "0506" || position == "0505")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='4' and RESULT='审核中' and BG_SHRD='" + name + "'";
-                }
-                if (position != "0301" && position != "0501" && position != "0502" && position != "0506" && position != "0505")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))";
-                }
-                if (userid == "67")
-                {
-                    ViewState["StrWhere"] = "((BG_PTC is not null and BG_PTC!='' and BG_STATE='2') or (BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))))";
-                }
+
+                //初始化 
+                ViewState["StrWhere"] = "(BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAMEID='" + userid + "') or ";
+
+                //审核人A
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDA='" + userid + "' and BG_SHYJA IS NULL) or " ;
+
+                //审核人B
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDB='" + userid + "' and BG_SHYJB IS NULL and BG_SHYJA IS NOT NULL) or ";
+
+                //审核人C
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDC='" + userid + "' and BG_SHYJC IS NULL and BG_SHYJB IS NOT NULL ) or ";
+
+                //审核人D
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDD='" + userid + "' and BG_SHYJD IS NULL and BG_SHYJC IS NOT NULL )";
+
                 condition = ViewState["StrWhere"].ToString();
             }
+
             if (drp_state.SelectedIndex != 0)
             {
                 condition += " and (BG_STATE='" + drp_state.SelectedValue.ToString().Trim() + "' or RESULT='" + drp_state.SelectedValue.ToString().Trim() + "')";
@@ -248,27 +239,22 @@ namespace ZCZJ_DPF.PC_Data
                 string name = Session["UserName"].ToString();
                 string userid = Session["UserID"].ToString();
                 string position = Session["POSITION"].ToString();
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAME='" + name + "'";
-                if (position == "0301")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='2'";
-                }
-                if (position == "0501")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='3'";
-                }
-                if (position == "0502" || position == "0506" || position == "0505")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='4' and RESULT='审核中' and BG_SHRD='" + name + "'";
-                }
-                if (position != "0301" && position != "0501" && position != "0502" && position != "0506" && position != "0505")
-                {
-                    ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))";
-                }
-                if (userid == "67")
-                {
-                    ViewState["StrWhere"] = "((BG_PTC is not null and BG_PTC!='' and BG_STATE='2') or (BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))))";
-                }
+
+                //初始化 
+                ViewState["StrWhere"] = "(BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAMEID='" + userid + "') or ";
+
+                //审核人A
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDA='" + userid + "' and BG_SHYJA IS NULL) or ";
+
+                //审核人B
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDB='" + userid + "' and BG_SHYJB IS NULL and BG_SHYJA IS NOT NULL) or ";
+
+                //审核人C
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDC='" + userid + "' and BG_SHYJC IS NULL and BG_SHYJB IS NOT NULL ) or ";
+
+                //审核人D
+                ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDD='" + userid + "' and BG_SHYJD IS NULL and BG_SHYJC IS NOT NULL )";
+
                 condition1 = ViewState["StrWhere"].ToString();
             }
             if (tbbgph.Text.ToString().Trim() != "")
@@ -359,27 +345,23 @@ namespace ZCZJ_DPF.PC_Data
             string condition3 = "";
             string name = Session["UserName"].ToString();
             string position = Session["POSITION"].ToString();
-            ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAME='" + name + "'";
-            if (position == "0301")
-            {
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='2'";
-            }
-            if (position == "0501")
-            {
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='3'";
-            }
-            if (position == "0502" || position == "0506" || position == "0505")
-            {
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and BG_STATE='4' and RESULT='审核中' and BG_SHRD='" + name + "'";
-            }
-            if (position != "0301" && position != "0501" && position != "0502" && position != "0506" && position != "0505")
-            {
-                ViewState["StrWhere"] = "BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))";
-            }
-            if (userid == "67")
-            {
-                ViewState["StrWhere"] = "((BG_PTC is not null and BG_PTC!='' and BG_STATE='2') or (BG_PTC is not null and BG_PTC!='' and ((BG_STATE='1' and BG_SHRA='" + name + "') or (BG_STATE='0' and BG_NAME='" + name + "'))))";
-            }
+            string userid = Session["UserID"].ToString();
+
+            //初始化 
+            ViewState["StrWhere"] = "(BG_PTC is not null and BG_PTC!='' and BG_STATE='0' and BG_NAMEID='" + userid + "') or ";
+
+            //审核人A
+            ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDA='" + userid + "' and BG_SHYJA IS NULL) or ";
+
+            //审核人B
+            ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDB='" + userid + "' and BG_SHYJB IS NULL and BG_SHYJA IS NOT NULL) or ";
+
+            //审核人C
+            ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDC='" + userid + "' and BG_SHYJC IS NULL and BG_SHYJB IS NOT NULL ) or ";
+
+            //审核人D
+            ViewState["StrWhere"] += "(BG_PTC is not null and BG_PTC!='' and BG_SHRIDD='" + userid + "' and BG_SHYJD IS NULL and BG_SHYJC IS NOT NULL )";
+
             condition3 = ViewState["StrWhere"].ToString();
             if (tbbgph.Text.ToString().Trim() != "")
             {

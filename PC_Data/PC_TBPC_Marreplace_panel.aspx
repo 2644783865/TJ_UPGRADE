@@ -2,14 +2,65 @@
     CodeBehind="PC_TBPC_Marreplace_panel.aspx.cs" Inherits="ZCZJ_DPF.PC_Data.PC_TBPC_Marreplace_panel"
     Title="物料代用管理" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
+    <style type="text/css">
+        .tab
+        {
+            width: 80%;
+            border: solid 1px #E5E5E5;
+        }
+        .tab tr
+        {
+            height: 30px;
+        }
+        .tab tr td
+        {
+            border: solid 1px #E5E5E5;
+            border-collapse: collapse;
+        }
+        
+        .autocomplete_completionListElement
+        {
+            margin: 0px;
+            background-color: #1C86EE;
+            color: windowtext;
+            cursor: 'default';
+            text-align: left;
+            list-style: none;
+            padding: 0px;
+            border: solid 1px gray;
+            width: 400px !important;
+        }
+        .autocomplete_listItem
+        {
+            border-style: solid;
+            border: #FFEFDB;
+            border-width: 1px;
+            background-color: #EEDC82;
+            color: windowtext;
+        }
+        .autocomplete_highlightedListItem
+        {
+            background-color: #1C86EE;
+            color: black;
+            padding: 1px;
+        }
+    </style>
+    
     <link type="text/css" href="FixTable.css" rel="stylesheet" />
-
+    <link href="PcJs/superTables_compressed.css" rel="stylesheet" type="text/css" />
+    <link rel="Stylesheet" type="text/css" href="../Assets/main.css" />
+    <link type="text/css" href="../PC_Data/FixTable.css" rel="stylesheet" />
+    <link href="../Assets/AutoCompleteTextBox.css" rel="stylesheet" type="text/css" />
+    
     <script src="PcJs/rowcolor.js" type="text/javascript" charset="GB2312" language="javascript"></script>
-
+    <script src="PcJs/superTables_compressed.js" type="text/javascript"></script>
+    <script src="../JS/KeyControlTask.js" type="text/javascript"></script>
+    <script src="../JS/DatePicker.js" type="text/javascript"></script>
+    <script src="../JS/PickPersons.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript">
         //        function RecordPostion()
         //        {
@@ -32,6 +83,48 @@
         //        }
         //     self.moveTo(0,0)
         //     self.resizeTo(screen.availWidth,screen.availHeight)
+        
+        function xr1() {
+            $("#hidPerson").val("person1");
+            SelPersons();
+        }
+
+        function xr2() {
+            $("#hidPerson").val("person2");
+            SelPersons();
+        }
+
+        function xr3() {
+            $("#hidPerson").val("person3");
+            SelPersons();
+        }
+        
+        function xr4() {
+            $("#hidPerson").val("person4");
+            SelPersons();
+        }
+
+        function savePick() {
+            var r = Save();
+            var id = $("#hidPerson").val();
+            if (id == "person1") {
+                $("#<%=TextBoxp1.ClientID %>").val(r.st_name);
+                $("#<%=TextBoxp1id.ClientID %>").val(r.st_id);
+            }
+            if (id == "person2") {
+                $("#<%=TextBoxp11.ClientID %>").val(r.st_name);
+                $("#<%=TextBoxp11id.ClientID %>").val(r.st_id);
+            }
+            if (id == "person3") {
+                $("#<%=TextBoxp2.ClientID %>").val(r.st_name);              
+                $("#<%=TextBoxp2id.ClientID %>").val(r.st_id);
+            }
+            if (id == "person4") {
+                $("#<%=TextBoxp3.ClientID %>").val(r.st_name);              
+                $("#<%=TextBoxp3id.ClientID %>").val(r.st_id);
+            }
+            $('#win').dialog('close');
+        }
 
         function ShowDetial(obj) {
             var tracknum = obj.getElementsByTagName("td")[1].getElementsByTagName("span")[0].innerText;
@@ -41,8 +134,8 @@
         }
     </script>
 
-    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </cc1:ToolkitScriptManager>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>
     <%--<asp:Label ID="ControlFinder" runat="server" Visible="false"></asp:Label>--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -55,6 +148,7 @@
                                     代用单
                                 </td>
                                 <td align="right">
+                                    <asp:Button ID="btn_SHR_INSERT" runat="server" Text="审核人填补" OnClick="btn_SHR_INSER" Visible="false" />
                                     <asp:Button ID="btn_THBZ" runat="server" Text="替换备注" OnClick="btn_THBZ_Click" />
                                     <asp:Button ID="btn_DYQR" runat="server" Text="打印确认" OnClick="btn_DYQR_Click" />
                                     <asp:Button ID="btn_fanshen" runat="server" Text="反审" OnClick="btn_fanshen_Click" Visible="false" />
@@ -81,9 +175,9 @@
             </div>
             <div class="box-wrapper">
                 <div class="box-outer">
-                    <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
+                    <asp:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
                         ActiveTabIndex="1">
-                        <cc1:TabPanel ID="TabPanel1" runat="server" HeaderText="材料代用计划表" TabIndex="0">
+                        <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="材料代用计划表" TabIndex="0">
                             <ContentTemplate>
                                 <asp:Panel ID="Panel_body1" runat="server">
                                     <div style="height: 480px; overflow: auto">
@@ -376,8 +470,8 @@
                                     </asp:Panel>
                                 </asp:Panel>
                             </ContentTemplate>
-                        </cc1:TabPanel>
-                        <cc1:TabPanel ID="TabPanel2" runat="server" HeaderText="评审结果" TabIndex="1">
+                        </asp:TabPanel>
+                        <asp:TabPanel ID="TabPanel2" runat="server" HeaderText="评审结果" TabIndex="1">
                             <ContentTemplate>
                                 <div style="border: 1px solid #000000; height: 401px; overflow: auto">
                                     <asp:Panel ID="Pan_shenhe" runat="server">
@@ -397,7 +491,9 @@
                                                         <td align="right" style="border-bottom: solid 1px black;" colspan="2">
                                                             <asp:Label ID="label1" Text="" runat="server" ></asp:Label>
                                                             <asp:TextBox ID="TextBoxp1" runat="server" Enabled="false" CssClass="text1style"></asp:TextBox>
-                                                            <asp:TextBox ID="TextBoxp1id" runat="server" Visible="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <asp:TextBox ID="TextBoxp1id" runat="server" style="display:none;"></asp:TextBox>
+                                                            <asp:Image runat="server" ID="imgSHR1" ImageUrl="../Assets/images/username_bg.gif"
+                                                            onclick="xr1()" align="middle" Style="cursor: pointer" title="选择" Visible="false" />&nbsp;&nbsp;&nbsp;&nbsp;
                                                             审核时间:
                                                             <asp:TextBox ID="TextBoxdatatime1" runat="server" Text="" CssClass="text1style" Enabled="false"></asp:TextBox>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -429,7 +525,9 @@
                                                 <tr>
                                                     <td align="right" style="border-bottom: solid 1px black;" colspan="2">
                                                         部门领导:<asp:TextBox ID="TextBoxp11" runat="server" Enabled="false" CssClass="text1style"></asp:TextBox>
-                                                        <asp:TextBox ID="TextBoxp11id" runat="server" Visible="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <asp:TextBox ID="TextBoxp11id" runat="server" style="display:none;"></asp:TextBox>
+                                                        <asp:Image runat="server" ID="imgSHR2" ImageUrl="../Assets/images/username_bg.gif"
+                                                        onclick="xr2()" align="middle" Style="cursor: pointer" title="选择" Visible="false" />&nbsp;&nbsp;&nbsp;&nbsp;
                                                         审核时间:<asp:TextBox ID="TextBoxdatatime11" runat="server" Text="" CssClass="text1style"
                                                             Enabled="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     </td>
@@ -461,7 +559,9 @@
                                                     <tr>
                                                         <td align="right" style="border-bottom: solid 1px black;" colspan="2">
                                                             技术员:<asp:TextBox ID="TextBoxp2" runat="server" Enabled="false" CssClass="text1style"></asp:TextBox>
-                                                            <asp:TextBox ID="TextBoxp2id" runat="server" Visible="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <asp:TextBox ID="TextBoxp2id" runat="server" style="display:none;"></asp:TextBox>
+                                                            <asp:Image runat="server" ID="imgSHR3" ImageUrl="../Assets/images/username_bg.gif"
+                                                            onclick="xr3()" align="middle" Style="cursor: pointer" title="选择" Visible="false" />&nbsp;&nbsp;&nbsp;&nbsp;
                                                             审核时间:<asp:TextBox ID="TextBoxdatatime2" runat="server" Text="" CssClass="text1style"
                                                                 Enabled="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </td>
@@ -494,7 +594,9 @@
                                                     <tr>
                                                         <td align="right" style="border-bottom: solid 1px black;" colspan="2">
                                                             技术部负责人:<asp:TextBox ID="TextBoxp3" runat="server" Enabled="false" CssClass="text1style"></asp:TextBox>
-                                                            <asp:TextBox ID="TextBoxp3id" runat="server" Visible="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <asp:TextBox ID="TextBoxp3id" runat="server"  style="display:none;"></asp:TextBox>
+                                                            <asp:Image runat="server" ID="imgSHR4" ImageUrl="../Assets/images/username_bg.gif"
+                                                            onclick="xr4()" align="middle" Style="cursor: pointer" title="选择" Visible="false" />&nbsp;&nbsp;&nbsp;&nbsp;
                                                             审核时间:<asp:TextBox ID="TextBoxdatatime3" runat="server" Text="" CssClass="text1style"
                                                                 Enabled="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </td>
@@ -536,10 +638,41 @@
                                             </asp:Panel>--%>
                                         </table>
                                     </asp:Panel>
+                                    
+                                                                    
+                                    <div id="win" visible="false">
+                                            <div>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>指定人员</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                        <td>
+                                                            按部门查询：
+                                                        </td>
+                                                        <td>
+                                                            <input id="dep" name="dept" value="05">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div style="width: 430px; height: 230px">
+                                                <table id="dg">
+                                                </table>
+                                            </div>
+                                        </div>
+                                        
+                                    <div id="buttons" style="text-align: right" visible="false">
+                                            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="savePick();">
+                                                保存</a> &nbsp;&nbsp;&nbsp; <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true"
+                                                    onclick="javascript:$('#win').dialog('close')">取消</a> &nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton"
+                                                        data-options="iconCls:'icon-ok',plain:true" onclick="xiuGai();">修改</a>
+                                            <input id="hidPerson" type="hidden" value="" />
+                                    </div>
                                 </div>
                             </ContentTemplate>
-                        </cc1:TabPanel>
-                    </cc1:TabContainer>
+                        </asp:TabPanel>
+                    </asp:TabContainer>
                 </div>
             </div>
         </ContentTemplate>
