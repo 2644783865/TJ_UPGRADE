@@ -96,6 +96,10 @@ namespace ZCZJ_DPF.PC_Data
             btn_DYQR.Attributes.Add("OnClick", "Javascript:return confirm('是否进行打印确认?确认之后将表示本单据已经打印过！');");
             btn_THBZ.Attributes.Add("OnClick", "Javascript:return confirm('是否确定替换备注?确认之后将计划中的备注替换成代用单中输入的备注！');");
 
+            //补全审核人
+            btn_SHR_INSERT.Attributes.Add("OnClick", "Javascript:return confirm('是否确认审核人正确填补？');");
+
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["mpno"] != null)
@@ -119,9 +123,43 @@ namespace ZCZJ_DPF.PC_Data
                 Hyp_print.NavigateUrl = "PC_TBPC_MARPLACE_PRINT.aspx?sheetno=" + gloabsheetno;
                 initpager();
                 initpower();
+
+                //判断是否有审核人为空
+                CheckSHR();
             }
             //CheckUser(ControlFinder);
         }
+
+        //判断审核人是否为空，并对审核人为空的行，进行填补选择
+        private void CheckSHR()
+        {   
+            int i=0;
+            if (String.IsNullOrEmpty(TextBoxp1id.Text))  //审核人1id
+            {
+                imgSHR1.Visible = true;
+                i++;
+            }
+            if (String.IsNullOrEmpty(TextBoxp11id.Text)) //审核人2id
+            {
+                imgSHR2.Visible = true;
+                i++;
+            }
+            if (String.IsNullOrEmpty(TextBoxp2id.Text)) //审核人3id
+            {
+                imgSHR3.Visible = true;
+                i++;
+            }
+            if (String.IsNullOrEmpty(TextBoxp3id.Text)) //审核人4id
+            {
+                imgSHR4.Visible = true;
+                i++;
+            } 
+            if (i!=0)   //如果有缺失的审核人出现，则将填补审核人按钮显示出来
+            {
+                btn_SHR_INSERT.Visible = true;
+            }
+        }
+
         protected void initpager()
         {
 
@@ -561,6 +599,13 @@ namespace ZCZJ_DPF.PC_Data
         {
             List<string> sqltextlist = new List<string>();
             string sqltext = "";
+
+            if (String.IsNullOrEmpty(TextBoxp1id.Text) || String.IsNullOrEmpty(TextBoxp11id.Text) || String.IsNullOrEmpty(TextBoxp2id.Text) || String.IsNullOrEmpty(TextBoxp3id.Text))
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('请先选择相应审核人,并点击”审核人填补”按钮进行审核人补全！');", true);
+                return;
+            }
+
             foreach (RepeaterItem reitem in Marreplace_detail_repeater.Items)
             {
                 string newmarid = ((Label)reitem.FindControl("MP_NEWMARID")).Text.ToString().Trim();
@@ -1319,6 +1364,8 @@ namespace ZCZJ_DPF.PC_Data
             initpager();
             initpower();
         }
+
+
         protected void btn_DYQR_Click(object sender, EventArgs e)
         {
             string sqltext = "";
@@ -1345,6 +1392,48 @@ namespace ZCZJ_DPF.PC_Data
                 DBCallCommon.ExeSqlText(sqltext);
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('采购计划中的备注替换成功！');", true);
             }
+        }
+
+        //填补审核人缺失的问题
+        protected void btn_SHR_INSER(object sender, EventArgs e)
+        {
+            List<string> sqllist = new List<string>();
+            string sql_update = "";
+            int i=0;
+
+            if (imgSHR1.Visible)
+	        {
+                sql_update="update TBPC_MARREPLACETOTAL set MP_FILLFMID='"+ TextBoxp1id.Text +"' WHERE MP_CODE='"+Tb_Code.Text+"'";
+        		sqllist.Add(sql_update);
+                i++;
+	        }
+
+            if (imgSHR2.Visible)
+	        {
+                sql_update = "update TBPC_MARREPLACETOTAL set MP_LEADER='" + TextBoxp11id.Text + "' WHERE MP_CODE='" + Tb_Code.Text + "'";
+        		sqllist.Add(sql_update);
+                i++;
+	        }
+
+            if (imgSHR3.Visible)
+	        {
+                sql_update = "update TBPC_MARREPLACETOTAL set MP_REVIEWAID='" + TextBoxp2id.Text + "' WHERE MP_CODE='" + Tb_Code.Text + "'";
+        		sqllist.Add(sql_update);
+                i++;
+	        }
+
+            if (imgSHR4.Visible)
+	        {
+                sql_update = "update TBPC_MARREPLACETOTAL set MP_CHARGEID='" + TextBoxp3id.Text + "' WHERE MP_CODE='" + Tb_Code.Text + "'";
+        		sqllist.Add(sql_update);
+                i++;
+	        }
+
+            if (i!=0)
+	        {
+                DBCallCommon.ExecuteTrans(sqllist);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", string.Format("alert('审核人补全成功!');window.location.href='PC_TBPC_Marreplace_panel.aspx?state={0}&mpno={1}'",gloabstate, Tb_Code.Text), true);
+	        }
         }
     }
 }
