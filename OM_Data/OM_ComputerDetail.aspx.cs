@@ -431,11 +431,11 @@ namespace ZCZJ_DPF.OM_Data
                 }
                 else
                     _emailto = DBCallCommon.GetEmailAddressByUserID(firstid.Value);
-                string _body = "电子设备报修审批任务:"
+                string _body = "办公设备报修审批任务:"
                    + "\r\n制单人：" + lb1.Text.Trim()
                    + "\r\n制单日期：" + txtTime.Text.Trim();
 
-                string _subject = "您有新的【电子设备报修】需要审批，请及时处理";
+                string _subject = "您有新的【办公设备报修】需要审批，请及时处理";
                 DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
                 Response.Write("<script>alert('保存成功！');window.location.href='OM_ComputerLIst.aspx';</script>");
 
@@ -509,13 +509,13 @@ namespace ZCZJ_DPF.OM_Data
                     else
                         id_emailto = dtadd.Rows[0]["GZR"].ToString();
                     string _emailto = DBCallCommon.GetEmailAddressByUserID(id_emailto);
-                    string _body = "电子设备报修审批任务:"
+                    string _body = "办公设备报修审批任务:"
                        + "\r\n制单人：" + lb1.Text.Trim()
                        + "\r\n制单日期：" + txtTime.Text.Trim();
 
-                    string _subject = "您有新的【电子设备报修】需要审批，请及时处理";
+                    string _subject = "您有新的【办公设备报修】需要审批，请及时处理";
                     if (dtadd.Rows[0]["state"].ToString() == "3")
-                        _subject = "您有新的【电子设备报修】需要确认，请及时处理";
+                        _subject = "您有新的【办公设备报修】需要确认，请及时处理";
                     DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
                 }
                 Response.Write("<script>alert('保存成功！');window.location.href='OM_ComputerLIst.aspx';</script>");

@@ -623,7 +623,7 @@
         <asp:HyperLink ID="HyperLink64" runat="server" onClick="SelectMenu(64);" CssClass="LeftMenuNoSelected"
             NavigateUrl="~/OM_Data/OM_ComputerLIst.aspx" Target="right">
             <p>
-                电子设备报修<asp:Label ID="lblComputer" runat="server" Text="" ForeColor="Red"></asp:Label></p>
+                办公设备报修<asp:Label ID="lblComputer" runat="server" Text="" ForeColor="Red"></asp:Label></p>
         </asp:HyperLink>
         <asp:HyperLink ID="HyperLink98" runat="server" onClick="SelectMenu(98);" CssClass="LeftMenuNoSelected"
             NavigateUrl="~/OM_Data/OM_ExpressManage.aspx" Target="right">

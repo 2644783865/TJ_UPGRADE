@@ -282,6 +282,10 @@ namespace ZCZJ_DPF.OM_Data
                     tbxLZ_ZJLL.Text = dt_boss.Rows[0]["ST_NAME"].ToString();
                     hidLZ_ZJLLID.Value = dt_boss.Rows[0]["ST_ID"].ToString();          		 
 	            }
+                else
+                {
+                    imgLZ_ZJLL.Visible = true;
+                }
 
                 //2017.04.12修改
                 string SQL_SHR_SZ = "SELECT * FROM  OM_LIZHISHOUXU_SZ ";

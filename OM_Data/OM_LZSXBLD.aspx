@@ -40,6 +40,11 @@
             $("#hidPerson").val("person3");
             SelPersons();
         }
+        
+        function xr4() {
+            $("#hidPerson").val("person4");
+            SelPersons();
+        }
 
         function savePick() {
             var r = Save();
@@ -55,6 +60,10 @@
             if (id == "person3") {
                 $("#<%=tbxLZ_ZLZMR.ClientID %>").val(r.st_name);
                 $("#<%=hidLZ_ZLZMRID.ClientID%>").val(r.st_id);
+            }
+            if (id == "person4") {
+                $("#<%=tbxLZ_ZJLL.ClientID %>").val(r.st_name);
+                $("#<%=hidLZ_ZJLLID.ClientID%>").val(r.st_id);
             }
             $('#win').dialog('close');
         }
@@ -255,6 +264,8 @@
                         <td align="right">
                             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 直接领导：
                             <asp:TextBox runat="server" ID="tbxLZ_ZJLL" Width="60px" onfocus="this.blur()"></asp:TextBox>
+                            <asp:Image runat="server" ID="imgLZ_ZJLL" ImageUrl="../Assets/images/username_bg.gif"
+                             onclick="xr4()" align="middle" Style="cursor: pointer" title="选择" Visible="false" />
                         </td>
                         <td align="right">
                             <asp:RadioButtonList runat="server" ID="rblLZ_ZJLLZT" RepeatDirection="Horizontal">

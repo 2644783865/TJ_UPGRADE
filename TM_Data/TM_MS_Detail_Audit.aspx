@@ -116,9 +116,9 @@
                 fitColumns: true,
                 nowrap: false,
                 singleSelect: true,
-                pageNumber: 1,
+                pageNumber: 25,
                 pageSize: 25,
-                pageList: [25, 40, 60],
+                pageList: [1,25, 40, 60],
                 pagination: true,
                 rowStyler:setRowBgColor,
                 columns: [[
