@@ -481,11 +481,12 @@ namespace ZCZJ_DPF.YS_Data
                     break;
                 case 1://不同意
                     bll.rejectNode("6", tb, bll.getCheckBodListSelectedValue(ckl_production_check));
+                    ((Button)sender).Visible = false;
                     break;
                 default:
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('请选择审核结果！');</script>");
                     break;
             }
-            ((Button)sender).Visible = false;
         }
 
         /// <summary>
@@ -506,11 +507,12 @@ namespace ZCZJ_DPF.YS_Data
                     break;
                 case 1://不同意
                     bll.rejectNode("14", tb, bll.getCheckBodListSelectedValue(ckl_purchase_check));
+                    ((Button)sender).Visible = false;
                     break;
                 default:
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('请选择审核结果！');</script>");
                     break;
             }
-            ((Button)sender).Visible = false;
         }
 
         /// <summary>
@@ -546,11 +548,12 @@ namespace ZCZJ_DPF.YS_Data
                     break;
                 case 1:
                     bll.rejectNode("16", tb, bll.getCheckBodListSelectedValue(ckl_budget_check));
+                    ((Button)sender).Visible = false;
                     break;
                 default:
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('请选择审核结果！');</script>");
                     break;
             }
-            ((Button)sender).Visible = false;
         }
         #endregion
 

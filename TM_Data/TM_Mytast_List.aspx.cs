@@ -22,7 +22,7 @@ namespace ZCZJ_DPF.TM_Data
         PagerQueryParam pager = new PagerQueryParam();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 this.InitInfo();
@@ -268,7 +268,7 @@ namespace ZCZJ_DPF.TM_Data
         /// <param name="e"></param>
         public void lbtn_Finish_onclick(object sender, EventArgs e)
         {
-            string tsaId = ((LinkButton)sender).CommandArgument+"";//获取传递的任务号
+            string tsaId = ((LinkButton)sender).CommandArgument + "";//获取传递的任务号
 
             if (canBeSumited(tsaId))
             {
@@ -279,16 +279,16 @@ namespace ZCZJ_DPF.TM_Data
                 listsql.Add(getInsertIntoHistoryInfoTableSqltext(tsaId));//向历史表重新插入信息
                 listsql.Add(getInsertIntoTaskBudgetTableSqltext(tsaId));//向任务预算表重新插入信息
                 listsql.Add(string.Format("UPDATE dbo.TBPM_TCTSASSGN SET TSA_BUDGET_DATETIME=GETDATE() WHERE TSA_ID='{0}';", tsaId));//更新任务表中预算提交的时间
-                DBCallCommon.ExecuteTrans(listsql);                
+                DBCallCommon.ExecuteTrans(listsql);
                 listsql.Clear();
                 string[] ids = new string[] { ConfigurationSettings.AppSettings["BudgetEditorId"] };//配置文件中读取预算编制人id
-                BudgetFlowEngine.activeFollowNode(tsaId,"0",ids);//向node实例表中插入第一个实例
+                BudgetFlowEngine.activeFollowNode(tsaId, "0", ids);//向node实例表中插入第一个实例
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提交成功!');window.location='TM_Mytast_List.aspx'", true);
 
             }
             else
             {
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('当前任务号预算正在编制中，请等待编制完成后再提交');</script>");
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('请勿重复提交！');</script>");
             }
         }
 
@@ -303,7 +303,8 @@ namespace ZCZJ_DPF.TM_Data
             //查询任务号的状态
             SqlDataReader drCheckMain = DBCallCommon.GetDRUsingSqlText(string.Format("SELECT state FROM dbo.YS_TASK_BUDGET WHERE task_code ='{0}'", tsaId));
 
-            if (drCheckMain.Read() && !drCheckMain[0].ToString().Equals("5"))//如果该任务号的上条预算在编制过程中，则不能重新提交预算
+            //if (drCheckMain.Read() && !drCheckMain[0].ToString().Equals("5"))//如果该任务号的上条预算在编制过程中，则不能重新提交预算
+            if (drCheckMain.Read())//如果该任务号的已经提预算，则不能重新提交预算
             {
                 drCheckMain.Close();
                 return false;
