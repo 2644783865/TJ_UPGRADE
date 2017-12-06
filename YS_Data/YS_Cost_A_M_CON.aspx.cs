@@ -127,7 +127,7 @@ namespace ZCZJ_DPF.YS_Data
                 "Convert(decimal(10,2), (YS_PRODUCT_OUT/(YS_PRODUCT_OUT_BG+1))) as YS_PRODUCT_OUT_BG_percent,Convert(decimal(10,2), (YS_PRODUCT_OUT/(YS_PRODUCT_OUT_BG+1))) as YS_PRODUCT_OUT_BG_hide_percent,YS_PRODUCT_OUT_BG," +
                 "Convert(decimal(10,2), (YS_TRANS_COST/(YS_TRANS_COST_BG+1))) as YS_TRANS_COST_BG_percent,Convert(decimal(10,2), (YS_TRANS_COST/(YS_TRANS_COST_BG+1))) as YS_TRANS_COST_BG_hide_percent,YS_TRANS_COST_BG," +
                 "YS_PROFIT,YS_ZZFY,YS_FERROUS_METAL,YS_PURCHASE_PART,YS_CASTING_FORGING,YS_PAINT_COATING,YS_ELECTRICAL,YS_OTHERMAT_COST,YS_MATERIAL_COST,YS_TEAM_CONTRACT,YS_FAC_CONTRACT,YS_PRODUCT_OUT,YS_TRANS_COST,YS_XS_Finished,YS_Finshtime,YS_Deadtime";
-            pager.OrderField = "YS_CONTRACT_NO";
+            pager.OrderField = "YS_Finshtime";
             pager.StrWhere = this.GetStrWhere();
             pager.OrderType = 1;//按合同号升序排列
             pager.PageSize = 10;
