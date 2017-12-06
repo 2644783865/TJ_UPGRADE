@@ -191,7 +191,7 @@ namespace ZCZJ_DPF.PM_Data
             }
             if (cb_myjob.Checked)
             {
-                sqltxt += "and MTA_DUY='" + Session["UserName"].ToString() + "'or MS_PERSON='" + Session["UserName"].ToString() + "'";
+                sqltxt += "and (MTA_DUY='" + Session["UserName"].ToString() + "'or MS_PERSON='" + Session["UserName"].ToString() + "')";
             }
             if (rb_1.Checked)
             {

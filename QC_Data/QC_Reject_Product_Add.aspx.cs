@@ -422,18 +422,18 @@ namespace ZCZJ_DPF.QC_Data
             string sql = "";
 
             //技术部李小婷
-            sql = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_POSITION like '1205%'  and ST_PD='0'";
+            sql = "select * from TBDS_STAFFINFO where  ST_DEPID='12' and ST_SEQUEN='管理' and ST_PD='0' order by ST_WORKNO";
             BindCheckbox(cbl_zlb, sql);
 
 
-            sql = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID='03' and ST_POSITION like '03%' and ST_PD='0' ";
+            sql = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID='03' and ST_POSITION like '03%' and ST_PD='0'";
             BindCheckbox(cbl_psr, sql);
 
-            sql = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_ID='67'  and ST_PD='0'";
+            sql = "select * from TBDS_STAFFINFO where  ST_DEPID='03' and ST_SEQUEN='管理' and ST_PD='0'";
             BindCheckbox(cbl_spr, sql);
 
 
-            sql = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID='01' and ST_POSITION like '01%' and ST_PD='0' ";
+            sql = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_DEPID='01' and ST_POSITION like '01%' and ST_PD='0' order by ST_WORKNO";
 
             BindCheckbox(cbl_zgjl, sql);
         }
