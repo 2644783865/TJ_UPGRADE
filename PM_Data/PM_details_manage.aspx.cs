@@ -68,6 +68,12 @@ namespace ZCZJ_DPF.PM_Data
         {
             if (!IsPostBack)
             {
+                //我的任务
+                cb_myjob.Checked = true;
+
+                //未完工
+                rb_2.Checked = true;
+
                 //this.DataPJname();
                 //this.DataENGname();
                 Datafengong();
@@ -76,6 +82,7 @@ namespace ZCZJ_DPF.PM_Data
                 //  InitPager();
                 GetEnable();
                 this.bindRepeater();
+
             }
             if (rblstate.SelectedIndex == 1)
             {
@@ -185,22 +192,6 @@ namespace ZCZJ_DPF.PM_Data
             //    sqltxt += " and MS_ENGID='" + ddlengname.SelectedValue + "' ";
             //}
             sqltxt += GetStrCondition();
-            if (txtHTH.Text.Trim() != "")
-            {
-                sqltxt += " and MS_PJID like '%" + txtHTH.Text.Trim() + "%'";
-            }
-            if (cb_myjob.Checked)
-            {
-                sqltxt += "and (MTA_DUY='" + Session["UserName"].ToString() + "'or MS_PERSON='" + Session["UserName"].ToString() + "')";
-            }
-            if (rb_1.Checked)
-            {
-                sqltxt += " and MS_FINISHSTATUS='1'";
-            }
-            if (rb_2.Checked)
-            {
-                sqltxt += " and MS_FINISHSTATUS='0'";
-            }
             pager.TableName = "" + tablename + " as A left join TBMP_MANUTSASSGN AS B on A.MS_ENGID=B.MTA_ID ";
             // pager.TableName = "View_TM_MSFORALLRVW";//制作明细
             pager.PrimaryKey = "MS_ID";
@@ -741,6 +732,42 @@ namespace ZCZJ_DPF.PM_Data
                 strWhere += SelectStr(screen6, ddlRelation6, Txt6.Text, ddlLogic5.SelectedValue);
                 strWhere += ")";
             }
+
+            if (txtHTH.Text.Trim() != "")
+            {
+                strWhere += " and MS_PJID like '%" + txtHTH.Text.Trim() + "%'";
+            }
+
+            //我的任务
+            if (cb_myjob.Checked)
+            {
+                strWhere += "and (MTA_DUY='" + Session["UserName"].ToString() + "'or MS_PERSON='" + Session["UserName"].ToString() + "')";
+            }
+
+            //已完工
+            if (rb_1.Checked)
+            {
+                strWhere += " and MS_FINISHSTATUS='1'";
+            }
+
+            //未完工
+            if (rb_2.Checked)
+            {
+                strWhere += " and MS_FINISHSTATUS='0'";
+            }
+
+            //已处理
+            if (look_state.SelectedValue == "0")
+            {
+                strWhere += " and  MS_LOOKSTATUS='1'";
+            }
+
+            //未处理
+            if (look_state.SelectedValue == "1")
+            {
+                strWhere += " and  MS_LOOKSTATUS='0'";
+            }
+
             return strWhere;
         }
         private string SelectStr(DropDownList ddl, DropDownList ddl1, string txt, string logic) //选择条件拼接字符串
@@ -796,6 +823,15 @@ namespace ZCZJ_DPF.PM_Data
                 string sql_ck_qr = "update TBPM_MSFORALLRVW set MS_CK_BT='2' where  MS_ID='" + msid + "' and MS_STATE='8'";
                 DBCallCommon.ExeSqlText(sql_ck_qr);
             }
+            InitVar();
+            this.bindRepeater();
+            ControlVisible();
+        }
+
+        //已处理或未处理
+        protected void Look_State_Change(object sender, EventArgs e)
+        {
+            UCPaging1.CurrentPage = 1;
             InitVar();
             this.bindRepeater();
             ControlVisible();

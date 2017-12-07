@@ -61,8 +61,15 @@
                                 <asp:RadioButton ID="rb_2" runat="server" Text="未完工" AutoPostBack="true" GroupName="select"
                                     OnCheckedChanged="rblstate_SelectedIndexChanged" />
                             </td>
+                            <td>
+                                <asp:RadioButtonList ID="look_state" RepeatColumns="2" runat="server" AutoPostBack="true"
+                                    OnSelectedIndexChanged="Look_State_Change">
+                                    <asp:ListItem Text="已处理" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="未处理" Value="1"  Selected="True"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </td>
                             <%-- <td  style="width: 15%; text-align:right">
-                                        合同名称：
+                                        合同名称：s
                                         <asp:DropDownList ID="ddlpjname" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlpjname_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         </td>
