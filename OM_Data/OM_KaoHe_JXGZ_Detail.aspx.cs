@@ -305,7 +305,7 @@ namespace ZCZJ_DPF.OM_Data
             string sql = "";
             if ( ddl_Depart.SelectedValue == "12")
             {
-                 sql = " select sum(GangWeiXiShu) from TBDS_KaoHe_JXDetail where Context='" + context + "' and PosName <> '部长' and PosName <> '部长助理' and PosName not like '%总监%' and  PosName not like '%总经理助理兼部长%'";
+                 sql = " select sum(GangWeiXiShu) from TBDS_KaoHe_JXDetail where Context='" + context + "' and PosName <> '部长' and PosName <> '副部长' and PosName not like '%总监%' and  PosName not like '%总经理助理兼部长%'";
             }
             else
             {
@@ -440,7 +440,7 @@ namespace ZCZJ_DPF.OM_Data
                     string score = dtPart.Rows[i]["Score"].ToString();
                     if (ddl_Depart.SelectedValue == "12")
                     {
-                        sql = "select  sum((case when GangWeiXiShu='' or GangWeiXiShu is null then 1.00 else GangWeiXiShu end)*(case when  Score is null then 0.0 else Score end))  from TBDS_KaoHe_JXDetail where JxYear='" + year + "' and JxMonth='" + month + "'  and PosName <> '部长' and PosName <> '部长助理' and PosName not like '%总监%' and PosName not like '%总经理助理兼部长%' and Context='" + hidConext.Value + "'";
+                        sql = "select  sum((case when GangWeiXiShu='' or GangWeiXiShu is null then 1.00 else GangWeiXiShu end)*(case when  Score is null then 0.0 else Score end))  from TBDS_KaoHe_JXDetail where JxYear='" + year + "' and JxMonth='" + month + "'  and PosName <> '部长' and PosName <> '副部长' and PosName not like '%总监%' and PosName not like '%总经理助理兼部长%' and Context='" + hidConext.Value + "'";
                     }
                     else
                     {
@@ -458,7 +458,7 @@ namespace ZCZJ_DPF.OM_Data
                         double zonggongzi = CommonFun.ComTryDouble(txtZonghe.Text.Trim());
                         if (ddl_Depart.SelectedValue == "12")
                         {
-                            sql = "update TBDS_KaoHe_JXDetail set  Money=case when PosName = '部长' or PosName = '部长助理' or PosName like '%总监%' or PosName like '%总经理助理兼部长%' then " + CommonFun.ComTryDouble(js) * CommonFun.ComTryDouble(score) / 100.0 + "*GangWeiXiShu  else " + zonggongzi / zongXishu + "*cast(Score as float)*GangWeiXiShu  end  where JxYear='" + year + "' and JxMonth='" + month + "' and Context='" + hidConext.Value + "' ";
+                            sql = "update TBDS_KaoHe_JXDetail set  Money=case when PosName = '部长' or PosName = '副部长' or PosName like '%总监%' or PosName like '%总经理助理兼部长%' then " + CommonFun.ComTryDouble(js) * CommonFun.ComTryDouble(score) / 100.0 + "*GangWeiXiShu  else " + zonggongzi / zongXishu + "*cast(Score as float)*GangWeiXiShu  end  where JxYear='" + year + "' and JxMonth='" + month + "' and Context='" + hidConext.Value + "' ";
                         }
                         else
                         {

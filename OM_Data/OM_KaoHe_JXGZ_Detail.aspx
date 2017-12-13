@@ -32,7 +32,7 @@ $("#<%=hidPerId.ClientID %>").val(arr[0]);
                 var department=$(this).parent().parent().find("span[name*=lblDEPNAME]").html();
                 var money = $(this).parent().parent().find("input[name*=txtMoney]").val();
                 if (posName!="部长" && posName.indexOf("总监") == -1&&posName!="总经理助理兼部长") {
-                    if((department=="质量部")&&posName=="部长助理")
+                    if((department=="质量部")&&posName=="副部长")
                     {
                           $(this).parent().parent().find("input[name*=txtMoney]").attr("readonly", "readonly");                  
                     }
