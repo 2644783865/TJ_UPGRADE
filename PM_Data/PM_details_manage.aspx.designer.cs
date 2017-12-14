@@ -41,6 +41,15 @@ namespace ZCZJ_DPF.PM_Data {
         protected global::System.Web.UI.WebControls.RadioButtonList rblstate;
         
         /// <summary>
+        /// rb_3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rb_3;
+        
+        /// <summary>
         /// rb_1 控件。
         /// </summary>
         /// <remarks>

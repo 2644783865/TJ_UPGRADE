@@ -68,11 +68,27 @@ namespace ZCZJ_DPF.PM_Data
         {
             if (!IsPostBack)
             {
-                //我的任务
-                cb_myjob.Checked = true;
+                string depid = Session["UserDeptID"].ToString();
 
-                //未完工
-                rb_2.Checked = true;
+                //如果是技术部就隐藏已处理和未处理
+                if (depid == "03")
+                {
+                  look_state.Visible = false; 
+                  rb_2.Checked = true;              //全部
+                  
+                }
+
+                //如果是生产部门就隐藏已完工和未完工
+                if (depid =="04")
+	            {
+                    rb_3.Visible = false; //全部
+                    rb_1.Visible = false;
+                    rb_2.Visible = false;
+	            }
+
+                //我的任务
+                cb_myjob.Checked = false;
+
 
                 //this.DataPJname();
                 //this.DataENGname();
@@ -485,7 +501,7 @@ namespace ZCZJ_DPF.PM_Data
             else if (i >= 1)
             {
                 DBCallCommon.ExecuteTrans(list_str);
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功！');window.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功！')", true);
             }
             ControlVisible();
 
@@ -757,13 +773,12 @@ namespace ZCZJ_DPF.PM_Data
             }
 
             //已处理
-            if (look_state.SelectedValue == "0")
+            if (look_state.SelectedValue == "1")
             {
                 strWhere += " and  MS_LOOKSTATUS='1'";
             }
-
             //未处理
-            if (look_state.SelectedValue == "1")
+            else if (look_state.SelectedValue == "2")
             {
                 strWhere += " and  MS_LOOKSTATUS='0'";
             }

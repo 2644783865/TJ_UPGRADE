@@ -56,6 +56,8 @@
                             <asp:ListItem Text="已完工" value="0" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="未完工" Value="1" ></asp:ListItem>
                              </asp:RadioButtonList>--%>
+                                <asp:RadioButton ID="rb_3" runat="server" Text="全部" AutoPostBack="true" GroupName="select"
+                                    OnCheckedChanged="rblstate_SelectedIndexChanged" />
                                 <asp:RadioButton ID="rb_1" runat="server" Text="已完工" AutoPostBack="true" GroupName="select"
                                     OnCheckedChanged="rblstate_SelectedIndexChanged" />
                                 <asp:RadioButton ID="rb_2" runat="server" Text="未完工" AutoPostBack="true" GroupName="select"
@@ -64,8 +66,9 @@
                             <td>
                                 <asp:RadioButtonList ID="look_state" RepeatColumns="2" runat="server" AutoPostBack="true"
                                     OnSelectedIndexChanged="Look_State_Change">
-                                    <asp:ListItem Text="已处理" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="未处理" Value="1"  Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="全部" Value="0"  Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="已处理" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="未处理" Value="2"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
                             <%-- <td  style="width: 15%; text-align:right">
