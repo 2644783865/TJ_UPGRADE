@@ -52,7 +52,7 @@ namespace ZCZJ_DPF.CM_Data
         {
             pager.TableName = "(select * from CM_KAIPIAO as d left join (select a.cId , stuff((select sprId+',' from CM_KAIPIAO_HUISHEN b where b.cId =a.cId and( b.result is null or b.result='') for xml path('')),1,0,',') 'sprId ' from CM_KAIPIAO_HUISHEN  a  group by  a.cId)c on d.KP_TaskID=c.cId)e";
             pager.PrimaryKey = "Id";
-            pager.ShowFields = "*";
+            pager.ShowFields = "*,Convert(decimal(18,2),(cast(KP_DAOKUANJE as float)/cast(KP_CONZONGJIA as float))) as Rate";
             pager.OrderField = "KP_ZDTIME";
             pager.StrWhere = CreateConStr(1);
             pager.OrderType = 1;//按任务名称升序排列

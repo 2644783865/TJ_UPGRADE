@@ -315,7 +315,7 @@ namespace ZCZJ_DPF.PC_Data
                     shape = "其它"; break;
 
             }
-            Response.Redirect("PC_TBPC_Otherpur_Bill_edit.aspx?action=add&Type=" + leixing + "&shape=" + shape + "");
+            Response.Redirect("PC_TBPC_Otherpur_Bill_edit.aspx?pId=&action=add&Type=" + leixing + "&shape=" + shape + "");
         }
 
         protected void btnBeiku_Click(object sender, EventArgs e)

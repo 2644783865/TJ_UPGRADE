@@ -34,7 +34,6 @@
 
             });
         });
-
     </script>
 
     <style type="text/css">
@@ -183,7 +182,7 @@
                                             合同总价：
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="KP_CONZONGJIA" runat="server" Width="220px"></asp:TextBox>
+                                            <asp:TextBox ID="KP_CONZONGJIA" runat="server" Width="220px" onkeyup="value=value.replace(/[^\- \d.]/g,'')"></asp:TextBox> (万元)
                                         </td>
                                     </tr>
                                     <tr>
@@ -191,7 +190,7 @@
                                             到款金额：
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="KP_DAOKUANJE" runat="server" Width="220px"></asp:TextBox>
+                                            <asp:TextBox ID="KP_DAOKUANJE" runat="server" Width="220px" onkeyup="value=value.replace(/[^\- \d.]/g,'')"></asp:TextBox> (万元)
                                         </td>
                                         <td>
                                             合同规定开票条件：
@@ -205,13 +204,13 @@
                                             已开票金额：
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="KP_YIKAIJE" runat="server" Width="220px"></asp:TextBox>
+                                            <asp:TextBox ID="KP_YIKAIJE" runat="server" Width="220px" onkeyup="value=value.replace(/[^\- \d.]/g,'')"></asp:TextBox> (万元)
                                         </td>
                                         <td>
                                             本次开票金额：
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="KP_BENCIJE" runat="server" Width="220px"></asp:TextBox>
+                                            <asp:TextBox ID="KP_BENCIJE" runat="server" Width="220px" onkeyup="value=value.replace(/[^\- \d.]/g,'')"></asp:TextBox> (万元)
                                         </td>
                                     </tr>
                                     <tr>

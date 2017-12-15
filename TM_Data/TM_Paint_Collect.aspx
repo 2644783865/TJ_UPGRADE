@@ -7,6 +7,8 @@
     <div class="box-wrapper">
         <div class="box-outer">
             <div style="width: 100%;">
+                <asp:Button runat="server" ID="PurApply" Text="添加到采购申请" 
+                    onclick="PurApply_Click" Width="100%"/>
                 <asp:GridView ID="GridView1" Width="100%" CssClass="toptable grid" runat="server"
                     AutoGenerateColumns="False" CellPadding="3" ForeColor="#333333" Style="white-space: normal">
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="#1E5C95" />
