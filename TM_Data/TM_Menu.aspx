@@ -162,7 +162,7 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </asp:HyperLink>
-                <asp:HyperLink ID="HyperLink14" runat="server" onClick="SelectMenu(9);" CssClass="LeftMenuNoSelected"
+                <asp:HyperLink ID="HyperLink14" runat="server" onClick="SelectMenu(14);" CssClass="LeftMenuNoSelected"
                     NavigateUrl="~/CM_Data/CM_ChangePS.aspx" Target="right">
                     <p>
                         计划单变更<asp:Label runat="server" ID="bgtz" ForeColor="Red"></asp:Label></p>

@@ -132,6 +132,12 @@ namespace ZCZJ_DPF.CM_Data
                 case "05":
                     sql += "and CM_BT3='" + rbl_confirm.SelectedValue + "'";
                     break;
+                case "12":
+                    if (userID == "69")
+                    {
+                        sql += "and CM_BT1='" + rbl_confirm.SelectedValue + "'";
+                    }
+                    break;
                 default:
                     break;
             }
