@@ -98,24 +98,6 @@ namespace ZCZJ_DPF.PC_Data
             cob_sqren.SelectedValue = Session["UserID"].ToString();
             if (Request.QueryString["action"].ToString() == "add")
             {
-                if (Request.QueryString["Type"].ToString() != null)
-                {
-                    gloabtype = Request.QueryString["Type"].ToString();
-                }
-                else
-                {
-                    gloabtype = "";
-                }
-                if (Request.QueryString["shape"].ToString() != null)
-                {
-                    gloabshape = Request.QueryString["shape"].ToString();
-                }
-                else
-                {
-                    gloabshape = "";
-                }
-                lb_shape.Text = gloabshape;
-
                 gloabnum = "0";
                 gloabcsnum = "0";
                 Tb_shijian.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -128,6 +110,47 @@ namespace ZCZJ_DPF.PC_Data
                 tb_enginfo.Enabled = true;
                 tb_note.Enabled = true;
                 CreateNewRow(10);
+
+                //如果从TM_Paint_Collect按钮没有传入pId数值则按原方式添加采购,否则直接导入油漆物品采购件
+                if (String.IsNullOrEmpty(Request.QueryString["pId"].ToString()))
+                {
+                    if (Request.QueryString["Type"].ToString() != null)
+                    {
+                        gloabtype = Request.QueryString["Type"].ToString();
+                    }
+                    else
+                    {
+                        gloabtype = "";
+                    }
+                    if (Request.QueryString["shape"].ToString() != null)
+                    {
+                        gloabshape = Request.QueryString["shape"].ToString();
+                    }
+                    else
+                    {
+                        gloabshape = "";
+                    }
+                    lb_shape.Text = gloabshape;
+                }
+                else
+                {
+                    gloabtype = "ZC";
+                    gloabshape = "油漆";
+                    lb_shape.Text = gloabshape;
+
+                    string pId = Request.QueryString["pId"].ToString();
+                    string sql = "select PS_ENGID,PS_BOTMARID,sumYL from (select PS_BOTMARID,sum(cast(PS_BOTYONGLIANG as float)) as sumYL,PS_ENGID from (select PS_BOTMARID,PS_BOTYONGLIANG,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_BOTMARID<>''union all select PS_MIDMARID,PS_MIDYONGLIANG,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_MIDMARID<>''union all select PS_TOPMARID,PS_TOPYONGLIANG,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_TOPMARID<>'')a group by PS_BOTMARID,PS_ENGID)b left join dbo.TBMA_MATERIAL as c on b.PS_BOTMARID=c.ID";
+                    SqlDataReader ZCdtrd = DBCallCommon.GetDRUsingSqlText(sql);
+                    int i = 0;
+                    while (ZCdtrd.Read())
+                    {   
+                        tb_pjinfo.Text = ZCdtrd["PS_ENGID"].ToString().Trim();
+                        RepeaterItem Reitem = tbpc_otherpurbillRepeater.Items[i];
+                        ((TextBox)Reitem.FindControl("MP_MARID")).Text = ZCdtrd["PS_BOTMARID"].ToString().Trim();
+                        ((TextBox)Reitem.FindControl("MP_NUMBER")).Text = ZCdtrd["sumYL"].ToString().Trim();
+                        i++;
+                    }
+                }
             }
             else
             {

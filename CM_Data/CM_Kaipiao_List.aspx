@@ -142,6 +142,14 @@
                             ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:BoundField>
+                        <asp:BoundField DataField="KP_DAOKUANJE" HeaderText="到款金额" HeaderStyle-Wrap="false"
+                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
+                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Rate" HeaderText="到款比" HeaderStyle-Wrap="false"
+                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
+                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
                         <asp:BoundField DataField="KP_ZDRNM" HeaderText="制单人" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
                             ItemStyle-Wrap="false">
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>

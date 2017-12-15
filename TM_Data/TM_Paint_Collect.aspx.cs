@@ -29,5 +29,18 @@ namespace ZCZJ_DPF.TM_Data
                 Response.Write("<script>alert('数据出错，无法汇总')</script>");
             }
         }
+
+        //添加到油漆采购申请
+        protected void PurApply_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("../PC_Data/PC_TBPC_Otherpur_Bill_edit.aspx?action=add&pId=" + pId);
+            }
+            catch (Exception)
+            {
+                Response.Write("<script>alert('数据出错，无法添加到采购申请单')</script>");
+            }
+        }
     }
 }
