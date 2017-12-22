@@ -130,7 +130,7 @@ namespace ZCZJ_DPF.CM_Data
             {
                 GridView1.Columns[15].Visible = true;
                 GridView1.Columns[16].Visible = false;
-                GridView1.Columns[17].Visible = false;
+                GridView1.Columns[17].Visible = true;
                 GridView1.Columns[18].Visible = false;
             }
             else if (rblState.SelectedValue == "1")
