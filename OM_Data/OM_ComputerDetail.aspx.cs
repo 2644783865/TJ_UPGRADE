@@ -417,26 +417,70 @@ namespace ZCZJ_DPF.OM_Data
             string sql = "";
             string state = hidState.Value;
             string level = rblSHJS.SelectedValue;
-            if (hidAction.Value == "add" || hidAction.Value == "edit")
+            if (hidAction.Value == "add" || hidAction.Value == "edit")   //添加和编辑
             {
                 sql = "update OM_COMPUTERLIST set state='1' where Context='" + hidConext.Value + "'";
                 DBCallCommon.ExeSqlText(sql);
                 //邮件提醒
-                string _emailto = "";
+                string _emailto1 = "";
+                string _emailto2 = "";
+                string _emailto3 = "";
+
+                //不需要进行审核
                 if (rblSHJS.SelectedValue == "0")
                 {
-                    _emailto = DBCallCommon.GetEmailAddressByUserID("286");
+                    //检索维修类型：网络设备 or 其他
+                    foreach (RepeaterItem item in Det_Repeater.Items)
+                    {
+                        string type = ((DropDownList)item.FindControl("ddlType")).SelectedValue;
+                        if (type.Contains("0"))
+                        {
+                            string sql1 = "select * from TBDS_STAFFINFO where ST_DEPID='02' and R_NAME like '%信息%' and ST_PD='0'";
+                            DataTable sqltable = DBCallCommon.GetDTUsingSqlText(sql1);
+                            if (sqltable.Rows.Count>0)
+                            {
+                                string id = sqltable.Rows[0]["ST_ID"].ToString();
+                                _emailto1 = DBCallCommon.GetEmailAddressByUserID(id);
+                            }
+                        }
+                        else
+                        {
+                            string sql1 = "select * from TBDS_STAFFINFO where ST_DEPID='04' and R_NAME like '%设备%' and ST_PD='0'";
+                            DataTable sqltable = DBCallCommon.GetDTUsingSqlText(sql1);
+                            if (sqltable.Rows.Count > 0)
+                            {
+                                string id = sqltable.Rows[0]["ST_ID"].ToString();
+                                _emailto2 = DBCallCommon.GetEmailAddressByUserID(id);
+                            }
+                        }
+                    }
                     sql = "update OM_COMPUTERLIST set state='3'  where Context='" + hidConext.Value + "'";
                     DBCallCommon.ExeSqlText(sql);
                 }
                 else
-                    _emailto = DBCallCommon.GetEmailAddressByUserID(firstid.Value);
+                    _emailto3 = DBCallCommon.GetEmailAddressByUserID(firstid.Value);     //一级审核人
+
+
+                //发送邮件
                 string _body = "办公设备报修审批任务:"
                    + "\r\n制单人：" + lb1.Text.Trim()
                    + "\r\n制单日期：" + txtTime.Text.Trim();
 
                 string _subject = "您有新的【办公设备报修】需要审批，请及时处理";
-                DBCallCommon.SendEmail(_emailto, null, null, _subject, _body);
+
+                if (!String.IsNullOrEmpty(_emailto1))
+                {
+                    DBCallCommon.SendEmail(_emailto1, null, null, _subject, _body);
+                }
+                if (!String.IsNullOrEmpty(_emailto2))
+                {
+                    DBCallCommon.SendEmail(_emailto2, null, null, _subject, _body);
+                }
+                if (!String.IsNullOrEmpty(_emailto3))
+                {
+                    DBCallCommon.SendEmail(_emailto3, null, null, _subject, _body);
+                }
+
                 Response.Write("<script>alert('保存成功！');window.location.href='OM_ComputerLIst.aspx';</script>");
 
             }
