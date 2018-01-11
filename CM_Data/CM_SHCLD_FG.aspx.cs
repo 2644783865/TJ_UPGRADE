@@ -64,7 +64,8 @@ namespace ZCZJ_DPF.CM_Data
             string sql = "CLD_ID is not null ";
             if (rblRW.SelectedValue == "1")
             {
-                if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "1205")
+                //技术部部长
+                if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "1205" || Session["POSITION"].ToString() == "1207")
                 {
                     sql += " and (CLD_YYFX_TXR='' or CLD_YYFX_TXR is null) and CLD_SPZT='1y'";
                 }
@@ -76,7 +77,8 @@ namespace ZCZJ_DPF.CM_Data
             }
             else if (rblRW.SelectedValue == "2")
             {
-                if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67")
+                //技术部部长，以及技术部部长助理
+                if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "0302" || Session["POSITION"].ToString() == "1207")
                 {
                     sql += " and (CLD_CLYJ_TXR='' or CLD_CLYJ_TXR is null) and CLD_SPZT='1y' and (CLD_YYFX !='' and CLD_YYFX is not null)";
                 }
@@ -88,6 +90,7 @@ namespace ZCZJ_DPF.CM_Data
             }
             else if (rblRW.SelectedValue == "3")
             {
+                //市场部部长
                 if (Session["POSITION"].ToString() == "0701")
                 {
                     sql += " and (CLD_CLFA_TXR='' or CLD_CLFA_TXR is null) and CLD_SPZT='1y' and (CLD_CLYJ !='' and CLD_CLYJ is not null)";
@@ -100,11 +103,11 @@ namespace ZCZJ_DPF.CM_Data
             else if (rblRW.SelectedValue == "4")
             {
                 sql += " and (CLD_CLJG_TXR='' or CLD_CLJG_TXR is null)  and CLD_SPZT='y'";
-                if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67")
+                if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67" || Session["POSITION"].ToString() == "1207")
                 {
                     sql += " and (CLD_FZBM like '%技术部%' )";
                 }
-                else if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "1205")
+                else if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "1205" || Session["POSITION"].ToString() == "1207")
                 {
                     sql += " and ( CLD_FZBM like '%质量部%')";
                 }
@@ -148,7 +151,7 @@ namespace ZCZJ_DPF.CM_Data
                 dt = DBCallCommon.GetDTUsingSqlText(sql);
                 rblRW.Items[2].Text = string.Format("处理方案待分工(<font color='red'>{0}</font>)", dt.Rows[0][0].ToString());
             }
-            else if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67")
+            else if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67" || Session["POSITION"].ToString() == "1207")
             {
 
                 sql = "select count(CLD_ID) from CM_SHCLD where (CLD_CLYJ_TXR='' or CLD_CLYJ_TXR is null) and CLD_SPZT='1y' and (CLD_YYFX !='' and CLD_YYFX is not null)";
@@ -161,7 +164,7 @@ namespace ZCZJ_DPF.CM_Data
                 rblRW.Items[3].Text = string.Format("处理结果待分工(<font color='red'>{0}</font>)", dt.Rows[0][0].ToString());
 
             }
-            else if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "1205")
+            else if (Session["POSITION"].ToString() == "0301" || Session["POSITION"].ToString() == "1205" || Session["POSITION"].ToString() == "1207")
             {
                 sql = "select count(CLD_ID) from CM_SHCLD where (CLD_YYFX_TXR='' or CLD_YYFX_TXR is null) and CLD_SPZT='1y'";
                 dt = DBCallCommon.GetDTUsingSqlText(sql);

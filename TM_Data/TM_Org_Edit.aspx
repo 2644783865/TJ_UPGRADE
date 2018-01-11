@@ -445,9 +445,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="下料备注">
                         <ItemTemplate>
-                            <input id="note" runat="server" style="border-style: none; width: 80px" type="text"
-                                ondblclick="ShowInput(this);" value='<%#Eval("BM_NOTE") %>' onkeydown="grControlFocus(this)"
-                                onfocus="this.select();" /><br />
+                            <asp:TextBox ID="note" runat="server" onfocus="this.select();" TextMode="MultiLine" Width="100px" Text='<%# Eval("BM_NOTE")%>' onkeydown="grControlFocus(this)"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="单台数量|总数量|计划数量" HeaderStyle-Wrap="false" ItemStyle-Wrap="false">
@@ -620,8 +618,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="备注" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
                         <ItemTemplate>
-                            <input id="zongbeizhu" runat="server" onfocus="this.select();" onkeydown="grControlFocus(this)"
-                                style="border-style: none; width: 60px;" type="text" value='<%#Eval("BM_ALLBEIZHU") %>' /><br />
+                            <asp:TextBox ID="zongbeizhu" runat="server" onfocus="this.select();" TextMode="MultiLine" Width="100px" Text='<%# Eval("BM_ALLBEIZHU")%>' onkeydown="grControlFocus(this)"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
