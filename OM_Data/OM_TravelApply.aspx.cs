@@ -78,7 +78,7 @@ namespace ZCZJ_DPF.OM_Data
             string strWhere = "1=1 ";
             if (stdepid.Contains("生产"))
             {
-                strWhere = "TA_SQRDep like '%生产%'";
+                strWhere = "(TA_SQRDep like '%生产%') or (TA_SQRDep like '%车间%')";
             }
             else if (stposition != "0602" && stposition != "0607")
                 strWhere = "TA_SQRDep like '" + stdepid + "%'";

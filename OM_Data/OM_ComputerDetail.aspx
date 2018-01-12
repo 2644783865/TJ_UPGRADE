@@ -143,11 +143,8 @@
                                                 </td>
                                                 <td>
                                                     <asp:DropDownList ID="ddlType" runat="server" SelectedValue='<%#Eval("Type") %>'>
-                                                        <asp:ListItem Text="硬件故障" Value="0"></asp:ListItem>
-                                                        <asp:ListItem Text="网络故障" Value="1"></asp:ListItem>
-                                                        <asp:ListItem Text="软件故障" Value="2"></asp:ListItem>
-                                                        <asp:ListItem Text="硬件更换" Value="3"></asp:ListItem>
-                                                        <asp:ListItem Text="其他" Value="4"></asp:ListItem>
+                                                        <asp:ListItem Text="网络设备" Value="0"></asp:ListItem>
+                                                        <asp:ListItem Text="行政维修" Value="1"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td style="display: none">

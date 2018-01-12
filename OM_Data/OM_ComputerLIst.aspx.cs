@@ -16,8 +16,11 @@ namespace ZCZJ_DPF.OM_Data
     public partial class OM_ComputerLIst : System.Web.UI.Page
     {
         PagerQueryParam pager = new PagerQueryParam();
+
+        string depid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            depid = Session["UserDeptID"].ToString();
             UCPaging1.PageChanged += new UCPaging.PageHandler(Pager_PageChanged);
             if (!IsPostBack)
             {
@@ -34,13 +37,14 @@ namespace ZCZJ_DPF.OM_Data
         void Pager_PageChanged(int pageNumber)
         {
             databind();
+            ControlVisible();
         }
 
         private void databind()
         {
-            pager.TableName = "OM_COMPUTERLIST";
+            pager.TableName = "OM_COMPUTERLIST LEFT JOIN (select Context, Type from OM_COMPUTERDETAIL)t ON OM_COMPUTERLIST.Context=t.Context";
             pager.PrimaryKey = "Id";
-            pager.ShowFields = "*";
+            pager.ShowFields = "Id,Code,SQRId,SQR,SqDepId,SqDep,SqTime,GZRId,GZR,Note,SPLevel,SPRIDA,SPRNMA,SPRESULTA,SPTIMEA,SPNOTEA,SPRIDB,SPRNMB,SPRESULTB,SPTIMEB,SPNOTEB,OM_COMPUTERLIST.Context,State,Type";
             pager.OrderField = "Id";
             pager.StrWhere = strWhere();
             pager.OrderType = 1;
@@ -64,8 +68,24 @@ namespace ZCZJ_DPF.OM_Data
 
         private string strWhere()
         {
-            string strWhere = "1=1 ";
+            string strWhere = "1=1";
 
+            
+            //综合办公室只看"网络设备"，生产管理部门只看"其他",其他部门的只能看自己部门申请的情况
+            if (depid == "02")   //综合办公室
+            {
+                strWhere += " and (Type='0' or" + " SqDepId='" + depid + "')";
+            }
+            else if (depid == "04")   //生产管理部门
+            {
+                strWhere += " and (Type='1' or" + " SqDepId='" + depid + "')";
+            }
+            else
+            {
+                strWhere += " and SqDepId='" + depid + "'";
+            }
+
+            //起始时间
             if (txtStart.Text.Trim() != "")
             {
                 strWhere += " and SqTime>='" + txtStart.Text.Trim() + "'";
@@ -75,6 +95,8 @@ namespace ZCZJ_DPF.OM_Data
                 strWhere += " and SqTime<='" + txtEnd.Text.Trim() + "'";
             }
 
+
+            //未确认，已确认等
             if (rblState.SelectedValue == "0")
             {
                 strWhere += " and State='0'";
@@ -100,6 +122,7 @@ namespace ZCZJ_DPF.OM_Data
                 strWhere += " and State ='5'";
             }
             return strWhere;
+
         }
 
         #endregion
@@ -116,10 +139,12 @@ namespace ZCZJ_DPF.OM_Data
         {
             foreach (RepeaterItem item in rep_Kaohe.Items)
             {
-                HyperLink hlkEdit = item.FindControl("HyperLink2") as HyperLink;
-                HyperLink hlkAudit = item.FindControl("HyperLink3") as HyperLink;
-                LinkButton hlGZ = item.FindControl("hlGZ") as LinkButton;
-                Label lbState = item.FindControl("lbState") as Label;
+                HyperLink hlkEdit = item.FindControl("HyperLink2") as HyperLink;   //编辑 
+                HyperLink hlkAudit = item.FindControl("HyperLink3") as HyperLink;  //审核
+                LinkButton hlGZ = item.FindControl("hlGZ") as LinkButton;    //确认维修吗
+                Label lbState = item.FindControl("lbState") as Label;     //确认维修按钮
+
+                //未提交0 审核中1 已通过2 已驳回3 已确认5 我的审核任务4
                 if (rblState.SelectedValue == "0" || rblState.SelectedValue == "3")
                 {
                     hlkEdit.Visible = true;
@@ -128,6 +153,8 @@ namespace ZCZJ_DPF.OM_Data
                 {
                     hlkEdit.Visible = false;
                 }
+
+                //我的审核任务 审核按钮可见
                 if (rblState.SelectedValue == "4")
                 {
                     if (lbState.Text.ToString() != "3")
@@ -138,7 +165,8 @@ namespace ZCZJ_DPF.OM_Data
                     hlkAudit.Visible = false;
                 }
 
-                if (rblState.SelectedValue == "2")
+                //已通过 确认维修按钮可见
+                if (rblState.SelectedValue == "2" && (depid == "02" || depid == "04"))
                 {
                     hlGZ.Visible = true;
                 }
@@ -146,9 +174,11 @@ namespace ZCZJ_DPF.OM_Data
                 {
                     hlGZ.Visible = false;
                 }
-                if (rblState.SelectedValue == "")
+
+                //全部
+                if (rblState.SelectedValue == "") 
                 {
-                    if (lbState.Text.ToString() == "3" && Session["UserId"].ToString() == "286")
+                    if (lbState.Text.ToString() == "3" && (depid == "02" || depid == "04"))
                     {
                         hlGZ.Visible = true;
                     }
@@ -156,6 +186,7 @@ namespace ZCZJ_DPF.OM_Data
             }
         }
 
+        //确认维修之后把维修人的信息添加上去
         protected void hlGZ_OnClick(object sender, EventArgs e)
         {
             string context = ((LinkButton)sender).CommandName;

@@ -258,7 +258,7 @@ namespace ZCZJ_DPF.TM_Data
                 newRow[5] = ((HtmlInputText)gRow.FindControl("caizhi")).Value.Trim();
                 newRow[6] = ((HtmlInputText)gRow.FindControl("cailiaocd")).Value.Trim();
                 newRow[7] = ((HtmlInputText)gRow.FindControl("cailiaokd")).Value.Trim();
-                newRow[8] = ((HtmlInputText)gRow.FindControl("note")).Value.Trim();
+                newRow[8] = ((System.Web.UI.WebControls.TextBox)gRow.FindControl("note")).Text.Trim();
                 newRow[9] = ((HtmlInputText)gRow.FindControl("shuliang")).Value.Trim();
                 newRow[10] = ((HtmlInputText)gRow.FindControl("total_shuliang")).Value.Trim();
                 newRow[11] = ((HtmlInputText)gRow.FindControl("plan_shuliang")).Value.Trim();
@@ -276,7 +276,7 @@ namespace ZCZJ_DPF.TM_Data
                 newRow[21] = ((HtmlInputText)gRow.FindControl("cailiaoType")).Value.Trim();
                 newRow[22] = ((HtmlInputText)gRow.FindControl("xialiao")).Value.Trim();
                 newRow[23] = ((HtmlInputText)gRow.FindControl("process")).Value.Trim();
-                newRow[24] = ((HtmlInputText)gRow.FindControl("zongbeizhu")).Value.Trim();
+                newRow[24] = ((System.Web.UI.WebControls.TextBox)gRow.FindControl("zongbeizhu")).Text.Trim();
                 newRow[25] = ((HtmlInputText)gRow.FindControl("lilunzhl")).Value.Trim();
                 newRow[26] = ((HtmlInputText)gRow.FindControl("biaozhun")).Value.Trim();
                 newRow[27] = ((HtmlInputText)gRow.FindControl("caigoudanwei")).Value.Trim();
@@ -435,7 +435,7 @@ namespace ZCZJ_DPF.TM_Data
                         caizhi = ((HtmlInputText)gRow.FindControl("caizhi")).Value.Trim();
                         cailiaocd = float.Parse(((HtmlInputText)gRow.FindControl("cailiaocd")).Value.Trim() == "" ? "0" : ((HtmlInputText)gRow.FindControl("cailiaocd")).Value.Trim());
                         cailiaokd = float.Parse(((HtmlInputText)gRow.FindControl("cailiaokd")).Value.Trim() == "" ? "0" : ((HtmlInputText)gRow.FindControl("cailiaokd")).Value.Trim());
-                        note = ((HtmlInputText)gRow.FindControl("note")).Value.Trim();
+                        note = ((System.Web.UI.WebControls.TextBox)gRow.FindControl("note")).Text.Trim();
                         //单台数量
                         signshuliang = float.Parse(((HtmlInputText)gRow.FindControl("shuliang")).Value.Trim() == "" ? "1" : ((HtmlInputText)gRow.FindControl("shuliang")).Value.Trim());
                         //总数量
@@ -458,8 +458,7 @@ namespace ZCZJ_DPF.TM_Data
                         process = ((HtmlInputText)gRow.FindControl("process")).Value.Trim();
 
 
-                        beizhu = ((HtmlInputText)gRow.FindControl("zongbeizhu")).Value.Trim();
-
+                        beizhu = ((System.Web.UI.WebControls.TextBox)gRow.FindControl("zongbeizhu")).Text.Trim();
                         lilunzhl = float.Parse(((HtmlInputText)gRow.FindControl("lilunzhl")).Value.Trim() == "" ? "0" : ((HtmlInputText)gRow.FindControl("lilunzhl")).Value.Trim());
 
                         cailiaozongchang = float.Parse(((HtmlInputText)gRow.FindControl("cailiaozongchang")).Value.Trim() == "" ? "0" : ((HtmlInputText)gRow.FindControl("cailiaozongchang")).Value.Trim());

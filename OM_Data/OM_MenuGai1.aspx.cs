@@ -564,6 +564,7 @@ namespace ZCZJ_DPF.OM_Data
                 lblComputer.Text = "(" + dt.Rows[0][0].ToString() + ")";
             }
         }
+
         //工资异动
         private void Getgzyd()
         {
