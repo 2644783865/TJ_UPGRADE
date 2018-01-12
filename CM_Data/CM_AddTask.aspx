@@ -38,10 +38,10 @@
             }
             if (lx == "zc") {
                 var pattem = /^\d{5}([A-Za-z0-9-])+/;
-                if (!pattem.test(tsa_id)) {
-                    alert('请输入正确的任务号（如14000SF1-1等）！');
-                    return false;
-                }
+//                if (!pattem.test(tsa_id)) {
+//                    alert('请输入正确的任务号（如14000SF1-1等）！');
+//                    return false;
+//                }
                 if (/[\u2E80-\u9FFF]+/g.test(tsa_id)) {
                     alert("任务号里请勿输入汉字！");
                     return false;
@@ -55,10 +55,10 @@
         function checkId(obj) {
             var tsa = obj.value;
             var pattem = /^\d{5}([A-Za-z0-9-])+/;
-            if (!pattem.test(tsa)) {
-                alert('请输入正确的任务号（如14000SF1-1等）！');
-                obj.value = '14000SF1-1';
-            }
+//            if (!pattem.test(tsa)) {
+//                alert('请输入正确的任务号（如14000SF1-1等）！');
+//                obj.value = '14000SF1-1';
+//           }
             if (/[\u2E80-\u9FFF]+/g.test(tsa)) {
                 alert("含有汉字！");
                 obj.value = '14000SF1-1';

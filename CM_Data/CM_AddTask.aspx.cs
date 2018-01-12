@@ -225,8 +225,8 @@ namespace ZCZJ_DPF.CM_Data
             //{
             if (TSA_ID.Text.Trim() != "" && CM_CONTR.Text != "")
             {
-                if (Regex.IsMatch(TSA_ID.Text.Trim(), @"^\d{5}([A-Za-z0-9-])+") || rblLX.SelectedValue != "zc")
-                {
+                //if (Regex.IsMatch(TSA_ID.Text.Trim(), @"^\d{5}([A-Za-z0-9-])+") || rblLX.SelectedValue != "zc")
+                //{
                     if (Regex.IsMatch(TSA_ID.Text.Trim(), @"[\u2E80-\u9FFF]+"))
                     {
                         Response.Write("<script>alert('任务号里请勿输入汉字！');</script>");//后台验证
@@ -237,11 +237,11 @@ namespace ZCZJ_DPF.CM_Data
                         AddStr();
                         CreateNewRow(Convert.ToInt32(num.Value), count);
                     }
-                }
-                else
-                {
-                    Response.Write("<script>alert('请输入正确的任务号（如14000SF1-1等）！');</script>");//后台验证
-                }
+               // }
+                //else
+                //{
+                //    Response.Write("<script>alert('请输入正确的任务号（如14000SF1-1等）！');</script>");//后台验证
+                //}
             }
             //}
         }
