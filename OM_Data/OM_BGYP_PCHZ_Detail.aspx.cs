@@ -39,7 +39,6 @@ namespace ZCZJ_DPF.OM_Data
                     rbl_HT_SHR3_JL.Enabled = false;
                     txt_HT_SHR3_JY.Enabled = false;
 
-                    GridView1.Columns[0].Visible = false;  //隐藏checkbox
                 }
                 if (flag == "view") //这是"查看"办公用品采购汇总审批
                 {
@@ -666,6 +665,41 @@ namespace ZCZJ_DPF.OM_Data
                     SecondSHPanel.Visible = true;
                     ThirdSHPanel.Visible = true;
                     break;
+            }
+        }
+
+        //删除选中行
+        protected void btndelete_Click(object sender, EventArgs e)
+        {
+            //需要删除的ID
+            int num = 0;
+            List<string> sqls = new List<string>();
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                GridViewRow gr = GridView1.Rows[i];
+
+                CheckBox chk = (CheckBox)gr.FindControl("CheckBox1");
+
+                if (chk.Checked)
+                {
+                    string hidID = ((HtmlInputHidden)this.GridView1.Rows[i].FindControl("hidID")).Value.Trim();   //物料代码
+                    string sql = "DELETE FROM TBOM_BGYPPCAPPLYINFO where ID='" + hidID + "'";
+                    sqls.Add(sql);
+                    num++;
+                }
+            }
+
+            //如果有删除的行
+            if (num != 0)
+            {
+                //执行删除操作
+                DBCallCommon.ExecuteTrans(sqls);
+                Binddata_add();
+            }
+            else
+            {
+                Response.Write("<script>alert('请选中删除行!')</script>");
             }
         }
     }

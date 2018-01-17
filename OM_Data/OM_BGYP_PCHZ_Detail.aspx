@@ -105,6 +105,7 @@
                         <td>
                         </td>
                         <td align="right">
+                        <asp:Button ID="btndelete" runat="server" Text="删除行" onclick="btndelete_Click" OnClientClick="return alert('确定删除此条目吗？')" />&nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Button ID="btndaochu" runat="server" Text="导出" OnClick="btndaochu_click" />&nbsp;&nbsp;&nbsp;&nbsp;
                             <asp:Button ID="btnsave" runat="server" Text="保 存" OnClick="Save_Click" />
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -127,10 +128,10 @@
                         <div style="margin: 0px 0px 0px 10px">
                             <table width="90%" align="center" cellpadding="4" cellspacing="1" class="toptable grid">
                                 <tr>
-                                    <td style="font-size: x-large; text-align: center;" colspan="2">
+                                    <td style="font-size: x-large; text-align: center;">
                                         办公用品采购申请单
                                         <asp:Image ID="ImageVerify" runat="server" ImageUrl="~/Assets/images/shenhe.gif"
-                                            Visible="false" />
+                                            Visible="False" />
                                     </td>
                                 </tr>
                             </table>
@@ -141,7 +142,7 @@
                                     <td>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编&nbsp;&nbsp;&nbsp;号：<asp:Label ID="LabelCode"
                                             runat="server"></asp:Label>
-                                        <asp:Label ID="LabelState" runat="server" Visible="false"></asp:Label>
+                                        <asp:Label ID="LabelState" runat="server" Visible="False"></asp:Label>
                                         <input type="text" id="InputColour" style="display: none" runat="server" />
                                     </td>
                                     <td>
@@ -150,7 +151,7 @@
                                     <td>
                                         &nbsp;&nbsp;&nbsp;制&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;人：<asp:Label ID="LabelDoc"
                                             runat="server"></asp:Label>
-                                        <asp:Label ID="LabelDocCode" runat="server" Visible="false"></asp:Label>
+                                        <asp:Label ID="LabelDocCode" runat="server" Visible="False"></asp:Label>
                                     </td>
                               <td>
                                         &nbsp;&nbsp;&nbsp;总&nbsp;&nbsp;&nbsp;额：<asp:Label ID="lbljine" runat="server"></asp:Label>
@@ -160,64 +161,77 @@
                                 <tr align="center">
                                 
                                     &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;备&nbsp;&nbsp;&nbsp;注：<asp:TextBox ID="txt_note"
-                                        runat="server" Width="600px" TextMode="MultiLine"></asp:TextBox><asp:Label ID="state"
-                                            runat="server" Visible="false"></asp:Label></tr>
+                                        runat="server" Width="600px" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:Label ID="state"
+                                            runat="server" Visible="False"></asp:Label></tr>
                             </table>
                         </asp:Panel>
                         <asp:Panel ID="PanelBody" runat="server" Style="height: 350px;">
                             <div style="width: 100%; margin: 0 auto">
                                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" PageSize="20"
                                     CellPadding="4" CssClass="toptable grid" ForeColor="#333333" Width="100%">
-                                    <RowStyle BackColor="#EFF3FB" />
+                                    <AlternatingRowStyle BackColor="White" />
                                     <Columns>
-                                        <asp:TemplateField ItemStyle-Width="15px">
+                                        <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:CheckBox ID="CheckBox1" runat="server" Width="15px" CssClass="checkBoxCss" />
+                                                <asp:CheckBox ID="CheckBox1" runat="server" Width="15px" CssClass="checkBoxCss"  />
+                                                <input type="hidden" runat="server" id="hidID" value='<%#Eval("ID") %>' />
                                             </ItemTemplate>
                                             <ItemStyle Width="10px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="序号" ItemStyle-HorizontalAlign="Center">
+                                        <asp:TemplateField HeaderText="序号">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbindex" runat="server" Text="<%# Convert.ToInt32(Container.DataItemIndex +1) %>"></asp:Label>
                                                 <input type="hidden" runat="server" id="hidPCCode" value='<%#Eval("PCCODE") %>' />
                                             </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="WLBM" DataFormatString="{0:F2}" HeaderText="编码" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLBM" DataFormatString="{0:F2}" HeaderText="编码">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="WLNAME" DataFormatString="{0:F2}" HeaderText="名称" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLNAME" DataFormatString="{0:F2}" HeaderText="名称">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="WLMODEL" DataFormatString="{0:F2}" HeaderText="规格型号" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLMODEL" DataFormatString="{0:F2}" HeaderText="规格型号">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="WLUNIT" DataFormatString="{0:F2}" HeaderText="单位" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLUNIT" DataFormatString="{0:F2}" HeaderText="单位">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="WLNUM" DataFormatString="{0:F2}" HeaderText="数量" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLNUM" DataFormatString="{0:F2}" HeaderText="数量">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="WLPRICE" DataFormatString="{0:F2}" HeaderText="单价" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLPRICE" DataFormatString="{0:F2}" HeaderText="单价">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="WLJE" DataFormatString="{0:F2}" HeaderText="金额" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="WLJE" DataFormatString="{0:F2}" HeaderText="金额">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="num" DataFormatString="{0:F2}" HeaderText="库存数量" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="num" DataFormatString="{0:F2}" HeaderText="库存数量">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="DEPNAME" DataFormatString="{0:F2}" HeaderText="申请部门" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="DEPNAME" DataFormatString="{0:F2}" HeaderText="申请部门">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Note" DataFormatString="{0:F2}" HeaderText="备注" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="Note" DataFormatString="{0:F2}" HeaderText="备注">
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" Wrap="false"  />
                                         </asp:BoundField>
                                     </Columns>
-                                    <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
-                                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                                    <HeaderStyle BackColor="#A8B7EC" Font-Bold="True" ForeColor="White" />
                                     <EditRowStyle BackColor="#2461BF" />
-                                    <AlternatingRowStyle BackColor="White" />
+                                    <HeaderStyle BackColor="#A8B7EC" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="#EFF3FB" />
+                                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                                 </asp:GridView>
                             </div>
                         </asp:Panel>
