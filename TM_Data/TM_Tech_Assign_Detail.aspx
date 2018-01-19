@@ -336,7 +336,7 @@
                             <input type="text" runat="server" class="easyui-datebox" id="startdate" />
                         </td>
                         <td class="tdleft1">
-                            明细完成时间:
+                            计划明细完成时间:
                         </td>
                         <td class="tdright1">
                             <input type="text" runat="server" class="easyui-datebox" id="txtMSComTime" />
@@ -344,13 +344,13 @@
                     </tr>
                     <tr>
                         <td class="tdleft1">
-                            材料汇总时间:
+                            计划材料汇总时间:
                         </td>
                         <td class="tdright1">
                             <input type="text" runat="server" class="easyui-datebox" id="txtMPTime" />
                         </td>
                         <td class="tdleft1">
-                            工艺完成时间:
+                            计划工艺完成时间:
                         </td>
                         <td class="tdright1">
                             <input type="text" runat="server" class="easyui-datebox" id="txtTecTime" />
@@ -358,13 +358,13 @@
                     </tr>
                     <tr>
                         <td class="tdleft1">
-                            涂装完成时间:
+                            计划涂装完成时间:
                         </td>
                         <td class="tdright1">
                             <input type="text" runat="server" class="easyui-datebox" id="txtTuZhuangTime" />
                         </td>
                         <td class="tdleft1">
-                            装箱单完成时间:
+                            计划装箱单完成时间:
                         </td>
                         <td class="tdright1">
                             <input type="text" runat="server" class="easyui-datebox" id="txtZhuangXiangDanTime" />

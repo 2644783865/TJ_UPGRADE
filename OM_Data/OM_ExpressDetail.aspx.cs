@@ -70,9 +70,13 @@ namespace ZCZJ_DPF.OM_Data
                 {
                     position = "0201";
                 }
-                else if (unitparam.depid == "12")
+                else if (unitparam.depid == "12")  
                 {
-                    position = "1205";
+                    position = "1207";
+                }
+                else if (unitparam.depid == "03")
+                {
+                    position = "0302";
                 }
                 sql = "select ST_NAME,ST_ID,ST_POSITION from TBDS_STAFFINFO where ST_POSITION='0207'or (ST_POSITION = '" + position + "'and ST_PD='0')";
                 dt = DBCallCommon.GetDTUsingSqlText(sql);

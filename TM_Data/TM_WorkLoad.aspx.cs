@@ -33,10 +33,9 @@ namespace ZCZJ_DPF.TM_Data
         {
             pager.TableName = "View_TM_TaskAssign as a left join  (select MS_ENGID,MS_MAP,MS_CHILDENGNAME,MS_SUBMITTM,ROW_NUMBER() over(partition by MS_ENGID,MS_MAP order by MS_SUBMITTM desc) as rows from TBPM_MSFORALLRVW) as b  on a.TSA_ID=b.MS_ENGID";
             pager.PrimaryKey = "TSA_ID";
-            pager.ShowFields = "TSA_ID,TSA_PJID,CM_PROJ,TSA_ENGNAME,TSA_CONTYPE,TSA_TCCLERKNM,TSA_REVIEWER,TSA_STARTDATE,MS_SUBMITTM,rows,MS_MAP,MS_CHILDENGNAME";
+            pager.ShowFields = "TSA_ID,TSA_PJID,CM_PROJ,TSA_ENGNAME,TSA_CONTYPE,TSA_TCCLERKNM,TSA_REVIEWER,TSA_STARTDATE,TSA_MSFINISHTIME,TSA_MPCOLLECTTIME,TSA_TECHTIME,TSA_TUZHUANGTIME,TSA_ZHUANGXIANGDANTIME,substring(MS_SUBMITTM,0,11)MS_SUBMITTM,rows,MS_MAP,MS_CHILDENGNAME";   //2018年1月18修改将MS_SUBMITTM时间段改为精确到日
             pager.OrderField = ddlSort.SelectedValue;
             pager.StrWhere = CreateWhere();
-            pager.OrderType = 0;
             pager.PageSize = 20;
             pager.PageIndex = UCPaging1.CurrentPage;
             UCPaging1.PageSize = pager.PageSize;
@@ -89,6 +88,14 @@ namespace ZCZJ_DPF.TM_Data
             {
                 where += " and MS_SUBMITTM <='" + txtCompleteEnd.Text + "'";
             }
+            if (RadioButtonList1.SelectedValue=="1")
+            {
+                pager.OrderType = 1;  //升序
+            }
+            else
+            {
+                pager.OrderType = 0;  //降序
+            }
 
             return where;
         }
@@ -123,6 +130,13 @@ namespace ZCZJ_DPF.TM_Data
 
 
             //}
+        }
+
+        //升序降序
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UCPaging1.CurrentPage = 1;
+            dataBind();
         }
     }
 }
