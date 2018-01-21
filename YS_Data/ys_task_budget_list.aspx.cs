@@ -90,8 +90,37 @@ namespace ZCZJ_DPF.YS_Data.UI
         }
         #endregion
 
-        
 
+        protected void rpt_task_list_databound(object sender, RepeaterItemEventArgs e)
+        {
+            //if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            //{
+
+            //    HtmlTableCell cell1 = e.Item.FindControl("td_1") as HtmlTableCell;
+
+            //    if (lab_status == "已确定变更")
+            //    {
+            //        td_12.BgColor = "Green";
+            //    }
+            //    // HtmlTableCell cell12 = e.Item.FindControl("td_12") as HtmlTableCell;
+            //    if (ms_lookstatus.Text.ToString() == "1")
+            //    {
+            //        // lab_rownum.BackColor = System.Drawing.Color.Green;
+            //        cell1.BgColor = "Green";
+            //    }
+            //    switch (msperson)
+            //    {
+            //        case "张骞": cell5.BgColor = "LightBlue";
+            //            break;
+
+            //        case "崔涛": cell5.BgColor = "LightGreen";
+            //            break;
+            //        case "吴红霞": cell5.BgColor = "Yellow";
+            //            break;
+            //    }
+            //}
+
+        }
 
         #region 操作事件处理程序
 

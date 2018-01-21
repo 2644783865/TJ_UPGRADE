@@ -11,6 +11,13 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
+using System.IO;
+//using Microsoft.Office.Interop.Excel;
+using ExcelApplication = Microsoft.Office.Interop.Excel.ApplicationClass;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
 using ZCZJ_DPF;
 
 
@@ -544,11 +551,11 @@ namespace ZCZJ_DPF.YS_Data
             {
                 case 0:
                     bll.finishNode("16", tb);
-                    ((Button)sender).Visible = false;
+                    ((System.Web.UI.WebControls.Button)sender).Visible = false;
                     break;
                 case 1:
                     bll.rejectNode("16", tb, bll.getCheckBodListSelectedValue(ckl_budget_check));
-                    ((Button)sender).Visible = false;
+                    ((System.Web.UI.WebControls.Button)sender).Visible = false;
                     break;
                 default:
                     Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "名称", "<script>alert('请选择审核结果！');</script>");
@@ -627,16 +634,180 @@ namespace ZCZJ_DPF.YS_Data
 
 
 
+        #region 导出EXCEL
+        protected void btn_daochu_Click(object sender, EventArgs e)
+        {
+            string sqltext1 = string.Format(@"SELECT material_code,name,[standard],quality,unit,amount,unit_price,CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND  material_code like '01.07%'", task_code);
+            string sqltext2 = string.Format(@"SELECT material_code,name,[standard],quality,unit,amount,unit_price,CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND  material_code like '01.11%'", task_code);
+            string sqltext3 = string.Format(@"SELECT material_code,name,[standard],quality,unit,amount,unit_price,CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND  material_code like '01.07%'", task_code);
+            string sqltext4 = string.Format(@"SELECT material_code,name,[standard],quality,unit,amount,unit_price,CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND  material_code like '01.07%'", task_code);
+            string sqltext5 = string.Format(@"SELECT material_code,name,[standard],quality,unit,amount,weight,unit_price,CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND  material_code like '01.07%'", task_code);
+            string sqltext6 = string.Format(@"SELECT material_code,name,[standard],quality,unit,amount,unit_price,CONVERT(DECIMAL(18,2),c_total_cost) c_total_cost FROM dbo.YS_MATERIAL_HISTORY_INFO WHERE task_code='{0}' AND  material_code like '01.07%'", task_code);
 
 
+            System.Data.DataTable d1 = DBCallCommon.GetDTUsingSqlText(sqltext1);
+            System.Data.DataTable d2 = DBCallCommon.GetDTUsingSqlText(sqltext2);
+            System.Data.DataTable d3 = DBCallCommon.GetDTUsingSqlText(sqltext3);
+            System.Data.DataTable d4 = DBCallCommon.GetDTUsingSqlText(sqltext4);
+            System.Data.DataTable d5 = DBCallCommon.GetDTUsingSqlText(sqltext5);
+            System.Data.DataTable d6 = DBCallCommon.GetDTUsingSqlText(sqltext6);
+            string filename = task_code + "预算材料明细.xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("预算材料明细模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);//创建workbook对象
+                ISheet sheet1 = wk.GetSheetAt(0);//创建第一个sheet
+                ISheet sheet2 = wk.GetSheetAt(1);
+                ISheet sheet3 = wk.GetSheetAt(2);
+                ISheet sheet4 = wk.GetSheetAt(3);
+                ISheet sheet5 = wk.GetSheetAt(4);
+                ISheet sheet6 = wk.GetSheetAt(5);
 
+                if (d1.Rows.Count > 0)
+                {
+                    for (int i = 0; i < d1.Rows.Count; i++)
+                    {
+                        IRow row = sheet1.GetRow(i + 2);
+                        row = sheet1.CreateRow(i + 2);
+                        row.CreateCell(0).SetCellValue(i + 1);
+                        for (int j = 0; j < d1.Columns.Count; j++)
+                        {
+                            row.CreateCell(j + 1).SetCellValue(d1.Rows[i][j].ToString());
+                        }
 
+                    }
+                    for (int r = 0; r <= d1.Columns.Count + 8; r++)
+                    {
+                        sheet1.AutoSizeColumn(r);
+                    }
+                }
 
+                if (d2.Rows.Count > 0)
+                {
+                    for (int i = 0; i < d2.Rows.Count; i++)
+                    {
+                        IRow row = sheet2.GetRow(i + 2);
+                        row = sheet2.CreateRow(i + 2);
+                        row.CreateCell(0).SetCellValue(i + 1);
+                        for (int j = 0; j < d2.Columns.Count; j++)
+                        {
+                            row.CreateCell(j + 1).SetCellValue(d2.Rows[i][j].ToString());
+                        }
 
+                    }
+                    for (int r = 0; r <= d2.Columns.Count + 8; r++)
+                    {
+                        sheet2.AutoSizeColumn(r);
+                    }
+                }
 
+                if (d3.Rows.Count > 0)
+                {
+                    for (int i = 0; i < d3.Rows.Count; i++)
+                    {
+                        IRow row = sheet3.GetRow(i + 2);
+                        row = sheet3.CreateRow(i + 2);
+                        row.CreateCell(0).SetCellValue(i + 1);
+                        for (int j = 0; j < d3.Columns.Count; j++)
+                        {
+                            row.CreateCell(j + 1).SetCellValue(d3.Rows[i][j].ToString());
+                        }
 
+                    }
+                    for (int r = 0; r <= d3.Columns.Count + 8; r++)
+                    {
+                        sheet3.AutoSizeColumn(r);
+                    }
+                }
 
+                if (d4.Rows.Count > 0)
+                {
+                    for (int i = 0; i < d4.Rows.Count; i++)
+                    {
+                        IRow row = sheet4.GetRow(i + 2);
+                        row = sheet4.CreateRow(i + 2);
+                        row.CreateCell(0).SetCellValue(i + 1);
+                        for (int j = 0; j < d4.Columns.Count; j++)
+                        {
+                            row.CreateCell(j + 1).SetCellValue(d4.Rows[i][j].ToString());
+                        }
 
+                    }
+                    for (int r = 0; r <= d4.Columns.Count + 8; r++)
+                    {
+                        sheet4.AutoSizeColumn(r);
+                    }
+                }
+
+                if (d5.Rows.Count > 0)
+                {
+                    for (int i = 0; i < d5.Rows.Count; i++)
+                    {
+                        IRow row = sheet5.GetRow(i + 2);
+                        row = sheet5.CreateRow(i + 2);
+                        row.CreateCell(0).SetCellValue(i + 1);
+                        for (int j = 0; j < d5.Columns.Count; j++)
+                        {
+                            row.CreateCell(j + 1).SetCellValue(d5.Rows[i][j].ToString());
+                        }
+
+                    }
+                    for (int r = 0; r <= d5.Columns.Count + 8; r++)
+                    {
+                        sheet5.AutoSizeColumn(r);
+                    }
+                }
+
+                if (d6.Rows.Count > 0)
+                {
+                    for (int i = 0; i < d6.Rows.Count; i++)
+                    {
+                        IRow row = sheet6.GetRow(i + 2);
+                        row = sheet6.CreateRow(i + 2);
+                        row.CreateCell(0).SetCellValue(i + 1);
+                        for (int j = 0; j < d6.Columns.Count; j++)
+                        {
+                            row.CreateCell(j + 1).SetCellValue(d6.Rows[i][j].ToString());
+                        }
+
+                    }
+                    for (int r = 0; r <= d6.Columns.Count + 8; r++)
+                    {
+                        sheet6.AutoSizeColumn(r);
+                    }
+                }
+
+                //if (dtpqps.Rows.Count > 0)
+                //{
+                //    for (int i = 0; i < dtpqps.Rows.Count; i++)
+                //    {
+                //        IRow row = sheet2.GetRow(i + 2);
+                //        row = sheet2.CreateRow(i + 2);
+                //        row.CreateCell(0).SetCellValue(i + 1);
+                //        for (int j = 0; j < dtpqps.Columns.Count - 2; j++)
+                //        {
+                //            row.CreateCell(j + 1).SetCellValue(dtpqps.Rows[i][j].ToString());
+                //        }
+                //        row.CreateCell(10).SetCellValue(dtpqps.Rows[i]["CNFB_BYMYMONEY"].ToString());
+                //        row.CreateCell(12).SetCellValue(dtpqps.Rows[i]["CNFB_BYREALMONEY"].ToString());
+                //    }
+                //    for (int r = 0; r <= dtpqps.Columns.Count + 8; r++)
+                //    {
+                //        sheet2.AutoSizeColumn(r);
+                //    }
+                //}
+
+                sheet1.ForceFormulaRecalculation = true;
+                sheet2.ForceFormulaRecalculation = true;
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
+        #endregion
 
     }
 }

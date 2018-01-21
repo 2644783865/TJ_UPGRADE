@@ -73,6 +73,9 @@
                 任务号图纸总重：<asp:Label ID="lb_task_weight" runat="server"></asp:Label>
                 kg
             </td>
+            <td>
+                <asp:Button ID="btn_daochu" runat="server" Text="导出材料明细" OnClick="btn_daochu_Click" />
+            </td>
         </tr>
     </table>
     <asp:TabContainer runat="server" ID="tab_Detail" Width="100%" ActiveTabIndex="0">

@@ -69,7 +69,7 @@
         <asp:Panel ID="pal_container" runat="server">
             <div style="height: 350px;">
                 <table align="center" width="100%" cellpadding="4" cellspacing="1" border="1" class="toptable grid">
-                    <asp:Repeater ID="rpt_task_list" runat="server">
+                    <asp:Repeater ID="rpt_task_list" runat="server" OnItemDataBound="rpt_task_list_databound">
                         <HeaderTemplate>
                             <tr class="tableTitle">
                                 <th>
@@ -104,7 +104,7 @@
                         <ItemTemplate>
                             <tr align="center" class="baseGadget" id="row" runat="Server" onmouseover="this.className='highlight'"
                                 onmouseout="this.className='baseGadget'">
-                                <td>
+                                <td id="td_1" runat="server">
                                     <%#Container.ItemIndex + 1%>
                                 </td>
                                 <td>
