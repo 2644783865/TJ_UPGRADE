@@ -370,7 +370,7 @@ namespace ZCZJ_DPF.PM_Data
                     Response.Write("<script>alert('该月数据已导入，若想重新导入，请删除原有数据！');</script>"); return;
                 }
                 //结构车间
-                for (int i = 2; i < sheet1.LastRowNum+1; i++)
+                for (int i = 2; i < sheet1.LastRowNum + 1; i++)
                 {
                     string sql1 = "";
                     IRow row1 = sheet1.GetRow(i);
@@ -449,7 +449,7 @@ namespace ZCZJ_DPF.PM_Data
                     }
                 }
                 //喷漆喷砂
-                for (int j = 2; j < sheet2.LastRowNum; j++)
+                for (int j = 2; j < sheet2.LastRowNum + 1; j++)
                 {
                     string sql2 = "";
                     IRow row2 = sheet2.GetRow(j);
