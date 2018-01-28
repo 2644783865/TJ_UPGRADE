@@ -313,8 +313,8 @@ namespace ZCZJ_DPF.PM_Data
         }
         protected void btnSC_Click(object sender, EventArgs e)
         {
-            string sqldelete1 = "update TBMP_GS_COL_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
-            string sqldelete2 = "update TBMP_GS_LIST set IsDel='1' where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";            
+            string sqldelete1 = "delete from TBMP_GS_COL_LIST where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
+            string sqldelete2 = "delete from TBMP_GS_LIST where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";            
             DBCallCommon.ExeSqlText(sqldelete1);
             DBCallCommon.ExeSqlText(sqldelete2);
             this.InitVar();
