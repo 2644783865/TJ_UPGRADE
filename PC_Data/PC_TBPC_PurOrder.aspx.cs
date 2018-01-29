@@ -1276,20 +1276,20 @@ namespace ZCZJ_DPF.PC_Data
         protected void btn_baojian_Click(object sender, EventArgs e)
         {
             //已有质检结果不允许再报检
-            for (int m = 0; m < tbpc_order_detailRepeater.Items.Count; m++)
-            {
-                if ((tbpc_order_detailRepeater.Items[m].FindControl("CKBOX_SELECT") as System.Web.UI.WebControls.CheckBox).Checked)
-                {
-                    string ptcode = (tbpc_order_detailRepeater.Items[m].FindControl("ptcode") as System.Web.UI.WebControls.Label).Text.Trim();
-                    SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(" SELECT TOP 1 RESULT FROM View_TBQM_APLYFORITEM WHERE PTC='" + ptcode + "'");
-                    if (dr.Read())
-                    {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提示：存在已报检的条目！');", true);
-                        return;
-                    }
-                    dr.Close();
-                }
-            }
+            //for (int m = 0; m < tbpc_order_detailRepeater.Items.Count; m++)
+            //{
+            //    if ((tbpc_order_detailRepeater.Items[m].FindControl("CKBOX_SELECT") as System.Web.UI.WebControls.CheckBox).Checked)
+            //    {
+            //        string ptcode = (tbpc_order_detailRepeater.Items[m].FindControl("ptcode") as System.Web.UI.WebControls.Label).Text.Trim();
+            //        SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(" SELECT TOP 1 RESULT FROM View_TBQM_APLYFORITEM WHERE PTC='" + ptcode + "'");
+            //        if (dr.Read())
+            //        {
+            //            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('提示：存在已报检的条目！');", true);
+            //            return;
+            //        }
+            //        dr.Close();
+            //    }
+            //}
 
             //一个订单有多个项目
 
