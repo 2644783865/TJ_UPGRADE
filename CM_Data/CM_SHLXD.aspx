@@ -68,7 +68,7 @@
                         $("#<%=txtLXD_SPR2.ClientID%>").val("王福泉");
                     }
                     if ($("#<%=txtLXD_SPR3.ClientID%>").val() == "") {
-                        $("#<%=txtLXD_SPR3.ClientID%>").val("王自清");
+                        $("#<%=txtLXD_SPR3.ClientID%>").val("赵宏观");
                     }
                 }
             });
@@ -90,7 +90,7 @@
                         $("#<%=txtLXD_SPR2.ClientID%>").val("王福泉");
                     }
                     if ($("#<%=txtLXD_SPR3.ClientID%>").val() == "") {
-                        $("#<%=txtLXD_SPR3.ClientID%>").val("王自清");
+                        $("#<%=txtLXD_SPR3.ClientID%>").val("赵宏观");
                     }
                 }
             });

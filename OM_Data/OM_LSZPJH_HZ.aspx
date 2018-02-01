@@ -92,7 +92,7 @@
                         $("#<%=txtSPR1.ClientID%>").val("蔡伟疆");
                     }
                     if ($("#<%=txtSPR2.ClientID%>").val() == "") {
-                        $("#<%=txtSPR2.ClientID%>").val("王自清");
+                        $("#<%=txtSPR2.ClientID%>").val("赵宏观");
                     }
                 }
                 else if ($(this).val() == "3") {
@@ -118,7 +118,7 @@
                         $("#<%=txtSPR1.ClientID%>").val("蔡伟疆");
                     }
                     if ($("#<%=txtSPR2.ClientID%>").val() == "") {
-                        $("#<%=txtSPR2.ClientID%>").val("王自清");
+                        $("#<%=txtSPR2.ClientID%>").val("赵宏观");
                     }
                 }
                 else if ($(this).val() == "3") {

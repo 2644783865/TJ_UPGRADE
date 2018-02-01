@@ -267,7 +267,7 @@ namespace ZCZJ_DPF.PC_Data
                 }
                 dr.Close();
             }
-            else if (Session["UserID"].ToString() == "311")//王自清
+            else if (Session["UserID"].ToString() == "311")//赵宏观
             {
                 sqltext = "SELECT count(*) from TBPC_IQRCMPPRCRVW where (ICL_STATE='1' or ICL_STATE='3') and ICL_STATEA='2' and ICL_STATEB='2' and ICL_STATEC='0'";
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sqltext);

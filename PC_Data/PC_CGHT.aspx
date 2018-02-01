@@ -274,7 +274,7 @@
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
                     }
                     if ($("#<%=txt_HT_SHR3.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR3.ClientID%>").val("王自清");
+                        $("#<%=txt_HT_SHR3.ClientID%>").val("赵宏观");
                     }
                 }
                 if ($(this).val() == "4") {
@@ -349,7 +349,7 @@
                         $("#<%=txt_HT_SHR2.ClientID%>").val("王福泉");
                     }
                     if ($("#<%=txt_HT_SHR3.ClientID%>").val() == "") {
-                        $("#<%=txt_HT_SHR3.ClientID%>").val("王自清");
+                        $("#<%=txt_HT_SHR3.ClientID%>").val("赵宏观");
                     }
                 }
                 if ($(this).val() == "4") {

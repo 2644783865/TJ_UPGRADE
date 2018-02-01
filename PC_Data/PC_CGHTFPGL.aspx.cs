@@ -184,7 +184,7 @@ namespace ZCZJ_DPF.PC_Data
                     ((Label)e.Item.FindControl("lbydfpje")).Text = ((CommonFun.ComTryDouble(dtgetdata.Rows[0]["tolkpje"].ToString().Trim()))*10000).ToString().Trim();
                 }
                 DataRowView dr = (DataRowView)e.Item.DataItem;
-                if (username != "高浩" && username != "王福泉" && username != "周文轶" && username != "姜中毅" && username != "王自清" && username != dr["HT_ZDR"].ToString() && username != "李洪清")
+                if (username != "高浩" && username != "王福泉" && username != "周文轶" && username != "姜中毅" && username != "赵宏观" && username != dr["HT_ZDR"].ToString() && username != "李洪清")
                 {
                     e.Item.FindControl("lbHT_HTZJ").Visible = false;
                 }

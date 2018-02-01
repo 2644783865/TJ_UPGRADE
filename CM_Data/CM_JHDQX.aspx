@@ -433,7 +433,7 @@
                                     <asp:CheckBoxList runat="server" ID="CheckBoxList5" RepeatDirection="Horizontal"
                                         RepeatColumns="2">
                                         <%--<asp:ListItem Text="周文轶" Value="1"></asp:ListItem>--%>
-                                        <asp:ListItem Text="王自清" Value="311"></asp:ListItem>
+                                        <asp:ListItem Text="赵宏观" Value="311"></asp:ListItem>
                                         <asp:ListItem Text="王福泉" Value="2"></asp:ListItem>
                                         <asp:ListItem Text="姜中毅" Value="310"></asp:ListItem>
                                     </asp:CheckBoxList>
