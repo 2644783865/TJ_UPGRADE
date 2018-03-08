@@ -459,8 +459,8 @@ namespace ZCZJ_DPF.OM_Data
                                         sql += "," + (bxjsnum * CommonFun.ComTryDecimal(dtbl.Rows[0]["BLLD_YLGR"].ToString().Trim())) + "";
                                         sql += "," + (bxjsnum * CommonFun.ComTryDecimal(dtbl.Rows[0]["BLLD_SYGR"].ToString().Trim())) + "";
                                         sql += "," + (bxjsnum * CommonFun.ComTryDecimal(dtbl.Rows[0]["BLLD_JBYLGR"].ToString().Trim())) + "";
-                                        sql += "," + (gjjsnum * CommonFun.ComTryDecimal(dtbl.Rows[0]["BLLD_GJJGR"].ToString().Trim())) + "";
-
+                                        sql += "," + Math.Round(gjjsnum * CommonFun.ComTryDecimal(dtbl.Rows[0]["BLLD_GJJGR"].ToString().Trim())) + "";
+                                       // decimal t1 = Math.Round(gjjsnum * CommonFun.ComTryDecimal(dtbl.Rows[0]["BLLD_GJJGR"].ToString().Trim()));测试个人公积金整数
                                         //招工费用
                                         sql += "," + zhaogongfy + "";
 
