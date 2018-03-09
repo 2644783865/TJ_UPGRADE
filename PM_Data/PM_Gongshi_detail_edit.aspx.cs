@@ -77,20 +77,20 @@ namespace ZCZJ_DPF.PM_Data
                 DBCallCommon.ExeSqlText(sqlText.ToString());
                 //UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_MONEY) FROM TBMP_GS_LIST AS A WHERE A.GS_TSAID='15249BJ1-1') WHERE TBMP_GS_COL_LIST.GS_TSAID='15249BJ1-1';
 
-                sqlText.Remove(0, sqlText.Length);
-                sqlText.Append("UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_MONEY) FROM TBMP_GS_LIST WHERE ");
-                sqlText.Append("TBMP_GS_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
-                sqlText.Append("and TBMP_GS_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");
-                sqlText.Append("and TBMP_GS_LIST.GS_TSAID='" + lbTSAID.Text.Trim() + "'");
-                sqlText.Append("and TBMP_GS_LIST.DATEYEAR='" + lbYEAR.Text.Trim() + "'");
-                sqlText.Append("and TBMP_GS_LIST.DATEMONTH='" + lbMONTH.Text.Trim() + "'");
-                sqlText.Append(") WHERE ");
-                sqlText.Append("TBMP_GS_COL_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
-                sqlText.Append("AND TBMP_GS_COL_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");
-                sqlText.Append("AND TBMP_GS_COL_LIST.GS_TSAID='" + lbTSAID.Text.Trim()+ "'");
-                sqlText.Append("and TBMP_GS_COL_LIST.DATEYEAR='" + lbYEAR.Text.Trim() + "'");
-                sqlText.Append("and TBMP_GS_COL_LIST.DATEMONTH='" + lbMONTH.Text.Trim() + "'");
-                DBCallCommon.ExeSqlText(sqlText.ToString());
+                //sqlText.Remove(0, sqlText.Length);
+                //sqlText.Append("UPDATE TBMP_GS_COL_LIST SET TBMP_GS_COL_LIST.GS_TSAMONEY= (select SUM(GS_MONEY) FROM TBMP_GS_LIST WHERE ");
+                //sqlText.Append("TBMP_GS_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
+                //sqlText.Append("and TBMP_GS_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");
+                //sqlText.Append("and TBMP_GS_LIST.GS_TSAID='" + lbTSAID.Text.Trim() + "'");
+                //sqlText.Append("and TBMP_GS_LIST.DATEYEAR='" + lbYEAR.Text.Trim() + "'");
+                //sqlText.Append("and TBMP_GS_LIST.DATEMONTH='" + lbMONTH.Text.Trim() + "'");
+                //sqlText.Append(") WHERE ");
+                //sqlText.Append("TBMP_GS_COL_LIST.GS_CUSNAME='"+lbCUSNAME.Text.Trim()+"'");
+                //sqlText.Append("AND TBMP_GS_COL_LIST.GS_CONTR='"+lbCONTR.Text.Trim()+"'");
+                //sqlText.Append("AND TBMP_GS_COL_LIST.GS_TSAID='" + lbTSAID.Text.Trim()+ "'");
+                //sqlText.Append("and TBMP_GS_COL_LIST.DATEYEAR='" + lbYEAR.Text.Trim() + "'");
+                //sqlText.Append("and TBMP_GS_COL_LIST.DATEMONTH='" + lbMONTH.Text.Trim() + "'");
+                //DBCallCommon.ExeSqlText(sqlText.ToString());
 
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "if(confirm('操作成功，是否返回明细界面？')){window.close();window.opener.location.reload();}", true);
             }

@@ -184,43 +184,43 @@ namespace ZCZJ_DPF.PM_Data
             {
                 cn.Close();
             }
-            string sqlcol = "select GS_CUSNAME,GS_CONTR,GS_TSAID,sum(GS_MONEY)jysl from dbo.TBMP_GS_LIST " + "where DATEYEAR='" + year + "' and DATEMONTH='" + month + "'group by GS_CUSNAME,GS_CONTR,GS_TSAID order by GS_CONTR";
-            DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlcol);
-            string strConn1 = DBCallCommon.GetStringValue("connectionStrings");
-            SqlConnection cn1 = new SqlConnection(strConn);
-            cn1.Open();
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow dr_code in dt.Rows)
-                {
-                    string dt_cn = dr_code["GS_CUSNAME"].ToString();
-                    string dt_co = dr_code["GS_CONTR"].ToString();
-                    string dt_td = dr_code["GS_TSAID"].ToString();
-                    string dt_tm = dr_code["jysl"].ToString();
+            //string sqlcol = "select GS_CUSNAME,GS_CONTR,GS_TSAID,sum(GS_MONEY)jysl from dbo.TBMP_GS_LIST " + "where DATEYEAR='" + year + "' and DATEMONTH='" + month + "'group by GS_CUSNAME,GS_CONTR,GS_TSAID order by GS_CONTR";
+            //DataTable dt = DBCallCommon.GetDTUsingSqlText(sqlcol);
+            //string strConn1 = DBCallCommon.GetStringValue("connectionStrings");
+            //SqlConnection cn1 = new SqlConnection(strConn);
+            //cn1.Open();
+            //if (dt.Rows.Count > 0)
+            //{
+            //    foreach (DataRow dr_code in dt.Rows)
+            //    {
+            //        string dt_cn = dr_code["GS_CUSNAME"].ToString();
+            //        string dt_co = dr_code["GS_CONTR"].ToString();
+            //        string dt_td = dr_code["GS_TSAID"].ToString();
+            //        string dt_tm = dr_code["jysl"].ToString();
 
-                    string sqlcheck = "select count(*) from TBMP_GS_COL_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + dt_td + "'AND GS_CUSNAME='" + dt_cn + "' AND GS_CONTR= '" + dt_co + "'AND IsDel='0'";
-                    SqlCommand sqlcmd = new SqlCommand(sqlcheck, cn1);
-                    int count = Convert.ToInt32(sqlcmd.ExecuteScalar().ToString());
+            //        string sqlcheck = "select count(*) from TBMP_GS_COL_LIST where DATEYEAR='" + year + "'AND DATEMONTH='" + month + "'AND GS_TSAID='" + dt_td + "'AND GS_CUSNAME='" + dt_cn + "' AND GS_CONTR= '" + dt_co + "'AND IsDel='0'";
+            //        SqlCommand sqlcmd = new SqlCommand(sqlcheck, cn1);
+            //        int count = Convert.ToInt32(sqlcmd.ExecuteScalar().ToString());
 
-                    if (count == 0)
-                    {
-                        string insertstr = "insert into TBMP_GS_COL_LIST (GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TSAMONEY,DATEYEAR,DATEMONTH,IsDel)";
-                        insertstr += " values('" + dt_cn + "','" + dt_co + "','" + dt_td + "','" + dt_tm + "','" + year + "','" + month + "','0')";
+            //        if (count == 0)
+            //        {
+            //            string insertstr = "insert into TBMP_GS_COL_LIST (GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TSAMONEY,DATEYEAR,DATEMONTH,IsDel)";
+            //            insertstr += " values('" + dt_cn + "','" + dt_co + "','" + dt_td + "','" + dt_tm + "','" + year + "','" + month + "','0')";
 
-                        SqlCommand cmd = new SqlCommand(insertstr, cn1);
-                        try
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (MembershipCreateUserException ex)       //捕捉异常
-                        {
-                            Response.Write("<script>alert('导入内容:" + ex.Message + "')</script>");
-                        }
-                    }
+            //            SqlCommand cmd = new SqlCommand(insertstr, cn1);
+            //            try
+            //            {
+            //                cmd.ExecuteNonQuery();
+            //            }
+            //            catch (MembershipCreateUserException ex)       //捕捉异常
+            //            {
+            //                Response.Write("<script>alert('导入内容:" + ex.Message + "')</script>");
+            //            }
+            //        }
 
-                }
-            }
-            cn1.Close();
+            //    }
+            //}
+            //cn1.Close();
             Response.Write("<script>alert('Excle表导入成功!');window.open('PM_GongShi_List.aspx');</script>");
         }
     }
