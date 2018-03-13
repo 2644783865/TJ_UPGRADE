@@ -48,9 +48,9 @@ namespace ZCZJ_DPF.PM_Data
         /// </summary>
         private void InitPager()
         {
-            pager.TableName = "TBMP_GS_COL_LIST";
+            pager.TableName = "VIEW_TBMP_GS_COL_LIST";
             pager.PrimaryKey = "";
-            pager.ShowFields = "Id,GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TSAMONEY,DATEYEAR,DATEMONTH,GS_CHECK";
+            pager.ShowFields = "GS_CUSNAME,GS_CONTR,GS_TSAID,GS_TSAMONEY,DATEYEAR,DATEMONTH";
             pager.OrderField = "DATEYEAR";
             pager.StrWhere = ViewState["sqlText"].ToString();
             pager.OrderType = 1;//按时间降序排列
@@ -92,7 +92,7 @@ namespace ZCZJ_DPF.PM_Data
             {
                 sqltext.Append(" and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'");
             }
-            sqltext.Append(" and IsDel='0'");
+          
             ViewState["sqlText"] = sqltext.ToString();
         }
         protected void PM_GongShi_List_Repeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -313,9 +313,9 @@ namespace ZCZJ_DPF.PM_Data
         }
         protected void btnSC_Click(object sender, EventArgs e)
         {
-            string sqldelete1 = "delete from TBMP_GS_COL_LIST where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
+            //string sqldelete1 = "delete from TBMP_GS_COL_LIST where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";
             string sqldelete2 = "delete from TBMP_GS_LIST where DATEYEAR='" + ddlgongshiyear.SelectedValue.ToString() + "' and DATEMONTH='" + ddlgongshimonth.SelectedValue.ToString() + "'";            
-            DBCallCommon.ExeSqlText(sqldelete1);
+            //DBCallCommon.ExeSqlText(sqldelete1);
             DBCallCommon.ExeSqlText(sqldelete2);
             this.InitVar();
             UCPaging1.CurrentPage = 1;

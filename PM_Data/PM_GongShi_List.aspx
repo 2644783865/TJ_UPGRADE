@@ -115,7 +115,7 @@
                                                             <td runat="server" id="num">
                                                                 <asp:Label ID="rownum" runat="server" Text='<%#Container.ItemIndex + 1 %>'></asp:Label>
                                                                 
-                                                                <asp:Label ID="check" runat="server" Text='<%#Eval("GS_CHECK")%>' Visible="false"></asp:Label>
+                                                                <%--<asp:Label ID="check" runat="server" Text='<%#Eval("GS_CHECK")%>' Visible="false"></asp:Label>--%>
                                                             </td> 
                                                             <td>
                                                                 <asp:Label ID="yyyy" runat="server" Text='<%#Eval("DATEYEAR")%>' Visible="false"></asp:Label>
