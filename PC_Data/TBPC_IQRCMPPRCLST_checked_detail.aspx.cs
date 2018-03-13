@@ -388,8 +388,9 @@ namespace ZCZJ_DPF.PC_Data
                 {
                     btn_fanshen.Enabled = true;
                 }
-
+      
                 Tb_shenheren1.Text = dt.Rows[0]["ICL_REVIEWBNM"].ToString();
+            
                 Tb_shenherencode1.Text = dt.Rows[0]["ICL_REVIEWB"].ToString();
                 Tb_shenhet1.Text = dt.Rows[0]["ICL_REVIEWBTIME"].ToString();
                 Tb_shenheyj1.Text = dt.Rows[0]["ICL_REVIEWBADVC"].ToString();
@@ -542,8 +543,8 @@ namespace ZCZJ_DPF.PC_Data
             tb_pnum.Text = "2";
             if (num > 0)
             {
-                shren1id = "7";
-                shren1nm = "董治收";
+                shren1id = "47";
+                shren1nm = "李利恒";
                 shren2nm = "王福泉";
                 shren3nm = "赵宏观";
 
@@ -858,15 +859,20 @@ namespace ZCZJ_DPF.PC_Data
                     }
                     else
                     {
-                        string str = "select ST_ID from TBDS_STAFFINFO where ST_POSITION='0501' and ST_PD='0'";
-                        System.Data.DataTable leader = DBCallCommon.GetDTUsingSqlText(str);
-                        string lead = "";
-                        if (leader.Rows.Count > 0)
-                        {
-                            lead = leader.Rows[0][0].ToString();
-                        }
+                        //string str = "select ST_ID from TBDS_STAFFINFO where ST_POSITION='0501' and ST_PD='0'";
+                        //System.Data.DataTable leader = DBCallCommon.GetDTUsingSqlText(str);
+                        //string lead = "";
+                        //if (leader.Rows.Count > 0)
+                        //{
+                        //    lead = leader.Rows[0][0].ToString();
+                        //}
 
-                        if (!string.IsNullOrEmpty(lead))
+                        //if (!string.IsNullOrEmpty(lead))
+
+                    
+                        
+                         string lead = Tb_shenherencode1.Text; 
+                      
                         {
                             sqltext = "UPDATE TBPC_IQRCMPPRCRVW SET ICL_REVIEWATIME=(case when (ICL_REVIEWATIME='' or ICL_REVIEWATIME is null) then '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' else  ICL_REVIEWATIME end)," +
                                       "ICL_REVIEWAADVC='" + Tb_zdanyj.Text.ToString() + "',ICL_REVIEWB=" + lead + ",ICL_REVIEWBTIME=''," +
@@ -877,11 +883,11 @@ namespace ZCZJ_DPF.PC_Data
                                       "WHERE ICL_SHEETNO='" + TextBoxNO.Text.ToString() + "'";
                             DBCallCommon.SendEmail(DBCallCommon.GetEmailAddressByUserID(lead), new List<string>(), new List<string>(), "采购比价单审批", "您有采购比价单需要审批，请登录系统查看");
                         }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('采购部暂时无部长，无法进行审批操作，请及时与负责人沟通！');", true);
-                            return;
-                        }
+                        //else
+                        //{
+                        //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('采购部暂时无部长，无法进行审批操作，请及时与负责人沟通！');", true);
+                        //    return;
+                        //}
                     }
                 }
             }
@@ -2434,14 +2440,17 @@ namespace ZCZJ_DPF.PC_Data
                         }
                     }
 
-                    string str = "select ST_ID from TBDS_STAFFINFO where ST_POSITION='0501' and ST_PD='0'";
-                    System.Data.DataTable leader = DBCallCommon.GetDTUsingSqlText(str);
-                    string lead = "";
-                    if (leader.Rows.Count > 0)
-                    {
-                        lead = leader.Rows[0][0].ToString();
-                    }
-                    if (!string.IsNullOrEmpty(lead))
+                    //string str = "select ST_ID from TBDS_STAFFINFO where ST_POSITION='0501' and ST_PD='0'";
+                    //System.Data.DataTable leader = DBCallCommon.GetDTUsingSqlText(str);
+                    //string lead = "";
+                    //if (leader.Rows.Count > 0)
+                    //{
+                    //    lead = leader.Rows[0][0].ToString();
+                    //}
+                    //if (!string.IsNullOrEmpty(lead))
+
+                    string lead = Tb_shenherencode1.Text;
+                  
                     {
                         sqltext = "INSERT INTO TBPC_MARREPLACETOTAL(MP_CODE,MP_PLANPCODE,MP_PJID,MP_ENGID," +
                                  "MP_FILLFMID,MP_FILLFMTIME,MP_REVIEWAID,MP_CHARGEID,MP_LEADER)  " +
@@ -2453,11 +2462,11 @@ namespace ZCZJ_DPF.PC_Data
                         DBCallCommon.ExecuteTrans(liststr);
                         Response.Redirect("~/PC_Data/PC_TBPC_Marreplace_panel.aspx?mpno=" + mpcode);//转到代用页面
                     }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('采购部暂时无部长，无法进行审批操作，请及时与负责人沟通！');", true);
-                        return;
-                    }
+                    //else
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('采购部暂时无部长，无法进行审批操作，请及时与负责人沟通！');", true);
+                    //    return;
+                    //}
                 }
                 else
                 {
