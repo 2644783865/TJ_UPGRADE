@@ -545,7 +545,7 @@ namespace ZCZJ_DPF.PC_Data
             {
                 shren1id = "47";
                 shren1nm = "李利恒";
-                shren2nm = "王福泉";
+                shren2nm = "姜中毅";
                 shren3nm = "赵宏观";
 
                 if (shren1nm == Tb_shenheren1.Text | Tb_shenheren1.Text == "")

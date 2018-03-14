@@ -5,7 +5,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    询比价单审核
+    询比价单审核 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
@@ -158,10 +158,14 @@
                                     Enabled="false" />
                             </td>
                             <td align="right">
-                                <asp:CheckBox ID="Chb_Zb" Text="招标物料" runat="server" class="zbjc" onclick="sinCheck(this)" />&nbsp;
-                                <asp:CheckBox ID="Chb_Jc" Text="集采采购" runat="server" class="zbjc" onclick="sinCheck(this)" />&nbsp;
-                                <asp:CheckBox ID="chk_array" Text="成套标识" runat="server" OnCheckedChanged="chk_array_CheckedChanged" AutoPostBack="true" />&nbsp;&nbsp;&nbsp;
-                                <asp:CheckBox ID="chk_qxarray" Text="取消成套标识" runat="server" OnCheckedChanged="chk_qxarray_CheckedChanged" AutoPostBack="true" />&nbsp;&nbsp;&nbsp;
+                                <asp:CheckBox ID="Chb_Zb" Text="招标物料" runat="server" class="zbjc" onclick="sinCheck(this)" />
+                                &nbsp;
+                                <asp:CheckBox ID="Chb_Jc" Text="集采采购" runat="server" class="zbjc" onclick="sinCheck(this)" />
+                                &nbsp;
+                                <asp:CheckBox ID="chk_array" Text="成套标识" runat="server" OnCheckedChanged="chk_array_CheckedChanged" AutoPostBack="true" />
+                                &nbsp;&nbsp;&nbsp;
+                                <asp:CheckBox ID="chk_qxarray" Text="取消成套标识" runat="server" OnCheckedChanged="chk_qxarray_CheckedChanged" AutoPostBack="true" />
+                                &nbsp;&nbsp;&nbsp;
                                 <asp:Button runat="server" ID="CancelZb" Text="取消招标" OnClick="CancelJc_Click" Visible="false" />
                                 &nbsp;&nbsp;&nbsp;
                                 <asp:Button runat="server" ID="CancelJc" Text="取消集采" OnClick="CancelJc_Click" Visible="false" />
@@ -297,7 +301,7 @@
                             </tr>
                         </table>
                         <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
-                            ActiveTabIndex="0">
+                            ActiveTabIndex="2">
                             <asp:TabPanel ID="TabPanel1" runat="server" HeaderText="询比价单">
                                 <ContentTemplate>
                                     <div style="border: 1px solid #000000; height: 480px">
