@@ -843,7 +843,7 @@ namespace ZCZJ_DPF.PC_Data
 
                     string sqlshr2 = "select ST_NAME,ST_ID from TBDS_STAFFINFO where ST_ID='67'";
                     System.Data.DataTable dtshr2 = DBCallCommon.GetDTUsingSqlText(sqlshr2);
-                    string sqlshr3 = "select ST_NAME,ST_ID from TBDS_STAFFINFO where ST_POSITION='0501'";
+                    string sqlshr3 = "select ST_NAME,ST_ID from TBDS_STAFFINFO where ST_POSITION='0701'";
                     System.Data.DataTable dtshr3 = DBCallCommon.GetDTUsingSqlText(sqlshr3);
                     string ptcupdate = (purchaseplan_start_list_Repeater.Items[j].FindControl("PTCODE") as System.Web.UI.WebControls.Label).Text;
                     string sql1 = "update TBPC_BG set BG_XTZT='1',BG_SHRA='" + jishushenheren + "',BG_SHRIDA='" + jishushenherenid + "',BG_SHRB='" + dtshr2.Rows[0]["ST_NAME"].ToString() + "',BG_SHRIDB='" + dtshr2.Rows[0]["ST_ID"].ToString() + "',BG_SHRC='" + dtshr3.Rows[0]["ST_NAME"].ToString() + "',BG_SHRIDC='" + dtshr3.Rows[0]["ST_ID"].ToString() + "' where BG_PTC='" + ptcupdate + "' and BG_STATE='0' and BG_PH='" + ph + "'";
