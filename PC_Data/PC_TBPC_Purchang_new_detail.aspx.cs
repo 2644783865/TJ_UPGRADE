@@ -114,7 +114,7 @@ namespace ZCZJ_DPF.PC_Data
                     rblsecond.Enabled = true;
                     second_opinion.Enabled = true;
                 }
-                else if (position == "0501" && dt.Rows[0]["BG_STATE"].ToString() == "3")
+                else if (position == "0701" && dt.Rows[0]["BG_STATE"].ToString() == "3")
                 {
                     btnsh3.Visible = true;
                     rblthird.Enabled = true;
