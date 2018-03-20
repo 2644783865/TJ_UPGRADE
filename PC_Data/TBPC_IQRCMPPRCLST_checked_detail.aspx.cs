@@ -641,7 +641,7 @@ namespace ZCZJ_DPF.PC_Data
 
                     if (dt.Rows[0]["ICL_STATEA"].ToString() == "2" && dt.Rows[0]["ICL_STATEB"].ToString() == "0")
                     {
-                        if (Session["UserID"].ToString() == "2")
+                        if (Session["UserID"].ToString() == "310")
                         {
                             Tb_shenheren2.Text = Session["UserName"].ToString();
                             Tb_shenherencode2.Text = Session["UserID"].ToString();
