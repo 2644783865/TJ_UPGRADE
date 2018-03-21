@@ -754,7 +754,7 @@ namespace ZCZJ_DPF.MT_Data
                 dr.Close();
             }
 
-            else if (Session["UserID"].ToString() == "2")//王福泉
+            else if (Session["UserID"].ToString() == "310")//姜中毅
             {
                 sqltext = "SELECT count(*) from TBPC_IQRCMPPRCRVW where (ICL_STATE='1' or ICL_STATE='3') and ICL_STATEA='2' and ICL_STATEB='0'";
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sqltext);

@@ -141,7 +141,8 @@ namespace ZCZJ_DPF.PC_Data
             string sql = "";
             if (rad_mypart.Checked)
             {
-                if (Session["UserID"].ToString() == "2")
+                //原先是2，现在改为310姜中毅
+                if (Session["UserID"].ToString() == "310")
                 {
                     sql = string.Format("select distinct picno from View_TBPC_IQRCMPPRICE_RVW1 where {0}", "(ICL_STATEA='2' and ICL_STATEB='0') and (totalstate='1' or totalstate='3')");
                 }
@@ -418,7 +419,7 @@ namespace ZCZJ_DPF.PC_Data
             {
                 if (rad_shenhezhong.Checked)
                 {
-                    if (Session["UserID"].ToString() == "2")
+                    if (Session["UserID"].ToString() == "310")
                     {
                         sqlwhere = sqlwhere + " and ((zdrid='" + Session["UserID"].ToString() + "') or (shbid='" + Session["UserID"].ToString() + "' and ICL_STATEA='0') or (ICL_STATEA='2' and ICL_STATEB='0' )) ";
                     }
