@@ -213,7 +213,8 @@ namespace ZCZJ_DPF.PC_Data
             else
             {
                 //2017.5.12修改，修改发给部长，没部长发给人本人通知
-                string str = "select ST_ID from TBDS_STAFFINFO where ST_POSITION='0501' and ST_PD='0'";
+                //2018.3.26修改，修改部门领导李利恒
+                string str = "select ST_ID from TBDS_STAFFINFO where ST_POSITION='0701' and ST_PD='0'";
                 System.Data.DataTable leader = DBCallCommon.GetDTUsingSqlText(str);
                 string lead = "";
                 if (leader.Rows.Count > 0)
