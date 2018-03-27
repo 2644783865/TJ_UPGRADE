@@ -40,6 +40,7 @@ namespace ZCZJ_DPF.PM_Data
             taskId = Request.Form["taskId"].ToString();
             if (Request.Form["id"] == null)
             {
+                //string id = Request.Form["id"].ToString();
                 sqlText = "select BM_ZONGXU,BM_TUHAO,BM_CHANAME,BM_NUMBER,BM_TUUNITWGHT,BM_YRKNUM,case when  BM_MARID<>'' then 'open' when BM_MARID='' then 'closed' end as state from dbo.View_TM_DQO where  BM_MSSTATUS<>'1' and dbo.Splitnum(BM_ZONGXU,'.')=0  and BM_ENGID='" + taskId + "' ORDER BY dbo.f_formatstr(BM_ZONGXU, '.')";
             }
             else

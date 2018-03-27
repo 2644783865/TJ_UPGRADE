@@ -114,7 +114,7 @@ namespace ZCZJ_DPF.QC_Data
             //二级审核人
             if (auditjs.ToString().Trim() == "2")
             {
-                sb.Append(" and DEP_POSITION in('部长','副部长','总经理','副总经理','技术总监')");
+                sb.Append(" and DEP_POSITION in('部长','副部长','董事长兼总经理','总经理','副总经理','技术总监')");
             }
 
             //三级审核人
