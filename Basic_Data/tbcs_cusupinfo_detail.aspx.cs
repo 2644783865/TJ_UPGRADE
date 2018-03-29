@@ -344,9 +344,12 @@ namespace ZCZJ_DPF.Basic_Data
 
         public string addcharge()
         {
-            string UserDeptID = Session["UserDeptID"].ToString();
+            //string UserDeptID = Session["UserDeptID"].ToString();
+            string positionid = Session["POSITION"].ToString();
+         
             // UserDeptID"05"即"采购部"
-            if (UserDeptID == "05")
+            //2018.3.28修改为当人员职位id为采购员、采购主管、统计员
+            if (positionid == "0712" || positionid == "0713" || positionid == "0714")
             {
                 return "javascript:void window.open('tbcs_cusup_add_delete.aspx?action=Add&amp;cs_action=0','','')";
             }
