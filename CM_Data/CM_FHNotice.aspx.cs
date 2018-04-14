@@ -819,21 +819,24 @@ namespace ZCZJ_DPF.CM_Data
             }
             int count = 0;
             for (int i = 0; i < 6; i++)
-            {
-                CheckBoxList ck = (CheckBoxList)Panel2.FindControl("cki" + i.ToString());
-                Label lb = (Label)Panel2.FindControl("dep" + i.ToString());
-                if (ck != null)
+                if (i != 1)//没有采购部
                 {
-                    for (int j = 0; j < ck.Items.Count; j++)
                     {
-                        if (ck.Items[j].Selected == true)
+                        CheckBoxList ck = (CheckBoxList)Panel2.FindControl("cki" + i.ToString());
+                        Label lb = (Label)Panel2.FindControl("dep" + i.ToString());
+                        if (ck != null)
                         {
-                            reviewer.Add(lb.Text + ck.Items[j].Value.ToString(), ck.Items[j].Value.ToString());//字典，绑定部门领导的编号
-                            count++;
+                            for (int j = 0; j < ck.Items.Count; j++)
+                            {
+                                if (ck.Items[j].Selected == true)
+                                {
+                                    reviewer.Add(lb.Text + ck.Items[j].Value.ToString(), ck.Items[j].Value.ToString());//字典，绑定部门领导的编号
+                                    count++;
+                                }
+                            }
                         }
                     }
                 }
-            }
         }
 
         private void BindSelectReviewer()
@@ -841,19 +844,22 @@ namespace ZCZJ_DPF.CM_Data
             string csr = HidCSR.Value;
             string[] str = csr.Split(',');
             for (int i = 0; i < 6; i++)
-            {
-                CheckBoxList ck = (CheckBoxList)Panel2.FindControl("cki" + i.ToString());
-                for (int j = 0; j < str.Length; j++)
+                if (i != 1)//没有采购部
                 {
-                    for (int k = 0; k < ck.Items.Count; k++)
                     {
-                        if (ck.Items[k].Value == str[j].ToString())
+                        CheckBoxList ck = (CheckBoxList)Panel2.FindControl("cki" + i.ToString());
+                        for (int j = 0; j < str.Length; j++)
                         {
-                            ck.Items[k].Selected = true;
+                            for (int k = 0; k < ck.Items.Count; k++)
+                            {
+                                if (ck.Items[k].Value == str[j].ToString())
+                                {
+                                    ck.Items[k].Selected = true;
+                                }
+                            }
                         }
                     }
                 }
-            }
         }
 
         private void SendEmail()

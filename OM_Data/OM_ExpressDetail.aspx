@@ -4,7 +4,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    快递管理
+    快递管理 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PrimaryContent" runat="server">
 
@@ -107,7 +107,7 @@
         <asp:UpdatePanel ID="update_body" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
-                    ActiveTabIndex="0">
+                    ActiveTabIndex="1">
                     <cc1:TabPanel ID="TabDetail" runat="server" HeaderText="申请内容" TabIndex="0" Width="100%">
                         <ContentTemplate>
                             <asp:Panel ID="PanelDetail" runat="server">

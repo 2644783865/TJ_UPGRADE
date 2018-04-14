@@ -58,6 +58,11 @@ namespace ZCZJ_DPF.OM_Data
                 lb_E_SQRDep.Text = unitparam.depname;
                 lb_E_ZDTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string position = unitparam.depid + "01";
+                if (unitparam.depid == "15")
+                {
+                    //对焊事业部于来义
+                    position = "0301";
+                }
                 if (unitparam.depid == "08" || unitparam.depid == "09")
                 {
                     position = "0401";
@@ -66,9 +71,10 @@ namespace ZCZJ_DPF.OM_Data
                 {
                     position = "1001";
                 }
-                else if (unitparam.depid == "14")
+                else if (unitparam.depid == "14"||unitparam.depid=="02")
                 {
-                    position = "0201";
+                    //办公室刘晓静
+                    position = "0210";
                 }
                 else if (unitparam.depid == "12")  
                 {

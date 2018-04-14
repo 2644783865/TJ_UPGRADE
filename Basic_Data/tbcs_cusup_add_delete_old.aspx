@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
-                    ActiveTabIndex="1">
+                    ActiveTabIndex="0">
                     <cc1:TabPanel ID="Tab_INFO" runat="server" Width="100%" HeaderText="厂商信息" TabIndex="0">
                         <ContentTemplate>
                             <asp:Panel ID="Pal_info" runat="server">

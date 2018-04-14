@@ -1384,6 +1384,7 @@ namespace ZCZJ_DPF.Basic_Data
             gvfileslist.DataSource = ds.Tables[0];
             gvfileslist.DataBind();
             gvfileslist.DataKeyNames = new string[] { "ID" };
+            
         }
 
 
