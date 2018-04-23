@@ -79,8 +79,10 @@ namespace ZCZJ_DPF.OM_Data
             if (stdepid.Contains("生产"))
             {
                 strWhere = "(TA_SQRDep like '%生产%') or (TA_SQRDep like '%车间%')";
+                
             }
-            else if (stposition != "0602" && stposition != "0607")
+                //财务部刘思烨可以查看所有部门
+            else if (stposition != "0602" && stposition != "0607" && stposition != "0603")
                 strWhere = "TA_SQRDep like '" + stdepid + "%'";
             if (txtTravelSQR.Text.Trim() != "")
             {
