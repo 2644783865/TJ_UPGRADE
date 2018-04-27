@@ -193,6 +193,7 @@
                                         <asp:DropDownList ID="DropDownListDep" runat="server">
                                             <asp:ListItem Value="">-请选择-</asp:ListItem>
                                             <asp:ListItem Value="06">采购部</asp:ListItem>
+                                                <asp:ListItem Value="07">市场部</asp:ListItem>
                                             <asp:ListItem Value="03">技术质量部</asp:ListItem>
                                             <asp:ListItem Value="04">生产管理部</asp:ListItem>
                                         </asp:DropDownList>

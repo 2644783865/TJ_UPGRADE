@@ -967,19 +967,23 @@ namespace ZCZJ_DPF.CM_Data
             string check_select = "select CM_PID from TBCM_PSVIEW where CM_ID='" + myid + "' and CM_PIDTYPE!='0'";
             DataTable sele = DBCallCommon.GetDTUsingSqlText(check_select);
             for (int i = 0; i < 6; i++)
-            {
-                CheckBoxList ck = (CheckBoxList)Panel2.FindControl("cki" + i.ToString());
-                for (int j = 0; j < sele.Rows.Count; j++)
+                if (i != 1)
                 {
-                    for (int k = 0; k < ck.Items.Count; k++)
                     {
-                        if (ck.Items[k].Value == sele.Rows[j][0].ToString())
+                        CheckBoxList ck = (CheckBoxList)Panel2.FindControl("cki" + i.ToString());
+
+                        for (int j = 0; j < sele.Rows.Count; j++)
                         {
-                            ck.Items[k].Selected = true;
+                            for (int k = 0; k < ck.Items.Count; k++)
+                            {
+                                if (ck.Items[k].Value == sele.Rows[j][0].ToString())
+                                {
+                                    ck.Items[k].Selected = true;
+                                }
+                            }
                         }
                     }
                 }
-            }
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

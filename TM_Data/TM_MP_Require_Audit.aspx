@@ -4,7 +4,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="YYControls" Namespace="YYControls" TagPrefix="yyc" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="RightContentTitlePlace" runat="server">
-    材料需用计划审批
+    材料需用计划审批 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="PrimaryContent" runat="server">
 
@@ -73,7 +73,7 @@
     <asp:UpdatePanel runat="server" ID="UpdatePanel1">
         <ContentTemplate>
             <cc1:TabContainer ID="TabContainer1" runat="server" Width="100%" TabStripPlacement="Top"
-                ActiveTabIndex="0" AutoPostBack="false">
+                ActiveTabIndex="1" AutoPostBack="false">
                 <cc1:TabPanel ID="TabPanel1" runat="server" HeaderText="材料需用单" TabIndex="0">
                     <ContentTemplate>
                         <div class="box-wrapper">
@@ -84,10 +84,11 @@
                                     border="1">
                                     <tr>
                                         <td style="font-size: large; text-align: center;" colspan="7">
-                                            材料需用计划&nbsp;&nbsp;&nbsp;<asp:CheckBox ID="chkiffast" runat="server" Enabled="false" />是否加急物料
+                                            材料需用计划&nbsp;&nbsp;&nbsp;<asp:CheckBox ID="chkiffast" runat="server" Enabled="False" />是否加急物料
                                         </td>
                                         <td align="right">
-                                            <asp:Image ID="Image3" ToolTip="返回上一页" CssClass="hand" Height="16" Width="16" runat="server"
+                                            <asp:Image ID="Image3" ToolTip="返回上一页" CssClass="hand" Height="16px" 
+                                                Width="16px" runat="server"
                                                 onclick="history.go(-1);" ImageUrl="~/Assets/icons/back.png" />
                                         </td>
                                     </tr>
@@ -104,21 +105,28 @@
                                         <td style="width: 14%">
                                             <asp:Label ID="lab_proname" runat="server" Width="100%" />
                                         </td>
-                                        <input id="proid" type="text" runat="server" readonly="readonly" style="display: none" />
-                                        <td style="width: 8%" align="right">
-                                            设备名称:
-                                        </td>
-                                        <td style="width: 14%">
-                                            <asp:Label ID="lab_engname" runat="server" Width="100%" />
-                                        </td>
-                                        <td style="width: 8%" align="right">
-                                            计划编号:
-                                        </td>
-                                        <td style="width: 25%">
-                                            <asp:Label ID="mp_no" runat="server" Width="100%" />
-                                        </td>
-                                        <input id="eng_type" type="text" runat="server" readonly="readonly" value="" style="display: none" />
-                                        <input id="txtPlanType" type="text" runat="server" readonly="readonly" value="" style="display: none" />
+                                        <caption>
+                                            <input ID="proid" runat="server" readonly="readonly" style="display: none" 
+                                                type="text"></input>
+                                            <td align="right" style="width: 8%">
+                                                设备名称:
+                                            </td>
+                                            <td style="width: 14%">
+                                                <asp:Label ID="lab_engname" runat="server" Width="100%"></asp:Label>
+                                            </td>
+                                            <td align="right" style="width: 8%">
+                                                计划编号:
+                                            </td>
+                                            <td style="width: 25%">
+                                                <asp:Label ID="mp_no" runat="server" Width="100%"></asp:Label>
+                                            </td>
+                                            <caption>
+                                                <input ID="eng_type" runat="server" readonly="readonly" style="display: none" 
+                                                    type="text"></input>
+                                                <input ID="txtPlanType" runat="server" readonly="readonly" 
+                                                    style="display: none" type="text"></input>
+                                            </caption>
+                                        </caption>
                                     </tr>
                                     <tr>
                                         <td style="width: 8%" align="right">
@@ -149,7 +157,7 @@
                                     </tr>
                                     <tr>
                                         <td align="right">
-                                            <asp:Label ID="lblNote" Width="80" runat="server" Text=""></asp:Label>
+                                            <asp:Label ID="lblNote" Width="80px" runat="server"></asp:Label>
                                         </td>
                                         <td colspan="3">
                                             <asp:TextBox ID="txtBZ" Width="300px" runat="server" TextMode="MultiLine"></asp:TextBox>
@@ -165,64 +173,101 @@
                                             </asp:DropDownList>
                                             <asp:TextBox ID="txtQueryText" runat="server"></asp:TextBox>
                                             &nbsp;&nbsp;
-                                            <asp:Button ID="btnQuery" runat="server" Text="查 询" OnClick="btnQuery_OnClick" />&nbsp;&nbsp;
-                                            <asp:Button ID="btnOrderStateShow" runat="server" Width="80" Text="显示订单状态" OnClick="btnOrderStateShow_OnClick" />
+                                            <asp:Button ID="btnQuery" runat="server" Text="查 询" OnClick="btnQuery_OnClick" />
+                                            &nbsp;&nbsp;
+                                            <asp:Button ID="btnOrderStateShow" runat="server" Width="80px" Text="显示订单状态" 
+                                                OnClick="btnOrderStateShow_OnClick" />
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="box-outer">
-                                <asp:Label ID="lblAfter" runat="server" ForeColor="Red" Visible="false" Font-Bold="true"
+                                <asp:Label ID="lblAfter" runat="server" ForeColor="Red" Visible="False" Font-Bold="True"
                                     Text="本批变更新增或减少计划量:"></asp:Label>
-                                <yyc:SmartGridView ID="GridView2" Width="100%" CssClass="toptable grid" Visible="false"
-                                    runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333">
+                                <yyc:SmartGridView ID="GridView2" Width="100%" CssClass="toptable grid" Visible="False"
+                                    runat="server" AutoGenerateColumns="False" CellPadding="4" 
+                                    ForeColor="#333333">
                                     <FooterStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Center" />
                                     <RowStyle BackColor="#EFF3FB" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="序号" ItemStyle-HorizontalAlign="Center" HeaderStyle-Wrap="false">
+                                        <asp:TemplateField HeaderText="序号">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
                                             </ItemTemplate>
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="MP_TUHAO" HeaderText="图号" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_MARID" HeaderText="材料ID" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_NAME" HeaderText="材料名称" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_GUIGE" HeaderText="规格" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_CAIZHI" HeaderText="材质" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField HeaderText="长度(mm)" DataField="MP_LENGTH" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField HeaderText="宽度(mm)" DataField="MP_WIDTH" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_STANDARD" HeaderText="国标" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:TemplateField HeaderText="是否定尺" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="MP_TUHAO" HeaderText="图号" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_MARID" HeaderText="材料ID" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_NAME" HeaderText="材料名称" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_GUIGE" HeaderText="规格" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_CAIZHI" HeaderText="材质" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="长度(mm)" DataField="MP_LENGTH" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="宽度(mm)" DataField="MP_WIDTH" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_STANDARD" HeaderText="国标" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:TemplateField HeaderText="是否定尺">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblsfdc" runat="server" Text='<%#Eval("MP_FIXEDSIZE")%>'></asp:Label>
                                             </ItemTemplate>
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="MP_TECHUNIT" HeaderText="单位" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_YONGLIANG" HeaderText="材料用量" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_WEIGHT" HeaderText="重量" HeaderStyle-Wrap="false" DataFormatString="{0:f}"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_NUMBER" HeaderText="数量" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" Visible="false" />
-                                        <asp:BoundField DataField="MP_TYPE" HeaderText="材料类别" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_ALLBEIZHU" HeaderText="备注" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_TRACKNUM" HeaderText="计划跟踪号" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_MASHAPE" HeaderText="材料类别" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
+                                        <asp:BoundField DataField="MP_TECHUNIT" HeaderText="单位" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_YONGLIANG" HeaderText="材料用量" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_WEIGHT" HeaderText="重量" DataFormatString="{0:f}" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_NUMBER" HeaderText="数量" Visible="False" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_TYPE" HeaderText="材料类别" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_ALLBEIZHU" HeaderText="备注" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_TRACKNUM" HeaderText="计划跟踪号" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_MASHAPE" HeaderText="材料类别" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
                                     </Columns>
                                     <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
                                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
@@ -232,32 +277,37 @@
                                     <FixRowColumn FixRowType="Header,Pager" TableHeight="150px" TableWidth="100%" />
                                 </yyc:SmartGridView>
                                 <br />
-                                <asp:Label ID="lblBefore" runat="server" ForeColor="Red" Visible="false" Font-Bold="true"
+                                <asp:Label ID="lblBefore" runat="server" ForeColor="Red" Visible="False" Font-Bold="True"
                                     Text="变更后的物料计划:"></asp:Label>
-                                <asp:Panel ID="NoDataPanel" Width="100%" Visible="false" runat="server">
+                                <asp:Panel ID="NoDataPanel" Width="100%" Visible="False" runat="server">
                                     <div style="text-align: center; font-size: medium;">
                                         <br />
                                         没有记录!</div>
                                 </asp:Panel>
                                 <yyc:SmartGridView ID="GridView1" Width="100%" CssClass="toptable grid" runat="server"
-                                    AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" ShowFooter="true"
+                                    AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" ShowFooter="True"
                                     OnRowDataBound="GridView1_RowDataBound">
-                                    <FooterStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Center" />
+                                    <FooterStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Center" 
+                                        Wrap="False" />
                                     <RowStyle BackColor="#EFF3FB" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="序号" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center">
+                                        <asp:TemplateField HeaderText="序号">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblIndex" runat="server" Text='<%# Convert.ToInt32(Container.DataItemIndex +1) %>'></asp:Label>
                                                 <input type="hidden" id="state" runat="server" value='<%# Eval("MP_STATE") %>' />
                                             </ItemTemplate>
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="MP_TUHAO" HeaderText="图号" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_MARID" HeaderText="材料ID" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:TemplateField HeaderText="到货情况" ItemStyle-HorizontalAlign="Center" HeaderStyle-Wrap="false"
-                                            ItemStyle-Wrap="false">
+                                        <asp:BoundField DataField="MP_TUHAO" HeaderText="图号" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_MARID" HeaderText="材料ID" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:TemplateField HeaderText="到货情况">
                                             <ItemTemplate>
                                                 <asp:HyperLink ID="hplAOG" CssClass="hand" runat="server">
                                                     <asp:Image ID="AddImage1" ImageUrl="~/Assets/icons/dindan.jpeg" Height="16" Width="16"
@@ -269,47 +319,76 @@
                                                     PopupControlID="Panel1" Position="Right" OffsetY="25">
                                                 </cc1:PopupControlExtender>
                                             </ItemTemplate>
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="MP_NAME" HeaderText="材料名称" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_GUIGE" HeaderText="规格" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_CAIZHI" HeaderText="材质" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField HeaderText="长度(mm)" DataField="MP_LENGTH" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField HeaderText="宽度(mm)" DataField="MP_WIDTH" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_STANDARD" HeaderText="国标" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:TemplateField HeaderText="是否定尺" HeaderStyle-Wrap="false">
+                                        <asp:BoundField DataField="MP_NAME" HeaderText="材料名称" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_GUIGE" HeaderText="规格" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_CAIZHI" HeaderText="材质" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="长度(mm)" DataField="MP_LENGTH" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="宽度(mm)" DataField="MP_WIDTH" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_STANDARD" HeaderText="国标" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:TemplateField HeaderText="是否定尺">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblsfdc" runat="server" Text='<%#Eval("MP_FIXEDSIZE")%>'></asp:Label>
                                             </ItemTemplate>
+                                            <HeaderStyle Wrap="False" />
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="MP_TECHUNIT" HeaderText="单位" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_YONGLIANG" HeaderText="材料用量" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_WEIGHT" DataFormatString="{0:F2}" HeaderText="重量(kg)"
-                                            HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_MASHAPE" HeaderText="材料类别" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_KU" HeaderText="库" HeaderStyle-Wrap="false" ItemStyle-HorizontalAlign="Center"
-                                            ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_ALLBEIZHU" HeaderText="备注" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:BoundField DataField="MP_TRACKNUM" HeaderText="计划跟踪号" HeaderStyle-Wrap="false"
-                                            ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false" />
-                                        <asp:TemplateField HeaderText="" Visible="false">
+                                        <asp:BoundField DataField="MP_TECHUNIT" HeaderText="单位" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_YONGLIANG" HeaderText="材料用量" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_WEIGHT" DataFormatString="{0:F2}" 
+                                            HeaderText="重量(kg)" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_MASHAPE" HeaderText="材料类别" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_KU" HeaderText="库" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_ALLBEIZHU" HeaderText="备注" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="MP_TRACKNUM" HeaderText="计划跟踪号" >
+                                            <HeaderStyle Wrap="False" />
+                                            <ItemStyle HorizontalAlign="Center" Wrap="False" />
+                                        </asp:BoundField>
+                                        <asp:TemplateField Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="Lbshape" runat="server" Text='<%#Eval("MP_MASHAPE")%>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle Wrap="false" />
                                     <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
                                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                                     <HeaderStyle BackColor="#B9D3EE" Font-Bold="True" ForeColor="#1E5C95" />
@@ -334,7 +413,8 @@
                                         <td>
                                             &nbsp;&nbsp;
                                             <input id="btnMpsubmit" type="button" value="提 交" onclick="return Submit();" />
-                                            <asp:Button ID="btnsubmit" CssClass="hidden" runat="server" OnClick="btnsubmit_Click" />&nbsp;&nbsp;
+                                            <asp:Button ID="btnsubmit" CssClass="hidden" runat="server" OnClick="btnsubmit_Click" />
+                                            &nbsp;&nbsp;
                                             <asp:Button ID="btnreturn" runat="server" Text="返 回" OnClick="btnreturn_Click" />
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <asp:CheckBox ID="ckbMessage" Checked="true" runat="server" />&nbsp;邮件提醒
