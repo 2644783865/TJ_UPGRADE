@@ -660,7 +660,7 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 35%" align="center">
-                                                设备部审批：
+                                                安全部审批：
                                             </td>
                                             <td>
                                                 <asp:TextBox ID="ddl_oneper_add" runat="server" Width="80px" Enabled="false"></asp:TextBox>
