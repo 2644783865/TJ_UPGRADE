@@ -151,7 +151,7 @@ namespace ZCZJ_DPF.CM_Data
                 dt = DBCallCommon.GetDTUsingSqlText(sql);
                 rblRW.Items[2].Text = string.Format("处理方案待分工(<font color='red'>{0}</font>)", dt.Rows[0][0].ToString());
             }
-            else if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67" || Session["POSITION"].ToString() == "1207")
+            else if (Session["POSITION"].ToString() == "0301" || Session["UserID"].ToString() == "67" || Session["POSITION"].ToString() == "1207" || Session["UserID"].ToString() == "69")
             {
 
                 sql = "select count(CLD_ID) from CM_SHCLD where (CLD_CLYJ_TXR='' or CLD_CLYJ_TXR is null) and CLD_SPZT='1y' and (CLD_YYFX !='' and CLD_YYFX is not null)";

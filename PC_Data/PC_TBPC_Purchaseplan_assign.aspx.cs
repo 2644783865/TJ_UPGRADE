@@ -716,12 +716,13 @@ namespace ZCZJ_DPF.PC_Data
                             string engname = ((System.Web.UI.WebControls.Label)Reitem.FindControl("PR_CHILDENGNAME")).Text;
                             string picode = ((System.Web.UI.WebControls.Label)Reitem.FindControl("PUR_PCODE")).Text;
                             fzdw = ((System.Web.UI.WebControls.Label)Reitem.FindControl("FZUNIT")).Text;
+                            //更改税率16 2018.5.16
                             sqltext2 = "INSERT INTO TBPC_IQRCMPPRICE(PIC_SHEETNO,PIC_PJID,PIC_ENGID," +
                                        "PIC_MARID,PIC_QUANTITY,PIC_LENGTH,PIC_WIDTH,PIC_FZNUM,PIC_ZXNUM," +
-                                       "PIC_ZXFUNUM,PIC_ZDJNUM,PIC_PTCODE,PIC_KEYCOMS,PIC_TUHAO,PIC_MASHAPE,PIC_NOTE,PIC_TECUNIT,PIC_SQRID,PIC_MAP,PIC_CHILDENGNAME,PIC_PICODE,PIC_IFFAST)  " +
+                                       "PIC_ZXFUNUM,PIC_ZDJNUM,PIC_PTCODE,PIC_KEYCOMS,PIC_TUHAO,PIC_MASHAPE,PIC_NOTE,PIC_TECUNIT,PIC_SQRID,PIC_MAP,PIC_CHILDENGNAME,PIC_PICODE,PIC_IFFAST,PIC_SHUILV)  " +
                                        "VALUES('" + sheetcode + "','" + pjid + "','" + engid + "','" + marid + "'," +
                                        "'" + num + "','" + length + "','" + width + "','" + fznum + "','" + num + "', " +
-                                       "'" + fznum + "','" + zdjweight + "','" + ptcode + "','" + keycoms + "','" + tuhao + "','" + shape + "','" + note + "','" + fzdw + "','" + sqrid + "','" + map + "','" + engname + "','" + picode + "','" + ((System.Web.UI.WebControls.Label)Reitem.FindControl("PUR_IFFAST")).Text.Trim() + "')";
+                                       "'" + fznum + "','" + zdjweight + "','" + ptcode + "','" + keycoms + "','" + tuhao + "','" + shape + "','" + note + "','" + fzdw + "','" + sqrid + "','" + map + "','" + engname + "','" + picode + "','" + ((System.Web.UI.WebControls.Label)Reitem.FindControl("PUR_IFFAST")).Text.Trim() + "','16')";
                             sqltextlist.Add(sqltext2);
                             sqltext3 = "UPDATE TBPC_PURCHASEPLAN SET PUR_STATE='6' WHERE " +
                                        "PUR_PTCODE='" + ((System.Web.UI.WebControls.Label)Reitem.FindControl("PUR_PTCODE")).Text + "' and PUR_CSTATE='0'";//生成比价单

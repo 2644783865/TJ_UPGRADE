@@ -115,7 +115,8 @@ namespace ZCZJ_DPF.PM_Data
 
             foreach (JObject Jobj in ja)
             {
-                sqlText = "insert into TBMP_FAYUNPRICE(PM_ZONGXU,PM_FATHERID,PM_FID,PM_BIANHAO,PM_SHEETNO,TSA_ID,PM_ENGNAME,PM_MAP,PM_FYNUM) VALUES('" + Jobj["zongxu"].ToString() + "','" + Jobj["pid"].ToString().Split('|')[0] + "','" + Jobj["fid"].ToString() + "','" + Jobj["bianhao"].ToString() + "','" + sheetcode + "','" + Jobj["tsaid"].ToString() + "','" + Jobj["name"].ToString() + "','" + Jobj["map"].ToString() + "','" + Jobj["bjnum"].ToString() + "')";
+                //更改税率10，,2018.5.16
+                sqlText = "insert into TBMP_FAYUNPRICE(PM_ZONGXU,PM_FATHERID,PM_FID,PM_BIANHAO,PM_SHEETNO,TSA_ID,PM_ENGNAME,PM_MAP,PM_FYNUM,PM_SHUILV) VALUES('" + Jobj["zongxu"].ToString() + "','" + Jobj["pid"].ToString().Split('|')[0] + "','" + Jobj["fid"].ToString() + "','" + Jobj["bianhao"].ToString() + "','" + sheetcode + "','" + Jobj["tsaid"].ToString() + "','" + Jobj["name"].ToString() + "','" + Jobj["map"].ToString() + "','" + Jobj["bjnum"].ToString() + "','10')";
                 sqllist.Add(sqlText);
                 //string state = "1";
                 //if (CommonFun.ComTryInt(Jobj["bjnum"].ToString()) < CommonFun.ComTryInt(Jobj["num"].ToString()))

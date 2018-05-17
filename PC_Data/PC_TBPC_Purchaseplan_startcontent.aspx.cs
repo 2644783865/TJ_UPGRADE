@@ -968,6 +968,17 @@ namespace ZCZJ_DPF.PC_Data
                     }
                 }
             }
+            //仓库驳回通知2018.5.15，
+            //发送邮件通知储运部
+            string returnvalue = "";
+            string body = "";
+            //string zdrEmail = "";
+            //string zcrEmail = "";
+            string bodymx2 = "";
+            string to = "";
+            string sendto="";     
+            List<string> mfEmail = null;
+            List<string> zjEmailCC = new List<string>();
             if (j > 0)
             {
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('本批计划已经下推或占用或代用或询比价或下订单，不能驳回！');", true);
@@ -995,17 +1006,101 @@ namespace ZCZJ_DPF.PC_Data
                     string sqltextjl = "insert into TBPC_BOHUIJL(bohuirenid,bohuirenname,bohuitime,mppcode,bohuinote) values('" + Session["UserID"].ToString().Trim() + "','" + Session["UserName"].ToString().Trim() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Trim() + "','" + Tb_mpid.Text.Trim() + "','" + tb_bhyj.Text.Trim() + "')";
                     sqltextlist.Add(sqltextjl);
                     DBCallCommon.ExecuteTrans(sqltextlist);
-                    Response.Redirect("PC_TBPC_Purchaseplan_start.aspx");
-                }
+                    //仓库驳回通知2018.5.15，
+                       
+                        //string sql0 = "select EMail from TBDS_STAFFINFO where ST_NAME='" + Session["UserName"].ToString() + "' and ST_PD='0' ";
+                        //System.Data.DataTable dt0 = DBCallCommon.GetDTUsingSqlText(sql0);
+                        //if (dt.Rows.Count > 0)
+                        //{
+                        //    zcrEmail = dt0.Rows[0][0].ToString();
+                        //}
+
+                        for (int i = 0; i < Purchaseplan_startcontentRepeater.Items.Count; i++)
+                        {
+                            string ptc = (Purchaseplan_startcontentRepeater.Items[i].FindControl("PUR_PTCODE") as System.Web.UI.WebControls.Label).Text;//计划跟踪号
+                            //string marnm = (Purchaseplan_startcontentRepeater.Items[i].FindControl("LabelMarName") as System.Web.UI.WebControls.Label).Text;//子项名称
+                            //string bjnum = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBoxPJNum") as System.Web.UI.WebControls.TextBox).Text;//报检数量
+                            //string jhstate = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBoxState") as System.Web.UI.WebControls.TextBox).Text;//交货状态
+                            //string cont = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBoxControlContent") as System.Web.UI.WebControls.TextBox).Text;//检查内容
+
+                            //string tuhao = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBoxDrawingNO") as System.Web.UI.WebControls.TextBox).Text;//图号
+                            //string gg = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBOXgg") as System.Web.UI.WebControls.TextBox).Text;//规格
+                            //string cz = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBOXcz") as System.Web.UI.WebControls.TextBox).Text;//材质
+                            //string gb = (Purchaseplan_startcontentRepeater.Items[i].FindControl("TextBOXgb") as System.Web.UI.WebControls.TextBox).Text;//国标
+
+                            int k = i;
+                            k++;
+
+                            bodymx2 += "明细" + k + "\n" + "计划跟踪号:" + ptc + "\n";
+                            //    + "子项名称：" + marnm + "\n" + "图号：" + tuhao + "\n" + "规格：" + gg + "\n" + "材质：" + cz + "\n" + "国标：" + gb + "\n" + "报检数量：" + bjnum + "\n" + "交货状态：" + jhstate + "\n" + "检查内容：" + cont + "\n" + "检查地点：" + TextBoxSite.Text + "\n";
+
+                        }
+
+
+                        //List<string> bjEmailCC = new List<string>();
+                        //bjEmailCC.Add("zhangchaochen@cbmi.com.cn");
+                        //bjEmailCC.Add("duanyonghui@cbmi.com.cn");
+
+                        //List<string> zjEmailCC = new List<string>();
+                        //zjEmailCC.Add("zhangchaochen@cbmi.com.cn");
+                        //zjEmailCC.Add("duanyonghui@cbmi.com.cn");
+                        //zjEmailCC.Add("liruiming@cbmi.com.cn");
+                        //zjEmailCC.Add("yangshuyun@cbmi.com.cn");
+                        //zjEmailCC.Add("wangyongchao@cbmi.com.cn");
+                        //zjEmailCC.Add("chenzesheng@cbmi.com.cn");
+
+                        //sql = "select EMail from TBDS_STAFFINFO where ST_PD='0' and ST_CODE like '0702%' ";
+                        //dt = DBCallCommon.GetDTUsingSqlText(sql);
+                        //if (dt.Rows.Count > 0)
+                        //{
+                           // for (int i = 0; i < dt.Rows.Count - 1; i++)
+                            //{
+                             //   zjEmailCC.Add(dt.Rows[i][0].ToString());
+
+                            //}
+
+                       // }
+                        //制单人
+                        
+                        sendto = TextBoxexecutor.Text;
+                        string sqlto = "select DISTINCT [EMAIL] from TBDS_STAFFINFO where ST_NAME='" + sendto + "'";
+
+                        System.Data.DataTable dtto = DBCallCommon.GetDTUsingSqlText(sqlto);
+                        if (dtto.Rows.Count > 0)
+                        {
+                            to = dtto.Rows[0][0].ToString();
+                        }
+
+                        //采购驳回邮件通知储运部
+
+                        body = "采购需用计划驳回" + "\n" + "项  目  为:" + tb_pjinfo.Text + "\n" + "工  程  为：" + tb_enginfo.Text + "\n" + "编 号：" + Tb_mpid.Text + "\n" + "驳 回 人：" + Session["UserName"].ToString() + "\n" + bodymx2;
+                        returnvalue = DBCallCommon.SendEmail(to, zjEmailCC, mfEmail, tb_enginfo.Text + "-" + Tb_mpid.Text + "/" + "数字平台需用计划驳回", body);
+
+
+                        if (returnvalue == "邮件已发送!")
+                        {
+                            //string jascript = @"alert('邮件发送成功!');";
+
+                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "error", jascript, true);
+
+                            Response.Write("<script>alert('邮件发送成功');</script>");
+                        }
+                        else if (returnvalue == "邮件发送失败!")
+                        {
+                            Response.Write("<script>alert('邮件发送不成功');</script>");
+
+                        }
+                   Response.Redirect("PC_TBPC_Purchaseplan_start.aspx");
+                 }
             }
 
 
             //发送邮件通知储运部
-            string returnvalue = "";
-            string body = "";
+            //string returnvalue = "";
+           // string body = "";
             //string zdrEmail = "";
             //string zcrEmail = "";
-            string bodymx2 = "";
+            //string bodymx2 = "";
 
             //string sql0 = "select EMail from TBDS_STAFFINFO where ST_NAME='" + Session["UserName"].ToString() + "' and ST_PD='0' ";
             //System.Data.DataTable dt0 = DBCallCommon.GetDTUsingSqlText(sql0);
@@ -1040,7 +1135,7 @@ namespace ZCZJ_DPF.PC_Data
             //bjEmailCC.Add("zhangchaochen@cbmi.com.cn");
             //bjEmailCC.Add("duanyonghui@cbmi.com.cn");
 
-            List<string> zjEmailCC = new List<string>();
+            //List<string> zjEmailCC = new List<string>();
             //zjEmailCC.Add("zhangchaochen@cbmi.com.cn");
             //zjEmailCC.Add("duanyonghui@cbmi.com.cn");
             //zjEmailCC.Add("liruiming@cbmi.com.cn");
@@ -1059,8 +1154,8 @@ namespace ZCZJ_DPF.PC_Data
                 }
 
             }
-            string to = "";
-            List<string> mfEmail = null;
+            //string to = "";
+            //List<string> mfEmail = null;
 
 
             //采购驳回邮件通知储运部
