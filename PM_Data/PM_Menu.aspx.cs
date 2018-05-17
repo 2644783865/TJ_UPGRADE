@@ -80,9 +80,17 @@ namespace ZCZJ_DPF.PM_Data
 
 
         private void GET_ZZMX()//制作明细变更
+
         {
-            string sql = "select * from View_TM_MSCHANGERVW as A left join TBMP_MANUTSASSGN AS B on A.MS_ENGID=B.MTA_ID where MS_FINSTATUS='0'and MS_STATE='8' and MTA_DUY='" + Session["UserName"].ToString() + "'";
-            zzmxgl.Text = "（" + DBCallCommon.GetDTUsingSqlText(sql).Rows.Count.ToString() + "）";
+            string sql = "";
+            if (Session["UserName"].ToString().Equals("艾广修"))
+            {
+                 sql = "select * from View_TM_MSCHANGERVW as A left join TBMP_MANUTSASSGN AS B on A.MS_ENGID=B.MTA_ID where MS_FINSTATUS='0'and MS_STATE='8'";
+            }
+            else {
+                 sql = "select * from View_TM_MSCHANGERVW as A left join TBMP_MANUTSASSGN AS B on A.MS_ENGID=B.MTA_ID where MS_FINSTATUS='0'and MS_STATE='8' and MTA_DUY='" + Session["UserName"].ToString() + "'";
+            }
+                zzmxgl.Text = "（" + DBCallCommon.GetDTUsingSqlText(sql).Rows.Count.ToString() + "）";
         }
         protected void SetTip()
         {
