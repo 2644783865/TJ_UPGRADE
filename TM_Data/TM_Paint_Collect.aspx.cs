@@ -17,7 +17,7 @@ namespace ZCZJ_DPF.TM_Data
             {
                 pId = Request.QueryString["pId"].ToString();
             }
-            string sql = "select * from (select PS_BOTMARID,sum(cast(PS_BOTYONGLIANG as float)) as sumYL,PS_ENGID from (select PS_BOTMARID,PS_BOTYONGLIANG,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_BOTMARID<>''union all select PS_MIDMARID,PS_MIDYONGLIANG,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_MIDMARID<>''union all select PS_TOPMARID,PS_TOPYONGLIANG,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_TOPMARID<>'')a group by PS_BOTMARID,PS_ENGID)b left join dbo.TBMA_MATERIAL as c on b.PS_BOTMARID=c.ID";
+            string sql = "select * from (select PS_BOTMARID,sum(cast(PS_BOTYONGLIANG as float)) as sumYL,sum(cast(PS_BOTXISHIJI as float)) as sumXSJ,PS_ENGID from (select PS_BOTMARID,PS_BOTYONGLIANG,PS_BOTXISHIJI,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_BOTMARID<>''union all select PS_MIDMARID,PS_MIDYONGLIANG,PS_BOTXISHIJI,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_MIDMARID<>''union all select PS_TOPMARID,PS_TOPYONGLIANG,PS_BOTXISHIJI,PS_ENGID from dbo.TBPM_PAINTSCHEMELIST where PS_PID='" + pId + "' and PS_TOPMARID<>'')a group by PS_BOTMARID,PS_ENGID)b left join dbo.TBMA_MATERIAL as c on b.PS_BOTMARID=c.ID";
             try
             {
                 DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);

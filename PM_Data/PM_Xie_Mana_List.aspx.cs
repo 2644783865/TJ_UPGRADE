@@ -218,12 +218,13 @@ namespace ZCZJ_DPF.PM_Data
                         //string keycoms = ((System.Web.UI.WebControls.Label)Reitem.FindControl("PUR_KEYCOMS")).Text;
                         string shape = ((System.Web.UI.WebControls.Label)Reitem.FindControl("MS_MASHAPE")).Text;
                         string taskid = ((System.Web.UI.WebControls.Label)Reitem.FindControl("MS_ID")).Text;
+                        //插入税率改为16
                         sqltext2 = "INSERT INTO TBMP_IQRCMPPRICE(PIC_CODE,PIC_SHEETNO,PIC_ZONGXU,PIC_TASKID,PIC_WXTYPE,PIC_PJID,PIC_ENGID,PIC_ENGNAME," +
                                    "PIC_QUANTITY,PIC_LENGTH,PIC_WIDTH,PIC_ZXNUM," +
-                                   "PIC_PTCODE,PIC_KEYCOMS,PIC_TUHAO,PIC_MASHAPE,PIC_NOTE,PIC_MNAME,PIC_GUIGE,PIC_CAIZHI)  " +
+                                   "PIC_PTCODE,PIC_KEYCOMS,PIC_TUHAO,PIC_MASHAPE,PIC_NOTE,PIC_MNAME,PIC_GUIGE,PIC_CAIZHI,PIC_SHUILV)  " +
                                    "VALUES('"+mscode+"','" + sheetcode + "','"+zongxu+"','" + taskid + "','" + type + "','" + pjid + "','" + engid + "','"+engname+"'," +
                                    "'" + num + "','" + length + "','" + width + "','" + num + "', " +
-                                   "'" + ptcode + "','','" + tuhao + "','" + shape + "','" + note + "','" + mname + "','" + guige + "','" + caizhi + "')";
+                                   "'" + ptcode + "','','" + tuhao + "','" + shape + "','" + note + "','" + mname + "','" + guige + "','" + caizhi + "','16')";
                         sqltextlist.Add(sqltext2);
                         //sqltext3 = "UPDATE TBMP_TASKDQO SET MS_scwaixie='2' WHERE " +
                         //           "MS_ID='" +((System.Web.UI.WebControls.Label)Reitem.FindControl("MS_ID")).Text + "' ";//生成比价单

@@ -59,12 +59,12 @@ namespace ZCZJ_DPF.OM_Data
                     InitRepeaterView();
                     btndelete.Visible = false;
                     btninsert.Visible = false;
-                    if (Session["UserID"].ToString() == "50" && state == "0")
+                    if (Session["UserID"].ToString() == "207" && state == "0")
                     {
                         rblfirst.Enabled = true;
                         first_opinion.Enabled = true;
                     }
-                    if (Session["UserID"].ToString() == "3" && state == "2")
+                    if (Session["UserID"].ToString() == "150" && state == "2")
                     {
                         rblsecond.Enabled = true;
                         second_opinion.Enabled = true;
@@ -788,13 +788,13 @@ namespace ZCZJ_DPF.OM_Data
                             //allmoney=
                             //allmoney = Convert.ToString(Convert.ToInt32(xiaoji) + Convert.ToInt32(allmoney));
                             sqltext = "insert into TBOM_CARWXSQ (CODE,APPLYNAME,APPLYID,DATE,PLACE,PLACEDATE,GOODSNAME,GOODSCOUNT,GOODSUNIT,GOODSPRICE,MONEYONE,MONEYALL,MANAGERNAME,MANAGERID,STATE,CONTROLLERNAME,CONTROLLERID,CARNAME,CARID,REPAIR,CONTENTS,TYPEID,BYBEFORE,BYAFTER,BYZQ,BYYJ)" +
-                                "values('" + code2.ToString() + "','" + Session["UserName"].ToString() + "','" + Session["UserID"].ToString() + "','" + date2 + "','" + place2 + "','" + placedate2 + "','" + gname.Text.Trim() + "','" + gcount.Value.Trim() + "','" + gunit.Text.Trim() + "','" + gprice.Text.Trim() + "','" + xiaoji.Value.Trim() + "','" + moneyall2.Trim() + "','胡学才','50','0','蔡伟疆','3','" + carname2 + "','" + carid2 + "','" + repair2 + "','" + contents2 + "','" + leixing.Trim() + "','" + before.Trim() + "','" + after.Trim() + "','" + byzq.Trim() + "','" + byyj.Trim() + "')";
+                                "values('" + code2.ToString() + "','" + Session["UserName"].ToString() + "','" + Session["UserID"].ToString() + "','" + date2 + "','" + place2 + "','" + placedate2 + "','" + gname.Text.Trim() + "','" + gcount.Value.Trim() + "','" + gunit.Text.Trim() + "','" + gprice.Text.Trim() + "','" + xiaoji.Value.Trim() + "','" + moneyall2.Trim() + "','李永亮','207','0','刘晓静','150','" + carname2 + "','" + carid2 + "','" + repair2 + "','" + contents2 + "','" + leixing.Trim() + "','" + before.Trim() + "','" + after.Trim() + "','" + byzq.Trim() + "','" + byyj.Trim() + "')";
                             list_sql.Add(sqltext);
                         }
                     }
                 }
                 DBCallCommon.ExecuteTrans(list_sql);
-                string _emailto = DBCallCommon.GetEmailAddressByUserID("50");
+                string _emailto = DBCallCommon.GetEmailAddressByUserID("207");
                 string _body = "车辆维修/保养审批任务:"
                       + "\r\n单号：" + code2.ToString()
                       + "\r\n制单日期：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -868,7 +868,7 @@ namespace ZCZJ_DPF.OM_Data
                             TextBox gprice = (TextBox)ri.FindControl("goodsprice");
                             HtmlInputText xiaoji = (HtmlInputText)ri.FindControl("moneyone");
                             sqltext = "insert into TBOM_CARWXSQ (CODE,APPLYNAME,APPLYID,DATE,PLACE,PLACEDATE,GOODSNAME,GOODSCOUNT,GOODSUNIT,GOODSPRICE,MONEYONE,MONEYALL,MANAGERNAME,MANAGERID,STATE,CONTROLLERNAME,CONTROLLERID,CARNAME,CARID,REPAIR,CONTENTS,TYPEID,BYBEFORE,BYAFTER,BYZQ,BYYJ)" +
-                                "values('" + code2.ToString() + "','" + Session["UserName"].ToString() + "','" + Session["UserID"].ToString() + "','" + date2 + "','" + place2 + "','" + placedate2 + "','" + gname.Text.Trim() + "','" + gcount.Value.Trim() + "','" + gunit.Text.Trim() + "','" + gprice.Text.Trim() + "','" + xiaoji.Value.Trim() + "','" + moneyall2.Trim() + "','胡学才','50','0','蔡伟疆','3','" + carname2 + "','" + carid2 + "','" + repair2 + "','" + contents2 + "','" + leixing.Trim() + "','" + before.Trim() + "','" + after.Trim() + "','" + byzq.Trim() + "','" + byyj.Trim() + "')";
+                                "values('" + code2.ToString() + "','" + Session["UserName"].ToString() + "','" + Session["UserID"].ToString() + "','" + date2 + "','" + place2 + "','" + placedate2 + "','" + gname.Text.Trim() + "','" + gcount.Value.Trim() + "','" + gunit.Text.Trim() + "','" + gprice.Text.Trim() + "','" + xiaoji.Value.Trim() + "','" + moneyall2.Trim() + "','李永亮','207','0','刘晓静','150','" + carname2 + "','" + carid2 + "','" + repair2 + "','" + contents2 + "','" + leixing.Trim() + "','" + before.Trim() + "','" + after.Trim() + "','" + byzq.Trim() + "','" + byyj.Trim() + "')";
                             list_sql.Add(sqltext);
                         }
                     }
@@ -881,14 +881,14 @@ namespace ZCZJ_DPF.OM_Data
             {
 
                 #region 二级审核2
-                if (Session["UserID"].ToString() == "50" && zhaungtai.Text.ToString() == "0")
+                if (Session["UserID"].ToString() == "207" && zhaungtai.Text.ToString() == "0")
                 {
                     string YIJIAN = rblfirst.SelectedItem.Text.ToString() + ',' + first_opinion.Text.Trim();
                     sqltext = "update TBOM_CARWXSQ SET STATE='" + rblfirst.SelectedValue.Trim() + "',MANAGERVIEW='" + YIJIAN + "' WHERE CODE='" + danhao.Text.Trim() + "'";
                     list_sql.Add(sqltext);
                     if (rblfirst.SelectedValue.Trim() == "2")
                     {
-                        string _emailto = DBCallCommon.GetEmailAddressByUserID("3");
+                        string _emailto = DBCallCommon.GetEmailAddressByUserID("150");
                         string _body = "车辆维修/保养审批任务:"
                               + "\r\n单号：" + code2.ToString();
 
@@ -897,7 +897,7 @@ namespace ZCZJ_DPF.OM_Data
                     }
 
                 }
-                else if (Session["UserID"].ToString() == "3" && zhaungtai.Text.ToString() == "2")
+                else if (Session["UserID"].ToString() == "150" && zhaungtai.Text.ToString() == "2")
                 {
                     string yijian2 = rblsecond.SelectedItem.Text.ToString() + ',' + second_opinion.Text.Trim();
                     sqltext = "update TBOM_CARWXSQ SET STATE='" + rblsecond.SelectedValue.Trim() + "',CONTROLLERVIEW='" + yijian2 + "' WHERE CODE='" + danhao.Text.Trim() + "'";

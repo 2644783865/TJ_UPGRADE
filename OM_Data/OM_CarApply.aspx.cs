@@ -111,7 +111,7 @@ namespace ZCZJ_DPF.OM_Data
                     {
                         //e.Row.Cells[1].BackColor = System.Drawing.Color.LightGreen;
                     }
-                    if (state == "8" && Session["UserID"].ToString() == "50" && fache == "0")
+                    if (state == "8" && Session["UserID"].ToString() == "207" && fache == "0")
                     {
                         //CheckBox check1 = e.Row.FindControl("CheckBox1");
                         //check1.Enabled = true;
@@ -131,7 +131,7 @@ namespace ZCZJ_DPF.OM_Data
                     }
                     if (huiche == "0" && fache== "1")
                     {
-                        if (sjId == Session["UserID"].ToString() || Session["UserID"].ToString() == "50")
+                        if (sjId == Session["UserID"].ToString() || Session["UserID"].ToString() == "207")
                         {
                             ((LinkButton)e.Row.FindControl("link")).Visible = true;
                         }
@@ -141,7 +141,7 @@ namespace ZCZJ_DPF.OM_Data
                             ((LinkButton)e.Row.FindControl("link")).Visible = false;
                         }
                     }
-                    if (Session["UserID"].ToString() == "50" && state  == "8" && fache  == "0")
+                    if (Session["UserID"].ToString() == "207" && state  == "8" && fache  == "0")
                     {
                         ((LinkButton)e.Row.FindControl("quxiao")).Visible = true;
 
@@ -160,7 +160,7 @@ namespace ZCZJ_DPF.OM_Data
                         e.Row.Cells[3].BackColor = System.Drawing.Color.Yellow;
                     }
                 
-                if (Session["UserID"].ToString() == "50")
+                if (Session["UserID"].ToString() == "207")
                 {
                     ((LinkButton)e.Row.FindControl("lnkDelete")).Visible = true;
                 }

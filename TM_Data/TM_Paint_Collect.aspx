@@ -26,6 +26,8 @@
                             ItemStyle-Wrap="false" />
                         <asp:BoundField DataField="sumYL" HeaderText="用量(L)" ItemStyle-HorizontalAlign="Center"
                             ItemStyle-Wrap="false" />
+                        <asp:BoundField DataField="sumXSJ" HeaderText="稀释剂(L)" ItemStyle-HorizontalAlign="Center"
+                            ItemStyle-Wrap="false" />
                     </Columns>
                     <PagerStyle CssClass="bomcolor" ForeColor="#EEF7FD" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />

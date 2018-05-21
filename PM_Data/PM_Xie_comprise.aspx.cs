@@ -108,9 +108,9 @@ namespace ZCZJ_DPF.PM_Data
         {
             //btn_cancel.Attributes.Add("OnClick", "Javascript:return confirm('确定取消？执行此操作将停止对选中物料的询比价！');");
            //btn_cancel.Click += new EventHandler(btn_cancel_Click);
-            btn_autobj.Attributes.Add("OnClick", "Javascript:return confirm('税率是否需要修改？若税率不是17%，请修改税率！');");
+            btn_autobj.Attributes.Add("OnClick", "Javascript:return confirm('税率是否需要修改？若税率不是16%，请修改税率！');");
            //btn_BZJ.Attributes.Add("OnClick", "Javascript:return confirm('税率是否需要修改？若税率不是17%，请修改税率！');");
-            btn_confirm.Attributes.Add("OnClick", "Javascript:return confirm('税率是否需要修改？若税率不是17%，请修改税率！');");
+            btn_confirm.Attributes.Add("OnClick", "Javascript:return confirm('税率是否需要修改？若税率不是16%，请修改税率！');");
             if (!IsPostBack)
             {
                 if (Request.QueryString["sheetno"] != null)
