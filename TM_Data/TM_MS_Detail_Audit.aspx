@@ -168,7 +168,10 @@
                             field: 'ms_process', title: '工艺流程', width: 60, align: "center"
                         }, {
                             field: 'ms_ku', title: '库', width: 20, align: "center"
-                        }, {
+                        }, { 
+                            field:'ms_keycoms',title:'是否定尺',width:60,align:"center"
+                        },
+                        {
                             field: 'ms_allbeizhu', title: '备注', width: 60, align: "center"
                         }
             ]]

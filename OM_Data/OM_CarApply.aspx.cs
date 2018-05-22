@@ -272,20 +272,20 @@ namespace ZCZJ_DPF.OM_Data
             //rblstatus.SelectedValue = "0";
             if (rblstatus.SelectedValue == "0") //全部
             {
-                sqlwhere = "APPLYERID='" + Session["UserID"].ToString() + "' or SJID='" + Session["UserID"].ToString() + "' or (50='" + Session["UserID"].ToString() + "' and STATE IN ('5','1','2','8')) or 3='" + Session["UserID"].ToString() + "'";
+                sqlwhere = "APPLYERID='" + Session["UserID"].ToString() + "' or SJID='" + Session["UserID"].ToString() + "' or (207='" + Session["UserID"].ToString() + "' and STATE IN ('5','1','2','8')) or 3='" + Session["UserID"].ToString() + "'";
             }
             else if (rblstatus.SelectedValue == "1") //审核中
             {
-                sqlwhere = "(STATE in ('0','1','2') and APPLYERID='" + Session["UserID"].ToString() + "') or  (STATE in ('1','2') and 50='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and 3='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and SJID='" + Session["UserID"].ToString() + "')";
+                sqlwhere = "(STATE in ('0','1','2') and APPLYERID='" + Session["UserID"].ToString() + "') or  (STATE in ('1','2') and 207='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and 3='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and SJID='" + Session["UserID"].ToString() + "')";
 
             }
             else if (rblstatus.SelectedValue == "2") //驳回
             {
-                sqlwhere = "(STATE in ('3','5','7') and APPLYERID='" + Session["UserID"].ToString() + "') or (STATE in ('5','7') and 50='" + Session["UserID"].ToString() + "') or (STATE in ('3','5','7') and 3='" + Session["UserID"].ToString() + "')  or (STATE in ('3','5','7') and SJID='" + Session["UserID"].ToString() + "')";
+                sqlwhere = "(STATE in ('3','5','7') and APPLYERID='" + Session["UserID"].ToString() + "') or (STATE in ('5','7') and 207='" + Session["UserID"].ToString() + "') or (STATE in ('3','5','7') and 3='" + Session["UserID"].ToString() + "')  or (STATE in ('3','5','7') and SJID='" + Session["UserID"].ToString() + "')";
             }
             else if (rblstatus.SelectedValue == "3")
             {
-                sqlwhere = " (STATE='8' and APPLYERID='" + Session["UserID"].ToString() + "') or (STATE='8' and 50='" + Session["UserID"].ToString() + "') or (STATE='8' and 3='" + Session["UserID"].ToString() + "'or (STATE='8' and SJID='" + Session["UserID"].ToString() + "'))";
+                sqlwhere = " (STATE='8' and APPLYERID='" + Session["UserID"].ToString() + "') or (STATE='8' and 207='" + Session["UserID"].ToString() + "') or (STATE='8' and 3='" + Session["UserID"].ToString() + "'or (STATE='8' and SJID='" + Session["UserID"].ToString() + "'))";
             }
             return sqlwhere;
         }
@@ -319,7 +319,7 @@ namespace ZCZJ_DPF.OM_Data
         /// </summary>
         private void RBLBind()
         {
-            sqlText = "select count(*) from View_TBOM_CARAPLLRVW WHERE APPLYERID='" + Session["UserID"].ToString() + "' or ( 50='" + Session["UserID"].ToString() + "' and STATE IN ('5','1','2','8')) or  3='" + Session["UserID"].ToString() + "' or  SJID='" + Session["UserID"].ToString() + "' ";
+            sqlText = "select count(*) from View_TBOM_CARAPLLRVW WHERE APPLYERID='" + Session["UserID"].ToString() + "' or ( 207='" + Session["UserID"].ToString() + "' and STATE IN ('5','1','2','8')) or  3='" + Session["UserID"].ToString() + "' or  SJID='" + Session["UserID"].ToString() + "' ";
             SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sqlText);
             if (dr.Read())
             {
@@ -327,7 +327,7 @@ namespace ZCZJ_DPF.OM_Data
                 rblstatus.SelectedIndex = 0;
             }
             dr.Close();
-            sqlText = "select count(*) from View_TBOM_CARAPLLRVW where (STATE in ('0','1','2') and APPLYERID='" + Session["UserID"].ToString() + "') or  (STATE in ('1','2') and 50='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and 3='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and SJID='" + Session["UserID"].ToString() + "')";
+            sqlText = "select count(*) from View_TBOM_CARAPLLRVW where (STATE in ('0','1','2') and APPLYERID='" + Session["UserID"].ToString() + "') or  (STATE in ('1','2') and 207='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and 3='" + Session["UserID"].ToString() + "') or (STATE in ('0','1','2') and SJID='" + Session["UserID"].ToString() + "')";
             dr = DBCallCommon.GetDRUsingSqlText(sqlText);
             if (dr.Read())
             {
@@ -338,7 +338,7 @@ namespace ZCZJ_DPF.OM_Data
                 }
             }
             dr.Close();
-            sqlText = "select count(*) from View_TBOM_CARAPLLRVW where (STATE in ('3','5','7') and APPLYERID='" + Session["UserID"].ToString() + "') or (STATE in ('5','7') and 50='" + Session["UserID"].ToString() + "') or (STATE in ('3','5','7') and 3='" + Session["UserID"].ToString() + "') or (STATE in ('3','5','7') and SJID='" + Session["UserID"].ToString() + "')";
+            sqlText = "select count(*) from View_TBOM_CARAPLLRVW where (STATE in ('3','5','7') and APPLYERID='" + Session["UserID"].ToString() + "') or (STATE in ('5','7') and 207='" + Session["UserID"].ToString() + "') or (STATE in ('3','5','7') and 3='" + Session["UserID"].ToString() + "') or (STATE in ('3','5','7') and SJID='" + Session["UserID"].ToString() + "')";
             dr = DBCallCommon.GetDRUsingSqlText(sqlText);
             if (dr.Read())
             {

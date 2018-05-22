@@ -187,7 +187,7 @@ namespace ZCZJ_DPF.PM_Data
 
                 decimal hszje = Math.Round((hsje * number * dz), 2);
                 dic.Add("JS_HSJE", hszje.ToString());//含税金额
-                dic.Add("JS_SHUIL", "11");//税率
+                dic.Add("JS_SHUIL", "10");//税率2018.5.22修改为10
                 dic.Add("JS_FATHERID", dts.Rows[i]["ICL_SHEETNO"].ToString());
 
                 string keys = "";

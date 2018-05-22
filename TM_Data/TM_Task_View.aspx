@@ -1274,6 +1274,8 @@
                                     HeaderStyle-Wrap="false">
                                     <ItemStyle HorizontalAlign="Center" BackColor="Yellow" Wrap="false" />
                                 </asp:BoundField>
+                                 <asp:BoundField HeaderText="ÊÇ·ñ¶¨³ß" HeaderStyle-Wrap="false" DataField="BM_FIXEDSIZE"
+                                    ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="BM_ALLBEIZHU" HeaderText="±¸×¢" HeaderStyle-Wrap="false">
                                     <ItemStyle HorizontalAlign="Center" Wrap="false" />
                                 </asp:BoundField>
