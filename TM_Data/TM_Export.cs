@@ -1200,27 +1200,33 @@ namespace ZCZJ_DPF.TM_Data
                 }
 
                 IRow row1 = sheet.GetRow(1);
-                row1.GetCell(18).SetCellValue(dt.Rows[0]["PS_ID"].ToString());
+                //18变为19
+                row1.GetCell(19).SetCellValue(dt.Rows[0]["PS_ID"].ToString());
 
                 IRow row3 = sheet.GetRow(3);
-                row3.GetCell(16).SetCellValue(dt.Rows[0]["PS_SUBMITNM"].ToString());
+                //16变为17
+                row3.GetCell(17).SetCellValue(dt.Rows[0]["PS_SUBMITNM"].ToString());
 
                 IRow row4 = sheet.GetRow(4);
-                row4.GetCell(16).SetCellValue(dt.Rows[0]["PS_REVIEWANM"].ToString());
+               //16变为17
+                row4.GetCell(17).SetCellValue(dt.Rows[0]["PS_REVIEWANM"].ToString());
 
                 IRow row5 = sheet.GetRow(5);
-                row5.GetCell(16).SetCellValue(dt.Rows[0]["PS_REVIEWBNM"].ToString());
+                //16变为17
+                row5.GetCell(17).SetCellValue(dt.Rows[0]["PS_REVIEWBNM"].ToString());
 
                 IRow row6 = sheet.GetRow(6);
-                row6.GetCell(2).SetCellValue(dt.Rows[0]["CM_PROJ"].ToString());
-                row6.GetCell(7).SetCellValue(dt.Rows[0]["PS_PJID"].ToString());
-                row6.GetCell(12).SetCellValue(dt.Rows[0]["TSA_ENGNAME"].ToString());
-                row6.GetCell(16).SetCellValue(dt.Rows[0]["PS_PAINTBRAND"].ToString());
+                //2变为3，7变为8，,1变为13，16变为17
+                row6.GetCell(3).SetCellValue(dt.Rows[0]["CM_PROJ"].ToString());
+                row6.GetCell(8).SetCellValue(dt.Rows[0]["PS_PJID"].ToString());
+                row6.GetCell(13).SetCellValue(dt.Rows[0]["TSA_ENGNAME"].ToString());
+                row6.GetCell(17).SetCellValue(dt.Rows[0]["PS_PAINTBRAND"].ToString());
 
-                sqlText = "select PS_ENGID,PS_TUHAO,PS_LEVEL,PS_MIANJI,PS_BOTSHAPE,PS_BOTHOUDU,PS_BOTYONGLIANG,PS_BOTXISHIJI,PS_MIDSHAPE,PS_MIDHOUDU,PS_MIDYONGLIANG,PS_MIDXISHIJI,PS_TOPSHAPE,PS_TOPHOUDU,PS_TOPYONGLIANG,PS_TOPXISHIJI,PS_TOPCOLOR,PS_TOPCOLORLABEL,PS_TOTALHOUDU,PS_BEIZHU from View_TM_PAINTSCHEMEDETAIL where PS_PID='" + ps_lotnum + "'";
+                sqlText = "select PS_ENGID,PS_NAME,PS_TUHAO,PS_LEVEL,PS_MIANJI,PS_BOTSHAPE,PS_BOTHOUDU,PS_BOTYONGLIANG,PS_BOTXISHIJI,PS_MIDSHAPE,PS_MIDHOUDU,PS_MIDYONGLIANG,PS_MIDXISHIJI,PS_TOPSHAPE,PS_TOPHOUDU,PS_TOPYONGLIANG,PS_TOPXISHIJI,PS_TOPCOLOR,PS_TOPCOLORLABEL,PS_TOTALHOUDU,PS_BEIZHU from View_TM_PAINTSCHEMEDETAIL where PS_PID='" + ps_lotnum + "'";
                 dt = DBCallCommon.GetDTUsingSqlText(sqlText);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                
                     IRow row = sheet.CreateRow(i + 9);
                     for (int j = 0; j < dt.Columns.Count; j++)
                     {

@@ -164,7 +164,7 @@ namespace ZCZJ_DPF.PM_Data
             {
                 if (dt.Rows[j]["JS_SHUIL"].ToString().Trim() == "")
                 {
-                    dt.Rows[j]["JS_SHUIL"] = "11";
+                    dt.Rows[j]["JS_SHUIL"] = "10";
                 }
             }
             List<string> col = new List<string>();
@@ -191,7 +191,7 @@ namespace ZCZJ_DPF.PM_Data
                 newRow[3] = ((TextBox)retItem.FindControl("JS_BJSL")).Text;
                 if (((TextBox)retItem.FindControl("JS_SHUIL")).Text.Trim() == "")
                 {
-                    ((TextBox)retItem.FindControl("JS_SHUIL")).Text = "11";
+                    ((TextBox)retItem.FindControl("JS_SHUIL")).Text = "10";
                 }
                 newRow[4] = ((TextBox)retItem.FindControl("JS_SHUIL")).Text;
                 newRow[5] = ((TextBox)retItem.FindControl("JS_HSJE")).Text;
@@ -235,7 +235,7 @@ namespace ZCZJ_DPF.PM_Data
                     newRow[3] = ((TextBox)retItem.FindControl("JS_BJSL")).Text;
                     if (((TextBox)retItem.FindControl("JS_SHUIL")).Text.Trim() == "")
                     {
-                        ((TextBox)retItem.FindControl("JS_SHUIL")).Text = "11";
+                        ((TextBox)retItem.FindControl("JS_SHUIL")).Text = "10";
                     }
                     newRow[4] = ((TextBox)retItem.FindControl("JS_SHUIL")).Text;
                     newRow[5] = ((TextBox)retItem.FindControl("JS_HSJE")).Text;
