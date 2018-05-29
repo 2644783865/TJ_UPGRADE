@@ -197,7 +197,7 @@ namespace ZCZJ_DPF.PM_Data
                 foreach (KeyValuePair<string, object> pair in dic)
                 {
                     keys += pair.Key + ",";
-                    if (pair.Value.ToString() == dts.Rows[i]["BM_TUUNITWGHT"].ToString() || pair.Value.ToString() == dts.Rows[i]["PM_FYNUM"].ToString() || pair.Value.ToString() == hszje.ToString() || pair.Value.ToString() == "11")
+                    if (pair.Value.ToString() == dts.Rows[i]["BM_TUUNITWGHT"].ToString() || pair.Value.ToString() == dts.Rows[i]["PM_FYNUM"].ToString() || pair.Value.ToString() == hszje.ToString() || pair.Value.ToString() == "10")
                     {
                         // values += pair.Value + ",";
                         values += "'" + pair.Value + "',";
@@ -391,7 +391,7 @@ namespace ZCZJ_DPF.PM_Data
                 }
                 decimal hszje = Math.Round((hsje * number * dz), 2);
                 dic.Add("JS_HSJE", hszje.ToString());//含税金额
-                dic.Add("JS_SHUIL", "11");//税率
+                dic.Add("JS_SHUIL", "10");//税率
                 dic.Add("JS_FATHERID", dts.Rows[i]["ICL_SHEETNO"].ToString());
 
                 string keys = "";
@@ -401,7 +401,7 @@ namespace ZCZJ_DPF.PM_Data
                 foreach (KeyValuePair<string, object> pair in dic)
                 {
                     keys += pair.Key + ",";
-                    if (pair.Value.ToString() == dts.Rows[i]["BM_TUUNITWGHT"].ToString() || pair.Value.ToString() == dts.Rows[i]["PM_FYNUM"].ToString() || pair.Value.ToString() == hszje.ToString() || pair.Value.ToString() == "11")
+                    if (pair.Value.ToString() == dts.Rows[i]["BM_TUUNITWGHT"].ToString() || pair.Value.ToString() == dts.Rows[i]["PM_FYNUM"].ToString() || pair.Value.ToString() == hszje.ToString() || pair.Value.ToString() == "10")
                     {
                         //  values += pair.Value + ",";
                         values += "'" + pair.Value + "',";
