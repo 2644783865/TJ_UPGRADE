@@ -1474,12 +1474,15 @@ namespace ZCZJ_DPF.TM_Data
                         ku = gRow.Cells[23].Text.Trim() == "&nbsp;" ? "" : gRow.Cells[23].Text.Trim();
                         //  string bz = gRow.Cells[22].Text.Trim();
                         string bz = ((Label)gRow.FindControl("lblAllbeizhu")).Text.Trim();
-
-                        if (bz == "&nbsp;" || (maopi == "板" && fixedsize == "N"))
+                        //2018.3.6改，去掉后面的判断
+                       // if (bz == "&nbsp;" || (maopi == "板" && fixedsize == "N"))
+                        //{
+                        //    bz = "";
+                       // }
+                        if (bz == "&nbsp;")
                         {
                             bz = "";
                         }
-
                         labunit = gRow.Cells[9].Text.Trim();
                         cailiaozongzhong = float.Parse(gRow.Cells[12].Text.Trim());
 
