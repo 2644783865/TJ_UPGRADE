@@ -732,7 +732,8 @@ namespace ZCZJ_DPF.TM_Data
                     {
                         row.CreateCell(j).SetCellValue(dt.Rows[i][j].ToString());
                     }
-                    string[] pross = new string[10];
+                    //10改为11
+                    string[] pross = new string[11];
                     for (int j = 0; j < dt.Rows[i][16].ToString().Split('-').Length; j++)
                     {
                         pross[j] = dt.Rows[i][16].ToString().Split('-')[j];
