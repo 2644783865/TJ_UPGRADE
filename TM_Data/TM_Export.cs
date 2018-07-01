@@ -12,6 +12,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using System.Deployment;
 
 namespace ZCZJ_DPF.TM_Data
 {
@@ -22,69 +23,70 @@ namespace ZCZJ_DPF.TM_Data
         /// </summary>
         /// <param name="prdno"></param>
         /// <param name="viewtabel"></param>
-        //public static void ExportOrgData(string prdno, string viewtable, string orderColum, string strwhere)
-        //{
-        //    Object Opt = System.Type.Missing;
-        //    Application m_xlApp = new Application();
-        //    Workbooks workbooks = m_xlApp.Workbooks;
-        //    Workbook workbook;// = workbooks.Add(XlWBATemplate.xlWBATWorksheet);
-        //    Worksheet wksheet;
-        //    workbook = m_xlApp.Workbooks.Open(System.Web.HttpContext.Current.Server.MapPath("副本原始数据表") + ".xls", Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt); ;
-        //    //Microsoft.Office.Interop.Excel.Style st=workbook.Styles.Add("PropertyBorder", Type.Missing);
+        /// 进行反注释
+        public static void ExportOrgData(string prdno, string viewtable, string orderColum, string strwhere)
+        {
+            Object Opt = System.Type.Missing;
+            Microsoft.Office.Interop.Excel.Application m_xlApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbooks workbooks = m_xlApp.Workbooks;
+            Microsoft.Office.Interop.Excel.Workbook workbook;// = workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            Microsoft.Office.Interop.Excel.Worksheet wksheet;
+            workbook = m_xlApp.Workbooks.Open(System.Web.HttpContext.Current.Server.MapPath("副本原始数据表") + ".xls", Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt, Opt); ;
+            //Microsoft.Office.Interop.Excel.Style st=workbook.Styles.Add("PropertyBorder", Type.Missing);
 
-        //    m_xlApp.Visible = false;     // Excel不显示  
-        //    m_xlApp.DisplayAlerts = false;        // 关闭提示，采用默认的方案执行（合并单元格的时候，如果两个单元格都有数据，会出现一个确认提示）  
+            m_xlApp.Visible = false;     // Excel不显示  
+            m_xlApp.DisplayAlerts = false;        // 关闭提示，采用默认的方案执行（合并单元格的时候，如果两个单元格都有数据，会出现一个确认提示）  
 
-        //    wksheet = (Worksheet)workbook.Sheets.get_Item(1);
-        //    System.Data.DataTable dt = AfterTrimData(prdno, viewtable, orderColum, strwhere);
-        //    string name = "";
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        name = prdno;
-        //    }
-        //    int length = name.Length;
-        //    if (length > 31)
-        //    {
-        //        length = 31;
-        //    }
-        //    wksheet.Name = name.Replace(':', '-').Replace('/', '-').Replace('?', '-').Replace('？', '-').Replace('*', '-').Replace('[', '-').Replace(']', '-').Substring(0, length);//工作表名称 //替换 ： / ? * [ 或 ]，最长31
+            wksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets.get_Item(1);
+            System.Data.DataTable dt = AfterTrimData(prdno, viewtable, orderColum, strwhere);
+            string name = "";
+            if (dt.Rows.Count > 0)
+            {
+                name = prdno;
+            }
+            int length = name.Length;
+            if (length > 31)
+            {
+                length = 31;
+            }
+            wksheet.Name = name.Replace(':', '-').Replace('/', '-').Replace('?', '-').Replace('？', '-').Replace('*', '-').Replace('[', '-').Replace(']', '-').Substring(0, length);//工作表名称 //替换 ： / ? * [ 或 ]，最长31
+
+            // string sqltext_bt = "select TSA_ENGNAME+'('+TSA_ID+')' AS TSA_ENGNAME,TSA_PJNAME+'('+TSA_PJID+')' AS TSA_PJNAME from View_TM_TaskAssign where TSA_ID='" + prdno + "'";
+            string sqltext_bt = "select TSA_ENGNAME+'('+TSA_ID+')' AS TSA_ENGNAME,TSA_PJID AS TSA_PJNAME from View_TM_TaskAssign where TSA_ID='" + prdno + "'";
+            System.Data.DataTable dt_bt = DBCallCommon.GetDTUsingSqlText(sqltext_bt);
+
+            //////// 填充数据
+            ////////项目
+            wksheet.Cells[3, 3] = dt_bt.Rows[0]["TSA_PJNAME"].ToString();
+            ////////工程
+            wksheet.Cells[3, 23] = dt_bt.Rows[0]["TSA_ENGNAME"].ToString();
 
 
-        //    string sqltext_bt = "select TSA_ENGNAME+'('+TSA_ID+')' AS TSA_ENGNAME,TSA_PJNAME+'('+TSA_PJID+')' AS TSA_PJNAME from View_TM_TaskAssign where TSA_ID='" + prdno + "'";
-        //    System.Data.DataTable dt_bt = DBCallCommon.GetDTUsingSqlText(sqltext_bt);
+            //详细数据
+            int rowCount = dt.Rows.Count;
 
-        //    //////// 填充数据
-        //    ////////项目
-        //    wksheet.Cells[3, 3] = dt_bt.Rows[0]["TSA_PJNAME"].ToString();
-        //    ////////工程
-        //    wksheet.Cells[3, 23] = dt_bt.Rows[0]["TSA_ENGNAME"].ToString();
+            int colCount = dt.Columns.Count;
 
+            object[,] dataArray = new object[rowCount, colCount];
 
-        //    //详细数据
-        //    int rowCount = dt.Rows.Count;
+            for (int i = 0; i < rowCount; i++)
+            {
 
-        //    int colCount = dt.Columns.Count;
+                for (int j = 0; j < colCount; j++)
+                {
 
-        //    object[,] dataArray = new object[rowCount, colCount];
+                    dataArray[i, j] = dt.Rows[i][j];
+                }
+            }
 
-        //    for (int i = 0; i < rowCount; i++)
-        //    {
+            wksheet.get_Range("A6", wksheet.Cells[rowCount + 5, colCount]).Value2 = dataArray;
+            wksheet.get_Range("A6", wksheet.Cells[rowCount + 5, colCount]).Borders.LineStyle = 1;
 
-        //        for (int j = 0; j < colCount; j++)
-        //        {
-
-        //            dataArray[i, j] = dt.Rows[i][j];
-        //        }
-        //    }
-
-        //    wksheet.get_Range("A6", wksheet.Cells[rowCount + 5, colCount]).Value2 = dataArray;
-        //    wksheet.get_Range("A6", wksheet.Cells[rowCount + 5, colCount]).Borders.LineStyle = 1;
-
-        //    //设置列宽
-        //    ///////wksheet.Columns.EntireColumn.AutoFit();//列宽自适应
-        //    string filename = System.Web.HttpContext.Current.Server.MapPath("原始数据" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls");
-        //    ExportExcel_Exit(filename, workbook, m_xlApp, wksheet);
-        //}
+            //设置列宽
+            ///////wksheet.Columns.EntireColumn.AutoFit();//列宽自适应
+            string filename = System.Web.HttpContext.Current.Server.MapPath("原始数据" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls");
+            ExportExcel_Exit(filename, workbook, m_xlApp, wksheet);
+        }
         /// <summary>
         /// 导出制作明细表
         /// </summary>
@@ -530,33 +532,36 @@ namespace ZCZJ_DPF.TM_Data
         //    string filename = System.Web.HttpContext.Current.Server.MapPath("外协计划表" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xls");
         //    ExportExcel_Exit(filename, workbook, m_xlApp, wksheet);
         //}
-        //private static void ExportExcel_Exit(string filename, Workbook workbook, Application m_xlApp, Worksheet wksheet) //输出Excel文件并退出
-        //{
-        //    try
-        //    {
-        //        workbook.SaveAs(filename, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-        //        workbook.Close(Type.Missing, Type.Missing, Type.Missing);
-        //        m_xlApp.Workbooks.Close();
-        //        m_xlApp.Quit();
-        //        m_xlApp.Application.Quit();
-        //        System.Runtime.InteropServices.Marshal.ReleaseComObject(wksheet);
-        //        System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
-        //        System.Runtime.InteropServices.Marshal.ReleaseComObject(m_xlApp);
-        //        wksheet = null;
-        //        workbook = null;
-        //        m_xlApp = null;
-        //        GC.Collect();
-        //        //下载
-        //        System.IO.FileInfo path = new System.IO.FileInfo(filename);
-        //        //同步，异步都支持
-        //        HttpResponse contextResponse = HttpContext.Current.Response;
-        //        contextResponse.Redirect(string.Format("~/TM_Data/ExportFile/{0}", path.Name), false);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-        //    }
-        //}
+        //进行反注释
+        private static void ExportExcel_Exit(string filename, Microsoft.Office.Interop.Excel.Workbook workbook, Microsoft.Office.Interop.Excel.Application m_xlApp, Microsoft.Office.Interop.Excel.Worksheet wksheet) //输出Excel文件并退出
+        {
+            try
+            {
+                workbook.SaveAs(filename, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                workbook.Close(Type.Missing, Type.Missing, Type.Missing);
+                m_xlApp.Workbooks.Close();
+                m_xlApp.Quit();
+                m_xlApp.Application.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wksheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(m_xlApp);
+                wksheet = null;
+                workbook = null;
+                m_xlApp = null;
+                GC.Collect();
+                //下载
+                System.IO.FileInfo path = new System.IO.FileInfo(filename);
+                //同步，异步都支持
+                HttpResponse contextResponse = HttpContext.Current.Response;
+                //contextResponse.Redirect(string.Format("~/TM_Data/ExportFile/{0}", path.Name), false);
+                contextResponse.Redirect(string.Format("~/TM_Data/{0}", path.Name), false);
+                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         /// <summary>
         /// 关闭Excel进程
         /// </summary>

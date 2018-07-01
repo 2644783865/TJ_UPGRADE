@@ -879,7 +879,7 @@ namespace ZCZJ_DPF.TM_Data
 
             string type = "0";
 
-            // ExportTMDataFromDB.ExportOrgData(tsaid.Text, viewtable, type, ViewState["Org"].ToString());
+            ExportTMDataFromDB.ExportOrgData(tsaid.Text, viewtable, type, ViewState["Org"].ToString());
         }
         /// <summary>
         /// 原始数据删除(未提交)--删除最顶级部件时还存在问题
