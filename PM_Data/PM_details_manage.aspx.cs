@@ -163,7 +163,8 @@ namespace ZCZJ_DPF.PM_Data
         //}
         private void Datafengong()
         {
-            sqltext = "select ST_NAME,ST_ID from TBDS_STAFFINFO WHERE ST_POSITION='0314'and ST_PD='0'";
+           // sqltext = "select ST_NAME,ST_ID from TBDS_STAFFINFO WHERE ST_POSITION='0314'and ST_PD='0'";
+            sqltext = "select ST_NAME,ST_ID from TBDS_STAFFINFO WHERE ST_NAEM='艾广修'or ST_NAEM='崔涛'or ST_NAEM='吴红霞'and ST_PD='0'";
             string DataText = "ST_NAME";
             string DataValue = "ST_NAME";
             DBCallCommon.BindDdl(ddl_fengfong, sqltext, DataText, DataValue);
