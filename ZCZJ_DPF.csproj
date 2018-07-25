@@ -7846,6 +7846,13 @@
     <Compile Include="YS_Data\YS_Cost_A_M_CON.aspx.designer.cs">
       <DependentUpon>YS_Cost_A_M_CON.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YS_Data\ys_task_budget_change.aspx.cs">
+      <DependentUpon>ys_task_budget_change.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YS_Data\ys_task_budget_change.aspx.designer.cs">
+      <DependentUpon>ys_task_budget_change.aspx</DependentUpon>
+    </Compile>
     <Compile Include="YS_Data\ys_task_budget_detail.aspx.cs">
       <DependentUpon>ys_task_budget_detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -12839,6 +12846,7 @@
     <Content Include="YS_Data\Sienna.jpg" />
     <Content Include="YS_Data\ys_contract_budget_list.aspx" />
     <Content Include="YS_Data\YS_Cost_A_M_CON.aspx" />
+    <Content Include="YS_Data\ys_task_budget_change.aspx" />
     <Content Include="YS_Data\ys_task_budget_detail.aspx" />
     <Content Include="YS_Data\ys_task_budget_list.aspx" />
     <Content Include="YS_Data\update.jpg" />

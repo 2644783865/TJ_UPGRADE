@@ -1886,7 +1886,8 @@ namespace ZCZJ_DPF.Basic_Data
         {
             if (txtCS_CODE.Text == "")
             {
-                if (action == "Review")
+               // if (action == "Review")
+                if (action == "View")
                 {
                     string sql_id = string.Format("SELECT TOP 1 CS_CODE FROM TBCS_CUSUP_ReView WHERE fatherid={0}", id);
                     DataTable id_dt = DBCallCommon.GetDTUsingSqlText(sql_id);
