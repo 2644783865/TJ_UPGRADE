@@ -559,7 +559,8 @@ namespace ZCZJ_DPF.QC_Data
                     //插入不合格品通知单评审表
 
                     //查找质量部负责人
-                    string sql_zlfzr = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_ID='69'  and ST_PD='0'";
+                    //string sql_zlfzr = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_ID='69'  and ST_PD='0'";
+                    string sql_zlfzr = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_POSITION='1205' and ST_PD='0'";
                     DataTable dt_zlfzr = DBCallCommon.GetDTUsingSqlText(sql_zlfzr);
                     string sql2 = "insert into TBQC_RejectPro_Rev (Rev_id,SPR_ZL_NAME,SPR_ZL_ID,SPR_ZL_NOTE,SPR_ZL_RESULT,SPR_ZL_TIME, PSR_ID, PSR_NOTE, PSR_RESULT, PSR_TIME, SPR_ID, SPR_NOTE, SPR_RESULT, SPR_TIME, YZ_NOTE, YZ_TIME, ZGLD_ID, ZGLD_NOTE, ZGLD_RESULT, ZGLD_TIME) Values('" + orderid + "','" + dt_zlfzr.Rows[0]["ST_NAME"].ToString() + "','" + cbl_zlb.SelectedValue + "','','','','" + cbl_psr.SelectedValue + "','','','','" + cbl_spr.SelectedValue + "','','','','','','" + cbl_zgjl.SelectedValue + "','','','')";
                     sqlstr.Add(sql2);
