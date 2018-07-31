@@ -559,6 +559,7 @@ namespace ZCZJ_DPF.QC_Data
                     //插入不合格品通知单评审表
 
                     //查找质量部负责人
+                    //不合格评审单的质量部负责人由员工id69的陈永秀改为职务id为1205的周庆泉
                     //string sql_zlfzr = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_ID='69'  and ST_PD='0'";
                     string sql_zlfzr = "select ST_ID,ST_NAME from TBDS_STAFFINFO where ST_POSITION='1205' and ST_PD='0'";
                     DataTable dt_zlfzr = DBCallCommon.GetDTUsingSqlText(sql_zlfzr);
