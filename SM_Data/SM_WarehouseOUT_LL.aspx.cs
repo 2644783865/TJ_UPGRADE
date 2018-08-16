@@ -1664,14 +1664,16 @@ namespace ZCZJ_DPF.SM_Data
                     WG_UPRICE = dt02.Rows[0]["WG_UPRICE"].ToString();
                     WG_AMOUNT = dt02.Rows[0]["WG_AMOUNT"].ToString();
                 }
-
+                //2018.8.16修改出库金额
+                double WG_AMOUNT1 = RN * Convert.ToDouble(WG_UPRICE);
+                WG_AMOUNT1 = Math.Round(WG_AMOUNT1, 2, MidpointRounding.AwayFromZero);
                 sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
                     "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
                     "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
                     "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
                     MaterialCode + "','" +
                     Fixed + "','" + DueLength + "','" + Length + "','" +
-                    Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT + "','" +
+                    Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT1 + "','" +
                     WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
                     PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "')";
                 sqllist.Add(sql);
