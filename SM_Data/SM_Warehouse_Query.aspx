@@ -170,6 +170,7 @@ function viewCondition(){
                             <asp:Button ID="btn_qtout" runat="server" Text="其他出库" OnCommand="btn_out_Command"
                                 CommandArgument="6" />&nbsp;
                             <input id="Close" type="button" value="关闭" onclick="closewin()" runat="server" />&nbsp;
+                            <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息" OnClick="btn_QRExport_Click" />
                         </td>
                     </tr>
                 </table>

@@ -120,6 +120,11 @@ function order() {
         var time=date.getTime();
         window.open("SM_WarehouseIN_WGPush.aspx?FLAG=PUSH&id="+time);
     }
+function ToQRMat() {
+    var date=new Date();
+        var time=date.getTime();
+        window.open("../QR_Interface/QRIn_List.aspx?FLAG=PUSH&id="+time);
+    }
 
 function inexport() {
      var date=new Date();
@@ -179,6 +184,7 @@ function viewCondition(){
                                 visible="false" />
                             <asp:Button ID="BtnShowExport" runat="server" Text="导出" OnClick="BtnShowExport_Click" />&nbsp;&nbsp;&nbsp;
                             <input id="toorder" type="button" value="到订单" onclick="order()" runat="server" />&nbsp;&nbsp;&nbsp;
+                            <input id="Button1" type="button" value="到扫码入库物料" onclick="ToQRMat()" runat="server" />&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
                 </table>

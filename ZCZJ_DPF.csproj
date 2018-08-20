@@ -5868,6 +5868,76 @@
     <Compile Include="QC_Data\QC_ZJXGSH_TOTAL.aspx.designer.cs">
       <DependentUpon>QC_ZJXGSH_TOTAL.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QR_Interface\PTCAssignedAjaxHandler.aspx.cs">
+      <DependentUpon>PTCAssignedAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\PTCAssignedAjaxHandler.aspx.designer.cs">
+      <DependentUpon>PTCAssignedAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetInMatDataAjaxHandler.aspx.cs">
+      <DependentUpon>QRGetInMatDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetInMatDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QRGetInMatDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetOutMatDataAjaxHandler.aspx.cs">
+      <DependentUpon>QRGetOutMatDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetOutMatDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QRGetOutMatDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetStorageAjaxHandler.aspx.cs">
+      <DependentUpon>QRGetStorageAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetStorageAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QRGetStorageAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetStorageListAjaxHandler.aspx.cs">
+      <DependentUpon>QRGetStorageListAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRGetStorageListAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QRGetStorageListAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRInAjaxHandler.aspx.cs">
+      <DependentUpon>QRInAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRInAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QRInAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRIn_List.aspx.cs">
+      <DependentUpon>QRIn_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRIn_List.aspx.designer.cs">
+      <DependentUpon>QRIn_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QROutAjaxHandler.aspx.cs">
+      <DependentUpon>QROutAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QROutAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QROutAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QROut_List.aspx.cs">
+      <DependentUpon>QROut_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QROut_List.aspx.designer.cs">
+      <DependentUpon>QROut_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QRTaskIDAutoCompleteAjaxHandler.aspx.cs">
+      <DependentUpon>QRTaskIDAutoCompleteAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRTaskIDAutoCompleteAjaxHandler.aspx.designer.cs">
+      <DependentUpon>QRTaskIDAutoCompleteAjaxHandler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -11307,6 +11377,8 @@
     <None Include="PC_Data\新增采购申请导出模板.xls" />
     <None Include="PC_Data\材料需用计划模版.xls" />
     <None Include="PC_Data\材料需用计划模版1.xls" />
+    <None Include="PC_Data\订单二维码信息合并导出模板.xls" />
+    <None Include="PC_Data\订单二维码信息导出模板.xls" />
     <None Include="PC_Data\订单批量导出模板.xls" />
     <None Include="PC_Data\采购代用单明细表.xls" />
     <None Include="PC_Data\采购占用单明细.xls" />
@@ -11527,11 +11599,14 @@
     <None Include="SM_Data\jmodel\images\Thumbs.db" />
     <None Include="SM_Data\SM_Trans_Management\国内设备发运台账模板.xls" />
     <None Include="SM_Data\SM_Trans_Management\客户自提设备发运台账模板.xls" />
+    <None Include="SM_Data\入库单二维码信息合并导出模板.xls" />
+    <None Include="SM_Data\入库单二维码信息导出模板.xls" />
     <None Include="SM_Data\即时库存明细表模版.xls" />
     <None Include="SM_Data\即时库存明细表模版汇总1.xls" />
     <None Include="SM_Data\即时库存明细表模版汇总2.xls" />
     <None Include="SM_Data\备库导出.xls" />
     <None Include="SM_Data\导入盘点模板.xls" />
+    <None Include="SM_Data\库存二维码信息导出模板.xls" />
     <None Include="SM_Data\库存盘点基本模版明细.xls" />
     <None Include="SM_Data\库存盘点基本模版汇总1.xls" />
     <None Include="SM_Data\库存盘点基本模版汇总2.xls" />
@@ -11763,6 +11838,41 @@
     <Content Include="QC_Data\QC_Task_Persons.aspx" />
     <Content Include="QC_Data\QC_ZJXGSH.aspx" />
     <Content Include="QC_Data\QC_ZJXGSH_TOTAL.aspx" />
+    <Content Include="QR_Interface\PTCAssignedAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRCode\img\gray.png" />
+    <Content Include="QR_Interface\QRCode\js\jquery-1.8.3.min.js" />
+    <Content Include="QR_Interface\QRCode\js\jquery.qrcode.js" />
+    <Content Include="QR_Interface\QRCode\js\qrcode.js" />
+    <Content Include="QR_Interface\QRCode\js\utf.js" />
+    <Content Include="QR_Interface\QRCode\QRGeneratePage.htm" />
+    <Content Include="QR_Interface\QRGetInMatDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRGetOutMatDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRGetStorageAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRGetStorageListAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRInAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRIn_List.aspx" />
+    <Content Include="QR_Interface\QROutAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QROut_List.aspx" />
+    <Content Include="QR_Interface\QRTaskIDAutoCompleteAjaxHandler.aspx" />
+    <Content Include="QR_Interface\SM_JS\AllKeyControl.js" />
+    <Content Include="QR_Interface\SM_JS\AllKeyControl1.js" />
+    <Content Include="QR_Interface\SM_JS\KeyControl.js" />
+    <Content Include="QR_Interface\SM_JS\QTSQL.js" />
+    <Content Include="QR_Interface\SM_JS\SelectCondition.js" />
+    <Content Include="QR_Interface\SM_JS\superTables.js" />
+    <Content Include="QR_Interface\SM_JS\TEMPSQL.js" />
+    <Content Include="QR_Interface\StyleFile\bj_05.gif" />
+    <Content Include="QR_Interface\StyleFile\btn_bg.gif" />
+    <Content Include="QR_Interface\StyleFile\bu3.jpg" />
+    <Content Include="QR_Interface\StyleFile\bu4.jpg" />
+    <Content Include="QR_Interface\StyleFile\FixedTables.css" />
+    <Content Include="QR_Interface\StyleFile\relateddoc.css" />
+    <Content Include="QR_Interface\StyleFile\SchemaStyle.css" />
+    <Content Include="QR_Interface\StyleFile\Style.css" />
+    <Content Include="QR_Interface\StyleFile\superTables.css" />
+    <Content Include="QR_Interface\StyleFile\superTables_compressed.css" />
+    <Content Include="QR_Interface\StyleFile\superTables_compressed.js" />
+    <Content Include="QR_Interface\StyleFile\superTables_Default.css" />
     <Content Include="SM_Data\javascripts\superTables.css" />
     <Content Include="SM_Data\jmodel\css\jquery.jmodal.css" />
     <Content Include="SM_Data\jmodel\images\jmodal\dialog_border.png" />

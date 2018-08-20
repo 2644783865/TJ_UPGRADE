@@ -20,6 +20,8 @@ using System.Xml.Linq;
 
 using AjaxControlToolkit;
 using System.Text.RegularExpressions;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace ZCZJ_DPF.SM_Data
 {
@@ -41,9 +43,10 @@ namespace ZCZJ_DPF.SM_Data
                 getWarehouse();
                 getStaff();
                 initial();
-                
             }
         }
+
+        
 
         //获取系统关帐时间
         private void ClosingAccountDate(string ZDDate)
@@ -300,6 +303,10 @@ namespace ZCZJ_DPF.SM_Data
                 ta += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "Amount"));
                 tcta += Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "CTA"));
 
+                if (((System.Web.UI.WebControls.Label)e.Row.FindControl("LabelWG_QRUniqCode")).Text.Trim() != "")
+                {
+                    ((System.Web.UI.WebControls.TextBox)e.Row.FindControl("TextBoxRN")).Enabled = false;
+                }
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
@@ -352,7 +359,7 @@ namespace ZCZJ_DPF.SM_Data
                     "Dep AS DepCode,DepName AS Dep,Clerk AS ClerkCode,ClerkName AS Clerk," +
                     "WG_DOC AS DocCode,DocName AS Doc,WG_REVEICER AS AcceptanceCode,ReveicerName AS Acceptance," +
                     "WG_VERIFIER AS VerifierCode,VerfierName AS Verifier,left(WG_VERIFYDATE,10) AS ApproveDate," +
-                    "WG_STATE AS State,WG_TEARFLAG AS Split ,WG_CAVFLAG AS Articulation,WG_ROB AS Colour FROM View_SM_IN WHERE WG_CODE='" + code + "'";
+                    "WG_STATE AS State,WG_TEARFLAG AS Split ,WG_CAVFLAG AS Articulation,WG_ROB AS Colour,WG_QRUniqCode FROM View_SM_IN WHERE WG_CODE='" + code + "'";
 
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sql);
                 if (dr.Read())
@@ -404,7 +411,7 @@ namespace ZCZJ_DPF.SM_Data
                     "CGDW AS Unit,cast(WG_RSNUM as float)*(-1) AS RN,WG_RSFZNUM*(-1) AS Quantity," +
                     "cast(WG_UPRICE as float) AS UnitPrice,WG_TAXRATE AS TaxRate,cast(WG_CTAXUPRICE as float) AS CTUP,cast(WG_AMOUNT as float)*(-1) AS Amount,cast(WG_CTAMTMNY as float)*(-1) AS CTA,WG_WAREHOUSE AS WarehouseCode," +
                     "WS_NAME AS Warehouse,WG_LOCATION AS PositionCode,WL_NAME AS Position,WG_ORDERID AS OrderCode,WG_PMODE AS PlanMode," +
-                    "WG_PTCODE AS PTC,WG_NOTE AS Comment,WG_STATE AS State,WG_CGMODE AS CGMODE FROM View_SM_IN WHERE WG_CODE='" + code + "' AND DetailState='RED" + Session["UserID"].ToString() + "'";
+                    "WG_PTCODE AS PTC,WG_NOTE AS Comment,WG_STATE AS State,WG_CGMODE AS CGMODE,WG_QRUniqCode FROM View_SM_IN WHERE WG_CODE='" + code + "' AND DetailState='RED" + Session["UserID"].ToString() + "'";
                 DataTable tb = DBCallCommon.GetDTUsingSqlText(sql);
                 GridView1.DataSource = tb;
                 GridView1.DataBind();
@@ -437,21 +444,46 @@ namespace ZCZJ_DPF.SM_Data
             //下推蓝字入库
             if (flag == "PUSHBLUE")
             {
-                //detailnote用于填写备注，理计和过磅
-
+               //detailnote用于填写备注，理计和过磅
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+               //string sql = "SELECT orderno AS OrderCode,supplierid AS SupplierCode,suppliernm AS Supplier," +
+               //     "ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep," +
+               //     "marid AS MaterialCode,marnm AS MaterialName,margg AS MaterialStandard," +
+               //     "fixed AS Fixed,length AS Length,width AS Width," +
+               //     "marcz AS Attribute,margb AS GB,marunit AS Unit,cast((zxnum-recgdnum) as float) AS RN,0 AS Quantity,cast(price as float) AS UnitPrice,cast(ctprice as float) AS CTUP,cast(round((zxnum-recgdnum)*price,2) as float) AS Amount," +
+               //     "taxrate AS TaxRate,cast(round((zxnum-recgdnum)*ctprice,2) as float) AS CTA,detailnote AS Comment,PO_MASHAPE AS PlanMode,ptcode AS PTC," +
+               //     "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='0',Warehouse='--请选择--',PositionCode='0',Position='待查',PO_TUHAO AS CGMODE FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL WHERE whstate='BLUE" + Session["UserID"].ToString() + "'";
                string sql = "SELECT orderno AS OrderCode,supplierid AS SupplierCode,suppliernm AS Supplier," +
-                    "ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep," +
-                    "marid AS MaterialCode,marnm AS MaterialName,margg AS MaterialStandard," +
-                    "fixed AS Fixed,length AS Length,width AS Width," +
-                    "marcz AS Attribute,margb AS GB,marunit AS Unit,cast((zxnum-recgdnum) as float) AS RN,0 AS Quantity,cast(price as float) AS UnitPrice,cast(ctprice as float) AS CTUP,cast(round((zxnum-recgdnum)*price,2) as float) AS Amount," +
-                    "taxrate AS TaxRate,cast(round((zxnum-recgdnum)*ctprice,2) as float) AS CTA,detailnote AS Comment,PO_MASHAPE AS PlanMode,ptcode AS PTC," +
-                    "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='0',Warehouse='--请选择--',PositionCode='0',Position='待查',PO_TUHAO AS CGMODE FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL WHERE whstate='BLUE" + Session["UserID"].ToString() + "'";
-
+                   "ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep," +
+                   "marid AS MaterialCode,marnm AS MaterialName,margg AS MaterialStandard," +
+                   "fixed AS Fixed,length AS Length,width AS Width," +
+                   "marcz AS Attribute,margb AS GB,marunit AS Unit,cast((zxnum-recgdnum) as float) AS RN,0 AS Quantity,cast(price as float) AS UnitPrice,cast(ctprice as float) AS CTUP,cast(round((zxnum-recgdnum)*price,2) as float) AS Amount," +
+                   "taxrate AS TaxRate,cast(round((zxnum-recgdnum)*ctprice,2) as float) AS CTA,detailnote AS Comment,PO_MASHAPE AS PlanMode,ptcode AS PTC," +
+                   "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='0',Warehouse='--请选择--',PositionCode='0',Position='待查',PO_TUHAO AS CGMODE,q.*,QRIn_ID as WG_QRUniqCode FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select * from midTable_QRIn where QRIn_WHSTATE='1')q on a.ptcode=q.QRIn_PTC  WHERE whstate='BLUE" + Session["UserID"].ToString() + "'";
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
 
                 sql = "UPDATE TBPC_PURORDERDETAIL SET PO_WHSTATE='1' WHERE PO_WHSTATE='BLUE" + Session["UserID"].ToString() + "'";
 
                 DBCallCommon.ExeSqlText(sql);
+
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                string sqlQRIn = "update midTable_QRIn set QRIn_WHSTATE='0' where QRIn_WHSTATE='1'";
+                string sqlGetRN = "";
+                DBCallCommon.ExeSqlText(sqlQRIn);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (dt.Rows[i]["WG_QRUniqCode"].ToString().Trim() != "")
+                    {
+                        sqlGetRN = "select * from midTable_QRIn where CONVERT(varchar(20),QRIn_ID)='" + dt.Rows[i]["WG_QRUniqCode"].ToString().Trim() + "'";
+                        DataTable dtGetRN = DBCallCommon.GetDTUsingSqlText(sqlGetRN);
+                        if (dtGetRN.Rows.Count > 0)
+                        {
+                            dt.Rows[i]["RN"] = dtGetRN.Rows[0]["QRIn_Num"].ToString().Trim();
+                        }
+                    }
+                }
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
                 LabelState.Text = "0";
                 InputColour.Value = "0";
@@ -522,7 +554,6 @@ namespace ZCZJ_DPF.SM_Data
                 LabelMessage.Text = "下推蓝字入库单完成！";
 
                 bindControlEnable(false);
-
             }
 
             //入库单查看载入
@@ -537,7 +568,7 @@ namespace ZCZJ_DPF.SM_Data
                    "Dep AS DepCode,DepName AS Dep,Clerk AS ClerkCode,ClerkName AS Clerk," +
                    "WG_DOC AS DocCode,DocName AS Doc,WG_REVEICER AS AcceptanceCode,ReveicerName AS Acceptance," +
                    "WG_VERIFIER AS VerifierCode,VerfierName AS Verifier,left(WG_VERIFYDATE,10) AS ApprovedDate," +
-                   "WG_STATE AS State,WG_TEARFLAG AS Split ,WG_CAVFLAG AS Articulation,WG_ROB AS Colour,WG_GJSTATE as gj,WG_HSFLAG AS hs,WG_PRINTTIME FROM View_SM_IN WHERE WG_CODE='" + code + "'";
+                   "WG_STATE AS State,WG_TEARFLAG AS Split ,WG_CAVFLAG AS Articulation,WG_ROB AS Colour,WG_GJSTATE as gj,WG_HSFLAG AS hs,WG_PRINTTIME,WG_QRUniqCode FROM View_SM_IN WHERE WG_CODE='" + code + "'";
 
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sql);
 
@@ -619,7 +650,7 @@ namespace ZCZJ_DPF.SM_Data
                     "cast(WG_AMOUNT as float) AS Amount,cast(WG_CTAMTMNY as float) AS CTA,WG_WAREHOUSE AS WarehouseCode," +
                     "WS_NAME AS Warehouse,WG_LOCATION AS PositionCode,WL_NAME AS Position," +
                     "WG_ORDERID AS OrderCode,WG_PMODE AS PlanMode,WG_PTCODE AS PTC,WG_NOTE AS Comment," +
-                    "WG_STATE AS State,WG_CGMODE AS CGMODE FROM View_SM_IN WHERE WG_CODE='" + code + "' order by WG_UNIQUEID";
+                    "WG_STATE AS State,WG_CGMODE AS CGMODE,WG_QRUniqCode FROM View_SM_IN WHERE WG_CODE='" + code + "' order by WG_UNIQUEID";
 
                 DataTable tb = DBCallCommon.GetDTUsingSqlText(sql);
                 GridView1.DataSource = tb;
@@ -811,6 +842,11 @@ namespace ZCZJ_DPF.SM_Data
             tb.Columns.Add("CGMODE", System.Type.GetType("System.String"));
             tb.Columns.Add("PlanMode", System.Type.GetType("System.String"));
             tb.Columns.Add("PTC", System.Type.GetType("System.String"));
+
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            tb.Columns.Add("WG_QRUniqCode", System.Type.GetType("System.String"));
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 GridViewRow GRow = GridView1.Rows[i];
@@ -842,6 +878,9 @@ namespace ZCZJ_DPF.SM_Data
                 row["PlanMode"] = ((Label)GRow.FindControl("LabelPlanMode")).Text;
                 row["CGMODE"] = ((Label)GRow.FindControl("LabelCGMode")).Text;
                 row["PTC"] = ((Label)GRow.FindControl("LabelPTC")).Text;
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                row["WG_QRUniqCode"] = ((Label)GRow.FindControl("LabelWG_QRUniqCode")).Text;
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 tb.Rows.Add(row);
             }
             return tb;
@@ -863,14 +902,22 @@ namespace ZCZJ_DPF.SM_Data
             /*
              * sql语句,查找刚才追加的数据
              */
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            //string sql = "SELECT orderno AS OrderCode,supplierid AS SupplierCode,suppliernm AS Supplier," +
+            //       "ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep," +
+            //       "marid AS MaterialCode,marnm AS MaterialName,margg AS MaterialStandard," +
+            //       "fixed AS Fixed,CAST(length AS VARCHAR(50)) AS Length,CAST(width AS VARCHAR(50)) AS Width," +
+            //       "marcz AS Attribute,margb AS GB,marunit AS Unit,CAST(cast((zxnum-recgdnum) as float) AS VARCHAR(50)) AS RN,CAST(0 AS VARCHAR(50)) AS Quantity,CAST(price AS VARCHAR(50)) AS UnitPrice,CAST(ctprice AS VARCHAR(50)) AS CTUP,CAST(cast((zxnum-recgdnum)*price as float) AS VARCHAR(50)) AS Amount," +
+            //       "CAST(taxrate AS VARCHAR(50)) AS TaxRate,CAST(cast((zxnum-recgdnum)*ctprice as float) AS VARCHAR(50)) AS CTA,detailnote AS Comment,PO_MASHAPE AS PlanMode,ptcode AS PTC," +
+            //       "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='" + DropDownListWarehouse.SelectedValue + "',Warehouse='" + DropDownListWarehouse.SelectedItem.Text + "',PositionCode='" + DropDownListPosition.SelectedValue + "',Position='" + DropDownListPosition.SelectedItem.Text + "',PO_TUHAO AS CGMODE FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL WHERE whstate='APPENDIN" + Session["UserID"].ToString() + "'";
             string sql = "SELECT orderno AS OrderCode,supplierid AS SupplierCode,suppliernm AS Supplier," +
                    "ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep," +
                    "marid AS MaterialCode,marnm AS MaterialName,margg AS MaterialStandard," +
                    "fixed AS Fixed,CAST(length AS VARCHAR(50)) AS Length,CAST(width AS VARCHAR(50)) AS Width," +
                    "marcz AS Attribute,margb AS GB,marunit AS Unit,CAST(cast((zxnum-recgdnum) as float) AS VARCHAR(50)) AS RN,CAST(0 AS VARCHAR(50)) AS Quantity,CAST(price AS VARCHAR(50)) AS UnitPrice,CAST(ctprice AS VARCHAR(50)) AS CTUP,CAST(cast((zxnum-recgdnum)*price as float) AS VARCHAR(50)) AS Amount," +
                    "CAST(taxrate AS VARCHAR(50)) AS TaxRate,CAST(cast((zxnum-recgdnum)*ctprice as float) AS VARCHAR(50)) AS CTA,detailnote AS Comment,PO_MASHAPE AS PlanMode,ptcode AS PTC," +
-                   "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='" + DropDownListWarehouse.SelectedValue + "',Warehouse='" + DropDownListWarehouse.SelectedItem.Text + "',PositionCode='" + DropDownListPosition.SelectedValue + "',Position='" + DropDownListPosition.SelectedItem.Text + "',PO_TUHAO AS CGMODE FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL WHERE whstate='APPENDIN" + Session["UserID"].ToString() + "'";
- 
+                   "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='" + DropDownListWarehouse.SelectedValue + "',Warehouse='" + DropDownListWarehouse.SelectedItem.Text + "',PositionCode='" + DropDownListPosition.SelectedValue + "',Position='" + DropDownListPosition.SelectedItem.Text + "',PO_TUHAO AS CGMODE,q.*,QRIn_ID as WG_QRUniqCode FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select * from midTable_QRIn where QRIn_WHSTATE='1')q on a.ptcode=q.QRIn_PTC WHERE whstate='APPENDIN" + Session["UserID"].ToString() + "'";
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             dt.Merge(DBCallCommon.GetDTUsingSqlText(sql));
             GridView1.DataSource = dt;
             GridView1.DataBind();
@@ -1847,6 +1894,10 @@ namespace ZCZJ_DPF.SM_Data
                     sqllist.Add(sql);
                 }
 
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                string sqlUpdateQR3 = "update midTable_QRIn set QRIn_State='0' where CONVERT(varchar(20),QRIn_ID) in(select WG_QRUniqCode from TBWS_INDETAIL where WG_CODE='" + Code + "')";
+                sqllist.Add(sqlUpdateQR3);
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
                 sql = "DELETE FROM TBWS_INDETAIL WHERE WG_CODE='" + Code + "'";
@@ -1964,6 +2015,7 @@ namespace ZCZJ_DPF.SM_Data
                     string PTC = ((Label)this.GridView1.Rows[i].FindControl("LabelPTC")).Text;
                     string CGMode = ((Label)this.GridView1.Rows[i].FindControl("LabelCGMode")).Text;
 
+
                     /*
                      * 
                      * WG_RSNUM---实收数量
@@ -1971,18 +2023,47 @@ namespace ZCZJ_DPF.SM_Data
                      * WG_RSFZNUM---实收辅助数量
                      * 
                      */
-
-                    sql ="INSERT INTO TBWS_INDETAIL ( WG_UNIQUEID,WG_CODE,WG_MARID,WG_LOTNUM," +
-                        "WG_FIXEDSIZE,WG_LENGTH,WG_WIDTH,WG_RSNUM,WG_RSFZNUM,WG_UPRICE,WG_TAXRATE," +
-                        "WG_CTAXUPRICE,WG_AMOUNT,WG_CTAMTMNY,WG_LOCATION," +
-                        "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE) VALUES('" + UniqueID +
-                        "','" + Code + "','" + MaterialCode + "','" + LotNumber + "','"
-                        + Fixed + "','" + Length + "','" + Width + "','" + RN + "','" + Quantity + "','" + UnitPrice + "','" +
-                        TaxRate + "','" + CTUP + "','" + Amount + "','" + CTA + "','" +
-                        PositionCode + "','" + OrderCode + "','" +
-                        PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "')";
-
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    string WG_QRUniqCode = ((Label)this.GridView1.Rows[i].FindControl("LabelWG_QRUniqCode")).Text;
+                    string sqlUpdateQR2 = "";
+                    //sql ="INSERT INTO TBWS_INDETAIL ( WG_UNIQUEID,WG_CODE,WG_MARID,WG_LOTNUM," +
+                    //    "WG_FIXEDSIZE,WG_LENGTH,WG_WIDTH,WG_RSNUM,WG_RSFZNUM,WG_UPRICE,WG_TAXRATE," +
+                    //    "WG_CTAXUPRICE,WG_AMOUNT,WG_CTAMTMNY,WG_LOCATION," +
+                    //    "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE) VALUES('" + UniqueID +
+                    //    "','" + Code + "','" + MaterialCode + "','" + LotNumber + "','"
+                    //    + Fixed + "','" + Length + "','" + Width + "','" + RN + "','" + Quantity + "','" + UnitPrice + "','" +
+                    //    TaxRate + "','" + CTUP + "','" + Amount + "','" + CTA + "','" +
+                    //    PositionCode + "','" + OrderCode + "','" +
+                    //    PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "')";
+                    if (WG_QRUniqCode != "")
+                    {
+                        sql = "INSERT INTO TBWS_INDETAIL ( WG_UNIQUEID,WG_CODE,WG_MARID,WG_LOTNUM," +
+                                               "WG_FIXEDSIZE,WG_LENGTH,WG_WIDTH,WG_RSNUM,WG_RSFZNUM,WG_UPRICE,WG_TAXRATE," +
+                                               "WG_CTAXUPRICE,WG_AMOUNT,WG_CTAMTMNY,WG_LOCATION," +
+                                               "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE,WG_QRUniqCode) VALUES('" + UniqueID +
+                                               "','" + Code + "','" + MaterialCode + "','" + LotNumber + "','"
+                                               + Fixed + "','" + Length + "','" + Width + "','" + RN + "','" + Quantity + "','" + UnitPrice + "','" +
+                                               TaxRate + "','" + CTUP + "','" + Amount + "','" + CTA + "','" +
+                                               PositionCode + "','" + OrderCode + "','" +
+                                               PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "','" + WG_QRUniqCode + "')";
+                        sqlUpdateQR2 = "update midTable_QRIn set QRIn_State='1' where CONVERT(varchar(20),QRIn_ID)='" + WG_QRUniqCode + "'";
+                        sqllist.Add(sqlUpdateQR2);
+                    }
+                    else
+                    {
+                        sql = "INSERT INTO TBWS_INDETAIL ( WG_UNIQUEID,WG_CODE,WG_MARID,WG_LOTNUM," +
+                            "WG_FIXEDSIZE,WG_LENGTH,WG_WIDTH,WG_RSNUM,WG_RSFZNUM,WG_UPRICE,WG_TAXRATE," +
+                            "WG_CTAXUPRICE,WG_AMOUNT,WG_CTAMTMNY,WG_LOCATION," +
+                            "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE,WG_QRUniqCode) VALUES('" + UniqueID +
+                            "','" + Code + "','" + MaterialCode + "','" + LotNumber + "','"
+                            + Fixed + "','" + Length + "','" + Width + "','" + RN + "','" + Quantity + "','" + UnitPrice + "','" +
+                            TaxRate + "','" + CTUP + "','" + Amount + "','" + CTA + "','" +
+                            PositionCode + "','" + OrderCode + "','" +
+                            PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "',NULL)";
+                    }
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                     sqllist.Add(sql);
+
                 }
                 if (HasError)
                 {
@@ -2408,22 +2489,43 @@ namespace ZCZJ_DPF.SM_Data
                     string PlanMode = ((Label)this.GridView1.Rows[i].FindControl("LabelPlanMode")).Text;
 
                     string CGMode = ((Label)this.GridView1.Rows[i].FindControl("LabelCGMode")).Text;
-
                     string PTC = ((Label)this.GridView1.Rows[i].FindControl("LabelPTC")).Text;
 
-                    /*
-                     * 明细表中的数据
-                     */
-                    sql =
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    string WG_QRUniqCode = ((Label)this.GridView1.Rows[i].FindControl("LabelWG_QRUniqCode")).Text;
+                    string sqlUpdateQR2 = "";
+                    if (WG_QRUniqCode != "")
+                    {
+                        sql =
                          "INSERT INTO TBWS_INDETAIL ( WG_UNIQUEID,WG_CODE,WG_MARID,WG_LOTNUM," +
                          "WG_FIXEDSIZE,WG_LENGTH,WG_WIDTH,WG_RSNUM,WG_RSFZNUM,WG_UPRICE,WG_TAXRATE," +
                          "WG_CTAXUPRICE,WG_AMOUNT,WG_CTAMTMNY,WG_LOCATION," +
-                         "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE) VALUES('" + UniqueID +
+                         "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE,WG_QRUniqCode) VALUES('" + UniqueID +
                          "','" + Code + "','" + MaterialCode + "','" + LotNumber + "','"
                          + Fixed + "','" + Length + "','" + Width + "','" + RN + "','" + Quantity + "','" + UnitPrice + "','" +
                          TaxRate + "','" + CTUP + "','" + Amount + "','" + CTA + "','" +
                          PositionCode + "','" + OrderCode + "','" +
-                         PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "')";
+                         PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "','" + WG_QRUniqCode + "')";
+                        sqlUpdateQR2 = "update midTable_QRIn set QRIn_State='1' where CONVERT(varchar(20),QRIn_ID)='" + WG_QRUniqCode + "'";
+                        sqllist.Add(sqlUpdateQR2);
+                    }
+                    else
+                    {
+                        sql =
+                         "INSERT INTO TBWS_INDETAIL ( WG_UNIQUEID,WG_CODE,WG_MARID,WG_LOTNUM," +
+                         "WG_FIXEDSIZE,WG_LENGTH,WG_WIDTH,WG_RSNUM,WG_RSFZNUM,WG_UPRICE,WG_TAXRATE," +
+                         "WG_CTAXUPRICE,WG_AMOUNT,WG_CTAMTMNY,WG_LOCATION," +
+                         "WG_ORDERID,WG_PMODE,WG_PTCODE,WG_NOTE,WG_STATE,WG_CGMODE,WG_WAREHOUSE,WG_QRUniqCode) VALUES('" + UniqueID +
+                         "','" + Code + "','" + MaterialCode + "','" + LotNumber + "','"
+                         + Fixed + "','" + Length + "','" + Width + "','" + RN + "','" + Quantity + "','" + UnitPrice + "','" +
+                         TaxRate + "','" + CTUP + "','" + Amount + "','" + CTA + "','" +
+                         PositionCode + "','" + OrderCode + "','" +
+                         PlanMode + "','" + PTC + "','" + Comment + "','','" + CGMode + "','" + WarehouseCode + "',NULL)";
+                    }
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
                     sqllist.Add(sql);
                 }
                 if (HasError)
@@ -3109,6 +3211,23 @@ namespace ZCZJ_DPF.SM_Data
 
                 temp.Add(sql);
 
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                string sqlgetdata = "select * from TBWS_INDETAIL where WG_CODE='" + code + "'";
+                DataTable dtgetdata = DBCallCommon.GetDTUsingSqlText(sqlgetdata);
+                string sqlUpdateQR = "";
+                if (dtgetdata.Rows.Count > 0)
+                {
+                    for (int k = 0; k < dtgetdata.Rows.Count; k++)
+                    {
+                        if (dtgetdata.Rows[k]["WG_QRUniqCode"].ToString().Trim() != "")
+                        {
+                            sqlUpdateQR = "update midTable_QRIn set QRIn_State='0' where CONVERT(varchar(20),QRIn_ID)='" + dtgetdata.Rows[k]["WG_QRUniqCode"].ToString().Trim() + "'";
+                            temp.Add(sqlUpdateQR);
+                        }
+                    }
+                }
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
                 sql = "DELETE FROM TBWS_INDETAIL WHERE WG_CODE='" + code + "'";
 
                 temp.Add(sql);
@@ -3293,5 +3412,144 @@ namespace ZCZJ_DPF.SM_Data
             ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
         }
 
+
+
+
+        //导出二维码信息
+        protected void btn_QRExport_Click(object sender, EventArgs e)
+        {
+            string sqltext = "SELECT WG_UNIQUEID AS UniqueID,WG_MARID AS MaterialCode,MNAME AS MaterialName," +
+                    "CAIZHI AS Attribute,GB AS GB,GUIGE AS MaterialStandard,WG_FIXEDSIZE AS Fixed,WG_LENGTH AS Length,WG_WIDTH AS Width," +
+                    "WG_LOTNUM AS LotNumber,CGDW AS Unit,cast(WG_RSNUM as float) AS RN,WG_RSFZNUM AS Quantity," +
+                    "cast(WG_UPRICE as float) AS UnitPrice,WG_TAXRATE AS TaxRate,cast(WG_CTAXUPRICE as float) AS CTUP," +
+                    "cast(WG_AMOUNT as float) AS Amount,cast(WG_CTAMTMNY as float) AS CTA,WG_WAREHOUSE AS WarehouseCode," +
+                    "WS_NAME AS Warehouse,WG_LOCATION AS PositionCode,WL_NAME AS Position," +
+                    "WG_ORDERID AS OrderCode,WG_PMODE AS PlanMode,WG_PTCODE AS PTC,WG_NOTE AS Comment," +
+                    "WG_STATE AS State,WG_CGMODE AS CGMODE,WG_QRUniqCode,s.PUR_NUM as dingenum FROM View_SM_IN as a left join TBPC_PURCHASEPLAN as s on a.WG_PTCODE=s.PUR_PTCODE WHERE WG_CODE='" + LabelCode.Text.Trim() + "' order by WG_UNIQUEID";
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+            if (dt.Rows.Count > 500)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('导出条数大于500，请分批导出！');", true);
+                return;
+            }
+            string filename = "入库单二维码物料信息" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ".xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+            //1.读取Excel到FileStream
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("入库单二维码信息导出模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);
+                ISheet sheet0 = wk.GetSheetAt(0);
+
+                #region 写入数据
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    IRow row = sheet0.CreateRow(i + 1);
+                    row.HeightInPoints = 14;//行高
+                    row.CreateCell(0).SetCellValue(dt.Rows[i]["MaterialCode"].ToString() + dt.Rows[i]["PTC"].ToString() + dt.Rows[i]["LotNumber"].ToString() + dt.Rows[i]["Length"].ToString() + dt.Rows[i]["Width"].ToString() + dt.Rows[i]["WarehouseCode"].ToString() + dt.Rows[i]["PositionCode"].ToString() + ";" + "2");//二维码类型
+                    row.CreateCell(1).SetCellValue(dt.Rows[i]["MaterialCode"].ToString() + dt.Rows[i]["PTC"].ToString() + dt.Rows[i]["LotNumber"].ToString() + dt.Rows[i]["Length"].ToString() + dt.Rows[i]["Width"].ToString() + dt.Rows[i]["WarehouseCode"].ToString() + dt.Rows[i]["PositionCode"].ToString());//计划跟踪号
+                    row.CreateCell(2).SetCellValue(dt.Rows[i]["PTC"].ToString());//计划跟踪号
+                    row.CreateCell(3).SetCellValue(DateTime.Now.ToString("yyyyMMddHHmmss").Trim());//时间编码
+                    row.CreateCell(4).SetCellValue(LabelCode.Text.Trim());//入库单号
+                    row.CreateCell(5).SetCellValue(LabelSupplier.Text.Trim());//供应商
+                    row.CreateCell(6).SetCellValue(dt.Rows[i]["MaterialCode"].ToString());//物料编码
+                    row.CreateCell(7).SetCellValue(dt.Rows[i]["MaterialName"].ToString());//物料名称
+                    row.CreateCell(8).SetCellValue(dt.Rows[i]["MaterialStandard"].ToString());//型号规格
+                    row.CreateCell(9).SetCellValue(dt.Rows[i]["Attribute"].ToString());//材质
+                    row.CreateCell(10).SetCellValue(dt.Rows[i]["GB"].ToString());//国标
+                    row.CreateCell(11).SetCellValue(dt.Rows[i]["Length"].ToString());//长
+                    row.CreateCell(12).SetCellValue(dt.Rows[i]["Width"].ToString());//宽
+                    row.CreateCell(13).SetCellValue(dt.Rows[i]["Unit"].ToString());//单位
+                    row.CreateCell(14).SetCellValue(dt.Rows[i]["dingenum"].ToString());//定额数量
+                    row.CreateCell(15).SetCellValue(TextBoxDate.Text.Trim());//入库时间
+                    row.CreateCell(16).SetCellValue("出库");//二维码类型
+                    NPOI.SS.UserModel.IFont font1 = wk.CreateFont();
+                    font1.FontName = "仿宋";//字体
+                    font1.FontHeightInPoints = 11;//字号
+                    ICellStyle cells = wk.CreateCellStyle();
+                    cells.SetFont(font1);
+                    cells.BorderBottom = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderLeft = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderRight = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderTop = NPOI.SS.UserModel.BorderStyle.THIN;
+                    for (int j = 0; j <= 16; j++)
+                    {
+                        row.Cells[j].CellStyle = cells;
+                    }
+                }
+
+                #endregion
+
+                sheet0.ForceFormulaRecalculation = true;
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
+
+        //导出二维码合并信息
+        protected void btn_QRHBExport_Click(object sender, EventArgs e)
+        {
+            string sqltext = "SELECT WG_UNIQUEID AS UniqueID,WG_MARID AS MaterialCode,MNAME AS MaterialName," +
+                    "CAIZHI AS Attribute,GB AS GB,GUIGE AS MaterialStandard,WG_FIXEDSIZE AS Fixed,WG_LENGTH AS Length,WG_WIDTH AS Width," +
+                    "WG_LOTNUM AS LotNumber,CGDW AS Unit,cast(WG_RSNUM as float) AS RN,WG_RSFZNUM AS Quantity," +
+                    "cast(WG_UPRICE as float) AS UnitPrice,WG_TAXRATE AS TaxRate,cast(WG_CTAXUPRICE as float) AS CTUP," +
+                    "cast(WG_AMOUNT as float) AS Amount,cast(WG_CTAMTMNY as float) AS CTA,WG_WAREHOUSE AS WarehouseCode," +
+                    "WS_NAME AS Warehouse,WG_LOCATION AS PositionCode,WL_NAME AS Position," +
+                    "WG_ORDERID AS OrderCode,WG_PMODE AS PlanMode,WG_PTCODE AS PTC,WG_NOTE AS Comment," +
+                    "WG_STATE AS State,WG_CGMODE AS CGMODE,WG_QRUniqCode,s.PUR_NUM as dingenum FROM View_SM_IN as a left join TBPC_PURCHASEPLAN as s on a.WG_PTCODE=s.PUR_PTCODE WHERE WG_CODE='" + LabelCode.Text.Trim() + "' order by WG_UNIQUEID";
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+            if (dt.Rows.Count > 500)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('导出条数大于500，请分批导出！');", true);
+                return;
+            }
+            string filename = "入库单二维码物料信息合并" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ".xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+
+            string AllInfo = "";
+            //1.读取Excel到FileStream
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("入库单二维码信息合并导出模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);
+                ISheet sheet0 = wk.GetSheetAt(0);
+
+                #region 写入数据
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    IRow row = sheet0.CreateRow(i);
+                    row.HeightInPoints = 14;//行高
+                    //AllInfo = dt.Rows[i]["MaterialCode"].ToString() + dt.Rows[i]["PTC"].ToString() + dt.Rows[i]["LotNumber"].ToString() + dt.Rows[i]["Length"].ToString() + dt.Rows[i]["Width"].ToString() + dt.Rows[i]["WarehouseCode"].ToString() + dt.Rows[i]["PositionCode"].ToString() + ";" + dt.Rows[i]["PTC"].ToString() + ";" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ";" + LabelCode.Text.Trim() + ";" + LabelSupplier.Text.Trim() + ";" + dt.Rows[i]["MaterialCode"].ToString() + ";" + dt.Rows[i]["MaterialName"].ToString() + ";" + dt.Rows[i]["MaterialStandard"].ToString() + ";" + dt.Rows[i]["Attribute"].ToString() + ";" + dt.Rows[i]["GB"].ToString() + ";" + dt.Rows[i]["Length"].ToString() + ";" + dt.Rows[i]["Width"].ToString() + ";" + dt.Rows[i]["Unit"].ToString() + ";" + dt.Rows[i]["dingenum"].ToString() + ";" + TextBoxDate.Text.Trim() + ";" + "2";
+                    //AllInfo = dt.Rows[i]["MaterialCode"].ToString() + dt.Rows[i]["PTC"].ToString() + dt.Rows[i]["LotNumber"].ToString() + dt.Rows[i]["Length"].ToString() + dt.Rows[i]["Width"].ToString() + dt.Rows[i]["WarehouseCode"].ToString() + dt.Rows[i]["PositionCode"].ToString() + ";" + dt.Rows[i]["PTC"].ToString() + ";" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ";" + "2";
+                    AllInfo = dt.Rows[i]["MaterialCode"].ToString() + dt.Rows[i]["PTC"].ToString() + dt.Rows[i]["LotNumber"].ToString() + dt.Rows[i]["Length"].ToString() + dt.Rows[i]["Width"].ToString() + dt.Rows[i]["WarehouseCode"].ToString() + dt.Rows[i]["PositionCode"].ToString() + ";" + "2";
+                    row.CreateCell(0).SetCellValue(AllInfo);
+                    NPOI.SS.UserModel.IFont font1 = wk.CreateFont();
+                    font1.FontName = "仿宋";//字体
+                    font1.FontHeightInPoints = 11;//字号
+                    ICellStyle cells = wk.CreateCellStyle();
+                    cells.SetFont(font1);
+                    cells.BorderBottom = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderLeft = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderRight = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderTop = NPOI.SS.UserModel.BorderStyle.THIN;
+                    for (int j = 0; j <= 0; j++)
+                    {
+                        row.Cells[j].CellStyle = cells;
+                    }
+                }
+
+                #endregion
+
+                sheet0.ForceFormulaRecalculation = true;
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
     }
 }

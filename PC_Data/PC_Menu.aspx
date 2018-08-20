@@ -452,6 +452,13 @@
                     Target="right" runat="server"><p>余料入库管理</p></asp:HyperLink>
                 <asp:HyperLink ID="HyperLink125" onClick="SelectMenu(125);" CssClass="LeftMenuNoSelected"
                     Target="right" runat="server"><p>余料出库管理</p></asp:HyperLink>--%>
+
+            </div>
+            <div title="扫码管理模块" style="overflow: auto; background-color: #E3F1FA;">
+                <asp:HyperLink ID="HyperLink125" onClick="SelectMenu(125);" CssClass="LeftMenuNoSelected"
+                    Target="right" runat="server" NavigateUrl="~/QR_Interface/QRIn_List.aspx"><p>扫码入库物料</p></asp:HyperLink>
+                <asp:HyperLink ID="HyperLink127" onClick="SelectMenu(127);" CssClass="LeftMenuNoSelected"
+                    Target="right" runat="server" NavigateUrl="~/QR_Interface/QROut_List.aspx"><p>扫码出库物料</p></asp:HyperLink>
             </div>
         </div>
     </div>

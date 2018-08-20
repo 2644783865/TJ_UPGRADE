@@ -477,6 +477,9 @@ function consel()
                             <asp:Button ID="btnorder" runat="server" Text="到订单" OnClick="torder_Click" />
                             <asp:Button ID="btnbk" runat="server" Text="备库" OnClick="tobk_Click" Visible="false"  />
                             <asp:Button ID="btn_wxout" runat="server" Text="出库"  OnClick="wxout_Click" Visible="false" />
+                            
+                            <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息" Visible="false"  OnClick="btn_QRExport_Click" />
+                            <asp:Button ID="btn_QRHBExport" runat="server" Text="导出二维码合并信息" Visible="false"  OnClick="btn_QRHBExport_Click" />
                         </td>
                         <td align="left">
                             <asp:Label ID="LabelMessage" runat="server" ForeColor="Red"></asp:Label>
@@ -567,7 +570,8 @@ function consel()
                             系统封账时间:<asp:Label ID="LabelClosingAccount" runat="server" Text=""></asp:Label>
                         </td>
                         <td style="font-size: large; text-align: center;" colspan="3">
-                            <asp:Label runat="server" ID="LabelTittle" Text="外购入库单" Font-Size="Large"></asp:Label> <asp:Image ID="ImageVerify" runat="server" ImageUrl="~/Assets/images/shenhe.gif"
+                            <asp:Label runat="server" ID="LabelTittle" Text="外购入库单" Font-Size="Large"></asp:Label>
+                            <asp:Image ID="ImageVerify" runat="server" ImageUrl="~/Assets/images/shenhe.gif"
                                 Visible="False" />
                         </td>
                         <td align="right">
@@ -825,7 +829,12 @@ function consel()
                             </ItemTemplate>
                             <ItemStyle Wrap="False" />
                         </asp:TemplateField>
-                      
+                        <asp:TemplateField HeaderText="扫码唯一识别码" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="LabelWG_QRUniqCode" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "WG_QRUniqCode")%>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle Wrap="False" />
+                        </asp:TemplateField>
                     </Columns>
                     <FooterStyle BackColor="#A8B7EC" Font-Bold="True" ForeColor="White" Wrap="False" />
                     <RowStyle BackColor="#EFF3FB" />

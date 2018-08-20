@@ -329,6 +329,9 @@
                                 </asp:ModalPopupExtender>
                                 <input type="button" id="btn_filter" value="过滤" onclick="openmodewin()" />
                                 <asp:TextBox ID="hid_filter" runat="server" Style="display: none"></asp:TextBox>
+                                
+                                <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息" OnClick="btn_QRExport_click" />&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btn_QRHBExport" runat="server" Text="导出二维码合并信息" Visible="false" OnClick="btn_QRHBExport_click" />&nbsp;
                             </td>
                         </tr>
                     </table>
@@ -646,7 +649,7 @@
                                             <td id="td1" runat="server">
                                                 <asp:CheckBox ID="CKBOX_SELECT" CssClass="checkBoxCss" BorderStyle="None" runat="server">
                                                 </asp:CheckBox><%--onclick="checkme(this)"--%>
-                                                <asp:Label ID="lbjiaji" runat="server" Text="加急" Visible="false" ForeColor="Red"></asp:Label>
+                                                <asp:Label ID="lbjiaji" runat="server" Text="加急" Visible="false"></asp:Label>
                                             </td>
                                             <td id="td2" runat="server">
                                                 <asp:Label ID="rownum" runat="server" Text='<%# Container.ItemIndex + 1+(Convert.ToDouble(UCPaging1.CurrentPage)-1)*(Convert.ToDouble(DropDownList1.SelectedValue))%>'></asp:Label>

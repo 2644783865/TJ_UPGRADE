@@ -85,7 +85,7 @@ namespace ZCZJ_DPF.FM_Data
             //单据类型为订单下推回来的入库单
 
 
-            string condition = "ZGAMT<>0 and (WG_CAVFLAG='0' or WG_CODE in('G000002321R1','G000002952S1R1','G000002952S2R1'))";
+            string condition = "ZGAMT<>0 and (WG_CAVFLAG='0' or WG_CODE in('G000002321R1','G000002952S1R1','G000002952S2R1')) and WG_CODE not in('G000006976S1R1','G000006976S2R1')";
 
             if (GetSubCondtion() != string.Empty)
             {

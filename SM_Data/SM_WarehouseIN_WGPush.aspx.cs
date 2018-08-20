@@ -219,7 +219,7 @@ namespace ZCZJ_DPF.SM_Data
 
             string TableName = "(select a.*,b.RESULT,s.PUR_NUM as dingenum from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc,BJSJ desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC left join TBPC_PURCHASEPLAN as s on a.ptcode=s.PUR_PTCODE)t";
             string PrimaryKey = "orderno+ptcode";
-            string ShowFields = "orderno AS Code,supplierid AS SupplierCode,suppliernm AS Supplier,LEFT(shtime,10) AS Date,ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep,totalstate AS OrderState,marid AS MaterialCode,marnm AS MaterialName,marcz AS Attribute,margb AS GB,margg AS MaterialStandard,length,width,marunit AS Unit,marfzunit,cast(zxnum as float) AS Number,dingenum,cast(zxfznum as float) AS QUANTITY,cast(recgdnum as float) AS ArrivedNumber,LEFT(recdate,10) AS ArrivedDate,cast(price as float) AS UnitPrice,taxrate AS TaxRate,cast(ctprice as float) AS CTUP,cast(amount as float) AS Amount,cast(ctamount as float) AS CTA,planmode AS PlanMode,ptcode AS PTC,detailstate AS PushState,detailnote,(case when RESULT='——' then '未报检' else RESULT end) as RESULT,PO_MASHAPE,PO_TUHAO ";
+            string ShowFields = "orderno AS Code,supplierid AS SupplierCode,suppliernm AS Supplier,LEFT(shtime,10) AS Date,ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep,totalstate AS OrderState,marid AS MaterialCode,marnm AS MaterialName,marcz AS Attribute,margb AS GB,margg AS MaterialStandard,length,width,marunit AS Unit,marfzunit,cast(zxnum as float) AS Number,dingenum,cast(zxfznum as float) AS QUANTITY,cast(recgdnum as float) AS ArrivedNumber,LEFT(recdate,10) AS ArrivedDate,cast(price as float) AS UnitPrice,taxrate AS TaxRate,cast(ctprice as float) AS CTUP,cast(amount as float) AS Amount,cast(ctamount as float) AS CTA,planmode AS PlanMode,ptcode AS PTC,detailstate AS PushState,detailnote,(case when RESULT='——' then '未报检' else RESULT end) as RESULT,PO_MASHAPE,PO_TUHAO,Type";
             string OrderField = " orderno DESC ,marnm,margg,ptcode";
             int OrderType = 0;
             string StrWhere = condition;
@@ -233,7 +233,6 @@ namespace ZCZJ_DPF.SM_Data
         {
             //总表，从表都不等于0
             string condition = "";
-
             //订单状态
             if ((DropDownListOrderState.SelectedValue == "0") && (DropDownListPushState.SelectedValue == "0"))
             {
@@ -357,8 +356,6 @@ namespace ZCZJ_DPF.SM_Data
                 addQueryItem(PageName, "DropDownListOrderState", DropDownListOrderState.GetType().ToString(), DropDownListOrderState.SelectedValue);
                 addQueryItem(PageName, "DropDownListPushState", DropDownListPushState.GetType().ToString(), DropDownListPushState.SelectedValue);
             }
-
-
             //订单号条件
             if (TextBoxOrderCode.Text != "")
             {
@@ -796,7 +793,6 @@ namespace ZCZJ_DPF.SM_Data
                 return;
             }
             DBCallCommon.ExecuteTrans(sqllist);
-
             Response.Redirect("SM_WarehouseIN_WG.aspx?FLAG=PUSHBLUE&&ID=NEW");
         }
 

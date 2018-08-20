@@ -12,6 +12,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
+using System.IO;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace ZCZJ_DPF.SM_Data
 {
@@ -1902,5 +1905,76 @@ namespace ZCZJ_DPF.SM_Data
         }
 
         #endregion
+
+
+
+        //导出二维码信息
+        protected void btn_QRExport_Click(object sender, EventArgs e)
+        {
+            string sqltext = "";
+            string condition = GetStrCondition();
+            if (condition != "")
+            {
+                sqltext = "select distinct MaterialCode,MaterialName,Attribute,GB,Standard AS MaterialStandard,Length,Width,Warehouse,Location AS Position,Unit from (select * from View_SM_Storage as a left join (select PTCFrom,MaterialCode as TzMaterialCode,sum(TZNUM) as OUTTZNUM,sum(TZFZNUM) as OUTTZFZNUM from View_SM_MTO group by PTCFrom,MaterialCode) as b on a.PTC=b.PTCFrom and a.MaterialCode=b.TzMaterialCode)t where " + condition;
+            }
+            else
+            {
+                sqltext = "select distinct MaterialCode,MaterialName,Attribute,GB,Standard AS MaterialStandard,Length,Width,Warehouse,Location AS Position,Unit from (select * from View_SM_Storage as a left join (select PTCFrom,MaterialCode as TzMaterialCode,sum(TZNUM) as OUTTZNUM,sum(TZFZNUM) as OUTTZFZNUM from View_SM_MTO group by PTCFrom,MaterialCode) as b on a.PTC=b.PTCFrom and a.MaterialCode=b.TzMaterialCode)t";
+            }
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+            if (dt.Rows.Count > 500)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('导出条数大于500，请分批导出！');", true);
+                return;
+            }
+            string filename = "库存二维码信息" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ".xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+            //1.读取Excel到FileStream
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("库存二维码信息导出模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);
+                ISheet sheet0 = wk.GetSheetAt(0);
+
+                #region 写入数据
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    IRow row = sheet0.CreateRow(i + 1);
+                    row.HeightInPoints = 14;//行高
+                    row.CreateCell(0).SetCellValue(dt.Rows[i]["MaterialCode"].ToString());//物料编码
+                    row.CreateCell(1).SetCellValue(dt.Rows[i]["MaterialName"].ToString());//物料名称
+                    row.CreateCell(2).SetCellValue(dt.Rows[i]["MaterialStandard"].ToString());//型号规格
+                    row.CreateCell(3).SetCellValue(dt.Rows[i]["Attribute"].ToString());//材质
+                    row.CreateCell(4).SetCellValue(dt.Rows[i]["GB"].ToString());//国标
+                    row.CreateCell(5).SetCellValue(dt.Rows[i]["Length"].ToString());//长
+                    row.CreateCell(6).SetCellValue(dt.Rows[i]["Width"].ToString());//宽
+                    row.CreateCell(7).SetCellValue(dt.Rows[i]["Unit"].ToString());//单位
+                    row.CreateCell(8).SetCellValue(dt.Rows[i]["Warehouse"].ToString());//仓库
+                    row.CreateCell(9).SetCellValue(dt.Rows[i]["Position"].ToString());//仓位
+                    NPOI.SS.UserModel.IFont font1 = wk.CreateFont();
+                    font1.FontName = "仿宋";//字体
+                    font1.FontHeightInPoints = 11;//字号
+                    ICellStyle cells = wk.CreateCellStyle();
+                    cells.SetFont(font1);
+                    cells.BorderBottom = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderLeft = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderRight = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderTop = NPOI.SS.UserModel.BorderStyle.THIN;
+                    for (int j = 0; j <= 9; j++)
+                    {
+                        row.Cells[j].CellStyle = cells;
+                    }
+                }
+
+                #endregion
+
+                sheet0.ForceFormulaRecalculation = true;
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
     }
 }

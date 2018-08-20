@@ -173,19 +173,53 @@ namespace ZCZJ_DPF.SM_Data
             if (flag == "PUSHBLUE")
             {
                 //this.Page.ClientScript.RegisterStartupScript(this.GetType(), "error", "bindunbeforunload();", true);
-
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                //string sql = "SELECT UniqueID='',a.SQCODE AS SQCODE,a.MaterialCode AS MaterialCode,a.MaterialName AS MaterialName," +
+                //    "a.Attribute AS Attribute,a.GB AS GB,a.Standard AS MaterialStandard,a.Fixed AS Fixed,a.Length AS DueLength,a.Length AS Length," +
+                //    "a.Width AS Width,a.LotNumber AS LotNumber,a.PlanMode AS PlanMode,a.PTC AS PTC,a.OrderCode AS OrderID," +
+                //    "a.WarehouseCode AS WarehouseCode,a.Warehouse AS Warehouse,a.LocationCode AS PositionCode," +
+                //    "a.Location AS Position,a.Unit AS Unit,cast(a.Number as float) AS DN,cast(a.Number as float) AS DNUM,cast(a.Number as float) AS DIFNUM,a.SupportNumber AS DQN,a.SupportNumber AS RQN," +
+                //    "a.Note AS Comment,a.CGMODE AS BSH,isnull(b.zxnum,'0') as DNUM,OP_QRUniqCode FROM  View_SM_Storage as a left join  View_TBPC_PURORDERDETAIL_PLAN as b  on a.PTC=b.ptcode WHERE State='OUT" + Session["UserID"].ToString() + "' order by MaterialCode DESC";
                 string sql = "SELECT UniqueID='',a.SQCODE AS SQCODE,a.MaterialCode AS MaterialCode,a.MaterialName AS MaterialName," +
                     "a.Attribute AS Attribute,a.GB AS GB,a.Standard AS MaterialStandard,a.Fixed AS Fixed,a.Length AS DueLength,a.Length AS Length," +
                     "a.Width AS Width,a.LotNumber AS LotNumber,a.PlanMode AS PlanMode,a.PTC AS PTC,a.OrderCode AS OrderID," +
                     "a.WarehouseCode AS WarehouseCode,a.Warehouse AS Warehouse,a.LocationCode AS PositionCode," +
                     "a.Location AS Position,a.Unit AS Unit,cast(a.Number as float) AS DN,cast(a.Number as float) AS DNUM,cast(a.Number as float) AS DIFNUM,a.SupportNumber AS DQN,a.SupportNumber AS RQN," +
-                    "a.Note AS Comment,a.CGMODE AS BSH,isnull(b.zxnum,'0') as DNUM FROM  View_SM_Storage as a left join  View_TBPC_PURORDERDETAIL_PLAN as b  on a.PTC=b.ptcode WHERE State='OUT" + Session["UserID"].ToString() + "' order by MaterialCode DESC";
+                    "a.Note AS Comment,a.CGMODE AS BSH,isnull(b.zxnum,'0') as DNUM,q.QROut_ID as OP_QRUniqCode FROM  View_SM_Storage as a left join  View_TBPC_PURORDERDETAIL_PLAN as b  on a.PTC=b.ptcode left join (select * from midTable_QROut where QROut_WHSTATE='1')q on a.SQCODE=q.QROut_SQCODE WHERE State='OUT" + Session["UserID"].ToString() + "' order by MaterialCode DESC";
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
                 DataTable dt = DBCallCommon.GetDTUsingSqlText(sql);
+
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                string sqlQRIn = "update midTable_QROut set QROut_WHSTATE='0' where QROut_WHSTATE='1'";
+                string sqlGetRN = "";
+                string QROut_TaskID = "";
+                DBCallCommon.ExeSqlText(sqlQRIn);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (dt.Rows[i]["OP_QRUniqCode"].ToString().Trim() != "")
+                    {
+                        sqlGetRN = "select * from midTable_QROut where QROut_ID=" + Convert.ToInt32(dt.Rows[i]["OP_QRUniqCode"].ToString().Trim()) + "";
+                        DataTable dtGetRN = DBCallCommon.GetDTUsingSqlText(sqlGetRN);
+                        if (dtGetRN.Rows.Count > 0)
+                        {
+                            dt.Rows[i]["DNUM"] = dtGetRN.Rows[0]["QROut_Num"].ToString().Trim();
+                            if (QROut_TaskID == "")
+                            {
+                                QROut_TaskID = dtGetRN.Rows[0]["QROut_TaskID"].ToString().Trim();
+                            }
+                        }
+                    }
+                }
+                TextBoxSCZH.Text = QROut_TaskID;
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
 
                 sql = "UPDATE TBWS_STORAGE SET SQ_STATE='' WHERE SQ_STATE='OUT" + Session["UserID"].ToString() + "'";
                 DBCallCommon.ExeSqlText(sql);
+
 
                 LabelCode.Text = generateCode();
 
@@ -240,7 +274,7 @@ namespace ZCZJ_DPF.SM_Data
                "Sender AS Sender,DocCode AS DocumentCode," +
                "Doc AS Document,VerifierCode AS VerifierCode," +
                "Verifier AS Verifier,LEFT(ApprovedDate,10) AS ApproveDate,ROB AS Colour,TotalState AS State," +
-               "TotalNote AS Comment,OP_ZXMC,OP_NOTE1 FROM View_SM_OUT WHERE OutCode='" + code + "'";
+               "TotalNote AS Comment,OP_ZXMC,OP_NOTE1,OP_QRUniqCode FROM View_SM_OUT WHERE OutCode='" + code + "'";
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sql);
                 if (dr.Read())
                 {
@@ -289,7 +323,7 @@ namespace ZCZJ_DPF.SM_Data
                     "cast(Amount as float) AS Amount,WarehouseCode AS WarehouseCode," +
                     "Warehouse AS Warehouse,LocationCode AS PositionCode,Location AS Position," +
                     "PlanMode AS PlanMode,PTC AS PTC,OrderCode AS OrderID," +
-                    "DetailNote AS Comment,OP_BSH as BSH FROM View_SM_OUT WHERE DetailState='RED" + Session["UserID"].ToString() + "' AND OutCode='" + code + "'";
+                    "DetailNote AS Comment,OP_BSH as BSH,OP_QRUniqCode FROM View_SM_OUT WHERE DetailState='RED" + Session["UserID"].ToString() + "' AND OutCode='" + code + "'";
                 DataTable tb = DBCallCommon.GetDTUsingSqlText(sql);
                 GridView1.DataSource = tb;
                 GridView1.DataBind();
@@ -329,7 +363,7 @@ namespace ZCZJ_DPF.SM_Data
                 "Sender AS Sender,DocCode AS DocumentCode," +
                 "Doc AS Document,VerifierCode AS VerifierCode," +
                 "Verifier AS Verifier,LEFT(ApprovedDate,10) AS ApproveDate,ROB AS Colour,TotalState AS State,BillType," +
-                "TotalNote AS Comment,OP_ZXMC,OP_PAGENUM,OP_NOTE1,OP_XCZF FROM View_SM_OUT WHERE OutCode='" + code + "'";
+                "TotalNote AS Comment,OP_ZXMC,OP_PAGENUM,OP_NOTE1,OP_XCZF,OP_QRUniqCode FROM View_SM_OUT WHERE OutCode='" + code + "'";
                 SqlDataReader dr = DBCallCommon.GetDRUsingSqlText(sql);
                 if (dr.Read())
                 {
@@ -402,7 +436,7 @@ namespace ZCZJ_DPF.SM_Data
                     "LotNumber AS LotNumber,Unit AS Unit,cast(DueNumber as float) AS DN,cast(RealNumber as float) AS DNUM,cast((case when TotalState='2' then (DueNumber-RealNumber) else DueNumber end) as float) AS DIFNUM,cast(DueSupportNumber as float) AS DQN,cast(RealSupportNumber as float) AS RQN," +
                     "cast(UnitPrice as float) AS UnitPrice,cast(Amount as float) AS Amount,WarehouseCode AS WarehouseCode," +
                     "Warehouse AS Warehouse,LocationCode AS PositionCode,Location AS Position," +
-                    "PlanMode AS PlanMode,PTC AS PTC,OrderCode AS OrderID,DetailNote AS Comment,OP_BSH as BSH " +
+                    "PlanMode AS PlanMode,PTC AS PTC,OrderCode AS OrderID,DetailNote AS Comment,OP_BSH as BSH,OP_QRUniqCode " +
                     "FROM View_SM_OUT WHERE OutCode='" + code + "' order by UniqueCode ";
                 DataTable tb = DBCallCommon.GetDTUsingSqlText(sql);
                 GridView1.DataSource = tb;
@@ -505,6 +539,11 @@ namespace ZCZJ_DPF.SM_Data
                     tdqn += CommonFun.ComTryInt(DataBinder.Eval(e.Row.DataItem, "DQN").ToString());
                     trqn += CommonFun.ComTryInt(DataBinder.Eval(e.Row.DataItem, "RQN").ToString());
                 }
+                if (((System.Web.UI.WebControls.Label)e.Row.FindControl("LabelOP_QRUniqCode")).Text.Trim() != "")
+                {
+                    ((System.Web.UI.WebControls.TextBox)e.Row.FindControl("TextBoxRN")).Enabled = false;
+                    TextBoxSCZH.Enabled = false;
+                }
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
@@ -599,7 +638,9 @@ namespace ZCZJ_DPF.SM_Data
             tb.Columns.Add("Position", System.Type.GetType("System.String"));
             tb.Columns.Add("PositionCode", System.Type.GetType("System.String"));
             tb.Columns.Add("BSH", System.Type.GetType("System.String"));
-
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            tb.Columns.Add("OP_QRUniqCode", System.Type.GetType("System.String"));
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
@@ -632,7 +673,9 @@ namespace ZCZJ_DPF.SM_Data
                 row["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                 row["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                 row["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
-
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                row["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 tb.Rows.Add(row);
             }
             return tb;
@@ -753,6 +796,9 @@ namespace ZCZJ_DPF.SM_Data
             tb.Columns.Add("Position", System.Type.GetType("System.String"));
             tb.Columns.Add("PositionCode", System.Type.GetType("System.String"));
             tb.Columns.Add("BSH", System.Type.GetType("System.String"));
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            tb.Columns.Add("OP_QRUniqCode", System.Type.GetType("System.String"));
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             //插入记录模式
             if (mode2 == "0")
             {
@@ -839,7 +885,9 @@ namespace ZCZJ_DPF.SM_Data
                                 row["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                                 row["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                                 row["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
-
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                row["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                 tb.Rows.Add(row);
                             }
                             ////////////////////////////////////////////////////////////////////////////////////////////
@@ -907,7 +955,9 @@ namespace ZCZJ_DPF.SM_Data
                             row1["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                             row1["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                             row1["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
-
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                            row1["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             tb.Rows.Add(row1);
 
                             ////////////////////////////////////////////////////////////////////////////////////////////
@@ -973,6 +1023,9 @@ namespace ZCZJ_DPF.SM_Data
                                 row["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                                 row["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                                 row["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                row["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                 tb.Rows.Add(row);
                             }
                         }
@@ -1007,7 +1060,9 @@ namespace ZCZJ_DPF.SM_Data
                         row["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                         row["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                         row["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
-
+                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        row["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                         tb.Rows.Add(row);
                     }
                 }
@@ -1081,6 +1136,9 @@ namespace ZCZJ_DPF.SM_Data
                                 row["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                                 row["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                                 row["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                row["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                 tb.Rows.Add(row);
                             }
 
@@ -1127,7 +1185,9 @@ namespace ZCZJ_DPF.SM_Data
                             row1["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                             row1["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                             row1["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
-
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                            row1["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             tb.Rows.Add(row1);
 
                         }
@@ -1171,6 +1231,9 @@ namespace ZCZJ_DPF.SM_Data
                                 row["Position"] = ((System.Web.UI.WebControls.TextBox)GRow.FindControl("TextBoxPosition")).Text;
                                 row["PositionCode"] = ((HtmlInputText)GRow.FindControl("InputPositionCode")).Value;
                                 row["BSH"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelBSH")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                row["OP_QRUniqCode"] = ((System.Web.UI.WebControls.Label)GRow.FindControl("LabelOP_QRUniqCode")).Text;
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                 tb.Rows.Add(row);
                             }
                         }
@@ -1537,6 +1600,12 @@ namespace ZCZJ_DPF.SM_Data
                 sqllist.Add(sql);
             }
 
+
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            string sqlUpdateQR3 = "update midTable_QROut set QROut_State='0' where QROut_ID in(select OP_QRUniqCode from TBWS_OUTDETAIL where OP_CODE='" + Code + "')";
+            sqllist.Add(sqlUpdateQR3);
+            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
             sql = "DELETE FROM TBWS_OUTDETAIL WHERE OP_CODE='" + Code + "'";
 
             sqllist.Add(sql);
@@ -1664,18 +1733,50 @@ namespace ZCZJ_DPF.SM_Data
                     WG_UPRICE = dt02.Rows[0]["WG_UPRICE"].ToString();
                     WG_AMOUNT = dt02.Rows[0]["WG_AMOUNT"].ToString();
                 }
+
                 //2018.8.16修改出库金额
                 double WG_AMOUNT1 = RN * Convert.ToDouble(WG_UPRICE);
-                WG_AMOUNT1 = Math.Round(WG_AMOUNT1, 2, MidpointRounding.AwayFromZero);
-                sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
+                decimal WG_AMOUNT2 = Math.Round((decimal)WG_AMOUNT1, 2, MidpointRounding.AwayFromZero);
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                string OP_QRUniqCode = ((Label)this.GridView1.Rows[i].FindControl("LabelOP_QRUniqCode")).Text;
+                string sqlUpdateQR2 = "";
+                //sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
+                //    "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
+                //    "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
+                //    "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
+                //    MaterialCode + "','" +
+                //    Fixed + "','" + DueLength + "','" + Length + "','" +
+                //    Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT + "','" +
+                //    WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
+                //    PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "')";
+                
+                if (OP_QRUniqCode != "")
+                {
+                    sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
                     "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
                     "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
-                    "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
+                    "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH,OP_QRUniqCode) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
                     MaterialCode + "','" +
                     Fixed + "','" + DueLength + "','" + Length + "','" +
-                    Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT1 + "','" +
+                    Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT2 + "','" +
                     WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
-                    PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "')";
+                    PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "'," + Convert.ToInt32(OP_QRUniqCode) + ")";
+                    sqlUpdateQR2 = "update midTable_QROut set QROut_State='1' where QROut_ID=" + Convert.ToInt32(OP_QRUniqCode) + "";
+                    sqllist.Add(sqlUpdateQR2);
+                }
+                else
+                {
+                    sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
+                    "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
+                    "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
+                    "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH,OP_QRUniqCode) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
+                    MaterialCode + "','" +
+                    Fixed + "','" + DueLength + "','" + Length + "','" +
+                    Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT2 + "','" +
+                    WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
+                    PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "',NULL)";
+                }
+                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 sqllist.Add(sql);
             }
             DBCallCommon.ExecuteTrans(sqllist);
@@ -1980,7 +2081,7 @@ namespace ZCZJ_DPF.SM_Data
                         "OP_SENDER,OP_DOC,OP_VERIFIER,OP_VERIFYDATE,OP_HSFLAG,OP_ROB," +
                         "OP_STATE,OP_NOTE,OP_BILLTYPE,OP_RealTime,OP_PAGENUM,OP_NOTE1,OP_XCZF) VALUES('" + Code + "','" + LLDepCode + "','" + Date + "','" + SCZH + "','" +
                         SendClerkCode + "','" + DocCode + "','" + VerifierCode + "','" + ApproveDate + "','0','" +
-                        Colour + "','1','" + Comment + "','" + BillType + "',convert(varchar(50),getdate(),120)','" + pagenum + "','" + NOTE1 + "','" + xczfif + "')";
+                        Colour + "','1','" + Comment + "','" + BillType + "',convert(varchar(50),getdate(),120),'" + pagenum + "','" + NOTE1 + "','" + xczfif + "')";
 
                     sqllist.Add(sql);
 
@@ -2162,8 +2263,6 @@ namespace ZCZJ_DPF.SM_Data
                     string OrderID = ((System.Web.UI.WebControls.Label)this.GridView1.Rows[i].FindControl("LabelOrderID")).Text;
                     string Note = ((System.Web.UI.WebControls.TextBox)this.GridView1.Rows[i].FindControl("TextBoxComment")).Text;
                     string bsh = ((System.Web.UI.WebControls.Label)this.GridView1.Rows[i].FindControl("LabelBSH")).Text;
-
-
                     string WG_UPRICE = "0";
                     string WG_AMOUNT = "0";
                     string sqltext2 = "select WG_UPRICE,WG_AMOUNT from TBWS_INDETAIL where WG_PTCODE='" + PTC + "'";
@@ -2180,18 +2279,38 @@ namespace ZCZJ_DPF.SM_Data
                         WG_UPRICE = dt02.Rows[0]["WG_UPRICE"].ToString();
                         WG_AMOUNT = dt02.Rows[0]["WG_AMOUNT"].ToString();
                     }
-
-
-
-                    sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
-                        "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
-                        "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
-                        "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
-                        MaterialCode + "','" +
-                        Fixed + "','" + DueLength + "','" + Length + "','" +
-                        Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT + "','" +
-                        WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
-                        PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "')";
+                    double WG_AMOUNT1 = RN * Convert.ToDouble(WG_UPRICE);
+                    decimal WG_AMOUNT2 = Math.Round((decimal)WG_AMOUNT1, 2, MidpointRounding.AwayFromZero);
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    string OP_QRUniqCode = ((Label)this.GridView1.Rows[i].FindControl("LabelOP_QRUniqCode")).Text;
+                    string sqlUpdateQR2 = "";
+                    if (OP_QRUniqCode != "")
+                    {
+                        sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
+                            "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
+                            "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
+                            "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH,OP_QRUniqCode) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
+                            MaterialCode + "','" +
+                            Fixed + "','" + DueLength + "','" + Length + "','" +
+                            Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT2 + "','" +
+                            WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
+                            PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "'," + Convert.ToInt32(OP_QRUniqCode) + ")";
+                        sqlUpdateQR2 = "update midTable_QROut set QROut_State='1' where QROut_ID=" + Convert.ToInt32(OP_QRUniqCode) + "";
+                        sqllist.Add(sqlUpdateQR2);
+                    }
+                    else
+                    {
+                        sql = "INSERT INTO TBWS_OUTDETAIL(OP_CODE,OP_UNIQUEID,OP_SQCODE,OP_MARID," +
+                            "OP_FIXED,OP_DUELENGTH,OP_LENGTH,OP_WIDTH,OP_LOTNUM,OP_DUENUM,OP_REALNUM,OP_DUEFZNUM,OP_REALFZNUM," +
+                            "OP_UPRICE,OP_AMOUNT,OP_WAREHOUSE,OP_LOCATION,OP_PMODE," +
+                            "OP_PTCODE,OP_ORDERID,OP_NOTE,OP_STATE,OP_BSH,OP_QRUniqCode) VALUES('" + Code + "','" + UniqueID + "','" + SQCODE + "','" +
+                            MaterialCode + "','" +
+                            Fixed + "','" + DueLength + "','" + Length + "','" +
+                            Width + "','" + LotNumber + "','" + DN + "','" + RN + "','" + DQN + "','" + RQN + "','" + WG_UPRICE + "','" + WG_AMOUNT2 + "','" +
+                            WarehouseOutCode + "','" + PositionCode + "','" + PlanMode + "','" +
+                            PTC + "','" + OrderID + "','" + Note + "','','" + bsh + "',NULL)";
+                    }
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                     sqllist.Add(sql);
                 }
 
@@ -2327,6 +2446,24 @@ namespace ZCZJ_DPF.SM_Data
                     List<string> sqllist = new List<string>();
                     string sql = "DELETE FROM TBWS_OUT WHERE OP_CODE='" + LabelCode.Text + "'";
                     sqllist.Add(sql);
+
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                    string sqlgetdata = "select * from TBWS_OUTDETAIL where OP_CODE='" + LabelCode.Text + "'";
+                    DataTable dtgetdata = DBCallCommon.GetDTUsingSqlText(sqlgetdata);
+                    string sqlUpdateQR = "";
+                    if (dtgetdata.Rows.Count > 0)
+                    {
+                        for (int k = 0; k < dtgetdata.Rows.Count; k++)
+                        {
+                            if (dtgetdata.Rows[k]["OP_QRUniqCode"].ToString().Trim() != "")
+                            {
+                                sqlUpdateQR = "update midTable_QROut set QROut_State='0' where QROut_ID=" + Convert.ToInt32(dtgetdata.Rows[k]["OP_QRUniqCode"].ToString().Trim()) + "";
+                                sqllist.Add(sqlUpdateQR);
+                            }
+                        }
+                    }
+                    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
                     sql = "DELETE FROM TBWS_OUTDETAIL WHERE OP_CODE='" + LabelCode.Text + "'";
                     sqllist.Add(sql);
                     DBCallCommon.ExecuteTrans(sqllist);

@@ -986,7 +986,7 @@ namespace ZCZJ_DPF.PC_Data
                                          "recdate, recgdnum, recgdfznum, taxrate, detailnote, keycoms, detailstate, detailcstate, whstate, length, width, fixed, pjid, " +
                                          "pjnm, engid, engnm, ctprice, planmode, ctamount, price, amount, supplierid, suppliernm, zdrid, zdrnm, substring(zdtime,0,11) as zdtime, shrid, " +
                                          "shrnm, shtime, ywyid, ywynm, zgid, zgnm, depid, depnm, totalstate, totalcstate, totalnote, fax, phono, conname, abstract, " +
-                                         "PO_MASHAPE,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,PO_OperateState,PO_MAP,PO_TECUNIT,PO_CHILDENGNAME,PO_PZ,PO_IFFAST as 'IFFAST'  " +
+                                         "PO_MASHAPE,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,PO_OperateState,PO_MAP,PO_TECUNIT,PO_CHILDENGNAME,PO_PZ  " +
                                          "from View_TBPC_PURORDERDETAIL_PLAN_TOTAL  where orderno in (" + ordercode + ") order by orderno desc,ptcode asc";
                 //}
 
@@ -1132,16 +1132,6 @@ namespace ZCZJ_DPF.PC_Data
             HttpContext.Current.Response.Clear();
             //1.读取Excel到FileStream
 
-            //读取制单人部门的部长姓名
-            string sql = "select ST_NAME from  TBDS_STAFFINFO where ST_DEPID='" + dt.Rows[0]["depid"].ToString() + "' and ST_PD='0' and ST_POSITION LIKE '%01'";
-            System.Data.DataTable depBoss = DBCallCommon.GetDTUsingSqlText(sql);
-            string depBossName = "";
-            if (depBoss.Rows.Count > 0)
-            {
-                depBossName = depBoss.Rows[0]["ST_NAME"].ToString();
-            }
-
-
             using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("采购订单钢材类.xls")))
             {
                 IWorkbook wk = new HSSFWorkbook(fs);
@@ -1154,12 +1144,10 @@ namespace ZCZJ_DPF.PC_Data
                 row1.GetCell(18).SetCellValue(dt.Rows[0]["orderno"].ToString());//订单编号
                 row10.GetCell(1).SetCellValue(dt.Rows[0]["suppliernm"].ToString());//供应商
                 row13.GetCell(17).SetCellValue(dt.Rows[0]["zdtime"].ToString());//制单日期
-                string Fast = string.Empty;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 18);
                     row.HeightInPoints = 14;//行高
-                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
                     #region MyRegion
 
                     //row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
@@ -1192,7 +1180,7 @@ namespace ZCZJ_DPF.PC_Data
 
                     #endregion
 
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["marid"].ToString());//物料编码
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["marnm"].ToString());//物料名称
 
@@ -1247,9 +1235,9 @@ namespace ZCZJ_DPF.PC_Data
                 //页脚信息
                 IRow row20 = sheet0.CreateRow(dt.Rows.Count + 20);
                 row20.CreateCell(1).SetCellValue("部门：");
-                row20.CreateCell(2).SetCellValue(dt.Rows[0]["depnm"].ToString());
+                row20.CreateCell(2).SetCellValue("采购部");
                 row20.CreateCell(5).SetCellValue("部长：");
-                row20.CreateCell(6).SetCellValue(depBossName);
+                row20.CreateCell(6).SetCellValue("高浩");
                 row20.CreateCell(8).SetCellValue("业务员：");
                 row20.CreateCell(9).SetCellValue(dt.Rows[0]["zdrnm"].ToString());
                 row20.CreateCell(11).SetCellValue("制单：");
@@ -1278,20 +1266,10 @@ namespace ZCZJ_DPF.PC_Data
             HttpContext.Current.Response.Clear();
             //1.读取Excel到FileStream
 
-            //读取制单人部门的部长姓名
-            string sql = "select ST_NAME from  TBDS_STAFFINFO where ST_DEPID='" + dt.Rows[0]["depid"].ToString() + "' and ST_PD='0' and ST_POSITION LIKE '%01'";
-            System.Data.DataTable depBoss = DBCallCommon.GetDTUsingSqlText(sql);
-            string depBossName = "";
-            if (depBoss.Rows.Count > 0)
-            {
-                depBossName = depBoss.Rows[0]["ST_NAME"].ToString();
-            }
-
             using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("采购订单非钢材类.xls")))
             {
                 IWorkbook wk = new HSSFWorkbook(fs);
                 ISheet sheet0 = wk.GetSheetAt(0);
-                string Fast = string.Empty;
 
                 #region 写入数据
                 IRow row1 = sheet0.GetRow(1);
@@ -1300,14 +1278,11 @@ namespace ZCZJ_DPF.PC_Data
                 row1.GetCell(16).SetCellValue(dt.Rows[0]["orderno"].ToString());//订单编号
                 row10.GetCell(2).SetCellValue(dt.Rows[0]["suppliernm"].ToString());//供应商
                 row13.GetCell(15).SetCellValue(dt.Rows[0]["zdtime"].ToString());//制单日期
-                
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     IRow row = sheet0.CreateRow(i + 18);
                     row.HeightInPoints = 14;//行高
-                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
-
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["marid"].ToString());//物料编码
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["marnm"].ToString());//物料名称
                     row.CreateCell(3).SetCellValue(dt.Rows[i]["PO_TUHAO"].ToString());//图号
@@ -1347,9 +1322,9 @@ namespace ZCZJ_DPF.PC_Data
                 //页脚信息
                 IRow row20 = sheet0.CreateRow(dt.Rows.Count + 20);
                 row20.CreateCell(1).SetCellValue("部门：");
-                row20.CreateCell(2).SetCellValue(dt.Rows[0]["depnm"].ToString());
+                row20.CreateCell(2).SetCellValue("采购部");
                 row20.CreateCell(5).SetCellValue("部长：");
-                row20.CreateCell(6).SetCellValue(depBossName);
+                row20.CreateCell(6).SetCellValue("高浩");
                 row20.CreateCell(8).SetCellValue("业务员：");
                 row20.CreateCell(9).SetCellValue(dt.Rows[0]["zdrnm"].ToString());
                 row20.CreateCell(11).SetCellValue("制单：");
@@ -1840,7 +1815,7 @@ namespace ZCZJ_DPF.PC_Data
 
             //if (DropDownListrange.SelectedIndex == 1)
             //{
-            string sqltext = "select orderno,supplierid,suppliernm,zdtime,cgtimerq,pjid,pjnm,engid,engnm,whstate,convert(float,zxnum) as zxnum,recgdnum,detailnote,detailstate,detailcstate,marunit,convert(float,ctamount) as ctamount,zdrid,zdrnm,shrid,shrnm,totalnote,totalstate,totalcstate,ptcode,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,marid,marnm,margg,marcz,margb,PO_MASHAPE,length,width,PO_ZJE,RESULT as PO_CGFS,ctprice,recdate,PO_MAP,PO_TECUNIT,zxfznum,PO_CHILDENGNAME,t.PO_IFFAST as 'IFFAST' from (select a.*,b.RESULT from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC)t where " + ViewState["sqlwhere"].ToString() + " order by zdtime desc,ptcode,marnm,margg";
+            string sqltext = "select orderno,supplierid,suppliernm,zdtime,cgtimerq,pjid,pjnm,engid,engnm,whstate,convert(float,zxnum) as zxnum,recgdnum,detailnote,detailstate,detailcstate,marunit,convert(float,ctamount) as ctamount,zdrid,zdrnm,shrid,shrnm,totalnote,totalstate,totalcstate,ptcode,case when margb='' then PO_TUHAO else '' end as PO_TUHAO,marid,marnm,margg,marcz,margb,PO_MASHAPE,length,width,PO_ZJE,RESULT as PO_CGFS,ctprice,recdate,PO_MAP,PO_TECUNIT,zxfznum,PO_CHILDENGNAME from (select a.*,b.RESULT from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC)t where " + ViewState["sqlwhere"].ToString() + " order by zdtime desc,ptcode,marnm,margg";
             //}
 
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
@@ -1853,7 +1828,6 @@ namespace ZCZJ_DPF.PC_Data
             HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
             HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
             HttpContext.Current.Response.Clear();
-            string Fast = string.Empty;
             //1.读取Excel到FileStream
 
             using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("订单批量导出模板.xls")))
@@ -1866,14 +1840,13 @@ namespace ZCZJ_DPF.PC_Data
                 {
                     IRow row = sheet0.CreateRow(i + 1);
                     row.HeightInPoints = 14;//行高
-                    Fast = dt.Rows[i]["IFFAST"].ToString() == "1" ? " 加急" : "";
 
-                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1) + Fast);//序号
+                    row.CreateCell(0).SetCellValue(Convert.ToString(i + 1));//序号
                     row.CreateCell(1).SetCellValue(dt.Rows[i]["orderno"].ToString());//单据编号
                     row.CreateCell(2).SetCellValue(dt.Rows[i]["zdrnm"].ToString());//制单人
                     row.CreateCell(3).SetCellValue(dt.Rows[i]["zdtime"].ToString() == "" ? "" : Convert.ToDateTime(dt.Rows[i]["zdtime"].ToString()).ToString("yyyy-MM-dd"));//制单日期
                     row.CreateCell(4).SetCellValue(dt.Rows[i]["PO_ZJE"].ToString());//订单总金额
-                    row.CreateCell(5).SetCellValue(dt.Rows[i]["suppliernm"].ToString());//供应商、
+                    row.CreateCell(5).SetCellValue(dt.Rows[i]["suppliernm"].ToString());//供应商
 
                     string sqlcght = "select HT_ID,HT_XFHTBH,HT_DDBH from PC_CGHT where HT_DDBH like '%" + dt.Rows[i]["orderno"].ToString().Trim() + "%'";
                     System.Data.DataTable dtcght = DBCallCommon.GetDTUsingSqlText(sqlcght);
@@ -1979,6 +1952,121 @@ namespace ZCZJ_DPF.PC_Data
                 #endregion
                 sheet0.ForceFormulaRecalculation = true;
 
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
+
+
+
+        //导出二维码信息
+        protected void btn_QRExport_click(object sender, EventArgs e)
+        {
+            string sqltext = "select orderno AS Code,supplierid AS SupplierCode,suppliernm AS Supplier,LEFT(shtime,10) AS Date,ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep,totalstate AS OrderState,marid AS MaterialCode,marnm AS MaterialName,marcz AS Attribute,margb AS GB,margg AS MaterialStandard,length,width,marunit AS Unit,marfzunit,cast(zxnum as float) AS Number,dingenum,cast(zxfznum as float) AS QUANTITY,cast(recgdnum as float) AS ArrivedNumber,LEFT(recdate,10) AS ArrivedDate,cast(price as float) AS UnitPrice,taxrate AS TaxRate,cast(ctprice as float) AS CTUP,cast(amount as float) AS Amount,cast(ctamount as float) AS CTA,planmode AS PlanMode,ptcode AS PTC,detailstate AS PushState,detailnote,(case when RESULT='——' then '未报检' else RESULT end) as RESULT,PO_MASHAPE,PO_TUHAO,Type from (select a.*,b.RESULT,s.PUR_NUM as dingenum from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc,BJSJ desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC left join TBPC_PURCHASEPLAN as s on a.ptcode=s.PUR_PTCODE)t where " + ViewState["sqlwhere"].ToString() + " order by orderno DESC ,marnm,margg,ptcode";
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+            if (dt.Rows.Count > 500)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('导出条数大于500，请分批导出！');", true);
+                return;
+            }
+            string filename = "订单二维码物料信息" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ".xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+            //1.读取Excel到FileStream
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("订单二维码信息导出模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);
+                ISheet sheet0 = wk.GetSheetAt(0);
+
+                #region 写入数据
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    IRow row = sheet0.CreateRow(i + 1);
+                    row.HeightInPoints = 14;//行高
+                    row.CreateCell(0).SetCellValue(dt.Rows[i]["MaterialCode"].ToString());//物料编码
+                    row.CreateCell(1).SetCellValue(dt.Rows[i]["MaterialName"].ToString());//物料名称
+                    row.CreateCell(2).SetCellValue(dt.Rows[i]["MaterialStandard"].ToString());//型号规格
+                    row.CreateCell(3).SetCellValue(dt.Rows[i]["Attribute"].ToString());//材质
+                    row.CreateCell(4).SetCellValue(dt.Rows[i]["GB"].ToString());//国标
+                    row.CreateCell(5).SetCellValue(dt.Rows[i]["length"].ToString());//长
+                    row.CreateCell(6).SetCellValue(dt.Rows[i]["width"].ToString());//宽
+                    row.CreateCell(7).SetCellValue(dt.Rows[i]["Unit"].ToString());//单位
+                    NPOI.SS.UserModel.IFont font1 = wk.CreateFont();
+                    font1.FontName = "仿宋";//字体
+                    font1.FontHeightInPoints = 11;//字号
+                    ICellStyle cells = wk.CreateCellStyle();
+                    cells.SetFont(font1);
+                    cells.BorderBottom = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderLeft = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderRight = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderTop = NPOI.SS.UserModel.BorderStyle.THIN;
+                    for (int j = 0; j <= 7; j++)
+                    {
+                        row.Cells[j].CellStyle = cells;
+                    }
+                }
+
+                #endregion
+
+                sheet0.ForceFormulaRecalculation = true;
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
+
+        //导出二维码合并信息
+        protected void btn_QRHBExport_click(object sender, EventArgs e)
+        {
+            string sqltext = "select orderno AS Code,supplierid AS SupplierCode,suppliernm AS Supplier,LEFT(shtime,10) AS Date,ywyid AS ClerkCode,ywynm AS Clerk,depid AS DepCode,depnm AS Dep,totalstate AS OrderState,marid AS MaterialCode,marnm AS MaterialName,marcz AS Attribute,margb AS GB,margg AS MaterialStandard,length,width,marunit AS Unit,marfzunit,cast(zxnum as float) AS Number,dingenum,cast(zxfznum as float) AS QUANTITY,cast(recgdnum as float) AS ArrivedNumber,LEFT(recdate,10) AS ArrivedDate,cast(price as float) AS UnitPrice,taxrate AS TaxRate,cast(ctprice as float) AS CTUP,cast(amount as float) AS Amount,cast(ctamount as float) AS CTA,planmode AS PlanMode,ptcode AS PTC,detailstate AS PushState,detailnote,(case when RESULT='——' then '未报检' else RESULT end) as RESULT,PO_MASHAPE,PO_TUHAO,Type from (select a.*,b.RESULT,s.PUR_NUM as dingenum from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc,BJSJ desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC left join TBPC_PURCHASEPLAN as s on a.ptcode=s.PUR_PTCODE)t where " + ViewState["sqlwhere"].ToString() + " order by orderno DESC ,marnm,margg,ptcode";
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+            if (dt.Rows.Count > 500)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('导出条数大于500，请分批导出！');", true);
+                return;
+            }
+            string filename = "订单二维码物料信息合并" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ".xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+
+            string AllInfo = "";
+            //1.读取Excel到FileStream
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("订单二维码信息合并导出模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);
+                ISheet sheet0 = wk.GetSheetAt(0);
+
+                #region 写入数据
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    IRow row = sheet0.CreateRow(i);
+                    row.HeightInPoints = 14;//行高
+                    //AllInfo = dt.Rows[i]["PTC"].ToString() + ";" + dt.Rows[i]["Code"].ToString() + ";" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ";" + dt.Rows[i]["Supplier"].ToString() + ";" + dt.Rows[i]["MaterialCode"].ToString() + ";" + dt.Rows[i]["MaterialName"].ToString() + ";" + dt.Rows[i]["MaterialStandard"].ToString() + ";" + dt.Rows[i]["Attribute"].ToString() + ";" + dt.Rows[i]["GB"].ToString() + ";" + dt.Rows[i]["length"].ToString() + ";" + dt.Rows[i]["width"].ToString() + ";" + dt.Rows[i]["Unit"].ToString() + ";" + dt.Rows[i]["dingenum"].ToString() + ";" + dt.Rows[i]["Number"].ToString() + ";" + "" + ";" + dt.Rows[i]["Date"].ToString() + ";" + "1";
+                    AllInfo = dt.Rows[i]["PTC"].ToString() + ";" + dt.Rows[i]["Code"].ToString() + ";" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ";" + "1";
+                    row.CreateCell(0).SetCellValue(AllInfo);
+                    NPOI.SS.UserModel.IFont font1 = wk.CreateFont();
+                    font1.FontName = "仿宋";//字体
+                    font1.FontHeightInPoints = 11;//字号
+                    ICellStyle cells = wk.CreateCellStyle();
+                    cells.SetFont(font1);
+                    cells.BorderBottom = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderLeft = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderRight = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderTop = NPOI.SS.UserModel.BorderStyle.THIN;
+                    for (int j = 0; j <= 0; j++)
+                    {
+                        row.Cells[j].CellStyle = cells;
+                    }
+                }
+
+                #endregion
+
+                sheet0.ForceFormulaRecalculation = true;
                 MemoryStream file = new MemoryStream();
                 wk.Write(file);
                 HttpContext.Current.Response.BinaryWrite(file.GetBuffer());

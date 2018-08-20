@@ -107,6 +107,11 @@ postBack=true;
         var time=date.getTime();
         window.open("SM_Warehouse_Query.aspx?FLAG=PUSHLLOUT&id="+time);
     }
+    function toQROutData() {
+     var date=new Date();
+        var time=date.getTime();
+        window.open("../QR_Interface/QROut_List.aspx?FLAG=PUSH&id="+time);
+    }
     function outstorage() {
      var date=new Date();
         var time=date.getTime();
@@ -163,6 +168,7 @@ document.onload=init();
                                 visible="false" />
                             <asp:Button ID="BtnShowExport" runat="server" Text="导出" OnClick="BtnShowExport_Click" />
                             <input id="ToStorage" type="button" value="到库存" onclick="tostorage()" runat="server" />
+                            <input id="Button1" type="button" value="到扫码出库物料" onclick="toQROutData()" runat="server" />
                             <input id="OutStorage" type="button" value="生产领料单" onclick="outstorage()" runat="server" />
                             <input id="BackStorage" type="button" value="退库" onclick="backstorage()" runat="server"
                                 visible="false" />
@@ -252,13 +258,13 @@ document.onload=init();
                                             <tr>
                                                 <td style="white-space: nowrap;" align="left" width="50%">
                                                     审核开始日期：<asp:TextBox ID="TextBoxStartDate" runat="server"></asp:TextBox>
-                                                    <cc1:CalendarExtender ID="TextBoxStartDate_CalendarExtender" runat="server" Format="yyyy-MM-dd"
+                                                    <cc1:CalendarExtender ID="TextBoxStartDate_CalendarExtender" runat="server" Format="yyyy-MM"
                                                         TargetControlID="TextBoxStartDate">
                                                     </cc1:CalendarExtender>
                                                 </td>
                                                 <td style="white-space: nowrap;" align="left" width="50%">
                                                     审核截止日期：<asp:TextBox ID="TextBoxDate" runat="server"></asp:TextBox>
-                                                    <cc1:CalendarExtender ID="TextBoxDate_CalendarExtender" runat="server" Format="yyyy-MM-dd"
+                                                    <cc1:CalendarExtender ID="TextBoxDate_CalendarExtender" runat="server" Format="yyyy-MM"
                                                         TargetControlID="TextBoxDate">
                                                     </cc1:CalendarExtender>
                                                 </td>

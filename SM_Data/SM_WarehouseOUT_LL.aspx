@@ -503,7 +503,7 @@ function ClientSideClick(myButton) {
                             <asp:Button ID="AntiVerify" runat="server" Text="反审核" OnClick="AntiVerify_Click"
                                 OnClientClick="ClientSideClick(this);" UseSubmitBehavior="False" />
                             <asp:Button ID="SplitForm" runat="server" Text="拆单" OnClick="SplitForm_Click" OnClientClick="ClientSideClick(this);"
-                                UseSubmitBehavior="False" Visible="false" />
+                                UseSubmitBehavior="False" />
                             <asp:Button ID="MergeForm" runat="server" Text="合并" OnClick="MergeForm_Click" OnClientClick="ClientSideClick(this);"
                                 UseSubmitBehavior="False" />
                             <asp:Button ID="DeleteBill" runat="server" Text="删单" OnClick="DeleteBill_Click" />
@@ -924,6 +924,13 @@ function ClientSideClick(myButton) {
                                     Width="100%"></asp:Label>
                             </ItemTemplate>
                             <ItemStyle Wrap="false" />
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField HeaderText="扫码唯一识别码" HeaderStyle-Wrap="false">
+                            <ItemTemplate>
+                                <asp:Label ID="LabelOP_QRUniqCode" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "OP_QRUniqCode")%>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle Wrap="False" />
                         </asp:TemplateField>
                     </Columns>
                     <HeaderStyle BackColor="#A8B7EC" Font-Bold="True" ForeColor="White" Wrap="false" />
