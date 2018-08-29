@@ -184,6 +184,8 @@ document.onload=init();
                             <asp:Button ID="Push" runat="server" Text="下推" OnClick="Push_Click" OnClientClick="return PushConfirm()" />
                             &nbsp;&nbsp;
                             <input id="closewin" type="button" value="关闭" onclick="closewindow()" visible="false" runat="server" />&nbsp;&nbsp;
+                            
+                            <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息（勾选导出）" OnClick="btn_QRExport_click" />&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
                 </table>

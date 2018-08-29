@@ -1915,11 +1915,11 @@ namespace ZCZJ_DPF.SM_Data
             string condition = GetStrCondition();
             if (condition != "")
             {
-                sqltext = "select distinct MaterialCode,MaterialName,Attribute,GB,Standard AS MaterialStandard,Length,Width,Warehouse,Location AS Position,Unit from (select * from View_SM_Storage as a left join (select PTCFrom,MaterialCode as TzMaterialCode,sum(TZNUM) as OUTTZNUM,sum(TZFZNUM) as OUTTZFZNUM from View_SM_MTO group by PTCFrom,MaterialCode) as b on a.PTC=b.PTCFrom and a.MaterialCode=b.TzMaterialCode)t where " + condition;
+                sqltext = "select MaterialCode,MaterialName,Attribute,GB,Standard AS MaterialStandard,Length,Width,Warehouse,Location AS Position,Unit from (select * from View_SM_Storage as a left join (select PTCFrom,MaterialCode as TzMaterialCode,sum(TZNUM) as OUTTZNUM,sum(TZFZNUM) as OUTTZFZNUM from View_SM_MTO group by PTCFrom,MaterialCode) as b on a.PTC=b.PTCFrom and a.MaterialCode=b.TzMaterialCode)t where " + condition;
             }
             else
             {
-                sqltext = "select distinct MaterialCode,MaterialName,Attribute,GB,Standard AS MaterialStandard,Length,Width,Warehouse,Location AS Position,Unit from (select * from View_SM_Storage as a left join (select PTCFrom,MaterialCode as TzMaterialCode,sum(TZNUM) as OUTTZNUM,sum(TZFZNUM) as OUTTZFZNUM from View_SM_MTO group by PTCFrom,MaterialCode) as b on a.PTC=b.PTCFrom and a.MaterialCode=b.TzMaterialCode)t";
+                sqltext = "select MaterialCode,MaterialName,Attribute,GB,Standard AS MaterialStandard,Length,Width,Warehouse,Location AS Position,Unit from (select * from View_SM_Storage as a left join (select PTCFrom,MaterialCode as TzMaterialCode,sum(TZNUM) as OUTTZNUM,sum(TZFZNUM) as OUTTZFZNUM from View_SM_MTO group by PTCFrom,MaterialCode) as b on a.PTC=b.PTCFrom and a.MaterialCode=b.TzMaterialCode)t";
             }
             System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
             if (dt.Rows.Count > 500)

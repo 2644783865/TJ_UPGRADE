@@ -12,6 +12,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;                                                             
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
+using System.IO;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace ZCZJ_DPF.SM_Data
 {
@@ -1180,5 +1183,95 @@ namespace ZCZJ_DPF.SM_Data
         }
 
 
+        //导出二维码信息
+        protected void btn_QRExport_click(object sender, EventArgs e)
+        {
+            //获取勾选项
+            List<string> sqllist = new List<string>();
+            List<string> sqllist2 = new List<string>();
+            int count = 0;
+            string ptc = "";
+            string ordercode = "";
+            string sql = "";
+            for (int i = 0; i < Repeater1.Items.Count; i++)
+            {
+
+                if (((CheckBox)Repeater1.Items[i].FindControl("CheckBox1")).Checked == true)
+                {
+                    ptc = ((Label)Repeater1.Items[i].FindControl("LabelPTC")).Text;
+                    ordercode = ((Label)Repeater1.Items[i].FindControl("LabelCode")).Text;
+                    sql = "UPDATE TBPC_PURORDERDETAIL SET Type='2' WHERE PO_PTCODE='" + ptc + "' and PO_CODE='" + ordercode + "'";
+                    sqllist.Add(sql);
+                    count++;
+                }
+            }
+            if (count<1)
+            {
+                string alert = "<script>alert('请选择要导出的条目！')</script>";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "", alert, false);
+                return;
+            }
+            DBCallCommon.ExecuteTrans(sqllist);
+
+            //获取数据
+            string sqltext = "select marid AS MaterialCode,marnm AS MaterialName,marcz AS Attribute,margb AS GB,margg AS MaterialStandard,length,width,marunit AS Unit from (select a.*,b.RESULT,s.PUR_NUM as dingenum from View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select PTC,RESULT,ISAGAIN,rn from (select *,row_number() over(partition by PTC order by ISAGAIN desc,BJSJ desc) as rn from View_TBQM_APLYFORITEM) as c where rn<=1) as b on a.ptcode=b.PTC left join TBPC_PURCHASEPLAN as s on a.ptcode=s.PUR_PTCODE)t where Type='2' order by marid";
+            System.Data.DataTable dt = DBCallCommon.GetDTUsingSqlText(sqltext);
+
+            //获得数据后初始化状态
+            sql = "UPDATE TBPC_PURORDERDETAIL SET Type=NULL WHERE Type='2'";
+            sqllist2.Add(sql);
+            DBCallCommon.ExecuteTrans(sqllist2);
+            //if (dt.Rows.Count > 500)
+            //{
+            //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('导出条数大于500，请分批导出！');", true);
+            //    return;
+            //}
+            string filename = "订单二维码物料信息" + DateTime.Now.ToString("yyyyMMddHHmmss").Trim() + ".xls";
+            HttpContext.Current.Response.ContentType = "application/vnd.ms-excel";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", System.Web.HttpContext.Current.Server.UrlEncode(filename)));
+            HttpContext.Current.Response.Clear();
+            //1.读取Excel到FileStream
+            using (FileStream fs = File.OpenRead(System.Web.HttpContext.Current.Server.MapPath("~/PC_Data/订单二维码信息导出模板.xls")))
+            {
+                IWorkbook wk = new HSSFWorkbook(fs);
+                ISheet sheet0 = wk.GetSheetAt(0);
+
+                #region 写入数据
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    IRow row = sheet0.CreateRow(i + 1);
+                    row.HeightInPoints = 14;//行高
+                    row.CreateCell(0).SetCellValue(dt.Rows[i]["MaterialCode"].ToString());//物料编码
+                    row.CreateCell(1).SetCellValue(dt.Rows[i]["MaterialName"].ToString());//物料名称
+                    row.CreateCell(2).SetCellValue(dt.Rows[i]["MaterialStandard"].ToString());//型号规格
+                    row.CreateCell(3).SetCellValue(dt.Rows[i]["Attribute"].ToString());//材质
+                    row.CreateCell(4).SetCellValue(dt.Rows[i]["GB"].ToString());//国标
+                    row.CreateCell(5).SetCellValue(dt.Rows[i]["length"].ToString());//长
+                    row.CreateCell(6).SetCellValue(dt.Rows[i]["width"].ToString());//宽
+                    row.CreateCell(7).SetCellValue(dt.Rows[i]["Unit"].ToString());//单位
+                    NPOI.SS.UserModel.IFont font1 = wk.CreateFont();
+                    font1.FontName = "仿宋";//字体
+                    font1.FontHeightInPoints = 11;//字号
+                    ICellStyle cells = wk.CreateCellStyle();
+                    cells.SetFont(font1);
+                    cells.BorderBottom = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderLeft = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderRight = NPOI.SS.UserModel.BorderStyle.THIN;
+                    cells.BorderTop = NPOI.SS.UserModel.BorderStyle.THIN;
+                    for (int j = 0; j <= 7; j++)
+                    {
+                        row.Cells[j].CellStyle = cells;
+                    }
+                }
+
+                #endregion
+
+                sheet0.ForceFormulaRecalculation = true;
+                MemoryStream file = new MemoryStream();
+                wk.Write(file);
+                HttpContext.Current.Response.BinaryWrite(file.GetBuffer());
+                HttpContext.Current.Response.End();
+            }
+        }
     }
 }

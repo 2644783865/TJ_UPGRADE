@@ -104,7 +104,7 @@
     </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Npoi1.2.5\Ionic.Zip.dll</HintPath>
+      <HintPath>bin\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="LongTrueComEditor, Version=3.0.1.0, Culture=neutral, PublicKeyToken=4577255b0d2d7147, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -122,7 +122,7 @@
     </Reference>
     <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Npoi1.2.5\NPOI.dll</HintPath>
+      <HintPath>bin\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -144,7 +144,7 @@
     </Reference>
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\kongjian\System.Web.DataVisualization.dll</HintPath>
+      <HintPath>bin\System.Web.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -161,15 +161,15 @@
     <Reference Include="System.Web.Mobile" />
     <Reference Include="Telerik.Web.Design, Version=2007.3.1314.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\kongjian\Telerik.Web.Design.dll</HintPath>
+      <HintPath>bin\Telerik.Web.Design.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI, Version=2007.3.1425.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\kongjian\Telerik.Web.UI.dll</HintPath>
+      <HintPath>bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="YYControls, Version=4.15.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\kongjian\YYControls.dll</HintPath>
+      <HintPath>bin\YYControls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

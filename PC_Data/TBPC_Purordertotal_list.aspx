@@ -330,7 +330,7 @@
                                 <input type="button" id="btn_filter" value="过滤" onclick="openmodewin()" />
                                 <asp:TextBox ID="hid_filter" runat="server" Style="display: none"></asp:TextBox>
                                 
-                                <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息" OnClick="btn_QRExport_click" />&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息（筛选批量导出）" OnClick="btn_QRExport_click" />&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_QRHBExport" runat="server" Text="导出二维码合并信息" Visible="false" OnClick="btn_QRHBExport_click" />&nbsp;
                             </td>
                         </tr>
