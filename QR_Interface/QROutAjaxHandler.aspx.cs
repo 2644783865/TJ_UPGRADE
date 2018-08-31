@@ -22,9 +22,10 @@ namespace ZCZJ_DPF.QR_Interface
             string QROutNum_Str = Request.Form["QROutNum"].ToString().Trim();
             string TaskID = Request.Form["TaskID"].ToString().Trim();
             string note = Request.Form["note"].ToString().Trim();
-            SaveData(QROutData, QROutNum_Str, TaskID,note);
+            string QROutPerson=Request.Form["QROutPerson"].ToString().Trim();
+            SaveData(QROutData, QROutNum_Str, TaskID, note, QROutPerson);
         }
-        private void SaveData(string QROutData, string QROutNum_Str, string TaskID,string note)
+        private void SaveData(string QROutData, string QROutNum_Str, string TaskID, string note, string QROutPerson)
         {
             List<string> list = new List<string>();
             string result = "";
@@ -38,7 +39,7 @@ namespace ZCZJ_DPF.QR_Interface
                 if (checkTaskID(TaskID))
                 {
                     //数据插入扫码出库物料中间表
-                    sqlInsert = "insert into midTable_QROut(QROut_MatCode, QROut_SQCODE, QROut_Num, QROut_Time, QROut_State, QROut_WHSTATE, QROut_TaskID, QROut_Note) values('" + SQ_MARID + "',''," + QROut_Num + ",'" + QROut_Time + "','0','0','" + TaskID + "','"+note+"')";
+                    sqlInsert = "insert into midTable_QROut(QROut_MatCode, QROut_SQCODE, QROut_Num, QROut_Time, QROut_State, QROut_WHSTATE, QROut_TaskID, QROut_Note,QROut_Person) values('" + SQ_MARID + "',''," + QROut_Num + ",'" + QROut_Time + "','0','0','" + TaskID + "','" + note + "','" + QROutPerson + "')";
                     list.Add(sqlInsert);
                     try
                     {

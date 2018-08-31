@@ -352,6 +352,9 @@ function viewCondition(){
                                             出库数量
                                         </td>
                                         <td>
+                                            扫码操作人
+                                        </td>
+                                        <td>
                                             扫码时间
                                         </td>
                                         <td>
@@ -439,6 +442,9 @@ function viewCondition(){
                                         </td>
                                         <td>
                                             <asp:Label ID="LabelQROut_Num" runat="server" Text='<%#Eval("QROut_Num")%>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="QROut_Person" runat="server" Text='<%#Eval("QROut_Person")%>'></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label ID="LabelQROut_Time" runat="server" Text='<%#Eval("QROut_Time")%>'></asp:Label>

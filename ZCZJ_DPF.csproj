@@ -5938,6 +5938,13 @@
     <Compile Include="QR_Interface\QRTaskIDAutoCompleteAjaxHandler.aspx.designer.cs">
       <DependentUpon>QRTaskIDAutoCompleteAjaxHandler.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QR_Interface\QR_CheckUser.aspx.cs">
+      <DependentUpon>QR_CheckUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QR_CheckUser.aspx.designer.cs">
+      <DependentUpon>QR_CheckUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -11854,6 +11861,7 @@
     <Content Include="QR_Interface\QROutAjaxHandler.aspx" />
     <Content Include="QR_Interface\QROut_List.aspx" />
     <Content Include="QR_Interface\QRTaskIDAutoCompleteAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QR_CheckUser.aspx" />
     <Content Include="QR_Interface\SM_JS\AllKeyControl.js" />
     <Content Include="QR_Interface\SM_JS\AllKeyControl1.js" />
     <Content Include="QR_Interface\SM_JS\KeyControl.js" />

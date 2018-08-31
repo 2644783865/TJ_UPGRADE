@@ -440,6 +440,9 @@ function orderexport() {
                                             实收数量
                                         </td>
                                         <td>
+                                            扫码操作人
+                                        </td>
+                                        <td>
                                             扫码时间
                                         </td>
                                         <td>
@@ -562,6 +565,9 @@ function orderexport() {
                                         </td>
                                         <td>
                                             <asp:Label ID="LabelQRIn_Num" runat="server" Text='<%#Eval("QRIn_Num")%>'></asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="QRIn_Person" runat="server" Text='<%#Eval("QRIn_Person")%>'></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label ID="LabelQRIn_Time" runat="server" Text='<%#Eval("QRIn_Time")%>'></asp:Label>

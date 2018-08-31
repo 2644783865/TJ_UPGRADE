@@ -685,7 +685,7 @@ namespace ZCZJ_DPF.QR_Interface
 
                 string PrimaryKey = "SQCODE";
 
-                string ShowFields = "SQCODE,MaterialCode,QROut_MatCode,case when MaterialName is null then MA_MNAME else MaterialName end AS MaterialName,case when Attribute is null then MA_CAIZHI else Attribute end AS Attribute,case when GB is null then MA_GB else GB end AS GB,case when Standard is null then MA_GUIGE else Standard end AS MaterialStandard,Fixed,Length,Width,LotNumber,PlanMode,PTC,WarehouseCode,Warehouse,LocationCode AS PositionCode,Location AS Position,Unit,cast(Number as float) AS Number,cast(SupportNumber as float) AS Quantity,Note AS Comment,CGMODE,OrderCode,OUTTZNUM,OUTTZFZNUM,QROut_ID,QROut_SQCODE,QROut_TaskID,QROut_Num,QROut_Time,(case when QROut_State='0' then '未出库' when QROut_State='1' then '已出库' else '其他' end) as QROut_State,QROut_WHSTATE,QROut_Note";
+                string ShowFields = "SQCODE,MaterialCode,QROut_MatCode,case when MaterialName is null then MA_MNAME else MaterialName end AS MaterialName,case when Attribute is null then MA_CAIZHI else Attribute end AS Attribute,case when GB is null then MA_GB else GB end AS GB,case when Standard is null then MA_GUIGE else Standard end AS MaterialStandard,Fixed,Length,Width,LotNumber,PlanMode,PTC,WarehouseCode,Warehouse,LocationCode AS PositionCode,Location AS Position,Unit,cast(Number as float) AS Number,cast(SupportNumber as float) AS Quantity,Note AS Comment,CGMODE,OrderCode,OUTTZNUM,OUTTZFZNUM,QROut_ID,QROut_SQCODE,QROut_TaskID,QROut_Num,QROut_Time,(case when QROut_State='0' then '未出库' when QROut_State='1' then '已出库' else '其他' end) as QROut_State,QROut_WHSTATE,QROut_Note,QROut_Person";
                 //数据库中的主键
                 string OrderField = "PTC,QROut_MatCode";
 
