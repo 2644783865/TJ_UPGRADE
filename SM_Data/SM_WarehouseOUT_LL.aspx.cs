@@ -542,7 +542,7 @@ namespace ZCZJ_DPF.SM_Data
                 if (((System.Web.UI.WebControls.Label)e.Row.FindControl("LabelOP_QRUniqCode")).Text.Trim() != "")
                 {
                     ((System.Web.UI.WebControls.TextBox)e.Row.FindControl("TextBoxRN")).Enabled = false;
-                    TextBoxSCZH.Enabled = false;
+                    //TextBoxSCZH.Enabled = false;
                 }
             }
             if (e.Row.RowType == DataControlRowType.Footer)

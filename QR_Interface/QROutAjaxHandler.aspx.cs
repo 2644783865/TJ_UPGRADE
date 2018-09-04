@@ -36,8 +36,8 @@ namespace ZCZJ_DPF.QR_Interface
             string QROut_Time = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Trim();//扫码时间
             if (checkIfEnough(SQ_MARID, QROut_Num))
             {
-                if (checkTaskID(TaskID))
-                {
+                //if (checkTaskID(TaskID))
+                //{
                     //数据插入扫码出库物料中间表
                     sqlInsert = "insert into midTable_QROut(QROut_MatCode, QROut_SQCODE, QROut_Num, QROut_Time, QROut_State, QROut_WHSTATE, QROut_TaskID, QROut_Note,QROut_Person) values('" + SQ_MARID + "',''," + QROut_Num + ",'" + QROut_Time + "','0','0','" + TaskID + "','" + note + "','" + QROutPerson + "')";
                     list.Add(sqlInsert);
@@ -50,11 +50,11 @@ namespace ZCZJ_DPF.QR_Interface
                     {
                         result = "{\"result\":\"fault\",\"msg\":\"程序执行出现错误!\"}";
                     }
-                }
-                else
-                {
-                    result = "{\"result\":\"fault\",\"msg\":\"任务号不存在!\"}";
-                }
+                //}
+                //else
+                //{
+                //    result = "{\"result\":\"fault\",\"msg\":\"任务号不存在!\"}";
+                //}
             }
             else
             {
