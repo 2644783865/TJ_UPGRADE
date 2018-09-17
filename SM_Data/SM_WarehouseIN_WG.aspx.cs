@@ -918,7 +918,7 @@ namespace ZCZJ_DPF.SM_Data
                    "CAST(taxrate AS VARCHAR(50)) AS TaxRate,CAST(cast((zxnum-recgdnum)*ctprice as float) AS VARCHAR(50)) AS CTA,detailnote AS Comment,PO_MASHAPE AS PlanMode,ptcode AS PTC," +
                    "totalstate AS State,UniqueID='',LotNumber='',WarehouseCode='" + DropDownListWarehouse.SelectedValue + "',Warehouse='" + DropDownListWarehouse.SelectedItem.Text + "',PositionCode='" + DropDownListPosition.SelectedValue + "',Position='" + DropDownListPosition.SelectedItem.Text + "',PO_TUHAO AS CGMODE,q.*,QRIn_ID as WG_QRUniqCode FROM View_TBPC_PURORDERDETAIL_PLAN_TOTAL as a left join (select * from midTable_QRIn where QRIn_WHSTATE='1')q on a.ptcode=q.QRIn_PTC WHERE whstate='APPENDIN" + Session["UserID"].ToString() + "'";
             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            dt.Merge(DBCallCommon.GetDTUsingSqlText(sql));
+            dt.Merge(DBCallCommon.GetDTUsingSqlText(sql),true,MissingSchemaAction.Ignore);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             sql = "UPDATE TBPC_PURORDERDETAIL SET PO_WHSTATE='1' WHERE PO_WHSTATE='APPENDIN" + Session["UserID"].ToString() + "'";

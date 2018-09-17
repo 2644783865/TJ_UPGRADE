@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Masters/SMBaseMaster.master" AutoEventWireup="true"
     CodeBehind="SM_WarehouseIN_WGPush.aspx.cs" Inherits="ZCZJ_DPF.SM_Data.SM_WarehouseIN_WGPush"
+    
     Title="订单管理" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -45,6 +46,7 @@ onFinish : function ()
 {  
 for (var i=0, j=this.sDataTable.tBodies[0].rows.length-1; i<j; i++) 
 {
+'
 
 this.sDataTable.tBodies[0].rows[i].onclick = this.sFDataTable.tBodies[0].rows[i].onclick = function (i) 
 {
@@ -118,7 +120,7 @@ function PushConfirm()
 
 function Confirmapp() {
     window.returnValue = true;
-    window.close();
+    window.close(); 
 }
 
 function Cancelapp() {
@@ -173,19 +175,22 @@ document.onload=init();
                         <td align="right">
                             <asp:Button ID="Append" runat="server" Text="追加" OnClick="Append_Click" />&nbsp;&nbsp;&nbsp;
                             <input id="cancel" type="button" value="取消" runat="server" onclick="Cancelapp()" />&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btnShowPopup" runat="server" Text="筛选" OnClientClick="viewCondition()" />&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btnShowPopup" runat="server" Text="筛选" OnClientClick="viewCondition()" />
+                            &nbsp;&nbsp;&nbsp;
                             <cc1:ModalPopupExtender ID="ModalPopupExtenderSearch" runat="server" TargetControlID="btnShowPopup"
                                 PopupControlID="UpdatePanelCondition" Drag="false" Enabled="True" DynamicServicePath=""
                                 Y="10">
                             </cc1:ModalPopupExtender>
                             <input id="InExport" type="button" value="导出" onclick="orderexport()" runat="server"
                                 visible="false" />
-                            <asp:Button ID="BtnShowExport" runat="server" Text="导出" OnClick="BtnShowExport_Click" />&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="BtnShowExport" runat="server" Text="导出" OnClick="BtnShowExport_Click" />
+                            &nbsp;&nbsp;&nbsp;
                             <asp:Button ID="Push" runat="server" Text="下推" OnClick="Push_Click" OnClientClick="return PushConfirm()" />
                             &nbsp;&nbsp;
                             <input id="closewin" type="button" value="关闭" onclick="closewindow()" visible="false" runat="server" />&nbsp;&nbsp;
                             
-                            <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息（勾选导出）" OnClick="btn_QRExport_click" />&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btn_QRExport" runat="server" Text="导出二维码信息（勾选导出）" OnClick="btn_QRExport_click" />
+                            &nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
                 </table>
@@ -199,8 +204,10 @@ document.onload=init();
                                     </td>
                                     <td align="right">
                                         <asp:Button ID="btnQuery" runat="server" OnClick="Query_Click" Text="查询" />&nbsp;&nbsp;&nbsp;
-                                        <asp:Button ID="btnClose" runat="server" Text="取消" OnClick="btnClose_Click" />&nbsp;&nbsp;&nbsp;
-                                        <asp:Button ID="btnReset" runat="server" Text="重置" OnClick="btnReset_Click" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <asp:Button ID="btnClose" runat="server" Text="取消" OnClick="btnClose_Click" />
+                                        &nbsp;&nbsp;&nbsp;
+                                        <asp:Button ID="btnReset" runat="server" Text="重置" OnClick="btnReset_Click" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
                                 <td width="50%">
@@ -994,4 +1001,5 @@ function consel()
         <!--box-outer END -->
     </div>
     <!--box-wrapper END -->
+    <br />
 </asp:Content>

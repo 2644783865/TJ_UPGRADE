@@ -432,6 +432,7 @@
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="lblnote" runat="server" Text='<%#Eval("NOTE")%>'></asp:Label>
+                                                                        <asp:Label ID="lbQRInUniqCode" Visible="false" runat="server" Text='<%#Eval("QRInUniqCode")%>'></asp:Label>
                                                                     </td>
                                                                 </tr>
                                                             </ItemTemplate>

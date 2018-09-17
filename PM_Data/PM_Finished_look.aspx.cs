@@ -965,6 +965,7 @@ namespace ZCZJ_DPF.PM_Data
         {
             int i = 0;
             string sqltext = "";
+            string sql2 = "";
             List<string> list = new List<string>();
             foreach (RepeaterItem item in PM_Finished_lookRepeater.Items)
             {
@@ -976,6 +977,11 @@ namespace ZCZJ_DPF.PM_Data
                         i++;
                         string id = ((Label)item.FindControl("lab_id")).Text.ToString();//唯一标识
                         sqltext = "delete from TBMP_FINISHED_IN where ID='" + id + "'";
+                        if (((Label)item.FindControl("lbQRInUniqCode")).Text.ToString() != "")
+                        {
+                            sql2 = "update midTable_Finished_QRIn set CPQRIn_State='0' where CPQRIn_ID=" + Convert.ToInt32(((Label)item.FindControl("lbQRInUniqCode")).Text.ToString()) + "";
+                            list.Add(sql2);
+                        }
                         list.Add(sqltext);
                     }
                 }
@@ -990,14 +996,14 @@ namespace ZCZJ_DPF.PM_Data
             {
                 DBCallCommon.ExecuteTrans(list);
 
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('删除成功!!!');window.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('删除成功!!!');", true);
             }
             else if (i == PM_Finished_lookRepeater.Items.Count)
             {
                 sqltext = "delete from TBMP_FINISHED_IN_Audit where FIA_DOCNUM='" + lbl_docnum.Text.ToString() + "'";
                 list.Add(sqltext);
                 DBCallCommon.ExecuteTrans(list);
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('删除成功!!!');window.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('删除成功!!!');", true);
 
             }
         }
@@ -1030,7 +1036,7 @@ namespace ZCZJ_DPF.PM_Data
             else if (i > 0)
             {
                 DBCallCommon.ExecuteTrans(list);
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功!!!');window.location.reload();", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "", "alert('保存成功!!!');", true);
             }
 
 

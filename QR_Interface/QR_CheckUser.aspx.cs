@@ -24,12 +24,12 @@ namespace ZCZJ_DPF.QR_Interface
             Encrypt_Decrypt ed = new Encrypt_Decrypt();
             password = ed.MD5Encrypt(password, "!@#$%^&*");
 
-            strText = "select ST_ID,ST_NAME,ST_PASSWORD from TBDS_STAFFINFO where (ST_CODE='" + UserName + "' or ST_NAME = '" + UserName + "') and ST_PASSWORD='" + password + "'";
+            strText = "select ST_ID,ST_NAME,ST_PASSWORD,ST_DEPID from TBDS_STAFFINFO where (ST_CODE='" + UserName + "' or ST_NAME = '" + UserName + "') and ST_PASSWORD='" + password + "'";
 
             DataTable dt = DBCallCommon.GetDTUsingSqlText(strText);
             if (dt.Rows.Count > 0)
             {
-                result = "{\"result\":\"success\",\"msg\":\"登录成功!\"}";
+                result = "{\"DEPID\":\"" + dt.Rows[0]["ST_DEPID"].ToString().Trim() + "\",\"result\":\"success\",\"msg\":\"登录成功!\"}";
             }
             else
             {

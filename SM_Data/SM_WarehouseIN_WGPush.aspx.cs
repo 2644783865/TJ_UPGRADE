@@ -879,9 +879,6 @@ namespace ZCZJ_DPF.SM_Data
                 return;
             }
             DBCallCommon.ExecuteTrans(sqllist);
-
-
-
             ClientScript.RegisterStartupScript(this.GetType(), "myscript", "<script type='text/javascript'>Confirmapp();</script>");
     
         }

@@ -48,6 +48,14 @@
                             <asp:HyperLink ID="addinbill" runat="server" ForeColor="Red" NavigateUrl="~/PM_Data/PM_Finished_INBILL.aspx?action=add">
                                 <asp:Label ID="Label" runat="server" Text="成品入库"> </asp:Label></asp:HyperLink>
                         </td>
+                        <td runat="server">
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~\QR_Interface\QRIn_Finished_List.aspx">
+                                <asp:Label ID="Label1" runat="server" Text="到扫码入库管理"> </asp:Label></asp:HyperLink>
+                        </td>
+                        <td runat="server">
+                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/PM_Data/Finished_QRExport.aspx">
+                                <asp:Label ID="Label2" runat="server" Text="导出二维码信息"> </asp:Label></asp:HyperLink>
+                        </td>
                     </tr>
                 </table>
             </div>

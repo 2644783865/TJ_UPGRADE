@@ -13,6 +13,9 @@
         function ToStore() {
             window.open("PM_fahuo.aspx?FLAG=ToStore");
         }
+        function ToQRStore() {
+            window.open("../QR_Interface/QROut_Finished_List.aspx");
+        }
     </script>
         <ContentTemplate>
             <div class="box-inner">
@@ -31,6 +34,7 @@
                                 </td>
                                 <td align="center">                                    
                                     <input id="ToStore" type="button" value="到库存" onclick="ToStore()" runat="server" />&nbsp;&nbsp;
+                                    <input id="ToQRStore" type="button" value="到扫码出库管理" onclick="ToQRStore()" runat="server" />&nbsp;&nbsp;
                                     <asp:Button ID="btnExport" runat="server" Text="导出" OnClick="btnExport_Click" />
                                 </td>
                             </tr>

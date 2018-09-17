@@ -13,7 +13,7 @@
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>AllFiles</PublishCopyOption>
-          <PublishTargetLocation>E:\发布TJ（2018.7.31.1）\</PublishTargetLocation>
+          <PublishTargetLocation>E:\fabu\</PublishTargetLocation>
           <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
           <PublishCopyAppData>True</PublishCopyAppData>
           <ExternalProgram>

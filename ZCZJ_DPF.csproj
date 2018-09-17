@@ -5045,6 +5045,69 @@
     <Compile Include="PL_Data\PL_Menu.aspx.designer.cs">
       <DependentUpon>PL_Menu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PM_Data\Finished_QRExport.aspx.cs">
+      <DependentUpon>Finished_QRExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PM_Data\Finished_QRExport.aspx.designer.cs">
+      <DependentUpon>Finished_QRExport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\AjaxTest.aspx.cs">
+      <DependentUpon>AjaxTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\AjaxTest.aspx.designer.cs">
+      <DependentUpon>AjaxTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRGetInMatDataAjaxHandler.aspx.cs">
+      <DependentUpon>Daizhi_Finished_QRGetInMatDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRGetInMatDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Daizhi_Finished_QRGetInMatDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRGetOutMatDataAjaxHandler.aspx.cs">
+      <DependentUpon>Daizhi_Finished_QRGetOutMatDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRGetOutMatDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Daizhi_Finished_QRGetOutMatDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRGetProjInfoDataAjaxHandler.aspx.cs">
+      <DependentUpon>Daizhi_Finished_QRGetProjInfoDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRGetProjInfoDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Daizhi_Finished_QRGetProjInfoDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRInAjaxHandler.aspx.cs">
+      <DependentUpon>Daizhi_Finished_QRInAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QRInAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Daizhi_Finished_QRInAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QROutAjaxHandler.aspx.cs">
+      <DependentUpon>Daizhi_Finished_QROutAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_Finished_QROutAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Daizhi_Finished_QROutAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_QRGetStorageListAjaxHandler.aspx.cs">
+      <DependentUpon>Daizhi_QRGetStorageListAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Daizhi_QRGetStorageListAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Daizhi_QRGetStorageListAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QRInAjaxHandler.aspx.cs">
+      <DependentUpon>Finished_QRInAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QRInAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Finished_QRInAjaxHandler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PM_Data\PM_AjaxFahuo.aspx.cs">
       <DependentUpon>PM_AjaxFahuo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5868,6 +5931,27 @@
     <Compile Include="QC_Data\QC_ZJXGSH_TOTAL.aspx.designer.cs">
       <DependentUpon>QC_ZJXGSH_TOTAL.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QR_Interface\Finished_QRGetInMatDataAjaxHandler.aspx.cs">
+      <DependentUpon>Finished_QRGetInMatDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QRGetInMatDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Finished_QRGetInMatDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QRGetOutMatDataAjaxHandler.aspx.cs">
+      <DependentUpon>Finished_QRGetOutMatDataAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QRGetOutMatDataAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Finished_QRGetOutMatDataAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QROutAjaxHandler.aspx.cs">
+      <DependentUpon>Finished_QROutAjaxHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\Finished_QROutAjaxHandler.aspx.designer.cs">
+      <DependentUpon>Finished_QROutAjaxHandler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QR_Interface\PTCAssignedAjaxHandler.aspx.cs">
       <DependentUpon>PTCAssignedAjaxHandler.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5910,6 +5994,13 @@
     <Compile Include="QR_Interface\QRInAjaxHandler.aspx.designer.cs">
       <DependentUpon>QRInAjaxHandler.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QR_Interface\QRIn_Finished_List.aspx.cs">
+      <DependentUpon>QRIn_Finished_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRIn_Finished_List.aspx.designer.cs">
+      <DependentUpon>QRIn_Finished_List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QR_Interface\QRIn_List.aspx.cs">
       <DependentUpon>QRIn_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5917,12 +6008,33 @@
     <Compile Include="QR_Interface\QRIn_List.aspx.designer.cs">
       <DependentUpon>QRIn_List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QR_Interface\QRManage_DzFinished_List.aspx.cs">
+      <DependentUpon>QRManage_DzFinished_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QRManage_DzFinished_List.aspx.designer.cs">
+      <DependentUpon>QRManage_DzFinished_List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QR_Interface\QROutAjaxHandler.aspx.cs">
       <DependentUpon>QROutAjaxHandler.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="QR_Interface\QROutAjaxHandler.aspx.designer.cs">
       <DependentUpon>QROutAjaxHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QROut_DzFinished_List.aspx.cs">
+      <DependentUpon>QROut_DzFinished_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QROut_DzFinished_List.aspx.designer.cs">
+      <DependentUpon>QROut_DzFinished_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Interface\QROut_Finished_List.aspx.cs">
+      <DependentUpon>QROut_Finished_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR_Interface\QROut_Finished_List.aspx.designer.cs">
+      <DependentUpon>QROut_Finished_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="QR_Interface\QROut_List.aspx.cs">
       <DependentUpon>QROut_List.aspx</DependentUpon>
@@ -11413,6 +11525,7 @@
     <None Include="PM_Data\外协订单%28批量%29.xls" />
     <None Include="PM_Data\外协订单.xls" />
     <None Include="PM_Data\工时汇总表.xls" />
+    <None Include="PM_Data\成品二维码导出模板.xls" />
     <None Include="PM_Data\成品入库管理.xls" />
     <None Include="PM_Data\成品库存查询.xls" />
     <None Include="PM_Data\油漆涂装方案.xls" />
@@ -11441,6 +11554,15 @@
     <Content Include="PC_Data\ZHAOBIAOEDIT.aspx" />
     <Content Include="PL_Data\MainPlanProView.aspx" />
     <Content Include="PL_Data\MainPlan_AjaxHandler.aspx" />
+    <Content Include="PM_Data\Finished_QRExport.aspx" />
+    <Content Include="QR_Interface\AjaxTest.aspx" />
+    <Content Include="QR_Interface\Daizhi_Finished_QRGetInMatDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Daizhi_Finished_QRGetOutMatDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Daizhi_Finished_QRGetProjInfoDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Daizhi_Finished_QRInAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Daizhi_Finished_QROutAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Daizhi_QRGetStorageListAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Finished_QRInAjaxHandler.aspx" />
     <Content Include="PM_Data\PM_AjaxFahuo.aspx" />
     <Content Include="PM_Data\PM_AjaxFinished.aspx" />
     <Content Include="PM_Data\PM_BANZUHZ.aspx" />
@@ -11845,6 +11967,9 @@
     <Content Include="QC_Data\QC_Task_Persons.aspx" />
     <Content Include="QC_Data\QC_ZJXGSH.aspx" />
     <Content Include="QC_Data\QC_ZJXGSH_TOTAL.aspx" />
+    <Content Include="QR_Interface\Finished_QRGetInMatDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Finished_QRGetOutMatDataAjaxHandler.aspx" />
+    <Content Include="QR_Interface\Finished_QROutAjaxHandler.aspx" />
     <Content Include="QR_Interface\PTCAssignedAjaxHandler.aspx" />
     <Content Include="QR_Interface\QRCode\img\gray.png" />
     <Content Include="QR_Interface\QRCode\js\jquery-1.8.3.min.js" />
@@ -11857,8 +11982,12 @@
     <Content Include="QR_Interface\QRGetStorageAjaxHandler.aspx" />
     <Content Include="QR_Interface\QRGetStorageListAjaxHandler.aspx" />
     <Content Include="QR_Interface\QRInAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QRIn_Finished_List.aspx" />
     <Content Include="QR_Interface\QRIn_List.aspx" />
+    <Content Include="QR_Interface\QRManage_DzFinished_List.aspx" />
     <Content Include="QR_Interface\QROutAjaxHandler.aspx" />
+    <Content Include="QR_Interface\QROut_DzFinished_List.aspx" />
+    <Content Include="QR_Interface\QROut_Finished_List.aspx" />
     <Content Include="QR_Interface\QROut_List.aspx" />
     <Content Include="QR_Interface\QRTaskIDAutoCompleteAjaxHandler.aspx" />
     <Content Include="QR_Interface\QR_CheckUser.aspx" />

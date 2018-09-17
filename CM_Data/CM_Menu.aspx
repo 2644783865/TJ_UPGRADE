@@ -348,6 +348,26 @@
                     </p>
                 </asp:HyperLink>
             </div>
+            <div title="呆滞成品管理" style="overflow: auto; background-color: #E3F1FA;">
+                <asp:HyperLink ID="HyperLink38" onClick="SelectMenu(38);" CssClass="LeftMenuNoSelected"
+                    NavigateUrl="~/QR_Interface/QRManage_DzFinished_List.aspx" Target="right" runat="server">
+                    <p>
+                        扫码入库汇总管理
+                    </p>
+                </asp:HyperLink>
+                <asp:HyperLink ID="HyperLink39" onClick="SelectMenu(39);" CssClass="LeftMenuNoSelected"
+                    NavigateUrl="~/QR_Interface/QROut_DzFinished_List.aspx" Target="right" runat="server">
+                    <p>
+                        扫码出库管理
+                    </p>
+                </asp:HyperLink>
+                <%--<asp:HyperLink ID="HyperLink41" onClick="SelectMenu(39);" CssClass="LeftMenuNoSelected"
+                    NavigateUrl="~/QR_Interface/AjaxTest.aspx" Target="right" runat="server">
+                    <p>
+                        测试
+                    </p>
+                </asp:HyperLink>--%>
+            </div>
         </div>
     </div>
     </form>
